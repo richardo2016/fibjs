@@ -1,66 +1,54 @@
 dist: trusty
 language: cpp
 services:
-  - docker
+- docker
 matrix:
   include:
-    - os: osx
-      osx_image: xcode9
-      env:
-        - ARCH=amd64
-    - os: osx
-      osx_image: xcode9
-      env:
-        - ARCH=i386
-    - os: linux
-      env:
-        - ARCH=amd64
-    - os: linux
-      env:
-        - ARCH=i386
-    - os: linux
-      env:
-        - ARCH=arm
-    - os: linux
-      env:
-        - ARCH=arm64
-    - os: linux
-      env:
-        - ARCH=mips
-    - os: linux
-      env:
-        - ARCH=mips64
+  - os: osx
+    osx_image: xcode9
+    env:
+    - ARCH=amd64
+  - os: osx
+    osx_image: xcode9
+    env:
+    - ARCH=i386
+  - os: linux
+    env:
+    - ARCH=amd64
+  - os: linux
+    env:
+    - ARCH=i386
+  - os: linux
+    env:
+    - ARCH=arm
+  - os: linux
+    env:
+    - ARCH=arm64
+  - os: linux
+    env:
+    - ARCH=mips
+  - os: linux
+    env:
+    - ARCH=mips64
 before_install:
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-      rvm install ruby-2.4.0;
-      rvm --default use 2.4.0;
-      ruby -v;
-      brew update;
-    fi
+- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then rvm install ruby-2.4.0; rvm --default
+  use 2.4.0; ruby -v; brew update; fi
 install:
-  - git submodule init
-  - git submodule update
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-      docker pull fibjs/build-env:latest;
-    fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-      brew install xz;
-    fi
+- git submodule init
+- git submodule update
+- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then docker pull fibjs/build-env:latest;
+  fi
+- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install xz; fi
 script:
-  - echo "${ARCH}"
-  - ./.travis/build.sh
-  - ./.travis/test.sh
-  - if [[ "$TRAVIS_TAG" != "" ]]; then 
-      ./.travis/release.sh; 
-    fi
+- echo "${ARCH}"
+- "./.travis/build.sh"
+- "./.travis/test.sh"
+- if [[ "$TRAVIS_TAG" != "" ]]; then ./.travis/release.sh; fi
 deploy:
-  - provider: releases
-    api_key:
-      secure: e8Vlz6ZGelHDh7FXXu39xuGBk08jSXfmddJKG2nAg3HfXKXOEPniVKXtlsCpXD7FrzAo23V3caKBdFRye785JCJ1Xgf6rJx1lwB/0uAYaYYqq+DIVsiK+w3IoaZWvf/yEw6wYXsGI2jgUz3RIinETr/HomO5HAFAQHwbHqL6Jn8=
-    file_glob: true
-    file: ${TRAVIS_TAG}/*
-    skip_cleanup: true
-    overwrite: true
-    on:
-      tags: true
-      repo: fibjs/fibjs
+  provider: releases
+  api_key:
+    secure: aTV6qFMCqgh4z+xJ40Hf6231T/a71Z8z2RRnWfmzdeySdgDfIzZbHvSLdminWhxgeEKZqsCPOIt4gu+0iudni9aQtuB9UMzDQ/xkBcxy63QbUgrLjAvh2DncW+dX9Q9f9cnDB5PwPCCVvoLlDOiHlslwX1DBiJvm6FWuR92Hi/0MGUC1BbCCeWiTn61vnTUJBrpsEqg/y78pUpe0Z1L2jZAyoiom+reQksyuFZFkZGzjX8DSDTGpOKwl86uXIJ2dJc7Z3DhDzpUkCRI8mEO8S54NtySYWLlcnKAn5HB78HYdNMRfecT6bUrQU8CcAlyndAv1Af0Jokwie9XCg98EKGt2tPA7PfMcliTZ8X0QvpuY0CNnF+WJT7wZ40Z+sx076yp+95uTNYQ43nWd3Y7hpscm/pG41grn7vq+PEko/NZpwSgsy2yhKiL6/bYe7L+XbWtM/qf6xvVryJC/b7tkvvMoE/mcS5gE0SLz63JD8RcO59ffKmzdRB6y2bDo9HqcxGNIP5GlWkuoCut4xbBKYaUHaY9zNmghCKpyKJxX6Ik3dCBppR8ft3zYsEcHrcOZDRI4/Q2RoF8cjrh6KcSt7w/AfXv9D30BFlLEIdyAcUtJczOx/0PXZo3u7ZKRpK7l5vFCXhT2X9fPYyfWkyEVVG4cidPzv2sgdKOkCbJOLh8=
+  file: "${TRAVIS_TAG}/*"
+  on:
+    repo: richardo2016/fibjs
+    branch: feat/test_travis_deploy
