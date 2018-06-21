@@ -25,15 +25,18 @@ module.exports = function (defs, baseFolder) {
     const defModuleNames = Object.keys(defModules)
     const defObjectNames = Object.keys(defObjects)
     // white list of Object would be declared in global index.d.ts
-    const topLevelVariablesInGlobalModule = [
-        '__dirname',
-        '__filename',
-        'require',
-        'Master',
-        'setHrInterval',
-        'clearHrInterval',
-        'GC',
-        'repl',
+    const excludedTopLevelVariablesInGlobalModule = [
+        'console',
+        // 'process',
+        // 'global',
+        'run',
+        // import methods below from 'global' module
+        'setTimeout',
+        'clearTimeout',
+        'setInterval',
+        'clearInterval',
+        'setImmediate',
+        'clearImmediate'
     ]
 
     function gen_ts_type_code(cls, def) {
@@ -44,10 +47,10 @@ module.exports = function (defs, baseFolder) {
             "Boolean": "boolean",
             "String": "string",
             "Date": "Date",
-            "Object": "Object",
-            "Iterator": "Object",
+            "Object": 'Object',
+            "Iterator": 'Iterable<any>',
             "Array": "any[]",
-            "TypedArray": "TypedArray",
+            "TypedArray": "ArrayLike<any>",
             "ArrayBuffer": "ArrayBuffer",
             "ArrayBufferView": "ArrayBufferView",
             "Function": "Function",
@@ -61,6 +64,16 @@ module.exports = function (defs, baseFolder) {
 
         function isRestArgs(argType) {
             return argType === '...'
+        }
+
+        function getTypeStr_ObjectInArg(str) {
+            if (str !== 'Object') return str
+            return '{ [key: string]: any }'
+        }
+
+        function getTypeStr_ObjectInReturn(str) {
+            if (str !== 'Object') return str
+            return '{ [key: string]: any }'
         }
 
         function transObjectName(className) {
@@ -180,7 +193,7 @@ module.exports = function (defs, baseFolder) {
                 defObjects,
                 defModuleNames,
                 defObjectNames,
-                topLevelVariablesInGlobalModule,
+                excludedTopLevelVariablesInGlobalModule,
                 refers: build_refer(def),
                 _fns: {
                     get_type,
@@ -190,7 +203,9 @@ module.exports = function (defs, baseFolder) {
                     uglifyTypeInDefObjects,
                     isRestArgs,
                     transObjectName,
-                    getAliasNameForRefModule
+                    getAliasNameForRefModule,
+                    getTypeStr_ObjectInArg,
+                    getTypeStr_ObjectInReturn
                 },
                 filename: def.filename || ''
             }

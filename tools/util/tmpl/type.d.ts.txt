@@ -26,12 +26,6 @@
 import _Global from 'global';
 import _Process from 'process';
 
-declare const process: typeof _Process;
-declare const global: typeof _Global;
-declare const __filename: string;
-declare const __dirname: string;
-declare const require: typeof _Global.require;
-
 type GlobalExportsType = any;
 interface ModuleType {
 	exports: GlobalExportsType;
@@ -43,17 +37,13 @@ declare global {
 <% for(var i=0; i<defModules['global'].members.length; i++) {
 	var member = defModules['global'].members[i]
 	console.log('global member', member.memType, member.name, member.type)
-	if (!topLevelVariablesInGlobalModule.includes(member.name)) {%>
+	if (excludedTopLevelVariablesInGlobalModule.includes(member.name)) {%>
 	/** const <%- member.name %>: <%- member.type || 'null' %>; */<%
 	continue;
-	}
-	if (member.memType === 'method') {%>
-	const <%- member.name %>: typeof _Global.<%- member.name %><% 
-	} else if (typeMap[member.type]) { /** else if of iteration`defModules['global'].members` */ %>
-	const <%- member.name %>: <%- typeMap[member.type] %>;
-	<% } 
+	}%>
+	const <%- member.name %>: typeof _Global.<%- member.name %><%
 } /** end of iteration`defModules['global'].members` */ %>
-}
+} /** end of `declare global` */
 
 <% } else if (filename === '_test_env') { /** elseif of `if (filename === 'index')` */ %>
 /// <reference path="test.d.ts" />
@@ -76,7 +66,7 @@ declare global {
 <% for(var i=0; i<refers.length; i++) { 
 	var refClassName = refers[i]
 	if(defObjects[refClassName]) {%>/// <reference path="<%- refClassName %>.d.ts" /><%
-	} else if (defModules[refClassName]){%>import <%- refClassName %> = require('<%- refClassName %>')<%}
+	} else if (false && defModules[refClassName]){%>import <%- refClassName %> from '<%- refClassName %>'<%}
 %>
 
 <% } /** end of `iteration about refers` */ %>
@@ -105,6 +95,7 @@ declare class <%- _fns.uglifyInternalClassName(className) %> <%- extendClassName
 		var propName = memberProp.name 
 		var propType = typeMap[memberProp.type]
 		propType = _fns.uglifyTypeInDefObjects(propType)
+
 		var str = JSON.stringify(memberProp)
 	%>
 	/**
@@ -163,13 +154,38 @@ declare module "<%- def.declare.name %>" {
 		 */
 		export const <%- constant.name %><%- hasDefault ? ` = ${constant.default.value}` : ''%>;
 		<% } /** end of iteration 'member_constants' */ %>
-		
+		<% for(var i=0; i<member_props.length; i++) {
+				var prop = member_props[i]
+
+				var hasDefault = !!prop.default
+				var propType = typeMap[prop.type] || 'any'
+
+				var finalPropType = propType
+
+				var isInternalClass = !!defObjects[propType]
+				var isInternalModule = !!defModules[propType]
+				if (isInternalClass) {
+					finalPropType = _fns.uglifyTypeInDefObjects(propType)
+				}
+				if (isInternalModule) {
+					finalPropType = _fns.getAliasNameForRefModule(propType)
+				}
+		%>
+		/**
+		 * <% var comments = prop.comments.split('\n'); for(var idx=0; idx<comments.length; idx++) {var comment = comments[idx].trim().replace('! @', '@') %>
+		 * <%- comment %><% } %>
+		 * <%- prop.deprecated ? '@deprecated' : '' %>
+		 * <%- prop.async ? '@async' : '' %>
+		 */
+		export const <%- prop.name %>: <%- finalPropType %><%- hasDefault ? ` = ${prop.default.value}` : ''%>;
+		<% } /** end of iteration 'member_props' */ %>
 		<% for(var i=0; i<member_objects.length; i++) {
 			var internalObj = member_objects[i]
-			var objectName = internalObj.type || internalObj.name
+			var objectName = internalObj.name
+			var objectType = internalObj.type || internalObj.name
 			// var str = JSON.stringify(internalObj)
-			var isInternalClass = !!defObjects[objectName]
-			var isInternalModule = !!defModules[objectName]
+			var isInternalClass = !!defObjects[objectType]
+			var isInternalModule = !!defModules[objectType]
 		%>
 		/**
 		 * <% var comments = internalObj.comments.split('\n'); for(var idx=0; idx<comments.length; idx++) {var comment = comments[idx].trim().replace('! @', '@') %>
@@ -177,8 +193,8 @@ declare module "<%- def.declare.name %>" {
 		 * <%- internalObj.deprecated ? '@deprecated' : '' %>
 		 * <%- internalObj.async ? '@async' : '' %>
 		 */
-		<% if (isInternalClass) {%>export class <%- objectName %> extends <%- _fns.uglifyInternalClassName(objectName) %> {}<%}%>
-		<% if (isInternalModule) {%>export const <%- objectName %>: typeof <%- _fns.getAliasNameForRefModule(objectName) %><%}%>
+		<% if (isInternalClass) {%>export class <%- objectName %> extends <%- _fns.uglifyInternalClassName(objectType) %> {}<%}%>
+		<% if (isInternalModule) {%>export const <%- objectName %>: typeof <%- _fns.getAliasNameForRefModule(objectType) %><%}%>
 		<% } /** end of iteration 'member_objects' */ %>
 		
 		<% for(var i=0; i<member_fns.length; i++) {
@@ -201,6 +217,6 @@ declare module "<%- def.declare.name %>" {
 }
 <%} /** endof `if (isModule)` */ 
 %>
-/** } /** endof `module Or Internal Object` */
+/** endof `module Or Internal Object` */
 
 <% } /** end of `if (filename === 'index')` */ %>
