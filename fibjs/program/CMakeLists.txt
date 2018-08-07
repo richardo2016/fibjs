@@ -13,7 +13,14 @@ if(CCACHE_FOUND)
 endif(CCACHE_FOUND)
 
 file(GLOB_RECURSE src_list "src/*.c*")
-add_executable(fibjs ${src_list})
+
+if(${OS} STREQUAL "Darwin")
+file(GLOB_RECURSE src_platform_list "src/*.m*")
+else()
+file(GLOB_RECURSE src_platform_list "")
+endif()
+
+add_executable(fibjs ${src_list} ${src_platform_list})
 
 set(BIN_DIR ${PROJECT_SOURCE_DIR}/../../bin/${OS}_${ARCH}_${BUILD_TYPE})
 set(EXECUTABLE_OUTPUT_PATH ${BIN_DIR})
@@ -33,8 +40,18 @@ check_c_source_compiles("void posix_spawnp();
 	void main(void){posix_spawnp();}" HAVE_GLIB_C_22_H)
 
 set(flags "-fsigned-char -fmessage-length=0 -fdata-sections -ffunction-sections -fno-exceptions -D_FILE_OFFSET_BITS=64")
+set(cflags "")
 set(ccflags "-std=c++11")
 set(link_flags " ")
+
+if(${OS} STREQUAL "Darwin")
+	set(cflags "-DWEBVIEW_COCOA=1 -x objective-c")
+	set(ccflags "-std=c++11")
+	set(link_flags "${link_flags} -mmacosx-version-min=10.9 -framework Carbon -framework IOKit -framework Cocoa -framework WebKit")
+
+	set_source_files_properties(${src_platform_list} PROPERTIES COMPILE_FLAGS "-x objective-c++")
+	set(flags "${flags} -mmacosx-version-min=10.9")
+endif()
 
 if(${BUILD_TYPE} STREQUAL "release")
 	set(flags "${flags} -O3 -s ${BUILD_OPTION} -w -fvisibility=hidden")
@@ -63,9 +80,6 @@ if(${BUILD_TYPE} STREQUAL "debug")
 	add_definitions(-DDEBUG=1)
 endif()
 
-set(CMAKE_C_FLAGS "${flags}")
-set(CMAKE_CXX_FLAGS "${flags} ${ccflags}")
-
 include_directories("${PROJECT_SOURCE_DIR}/include" "${PROJECT_SOURCE_DIR}/../include" "${PROJECT_SOURCE_DIR}/../../vender" "${PROJECT_SOURCE_DIR}/../../vender/v8" "${PROJECT_SOURCE_DIR}/../../vender/v8/include" "${PROJECT_SOURCE_DIR}/../../vender/mbedtls" "${PROJECT_SOURCE_DIR}/../../vender/zlib/include" "${CMAKE_CURRENT_BINARY_DIR}")
 
 set(libs fibjs expat gumbo gd tiff jpeg png webp zlib leveldb snappy ev pcre sqlite mongo umysql uuid exif mbedtls v8 zmq unzip editline exlib)
@@ -77,7 +91,9 @@ endforeach()
 target_link_libraries(fibjs pthread)
 
 if(${OS} STREQUAL "Darwin")
-	set(link_flags "${link_flags} -mmacosx-version-min=10.9 -framework Carbon -framework IOKit")
+	set(cflags "-DWEBVIEW_COCOA=1 -x objective-c")
+	set(link_flags "${link_flags} -mmacosx-version-min=10.9 -framework Carbon -framework IOKit -framework Cocoa -framework WebKit")
+	# set(link_flags "${link_flags} -mmacosx-version-min=10.9 -framework Carbon -framework IOKit")
 	set(flags "${flags} -mmacosx-version-min=10.9")
 	target_link_libraries(fibjs dl iconv stdc++)
 endif()
@@ -90,5 +106,8 @@ if(${OS} STREQUAL "FreeBSD")
 	find_library(execinfo execinfo "/usr/local/lib" "/usr/lib")
 	target_link_libraries(fibjs ${execinfo})
 endif()
+
+set(CMAKE_C_FLAGS "${flags} ${cflags}")
+set(CMAKE_CXX_FLAGS "${flags} ${ccflags}")
 
 set_target_properties(fibjs PROPERTIES LINK_FLAGS ${link_flags})

@@ -62,6 +62,10 @@ void importModule()
     IMPORT_MODULE(gui);
     IMPORT_MODULE(registry);
 #endif
+
+#ifdef __APPLE__
+    IMPORT_MODULE(gui);
+#endif
 }
 
 void main(int32_t argc, char** argv)
@@ -101,7 +105,7 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
     fibjs::main(argc, argv);
     return 0;
 }
-
+#elif __APPLE__
 #else
 
 int32_t main(int32_t argc, char* argv[])

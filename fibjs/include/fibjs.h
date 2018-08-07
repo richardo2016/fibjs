@@ -16,5 +16,7 @@ void run_gui();
 void start(int32_t argc, char** argv, result_t (*main)(Isolate*), v8::Platform* (*get_platform)() = NULL);
 result_t main_fiber(Isolate* isolate);
 
+void main(int32_t argc, char** argv);
+
 } /* namespace fibjs */
 #endif /* FIBER_H_ */
