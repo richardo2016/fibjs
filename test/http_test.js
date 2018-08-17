@@ -4,6 +4,7 @@ test.setup();
 var test_util = require('./test_util');
 
 var io = require('io');
+var gd = require("gd");
 var fs = require('fs');
 var http = require('http');
 var net = require('net');
@@ -1217,6 +1218,24 @@ describe("http", () => {
             assert.equal(200, rep.statusCode);
             assert.equal('text/html', rep.firstHeader('Content-Type'));
             assert.equal("this is index.html", rep.readAll().toString());
+        });
+
+        it("image", () => {
+            var rep = hfh_test("http_files/fibjs.png");
+            assert.equal(200, rep.statusCode);
+            assert.equal('image/png', rep.firstHeader('Content-Type'));
+            var imageLocal = gd.load(path.resolve(__dirname, './http_files/fibjs.png'))
+            var imageRep = gd.load(rep.readAll());
+            
+            assert.equal(imageLocal.getData(gd.PNG).length, imageRep.getData(gd.PNG).length);
+            assert.equal(imageLocal.getData(gd.PNG).toString('base64'), imageRep.getData(gd.PNG).toString('base64'));
+        });
+
+        it("javascript", () => {
+            var rep = hfh_test("http_files/test.js");
+            assert.equal(200, rep.statusCode);
+            assert.equal('application/x-javascript', rep.firstHeader('Content-Type'));
+            assert.equal("console.log('I am test.js')\n", rep.readAll().toString());
         });
 
         it("autoindex", () => {
