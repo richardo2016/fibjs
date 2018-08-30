@@ -56,11 +56,11 @@ script:
 deploy:
   - provider: releases
     api_key:
-      secure: e8Vlz6ZGelHDh7FXXu39xuGBk08jSXfmddJKG2nAg3HfXKXOEPniVKXtlsCpXD7FrzAo23V3caKBdFRye785JCJ1Xgf6rJx1lwB/0uAYaYYqq+DIVsiK+w3IoaZWvf/yEw6wYXsGI2jgUz3RIinETr/HomO5HAFAQHwbHqL6Jn8=
+      secure: h9ITgKlEXiDd5SWnEs9nefZKqu6DwgCJUg5zX+f/c0N0UPohjaLmf9J2Pla42FqMyOYKSXMOjfJlaHrS1P7I5j/RvsJEeoxTFGCHGKjGlOVer3002kk1jArVuayE7GDRJVgmkDfkFiE1Mum2AMbO5TDyWZKdArXgBPReSOKsm+NpSBHldzCQme8Nq2xljPRRo/OA7ojnuPzEcAEsbVOys9Q2YL/b73goaLJmXsG4M+vQ+v6uyXIM0FDe5mUppmMza6KKdoBji0/sf50i3C4thAhZ5/9eQeeDpY5pCPnQOjuPMY6Wg9UIWgaxytv82YAOloU6GnL6c+eQ4BqM5lQM2aA17wrzNYZLr4DagQEpuNhbo6fSpMu5hUmR07JM7oYPvJ8a1R3WibAT3KGWNjkmU1xiedIkuZu5A1XLwB/Cwq/kDDCwm8yygTXcxm0KOFwsXmpSX6X4fBOid0J4UfS62drX35Y+S+vbiGFPcdARhNUKMbL9jrTNHMmjQiXgTOEJUSrEIGxJ2lCaFBTOtTxzwplHGiBobAvG4MrLm1AXopPScAuBHUcMu6iSRqGv6QWUeAomll/nGv31Jbmzd0HonM7cQ047U+d9SUwkC2vvWUf32zQEYHHNXpRVyeh9HgzIlUoTgrQ24zAVpf4Howb/Riatd3nARI92c4gdnWp5Bt4=
     file_glob: true
     file: ${TRAVIS_TAG}/*
     skip_cleanup: true
     overwrite: true
     on:
       tags: true
-      repo: fibjs/fibjs
+      repo: richardo2016/fibjs
