@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="12.0" 
-  xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -94,7 +93,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-
   </ItemGroup>
   <ItemGroup>
     <None Include="include\object_async.inl" />
@@ -109,7 +107,7 @@
     <Image Include="res\fibjs.ico" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{05654A7E-DBAF-4211-886A-C23565833D05}</ProjectGuid>
+    <ProjectGuid>{E86C788B-0810-4E08-A184-421054A3FD03}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>fibjs_gui</RootNamespace>
   </PropertyGroup>
@@ -139,6 +137,11 @@
     <WholeProgramOptimization>false</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
     <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Label="LLVM">
+    <UseClangCl>true</UseClangCl>
+    <UseLldLink>false</UseLldLink>
+    <UseLlvmLib>false</UseLlvmLib>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">

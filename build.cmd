@@ -6,7 +6,6 @@ if defined ProgramFiles(x86) (set HOST_ARCH=amd64) else (set HOST_ARCH=i386)
 set TARGET_ARCH=!HOST_ARCH!
 
 set BUILD_TYPE=release
-set XP=""
 set MT=/m
 set ARG_ERROR=no
 
@@ -32,11 +31,6 @@ for %%a in (%*) do (
     	set BUILD_TYPE=debug
         set ARG_ERROR=no
         set MT=
-    )
-
-    if "%%a"=="xp" (
-    	set XP="_XP"
-        set ARG_ERROR=no
     )
 
     if "%%a"=="clean" (
@@ -68,14 +62,25 @@ if "!BUILD_TYPE!"=="clean" (
 
 if "!TARGET_ARCH!"=="amd64" (set Platform=x64) else (set Platform=Win32)
 
-msbuild fibjs.sln /t:Build /p:Configuration=!BUILD_TYPE!;Platform=!Platform!;PlatformToolset=v141!XP! !MT!
+IF "%__VCVARSALL_VER%" == "" (
+    IF /I "%PLATFORM%" == "x64" (
+        call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvars64.bat"
+        ECHO "x64 building..."
+    )
+    IF /I "%PLATFORM%" == "x86" (
+        call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvars64.bat"
+        ECHO "x86 building..."
+    )
+)
+    
+msbuild fibjs.sln /t:Build /p:Configuration=!BUILD_TYPE!;Platform=!Platform! !MT!
 
 if "!BUILD_TYPE!"=="release" (
 	cd bin\Windows_!TARGET_ARCH!_!BUILD_TYPE!
     fibjs ../../fibjs/program/gen_install.js
     cd ..\..
     cd installer
-    msbuild installer.sln /t:Build /p:Configuration=Release;Platform=!Platform!;PlatformToolset=v141!XP! !MT!
+    msbuild installer.sln /t:Build /p:Configuration=Release;Platform=!Platform! !MT!
     cd ..
 )
 
