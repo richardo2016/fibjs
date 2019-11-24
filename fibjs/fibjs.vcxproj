@@ -492,8 +492,8 @@
   </PropertyGroup>
   <PropertyGroup Label="LLVM">
     <UseClangCl>true</UseClangCl>
-    <UseLldLink>false</UseLldLink>
-    <UseLlvmLib>false</UseLlvmLib>
+    <UseLldLink>true</UseLldLink>
+    <UseLlvmLib>true</UseLlvmLib>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -587,6 +587,7 @@
       <WholeProgramOptimization>false</WholeProgramOptimization>
       <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>4091;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -612,9 +613,9 @@
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <WholeProgramOptimization>false</WholeProgramOptimization>
       <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>4091;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
