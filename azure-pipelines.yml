@@ -1,0 +1,40 @@
+trigger:
+  - feat/azure-pipelines
+  - feat/use_clang_for_windows
+  - master
+
+variables:
+  solution: "**/*.sln"
+  buildPlatform: "Any CPU"
+  buildConfiguration: "Release"
+  PreCompileV8: true
+
+jobs:
+  - job: Build_x64
+    timeoutInMinutes: 360
+
+    pool:
+      vmImage: "windows-2019"
+
+    steps:
+      - script: |
+          git submodule init
+          git submodule update
+        displayName: Fetch Submodule
+      - task: MSBuild@1
+        inputs:
+          solution: "vender/v8/v8.vcxproj"
+          msbuildVersion: "16.0"
+          msbuildArchitecture: "x64"
+          platform: "x64"
+          configuration: "Release"
+          msbuildArguments: "/t:Build /p:PlatformToolset=ClangCl;VCToolsVersion=14.16.27023 /m"
+        displayName: Pre Compile v8
+      - script: |
+          IF /I "%PLATFORM%" == "x64" call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64
+          IF /I "%PLATFORM%" == "x86" call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x86
+          IF /I "%PLATFORM%" == "x64" ECHO "x64 building..." && build release amd64 && cd test && ..\bin\Windows_amd64_release\fibjs.exe --prof main.js
+          IF /I "%PLATFORM%" == "x86" ECHO "x86 building..." && build release i386 && cd test && ..\bin\Windows_i386_release\fibjs.exe --prof main.js
+        displayName: Build
+        env:
+          platform: "x64"
