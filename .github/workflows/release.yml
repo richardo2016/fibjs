@@ -1,0 +1,62 @@
+on:
+  push:
+    branches:
+      - master
+      - dev
+      - ci
+      - "feat/*"
+    # Sequence of patterns matched against refs/tags
+    tags:
+      - v*
+jobs:
+  windows:
+    strategy:
+      matrix:
+        Platform: [x86, x64]
+    name: ${{ matrix.Platform }} build
+    runs-on: windows-2016
+    env:
+      PLATFORM: ${{ matrix.Platform }}
+      GithubAction: true
+    steps:
+      - name: Download LLVM
+        run: |
+          IF ($env:PLATFORM -eq "x64") { Invoke-WebRequest https://github.com/llvm/llvm-project/releases/download/llvmorg-8.0.1/LLVM-8.0.1-win64.exe -O C:\llvm-installer.exe }
+          IF ($env:PLATFORM -eq "x86") { Invoke-WebRequest https://github.com/llvm/llvm-project/releases/download/llvmorg-8.0.1/LLVM-8.0.1-win32.exe -O C:\llvm-installer.exe }
+        shell: powershell
+      - uses: actions/checkout@v1
+      - uses: olegtarasov/get-tag@v1-release
+        id: tagName
+      - name: Initialize Submodules
+        run: |
+          git submodule init
+          git submodule update
+        shell: cmd
+      - name: Install LLVM & Build
+        run: |
+          START /WAIT C:\llvm-installer.exe /S /D=C:\"Program Files\LLVM"
+          @set PATH=C:\Program Files\LLVM\bin;%PATH%
+          IF /I "%PLATFORM%" == "x64" ECHO "x64 setvars..." && call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
+          IF /I "%PLATFORM%" == "x86" ECHO "x86 setvars..." && call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvars32.bat"
+          IF /I "%PLATFORM%" == "x64" ECHO "x64 building..." && build release amd64 && cd test && ..\bin\Windows_amd64_release\fibjs.exe --prof main.js
+          IF /I "%PLATFORM%" == "x86" ECHO "x86 building..." && build release i386 && cd test && ..\bin\Windows_i386_release\fibjs.exe --prof main.js
+          SET GA_TAG=${{ steps.tagName.outputs.tag }}
+          IF /I "%GA_TAG%" == "" set GA_TAG=dist
+          mkdir %GA_TAG%
+          IF /I "%PLATFORM%" == "x64" copy .\bin\Windows_amd64_release\fibjs.exe .\%GA_TAG%\fibjs-%GA_TAG%-windows-x64.exe
+          IF /I "%PLATFORM%" == "x64" copy .\bin\Windows_amd64_release\fibjs_gui.exe .\%GA_TAG%\fibjs-%GA_TAG%-windows-gui-x64.exe
+          IF /I "%PLATFORM%" == "x64" copy .\bin\Windows_amd64_release\installer.exe .\%GA_TAG%\installer-%GA_TAG%-windows-x64.exe
+          IF /I "%PLATFORM%" == "x64" copy .\bin\Windows_amd64_release\fibjs.cab .\%GA_TAG%\fibjs-%GA_TAG%-windows-x64.cab
+          IF /I "%PLATFORM%" == "x86" copy .\bin\Windows_i386_release\fibjs.exe .\%GA_TAG%\fibjs-%GA_TAG%-windows-x86.exe
+          IF /I "%PLATFORM%" == "x86" copy .\bin\Windows_i386_release\fibjs_gui.exe .\%GA_TAG%\fibjs-%GA_TAG%-windows-gui-x86.exe
+          IF /I "%PLATFORM%" == "x86" copy .\bin\Windows_i386_release\installer.exe .\%GA_TAG%\installer-%GA_TAG%-windows-x86.exe
+          IF /I "%PLATFORM%" == "x86" copy .\bin\Windows_i386_release\fibjs.cab .\%GA_TAG%\fibjs-%GA_TAG%-windows-x86.cab
+        shell: cmd
+      - name: Generate the artifacts
+        uses: skx/github-action-build@master
+      - name: Upload the artifacts
+        uses: skx/github-action-publish-binaries@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          args: '.\%GA_TAG%\*.exe'
