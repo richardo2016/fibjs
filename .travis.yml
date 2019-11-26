@@ -1,6 +1,6 @@
 dist: trusty
 language: cpp
-if: (branch =~ ^(dev|beta|master|test_ci)$) || (tag =~ ^v?[0-9]+\.[0-9]+\.[0-9]+$)
+if: (branch =~ ^(dev|use_beta|master|test_ci)$) || (tag =~ ^v?[0-9]+\.[0-9]+\.[0-9]+$)
 services:
   - docker
 matrix:
@@ -58,7 +58,7 @@ install:
 script:
   - echo "${TARGET_ARCH}"
   - ./.travis/build.sh
-  - if [[ -z $TRAVIS_TAG && $TRAVIS_BRANCH != "beta" ]]; then
+  - if [[ -z $TRAVIS_TAG && $TRAVIS_BRANCH != "use_beta" ]]; then
     ./.travis/test.sh;
     else
     ./.travis/release.sh;
@@ -72,24 +72,24 @@ before_deploy:
 deploy:
   - provider: releases
     api_key:
-      secure: e8Vlz6ZGelHDh7FXXu39xuGBk08jSXfmddJKG2nAg3HfXKXOEPniVKXtlsCpXD7FrzAo23V3caKBdFRye785JCJ1Xgf6rJx1lwB/0uAYaYYqq+DIVsiK+w3IoaZWvf/yEw6wYXsGI2jgUz3RIinETr/HomO5HAFAQHwbHqL6Jn8=
+      secure: VHepLaVWIqT52rxdhFDu2Rt+Fy+N1TQCqQGpMgf/L8V38EkFZt+JyMjFpHQUoMNFtj9SIYhtf+MUC7hccGeylW4i0A8ez0fRUiZSyKPrlFjm7hHZifKUjFjApXFqNEnLs9Z1BGWbHNnoTd3sN0CWgf+IZEbxoeKz4aqHJVy1vLUH4o+YgkphEwWqouJ/Vt3xGbqL5pQhbupCk8VqMb3HoiyBTlm4ZVNMYHUgXZ8MwmYNfrruyte1Y5ruz4hBpzNRc1WCWF6gevh4BJJETSfkNFSwVC88xP0Hb6AvlJTeXYwcW6OOSDBavNirWqsCUV6kxylYDPFdkrsmIR1pr/iNkQIKvE8a62POMvgla+0ynAnipm4FuhUgiqJId13cxaErsYj6v6B0lsfAK0JSfi2U4OkqnwbFJj17HMDLmUDH+sr6WD3WRpK7WVaaj4zP+TMfd+d+XO3fZZkb1sSuJ6C9ZlLfIoHX0C8hRQpvboclwr686B2b9B6Wr6TKKeqbLaY++PWmx6I4L5DxVLMBVMYtIA6fcIX6iB/HRg9HEqzzyDDdFauepC5RLjnAt8q4cGx3WaKIbnxoNZKDEkWsUIjKeS2W9kUorlm0bwQz2TVPpT+RqEhJlvPDEYZ3eYosi1TIVrG2WIWv6qu0q3TUxvPrlKeUitDXQ87YJyHauHjtHnY=
     file_glob: true
     file: ${TRAVIS_TAG}/*
     skip_cleanup: true
     overwrite: true
     on:
       tags: true
-      repo: fibjs/fibjs
+      repo: richardo2016/fibjs
   - provider: releases
     name: ${TRAVIS_TAG}-beta
     body: Automated release from Travis CI on beta (${TRAVIS_COMMIT})
     prerelease: true
     api_key:
-      secure: e8Vlz6ZGelHDh7FXXu39xuGBk08jSXfmddJKG2nAg3HfXKXOEPniVKXtlsCpXD7FrzAo23V3caKBdFRye785JCJ1Xgf6rJx1lwB/0uAYaYYqq+DIVsiK+w3IoaZWvf/yEw6wYXsGI2jgUz3RIinETr/HomO5HAFAQHwbHqL6Jn8=
+      secure: VHepLaVWIqT52rxdhFDu2Rt+Fy+N1TQCqQGpMgf/L8V38EkFZt+JyMjFpHQUoMNFtj9SIYhtf+MUC7hccGeylW4i0A8ez0fRUiZSyKPrlFjm7hHZifKUjFjApXFqNEnLs9Z1BGWbHNnoTd3sN0CWgf+IZEbxoeKz4aqHJVy1vLUH4o+YgkphEwWqouJ/Vt3xGbqL5pQhbupCk8VqMb3HoiyBTlm4ZVNMYHUgXZ8MwmYNfrruyte1Y5ruz4hBpzNRc1WCWF6gevh4BJJETSfkNFSwVC88xP0Hb6AvlJTeXYwcW6OOSDBavNirWqsCUV6kxylYDPFdkrsmIR1pr/iNkQIKvE8a62POMvgla+0ynAnipm4FuhUgiqJId13cxaErsYj6v6B0lsfAK0JSfi2U4OkqnwbFJj17HMDLmUDH+sr6WD3WRpK7WVaaj4zP+TMfd+d+XO3fZZkb1sSuJ6C9ZlLfIoHX0C8hRQpvboclwr686B2b9B6Wr6TKKeqbLaY++PWmx6I4L5DxVLMBVMYtIA6fcIX6iB/HRg9HEqzzyDDdFauepC5RLjnAt8q4cGx3WaKIbnxoNZKDEkWsUIjKeS2W9kUorlm0bwQz2TVPpT+RqEhJlvPDEYZ3eYosi1TIVrG2WIWv6qu0q3TUxvPrlKeUitDXQ87YJyHauHjtHnY=
     file_glob: true
     file: ${TRAVIS_TAG}/*
     skip_cleanup: true
     overwrite: true
     on:
-      branch: beta
-      repo: fibjs/fibjs
+      branch: use_beta
+      repo: richardo2016/fibjs

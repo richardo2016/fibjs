@@ -14,7 +14,7 @@ case "${TARGET_ARCH}" in
       ;;
 esac
 
-if [[ -z $TRAVIS_TAG && $TRAVIS_BRANCH == "beta" ]]; then
+if [[ -z $TRAVIS_TAG && $TRAVIS_BRANCH == "use_beta" ]]; then
   TRAVIS_TAG=$(git describe --match "v[0-9]*.[0-9]*.[0-9]*")
   echo "TRAVIS_TAG is $TRAVIS_TAG";
 fi
