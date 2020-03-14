@@ -4,16 +4,17 @@ var path = require('path');
 var fs = require('fs');
 var zip = require('zip');
 var io = require('io');
+var { ensureDirectoryExisted } = require('./_helpers/process');
 
 test.setup();
 
 var vmid = coroutine.vmid;
 var isWin32 = process.platform === 'win32';
 
-function unlink(pathname) {
+function rmdir(pathname) {
     try {
         fs.rmdir(pathname);
-    } catch (e) {}
+    } catch (e) { }
 }
 
 var pathname = 'test_dir' + vmid;
@@ -22,20 +23,106 @@ var pathname1 = 'test1_dir' + vmid;
 var win = require("os").type() == "Windows";
 var linux = require("os").type() == "Linux";
 
+function assert_stat_property(statObj, use_bigint = false) {
+    if (!use_bigint) {
+        assert.isNumber(statObj.dev)
+        assert.isNumber(statObj.mode)
+        assert.isNumber(statObj.nlink)
+        assert.isNumber(statObj.uid)
+        assert.isNumber(statObj.gid)
+        assert.isNumber(statObj.rdev)
+        assert.isNumber(statObj.blksize)
+        assert.isNumber(statObj.ino)
+        assert.isNumber(statObj.size)
+        assert.isNumber(statObj.blocks)
+        assert.isNumber(statObj.atimeMs)
+        assert.isNumber(statObj.mtimeMs)
+        assert.isNumber(statObj.ctimeMs)
+        assert.isNumber(statObj.birthtimeMs)
+    } else {
+        assert.ok(typeof statObj.dev === 'bigint')
+        assert.ok(typeof statObj.mode === 'bigint')
+        assert.ok(typeof statObj.nlink === 'bigint')
+        assert.ok(typeof statObj.uid === 'bigint')
+        assert.ok(typeof statObj.gid === 'bigint')
+        assert.ok(typeof statObj.rdev === 'bigint')
+        assert.ok(typeof statObj.blksize === 'bigint')
+        assert.ok(typeof statObj.ino === 'bigint')
+        assert.ok(typeof statObj.size === 'bigint')
+        assert.ok(typeof statObj.blocks === 'bigint')
+        assert.ok(typeof statObj.atimeMs === 'bigint')
+        assert.ok(typeof statObj.mtimeMs === 'bigint')
+        assert.ok(typeof statObj.ctimeMs === 'bigint')
+        assert.ok(typeof statObj.birthtimeMs === 'bigint')
+
+        assert.ok(typeof statObj.atimeNs === 'bigint')
+        assert.ok(typeof statObj.mtimeNs === 'bigint')
+        assert.ok(typeof statObj.ctimeNs === 'bigint')
+        assert.ok(typeof statObj.birthtimeNs === 'bigint')
+    }
+
+    assert.ok(statObj.atime instanceof Date)
+    assert.ok(statObj.mtime instanceof Date)
+    assert.ok(statObj.ctime instanceof Date)
+    assert.ok(statObj.birthtime instanceof Date)
+}
+
 describe('fs', () => {
     before(() => {
-        unlink(pathname);
-        unlink(pathname1);
+        rmdir(pathname);
+        rmdir(pathname1);
     });
 
     after(() => {
         try {
             fs.unlink(path.join(__dirname, 'unzip_test.zip'));
-        } catch (e) {}
+        } catch (e) { }
     });
 
-    it("stat", () => {
-        var st = fs.stat('.');
+    describe("stat", () => {
+        it('file', () => {
+            var st = fs.stat('.');
+
+            assert_stat_property(st);
+
+            assert.equal(st.isDirectory(), true);
+            assert.equal(st.isFile(), false);
+            assert.equal(st.isExecutable(), true);
+            assert.equal(st.isReadable(), true);
+            assert.equal(st.isWritable(), true);
+
+
+            st = fs.stat(path.join(__dirname, 'abc', '../'));
+
+            assert.equal(st.isDirectory(), true);
+            assert.equal(st.isFile(), false);
+            assert.equal(st.isExecutable(), true);
+            assert.equal(st.isReadable(), true);
+            assert.equal(st.isWritable(), true);
+        });
+
+        it('directory', () => {
+            var test_dir = path.resolve(__dirname, `./fs_files/dir${coroutine.vmid}`);
+
+            rmdir(test_dir);
+            ensureDirectoryExisted(test_dir);
+            var st = fs.stat(test_dir);
+            rmdir(test_dir);
+
+            assert_stat_property(st);
+
+            assert.equal(st.isDirectory(), true);
+            assert.equal(st.isFile(), false);
+            assert.equal(st.isExecutable(), true);
+            assert.equal(st.isReadable(), true);
+            assert.equal(st.isWritable(), true);
+        });
+    });
+
+    it("BigIntStat", () => {
+        var st = fs.stat('.', { bigint: true });
+
+        assert_stat_property(st, true);
 
         assert.equal(st.isDirectory(), true);
         assert.equal(st.isFile(), false);
@@ -43,7 +130,7 @@ describe('fs', () => {
         assert.equal(st.isReadable(), true);
         assert.equal(st.isWritable(), true);
 
-        st = fs.stat(path.join(__dirname, 'abc', '../'));
+        st = fs.stat(path.join(__dirname, 'abc', '../'), { bigint: true });
 
         assert.equal(st.isDirectory(), true);
         assert.equal(st.isFile(), false);
@@ -727,28 +814,41 @@ describe('fs', () => {
         fs.unlink(fn);
     });
 
-    it("symlink & lstat & readlink & realpath", () => {
-        var fn = path.join(__dirname, 'fs_test.js');
-        var fn1 = path.join(__dirname, 'fs_test.js.symlink' + vmid);
-        fs.symlink(fn, fn1);
-        assert.ok(fs.lstat(fn1).isSymbolicLink());
-        assert.equal(fs.readlink(fn1), fn);
-        assert.equal(fs.realpath(fn1), fn);
-        assert.equal(fs.readFile(fn).toString(), fs.readFile(fn1).toString());
-        if (win) {
-            var dir = path.join(__dirname, 'dirtest');
-            var dir1 = path.join(__dirname, 'dirtestsymlink');
-            var file = path.join(dir, 'file');
-            var file1 = path.join(dir1, 'file');
-            fs.mkdir(dir, 511);
-            fs.writeFile(file, 'symlink test');
-            fs.symlink(dir, dir1, 'junction');
-            assert.equal(fs.readFile(file1).toString(), 'symlink test');
-            fs.unlink(file1);
-            fs.rmdir(dir1);
-            fs.rmdir(dir);
+    describe("symlink & lstat & readlink & realpath", () => {
+        function proc(use_bigint = false) {
+            var fn = path.join(__dirname, 'fs_test.js');
+            var fn1 = path.join(__dirname, 'fs_test.js.symlink' + vmid);
+            fs.symlink(fn, fn1);
+            var _lstat = fs.lstat(fn1, { bigint: use_bigint });
+
+            assert_stat_property(_lstat, use_bigint);
+
+            assert.ok(_lstat.isSymbolicLink());
+            assert.equal(fs.readlink(fn1), fn);
+            assert.equal(fs.realpath(fn1), fn);
+            assert.equal(fs.readFile(fn).toString(), fs.readFile(fn1).toString());
+            if (win) {
+                var dir = path.join(__dirname, 'dirtest');
+                var dir1 = path.join(__dirname, 'dirtestsymlink');
+                var file = path.join(dir, 'file');
+                var file1 = path.join(dir1, 'file');
+                fs.mkdir(dir, 511);
+                fs.writeFile(file, 'symlink test');
+                fs.symlink(dir, dir1, 'junction');
+                assert.equal(fs.readFile(file1).toString(), 'symlink test');
+                fs.unlink(file1);
+                fs.rmdir(dir1);
+                fs.rmdir(dir);
+            }
+            fs.unlink(fn1);
         }
-        fs.unlink(fn1);
+        it("number version", () => {
+            proc(false);
+        });
+
+        it("bigint version", () => {
+            proc(true);
+        });
     })
 
     it("access", () => {

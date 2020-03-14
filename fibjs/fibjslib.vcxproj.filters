@@ -441,6 +441,9 @@
     <ClInclude Include="include\fibjs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\ifs\BigIntStats.h">
+      <Filter>Header Files\ifs</Filter>
+    </ClInclude>
     <ClInclude Include="include\ifs\Buffer.h">
       <Filter>Header Files\ifs</Filter>
     </ClInclude>
@@ -876,6 +879,9 @@
     <ClInclude Include="include\version.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\winapi.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="src\db\sql\db_api.h">
       <Filter>Source Files\db\sql</Filter>
     </ClInclude>
@@ -1075,6 +1081,9 @@
     </ClCompile>
     <ClCompile Include="src\encoding\encoding_json.cpp">
       <Filter>Source Files\encoding</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fs\BigIntStats.cpp">
+      <Filter>Source Files\fs</Filter>
     </ClCompile>
     <ClCompile Include="src\fs\File.cpp">
       <Filter>Source Files\fs</Filter>

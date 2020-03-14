@@ -458,37 +458,76 @@ result_t fs_base::appendFile(exlib::string fname, Buffer_base* data, AsyncEvent*
     return hr;
 }
 
-result_t fs_base::stat(exlib::string path, obj_ptr<Stat_base>& retVal,
-    AsyncEvent* ac)
+result_t resolve_fs_stat_config(v8::Local<v8::Object> options, bool& use_bigint, AsyncEvent* ac)
 {
-    if (ac->isSync())
+    if (ac->isSync()) {
+        bool _use_bigint;
+        Isolate* isolate = Isolate::current();
+        result_t hr = GetConfigValue(isolate->m_isolate, options, "bigint", _use_bigint);
+        if (hr == CALL_E_PARAMNOTOPTIONAL)
+            _use_bigint = false;
+        else if (hr < 0)
+            return CHECK_ERROR(hr);
+
+        ac->m_ctx.resize(1);
+        ac->m_ctx[0] = _use_bigint;
+
         return CHECK_ERROR(CALL_E_NOSYNC);
-
-    obj_ptr<Stat> pStat = new Stat();
-
-    result_t hr = pStat->getStat(path);
-    if (hr < 0)
-        return hr;
-
-    retVal = pStat;
-
+    }
+    use_bigint = ac->m_ctx[0].boolVal();
     return 0;
 }
 
-result_t fs_base::lstat(exlib::string path, obj_ptr<Stat_base>& retVal, AsyncEvent* ac)
+result_t get_fs_stat(exlib::string fname, obj_ptr<Stat_base>& retVal, bool use_bigint = false, bool use_lstat = false)
 {
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    if (use_bigint) {
+        obj_ptr<BigIntStats> pBigStat = new BigIntStats();
+
+        result_t hr = !use_lstat ? pBigStat->getStat(fname) : pBigStat->getLstat(fname);
+        if (hr < 0)
+            return hr;
+
+        retVal = pBigStat;
+        return 0;
+    }
 
     obj_ptr<Stat> pStat = new Stat();
 
-    result_t hr = pStat->getLstat(path);
+    result_t hr = !use_lstat ? pStat->getStat(fname) : pStat->getLstat(fname);
     if (hr < 0)
         return hr;
 
     retVal = pStat;
-
     return 0;
+}
+
+result_t fs_base::stat(exlib::string path, v8::Local<v8::Object> options, obj_ptr<Stat_base>& retVal, AsyncEvent* ac)
+{
+    bool use_bigint = false;
+    result_t hr = resolve_fs_stat_config(options, use_bigint, ac);
+    if (hr < 0)
+        return hr;
+
+    return get_fs_stat(path, retVal, use_bigint);
+}
+
+result_t fs_base::lstat(exlib::string path, v8::Local<v8::Object> options, obj_ptr<Stat_base>& retVal, AsyncEvent* ac)
+{
+    bool use_bigint = false;
+    result_t hr = resolve_fs_stat_config(options, use_bigint, ac);
+    if (hr < 0)
+        return hr;
+
+    return get_fs_stat(path, retVal, use_bigint, true);
+}
+
+result_t async_get_fs_stat(exlib::string fname, obj_ptr<Stat_base>& retVal, AsyncEvent* ac, bool use_bigint, bool use_lstat)
+{
+    if (ac->isSync()) {
+        return CHECK_ERROR(CALL_E_NOSYNC);
+    }
+
+    return get_fs_stat(fname, retVal, use_bigint, use_lstat);
 }
 
 result_t fs_base::read(int32_t fd, Buffer_base* buffer, int32_t offset, int32_t length,

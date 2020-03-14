@@ -1,0 +1,44 @@
+
+/*! @brief 文件的基础信息对象(BigInt 版本)
+
+  Stat 对象通过 fs.stat, File.stat, fs.readdir 查询，不可独立创建
+ */
+interface BigIntStats : Stat
+{
+    /*! @brief 包含该文件的设备 ID */
+    readonly Long dev;
+    /*! @brief 文件中的 Inode 数量 */
+    readonly Long ino;
+    /*! @brief 文件权限，Windows 不支持此属性 */
+    readonly Long mode;
+    /*! @brief 与此文件相关联的硬链接数量 */
+    readonly Long nlink;
+    /*! @brief 文件拥有者的id */
+    readonly Long uid;
+    /*! @brief 文件所属的组id */
+    readonly Long gid;
+    /*! @brief 对于特殊类型的文件, 包含该文件的设备 ID */
+    readonly Long rdev;
+    /*! @brief 文件尺寸 */
+    readonly Long size;
+    /*! @brief 在 I/O 操作中文件系统区块大小 */
+    readonly Long blksize;
+    /*! @brief 分配给该文件的区块数量 */
+    readonly Long blocks;
+    /*! @brief 文件最后修改时间(ms) */
+    readonly Long mtimeMs;
+    /*! @brief 文件最后修改时间(ns) */
+    readonly Long mtimeNs;
+    /*! @brief 文件最后访问时间(ms) */
+    readonly Long atimeMs;
+    /*! @brief 文件最后访问时间(ns) */
+    readonly Long atimeNs;
+    /*! @brief 文件创建时间(ms) */
+    readonly Long ctimeMs;
+    /*! @brief 文件创建时间(ns) */
+    readonly Long ctimeNs;
+    /*! @brief 文件产生时间(ms) */
+    readonly Long birthtimeMs;
+    /*! @brief 文件产生时间(ns) */
+    readonly Long birthtimeNs;
+};
