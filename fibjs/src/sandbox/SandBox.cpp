@@ -118,7 +118,7 @@ void SandBox::initRoot()
 
     while (pModule) {
         InstallModule(pModule->name(), pModule->getModule(isolate));
-        pModule = pModule->m_next;
+        pModule = (RootModule*)pModule->getNext();
     }
 
     v8::Local<v8::Object> _emitter = EventEmitter_base::class_info().getModule(isolate);

@@ -4,6 +4,7 @@
 #include <string.h>
 #include <stdio.h>
 #include "utf8.h"
+#include <jssdk/include/jssdk-fibjs.h>
 
 namespace fibjs {
 
@@ -123,7 +124,8 @@ exlib::string GetException(TryCatch& try_catch, result_t hr, bool repl)
         return getResultMessage(hr);
 
     Isolate* isolate = Isolate::current();
-    v8::HandleScope handle_scope(isolate->m_isolate);
+    js::HandleScope handle_scope(isolate->m_jsruntime);
+
     v8::Local<v8::Context> context = isolate->m_isolate->GetCurrentContext();
     if (try_catch.HasCaught()) {
         v8::Local<v8::Value> err = try_catch.Exception();

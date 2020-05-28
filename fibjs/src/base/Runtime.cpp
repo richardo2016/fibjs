@@ -23,7 +23,7 @@
 #include "ifs/profiler.h"
 #include "path.h"
 #include "options.h"
-#include "include/libplatform/libplatform.h"
+#include <jssdk/include/jssdk-fibjs.h>
 
 namespace fibjs {
 
@@ -52,6 +52,12 @@ static void init(v8::Platform* (*get_platform)())
     if (cpus < 2)
         cpus = 2;
 
+    // TODO: throw/log error if there's mistake in internal engine.
+    if (!js::jssdk_setup_fibjs()) {
+        errorLog("[init] js::jssdk_setup_fibjs() failed! check if engine number & name matched!");
+        return;
+    }
+
     exlib::Service::init(cpus + 1);
 
     init_date();
@@ -65,16 +71,7 @@ static void init(v8::Platform* (*get_platform)())
 
     srand((unsigned int)time(0));
 
-    v8::Platform* platform;
-
-    if (get_platform != NULL)
-        platform = get_platform();
-    else
-        platform = v8::platform::CreateDefaultPlatform();
-
-    v8::V8::InitializePlatform(platform);
-
-    v8::V8::Initialize();
+    js::getFibjsApi()->init();
 }
 
 void start(int32_t argc, char** argv, result_t (*main)(Isolate*), v8::Platform* (*get_platform)())
@@ -172,45 +169,6 @@ void start(int32_t argc, char** argv, result_t (*main)(Isolate*), v8::Platform* 
     main_thread->m_sem.Wait();
 }
 
-static int32_t s_tls_rt;
-
-class rt_initer {
-public:
-    rt_initer()
-    {
-        s_tls_rt = exlib::Fiber::tlsAlloc();
-    }
-} s_rt_initer;
-
-void Runtime::reg()
-{
-    exlib::Fiber::tlsPut(s_tls_rt, this);
-}
-
-Runtime* Runtime::current()
-{
-    return (Runtime*)exlib::Fiber::tlsGet(s_tls_rt);
-}
-
-class ShellArrayBufferAllocator : public v8::ArrayBuffer::Allocator {
-public:
-    virtual void* Allocate(size_t length)
-    {
-        void* data = AllocateUninitialized(length);
-        return data == NULL ? data : memset(data, 0, length);
-    }
-
-    virtual void* AllocateUninitialized(size_t length)
-    {
-        return exlib::string::Buffer::New(length)->data();
-    }
-
-    virtual void Free(void* data, size_t)
-    {
-        exlib::string::Buffer::fromData((char*)data)->unref();
-    }
-};
-
 exlib::LockedList<Isolate> s_isolates;
 exlib::atomic s_iso_id;
 exlib::atomic s_iso_ref;
@@ -258,7 +216,8 @@ void init_proc(void* p)
 }
 
 Isolate::Isolate(exlib::string fname)
-    : m_id((int32_t)s_iso_id.inc())
+    : js::Isolate()
+    , m_id((int32_t)s_iso_id.inc())
     , m_hr(0)
     , m_test(NULL)
     , m_currentFibers(0)
@@ -277,26 +236,7 @@ Isolate::Isolate(exlib::string fname)
 {
     m_fname = fname;
 
-    static v8::Isolate::CreateParams create_params;
-    static ShellArrayBufferAllocator array_buffer_allocator;
-    static v8::StartupData blob;
-
-    if (blob.data == NULL) {
-        v8::SnapshotCreator creator;
-        v8::Isolate* isolate = creator.GetIsolate();
-        {
-            v8::HandleScope handle_scope(isolate);
-            v8::Local<v8::Context> context = v8::Context::New(isolate);
-            creator.SetDefaultContext(context);
-        }
-        blob = creator.CreateBlob(v8::SnapshotCreator::FunctionCodeHandling::kClear);
-    }
-
-    create_params.snapshot_blob = &blob;
-    create_params.array_buffer_allocator = &array_buffer_allocator;
-
-    m_isolate = v8::Isolate::New(create_params);
-    m_isolate->AddGCEpilogueCallback(fb_GCCallback, v8::kGCTypeMarkSweepCompact);
+    m_jsruntime->getV8Isolate()->AddGCEpilogueCallback(fb_GCCallback, v8::kGCTypeMarkSweepCompact);
 
     m_currentFibers++;
     m_idleFibers++;
@@ -306,32 +246,30 @@ Isolate::Isolate(exlib::string fname)
 
 Isolate* Isolate::current()
 {
-    Runtime* rt = Runtime::current();
-    if (rt == NULL)
-        return NULL;
-
-    return rt->isolate();
+    return (Isolate*)js::Isolate::current();
 }
 
 void Isolate::init()
 {
     s_isolates.putTail(this);
 
-    v8::Locker locker(m_isolate);
-    v8::Isolate::Scope isolate_scope(m_isolate);
-    v8::HandleScope handle_scope(m_isolate);
+    v8::Isolate* v8_isolate = m_jsruntime->getV8Isolate();
+
+    js::Locker locker(m_jsruntime);
+    js::Scope isolate_scope(m_jsruntime);
+    js::HandleScope handle_scope(m_jsruntime);
 
     JSFiber::scope s;
 
-    v8::Local<v8::Context> _context = v8::Context::New(m_isolate);
-    m_context.Reset(m_isolate, _context);
+    v8::Local<v8::Context> _context = v8::Context::New(v8_isolate);
+    m_context.Reset(v8_isolate, _context);
 
     v8::Context::Scope context_scope(_context);
 
     if (g_cov && m_id == 1)
-        beginCoverage(m_isolate);
+        beginCoverage(v8_isolate);
 
-    _context->SetEmbedderData(1, v8::Object::New(m_isolate)->GetPrototype());
+    _context->SetEmbedderData(1, v8::Object::New(v8_isolate)->GetPrototype());
 
     static const char* skips[] = { "Master", "repl", "argv", "__filename", "__dirname", NULL };
     global_base::class_info().Attach(this, _context->Global(), skips);
@@ -364,12 +302,13 @@ void Isolate::init()
 
     v8::Local<v8::Script> script = v8::Script::Compile(NewString(assertion_error));
     v8::Local<v8::Object> AssertionError = script->Run().As<v8::Object>();
-    m_AssertionError.Reset(m_isolate, AssertionError);
+    m_AssertionError.Reset(v8_isolate, AssertionError);
 }
 
 static result_t syncExit(Isolate* isolate)
 {
-    v8::HandleScope handle_scope(isolate->m_isolate);
+    js::HandleScope handle_scope(isolate->m_jsruntime);
+
     JSFiber::scope s;
     JSTrigger t(isolate->m_isolate, process_base::class_info().getModule(isolate));
     v8::Local<v8::Value> code = v8::Number::New(isolate->m_isolate, isolate->m_exitCode);

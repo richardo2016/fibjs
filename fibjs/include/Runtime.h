@@ -6,22 +6,25 @@
  */
 
 #include "utils.h"
+#include <jssdk/include/jssdk-fibjs.h>
 
 #ifndef RUNTIME_H_
 #define RUNTIME_H_
 
 namespace fibjs {
 
-class Runtime {
+class Runtime : public js::FiberRuntime {
 public:
     Runtime(Isolate* isolate)
-        : m_isolate(isolate)
+        : js::FiberRuntime(isolate)
     {
-        reg();
     }
 
 public:
-    static Runtime* current();
+    static Runtime* current()
+    {
+        return (Runtime*)js::FiberRuntime::current();
+    };
 
     static result_t setError(result_t hr)
     {
@@ -61,8 +64,8 @@ public:
 
     Isolate* isolate()
     {
-        assert(v8::Locker::IsLocked(m_isolate->m_isolate));
-        return m_isolate;
+        assert(v8::Locker::IsLocked(getV8Isolate()));
+        return (Isolate*)getIsolate();
     }
 
     static bool is_current(Isolate* isolate)
@@ -71,7 +74,7 @@ public:
         if (rt == NULL)
             return false;
 
-        Isolate* isolate1 = rt->m_isolate;
+        Isolate* isolate1 = (Isolate*)rt->getIsolate();
 
         if (isolate1 && !v8::Locker::IsLocked(isolate1->m_isolate))
             isolate1 = NULL;
@@ -84,12 +87,8 @@ public:
     }
 
 private:
-    void reg();
-
-private:
     result_t m_code;
     exlib::string m_error;
-    Isolate* m_isolate;
 };
 
 } /* namespace fibjs */

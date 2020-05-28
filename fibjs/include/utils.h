@@ -82,6 +82,7 @@ typedef int32_t SOCKET;
 
 #include "obj_ptr.h"
 #include <Isolate.h>
+#include <Module.h>
 #include <JSType.h>
 
 #include <cmath>
@@ -421,6 +422,17 @@ public:                                       \
     };                                              \
     static RootModule_##mname s_RootModule_##mname; \
     RootModule* Module_##mname = &s_RootModule_##mname;
+
+#define DECLARE_ADDON_MODULE(name)                  \
+    class AddonModule_##name : public AddonModule { \
+    public:                                         \
+        virtual ClassInfo& class_info()             \
+        {                                           \
+            return name##_base::class_info();       \
+        }                                           \
+    };                                              \
+    static AddonModule_##name s_RootModule_##name;  \
+    AddonModule* Module_##name = &s_RootModule_##name;
 
 #define IMPORT_MODULE(name)           \
     extern RootModule* Module_##name; \

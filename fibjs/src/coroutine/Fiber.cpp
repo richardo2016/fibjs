@@ -10,6 +10,7 @@
 #include "ifs/os.h"
 #include "ifs/process.h"
 #include "options.h"
+#include <jssdk/include/jssdk-fibjs.h>
 
 namespace fibjs {
 
@@ -34,39 +35,39 @@ void JSFiber::fiber_proc(void* p)
 
     {
         Runtime rt(isolate);
-        v8::Locker locker(isolate->m_isolate);
-        v8::Isolate::Scope isolate_scope(isolate->m_isolate);
+        js::Locker locker(isolate->m_jsruntime);
+        js::Scope isolate_scope(isolate->m_jsruntime);
 
-        v8::HandleScope handle_scope(isolate->m_isolate);
+        js::HandleScope handle_scope(isolate->m_jsruntime);
         v8::Context::Scope context_scope(
             v8::Local<v8::Context>::New(isolate->m_isolate, isolate->m_context));
 
-        isolate->m_idleFibers--;
+        isolate->decreaseIdleFibers();
         while (1) {
             if (!isolate->m_sem.trywait()) {
-                isolate->m_idleFibers++;
-                if (isolate->m_idleFibers > g_spareFibers) {
-                    isolate->m_idleFibers--;
+                isolate->increaseIdleFibers();
+                if (isolate->getIdleFibersCount() > g_spareFibers) {
+                    isolate->decreaseIdleFibers();
                     break;
                 }
 
                 {
-                    v8::Unlocker unlocker(isolate->m_isolate);
+                    js::Unlocker unlocker(isolate->m_jsruntime);
                     isolate->m_sem.wait();
                 }
 
-                isolate->m_idleFibers--;
+                isolate->decreaseIdleFibers();
             }
 
-            if (isolate->m_idleFibers == 0) {
-                isolate->m_currentFibers++;
-                isolate->m_idleFibers++;
+            if (isolate->getIdleFibersCount() == 0) {
+                isolate->increaseCurrentFibers();
+                isolate->increaseIdleFibers();
 
                 exlib::Service::Create(fiber_proc, isolate, stack_size * 1024, "JSFiber");
             }
 
             {
-                v8::HandleScope handle_scope(isolate->m_isolate);
+                js::HandleScope handle_scope(isolate->m_jsruntime);
                 AsyncEvent* ae = (AsyncEvent*)isolate->m_jobs.getHead();
 
                 hr = ae->js_invoke();
@@ -75,7 +76,7 @@ void JSFiber::fiber_proc(void* p)
             isolate->Unref(hr);
         }
 
-        isolate->m_currentFibers--;
+        isolate->decreaseCurrentFibers();
     }
 
     isolate->m_isolate->DiscardThreadSpecificMetadata();

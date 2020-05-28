@@ -1,0 +1,31 @@
+
+/*! @brief 插件模块, 配合 FIBJS 插件机制使用
+
+ 用法示例
+ @code
+ var git = require('addons').load('git');
+ @endcode
+
+ 插件不能通过 `require` 方法直接引用, 必须通过 `require('addons').load` 加载
+ */
+module addons
+{
+
+    /*! @brief ADDON 类型, 标明插件会为 fibjs 提供新的模块 */
+    const ADDON_MODULE = 0;
+
+    /*! @brief 根据 addon_filename 代表的路径加载一个 fibjs 扩展
+     @param 要加载的 addon_filename 插件路径
+
+     @return 加载的插件内容, 可以是任何合法的 JS 值.
+     */
+    static Value load(String addon_filename);
+
+    /*! @brief 根据 addon_filename 代表的路径加载一个 fibjs 扩展, 并注册为根模块
+     @param 模块名
+     @param 要加载的 addon_filename 插件路径
+
+     @return 加载的插件内容, 可以是任何合法的 JS 值.
+     */
+    static Value loadModule(String module_name, String addon_filename);
+};

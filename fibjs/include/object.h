@@ -448,43 +448,6 @@ public:
     v8::Global<v8::Value> m_v;
 };
 
-class RootModule {
-public:
-    RootModule()
-        : m_next(NULL)
-    {
-    }
-
-public:
-    void install()
-    {
-        if (!g_root)
-            g_root = this;
-        else
-            g_last->m_next = this;
-
-        g_last = this;
-    }
-
-public:
-    virtual ClassInfo& class_info() = 0;
-
-    virtual v8::Local<v8::Object> getModule(Isolate* isolate)
-    {
-        return class_info().getModule(isolate);
-    }
-
-    virtual const char* name()
-    {
-        return class_info().name();
-    }
-
-public:
-    RootModule* m_next;
-    static RootModule* g_root;
-    static RootModule* g_last;
-};
-
 inline void* ClassInfo::getInstance(void* o)
 {
     object_base* obj = (object_base*)o;

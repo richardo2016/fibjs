@@ -10,6 +10,8 @@
 
 #include <exlib/include/list.h>
 #include <exlib/include/service.h>
+#include <jssdk/include/jssdk-fibjs.h>
+
 #include "QuickArray.h"
 #include "utf8.h"
 
@@ -35,7 +37,7 @@ class LruCache;
 class File_base;
 class ValueHolder;
 
-class Isolate : public exlib::linkitem {
+class Isolate : public js::Isolate {
 public:
     class rt_base {
     public:
@@ -67,6 +69,11 @@ public:
 
     void RequestInterrupt(v8::InterruptCallback callback, void* data);
 
+    void start_profiler();
+
+    void Ref();
+    void Unref(int32_t hr = 0);
+
     v8::Local<v8::String> NewString(const char* data, int length = -1)
     {
         return fibjs::NewString(m_isolate, data, length);
@@ -91,10 +98,39 @@ public:
         return m_isolate->GetCurrentContext();
     }
 
-    void start_profiler();
+private:
+    int32_t m_idleFibers;
 
-    void Ref();
-    void Unref(int32_t hr = 0);
+public:
+    int32_t increaseIdleFibers()
+    {
+        return ++m_idleFibers;
+    }
+    int32_t decreaseIdleFibers()
+    {
+        return --m_idleFibers;
+    }
+    int32_t getIdleFibersCount()
+    {
+        return m_idleFibers;
+    }
+
+private:
+    int32_t m_currentFibers;
+
+public:
+    int32_t increaseCurrentFibers()
+    {
+        return ++m_currentFibers;
+    }
+    int32_t decreaseCurrentFibers()
+    {
+        return --m_currentFibers;
+    }
+    int32_t getCurrentFibersCount()
+    {
+        return m_currentFibers;
+    }
 
 public:
     int32_t m_id;
@@ -103,15 +139,6 @@ public:
 
     QuickArray<void*> m_classInfo;
 
-    exlib::spinlock m_weakLock;
-    exlib::List<exlib::linkitem> m_weak;
-
-    v8::Isolate* m_isolate;
-    v8::Global<v8::Context> m_context;
-    v8::Global<v8::Object> m_env;
-
-    v8::Global<v8::Object> m_AssertionError;
-
     obj_ptr<SandBox> m_topSandbox;
     obj_ptr<HttpClient> m_httpclient;
 
@@ -119,16 +146,7 @@ public:
     obj_ptr<File_base> m_stdout;
     obj_ptr<File_base> m_stderr;
 
-    exlib::List<exlib::linkitem> m_fibers;
-
     void* m_test;
-
-    exlib::Semaphore m_sem;
-    exlib::LockedList<exlib::linkitem> m_jobs;
-    int32_t m_currentFibers;
-    int32_t m_idleFibers;
-
-    exlib::atomic m_has_timer;
 
     int64_t m_fid;
 

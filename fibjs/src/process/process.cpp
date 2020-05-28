@@ -340,14 +340,7 @@ result_t process_base::binding(exlib::string name, v8::Local<v8::Value>& retVal)
     else if (name == "Buffer")
         retVal = Buffer_base::class_info().getModule(isolate);
     else {
-        RootModule* pModule = RootModule::g_root;
-
-        while (pModule)
-            if (name == pModule->name()) {
-                retVal = pModule->getModule(isolate);
-                break;
-            } else
-                pModule = pModule->m_next;
+        RootModule::findModuleByName(isolate, name, retVal);
     }
 
     return 0;

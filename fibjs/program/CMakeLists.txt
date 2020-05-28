@@ -103,10 +103,11 @@ set(CMAKE_CXX_FLAGS "${flags} ${ccflags}")
 
 include_directories("${PROJECT_SOURCE_DIR}/include" "${PROJECT_SOURCE_DIR}/../include" "${PROJECT_SOURCE_DIR}/../../vender" "${PROJECT_SOURCE_DIR}/../../vender/v8" "${PROJECT_SOURCE_DIR}/../../vender/v8/include" "${PROJECT_SOURCE_DIR}/../../vender/mbedtls" "${PROJECT_SOURCE_DIR}/../../vender/zlib/include" "${CMAKE_CURRENT_BINARY_DIR}")
 
+set(libs fibjs expat gumbo gd tiff jpeg png webp zlib leveldb snappy msgpack pcre sqlite mongo umysql uuid exif mbedtls v8 unzip exlib jssdk)
 if(${OS} STREQUAL "Windows")
-	set(libs fibjs expat gumbo gd tiff jpeg png webp zlib leveldb snappy msgpack pcre sqlite mongo umysql uuid exif mbedtls v8 unzip exlib winiconv)
+	list(APPEND libs winiconv)
 else()
-	set(libs fibjs expat gumbo gd tiff jpeg png webp zlib leveldb snappy msgpack pcre sqlite mongo umysql uuid exif mbedtls v8 unzip exlib ev editline jemalloc)
+	list(APPEND libs ev editline jemalloc)
 endif()
 
 foreach(lib ${libs})
@@ -127,7 +128,7 @@ if(${OS} STREQUAL "Darwin")
 endif()
 
 if(${OS} STREQUAL "Windows")
-	add_definitions(-DWIN32 -D_LIB -D_CRT_SECURE_NO_WARNINGS -D_CRT_RAND_S -DNOMINMAX)
+	add_definitions(-DWIN32 -DUNICODE -D_LIB -D_CRT_SECURE_NO_WARNINGS -D_CRT_RAND_S -DNOMINMAX)
 	set(flags "${flags} -fms-extensions -fmsc-version=1910 -frtti")
 	set(link_flags "${link_flags} -lwinmm -lws2_32 -lpsapi -ldbghelp -lshlwapi -lurlmon -luserenv -ladvapi32 -lkernel32")
 	set(link_flags "${link_flags} -Xlinker //OPT:ICF -Xlinker //ERRORREPORT:PROMPT -Xlinker //NOLOGO -Xlinker //TLBID:1")
