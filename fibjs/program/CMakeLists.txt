@@ -16,6 +16,7 @@ endif(CCACHE_FOUND)
 file(GLOB_RECURSE src_list "src/*.c*")
 
 if (${OS} STREQUAL "Windows")
+	set(CMAKE_ENABLE_EXPORTS true)
 	# add quote to all paths in CMAKE_RC_COMPILE_OBJECT to make it robustic on Windows.
 	#
 	# BTW, sh.exe cannot deal with args of `llvm-rc.exe` correctly
