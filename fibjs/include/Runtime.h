@@ -6,7 +6,7 @@
  */
 
 #include "utils.h"
-#include <jssdk/include/jssdk-fibjs.h>
+#include <jsbase/include/jssdk-fibjs.h>
 
 #ifndef RUNTIME_H_
 #define RUNTIME_H_

@@ -10,7 +10,7 @@
 #include "ifs/os.h"
 #include "ifs/process.h"
 #include "options.h"
-#include <jssdk/include/jssdk-fibjs.h>
+#include <jsbase/include/jssdk-fibjs.h>
 
 namespace fibjs {
 

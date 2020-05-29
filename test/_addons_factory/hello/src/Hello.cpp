@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#include <jssdk/jsaddons.h>
+#include <jssdk/include/jsaddons.h>
 
 void HelloAddon(jsaddons::t_init_context_value_ref ctx, jsaddons::t_addon_retValue& addonVal)
 {

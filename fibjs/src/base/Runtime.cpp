@@ -23,7 +23,7 @@
 #include "ifs/profiler.h"
 #include "path.h"
 #include "options.h"
-#include <jssdk/include/jssdk-fibjs.h>
+#include <jsbase/include/jssdk-fibjs.h>
 
 namespace fibjs {
 

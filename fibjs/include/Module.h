@@ -9,7 +9,7 @@
 #ifndef _fj_module_H_
 #define _fj_module_H_
 
-#include <jssdk/include/jssdk-fibjs.h>
+#include <jsbase/include/jssdk-fibjs.h>
 #include <Isolate.h>
 #include <ClassInfo.h>
 

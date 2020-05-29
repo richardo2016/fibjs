@@ -4,7 +4,7 @@
 #include <string.h>
 #include <stdio.h>
 #include "utf8.h"
-#include <jssdk/include/jssdk-fibjs.h>
+#include <jsbase/include/jssdk-fibjs.h>
 
 namespace fibjs {
 
