@@ -11,7 +11,7 @@ var FIBJS_SRC_ROOT = path.resolve(__dirname, '../../');
 describe('addons', () => {
     it('load internal hello world module', () => {
         var test_dlls = {
-            'win32': path.resolve(__dirname, `./bin/Windows_${os.arch() === 'x64' ? 'amd64' : 'i386'}_release/hello.dll`),
+            'win32': path.resolve(__dirname, `./hello/build/addon_hello.dll`),
             // 'win32': `C:\\Users\\Richard\\source\\repos\\fibjs\\addon_sample\\hello\\bin\\Windows_amd64_release\\hello.dll`,
             'darwin': `/Users/richard/projects/fibjs/addon_sample/hello/build/libaddon_hello.dylib`,
             'linux': path.resolve(__dirname, `./bin/Linux_${os.arch() === 'x64' ? 'amd64' : 'i386'}_release/hello.a`)
