@@ -10,7 +10,7 @@
 
 #include <exlib/include/list.h>
 #include <exlib/include/service.h>
-#include <jsbase/include/jssdk-fibjs.h>
+#include <jssdk/fibjs_runtime/include/jssdk-fibjs.h>
 
 #include "QuickArray.h"
 #include "utf8.h"

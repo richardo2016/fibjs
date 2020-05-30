@@ -7,3 +7,4 @@ set(VENDER_DIR "${FIBJS_DIR}/vender")
 set(USED_BY_FIBJS "1")
 
 include(${VENDER_DIR}/tools/Addon.cmake)
+# target_link_libraries(${PROJECT_NAME} ${BIN_DIR}/libjssdk.lib)
