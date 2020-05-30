@@ -7,6 +7,8 @@ mkdir -p $DIR/build && cd build;
 rm -rf ./*;
 
 cmake \
+	-DBUILD_TYPE=release \
+	-DCMAKE_BUILD_TYPE=Release \
 	-DCMAKE_MAKE_PROGRAM=make \
 	-G"Unix Makefiles" \
     .. > CMake.log;

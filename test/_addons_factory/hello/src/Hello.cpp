@@ -2,10 +2,9 @@
 
 #include <jssdk/include/jsaddons.h>
 
-void HelloAddon(jsaddons::t_init_context_value_ref ctx, jsaddons::t_addon_retValue& addonVal)
+void HelloAddon(js::Api* fibjs_api, jsaddons::t_init_context_value_ref ctx, jsaddons::t_addon_retValue& addonVal)
 {
     printf("[HelloAddon] 4\n");
-    js::Api* fibjs_api = js::getFibjsApi();
 
     js::Runtime* jsruntime = fibjs_api->getCurrentJSRuntime();
     exlib::string str = jsruntime->NewString("abc").toString();

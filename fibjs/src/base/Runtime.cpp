@@ -53,7 +53,7 @@ static void init(v8::Platform* (*get_platform)())
         cpus = 2;
 
     // TODO: throw/log error if there's mistake in internal engine.
-    if (!js::jssdk_setup_fibjs()) {
+    if (!js::jssdk_setup_fibjs(js::jsapi)) {
         errorLog("[init] js::jssdk_setup_fibjs() failed! check if engine number & name matched!");
         return;
     }
