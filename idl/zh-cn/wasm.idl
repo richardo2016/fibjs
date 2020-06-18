@@ -1,0 +1,18 @@
+/*! @brief wasm 模块, 基于 binaryen, 采取了 AssemblyScript 类似的思路, 支持将 TypeScript 编译为 .wast, .wasm
+
+使用方法：
+```JavaScript
+var wasm = require('wasm');
+
+// 
+wasm.parseText();
+```
+ */
+module wasm
+{
+
+    /*! @brief 解析一段文本, 得到 Wasm 模块对象
+        @param input 输入的参数
+    */
+    static WasmModule parseText(String input);
+};
