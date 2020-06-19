@@ -38,7 +38,7 @@ void Worker::start()
 
 void Worker::_main()
 {
-    JSFiber::scope s;
+    PROVIDE_LOCAL_JS_CONTEXT();
 
     m_isolate->start_profiler();
 

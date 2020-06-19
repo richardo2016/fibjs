@@ -320,7 +320,7 @@ void Isolate::init()
     v8::Isolate::Scope isolate_scope(m_isolate);
     v8::HandleScope handle_scope(m_isolate);
 
-    JSFiber::scope s;
+    PROVIDE_LOCAL_JS_CONTEXT();
 
     v8::Local<v8::Context> _context = v8::Context::New(m_isolate);
     m_context.Reset(m_isolate, _context);
@@ -369,7 +369,7 @@ void Isolate::init()
 static result_t syncExit(Isolate* isolate)
 {
     v8::HandleScope handle_scope(isolate->m_isolate);
-    JSFiber::scope s;
+    PROVIDE_LOCAL_JS_CONTEXT();
     JSTrigger t(isolate->m_isolate, process_base::class_info().getModule(isolate));
     v8::Local<v8::Value> code = v8::Number::New(isolate->m_isolate, isolate->m_exitCode);
     bool r;
@@ -411,7 +411,7 @@ void Isolate::start_profiler()
 void InvokeApiInterruptCallbacks(v8::Isolate* isolate);
 static result_t js_timer(Isolate* isolate)
 {
-    JSFiber::scope s;
+    PROVIDE_LOCAL_JS_CONTEXT();
     isolate->m_has_timer = 0;
     InvokeApiInterruptCallbacks(isolate->m_isolate);
     return 0;

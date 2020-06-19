@@ -159,7 +159,7 @@ void AsyncCallBack::fillRetVal(std::vector<v8::Local<v8::Value>>& args, NType* v
 
 result_t AsyncCallBack::syncFunc(AsyncCallBack* pThis)
 {
-    JSFiber::scope s;
+    PROVIDE_LOCAL_JS_CONTEXT();
     Isolate* isolate = pThis->m_isolate;
 
     v8::Local<v8::Function> func = v8::Local<v8::Function>::New(isolate->m_isolate, pThis->m_cb);

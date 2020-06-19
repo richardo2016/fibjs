@@ -200,14 +200,11 @@ typedef int32_t result_t;
 #define GENERATE_FIBER(fiberType, fiberProc, fiberInputData, fStackSize) \
     exlib::Service::Create(fiberProc, fiberInputData, fStackSize, fiberType);
 
-#define GENERATE_JS_FIBER(fiberProc, fiberInputData, fStackSize) \
-    GENERATE_FIBER("JSFiber", fiberProc, fiberInputData, fStackSize)
+#define GENERATE_START_FIBER(fiberProc, fiberInputData) GENERATE_FIBER("start", fiberProc, fiberInputData, 256 * 1024)
+#define GENERATE_JS_FIBER(fiberProc, fiberInputData, fStackSize) GENERATE_FIBER("JavaScriptFiber", fiberProc, fiberInputData, fStackSize)
+#define GENERATE_NATIVE_WORKER_FIBER(fiberProc, fiberInputData) GENERATE_FIBER("WorkerFiber", fiberProc, fiberInputData, 128 * 1024)
 
-#define GENERATE_START_FIBER(fiberProc, fiberInputData) \
-    GENERATE_FIBER("start", fiberProc, fiberInputData, 256 * 1024)
-
-#define GENERATE_NATIVE_WORKER_FIBER(fiberProc, fiberInputData) \
-    GENERATE_FIBER("WorkerFiber", fiberProc, fiberInputData, 128 * 1024)
+#define PROVIDE_LOCAL_JS_CONTEXT() JSFiber::scope s
 
 #define METHOD_NAME(name) save_method_name _save_method_name(name)
 

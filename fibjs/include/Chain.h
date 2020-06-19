@@ -90,7 +90,7 @@ public:
         virtual result_t js_invoke()
         {
             {
-                JSFiber::scope s;
+                PROVIDE_LOCAL_JS_CONTEXT();
 
                 m_hr = js_run();
                 if (m_hr == CALL_E_EXCEPTION)

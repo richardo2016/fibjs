@@ -198,7 +198,7 @@ public:
         if (m_hr)
             on_js_timer();
         else {
-            JSFiber::scope s;
+            PROVIDE_LOCAL_JS_CONTEXT();
             on_js_timer();
         }
     }

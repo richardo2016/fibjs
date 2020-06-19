@@ -153,7 +153,7 @@ result_t object_base::_emit(exlib::string ev, Variant* args, int32_t argCount)
     public:
         virtual result_t js_invoke()
         {
-            JSFiber::scope s;
+            PROVIDE_LOCAL_JS_CONTEXT();
             size_t i;
 
             std::vector<v8::Local<v8::Value>> argv;

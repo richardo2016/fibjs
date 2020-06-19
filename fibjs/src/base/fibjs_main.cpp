@@ -13,7 +13,7 @@
 namespace fibjs {
 result_t FIBER_HANDLER(JSEntryProc, Isolate* isolate)
 {
-    JSFiber::scope s;
+    PROVIDE_LOCAL_JS_CONTEXT();
 
     isolate->start_profiler();
 
