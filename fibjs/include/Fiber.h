@@ -60,7 +60,7 @@ public:
     virtual result_t get_caller(obj_ptr<Fiber_base>& retVal);
 
 public:
-    static void fiber_proc(void* p);
+    static void FIBER_HANDLER(fiber_proc, void* p);
     void start();
 
     void set_caller(Fiber_base* caller);

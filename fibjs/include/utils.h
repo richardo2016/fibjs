@@ -191,8 +191,6 @@ typedef int32_t result_t;
 #define V8_RETURN(v) (v)
 #endif
 
-#define FIBER_HANDLER(proc, input) proc(input)
-
 #define ALLOC_THREAD_RESOURCE_IDX() exlib::Fiber::tlsAlloc();
 #define UPDATE_THREAD_RESOURCE(idx, resValue) exlib::Fiber::tlsPut(idx, resValue);
 #define GET_THREAD_RESOURCE(idx) exlib::Fiber::tlsGet(idx);
@@ -203,6 +201,8 @@ typedef int32_t result_t;
 #define GENERATE_START_FIBER(fiberProc, fiberInputData) GENERATE_FIBER("start", fiberProc, fiberInputData, 256 * 1024)
 #define GENERATE_JS_FIBER(fiberProc, fiberInputData, fStackSize) GENERATE_FIBER("JavaScriptFiber", fiberProc, fiberInputData, fStackSize)
 #define GENERATE_NATIVE_WORKER_FIBER(fiberProc, fiberInputData) GENERATE_FIBER("WorkerFiber", fiberProc, fiberInputData, 128 * 1024)
+
+#define FIBER_HANDLER(proc, input) proc(input)
 
 #define PROVIDE_LOCAL_JS_CONTEXT() JSFiber::scope s
 
