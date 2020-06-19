@@ -250,7 +250,7 @@ static void fb_GCCallback(v8::Isolate* js_isolate, v8::GCType type, v8::GCCallba
 static void FIBER_HANDLER(FiberIsolate, void* p)
 {
     Isolate* isolate = (Isolate*)p;
-    Runtime rt(isolate);
+    CREATE_THREAD_RUNTIME(isolate);
 
     isolate->init();
     JSFiber::fiber_proc(p);

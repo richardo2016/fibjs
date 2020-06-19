@@ -70,7 +70,7 @@ private:
 
     void FIBER_HANDLER(worker_proc, void)
     {
-        Runtime rt(NULL);
+        CREATE_THREAD_RUNTIME(NULL);
         AsyncEvent* p;
 
         m_idleWorkers.dec();

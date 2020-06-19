@@ -195,6 +195,8 @@ typedef int32_t result_t;
 #define UPDATE_THREAD_RESOURCE(idx, resValue) exlib::Fiber::tlsPut(idx, resValue);
 #define GET_THREAD_RESOURCE(idx) exlib::Fiber::tlsGet(idx);
 
+#define CREATE_THREAD_RUNTIME(isolate) Runtime rt(isolate);
+
 #define GENERATE_FIBER(fiberType, fiberProc, fiberInputData, fStackSize) \
     exlib::Service::Create(fiberProc, fiberInputData, fStackSize, fiberType);
 

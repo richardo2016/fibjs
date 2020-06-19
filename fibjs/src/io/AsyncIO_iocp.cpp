@@ -133,7 +133,7 @@ public:
         DWORD dwBytes, dwError;
         LPOVERLAPPED pOverlap;
 
-        Runtime rt(NULL);
+        CREATE_THREAD_RUNTIME(NULL);
 
         while (true) {
             v = 0;

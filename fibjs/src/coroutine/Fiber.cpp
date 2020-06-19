@@ -33,7 +33,7 @@ void JSFiber::fiber_proc(void* p)
     Isolate* isolate = (Isolate*)p;
 
     {
-        Runtime rt(isolate);
+        CREATE_THREAD_RUNTIME(isolate);
         v8::Locker locker(isolate->m_isolate);
         v8::Isolate::Scope isolate_scope(isolate->m_isolate);
 

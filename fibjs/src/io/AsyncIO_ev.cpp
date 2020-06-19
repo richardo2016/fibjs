@@ -210,7 +210,7 @@ public:
 
     virtual void Run()
     {
-        Runtime rt(NULL);
+        CREATE_THREAD_RUNTIME(NULL);
 
         ev_async_init(&s_asEvent, as_cb);
         ev_async_start(s_loop, &s_asEvent);

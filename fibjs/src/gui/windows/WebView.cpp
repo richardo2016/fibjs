@@ -285,7 +285,7 @@ private:
 public:
     virtual void Run()
     {
-        Runtime rt(NULL);
+        CREATE_THREAD_RUNTIME(NULL);
 
         OleInitialize(NULL);
 
