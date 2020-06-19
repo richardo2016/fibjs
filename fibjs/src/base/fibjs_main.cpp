@@ -11,7 +11,7 @@
 #include "Fiber.h"
 
 namespace fibjs {
-result_t main_fiber(Isolate* isolate)
+result_t FIBER_HANDLER(JSEntryProc, Isolate* isolate)
 {
     JSFiber::scope s;
 

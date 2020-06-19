@@ -68,7 +68,7 @@ private:
             GENERATE_NATIVE_WORKER_FIBER(worker_proc, this);
     }
 
-    void worker_proc()
+    void FIBER_HANDLER(worker_proc, void)
     {
         Runtime rt(NULL);
         AsyncEvent* p;

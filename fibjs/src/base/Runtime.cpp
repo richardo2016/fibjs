@@ -39,7 +39,6 @@ void init_sym();
     v8::V8::Initialize();
 
 #define START_MAIN_FIBER_SERVICE(EXPECTED_WORKER_NUMBER) exlib::Service::init(EXPECTED_WORKER_NUMBER);
-
 #define START_FIBER_LOOP() exlib::Service::dispatch()
 
 void init_argv(int32_t argc, char** argv);
@@ -77,24 +76,24 @@ static void createBasisForFiberLoop(v8::Platform* (*get_platform)())
     INIT_V8(get_platform);
 }
 
-void start(int32_t argc, char** argv, result_t (*main)(Isolate*), v8::Platform* (*get_platform)())
+void start(int32_t argc, char** argv, result_t (*JSEntryFiber)(Isolate*), v8::Platform* (*get_platform)())
 {
-    class MainThread : public exlib::OSThread {
+    class EntryThread : public exlib::OSThread {
     public:
-        MainThread(int32_t argc, char** argv, result_t (*main)(Isolate*), v8::Platform* (*get_platform)())
+        EntryThread(int32_t argc, char** argv, result_t (*jsFiber)(Isolate*), v8::Platform* (*get_platform)())
             : m_argc(argc)
             , m_argv(argv)
-            , m_main(main)
+            , m_jsFiber(jsFiber)
             , m_get_platform(get_platform)
         {
         }
 
     public:
-        static void FirstFiber(void* p)
+        static void FIBER_HANDLER(FirstFiber, void* p)
         {
-            MainThread* th = (MainThread*)p;
+            EntryThread* th = (EntryThread*)p;
             Isolate* isolate = new Isolate(th->m_fibjsEntry);
-            syncCall(isolate, th->m_main, isolate);
+            syncCall(isolate, th->m_jsFiber, isolate);
         }
 
         virtual void Run()
@@ -162,14 +161,14 @@ void start(int32_t argc, char** argv, result_t (*main)(Isolate*), v8::Platform* 
         int32_t m_argc;
         char** m_argv;
         exlib::string m_fibjsEntry;
-        result_t (*m_main)(Isolate*);
+        result_t (*m_jsFiber)(Isolate*);
         v8::Platform* (*m_get_platform)();
     };
 
-    MainThread* main_thread = new MainThread(argc, argv, main, get_platform);
-    main_thread->start();
+    EntryThread* entryThread = new EntryThread(argc, argv, JSEntryFiber, get_platform);
+    entryThread->start();
 
-    main_thread->m_sem.Wait();
+    entryThread->m_sem.Wait();
 }
 
 static int32_t s_tls_rt;
@@ -248,7 +247,7 @@ static void fb_GCCallback(v8::Isolate* js_isolate, v8::GCType type, v8::GCCallba
     }
 }
 
-static void IsolateFiber(void* p)
+static void FIBER_HANDLER(FiberIsolate, void* p)
 {
     Isolate* isolate = (Isolate*)p;
     Runtime rt(isolate);
@@ -301,7 +300,7 @@ Isolate::Isolate(exlib::string jsFilename)
     m_currentFibers++;
     m_idleFibers++;
 
-    GENERATE_JS_FIBER(IsolateFiber, this, stack_size * 1024);
+    GENERATE_JS_FIBER(FiberIsolate, this, stack_size * 1024);
 }
 
 Isolate* Isolate::current()
