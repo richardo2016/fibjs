@@ -73,7 +73,7 @@ public:
     virtual void enter()
     {
         if (!m_lock.trylock()) {
-            Isolate::rt _rt(holder());
+            RELEASE_LOCAL_JS_CONTEXT(holder());
             m_lock.lock();
         }
     }

@@ -106,14 +106,14 @@ public:
     int32_t check_result(int32_t hr)
     {
         if (hr == CALL_E_NOSYNC) {
-            Isolate::rt _rt(m_isolate);
+            RELEASE_LOCAL_JS_CONTEXT(m_isolate);
             invoke();
             weak.wait();
         } else if (hr == CALL_E_LONGSYNC || hr == CALL_E_GUICALL) {
             async(hr);
 
             if (!weak.isSet()) {
-                Isolate::rt _rt(m_isolate);
+                RELEASE_LOCAL_JS_CONTEXT(m_isolate);
                 weak.wait();
             }
         } else

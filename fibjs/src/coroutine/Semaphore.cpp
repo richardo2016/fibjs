@@ -50,7 +50,7 @@ result_t Semaphore::wait()
     if (m_sem.trywait())
         return 0;
 
-    Isolate::rt _rt(holder());
+    RELEASE_LOCAL_JS_CONTEXT(holder());
     m_sem.wait();
 
     return 0;

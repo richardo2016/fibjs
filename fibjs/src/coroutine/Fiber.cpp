@@ -116,7 +116,7 @@ void JSFiber::start()
 result_t JSFiber::join()
 {
     if (!m_quit.isSet()) {
-        Isolate::rt _rt(holder());
+        RELEASE_LOCAL_JS_CONTEXT(holder());
         m_quit.wait();
     }
 

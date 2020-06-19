@@ -71,7 +71,7 @@ result_t Event::wait()
     if (m_event.isSet())
         return 0;
 
-    Isolate::rt _rt(holder());
+    RELEASE_LOCAL_JS_CONTEXT(holder());
     m_event.wait();
     return 0;
 }

@@ -207,6 +207,7 @@ typedef int32_t result_t;
 #define FIBER_HANDLER(proc, input) proc(input)
 
 #define PROVIDE_LOCAL_JS_CONTEXT() JSFiber::scope s
+#define RELEASE_LOCAL_JS_CONTEXT(isolate) Isolate::rt _rt(isolate)
 
 #define METHOD_NAME(name) save_method_name _save_method_name(name)
 
