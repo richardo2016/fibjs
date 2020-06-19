@@ -191,9 +191,9 @@ typedef int32_t result_t;
 #define V8_RETURN(v) (v)
 #endif
 
-#define ALLOC_THREAD_RESOURCE_IDX() exlib::Fiber::tlsAlloc();
-#define UPDATE_THREAD_RESOURCE(idx, resValue) exlib::Fiber::tlsPut(idx, resValue);
-#define GET_THREAD_RESOURCE(idx) exlib::Fiber::tlsGet(idx);
+#define ALLOC_THREAD_LOCAL_RESOURCE_IDX() exlib::Fiber::tlsAlloc();
+#define UPDATE_THREAD_LOCAL_RESOURCE(idx, resValue) exlib::Fiber::tlsPut(idx, resValue);
+#define GET_THREAD_LOCAL_RESOURCE(idx) exlib::Fiber::tlsGet(idx);
 
 #define CREATE_THREAD_RUNTIME(isolate) Runtime rt(isolate);
 

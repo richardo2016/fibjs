@@ -23,7 +23,7 @@ public:
     fiber_initer()
     {
         g_spareFibers = MAX_IDLE;
-        g_tlsCurrent = ALLOC_THREAD_RESOURCE_IDX();
+        g_tlsCurrent = ALLOC_THREAD_LOCAL_RESOURCE_IDX();
     }
 } s_fiber_initer;
 
@@ -182,7 +182,7 @@ result_t JSFiber::get_caller(obj_ptr<Fiber_base>& retVal)
 
 JSFiber* JSFiber::current()
 {
-    return (JSFiber*)GET_THREAD_RESOURCE(g_tlsCurrent);
+    return (JSFiber*)GET_THREAD_LOCAL_RESOURCE(g_tlsCurrent);
 }
 
 result_t JSFiber::js_invoke()
@@ -219,7 +219,7 @@ JSFiber::scope::scope(JSFiber* fb)
     if (fb == NULL)
         m_pFiber = new JSFiber();
 
-    UPDATE_THREAD_RESOURCE(g_tlsCurrent, m_pFiber);
+    UPDATE_THREAD_LOCAL_RESOURCE(g_tlsCurrent, m_pFiber);
     m_pFiber->holder()->m_fibers.putTail(m_pFiber);
 }
 
@@ -232,7 +232,7 @@ JSFiber::scope::~scope()
     m_pFiber->m_quit.set();
 
     m_pFiber->holder()->m_fibers.remove(m_pFiber);
-    UPDATE_THREAD_RESOURCE(g_tlsCurrent, 0);
+    UPDATE_THREAD_LOCAL_RESOURCE(g_tlsCurrent, 0);
 }
 
 } /* namespace fibjs */

@@ -177,18 +177,18 @@ class rt_initer {
 public:
     rt_initer()
     {
-        s_tls_rt = ALLOC_THREAD_RESOURCE_IDX();
+        s_tls_rt = ALLOC_THREAD_LOCAL_RESOURCE_IDX();
     }
 } s_rt_initer;
 
 void Runtime::RegInThread()
 {
-    UPDATE_THREAD_RESOURCE(s_tls_rt, this);
+    UPDATE_THREAD_LOCAL_RESOURCE(s_tls_rt, this);
 }
 
 Runtime* Runtime::current()
 {
-    return (Runtime*)GET_THREAD_RESOURCE(s_tls_rt);
+    return (Runtime*)GET_THREAD_LOCAL_RESOURCE(s_tls_rt);
 }
 
 class ShellArrayBufferAllocator : public v8::ArrayBuffer::Allocator {
