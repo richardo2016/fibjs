@@ -218,8 +218,7 @@ result_t SslSocket::read(int32_t bytes, obj_ptr<Buffer_base>& retVal,
     if (!m_s)
         return CHECK_ERROR(CALL_E_INVALID_CALL);
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     return (new asyncRead(this, bytes, retVal, ac))->post(0);
 }
@@ -260,8 +259,7 @@ result_t SslSocket::write(Buffer_base* data, AsyncEvent* ac)
     if (!m_s)
         return CHECK_ERROR(CALL_E_INVALID_CALL);
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     return (new asyncWrite(this, data, ac))->post(0);
 }
@@ -300,8 +298,7 @@ result_t SslSocket::close(AsyncEvent* ac)
     if (!m_s)
         return CHECK_ERROR(CALL_E_INVALID_CALL);
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     return (new asyncClose(this, ac))->post(0);
 }
@@ -406,8 +403,7 @@ result_t SslSocket::connect(Stream_base* s, exlib::string server_name,
     if (m_s)
         return CHECK_ERROR(CALL_E_INVALID_CALL);
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     int32_t ret;
     m_s = s;
@@ -473,8 +469,7 @@ result_t SslSocket::accept(Stream_base* s, obj_ptr<SslSocket_base>& retVal,
     if (m_s)
         return CHECK_ERROR(CALL_E_INVALID_CALL);
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     obj_ptr<SslSocket> ss = new SslSocket();
     retVal = ss;

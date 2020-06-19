@@ -451,8 +451,7 @@ result_t HttpClient::request(Stream_base* conn, HttpRequest_base* req,
         bool m_bNoBody;
     };
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     return (new asyncRequest(conn, req, m_maxBodySize, m_enableEncoding, retVal, ac))->post(0);
 }
@@ -713,8 +712,7 @@ result_t HttpClient::request(exlib::string method, exlib::string url, SeekableSt
         int32_t m_temp;
     };
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     return (new asyncRequest(this, method, url, body, headers, retVal, ac))->post(0);
 }

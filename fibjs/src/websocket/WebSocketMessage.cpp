@@ -174,8 +174,7 @@ result_t WebSocketMessage::copy(Stream_base* from, Stream_base* to, int64_t byte
         obj_ptr<Buffer_base> m_buf;
     };
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     return (new asyncCopy(from, to, bytes, mask, ac))->post(0);
 }
@@ -309,8 +308,7 @@ result_t WebSocketMessage::sendTo(Stream_base* stm, WebSocket* wss, AsyncEvent* 
         bool m_take_over;
     };
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     return (new asyncSendTo(this, stm, wss, ac))->post(0);
 }
@@ -500,8 +498,7 @@ result_t WebSocketMessage::readFrom(Stream_base* stm, WebSocket* wss, AsyncEvent
         bool m_take_over;
     };
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     m_stm = stm;
 

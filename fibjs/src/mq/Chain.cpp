@@ -33,8 +33,7 @@ result_t Chain::invoke(object_base* v, obj_ptr<Handler_base>& retVal,
     if (m_array.size() == 0)
         return CHECK_ERROR(Runtime::setError("Chain: empty chain."));
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     return (new asyncInvoke(m_array, v, ac))->post(0);
 }

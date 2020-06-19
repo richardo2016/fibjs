@@ -79,8 +79,7 @@ result_t Handler_base::_new(v8::Local<v8::Function> hdlr, obj_ptr<Handler_base>&
 result_t mq_base::invoke(Handler_base* hdlr, object_base* v,
     AsyncEvent* ac)
 {
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     return (new Chain::asyncInvoke(hdlr, v, ac))->post(0);
 }

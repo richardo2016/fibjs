@@ -133,8 +133,7 @@ result_t Socket::close(AsyncEvent* ac)
     if (m_aio.m_fd == INVALID_SOCKET)
         return 0;
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     return m_aio.close(ac);
 }
@@ -341,8 +340,7 @@ result_t Socket::sendto(Buffer_base* data, exlib::string host, int32_t port,
     if (m_aio.m_fd == INVALID_SOCKET)
         return CHECK_ERROR(CALL_E_INVALID_CALL);
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     inetAddr addr_info;
 

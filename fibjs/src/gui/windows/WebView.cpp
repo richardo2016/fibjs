@@ -738,8 +738,7 @@ LRESULT CALLBACK WebView::WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lP
 
 result_t WebView::setHtml(exlib::string html, AsyncEvent* ac)
 {
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_GUICALL);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_GUICALL));
 
     HGLOBAL hTextHandle = ::GlobalAlloc(GPTR, html.length() + 1);
     if (0 == hTextHandle)
@@ -777,8 +776,7 @@ result_t WebView::setHtml(exlib::string html, AsyncEvent* ac)
 
 result_t WebView::print(int32_t mode, AsyncEvent* ac)
 {
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_GUICALL);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_GUICALL));
 
     switch (mode) {
     case 0:
@@ -811,8 +809,7 @@ result_t WebView::print(int32_t mode, AsyncEvent* ac)
 
 result_t WebView::close(AsyncEvent* ac)
 {
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_GUICALL);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_GUICALL));
 
     PostMessage(hWndParent, WM_CLOSE, 0, 0);
     return 0;
@@ -845,8 +842,7 @@ result_t WebView::postMessage(exlib::string msg, _variant_t& retVal)
 
 result_t WebView::postMessage(exlib::string msg, AsyncEvent* ac)
 {
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_GUICALL);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_GUICALL));
 
     _variant_t vResult;
     return postMessage(msg, vResult);

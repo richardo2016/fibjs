@@ -18,8 +18,7 @@ namespace fibjs {
 result_t AsyncWaitHandler::invoke(object_base* v, obj_ptr<Handler_base>& retVal,
     AsyncEvent* ac)
 {
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     if (m_invoked.xchg(1) != 0)
         return 0;

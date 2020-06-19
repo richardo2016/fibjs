@@ -117,7 +117,7 @@ void asyncLog(int32_t priority, exlib::string msg);
 
 bool colors(int32_t type)
 {
-    if(!Isolate::current()->m_console_colored)
+    if (!Isolate::current()->m_console_colored)
         return false;
 
     if (type <= console_base::_NOTICE)
@@ -554,8 +554,7 @@ bool g_in_readline = false;
 
 result_t readInput(exlib::string msg, exlib::string& retVal, AsyncEvent* ac, bool no_echo)
 {
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_LONGSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_LONGSYNC));
 
     flushLog();
 

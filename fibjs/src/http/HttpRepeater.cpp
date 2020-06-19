@@ -200,8 +200,7 @@ result_t HttpRepeater::invoke(object_base* v, obj_ptr<Handler_base>& retVal,
         obj_ptr<HttpResponse_base> m_rep;
     };
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     obj_ptr<HttpRequest_base> req = HttpRequest_base::getInstance(v);
 

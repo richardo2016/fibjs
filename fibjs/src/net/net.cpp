@@ -24,8 +24,7 @@ DECLARE_MODULE(dns);
 
 result_t dns_base::resolve(exlib::string name, obj_ptr<NArray>& retVal, AsyncEvent* ac)
 {
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_LONGSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_LONGSYNC));
 
     addrinfo hints = { 0, AF_UNSPEC, SOCK_STREAM, IPPROTO_TCP, 0, 0, 0, 0 };
     addrinfo* result = NULL;
@@ -51,8 +50,7 @@ result_t dns_base::resolve(exlib::string name, obj_ptr<NArray>& retVal, AsyncEve
 
 result_t dns_base::lookup(exlib::string name, exlib::string& retVal, AsyncEvent* ac)
 {
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_LONGSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_LONGSYNC));
 
     addrinfo hints = { 0, AF_UNSPEC, SOCK_STREAM, IPPROTO_TCP, 0, 0, 0, 0 };
     addrinfo* result = NULL;
@@ -87,8 +85,7 @@ result_t net_base::resolve(exlib::string name, int32_t family,
     if (family != net_base::_AF_INET && family != net_base::_AF_INET6)
         return CHECK_ERROR(CALL_E_INVALIDARG);
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_LONGSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_LONGSYNC));
 
     inetAddr addr_info;
 
@@ -144,8 +141,7 @@ result_t net_base::connect(exlib::string url, int32_t timeout, obj_ptr<Stream_ba
     if (qstrcmp(url.c_str(), "tcp:", 4))
         return CHECK_ERROR(CALL_E_INVALIDARG);
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     obj_ptr<Url> u = new Url();
 
@@ -174,8 +170,7 @@ result_t net_base::connect(exlib::string url, int32_t timeout, obj_ptr<Stream_ba
 result_t net_base::openSmtp(exlib::string url, int32_t timeout,
     obj_ptr<Smtp_base>& retVal, AsyncEvent* ac)
 {
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     result_t hr;
 

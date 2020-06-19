@@ -1406,8 +1406,7 @@ result_t HttpFileHandler::invoke(object_base* v, obj_ptr<Handler_base>& retVal,
         int32_t m_dirPos;
     };
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     obj_ptr<HttpRequest_base> req = HttpRequest_base::getInstance(v);
 

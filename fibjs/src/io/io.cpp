@@ -75,8 +75,7 @@ result_t io_base::copyStream(Stream_base* from, Stream_base* to, int64_t bytes,
         obj_ptr<Buffer_base> m_buf;
     };
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     return (new asyncCopy(from, to, bytes, retVal, ac))->post(0);
 }
@@ -183,8 +182,7 @@ result_t io_base::bridge(Stream_base* stm1, Stream_base* stm2, AsyncEvent* ac)
         AsyncEvent* m_ac;
     };
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     new AsyncData(stm1, stm2, ac);
     return CALL_E_PENDDING;

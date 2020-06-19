@@ -212,8 +212,7 @@ result_t Smtp::connect(exlib::string url, AsyncEvent* ac)
     if (m_conn)
         return CHECK_ERROR(CALL_E_INVALID_CALL);
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     return (new asyncConnect(this, url, ac))->post(0);
 }
@@ -224,8 +223,7 @@ result_t Smtp::command(exlib::string cmd, exlib::string arg, exlib::string& retV
     if (!m_conn)
         return CHECK_ERROR(CALL_E_INVALID_CALL);
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     return (new asyncCommand(this, cmd, arg, retVal, ac))->post(0);
 }
@@ -235,8 +233,7 @@ result_t Smtp::command(exlib::string cmd, exlib::string arg, AsyncEvent* ac)
     if (!m_conn)
         return CHECK_ERROR(CALL_E_INVALID_CALL);
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     return (new asyncCommand(this, cmd, arg, ac))->post(0);
 }
@@ -314,8 +311,7 @@ result_t Smtp::login(exlib::string username, exlib::string password,
     if (!m_conn)
         return CHECK_ERROR(CALL_E_INVALID_CALL);
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     return (new asyncLogin(this, username, password, ac))->post(0);
 }
@@ -378,8 +374,7 @@ result_t Smtp::data(exlib::string txt, AsyncEvent* ac)
     if (!m_conn)
         return CHECK_ERROR(CALL_E_INVALID_CALL);
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     return (new asyncData(this, txt, ac))->post(0);
 }

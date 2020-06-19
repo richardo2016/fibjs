@@ -104,8 +104,7 @@ result_t crypto_base::loadReq(exlib::string filename, obj_ptr<X509Req_base>& ret
 result_t crypto_base::randomBytes(int32_t size, obj_ptr<Buffer_base>& retVal,
     AsyncEvent* ac)
 {
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     time_t t;
     int32_t i, ret;
@@ -138,8 +137,7 @@ result_t crypto_base::randomBytes(int32_t size, obj_ptr<Buffer_base>& retVal,
 result_t crypto_base::simpleRandomBytes(int32_t size, obj_ptr<Buffer_base>& retVal,
     AsyncEvent* ac)
 {
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     exlib::string strBuf;
 
@@ -158,8 +156,7 @@ result_t crypto_base::simpleRandomBytes(int32_t size, obj_ptr<Buffer_base>& retV
 result_t crypto_base::pseudoRandomBytes(int32_t size, obj_ptr<Buffer_base>& retVal,
     AsyncEvent* ac)
 {
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     int32_t i, ret;
     mbedtls_entropy_context entropy;
@@ -359,8 +356,7 @@ result_t crypto_base::pbkdf1(Buffer_base* password, Buffer_base* salt, int32_t i
     if (algo < hash_base::_MD2 || algo > hash_base::_SM3)
         return CHECK_ERROR(CALL_E_INVALIDARG);
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     exlib::string str_pass;
     exlib::string str_salt;
@@ -386,8 +382,7 @@ result_t crypto_base::pbkdf1(Buffer_base* password, Buffer_base* salt, int32_t i
     int32_t size, exlib::string algoName, obj_ptr<Buffer_base>& retVal,
     AsyncEvent* ac)
 {
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     algoName.toupper();
     const mbedtls_md_info_t* mi = mbedtls_md_info_from_string(algoName.c_str());
@@ -403,8 +398,7 @@ result_t crypto_base::pbkdf2(Buffer_base* password, Buffer_base* salt, int32_t i
     if (algo < hash_base::_MD2 || algo > hash_base::_SM3)
         return CHECK_ERROR(CALL_E_INVALIDARG);
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     exlib::string str_pass;
     exlib::string str_salt;
@@ -430,8 +424,7 @@ result_t crypto_base::pbkdf2(Buffer_base* password, Buffer_base* salt, int32_t i
     int32_t size, exlib::string algoName, obj_ptr<Buffer_base>& retVal,
     AsyncEvent* ac)
 {
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     algoName.toupper();
     const mbedtls_md_info_t* mi = mbedtls_md_info_from_string(algoName.c_str());

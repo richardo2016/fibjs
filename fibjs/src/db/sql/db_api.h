@@ -124,8 +124,7 @@ result_t db_begin(T* pThis, AsyncEvent* ac)
     if (!pThis->m_conn)
         return CHECK_ERROR(CALL_E_INVALID_CALL);
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     obj_ptr<NArray> retVal;
     return pThis->execute("BEGIN", 5, retVal);
@@ -137,8 +136,7 @@ result_t db_commit(T* pThis, AsyncEvent* ac)
     if (!pThis->m_conn)
         return CHECK_ERROR(CALL_E_INVALID_CALL);
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     obj_ptr<NArray> retVal;
     return pThis->execute("COMMIT", 6, retVal);
@@ -150,8 +148,7 @@ result_t db_rollback(T* pThis, AsyncEvent* ac)
     if (!pThis->m_conn)
         return CHECK_ERROR(CALL_E_INVALID_CALL);
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     obj_ptr<NArray> retVal;
     return pThis->execute("ROLLBACK", 8, retVal);

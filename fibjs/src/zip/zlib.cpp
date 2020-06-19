@@ -50,144 +50,126 @@ result_t zlib_base::createInflateRaw(Stream_base* to, int32_t maxSize, obj_ptr<S
 
 result_t zlib_base::deflate(Buffer_base* data, int32_t level, obj_ptr<Buffer_base>& retVal, AsyncEvent* ac)
 {
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     return (new def(NULL, level))->process(data, retVal, ac);
 }
 
 result_t zlib_base::deflateTo(Buffer_base* data, Stream_base* stm, int32_t level, AsyncEvent* ac)
 {
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     return (new def(stm, level))->process(data, ac);
 }
 
 result_t zlib_base::deflateTo(Stream_base* src, Stream_base* stm, int32_t level, AsyncEvent* ac)
 {
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     return (new def(stm, level))->process(src, ac);
 }
 
 result_t zlib_base::inflate(Buffer_base* data, int32_t maxSize, obj_ptr<Buffer_base>& retVal, AsyncEvent* ac)
 {
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     return (new inf(NULL, maxSize))->process(data, retVal, ac);
 }
 
 result_t zlib_base::inflateTo(Buffer_base* data, Stream_base* stm, int32_t maxSize, AsyncEvent* ac)
 {
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     return (new inf(stm, maxSize))->process(data, ac);
 }
 
 result_t zlib_base::inflateTo(Stream_base* src, Stream_base* stm, int32_t maxSize, AsyncEvent* ac)
 {
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     return (new inf(stm, maxSize))->process(src, ac);
 }
 
 result_t zlib_base::gzip(Buffer_base* data, obj_ptr<Buffer_base>& retVal, AsyncEvent* ac)
 {
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     return (new gz(NULL))->process(data, retVal, ac);
 }
 
 result_t zlib_base::gzipTo(Buffer_base* data, Stream_base* stm, AsyncEvent* ac)
 {
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     return (new gz(stm))->process(data, ac);
 }
 
 result_t zlib_base::gzipTo(Stream_base* src, Stream_base* stm, AsyncEvent* ac)
 {
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     return (new gz(stm))->process(src, ac);
 }
 
 result_t zlib_base::gunzip(Buffer_base* data, int32_t maxSize, obj_ptr<Buffer_base>& retVal, AsyncEvent* ac)
 {
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     return (new gunz(NULL, maxSize))->process(data, retVal, ac);
 }
 
 result_t zlib_base::gunzipTo(Buffer_base* data, Stream_base* stm, int32_t maxSize, AsyncEvent* ac)
 {
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     return (new gunz(stm, maxSize))->process(data, ac);
 }
 
 result_t zlib_base::gunzipTo(Stream_base* src, Stream_base* stm, int32_t maxSize, AsyncEvent* ac)
 {
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     return (new gunz(stm, maxSize))->process(src, ac);
 }
 
 result_t zlib_base::deflateRaw(Buffer_base* data, int32_t level, obj_ptr<Buffer_base>& retVal, AsyncEvent* ac)
 {
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     return (new defraw(NULL))->process(data, retVal, ac);
 }
 
 result_t zlib_base::deflateRawTo(Buffer_base* data, Stream_base* stm, int32_t level, AsyncEvent* ac)
 {
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     return (new defraw(stm))->process(data, ac);
 }
 
 result_t zlib_base::deflateRawTo(Stream_base* src, Stream_base* stm, int32_t level, AsyncEvent* ac)
 {
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     return (new defraw(stm))->process(src, ac);
 }
 
 result_t zlib_base::inflateRaw(Buffer_base* data, int32_t maxSize, obj_ptr<Buffer_base>& retVal, AsyncEvent* ac)
 {
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     return (new infraw(NULL, maxSize))->process(data, retVal, ac);
 }
 
 result_t zlib_base::inflateRawTo(Buffer_base* data, Stream_base* stm, int32_t maxSize, AsyncEvent* ac)
 {
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     return (new infraw(stm, maxSize))->process(data, ac);
 }
 
 result_t zlib_base::inflateRawTo(Stream_base* src, Stream_base* stm, int32_t maxSize, AsyncEvent* ac)
 {
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     return (new infraw(stm, maxSize))->process(src, ac);
 }

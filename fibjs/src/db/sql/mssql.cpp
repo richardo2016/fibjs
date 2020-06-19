@@ -22,8 +22,7 @@ namespace fibjs {
 result_t db_base::openMSSQL(exlib::string connString, obj_ptr<MSSQL_base>& retVal,
     AsyncEvent* ac)
 {
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     if (qstrcmp(connString.c_str(), "mssql:", 6))
         return CHECK_ERROR(CALL_E_INVALIDARG);
@@ -107,8 +106,7 @@ result_t mssql::close(AsyncEvent* ac)
     if (!m_conn)
         return CHECK_ERROR(CALL_E_INVALID_CALL);
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     m_conn->Close();
     m_conn->Release();
@@ -122,8 +120,7 @@ result_t mssql::use(exlib::string dbName, AsyncEvent* ac)
     if (!m_conn)
         return CHECK_ERROR(CALL_E_INVALID_CALL);
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     bstr_t bstrName(utf8to16String(dbName).c_str());
     HRESULT hr;

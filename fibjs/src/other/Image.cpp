@@ -36,8 +36,7 @@ result_t gd_base::create(int32_t width, int32_t height, int32_t color,
     if (width <= 0 || height <= 0)
         return CHECK_ERROR(CALL_E_INVALIDARG);
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     obj_ptr<Image> img = new Image();
     result_t hr = img->create(width, height, color);
@@ -51,8 +50,7 @@ result_t gd_base::create(int32_t width, int32_t height, int32_t color,
 result_t gd_base::load(Buffer_base* data, obj_ptr<Image_base>& retVal,
     AsyncEvent* ac)
 {
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     obj_ptr<Image> img = new Image();
     result_t hr = img->load(data);
@@ -113,8 +111,7 @@ result_t gd_base::load(SeekableStream_base* stm, obj_ptr<Image_base>& retVal,
         obj_ptr<Buffer_base> m_buffer;
     };
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     return (new asyncLoad(stm, retVal, ac))->post(0);
 }
@@ -154,8 +151,7 @@ result_t gd_base::load(exlib::string fname, obj_ptr<Image_base>& retVal,
         obj_ptr<Image_base>& m_retVal;
     };
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     return (new asyncLoad(fname, retVal, ac))->post(0);
 }
@@ -460,8 +456,7 @@ result_t Image::getData(int32_t format, int32_t quality,
     if (!m_image)
         return CHECK_ERROR(CALL_E_INVALID_CALL);
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     int32_t size = 0;
     void* data = NULL;
@@ -565,8 +560,7 @@ result_t Image::save(Stream_base* stm, int32_t format, int32_t quality,
     if (!m_image)
         return CHECK_ERROR(CALL_E_INVALID_CALL);
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     return (new asyncSave(this, stm, format, quality, ac))->post(0);
 }
@@ -614,8 +608,7 @@ result_t Image::save(exlib::string fname, int32_t format, int32_t quality,
     if (!m_image)
         return CHECK_ERROR(CALL_E_INVALID_CALL);
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     return (new asyncSave(this, fname, format, quality, ac))->post(0);
 }
@@ -1150,8 +1143,7 @@ result_t Image::colorReplace(int32_t src, int32_t dst, AsyncEvent* ac)
     if (!m_image)
         return CHECK_ERROR(CALL_E_INVALID_CALL);
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     gdImageColorReplace(m_image, src, dst);
     return 0;
@@ -1166,8 +1158,7 @@ result_t Image::crop(int32_t x, int32_t y, int32_t width, int32_t height,
     if (!m_image)
         return CHECK_ERROR(CALL_E_INVALID_CALL);
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     obj_ptr<Image> dst;
     result_t hr = New(width, height, dst);
@@ -1188,8 +1179,7 @@ result_t Image::clone(obj_ptr<Image_base>& retVal, AsyncEvent* ac)
     if (!m_image)
         return CHECK_ERROR(CALL_E_INVALID_CALL);
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     obj_ptr<Image> img = new Image();
     img->m_image = gdImageClone(m_image);
@@ -1209,8 +1199,7 @@ result_t Image::resample(int32_t width, int32_t height,
     if (!m_image)
         return CHECK_ERROR(CALL_E_INVALID_CALL);
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     obj_ptr<Image> dst;
     result_t hr = New(width, height, dst);
@@ -1231,8 +1220,7 @@ result_t Image::flip(int32_t dir, AsyncEvent* ac)
     if (!m_image)
         return CHECK_ERROR(CALL_E_INVALID_CALL);
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     if (dir == gd_base::_HORIZONTAL)
         gdImageFlipHorizontal(m_image);
@@ -1290,8 +1278,7 @@ result_t Image::rotate(int32_t dir, AsyncEvent* ac)
     if (!m_image)
         return CHECK_ERROR(CALL_E_INVALID_CALL);
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     return rotate(dir);
 }
@@ -1301,8 +1288,7 @@ result_t Image::convert(int32_t color, AsyncEvent* ac)
     if (!m_image)
         return CHECK_ERROR(CALL_E_INVALID_CALL);
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     if (color != gd_base::_TRUECOLOR && color != gd_base::_PALETTE)
         return CHECK_ERROR(CALL_E_INVALIDARG);
@@ -1331,8 +1317,7 @@ result_t Image::copy(Image_base* source, int32_t dstX, int32_t dstY,
     if (!m_image)
         return CHECK_ERROR(CALL_E_INVALID_CALL);
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     Image* src = (Image*)source;
     if (!src->m_image)
@@ -1352,8 +1337,7 @@ result_t Image::copyMerge(Image_base* source, int32_t dstX, int32_t dstY,
     if (!m_image)
         return CHECK_ERROR(CALL_E_INVALID_CALL);
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     Image* src = (Image*)source;
     if (!src->m_image)
@@ -1374,8 +1358,7 @@ result_t Image::copyMergeGray(Image_base* source, int32_t dstX, int32_t dstY,
     if (!m_image)
         return CHECK_ERROR(CALL_E_INVALID_CALL);
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     Image* src = (Image*)source;
     if (!src->m_image)
@@ -1393,8 +1376,7 @@ result_t Image::copyResized(Image_base* source, int32_t dstX, int32_t dstY,
     if (!m_image)
         return CHECK_ERROR(CALL_E_INVALID_CALL);
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     Image* src = (Image*)source;
     if (!src->m_image)
@@ -1412,8 +1394,7 @@ result_t Image::copyResampled(Image_base* source, int32_t dstX, int32_t dstY,
     if (!m_image)
         return CHECK_ERROR(CALL_E_INVALID_CALL);
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     Image* src = (Image*)source;
     if (!src->m_image)
@@ -1434,8 +1415,7 @@ result_t Image::copyRotated(Image_base* source, double dstX, double dstY,
     if (!m_image)
         return CHECK_ERROR(CALL_E_INVALID_CALL);
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     Image* src = (Image*)source;
     if (!src->m_image)
@@ -1451,8 +1431,7 @@ result_t Image::filter(int32_t filterType, double arg1, double arg2, double arg3
     if (!m_image)
         return CHECK_ERROR(CALL_E_INVALID_CALL);
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     switch (filterType) {
     case gd_base::_MEAN_REMOVAL:
@@ -1551,8 +1530,7 @@ result_t Image::gaussianBlur(int32_t radius, AsyncEvent* ac)
     if (radius >= gdImageSY(m_image) || radius >= gdImageSX(m_image))
         return CHECK_ERROR(CALL_E_INVALIDARG);
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     gdImagePtr dst = gdImageCopyGaussianBlurred(m_image, radius, -1);
     if (dst) {

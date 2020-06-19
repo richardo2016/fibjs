@@ -23,6 +23,10 @@ namespace fibjs {
 
 #include "object_async.inl"
 
+#define SWITCH_ASYNC_SM_TO(ac, hr) \
+    if (ac->isSync())              \
+        return hr;
+
 #define JSOBJECT_JSVALUE 1
 #define JSOBJECT_JSHANDLE 2
 

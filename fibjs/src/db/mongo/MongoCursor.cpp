@@ -15,8 +15,7 @@ namespace fibjs {
 
 result_t MongoCursor::_initCursor(MongoDB* db, AsyncEvent* ac)
 {
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     m_cursor = new cursor;
     m_cursor->m_db = db;
@@ -29,8 +28,7 @@ result_t MongoCursor::_initCursor(MongoDB* db, AsyncEvent* ac)
 
 result_t MongoCursor::_nextCursor(int32_t& retVal, AsyncEvent* ac)
 {
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     retVal = mongo_cursor_next(m_cursor);
     return 0;
@@ -106,8 +104,7 @@ result_t MongoCursor::limit(int32_t size, obj_ptr<MongoCursor_base>& retVal,
     if (m_bInit)
         return CHECK_ERROR(CALL_E_INVALID_CALL);
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     mongo_cursor_set_limit(m_cursor, size);
 
@@ -242,8 +239,7 @@ result_t MongoCursor::skip(int32_t num, obj_ptr<MongoCursor_base>& retVal,
     if (m_bInit)
         return CHECK_ERROR(CALL_E_INVALID_CALL);
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     mongo_cursor_set_skip(m_cursor, num);
 

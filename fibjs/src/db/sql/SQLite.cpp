@@ -93,8 +93,7 @@ static void hook_fts5_api(sqlite3* db)
 result_t db_base::openSQLite(exlib::string connString,
     obj_ptr<SQLite_base>& retVal, AsyncEvent* ac)
 {
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     result_t hr;
 
@@ -150,8 +149,7 @@ result_t SQLite::close(AsyncEvent* ac)
     if (!m_conn)
         return CHECK_ERROR(CALL_E_INVALID_CALL);
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     sqlite3_close(m_conn);
     m_conn = NULL;
@@ -258,19 +256,19 @@ result_t SQLite::execute(const char* sql, int32_t sLen, obj_ptr<NArray>& retVal)
                             const char* type = sqlite3_column_decltype(stmt, i);
                             if (type
                                 && (!qstricmp(type, "blob", 4)
-                                       || !qstricmp(type, "tinyblob", 8)
-                                       || !qstricmp(type, "mediumblob", 10)
-                                       || !qstricmp(type, "longblob", 8)
-                                       || !qstricmp(type, "binary", 6)
-                                       || !qstricmp(type, "varbinary", 9))) {
+                                    || !qstricmp(type, "tinyblob", 8)
+                                    || !qstricmp(type, "mediumblob", 10)
+                                    || !qstricmp(type, "longblob", 8)
+                                    || !qstricmp(type, "binary", 6)
+                                    || !qstricmp(type, "varbinary", 9))) {
                                 const char* data = (const char*)sqlite3_column_blob(stmt, i);
                                 int32_t size = sqlite3_column_bytes(stmt, i);
 
                                 v = new Buffer(data, size);
                             } else if (type
                                 && (!qstricmp(type, "datetime")
-                                       || !qstricmp(type, "date")
-                                       || !qstricmp(type, "time"))) {
+                                    || !qstricmp(type, "date")
+                                    || !qstricmp(type, "time"))) {
                                 const char* data = (const char*)sqlite3_column_text(stmt, i);
                                 int32_t size = sqlite3_column_bytes(stmt, i);
 
@@ -425,8 +423,7 @@ result_t SQLite::backup(exlib::string fileName, AsyncEvent* ac)
     if (!m_conn)
         return CHECK_ERROR(CALL_E_INVALID_CALL);
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     int32_t rc;
     struct sqlite3* db2 = NULL;

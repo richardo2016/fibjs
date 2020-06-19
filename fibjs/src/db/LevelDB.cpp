@@ -15,8 +15,7 @@ namespace fibjs {
 result_t db_base::openLevelDB(exlib::string connString,
     obj_ptr<LevelDB_base>& retVal, AsyncEvent* ac)
 {
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     result_t hr;
     const char* c_str = connString.c_str();
@@ -65,8 +64,7 @@ result_t LevelDB::has(Buffer_base* key, bool& retVal, AsyncEvent* ac)
     if (!db())
         return CHECK_ERROR(CALL_E_INVALID_CALL);
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     exlib::string key1;
     key->toString(key1);
@@ -91,8 +89,7 @@ result_t LevelDB::get(Buffer_base* key, obj_ptr<Buffer_base>& retVal, AsyncEvent
     if (!db())
         return CHECK_ERROR(CALL_E_INVALID_CALL);
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     exlib::string key1;
     key->toString(key1);
@@ -175,8 +172,7 @@ result_t LevelDB::mget(v8::Local<v8::Array> keys, obj_ptr<NArray>& retVal)
 
 result_t LevelDB::_commit(leveldb::WriteBatch* batch, AsyncEvent* ac)
 {
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     leveldb::Status s = db()->Write(leveldb::WriteOptions(), batch);
     if (!s.ok())
@@ -190,8 +186,7 @@ result_t LevelDB::set(Buffer_base* key, Buffer_base* value, AsyncEvent* ac)
     if (!db())
         return CHECK_ERROR(CALL_E_INVALID_CALL);
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     exlib::string key1;
     key->toString(key1);
@@ -272,8 +267,7 @@ result_t LevelDB::remove(Buffer_base* key, AsyncEvent* ac)
     if (!db())
         return CHECK_ERROR(CALL_E_INVALID_CALL);
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     exlib::string key1;
     key->toString(key1);
@@ -429,8 +423,7 @@ result_t LevelDB::close(AsyncEvent* ac)
     if (!m_db)
         return 0;
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     delete m_db;
     m_db = NULL;

@@ -345,8 +345,7 @@ result_t SubProcess::wait(int32_t& retVal, AsyncEvent* ac)
     if (m_pid == -1)
         return CHECK_ERROR(CALL_E_INVALID_CALL);
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     return (new asyncWaitHandle(m_pid, m_timer, retVal, ac))->post(0);
 }

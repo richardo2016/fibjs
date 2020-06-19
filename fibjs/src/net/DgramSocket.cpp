@@ -277,8 +277,7 @@ result_t DgramSocket::send(Buffer_base* msg, int32_t port, exlib::string address
             return hr;
     }
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     inetAddr addr_info;
 
@@ -317,8 +316,7 @@ result_t DgramSocket::send(Buffer_base* msg, int32_t offset, int32_t length, int
     if (offset < 0 || length <= 0)
         return CHECK_ERROR(CALL_E_INVALIDARG);
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     obj_ptr<Buffer_base> msg1;
     msg->slice(offset, offset + length, msg1);

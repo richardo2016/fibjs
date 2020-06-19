@@ -741,7 +741,7 @@ result_t HttpHandler::invoke(object_base* v, obj_ptr<Handler_base>& retVal,
                             const char* pKey = hdr.c_str();
                             if (qstricmp(hdr.c_str(), "text/", 5)
                                 && !bsearch(&pKey, &s_zipTypes, ARRAYSIZE(s_zipTypes),
-                                       sizeof(pKey), mt_cmp))
+                                    sizeof(pKey), mt_cmp))
                                 type = 0;
                         } else
                             type = 0;
@@ -823,8 +823,7 @@ result_t HttpHandler::invoke(object_base* v, obj_ptr<Handler_base>& retVal,
         bool m_options;
     };
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     obj_ptr<Stream_base> stm = Stream_base::getInstance(v);
     if (stm == NULL) {

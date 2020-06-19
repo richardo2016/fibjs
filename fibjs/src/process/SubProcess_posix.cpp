@@ -341,8 +341,7 @@ result_t SubProcess::wait(int32_t& retVal, AsyncEvent* ac)
         AsyncEvent* m_ac;
     };
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     asyncWaitPid* awp = new asyncWaitPid(this, retVal, ac);
     if (m_exit.wait(awp))

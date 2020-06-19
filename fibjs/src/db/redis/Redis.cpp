@@ -20,8 +20,7 @@ namespace fibjs {
 result_t db_base::openRedis(exlib::string connString,
     obj_ptr<Redis_base>& retVal, AsyncEvent* ac)
 {
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     const char* c_str = connString.c_str();
 
@@ -274,8 +273,7 @@ result_t Redis::_command(exlib::string& req, Variant& retVal, AsyncEvent* ac)
         int32_t m_subMode;
     };
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     if (m_subMode == 1) {
         (new asyncCommand(this))->post(0);

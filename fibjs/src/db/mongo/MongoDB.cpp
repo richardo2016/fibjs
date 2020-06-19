@@ -144,8 +144,7 @@ result_t MongoDB::error()
 result_t db_base::openMongoDB(exlib::string connString,
     obj_ptr<MongoDB_base>& retVal, AsyncEvent* ac)
 {
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     const char* c_str = connString.c_str();
 
@@ -248,8 +247,7 @@ result_t MongoDB::_runCommand(bson* command, bson& out, AsyncEvent* ac)
     if (m_closed)
         return CALL_E_INVALID_CALL;
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     if (mongo_run_command(m_conn, m_ns.c_str(), command, &out) != MONGO_OK) {
         bson_destroy(&out);

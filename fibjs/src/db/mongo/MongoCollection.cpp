@@ -15,8 +15,7 @@ namespace fibjs {
 
 result_t MongoCollection::_batchInsert(std::vector<const bson*> pdata, int num, int32_t& retVal, AsyncEvent* ac)
 {
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     retVal = mongo_insert_batch(m_db->m_conn, m_ns.c_str(), pdata.data(), num, NULL, 0);
     return 0;
@@ -24,8 +23,7 @@ result_t MongoCollection::_batchInsert(std::vector<const bson*> pdata, int num, 
 
 result_t MongoCollection::_insert(const bson* data, int32_t& retVal, AsyncEvent* ac)
 {
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     retVal = mongo_insert(m_db->m_conn, m_ns.c_str(), data, NULL);
     return 0;
@@ -33,8 +31,7 @@ result_t MongoCollection::_insert(const bson* data, int32_t& retVal, AsyncEvent*
 
 result_t MongoCollection::_update(const bson* cond, const bson* op, int flags, int32_t& retVal, AsyncEvent* ac)
 {
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     retVal = mongo_update(m_db->m_conn, m_ns.c_str(), cond, op, flags, NULL);
     return 0;
@@ -42,8 +39,7 @@ result_t MongoCollection::_update(const bson* cond, const bson* op, int flags, i
 
 result_t MongoCollection::_remove(const bson* data, int32_t& retVal, AsyncEvent* ac)
 {
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     retVal = mongo_remove(m_db->m_conn, m_ns.c_str(), data, NULL);
     return 0;

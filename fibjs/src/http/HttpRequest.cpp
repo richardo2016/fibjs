@@ -247,8 +247,7 @@ result_t HttpRequest::clear()
 
 result_t HttpRequest::sendTo(Stream_base* stm, AsyncEvent* ac)
 {
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     exlib::string strCommand = m_method;
     exlib::string strProtocol;
@@ -333,8 +332,7 @@ result_t HttpRequest::readFrom(Stream_base* stm, AsyncEvent* ac)
         exlib::string m_strLine;
     };
 
-    if (ac->isSync())
-        return CHECK_ERROR(CALL_E_NOSYNC);
+    SWITCH_ASYNC_SM_TO(ac, CHECK_ERROR(CALL_E_NOSYNC));
 
     obj_ptr<BufferedStream_base> _stm = BufferedStream_base::getInstance(stm);
     if (!_stm)
