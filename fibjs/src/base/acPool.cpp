@@ -15,8 +15,6 @@
 
 namespace fibjs {
 
-#define WORKER_STACK_SIZE 128
-
 class acPool {
 public:
     acPool(int32_t max_idle, bool bThread = false)
@@ -67,7 +65,7 @@ private:
         if (m_bThread)
             (new _thread(worker_proc, this))->start();
         else
-            exlib::Service::Create(worker_proc, this, WORKER_STACK_SIZE * 1024, "WorkerFiber");
+            GENERATE_NATIVE_WORKER_FIBER(worker_proc, this);
     }
 
     void worker_proc()
@@ -196,7 +194,7 @@ result_t AsyncCallBack::syncFunc(AsyncCallBack* pThis)
     return 0;
 }
 
-void init_acThread()
+void InitializeACPool()
 {
     s_lsPool = new acPool(2, true);
     s_acPool = new acPool(2);

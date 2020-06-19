@@ -236,7 +236,7 @@ public:
     exlib::spinlock m_lock;
 };
 
-void init_aio()
+void InitializeAsyncIOThread()
 {
     static _acIO s_acIO;
 

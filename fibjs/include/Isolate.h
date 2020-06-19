@@ -59,7 +59,7 @@ public:
     };
 
 public:
-    Isolate(exlib::string fname);
+    Isolate(exlib::string jsFilename);
 
 public:
     static Isolate* current();

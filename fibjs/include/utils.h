@@ -191,6 +191,22 @@ typedef int32_t result_t;
 #define V8_RETURN(v) (v)
 #endif
 
+#define ALLOC_THREAD_RESOURCE_IDX() exlib::Fiber::tlsAlloc();
+#define UPDATE_THREAD_RESOURCE(idx, resValue) exlib::Fiber::tlsPut(idx, resValue);
+#define GET_THREAD_RESOURCE(idx) exlib::Fiber::tlsGet(idx);
+
+#define GENERATE_FIBER(fiberType, fiberProc, fiberInputData, fStackSize) \
+    exlib::Service::Create(fiberProc, fiberInputData, fStackSize, fiberType);
+
+#define GENERATE_JS_FIBER(fiberProc, fiberInputData, fStackSize) \
+    GENERATE_FIBER("JSFiber", fiberProc, fiberInputData, fStackSize)
+
+#define GENERATE_START_FIBER(fiberProc, fiberInputData) \
+    GENERATE_FIBER("start", fiberProc, fiberInputData, 256 * 1024)
+
+#define GENERATE_NATIVE_WORKER_FIBER(fiberProc, fiberInputData) \
+    GENERATE_FIBER("WorkerFiber", fiberProc, fiberInputData, 128 * 1024)
+
 #define METHOD_NAME(name) save_method_name _save_method_name(name)
 
 #define PROPERTY_ENTER()                      \
