@@ -56,6 +56,8 @@ public:
     virtual result_t postMessage(exlib::string msg, AsyncEvent* ac);
     virtual result_t get_visible(bool& retVal);
     virtual result_t set_visible(bool newVal);
+    virtual result_t get_fullscreen(bool& retVal);
+    virtual result_t set_fullscreen(bool newVal);
 
 public:
     EVENT_FUNC(load);

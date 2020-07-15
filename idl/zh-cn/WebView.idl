@@ -73,6 +73,9 @@ interface WebView : EventEmitter
     /*! @brief 查询和设置窗口是否显示 */
     Boolean visible;
 
+    /*! @brief 查询和设置窗口是否全屏, 该参数仅在 Darwin 下有意义, 在 Windows 下等效于 maximize */
+    Boolean fullscreen;
+
     /*! @brief 查询和绑定加载成功事件，相当于 on("load", func); */
     Function onload;
 

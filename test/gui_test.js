@@ -256,7 +256,7 @@ if (win32 || darwin64) {
       })
     });
 
-    process.env.MANUAL && describe("manual", () => {
+    process.env.MANUAL && describe.only("manual", () => {
       var prevWin
       var closePreWin = () => {
         if (prevWin) prevWin.close()
@@ -295,6 +295,21 @@ if (win32 || darwin64) {
         coroutine.sleep(500/*  * 1e4 */);
         win.close();
         win = undefined;
+      });
+
+      it("manual", () => {
+        var win = gui.open("fs://" + __dirname + "/gui_files/html/manual.html", {
+          title: "Manual Test",
+        });
+
+        win.onmessage = m => {
+          if (m === 'toggle:fullscreen') {
+            if (!win.fullscreen)
+              win.fullscreen = !win.fullscreen;
+            else
+              win.close();
+          }
+        }
       });
     });
 

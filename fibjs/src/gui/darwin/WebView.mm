@@ -33,9 +33,7 @@
 }
 -(void)viewDidAppear
 {
-    // printf("viewDidAppear \n");
     [super viewDidAppear];
-    // [self showResponsederInfo];
 }
 -(void)showResponsederInfo
 {
@@ -695,25 +693,28 @@ result_t WebView::postMessage(exlib::string msg, AsyncEvent* ac)
     return postMessage(msg);
 }
 
-// result_t WebView::get_fullscreen(bool& retVal)
-// {
-//     unsigned long windowStyleMask = (unsigned long)[m_nsWindow styleMask];
+result_t WebView::get_fullscreen(bool& retVal)
+{
+    retVal = (([m_nsWindow styleMask] & NSFullScreenWindowMask) == NSFullScreenWindowMask);
+    return 0;
+}
 
-//     retVal = !!(windowStyleMask & NSWindowStyleMaskFullScreen) == NSWindowStyleMaskFullScreen;
-//     return 0;
-// }
+result_t asyncToggleFullscreen(WebView* wv) {
+    [wv->m_nsWindow toggleFullScreen:wv->m_nsWindow];
+}
 
-// result_t WebView::set_fullscreen(bool newVal)
-// {
-//     bool bNowFull;
-//     get_fullscreen(bNowFull);
-//     if (bNowFull == newVal)
-//         return 0;
+result_t WebView::set_fullscreen(bool newVal)
+{
+    bool bNowFull;
+    get_fullscreen(bNowFull);
 
-//     m_fullscreen = newVal;
+    if (bNowFull == newVal)
+        return 0;
 
-//     return 0;
-// }
+    asyncCall(asyncToggleFullscreen, this, CALL_E_GUICALL);
+
+    return 0;
+}
 
 result_t WebView::get_visible(bool& retVal)
 {
