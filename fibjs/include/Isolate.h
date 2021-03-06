@@ -91,6 +91,86 @@ public:
         return m_isolate->GetCurrentContext();
     }
 
+    v8::Local<v8::Object> toLocalObject(v8::Local<v8::Value> v)
+    {
+        return toLocalObject(v, this->context());
+    }
+
+    v8::Local<v8::Object> toLocalObject(v8::Local<v8::Value> v, v8::Local<v8::Context> ctx)
+    {
+        return v->ToObject(ctx).ToLocalChecked();
+    }
+
+    v8::Local<v8::String> toLocalString(v8::Local<v8::Value> v)
+    {
+        return toLocalString(v, this->context());
+    }
+
+    v8::Local<v8::String> toLocalString(v8::Local<v8::Value> v, v8::Local<v8::Context> ctx)
+    {
+        return v->ToString(ctx).ToLocalChecked();
+    }
+
+    bool isEquals(v8::Local<v8::Value> v, v8::Local<v8::Value> tv)
+    {
+        return isEquals(v, tv, context());
+    }
+
+    bool isEquals(v8::Local<v8::Value> v, v8::Local<v8::Value> tv, v8::Local<v8::Context> ctx)
+    {
+        return v->Equals(ctx, tv).ToChecked();
+    }
+
+    bool toBoolean(v8::Local<v8::Value> v)
+    {
+        return toBoolean(v, this->context());
+    }
+
+    bool toBoolean(v8::Local<v8::Value> v, v8::Local<v8::Context> ctx)
+    {
+        return v->BooleanValue(ctx).ToChecked();
+    }
+
+    int toInteger(v8::Local<v8::Value> v)
+    {
+        return toInteger(v, this->context());
+    }
+
+    int toInteger(v8::Local<v8::Value> v, v8::Local<v8::Context> ctx)
+    {
+        return v->IntegerValue(ctx).ToChecked();
+    }
+
+    int32_t toInt32Value(v8::Local<v8::Value> v)
+    {
+        return toInt32Value(v, this->context());
+    }
+
+    int32_t toInt32Value(v8::Local<v8::Value> v, v8::Local<v8::Context> ctx)
+    {
+        return v->Int32Value(ctx).ToChecked();
+    }
+
+    uint32_t toUint32Value(v8::Local<v8::Value> v)
+    {
+        return toUint32Value(v, this->context());
+    }
+
+    uint32_t toUint32Value(v8::Local<v8::Value> v, v8::Local<v8::Context> ctx)
+    {
+        return v->Uint32Value(ctx).ToChecked();
+    }
+
+    double toNumber(v8::Local<v8::Value> v)
+    {
+        return toNumber(v, this->context());
+    }
+
+    double toNumber(v8::Local<v8::Value> v, v8::Local<v8::Context> ctx)
+    {
+        return v->NumberValue(ctx).ToChecked();
+    }
+
     void start_profiler();
 
     void Ref();

@@ -344,6 +344,8 @@ result_t LevelDB::Iter::iter(Isolate* isolate, v8::Local<v8::Function> func)
     result_t hr;
     int32_t i;
 
+    v8::Local<v8::Context> context = isolate->m_isolate->GetCurrentContext();
+
     do {
         hr = ac__iter();
         if (hr < 0)
@@ -361,7 +363,7 @@ result_t LevelDB::Iter::iter(Isolate* isolate, v8::Local<v8::Function> func)
             if (v.IsEmpty())
                 return CALL_E_JAVASCRIPT;
 
-            if (v->BooleanValue()) {
+            if (isolate->toBoolean(v, context)) {
                 m_end = true;
                 break;
             }

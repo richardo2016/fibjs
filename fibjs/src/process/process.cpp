@@ -171,13 +171,15 @@ result_t process_base::hrtime(v8::Local<v8::Array> diff, v8::Local<v8::Array>& r
 {
     uint64_t t = exlib::_hrtime();
 
+    Isolate* isolate = Isolate::current();
+
     if (diff->Length() == 2) {
-        uint64_t seconds = JSValue(diff->Get(0))->Uint32Value();
-        uint64_t nanos = JSValue(diff->Get(1))->Uint32Value();
+        v8::Local<v8::Context> context = isolate->m_isolate->GetCurrentContext();
+
+        uint64_t seconds = isolate->toUint32Value(JSValue(diff->Get(0)), context);
+        uint64_t nanos = isolate->toUint32Value(JSValue(diff->Get(1)), context);
         t -= (seconds * NANOS_PER_SEC) + nanos;
     }
-
-    Isolate* isolate = Isolate::current();
 
     v8::Local<v8::Array> tuple = v8::Array::New(isolate->m_isolate, 2);
     tuple->Set(0, v8::Integer::NewFromUnsigned(isolate->m_isolate, (uint32_t)(t / NANOS_PER_SEC)));

@@ -984,6 +984,9 @@ result_t getPoints(v8::Local<v8::Array>& points, std::vector<gdPoint>& pts)
 
     pts.resize(len);
 
+    Isolate* isolate = Isolate::current();
+    v8::Local<v8::Context> ctx = isolate->m_isolate->GetCurrentContext();
+
     for (i = 0; i < len; i++) {
         JSValue v = points->Get(i);
 
@@ -995,8 +998,8 @@ result_t getPoints(v8::Local<v8::Array>& points, std::vector<gdPoint>& pts)
         if (pt->Length() != 2)
             return CHECK_ERROR(CALL_E_INVALIDARG);
 
-        pts[i].x = JSValue(pt->Get(0))->Int32Value();
-        pts[i].y = JSValue(pt->Get(1))->Int32Value();
+        pts[i].x = isolate->toInt32Value(JSValue(pt->Get(0)), ctx);
+        pts[i].y = isolate->toInt32Value(JSValue(pt->Get(1)), ctx);
     }
 
     return 0;
@@ -1511,8 +1514,10 @@ result_t Image::affine(v8::Local<v8::Array> affine, int32_t x, int32_t y, int32_
     if (ac->isSync()) {
         ac->m_ctx.resize(6);
 
+        Isolate* isolate = Isolate::current();
+        v8::Local<v8::Context> context = isolate->m_isolate->GetCurrentContext();
         for (int32_t i = 0; i < 6; i++)
-            ac->m_ctx[i] = JSValue(affine->Get(i))->NumberValue();
+            ac->m_ctx[i] = isolate->toNumber(JSValue(affine->Get(i)), context);
 
         return CHECK_ERROR(CALL_E_NOSYNC);
     }
