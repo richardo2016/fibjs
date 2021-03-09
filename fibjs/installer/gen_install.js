@@ -11,7 +11,9 @@ else {
 }
 
 if (build) {
-	child_process.run("makecab", ["fibjs.exe", "fibjs.cab"]);
+	const systemRoot = process.env.SYSTEMROOT32 || process.env.SYSTEMROOT;
+
+	child_process.run(`${systemRoot}\\system32\\makecab`, ["fibjs.exe", "fibjs.cab"]);
 	var st2 = fs.stat("fibjs.cab");
 	console.log();
 	console.log();
