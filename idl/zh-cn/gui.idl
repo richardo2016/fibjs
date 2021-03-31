@@ -7,6 +7,9 @@ var gui = require('gui');
  */
 module gui
 {
+    /*! @brief 创建一个 SciterView 对象，参见 SciterView */
+    static SciterView new SciterView();
+
     /*! @brief WebView ie 模拟版本，指定 ie7 */
     const IE7 = 7000;
 

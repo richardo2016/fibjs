@@ -15,6 +15,7 @@
 
 namespace fibjs {
 
+class SciterView_base;
 class WebView_base;
 
 class gui_base : public object_base {
@@ -55,6 +56,7 @@ public:
 };
 }
 
+#include "ifs/SciterView.h"
 #include "ifs/WebView.h"
 
 namespace fibjs {
@@ -64,6 +66,10 @@ inline ClassInfo& gui_base::class_info()
         { "setVersion", s_static_setVersion, true },
         { "config", s_static_config, true },
         { "open", s_static_open, true }
+    };
+
+    static ClassData::ClassObject s_object[] = {
+        { "SciterView", SciterView_base::class_info }
     };
 
     static ClassData::ClassConst s_const[] = {
@@ -77,7 +83,7 @@ inline ClassInfo& gui_base::class_info()
 
     static ClassData s_cd = {
         "gui", true, s__new, NULL,
-        ARRAYSIZE(s_method), s_method, 0, NULL, 0, NULL, ARRAYSIZE(s_const), s_const, NULL, NULL,
+        ARRAYSIZE(s_method), s_method, ARRAYSIZE(s_object), s_object, 0, NULL, ARRAYSIZE(s_const), s_const, NULL, NULL,
         &object_base::class_info()
     };
 

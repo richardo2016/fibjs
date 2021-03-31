@@ -1,0 +1,13 @@
+/*! @brief 基于 Sciter SDK 的 View
+ */
+interface SciterView : EventEmitter
+{
+    /*! @brief 构造一个 SciterView
+     @param config sciter 视图配置
+     */
+    SciterView(Object config = {});
+
+    /*! @brief 显示 SciterView
+     */
+    show();
+};
