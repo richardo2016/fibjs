@@ -82,6 +82,11 @@ public:
 #ifdef Darwin
         command_line->AppendSwitch("use-mock-keychain");
 #endif
+
+#if defined(OS_WIN)
+        command_line->AppendSwitch("disable-web-security");
+        command_line->AppendSwitch("enable-system-flash");
+#endif
     }
 
     virtual void OnBeforeChildProcessLaunch(CefRefPtr<CefCommandLine> command_line)

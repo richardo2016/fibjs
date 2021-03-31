@@ -21,6 +21,7 @@ class GuiHandler : public CefClient,
                    public CefLoadHandler,
                    public CefRenderHandler {
 public:
+    // CefGui methods
     virtual CefRefPtr<CefContextMenuHandler> GetContextMenuHandler() OVERRIDE
     {
         return this;
@@ -48,9 +49,15 @@ public:
 
 public:
     // CefContextMenuHandler
+    virtual void OnBeforeContextMenu(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame,
+        CefRefPtr<CefContextMenuParams> params, CefRefPtr<CefMenuModel> model) OVERRIDE;
     virtual bool RunContextMenu(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame,
         CefRefPtr<CefContextMenuParams> params, CefRefPtr<CefMenuModel> model,
         CefRefPtr<CefRunContextMenuCallback> callback) OVERRIDE;
+    virtual bool OnContextMenuCommand(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame,
+        CefRefPtr<CefContextMenuParams> params,
+        int command_id,
+        EventFlags event_flags) OVERRIDE;
 
 public:
     // CefLifeSpanHandler
@@ -91,6 +98,8 @@ private:
     BrowserList::iterator fromBrowser(CefRefPtr<CefBrowser> browser);
     void PlatformTitleChange(CefRefPtr<CefBrowser> browser,
         const CefString& title);
+
+    void ShowDevTools(CefRefPtr<CefBrowser> browser, const CefPoint& inspect_element_at);
 
     IMPLEMENT_REFCOUNTING(GuiHandler);
 };

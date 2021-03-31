@@ -22,11 +22,35 @@
 
 namespace fibjs {
 
+enum client_menu_ids {
+    CLIENT_ID_SHOW_DEVTOOLS = MENU_ID_USER_FIRST,
+    CLIENT_ID_CLOSE_DEVTOOLS,
+    CLIENT_ID_INSPECT_ELEMENT,
+};
+
 extern exlib::LockedList<Isolate> s_isolates;
 
 inline std::string GetDataURI(const std::string& data, const std::string& mime_type)
 {
     return "data:" + mime_type + ";base64," + CefURIEncode(CefBase64Encode(data.data(), data.size()), false).ToString();
+}
+
+void GuiHandler::OnBeforeContextMenu(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame,
+    CefRefPtr<CefContextMenuParams> params, CefRefPtr<CefMenuModel> model)
+{
+    CEF_REQUIRE_UI_THREAD();
+
+    if ((params->GetTypeFlags() & (CM_TYPEFLAG_PAGE | CM_TYPEFLAG_FRAME)) != 0) {
+        // Add a separator if the menu already has items.
+        if (model->GetCount() > 0)
+            model->AddSeparator();
+
+        // Add DevTools items to all context menus.
+        model->AddItem(CLIENT_ID_SHOW_DEVTOOLS, "&Show DevTools");
+        model->AddItem(CLIENT_ID_CLOSE_DEVTOOLS, "Close DevTools");
+        model->AddSeparator();
+        model->AddItem(CLIENT_ID_INSPECT_ELEMENT, "Inspect Element");
+    }
 }
 
 bool GuiHandler::RunContextMenu(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame,
@@ -42,6 +66,47 @@ bool GuiHandler::RunContextMenu(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFram
         stop_menu = !(*bit)->m_bMenu;
 
     return stop_menu;
+}
+
+bool GuiHandler::OnContextMenuCommand(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame,
+    CefRefPtr<CefContextMenuParams> params, int command_id, EventFlags event_flags)
+{
+    CEF_REQUIRE_UI_THREAD();
+
+    switch (command_id) {
+    case CLIENT_ID_SHOW_DEVTOOLS:
+        ShowDevTools(browser, CefPoint());
+        return true;
+    case CLIENT_ID_CLOSE_DEVTOOLS:
+        browser->GetHost()->CloseDevTools();
+        return true;
+    case CLIENT_ID_INSPECT_ELEMENT:
+        ShowDevTools(browser, CefPoint(params->GetXCoord(), params->GetYCoord()));
+        return true;
+    }
+
+    return false;
+}
+
+void GuiHandler::ShowDevTools(CefRefPtr<CefBrowser> browser, const CefPoint& inspect_element_at)
+{
+    if (!CefCurrentlyOn(TID_UI)) {
+        // Execute this method on the UI thread.
+        CefPostTask(TID_UI, base::Bind(&GuiHandler::ShowDevTools, this, browser, inspect_element_at));
+        return;
+    }
+
+    CefWindowInfo windowInfo;
+    CefRefPtr<CefClient> client;
+    CefBrowserSettings settings;
+
+    CefRefPtr<CefBrowserHost> host = browser->GetHost();
+
+#if defined(OS_WIN)
+    windowInfo.SetAsPopup(browser->GetHost()->GetWindowHandle(), "DevTools");
+#endif
+
+    host->ShowDevTools(windowInfo, client, settings, inspect_element_at);
 }
 
 void GuiHandler::OnAddressChange(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame,
