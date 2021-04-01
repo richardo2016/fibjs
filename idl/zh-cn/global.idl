@@ -16,6 +16,9 @@ module global
     /*! @brief 全局对象 */
     static readonly Object global;
 
+    /*! @brief 全局TypeScript 类对象 */
+    static readonly TypeScript TypeScript;
+
     /*! @brief 运行一个脚本
      @param fname 指定要运行的脚本路径
      @param argv 指定要运行的参数，此参数可在脚本内使用 argv 获取
