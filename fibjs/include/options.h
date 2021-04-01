@@ -40,4 +40,5 @@ struct OptData {
 };
 
 extern const OptData opt_tools[];
+extern const OptData opt_typescript_res[];
 }

@@ -19,6 +19,7 @@ class Buffer_base;
 class console_base;
 class process_base;
 class Worker_base;
+class TypeScript_base;
 class Timer_base;
 
 class global_base : public object_base {
@@ -28,6 +29,7 @@ public:
     // global_base
     static result_t get_Master(obj_ptr<Worker_base>& retVal);
     static result_t get_global(v8::Local<v8::Object>& retVal);
+    static result_t get_TypeScript(obj_ptr<TypeScript_base>& retVal);
     static result_t run(exlib::string fname, v8::Local<v8::Array> argv);
     static result_t require(exlib::string id, v8::Local<v8::Value>& retVal);
     static result_t get_argv(v8::Local<v8::Array>& retVal);
@@ -57,6 +59,7 @@ public:
 public:
     static void s_static_get_Master(v8::Local<v8::Name> property, const v8::PropertyCallbackInfo<v8::Value>& args);
     static void s_static_get_global(v8::Local<v8::Name> property, const v8::PropertyCallbackInfo<v8::Value>& args);
+    static void s_static_get_TypeScript(v8::Local<v8::Name> property, const v8::PropertyCallbackInfo<v8::Value>& args);
     static void s_static_run(const v8::FunctionCallbackInfo<v8::Value>& args);
     static void s_static_require(const v8::FunctionCallbackInfo<v8::Value>& args);
     static void s_static_get_argv(v8::Local<v8::Name> property, const v8::PropertyCallbackInfo<v8::Value>& args);
@@ -78,6 +81,7 @@ public:
 #include "ifs/console.h"
 #include "ifs/process.h"
 #include "ifs/Worker.h"
+#include "ifs/TypeScript.h"
 #include "ifs/Timer.h"
 
 namespace fibjs {
@@ -106,6 +110,7 @@ inline ClassInfo& global_base::class_info()
     static ClassData::ClassProperty s_property[] = {
         { "Master", s_static_get_Master, block_set, true },
         { "global", s_static_get_global, block_set, true },
+        { "TypeScript", s_static_get_TypeScript, block_set, true },
         { "argv", s_static_get_argv, block_set, true },
         { "__filename", s_static_get___filename, block_set, true },
         { "__dirname", s_static_get___dirname, block_set, true }
@@ -141,6 +146,18 @@ inline void global_base::s_static_get_global(v8::Local<v8::Name> property, const
     PROPERTY_ENTER();
 
     hr = get_global(vr);
+
+    METHOD_RETURN();
+}
+
+inline void global_base::s_static_get_TypeScript(v8::Local<v8::Name> property, const v8::PropertyCallbackInfo<v8::Value>& args)
+{
+    obj_ptr<TypeScript_base> vr;
+
+    METHOD_NAME("global.TypeScript");
+    PROPERTY_ENTER();
+
+    hr = get_TypeScript(vr);
 
     METHOD_RETURN();
 }
