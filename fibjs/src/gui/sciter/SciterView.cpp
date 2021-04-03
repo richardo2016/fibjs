@@ -24,6 +24,7 @@ result_t SciterView_base::_new(v8::Local<v8::Object> config, obj_ptr<SciterView_
     v8::Local<v8::Object> This)
 {
     obj_ptr<SciterView> sv = new SciterView();
+    sv->wrap(This);
 
     retVal = sv;
 
@@ -34,8 +35,18 @@ SciterView::SciterView()
 {
 }
 
+static result_t async_open(obj_ptr<SciterView> w)
+{
+    w->show();
+    return 0;
+}
+
 result_t SciterView::show()
 {
+    // this->wrap();
+
+    // asyncCall(async_open, w, CALL_E_GUICALL);
+
     return 0;
 }
 
