@@ -157,6 +157,7 @@ public:
     obj_ptr<Stream_base> m_stdin;
     obj_ptr<Stream_base> m_stdout;
     obj_ptr<Stream_base> m_stderr;
+    obj_ptr<Stream_base> m_ttyReadSteram;
 
     exlib::List<exlib::linkitem> m_fibers;
 
