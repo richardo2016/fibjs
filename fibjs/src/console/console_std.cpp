@@ -9,6 +9,7 @@
 #include "Buffer.h"
 #include "UVStream.h"
 #include "ifs/tty.h"
+#include "ifs/process.h"
 #include <stdio.h>
 
 namespace fibjs {
@@ -66,13 +67,9 @@ void std_logger::out(exlib::string& txt, bool is_error)
     Isolate* isolate = s_isolates.head();
 
     if (is_error) {
-        if (!isolate->m_stderr)
-            isolate->m_stderr = new UVStream(_fileno(stderr));
-        out = isolate->m_stderr;
+        isolate->get_stderr(out);
     } else {
-        if (!isolate->m_stdout)
-            isolate->m_stdout = new UVStream(_fileno(stdout));
-        out = isolate->m_stdout;
+        isolate->get_stdout(out);
     }
 
     obj_ptr<Buffer_base> data = new Buffer(txt);

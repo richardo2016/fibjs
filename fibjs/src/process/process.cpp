@@ -237,35 +237,53 @@ result_t process_base::get_ppid(int32_t& retVal)
     return 0;
 }
 
+void Isolate::get_stdin(obj_ptr<Stream_base>& retVal)
+{
+    int32_t fd = _fileno(stdin);
+
+    if (!m_stdin)
+        m_stdin = new UVStream(fd);
+
+    retVal = m_stdin;
+}
+
 result_t process_base::get_stdin(obj_ptr<Stream_base>& retVal)
 {
-    Isolate* isolate = Isolate::current();
-
-    if (!isolate->m_stdin)
-        isolate->m_stdin = new UVStream(_fileno(stdin));
-    retVal = isolate->m_stdin;
+    Isolate::current()->get_stdin(retVal);
 
     return 0;
+}
+
+void Isolate::get_stdout(obj_ptr<Stream_base>& retVal)
+{
+    int32_t fd = _fileno(stdout);
+
+    if (!m_stdout)
+        m_stdout = new UVStream(fd);
+
+    retVal = this->m_stdout;
 }
 
 result_t process_base::get_stdout(obj_ptr<Stream_base>& retVal)
 {
-    Isolate* isolate = Isolate::current();
-
-    if (!isolate->m_stdout)
-        isolate->m_stdout = new UVStream(_fileno(stdout));
-    retVal = isolate->m_stdout;
+    Isolate::current()->get_stdout(retVal);
 
     return 0;
 }
 
+void Isolate::get_stderr(obj_ptr<Stream_base>& retVal)
+{
+    int32_t fd = _fileno(stderr);
+
+    if (!m_stderr)
+        m_stderr = new UVStream(fd);
+
+    retVal = m_stderr;
+}
+
 result_t process_base::get_stderr(obj_ptr<Stream_base>& retVal)
 {
-    Isolate* isolate = Isolate::current();
-
-    if (!isolate->m_stderr)
-        isolate->m_stderr = new UVStream(_fileno(stderr));
-    retVal = isolate->m_stderr;
+    Isolate::current()->get_stderr(retVal);
 
     return 0;
 }
