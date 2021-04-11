@@ -13,8 +13,6 @@
  */
 
 
-
-
 // give all internal defined classes as reference
 /// <reference path="../entry/_common.d.ts" />
 
@@ -201,190 +199,184 @@
 declare module "child_process" {
 
 
-	module child_process {
 
 
 
 
+	/**
+	 * 
+	 * @brief 用给定的命令发布一个子进程
+	 * options 支持的内容如下：
+	 * ```JavaScript
+	 * {
+	 * "cwd": "", // 子进程的当前的工作目录，缺省使用当前目录
+	 * "stdio": Array | String, // 子进程 stdio 配置
+	 * "env": {}, // 环境变量的键值对
+	 * "detached": false, // 子进程将会变成一个进程组的领导者，缺省为 false
+	 * "uid": 0, // 设置用户进程的ID
+	 * "gid": 0, // 设置进程组的ID
+	 * "windowsVerbatimArguments": false, // 在 Windows上不执行引号或转义参数。 在 Unix 上被忽略。 当指定外壳且为 CMD 时，此选项将自动设置为true，缺省为 false
+	 * "windowsHide": false // 隐藏通常在Windows系统上创建的子进程控制台窗口，缺省为 false
+	 * }
+	 * ```
+	 * @param command 指定要运行的命令
+	 * @param args 指定字符串参数列表
+	 * @param options 指定创建参数
+	 * @return 返回子进程对象
+	 * 
+	 * 
+	 * 
+	 */
+	export function spawn(command: string, args: any[], options?: Fibjs.AnyObject/** = v8::Object::New(isolate)*/): Class_ChildProcess;
 
-		/**
-		 * 
-		 * @brief 用给定的命令发布一个子进程
-		 * options 支持的内容如下：
-		 * ```JavaScript
-		 * {
-		 * "cwd": "", // 子进程的当前的工作目录，缺省使用当前目录
-		 * "stdio": Array | String, // 子进程 stdio 配置
-		 * "env": {}, // 环境变量的键值对
-		 * "detached": false, // 子进程将会变成一个进程组的领导者，缺省为 false
-		 * "uid": 0, // 设置用户进程的ID
-		 * "gid": 0, // 设置进程组的ID
-		 * "windowsVerbatimArguments": false, // 在 Windows上不执行引号或转义参数。 在 Unix 上被忽略。 当指定外壳且为 CMD 时，此选项将自动设置为true，缺省为 false
-		 * "windowsHide": false // 隐藏通常在Windows系统上创建的子进程控制台窗口，缺省为 false
-		 * }
-		 * ```
-		 * @param command 指定要运行的命令
-		 * @param args 指定字符串参数列表
-		 * @param options 指定创建参数
-		 * @return 返回子进程对象
-		 * 
-		 * 
-		 * 
-		 */
-		export function spawn(command: string, args: any[], options?: Fibjs.AnyObject/** = v8::Object::New(isolate)*/): Class_ChildProcess;
+	/**
+	 * 
+	 * @brief 用给定的命令发布一个子进程
+	 * options 支持的内容如下：
+	 * ```JavaScript
+	 * {
+	 * "cwd": "", // 子进程的当前的工作目录，缺省使用当前目录
+	 * "stdio": Array | String, // 子进程 stdio 配置
+	 * "env": {}, // 环境变量的键值对
+	 * "detached": false, // 子进程将会变成一个进程组的领导者，缺省为 false
+	 * "uid": 0, // 设置用户进程的ID
+	 * "gid": 0, // 设置进程组的ID
+	 * "windowsVerbatimArguments": false, // 在 Windows上不执行引号或转义参数。 在 Unix 上被忽略。 当指定外壳且为 CMD 时，此选项将自动设置为true，缺省为 false
+	 * "windowsHide": false // 隐藏通常在Windows系统上创建的子进程控制台窗口，缺省为 false
+	 * }
+	 * ```
+	 * @param command 指定要运行的命令
+	 * @param options 指定创建参数
+	 * @return 返回子进程对象
+	 * 
+	 * 
+	 * 
+	 */
+	export function spawn(command: string, options?: Fibjs.AnyObject/** = v8::Object::New(isolate)*/): Class_ChildProcess;
 
-		/**
-		 * 
-		 * @brief 用给定的命令发布一个子进程
-		 * options 支持的内容如下：
-		 * ```JavaScript
-		 * {
-		 * "cwd": "", // 子进程的当前的工作目录，缺省使用当前目录
-		 * "stdio": Array | String, // 子进程 stdio 配置
-		 * "env": {}, // 环境变量的键值对
-		 * "detached": false, // 子进程将会变成一个进程组的领导者，缺省为 false
-		 * "uid": 0, // 设置用户进程的ID
-		 * "gid": 0, // 设置进程组的ID
-		 * "windowsVerbatimArguments": false, // 在 Windows上不执行引号或转义参数。 在 Unix 上被忽略。 当指定外壳且为 CMD 时，此选项将自动设置为true，缺省为 false
-		 * "windowsHide": false // 隐藏通常在Windows系统上创建的子进程控制台窗口，缺省为 false
-		 * }
-		 * ```
-		 * @param command 指定要运行的命令
-		 * @param options 指定创建参数
-		 * @return 返回子进程对象
-		 * 
-		 * 
-		 * 
-		 */
-		export function spawn(command: string, options?: Fibjs.AnyObject/** = v8::Object::New(isolate)*/): Class_ChildProcess;
+	/**
+	 * 
+	 * @brief 在 shell 中执行一个命令并缓冲输出，当以回调方式执行时，函数将返回子进程对象
+	 * options 支持的内容如下：
+	 * ```JavaScript
+	 * {
+	 * "cwd": "", // 子进程的当前的工作目录，缺省使用当前目录
+	 * "env": {}, // 环境变量的键值对
+	 * "encoding": "utf8", // 指定返回结果的编码，缺省为 utf8
+	 * "detached": false, // 子进程将会变成一个进程组的领导者，缺省为 false
+	 * "uid": 0, // 设置用户进程的ID
+	 * "gid": 0, // 设置进程组的ID
+	 * "windowsVerbatimArguments": false, // 在 Windows上不执行引号或转义参数。 在 Unix 上被忽略。 当指定外壳且为 CMD 时，此选项将自动设置为true，缺省为 false
+	 * "windowsHide": false // 隐藏通常在Windows系统上创建的子进程控制台窗口，缺省为 false
+	 * }
+	 * ```
+	 * @param command 指定要运行的命令
+	 * @param options 指定创建参数
+	 * @return 返回子进程的 stdio 输出内容
+	 * 
+	 * 
+	 * @async
+	 */
+	export function exec(command: string, options?: Fibjs.AnyObject/** = v8::Object::New(isolate)*/, callback?: Fibjs.AsyncCallback<undefined>/** = function (err: Error, result: undefined) {}*/): void;
 
-		/**
-		 * 
-		 * @brief 在 shell 中执行一个命令并缓冲输出，当以回调方式执行时，函数将返回子进程对象
-		 * options 支持的内容如下：
-		 * ```JavaScript
-		 * {
-		 * "cwd": "", // 子进程的当前的工作目录，缺省使用当前目录
-		 * "env": {}, // 环境变量的键值对
-		 * "encoding": "utf8", // 指定返回结果的编码，缺省为 utf8
-		 * "detached": false, // 子进程将会变成一个进程组的领导者，缺省为 false
-		 * "uid": 0, // 设置用户进程的ID
-		 * "gid": 0, // 设置进程组的ID
-		 * "windowsVerbatimArguments": false, // 在 Windows上不执行引号或转义参数。 在 Unix 上被忽略。 当指定外壳且为 CMD 时，此选项将自动设置为true，缺省为 false
-		 * "windowsHide": false // 隐藏通常在Windows系统上创建的子进程控制台窗口，缺省为 false
-		 * }
-		 * ```
-		 * @param command 指定要运行的命令
-		 * @param options 指定创建参数
-		 * @return 返回子进程的 stdio 输出内容
-		 * 
-		 * 
-		 * @async
-		 */
-		export function exec(command: string, options?: Fibjs.AnyObject/** = v8::Object::New(isolate)*/, callback?: Fibjs.AsyncCallback<undefined>/** = function (err: Error, result: undefined) {}*/): void;
+	/**
+	 * 
+	 * @brief 直接执行所指定的文件并缓冲输出，当以回调方式执行时，函数将返回子进程对象
+	 * options 支持的内容如下：
+	 * ```JavaScript
+	 * {
+	 * "cwd": "", // 子进程的当前的工作目录，缺省使用当前目录
+	 * "env": {}, // 环境变量的键值对
+	 * "encoding": "utf8", // 指定返回结果的编码，缺省为 utf8
+	 * "detached": false, // 子进程将会变成一个进程组的领导者，缺省为 false
+	 * "uid": 0, // 设置用户进程的ID
+	 * "gid": 0, // 设置进程组的ID
+	 * "windowsVerbatimArguments": false, // 在 Windows上不执行引号或转义参数。 在 Unix 上被忽略。 当指定外壳且为 CMD 时，此选项将自动设置为true，缺省为 false
+	 * "windowsHide": false // 隐藏通常在Windows系统上创建的子进程控制台窗口，缺省为 false
+	 * }
+	 * ```
+	 * @param command 指定要运行的命令
+	 * @param args 指定字符串参数列表
+	 * @param options 指定创建参数
+	 * @return 返回子进程的 stdio 输出内容
+	 * 
+	 * 
+	 * @async
+	 */
+	export function execFile(command: string, args: any[], options?: Fibjs.AnyObject/** = v8::Object::New(isolate)*/, callback?: Fibjs.AsyncCallback<undefined>/** = function (err: Error, result: undefined) {}*/): void;
 
-		/**
-		 * 
-		 * @brief 直接执行所指定的文件并缓冲输出，当以回调方式执行时，函数将返回子进程对象
-		 * options 支持的内容如下：
-		 * ```JavaScript
-		 * {
-		 * "cwd": "", // 子进程的当前的工作目录，缺省使用当前目录
-		 * "env": {}, // 环境变量的键值对
-		 * "encoding": "utf8", // 指定返回结果的编码，缺省为 utf8
-		 * "detached": false, // 子进程将会变成一个进程组的领导者，缺省为 false
-		 * "uid": 0, // 设置用户进程的ID
-		 * "gid": 0, // 设置进程组的ID
-		 * "windowsVerbatimArguments": false, // 在 Windows上不执行引号或转义参数。 在 Unix 上被忽略。 当指定外壳且为 CMD 时，此选项将自动设置为true，缺省为 false
-		 * "windowsHide": false // 隐藏通常在Windows系统上创建的子进程控制台窗口，缺省为 false
-		 * }
-		 * ```
-		 * @param command 指定要运行的命令
-		 * @param args 指定字符串参数列表
-		 * @param options 指定创建参数
-		 * @return 返回子进程的 stdio 输出内容
-		 * 
-		 * 
-		 * @async
-		 */
-		export function execFile(command: string, args: any[], options?: Fibjs.AnyObject/** = v8::Object::New(isolate)*/, callback?: Fibjs.AsyncCallback<undefined>/** = function (err: Error, result: undefined) {}*/): void;
+	/**
+	 * 
+	 * @brief 直接执行所指定的文件并缓冲输出，当以回调方式执行时，函数将返回子进程对象
+	 * options 支持的内容如下：
+	 * ```JavaScript
+	 * {
+	 * "cwd": "", // 子进程的当前的工作目录，缺省使用当前目录
+	 * "env": {}, // 环境变量的键值对
+	 * "encoding": "utf8", // 指定返回结果的编码，缺省为 utf8
+	 * "detached": false, // 子进程将会变成一个进程组的领导者，缺省为 false
+	 * "uid": 0, // 设置用户进程的ID
+	 * "gid": 0, // 设置进程组的ID
+	 * "windowsVerbatimArguments": false, // 在 Windows上不执行引号或转义参数。 在 Unix 上被忽略。 当指定外壳且为 CMD 时，此选项将自动设置为true，缺省为 false
+	 * "windowsHide": false // 隐藏通常在Windows系统上创建的子进程控制台窗口，缺省为 false
+	 * }
+	 * ```
+	 * @param command 指定要运行的命令
+	 * @param options 指定创建参数
+	 * @return 返回子进程的 stdio 输出内容
+	 * 
+	 * 
+	 * @async
+	 */
+	export function execFile(command: string, options?: Fibjs.AnyObject/** = v8::Object::New(isolate)*/, callback?: Fibjs.AsyncCallback<undefined>/** = function (err: Error, result: undefined) {}*/): void;
 
-		/**
-		 * 
-		 * @brief 直接执行所指定的文件并缓冲输出，当以回调方式执行时，函数将返回子进程对象
-		 * options 支持的内容如下：
-		 * ```JavaScript
-		 * {
-		 * "cwd": "", // 子进程的当前的工作目录，缺省使用当前目录
-		 * "env": {}, // 环境变量的键值对
-		 * "encoding": "utf8", // 指定返回结果的编码，缺省为 utf8
-		 * "detached": false, // 子进程将会变成一个进程组的领导者，缺省为 false
-		 * "uid": 0, // 设置用户进程的ID
-		 * "gid": 0, // 设置进程组的ID
-		 * "windowsVerbatimArguments": false, // 在 Windows上不执行引号或转义参数。 在 Unix 上被忽略。 当指定外壳且为 CMD 时，此选项将自动设置为true，缺省为 false
-		 * "windowsHide": false // 隐藏通常在Windows系统上创建的子进程控制台窗口，缺省为 false
-		 * }
-		 * ```
-		 * @param command 指定要运行的命令
-		 * @param options 指定创建参数
-		 * @return 返回子进程的 stdio 输出内容
-		 * 
-		 * 
-		 * @async
-		 */
-		export function execFile(command: string, options?: Fibjs.AnyObject/** = v8::Object::New(isolate)*/, callback?: Fibjs.AsyncCallback<undefined>/** = function (err: Error, result: undefined) {}*/): void;
+	/**
+	 * 
+	 * @brief 直接执行所指定的文件并返回 exitCode，当以回调方式执行时，函数将返回子进程对象
+	 * options 支持的内容如下：
+	 * ```JavaScript
+	 * {
+	 * "cwd": "", // 子进程的当前的工作目录，缺省使用当前目录
+	 * "env": {}, // 环境变量的键值对
+	 * "detached": false, // 子进程将会变成一个进程组的领导者，缺省为 false
+	 * "uid": 0, // 设置用户进程的ID
+	 * "gid": 0, // 设置进程组的ID
+	 * "windowsVerbatimArguments": false, // 在 Windows上不执行引号或转义参数。 在 Unix 上被忽略。 当指定外壳且为 CMD 时，此选项将自动设置为true，缺省为 false
+	 * "windowsHide": false // 隐藏通常在Windows系统上创建的子进程控制台窗口，缺省为 false
+	 * }
+	 * ```
+	 * @param command 指定要运行的命令
+	 * @param args 指定字符串参数列表
+	 * @param options 指定创建参数
+	 * @return 返回子进程的 exitCode
+	 * 
+	 * 
+	 * @async
+	 */
+	export function run(command: string, args: any[], options?: Fibjs.AnyObject/** = v8::Object::New(isolate)*/, callback?: Fibjs.AsyncCallback<number>/** = function (err: Error, result: number) {}*/): number;
 
-		/**
-		 * 
-		 * @brief 直接执行所指定的文件并返回 exitCode，当以回调方式执行时，函数将返回子进程对象
-		 * options 支持的内容如下：
-		 * ```JavaScript
-		 * {
-		 * "cwd": "", // 子进程的当前的工作目录，缺省使用当前目录
-		 * "env": {}, // 环境变量的键值对
-		 * "detached": false, // 子进程将会变成一个进程组的领导者，缺省为 false
-		 * "uid": 0, // 设置用户进程的ID
-		 * "gid": 0, // 设置进程组的ID
-		 * "windowsVerbatimArguments": false, // 在 Windows上不执行引号或转义参数。 在 Unix 上被忽略。 当指定外壳且为 CMD 时，此选项将自动设置为true，缺省为 false
-		 * "windowsHide": false // 隐藏通常在Windows系统上创建的子进程控制台窗口，缺省为 false
-		 * }
-		 * ```
-		 * @param command 指定要运行的命令
-		 * @param args 指定字符串参数列表
-		 * @param options 指定创建参数
-		 * @return 返回子进程的 exitCode
-		 * 
-		 * 
-		 * @async
-		 */
-		export function run(command: string, args: any[], options?: Fibjs.AnyObject/** = v8::Object::New(isolate)*/, callback?: Fibjs.AsyncCallback<number>/** = function (err: Error, result: number) {}*/): number;
-
-		/**
-		 * 
-		 * @brief 直接执行所指定的文件并返回 exitCode，当以回调方式执行时，函数将返回子进程对象
-		 * options 支持的内容如下：
-		 * ```JavaScript
-		 * {
-		 * "cwd": "", // 子进程的当前的工作目录，缺省使用当前目录
-		 * "env": {}, // 环境变量的键值对
-		 * "detached": false, // 子进程将会变成一个进程组的领导者，缺省为 false
-		 * "uid": 0, // 设置用户进程的ID
-		 * "gid": 0, // 设置进程组的ID
-		 * "windowsVerbatimArguments": false, // 在 Windows上不执行引号或转义参数。 在 Unix 上被忽略。 当指定外壳且为 CMD 时，此选项将自动设置为true，缺省为 false
-		 * "windowsHide": false // 隐藏通常在Windows系统上创建的子进程控制台窗口，缺省为 false
-		 * }
-		 * ```
-		 * @param command 指定要运行的命令
-		 * @param options 指定创建参数
-		 * @return 返回子进程的 exitCode
-		 * 
-		 * 
-		 * @async
-		 */
-		export function run(command: string, options?: Fibjs.AnyObject/** = v8::Object::New(isolate)*/, callback?: Fibjs.AsyncCallback<number>/** = function (err: Error, result: number) {}*/): number;
-
-	} /** end of `module child_process` */
-	export = child_process
+	/**
+	 * 
+	 * @brief 直接执行所指定的文件并返回 exitCode，当以回调方式执行时，函数将返回子进程对象
+	 * options 支持的内容如下：
+	 * ```JavaScript
+	 * {
+	 * "cwd": "", // 子进程的当前的工作目录，缺省使用当前目录
+	 * "env": {}, // 环境变量的键值对
+	 * "detached": false, // 子进程将会变成一个进程组的领导者，缺省为 false
+	 * "uid": 0, // 设置用户进程的ID
+	 * "gid": 0, // 设置进程组的ID
+	 * "windowsVerbatimArguments": false, // 在 Windows上不执行引号或转义参数。 在 Unix 上被忽略。 当指定外壳且为 CMD 时，此选项将自动设置为true，缺省为 false
+	 * "windowsHide": false // 隐藏通常在Windows系统上创建的子进程控制台窗口，缺省为 false
+	 * }
+	 * ```
+	 * @param command 指定要运行的命令
+	 * @param options 指定创建参数
+	 * @return 返回子进程的 exitCode
+	 * 
+	 * 
+	 * @async
+	 */
 }
 
 /** endof `module Or Internal Object` */
