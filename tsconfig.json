@@ -1,0 +1,18 @@
+{
+    "$schema": "https://json.schemastore.org/tsconfig",
+    "display": "fibjs",
+    "include": [
+        "idl2/defs/index.d.ts"
+    ],
+    "compilerOptions": {
+        "typeRoots": [
+            "./idl2/defs"
+        ]
+    },
+    "typeAcquisition": {
+        "exclude": [
+            "node",
+            "@types/node"
+        ]
+    }
+}
