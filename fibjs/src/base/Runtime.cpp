@@ -9,6 +9,7 @@
 #include <string.h>
 #include <time.h>
 #include "object.h"
+#include "UVStream.h"
 #include "Runtime.h"
 #include "Fiber.h"
 #include "SandBox.h"
@@ -425,6 +426,36 @@ void Isolate::RequestInterrupt(v8::InterruptCallback callback, void* data)
     m_isolate->RequestInterrupt(callback, data);
     if (m_has_timer.CompareAndSwap(0, 1) == 0)
         syncCall(this, js_timer, this);
+}
+
+void Isolate::get_stdin(obj_ptr<Stream_base>& retVal)
+{
+    int32_t fd = _fileno(stdin);
+
+    if (!m_stdin)
+        m_stdin = new UVStream(fd);
+
+    retVal = m_stdin;
+}
+
+void Isolate::get_stdout(obj_ptr<Stream_base>& retVal)
+{
+    int32_t fd = _fileno(stdout);
+
+    if (!m_stdout)
+        m_stdout = new UVStream(fd);
+
+    retVal = this->m_stdout;
+}
+
+void Isolate::get_stderr(obj_ptr<Stream_base>& retVal)
+{
+    int32_t fd = _fileno(stderr);
+
+    if (!m_stderr)
+        m_stderr = new UVStream(fd);
+
+    retVal = m_stderr;
 }
 
 } /* namespace fibjs */
