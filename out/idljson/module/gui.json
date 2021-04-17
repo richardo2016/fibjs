@@ -1,0 +1,317 @@
+{
+  "declare": {
+    "comments": "! @brief gui 模块\n\n使用方法：\n```JavaScript\nvar gui = require('gui');\n```\n ",
+    "type": "module",
+    "name": "gui",
+    "extend": "object",
+    "module": true,
+    "doc": {
+      "descript": "gui 模块",
+      "detail": [
+        "使用方法：",
+        "```JavaScript",
+        "var gui = require('gui');",
+        "```"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "const",
+      "comments": "! @brief WebView ie 模拟版本，指定 ie7 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "IE7",
+      "default": {
+        "value": "7000"
+      },
+      "doc": {
+        "descript": "WebView ie 模拟版本，指定 ie7",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief WebView ie 模拟版本，指定 ie8 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "IE8",
+      "default": {
+        "value": "8000"
+      },
+      "doc": {
+        "descript": "WebView ie 模拟版本，指定 ie8",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief WebView ie 模拟版本，指定 ie9 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "IE9",
+      "default": {
+        "value": "9000"
+      },
+      "doc": {
+        "descript": "WebView ie 模拟版本，指定 ie9",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief WebView ie 模拟版本，指定 ie10 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "IE10",
+      "default": {
+        "value": "10000"
+      },
+      "doc": {
+        "descript": "WebView ie 模拟版本，指定 ie10",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief WebView ie 模拟版本，指定 ie11 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "IE11",
+      "default": {
+        "value": "11000"
+      },
+      "doc": {
+        "descript": "WebView ie 模拟版本，指定 ie11",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief WebView ie 模拟版本，指定 edge ",
+      "deprecated": null,
+      "const": "const",
+      "name": "EDGE",
+      "default": {
+        "value": "11001"
+      },
+      "doc": {
+        "descript": "WebView ie 模拟版本，指定 edge",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": " 设置 WebView 内 ie 最高模拟版本，当系统 ie 版本低于此版本时，将模拟系统安装版本\n     @param ver 指定 ie 模拟版本\n    ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "setVersion",
+      "type": null,
+      "params": [
+        {
+          "type": "Integer",
+          "name": "ver",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "设置 WebView 内 ie 最高模拟版本，当系统 ie 版本低于此版本时，将模拟系统安装版本",
+        "detail": [],
+        "params": [
+          {
+            "name": "ver",
+            "descript": "指定 ie 模拟版本",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 设置 gui 全局参数，config 只对 cef gui 有效，不会影响 native webview\n\n     支持以下参数:\n     ```JavaScript\n     {\n         \"cache_path\": \"\", // 设置数据持久化目录，缺省为空，退出进程后，客户端临时数据将不会被保存\n         \"cef_path\": \"\", // 设置 runtime 路径，缺省时在当前目录寻找 runtime\n         \"debug\": true, // 全局设置是否输出 WebView 内的错误和 console 信息，缺省显示\n         \"popup\": true, // 全局设置是否允许弹出新的网页，缺省允许\n         \"menu\": true, // 全局设置是否允许右键菜单，缺省允许\n         \"headless\": false, // 设置 gui 全局无窗口，缺省不使用无窗口，当命令行指定 --headless 时，此属性将被忽略\n         \"backend\": { // 设置 cef 后端处理器，可用于处理 WebView 内部请求\n             \"http://app1/\": handler1,\n             \"fibjs://app2/\": handler2,\n         },\n         \"proxy\": { // 全局设置 cef 访问代理\n             \"mode\": \"fixed_servers|pac_script|auto_detect|system|direct\", // 指定代理模式\n             \"server\": \"localhost:8888\" // 指定代理服务器地址，当 mode 为 pac_script 时，指定 pac url\n         }\n     }\n     ```\n     @param opt 指定设置的参数\n\t",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "config",
+      "type": null,
+      "params": [
+        {
+          "type": "Object",
+          "name": "opt",
+          "default": {
+            "value": "v8::Object::New(isolate)"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "设置 gui 全局参数，config 只对 cef gui 有效，不会影响 native webview",
+        "detail": [
+          "支持以下参数:",
+          "```JavaScript",
+          "{",
+          "    \"cache_path\": \"\", // 设置数据持久化目录，缺省为空，退出进程后，客户端临时数据将不会被保存",
+          "    \"cef_path\": \"\", // 设置 runtime 路径，缺省时在当前目录寻找 runtime",
+          "    \"debug\": true, // 全局设置是否输出 WebView 内的错误和 console 信息，缺省显示",
+          "    \"popup\": true, // 全局设置是否允许弹出新的网页，缺省允许",
+          "    \"menu\": true, // 全局设置是否允许右键菜单，缺省允许",
+          "    \"headless\": false, // 设置 gui 全局无窗口，缺省不使用无窗口，当命令行指定 --headless 时，此属性将被忽略",
+          "    \"backend\": { // 设置 cef 后端处理器，可用于处理 WebView 内部请求",
+          "        \"http://app1/\": handler1,",
+          "        \"fibjs://app2/\": handler2,",
+          "    },",
+          "    \"proxy\": { // 全局设置 cef 访问代理",
+          "        \"mode\": \"fixed_servers|pac_script|auto_detect|system|direct\", // 指定代理模式",
+          "        \"server\": \"localhost:8888\" // 指定代理服务器地址，当 mode 为 pac_script 时，指定 pac url",
+          "    }",
+          "}",
+          "```"
+        ],
+        "params": [
+          {
+            "name": "opt",
+            "descript": "指定设置的参数",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 打开一个窗口并访问指定网址\n\n     支持以下参数:\n     ```JavaScript\n     {\n         \"type\": \"cef\", // 指定 WenView 引擎，允许值为 \"native\" 和 \"cef\"，缺省为 \"cef\"\n         \"left\": 100, // 窗口左上角 x，缺省系统自动设定\n         \"right\": 100, // 窗口左上角 y，缺省系统自动设定\n         \"width\": 100, // 窗口宽度，缺省系统自动设定\n         \"height\": 100, // 窗口高度，缺省系统自动设定\n         \"border\": true, // 是否有边框，缺省有边框\n         \"caption\": true, // 是否有标题栏，缺省有标题栏\n         \"resizable\": true, // 是否可改变尺寸，缺省可以改变\n         \"maximize\": false, // 是否最大化显示，缺省不最大化\n         \"fullscreen\": false, // 是否显示全屏窗口，缺省不全屏\n         \"debug\": true, // 是否输出 WebView 内的错误和 console 信息，缺省显示或继承全局设置\n\n         // 以下配置仅用于 cef 模式\n         \"popup\": true, // 是否允许弹出新的网页，缺省允许或继承全局设置\n         \"menu\": true, // 是否允许右键菜单，缺省允许或继承全局设置\n         \"headless\": false, // 是否使用无窗口模式加载页面，缺省不使用无窗口，当命令行指定 --headless 时，此属性将被忽略\n         \"proxy\": { // 设置访问代理，为设置时继承s全局设置\n             \"mode\": \"fixed_servers|pac_script|auto_detect|system|direct\", // 指定代理模式\n             \"server\": \"localhost:8888\" // 指定代理服务器地址，当 mode 为 pac_script 时，指定 pac url\n         }\n     }\n     ```\n     当设定 width 和 height，而未设定 left 或 right 时，窗口将自动居中\n     @param url 指定的网址，，可以使用 fs:path 访问本地文件系统\n     @param opt 打开窗口参数\n     @return 返回打开的窗口对象\n\t",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "open",
+      "type": "WebView",
+      "params": [
+        {
+          "type": "String",
+          "name": "url",
+          "default": null
+        },
+        {
+          "type": "Object",
+          "name": "opt",
+          "default": {
+            "value": "v8::Object::New(isolate)"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "打开一个窗口并访问指定网址",
+        "detail": [
+          "支持以下参数:",
+          "```JavaScript",
+          "{",
+          "    \"type\": \"cef\", // 指定 WenView 引擎，允许值为 \"native\" 和 \"cef\"，缺省为 \"cef\"",
+          "    \"left\": 100, // 窗口左上角 x，缺省系统自动设定",
+          "    \"right\": 100, // 窗口左上角 y，缺省系统自动设定",
+          "    \"width\": 100, // 窗口宽度，缺省系统自动设定",
+          "    \"height\": 100, // 窗口高度，缺省系统自动设定",
+          "    \"border\": true, // 是否有边框，缺省有边框",
+          "    \"caption\": true, // 是否有标题栏，缺省有标题栏",
+          "    \"resizable\": true, // 是否可改变尺寸，缺省可以改变",
+          "    \"maximize\": false, // 是否最大化显示，缺省不最大化",
+          "    \"fullscreen\": false, // 是否显示全屏窗口，缺省不全屏",
+          "    \"debug\": true, // 是否输出 WebView 内的错误和 console 信息，缺省显示或继承全局设置",
+          "",
+          "    // 以下配置仅用于 cef 模式",
+          "    \"popup\": true, // 是否允许弹出新的网页，缺省允许或继承全局设置",
+          "    \"menu\": true, // 是否允许右键菜单，缺省允许或继承全局设置",
+          "    \"headless\": false, // 是否使用无窗口模式加载页面，缺省不使用无窗口，当命令行指定 --headless 时，此属性将被忽略",
+          "    \"proxy\": { // 设置访问代理，为设置时继承s全局设置",
+          "        \"mode\": \"fixed_servers|pac_script|auto_detect|system|direct\", // 指定代理模式",
+          "        \"server\": \"localhost:8888\" // 指定代理服务器地址，当 mode 为 pac_script 时，指定 pac url",
+          "    }",
+          "}",
+          "```",
+          "当设定 width 和 height，而未设定 left 或 right 时，窗口将自动居中"
+        ],
+        "params": [
+          {
+            "name": "url",
+            "descript": "指定的网址，，可以使用 fs:path 访问本地文件系统",
+            "detail": []
+          },
+          {
+            "name": "opt",
+            "descript": "打开窗口参数",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回打开的窗口对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 打开一个空的浏览器窗口\n\n     支持以下参数:\n     ```JavaScript\n     {\n         \"left\": 100, // 窗口左上角 x，缺省系统自动设定\n         \"right\": 100, // 窗口左上角 y，缺省系统自动设定\n         \"width\": 100, // 窗口宽度，缺省系统自动设定\n         \"height\": 100, // 窗口高度，缺省系统自动设定\n         \"border\": true, // 是否有边框，缺省有边框\n         \"caption\": true, // 是否有标题栏，缺省有标题栏\n         \"resizable\": true, // 是否可改变尺寸，缺省可以改变\n         \"maximize\": false, // 是否最大化显示，缺省不最大化\n         \"fullscreen\": false, // 是否显示全屏窗口，缺省不全屏\n         \"debug\": true, // 是否输出 WebView 内的错误和 console 信息，缺省显示或继承全局设置\n\n         // 以下配置仅用于 cef 模式\n         \"popup\": true, // 是否允许弹出新的网页，缺省允许或继承全局设置\n         \"menu\": true, // 是否允许右键菜单，缺省允许或继承全局设置\n         \"headless\": false, // 是否使用无窗口模式加载页面，缺省不使用无窗口，当命令行指定 --headless 时，此属性将被忽略\n         \"proxy\": { // 设置访问代理，为设置时继承s全局设置\n             \"mode\": \"fixed_servers|pac_script|auto_detect|system|direct\", // 指定代理模式\n             \"server\": \"localhost:8888\" // 指定代理服务器地址，当 mode 为 pac_script 时，指定 pac url\n         }\n     }\n     ```\n     当设定 width 和 height，而未设定 left 或 right 时，窗口将自动居中\n     @param opt 打开窗口参数\n     @return 返回打开的窗口对象\n\t",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "open",
+      "type": "WebView",
+      "params": [
+        {
+          "type": "Object",
+          "name": "opt",
+          "default": {
+            "value": "v8::Object::New(isolate)"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "打开一个空的浏览器窗口",
+        "detail": [
+          "支持以下参数:",
+          "```JavaScript",
+          "{",
+          "    \"left\": 100, // 窗口左上角 x，缺省系统自动设定",
+          "    \"right\": 100, // 窗口左上角 y，缺省系统自动设定",
+          "    \"width\": 100, // 窗口宽度，缺省系统自动设定",
+          "    \"height\": 100, // 窗口高度，缺省系统自动设定",
+          "    \"border\": true, // 是否有边框，缺省有边框",
+          "    \"caption\": true, // 是否有标题栏，缺省有标题栏",
+          "    \"resizable\": true, // 是否可改变尺寸，缺省可以改变",
+          "    \"maximize\": false, // 是否最大化显示，缺省不最大化",
+          "    \"fullscreen\": false, // 是否显示全屏窗口，缺省不全屏",
+          "    \"debug\": true, // 是否输出 WebView 内的错误和 console 信息，缺省显示或继承全局设置",
+          "",
+          "    // 以下配置仅用于 cef 模式",
+          "    \"popup\": true, // 是否允许弹出新的网页，缺省允许或继承全局设置",
+          "    \"menu\": true, // 是否允许右键菜单，缺省允许或继承全局设置",
+          "    \"headless\": false, // 是否使用无窗口模式加载页面，缺省不使用无窗口，当命令行指定 --headless 时，此属性将被忽略",
+          "    \"proxy\": { // 设置访问代理，为设置时继承s全局设置",
+          "        \"mode\": \"fixed_servers|pac_script|auto_detect|system|direct\", // 指定代理模式",
+          "        \"server\": \"localhost:8888\" // 指定代理服务器地址，当 mode 为 pac_script 时，指定 pac url",
+          "    }",
+          "}",
+          "```",
+          "当设定 width 和 height，而未设定 left 或 right 时，窗口将自动居中"
+        ],
+        "params": [
+          {
+            "name": "opt",
+            "descript": "打开窗口参数",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回打开的窗口对象",
+          "detail": []
+        }
+      }
+    }
+  ],
+  "collect": "System"
+}

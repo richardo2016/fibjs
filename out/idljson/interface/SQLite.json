@@ -1,0 +1,75 @@
+{
+  "declare": {
+    "comments": "! @brief sqlite 数据库连接对象\n\n 使用 db.open 或 db.openSQLite 创建，创建方式：\n ```JavaScript\n var slite = db.openSQLite(\"sqlite:/path/to/db\");\n ```\n",
+    "type": "interface",
+    "name": "SQLite",
+    "extend": "DbConnection",
+    "doc": {
+      "descript": "sqlite 数据库连接对象",
+      "detail": [
+        "使用 db.open 或 db.openSQLite 创建，创建方式：",
+        "```JavaScript",
+        "var slite = db.openSQLite(\"sqlite:/path/to/db\");",
+        "```"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "prop",
+      "comments": "! @brief 当前数据库文件名 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "fileName",
+      "type": "String",
+      "doc": {
+        "descript": "当前数据库文件名",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和设置数据库超时时间，以毫秒为单位 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "timeout",
+      "type": "Integer",
+      "doc": {
+        "descript": "查询和设置数据库超时时间，以毫秒为单位",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 备份当前数据库到新文件\n\t @param fileName 指定备份的数据库文件名 ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "backup",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "fileName",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "备份当前数据库到新文件",
+        "detail": [],
+        "params": [
+          {
+            "name": "fileName",
+            "descript": "指定备份的数据库文件名",
+            "detail": []
+          }
+        ]
+      }
+    }
+  ]
+}

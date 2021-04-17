@@ -1,0 +1,460 @@
+{
+  "declare": {
+    "comments": "! @brief 基础消息对象\n\n Message 对象兼容于 mq 各个模块，可用于构建自定义消息处理系统，创建方法：\n ```JavaScript\n var mq = require(\"mq\");\n var m = new mq.Message();\n ```\n",
+    "type": "interface",
+    "name": "Message",
+    "extend": "object",
+    "doc": {
+      "descript": "基础消息对象",
+      "detail": [
+        "Message 对象兼容于 mq 各个模块，可用于构建自定义消息处理系统，创建方法：",
+        "```JavaScript",
+        "var mq = require(\"mq\");",
+        "var m = new mq.Message();",
+        "```"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "const",
+      "comments": "! @brief 指定消息类型 1，代表一个文本类型 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "TEXT",
+      "default": {
+        "value": "1"
+      },
+      "doc": {
+        "descript": "指定消息类型 1，代表一个文本类型",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 指定消息类型 2，代表一个二进制类型 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "BINARY",
+      "default": {
+        "value": "2"
+      },
+      "doc": {
+        "descript": "指定消息类型 2，代表一个二进制类型",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 消息对象构造函数 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "Message",
+      "type": null,
+      "params": null,
+      "doc": {
+        "descript": "消息对象构造函数",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 消息的基本内容 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "value",
+      "type": "String",
+      "doc": {
+        "descript": "消息的基本内容",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 消息的基本参数 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "params",
+      "type": "NArray",
+      "doc": {
+        "descript": "消息的基本参数",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 消息类型 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "type",
+      "type": "Integer",
+      "doc": {
+        "descript": "消息类型",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询消息的数据 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "data",
+      "type": "Value",
+      "doc": {
+        "descript": "查询消息的数据",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 包含消息数据部分的流对象 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "body",
+      "type": "SeekableStream",
+      "doc": {
+        "descript": "包含消息数据部分的流对象",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 从流内读取指定大小的数据，此方法为 body 相应方法的别名\n     @param bytes 指定要读取的数据量，缺省为读取随机大小的数据块，读出的数据尺寸取决于设备\n     @return 返回从流内读取的数据，若无数据可读，或者连接中断，则返回 null\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "read",
+      "type": "Buffer",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "bytes",
+          "default": {
+            "value": "-1"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "从流内读取指定大小的数据，此方法为 body 相应方法的别名",
+        "detail": [],
+        "params": [
+          {
+            "name": "bytes",
+            "descript": "指定要读取的数据量，缺省为读取随机大小的数据块，读出的数据尺寸取决于设备",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回从流内读取的数据，若无数据可读，或者连接中断，则返回 null",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 从流内读取剩余的全部数据，此方法为 body 相应方法的别名\n     @return 返回从流内读取的数据，若无数据可读，或者连接中断，则返回 null\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "readAll",
+      "type": "Buffer",
+      "params": null,
+      "doc": {
+        "descript": "从流内读取剩余的全部数据，此方法为 body 相应方法的别名",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "返回从流内读取的数据，若无数据可读，或者连接中断，则返回 null",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 写入给定的数据，此方法为 body 相应方法的别名\n     @param data 给定要写入的数据\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "write",
+      "type": null,
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "data",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "写入给定的数据，此方法为 body 相应方法的别名",
+        "detail": [],
+        "params": [
+          {
+            "name": "data",
+            "descript": "给定要写入的数据",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 以 JSON 编码写入给定的数据\n     @param data 给定要写入的数据\n     @return 此方法不会返回数据\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "json",
+      "type": "Value",
+      "params": [
+        {
+          "type": "Value",
+          "name": "data",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "以 JSON 编码写入给定的数据",
+        "detail": [],
+        "params": [
+          {
+            "name": "data",
+            "descript": "给定要写入的数据",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "此方法不会返回数据",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 以 JSON 编码解析消息中的数据\n     @return 返回解析的结果\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "json",
+      "type": "Value",
+      "params": null,
+      "doc": {
+        "descript": "以 JSON 编码解析消息中的数据",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "返回解析的结果",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 以 msgpack 编码写入给定的数据\n     @param data 给定要写入的数据\n     @return 此方法不会返回数据\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "pack",
+      "type": "Value",
+      "params": [
+        {
+          "type": "Value",
+          "name": "data",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "以 msgpack 编码写入给定的数据",
+        "detail": [],
+        "params": [
+          {
+            "name": "data",
+            "descript": "给定要写入的数据",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "此方法不会返回数据",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 以 msgpack 编码解析消息中的数据\n     @return 返回解析的结果\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "pack",
+      "type": "Value",
+      "params": null,
+      "doc": {
+        "descript": "以 msgpack 编码解析消息中的数据",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "返回解析的结果",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 消息数据部分的长度 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "length",
+      "type": "Long",
+      "doc": {
+        "descript": "消息数据部分的长度",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 设置当前消息处理结束，Chain 处理器不再继续后面的事务 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "end",
+      "type": null,
+      "params": null,
+      "doc": {
+        "descript": "设置当前消息处理结束，Chain 处理器不再继续后面的事务",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查询当前消息是否结束\n     @return 结束则返回 true\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "isEnded",
+      "type": "Boolean",
+      "params": null,
+      "doc": {
+        "descript": "查询当前消息是否结束",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "结束则返回 true",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 清除消息的内容 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "clear",
+      "type": null,
+      "params": null,
+      "doc": {
+        "descript": "清除消息的内容",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 发送格式化消息到给定的流对象\n     @param stm 指定接收格式化消息的流对象\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "sendTo",
+      "type": null,
+      "params": [
+        {
+          "type": "Stream",
+          "name": "stm",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "发送格式化消息到给定的流对象",
+        "detail": [],
+        "params": [
+          {
+            "name": "stm",
+            "descript": "指定接收格式化消息的流对象",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 从给定的缓存流对象中读取格式化消息，并解析填充对象\n     @param stm 指定读取格式化消息的流对象\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "readFrom",
+      "type": null,
+      "params": [
+        {
+          "type": "Stream",
+          "name": "stm",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "从给定的缓存流对象中读取格式化消息，并解析填充对象",
+        "detail": [],
+        "params": [
+          {
+            "name": "stm",
+            "descript": "指定读取格式化消息的流对象",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询消息 readFrom 时的流对象 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "stream",
+      "type": "Stream",
+      "doc": {
+        "descript": "查询消息 readFrom 时的流对象",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和设置消息处理的最后错误 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "lastError",
+      "type": "String",
+      "doc": {
+        "descript": "查询和设置消息处理的最后错误",
+        "detail": [],
+        "params": []
+      }
+    }
+  ]
+}

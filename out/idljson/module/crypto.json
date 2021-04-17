@@ -1,0 +1,1195 @@
+{
+  "declare": {
+    "comments": "! @brief 加密算法模块\n\n 使用方法：\n ```JavaScript\n var crypto = require('crypto');\n ```\n ",
+    "type": "module",
+    "name": "crypto",
+    "extend": "object",
+    "module": true,
+    "doc": {
+      "descript": "加密算法模块",
+      "detail": [
+        "使用方法：",
+        "```JavaScript",
+        "var crypto = require('crypto');",
+        "```"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "const",
+      "comments": "! @brief 指定对称加密算法 AES，支持 128, 192, 256 位 key，分组密码工作模式支持 ECB, CBC, CFB128, CTR, GCM，CCM，XTS ",
+      "deprecated": null,
+      "const": "const",
+      "name": "AES",
+      "default": {
+        "value": "1"
+      },
+      "doc": {
+        "descript": "指定对称加密算法 AES，支持 128, 192, 256 位 key，分组密码工作模式支持 ECB, CBC, CFB128, CTR, GCM，CCM，XTS",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 指定对称加密算法 CAMELLIA，支持 128, 192, 256 位 key，分组密码工作模式支持 ECB, CBC, CFB128, CTR, GCM，CCM ",
+      "deprecated": null,
+      "const": "const",
+      "name": "CAMELLIA",
+      "default": {
+        "value": "2"
+      },
+      "doc": {
+        "descript": "指定对称加密算法 CAMELLIA，支持 128, 192, 256 位 key，分组密码工作模式支持 ECB, CBC, CFB128, CTR, GCM，CCM",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 指定对称加密算法 DES，支持 64 位 key，分组密码工作模式支持 ECB, CBC ",
+      "deprecated": null,
+      "const": "const",
+      "name": "DES",
+      "default": {
+        "value": "3"
+      },
+      "doc": {
+        "descript": "指定对称加密算法 DES，支持 64 位 key，分组密码工作模式支持 ECB, CBC",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 指定对称加密算法 DES-EDE，支持 128 位 key，分组密码工作模式支持 ECB, CBC ",
+      "deprecated": null,
+      "const": "const",
+      "name": "DES_EDE",
+      "default": {
+        "value": "4"
+      },
+      "doc": {
+        "descript": "指定对称加密算法 DES-EDE，支持 128 位 key，分组密码工作模式支持 ECB, CBC",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 指定对称加密算法 DES-EDE3，支持 192 位 key，分组密码工作模式支持 ECB, CBC ",
+      "deprecated": null,
+      "const": "const",
+      "name": "DES_EDE3",
+      "default": {
+        "value": "5"
+      },
+      "doc": {
+        "descript": "指定对称加密算法 DES-EDE3，支持 192 位 key，分组密码工作模式支持 ECB, CBC",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 指定对称加密算法 BLOWFISH，支持 192 位 key，分组密码工作模式支持 ECB, CBC, CFB64, CTR ",
+      "deprecated": null,
+      "const": "const",
+      "name": "BLOWFISH",
+      "default": {
+        "value": "6"
+      },
+      "doc": {
+        "descript": "指定对称加密算法 BLOWFISH，支持 192 位 key，分组密码工作模式支持 ECB, CBC, CFB64, CTR",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 指定对称加密算法 ARC4，支持 40, 56, 64, 128 位 key ",
+      "deprecated": null,
+      "const": "const",
+      "name": "ARC4",
+      "default": {
+        "value": "7"
+      },
+      "doc": {
+        "descript": "指定对称加密算法 ARC4，支持 40, 56, 64, 128 位 key",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 指定对称加密算法 ARIA，支持 128, 192, 256 位 key，分组密码工作模式支持 ECB, CBC, CFB128, CTR, GCM，CCM ",
+      "deprecated": null,
+      "const": "const",
+      "name": "ARIA",
+      "default": {
+        "value": "8"
+      },
+      "doc": {
+        "descript": "指定对称加密算法 ARIA，支持 128, 192, 256 位 key，分组密码工作模式支持 ECB, CBC, CFB128, CTR, GCM，CCM",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 指定对称加密算法 CHACHA20，支持 256 位 key，分组密码工作模式支持 POLY1305 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "CHACHA20",
+      "default": {
+        "value": "9"
+      },
+      "doc": {
+        "descript": "指定对称加密算法 CHACHA20，支持 256 位 key，分组密码工作模式支持 POLY1305",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 指定对称加密算法 SM4, 分组密码工作模式支持 ECB, CBC ",
+      "deprecated": null,
+      "const": "const",
+      "name": "SM4",
+      "default": {
+        "value": "10"
+      },
+      "doc": {
+        "descript": "指定对称加密算法 SM4, 分组密码工作模式支持 ECB, CBC",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 指定分组密码工作模式支持 ECB ",
+      "deprecated": null,
+      "const": "const",
+      "name": "ECB",
+      "default": {
+        "value": "1"
+      },
+      "doc": {
+        "descript": "指定分组密码工作模式支持 ECB",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 指定分组密码工作模式支持 CBC ",
+      "deprecated": null,
+      "const": "const",
+      "name": "CBC",
+      "default": {
+        "value": "2"
+      },
+      "doc": {
+        "descript": "指定分组密码工作模式支持 CBC",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 指定分组密码工作模式支持 CFB64 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "CFB64",
+      "default": {
+        "value": "3"
+      },
+      "doc": {
+        "descript": "指定分组密码工作模式支持 CFB64",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 指定分组密码工作模式支持 CFB128 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "CFB128",
+      "default": {
+        "value": "4"
+      },
+      "doc": {
+        "descript": "指定分组密码工作模式支持 CFB128",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 指定分组密码工作模式支持 OFB ",
+      "deprecated": null,
+      "const": "const",
+      "name": "OFB",
+      "default": {
+        "value": "5"
+      },
+      "doc": {
+        "descript": "指定分组密码工作模式支持 OFB",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 指定分组密码工作模式支持 CTR ",
+      "deprecated": null,
+      "const": "const",
+      "name": "CTR",
+      "default": {
+        "value": "6"
+      },
+      "doc": {
+        "descript": "指定分组密码工作模式支持 CTR",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 指定分组密码工作模式支持 GCM ",
+      "deprecated": null,
+      "const": "const",
+      "name": "GCM",
+      "default": {
+        "value": "7"
+      },
+      "doc": {
+        "descript": "指定分组密码工作模式支持 GCM",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 指定流密码模式 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "STREAM",
+      "default": {
+        "value": "8"
+      },
+      "doc": {
+        "descript": "指定流密码模式",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 指定分组密码工作模式支持 CCM ",
+      "deprecated": null,
+      "const": "const",
+      "name": "CCM",
+      "default": {
+        "value": "9"
+      },
+      "doc": {
+        "descript": "指定分组密码工作模式支持 CCM",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 指定分组密码工作模式支持 XTS ",
+      "deprecated": null,
+      "const": "const",
+      "name": "XTS",
+      "default": {
+        "value": "10"
+      },
+      "doc": {
+        "descript": "指定分组密码工作模式支持 XTS",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 指定分组密码工作模式支持 POLY1305 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "POLY1305",
+      "default": {
+        "value": "11"
+      },
+      "doc": {
+        "descript": "指定分组密码工作模式支持 POLY1305",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 指定填充模式为 PKCS7 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "PKCS7",
+      "default": {
+        "value": "0"
+      },
+      "doc": {
+        "descript": "指定填充模式为 PKCS7",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 指定填充模式为 ONE_AND_ZEROS ",
+      "deprecated": null,
+      "const": "const",
+      "name": "ONE_AND_ZEROS",
+      "default": {
+        "value": "1"
+      },
+      "doc": {
+        "descript": "指定填充模式为 ONE_AND_ZEROS",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 指定填充模式为 ZEROS_AND_LEN ",
+      "deprecated": null,
+      "const": "const",
+      "name": "ZEROS_AND_LEN",
+      "default": {
+        "value": "2"
+      },
+      "doc": {
+        "descript": "指定填充模式为 ZEROS_AND_LEN",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 指定填充模式为 ZEROS ",
+      "deprecated": null,
+      "const": "const",
+      "name": "ZEROS",
+      "default": {
+        "value": "3"
+      },
+      "doc": {
+        "descript": "指定填充模式为 ZEROS",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 指定填充模式为 NOPADDING ",
+      "deprecated": null,
+      "const": "const",
+      "name": "NOPADDING",
+      "default": {
+        "value": "4"
+      },
+      "doc": {
+        "descript": "指定填充模式为 NOPADDING",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "object",
+      "comments": "! @brief Cipher 构造函数，参见 Cipher ",
+      "deprecated": null,
+      "name": "Cipher",
+      "type": "Cipher",
+      "doc": {
+        "descript": "Cipher 构造函数，参见 Cipher",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "object",
+      "comments": "! @brief PKey 构造函数，参见 PKey ",
+      "deprecated": null,
+      "name": "PKey",
+      "type": "PKey",
+      "doc": {
+        "descript": "PKey 构造函数，参见 PKey",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "object",
+      "comments": "! @brief X509Cert 构造函数，参见 X509Cert ",
+      "deprecated": null,
+      "name": "X509Cert",
+      "type": "X509Cert",
+      "doc": {
+        "descript": "X509Cert 构造函数，参见 X509Cert",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "object",
+      "comments": "! @brief X509Crl 构造函数，参见 X509Crl ",
+      "deprecated": null,
+      "name": "X509Crl",
+      "type": "X509Crl",
+      "doc": {
+        "descript": "X509Crl 构造函数，参见 X509Crl",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "object",
+      "comments": "! @brief X509Req 构造函数，参见 X509Req ",
+      "deprecated": null,
+      "name": "X509Req",
+      "type": "X509Req",
+      "doc": {
+        "descript": "X509Req 构造函数，参见 X509Req",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 根据给定的算法名称创建一个信息摘要对象\n     @param algo 指定信息摘要对象的算法\n     @return 返回信息摘要对象\n    ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "createHash",
+      "type": "Digest",
+      "params": [
+        {
+          "type": "String",
+          "name": "algo",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "根据给定的算法名称创建一个信息摘要对象",
+        "detail": [],
+        "params": [
+          {
+            "name": "algo",
+            "descript": "指定信息摘要对象的算法",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回信息摘要对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 根据给定的算法名称创建一个 hmac 信息摘要对象\n     @param algo 指定信息摘要对象的算法\n     @param key 二进制签名密钥\n     @return 返回信息摘要对象\n    ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "createHmac",
+      "type": "Digest",
+      "params": [
+        {
+          "type": "String",
+          "name": "algo",
+          "default": null
+        },
+        {
+          "type": "Buffer",
+          "name": "key",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "根据给定的算法名称创建一个 hmac 信息摘要对象",
+        "detail": [],
+        "params": [
+          {
+            "name": "algo",
+            "descript": "指定信息摘要对象的算法",
+            "detail": []
+          },
+          {
+            "name": "key",
+            "descript": "二进制签名密钥",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回信息摘要对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 加载一个 PEM/DER 格式的密钥文件\n     @param filename 密钥文件名\n     @param password 解密密码\n     @return 返回包含密钥的对象\n    ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "loadPKey",
+      "type": "PKey",
+      "params": [
+        {
+          "type": "String",
+          "name": "filename",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "password",
+          "default": {
+            "value": "\"\""
+          }
+        }
+      ],
+      "doc": {
+        "descript": "加载一个 PEM/DER 格式的密钥文件",
+        "detail": [],
+        "params": [
+          {
+            "name": "filename",
+            "descript": "密钥文件名",
+            "detail": []
+          },
+          {
+            "name": "password",
+            "descript": "解密密码",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回包含密钥的对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 加载一个 CRT/PEM/DER/TXT 格式的证书，可多次调用\n\n    loadFile 加载 mozilla 的 certdata,txt， 可于 http://hg.mozilla.org/releases/mozilla-release/raw-file/default/security/nss/lib/ckfw/builtins/certdata.txt 下载使用\n     @param filename 证书文件名\n     @return 返回包含证书的对象\n    ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "loadCert",
+      "type": "X509Cert",
+      "params": [
+        {
+          "type": "String",
+          "name": "filename",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "加载一个 CRT/PEM/DER/TXT 格式的证书，可多次调用",
+        "detail": [
+          "loadFile 加载 mozilla 的 certdata,txt， 可于 http://hg.mozilla.org/releases/mozilla-release/raw-file/default/security/nss/lib/ckfw/builtins/certdata.txt 下载使用"
+        ],
+        "params": [
+          {
+            "name": "filename",
+            "descript": "证书文件名",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回包含证书的对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 加载一个 PEM/DER 格式的撤销证书，可多次调用\n     @param filename 撤销证书文件名\n     @return 返回包含撤销证书的对象\n    ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "loadCrl",
+      "type": "X509Crl",
+      "params": [
+        {
+          "type": "String",
+          "name": "filename",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "加载一个 PEM/DER 格式的撤销证书，可多次调用",
+        "detail": [],
+        "params": [
+          {
+            "name": "filename",
+            "descript": "撤销证书文件名",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回包含撤销证书的对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 加载一个 PEM/DER 格式的证书请求，可多次调用\n     @param filename 证书请求文件名\n     @return 返回包含请求证书的对象\n    ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "loadReq",
+      "type": "X509Req",
+      "params": [
+        {
+          "type": "String",
+          "name": "filename",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "加载一个 PEM/DER 格式的证书请求，可多次调用",
+        "detail": [],
+        "params": [
+          {
+            "name": "filename",
+            "descript": "证书请求文件名",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回包含请求证书的对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 生成指定尺寸的随机数，使用 havege 生成器\n     @param size 指定生成的随机数尺寸\n     @return 返回生成的随机数\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": "async",
+      "name": "randomBytes",
+      "type": "Buffer",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "size",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "生成指定尺寸的随机数，使用 havege 生成器",
+        "detail": [],
+        "params": [
+          {
+            "name": "size",
+            "descript": "指定生成的随机数尺寸",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回生成的随机数",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 生成指定尺寸的低强度随机数，使用快速的算法\n     @param size 指定生成的随机数尺寸\n     @return 返回生成的随机数\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": "async",
+      "name": "simpleRandomBytes",
+      "type": "Buffer",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "size",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "生成指定尺寸的低强度随机数，使用快速的算法",
+        "detail": [],
+        "params": [
+          {
+            "name": "size",
+            "descript": "指定生成的随机数尺寸",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回生成的随机数",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 生成指定尺寸的伪随机数，使用 entropy 生成器\n     @param size 指定生成的随机数尺寸\n     @return 返回生成的随机数\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": "async",
+      "name": "pseudoRandomBytes",
+      "type": "Buffer",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "size",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "生成指定尺寸的伪随机数，使用 entropy 生成器",
+        "detail": [],
+        "params": [
+          {
+            "name": "size",
+            "descript": "指定生成的随机数尺寸",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回生成的随机数",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 生成给定数据的可视化字符图像\n     @param data 指定要展示的数据\n     @param title 指定字符图像的标题，多字节字符会导致宽度错误\n     @param size 字符图像尺寸\n     @return 返回生成的可视化字符串图像\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "randomArt",
+      "type": "String",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "data",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "title",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "size",
+          "default": {
+            "value": "8"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "生成给定数据的可视化字符图像",
+        "detail": [],
+        "params": [
+          {
+            "name": "data",
+            "descript": "指定要展示的数据",
+            "detail": []
+          },
+          {
+            "name": "title",
+            "descript": "指定字符图像的标题，多字节字符会导致宽度错误",
+            "detail": []
+          },
+          {
+            "name": "size",
+            "descript": "字符图像尺寸",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回生成的可视化字符串图像",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 生成一个 RSA 私钥\n     @param size 指定 RSA 密钥长度，bit 为单位\n     @return 返回包含生成私钥的对象\n    ",
+      "deprecated": null,
+      "static": "static",
+      "async": "async",
+      "name": "genRsaKey",
+      "type": "PKey",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "size",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "生成一个 RSA 私钥",
+        "detail": [],
+        "params": [
+          {
+            "name": "size",
+            "descript": "指定 RSA 密钥长度，bit 为单位",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回包含生成私钥的对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 生成一个 EC 私钥\n     @param curve 指定预置椭圆曲线，可选值为：\"secp521r1\", \"brainpoolP512r1\", \"secp384r1\", \"brainpoolP384r1\", \"secp256r1\", \"secp256k1\", \"brainpoolP256r1\", \"secp224r1\", \"secp224k1\", \"secp192r1\", \"secp192k1\"\n     @return 返回包含生成私钥的对象\n    ",
+      "deprecated": null,
+      "static": "static",
+      "async": "async",
+      "name": "genEcKey",
+      "type": "PKey",
+      "params": [
+        {
+          "type": "String",
+          "name": "curve",
+          "default": {
+            "value": "\"secp521r1\""
+          }
+        }
+      ],
+      "doc": {
+        "descript": "生成一个 EC 私钥",
+        "detail": [],
+        "params": [
+          {
+            "name": "curve",
+            "descript": "指定预置椭圆曲线，可选值为：\"secp521r1\", \"brainpoolP512r1\", \"secp384r1\", \"brainpoolP384r1\", \"secp256r1\", \"secp256k1\", \"brainpoolP256r1\", \"secp224r1\", \"secp224k1\", \"secp192r1\", \"secp192k1\"",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回包含生成私钥的对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 生成一个 SM2 私钥\n     @return 返回包含生成私钥的对象\n    ",
+      "deprecated": null,
+      "static": "static",
+      "async": "async",
+      "name": "genSm2Key",
+      "type": "PKey",
+      "params": null,
+      "doc": {
+        "descript": "生成一个 SM2 私钥",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "返回包含生成私钥的对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 依据 pbkdf1 根据明文 password 生成要求的二进制钥匙\n     @param password 指定使用的密码\n     @param salt 指定 hmac 使用的 salt\n     @param iterations 指定迭代次数\n     @param size 指定钥匙尺寸\n     @param algo 指定要使用的 hash 算法，详见 hash 模块\n     @return 返回生成的二进制钥匙\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": "async",
+      "name": "pbkdf1",
+      "type": "Buffer",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "password",
+          "default": null
+        },
+        {
+          "type": "Buffer",
+          "name": "salt",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "iterations",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "size",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "algo",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "依据 pbkdf1 根据明文 password 生成要求的二进制钥匙",
+        "detail": [],
+        "params": [
+          {
+            "name": "password",
+            "descript": "指定使用的密码",
+            "detail": []
+          },
+          {
+            "name": "salt",
+            "descript": "指定 hmac 使用的 salt",
+            "detail": []
+          },
+          {
+            "name": "iterations",
+            "descript": "指定迭代次数",
+            "detail": []
+          },
+          {
+            "name": "size",
+            "descript": "指定钥匙尺寸",
+            "detail": []
+          },
+          {
+            "name": "algo",
+            "descript": "指定要使用的 hash 算法，详见 hash 模块",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回生成的二进制钥匙",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 依据 pbkdf1 根据明文 password 生成要求的二进制钥匙\n     @param password 指定使用的密码\n     @param salt 指定 hmac 使用的 salt\n     @param iterations 指定迭代次数\n     @param size 指定钥匙尺寸\n     @param algoName 指定要使用的 hash 算法，详见 hash 模块\n     @return 返回生成的二进制钥匙\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": "async",
+      "name": "pbkdf1",
+      "type": "Buffer",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "password",
+          "default": null
+        },
+        {
+          "type": "Buffer",
+          "name": "salt",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "iterations",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "size",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "algoName",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "依据 pbkdf1 根据明文 password 生成要求的二进制钥匙",
+        "detail": [],
+        "params": [
+          {
+            "name": "password",
+            "descript": "指定使用的密码",
+            "detail": []
+          },
+          {
+            "name": "salt",
+            "descript": "指定 hmac 使用的 salt",
+            "detail": []
+          },
+          {
+            "name": "iterations",
+            "descript": "指定迭代次数",
+            "detail": []
+          },
+          {
+            "name": "size",
+            "descript": "指定钥匙尺寸",
+            "detail": []
+          },
+          {
+            "name": "algoName",
+            "descript": "指定要使用的 hash 算法，详见 hash 模块",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回生成的二进制钥匙",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 依据 rfc2898 根据明文 password 生成要求的二进制钥匙\n     @param password 指定使用的密码\n     @param salt 指定 hmac 使用的 salt\n     @param iterations 指定迭代次数\n     @param size 指定钥匙尺寸\n     @param algo 指定要使用的 hash 算法，详见 hash 模块\n     @return 返回生成的二进制钥匙\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": "async",
+      "name": "pbkdf2",
+      "type": "Buffer",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "password",
+          "default": null
+        },
+        {
+          "type": "Buffer",
+          "name": "salt",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "iterations",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "size",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "algo",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "依据 rfc2898 根据明文 password 生成要求的二进制钥匙",
+        "detail": [],
+        "params": [
+          {
+            "name": "password",
+            "descript": "指定使用的密码",
+            "detail": []
+          },
+          {
+            "name": "salt",
+            "descript": "指定 hmac 使用的 salt",
+            "detail": []
+          },
+          {
+            "name": "iterations",
+            "descript": "指定迭代次数",
+            "detail": []
+          },
+          {
+            "name": "size",
+            "descript": "指定钥匙尺寸",
+            "detail": []
+          },
+          {
+            "name": "algo",
+            "descript": "指定要使用的 hash 算法，详见 hash 模块",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回生成的二进制钥匙",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 依据 rfc2898 根据明文 password 生成要求的二进制钥匙\n     @param password 指定使用的密码\n     @param salt 指定 hmac 使用的 salt\n     @param iterations 指定迭代次数\n     @param size 指定钥匙尺寸\n     @param algoName 指定要使用的 hash 算法，详见 hash 模块\n     @return 返回生成的二进制钥匙\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": "async",
+      "name": "pbkdf2",
+      "type": "Buffer",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "password",
+          "default": null
+        },
+        {
+          "type": "Buffer",
+          "name": "salt",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "iterations",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "size",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "algoName",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "依据 rfc2898 根据明文 password 生成要求的二进制钥匙",
+        "detail": [],
+        "params": [
+          {
+            "name": "password",
+            "descript": "指定使用的密码",
+            "detail": []
+          },
+          {
+            "name": "salt",
+            "descript": "指定 hmac 使用的 salt",
+            "detail": []
+          },
+          {
+            "name": "iterations",
+            "descript": "指定迭代次数",
+            "detail": []
+          },
+          {
+            "name": "size",
+            "descript": "指定钥匙尺寸",
+            "detail": []
+          },
+          {
+            "name": "algoName",
+            "descript": "指定要使用的 hash 算法，详见 hash 模块",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回生成的二进制钥匙",
+          "detail": []
+        }
+      }
+    }
+  ],
+  "collect": "Crypto"
+}

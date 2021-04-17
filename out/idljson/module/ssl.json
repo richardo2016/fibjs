@@ -1,0 +1,486 @@
+{
+  "declare": {
+    "comments": "! @brief ssl/tls 模块，模块别名：tls ",
+    "type": "module",
+    "name": "ssl",
+    "extend": "object",
+    "module": true,
+    "doc": {
+      "descript": "ssl/tls 模块，模块别名：tls",
+      "detail": [],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "const",
+      "comments": "! @brief 证书验证模式，不验证 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "VERIFY_NONE",
+      "default": {
+        "value": "0"
+      },
+      "doc": {
+        "descript": "证书验证模式，不验证",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 证书验证模式，可选验证，允许验证不通过 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "VERIFY_OPTIONAL",
+      "default": {
+        "value": "1"
+      },
+      "doc": {
+        "descript": "证书验证模式，可选验证，允许验证不通过",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 证书验证模式，要求验证，验证不通过则中断 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "VERIFY_REQUIRED",
+      "default": {
+        "value": "2"
+      },
+      "doc": {
+        "descript": "证书验证模式，要求验证，验证不通过则中断",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 证书验证结果，证书超时 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "BADCERT_EXPIRED",
+      "default": {
+        "value": "1"
+      },
+      "doc": {
+        "descript": "证书验证结果，证书超时",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 证书验证结果，证书被撤销 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "BADCERT_REVOKED",
+      "default": {
+        "value": "2"
+      },
+      "doc": {
+        "descript": "证书验证结果，证书被撤销",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 证书验证结果，证书名错误 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "BADCERT_CN_MISMATCH",
+      "default": {
+        "value": "4"
+      },
+      "doc": {
+        "descript": "证书验证结果，证书名错误",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 证书验证结果，证书不可信 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "BADCERT_NOT_TRUSTED",
+      "default": {
+        "value": "8"
+      },
+      "doc": {
+        "descript": "证书验证结果，证书不可信",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief ssl 协议版本 ssl 3.0 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "ssl3",
+      "default": {
+        "value": "0"
+      },
+      "doc": {
+        "descript": "ssl 协议版本 ssl 3.0",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief ssl 协议版本 tls 1.0 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "tls1",
+      "default": {
+        "value": "1"
+      },
+      "doc": {
+        "descript": "ssl 协议版本 tls 1.0",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief ssl 协议版本 tls 1.1 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "tls1_1",
+      "default": {
+        "value": "2"
+      },
+      "doc": {
+        "descript": "ssl 协议版本 tls 1.1",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief ssl 协议版本 tls 1.2 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "tls1_2",
+      "default": {
+        "value": "3"
+      },
+      "doc": {
+        "descript": "ssl 协议版本 tls 1.2",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "object",
+      "comments": "! @brief 创建一个 SslSocket 对象，参见 SslSocket ",
+      "deprecated": null,
+      "name": "Socket",
+      "type": "SslSocket",
+      "newable": true,
+      "doc": {
+        "descript": "创建一个 SslSocket 对象，参见 SslSocket",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "object",
+      "comments": "! @brief 创建一个 SslHandler 对象，参见 SslHandler ",
+      "deprecated": null,
+      "name": "Handler",
+      "type": "SslHandler",
+      "newable": true,
+      "doc": {
+        "descript": "创建一个 SslHandler 对象，参见 SslHandler",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "object",
+      "comments": "! @brief 创建一个 SslServer 对象，参见 SslServer ",
+      "deprecated": null,
+      "name": "Server",
+      "type": "SslServer",
+      "newable": true,
+      "doc": {
+        "descript": "创建一个 SslServer 对象，参见 SslServer",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 创建一个 SslSocket 对象并建立连接\n    @param url 指定连接的协议，可以是：ssl://host:port\n    @param timeout 指定超时时间，单位是毫秒，默认为0\n    @return 返回连接成功的 SslSocket 对象\n   ",
+      "deprecated": null,
+      "static": "static",
+      "async": "async",
+      "name": "connect",
+      "type": "Stream",
+      "params": [
+        {
+          "type": "String",
+          "name": "url",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "timeout",
+          "default": {
+            "value": "0"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "创建一个 SslSocket 对象并建立连接",
+        "detail": [],
+        "params": [
+          {
+            "name": "url",
+            "descript": "指定连接的协议，可以是：ssl://host:port",
+            "detail": []
+          },
+          {
+            "name": "timeout",
+            "descript": "指定超时时间，单位是毫秒，默认为0",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回连接成功的 SslSocket 对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 创建一个 SslSocket 对象并建立连接\n    @param url 指定连接的协议，可以是：ssl://host:port\n    @param crt X509Cert 证书，用于客户端验证服务器\n    @param key PKey 私钥，用于与客户端会话\n    @param timeout 指定超时时间，单位是毫秒，默认为0\n    @return 返回连接成功的 SslSocket 对象\n   ",
+      "deprecated": null,
+      "static": "static",
+      "async": "async",
+      "name": "connect",
+      "type": "Stream",
+      "params": [
+        {
+          "type": "String",
+          "name": "url",
+          "default": null
+        },
+        {
+          "type": "X509Cert",
+          "name": "crt",
+          "default": null
+        },
+        {
+          "type": "PKey",
+          "name": "key",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "timeout",
+          "default": {
+            "value": "0"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "创建一个 SslSocket 对象并建立连接",
+        "detail": [],
+        "params": [
+          {
+            "name": "url",
+            "descript": "指定连接的协议，可以是：ssl://host:port",
+            "detail": []
+          },
+          {
+            "name": "crt",
+            "descript": "X509Cert 证书，用于客户端验证服务器",
+            "detail": []
+          },
+          {
+            "name": "key",
+            "descript": "PKey 私钥，用于与客户端会话",
+            "detail": []
+          },
+          {
+            "name": "timeout",
+            "descript": "指定超时时间，单位是毫秒，默认为0",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回连接成功的 SslSocket 对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 设定缺省客户端证书\n    @param crt X509Cert 证书，用于客户端验证服务器\n    @param key PKey 私钥，用于与客户端会话\n   ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "setClientCert",
+      "type": null,
+      "params": [
+        {
+          "type": "X509Cert",
+          "name": "crt",
+          "default": null
+        },
+        {
+          "type": "PKey",
+          "name": "key",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "设定缺省客户端证书",
+        "detail": [],
+        "params": [
+          {
+            "name": "crt",
+            "descript": "X509Cert 证书，用于客户端验证服务器",
+            "detail": []
+          },
+          {
+            "name": "key",
+            "descript": "PKey 私钥，用于与客户端会话",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 从文件中加载缺省客户端证书\n    @param crtFile X509Cert 证书文件，用于客户端验证服务器\n    @param keyFile PKey 私钥文件，用于与客户端会话\n    @param password 解密密码\n   ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "loadClientCertFile",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "crtFile",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "keyFile",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "password",
+          "default": {
+            "value": "\"\""
+          }
+        }
+      ],
+      "doc": {
+        "descript": "从文件中加载缺省客户端证书",
+        "detail": [],
+        "params": [
+          {
+            "name": "crtFile",
+            "descript": "X509Cert 证书文件，用于客户端验证服务器",
+            "detail": []
+          },
+          {
+            "name": "keyFile",
+            "descript": "PKey 私钥文件，用于与客户端会话",
+            "detail": []
+          },
+          {
+            "name": "password",
+            "descript": "解密密码",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 加载自带的缺省根证书，等同于 ssl.ca.loadRootCerts\n    此证书内容源自：http://hg.mozilla.org/releases/mozilla-release/raw-file/default/security/nss/lib/ckfw/builtins/certdata.txt ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "loadRootCerts",
+      "type": null,
+      "params": null,
+      "doc": {
+        "descript": "加载自带的缺省根证书，等同于 ssl.ca.loadRootCerts",
+        "detail": [
+          "此证书内容源自：http://hg.mozilla.org/releases/mozilla-release/raw-file/default/security/nss/lib/ckfw/builtins/certdata.txt"
+        ],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 全局证书，用于 ssl 客户端模式验证服务器证书 ",
+      "deprecated": null,
+      "static": "static",
+      "readonly": "readonly",
+      "name": "ca",
+      "type": "X509Cert",
+      "doc": {
+        "descript": "全局证书，用于 ssl 客户端模式验证服务器证书",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 设定证书验证模式，缺省为 VERIFY_REQUIRED ",
+      "deprecated": null,
+      "static": "static",
+      "readonly": null,
+      "name": "verification",
+      "type": "Integer",
+      "doc": {
+        "descript": "设定证书验证模式，缺省为 VERIFY_REQUIRED",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 设定最低版本支持，缺省 ssl3 ",
+      "deprecated": null,
+      "static": "static",
+      "readonly": null,
+      "name": "min_version",
+      "type": "Integer",
+      "doc": {
+        "descript": "设定最低版本支持，缺省 ssl3",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 设定最高版本支持，缺省 tls1_1 ",
+      "deprecated": null,
+      "static": "static",
+      "readonly": null,
+      "name": "max_version",
+      "type": "Integer",
+      "doc": {
+        "descript": "设定最高版本支持，缺省 tls1_1",
+        "detail": [],
+        "params": []
+      }
+    }
+  ],
+  "collect": "Network"
+}

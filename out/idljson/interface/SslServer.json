@@ -1,0 +1,318 @@
+{
+  "declare": {
+    "comments": "! @brief ssl 服务器对象，可方便创建一个标准多纤程 ssl 服务器\n\nSslServer 对象是将 TcpServer 和 SslHandler 组合封装的对象，方便快速搭建服务器，逻辑上相当于：\n ```JavaScript\n var svr = new net.SslServer(addr, port, new ssl.Handler(crt, key, function(req){\n    ...\n }));\n ```\n\n 创建方法：\n ```JavaScript\n var ssl = require(\"ssl\");\n var svr = new http.Server(crt, key, function(req){\n     ...\n });\n ```\n ",
+    "type": "interface",
+    "name": "SslServer",
+    "extend": "TcpServer",
+    "doc": {
+      "descript": "ssl 服务器对象，可方便创建一个标准多纤程 ssl 服务器",
+      "detail": [
+        "SslServer 对象是将 TcpServer 和 SslHandler 组合封装的对象，方便快速搭建服务器，逻辑上相当于：",
+        "```JavaScript",
+        "var svr = new net.SslServer(addr, port, new ssl.Handler(crt, key, function(req){",
+        "   ...",
+        "}));",
+        "```",
+        "",
+        "创建方法：",
+        "```JavaScript",
+        "var ssl = require(\"ssl\");",
+        "var svr = new http.Server(crt, key, function(req){",
+        "    ...",
+        "});",
+        "```"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "method",
+      "comments": "! @brief SslServer 构造函数，在所有本机地址侦听\n\n    certs 格式为：\n    ```JavaScript\n    [\n        {\n            name: \"fibjs.org\",\n            crt: [X509Cert object],\n            key: [PKey object]\n        },\n        {\n            name: \"*.fibjs.org\",\n            crt: [X509Cert object],\n            key: [PKey object]\n        }\n    ]\n    ```\n    @param certs 服务器证书列表\n    @param port 指定 ssl 服务器侦听端口\n    @param listener 指定 ssl 接收到的内置消息处理器，处理函数，链式处理数组，路由对象，详见 mq.Handler\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "SslServer",
+      "type": null,
+      "params": [
+        {
+          "type": "Array",
+          "name": "certs",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "port",
+          "default": null
+        },
+        {
+          "type": "Handler",
+          "name": "listener",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "SslServer 构造函数，在所有本机地址侦听",
+        "detail": [
+          "certs 格式为：",
+          "```JavaScript",
+          "[",
+          "    {",
+          "        name: \"fibjs.org\",",
+          "        crt: [X509Cert object],",
+          "        key: [PKey object]",
+          "    },",
+          "    {",
+          "        name: \"*.fibjs.org\",",
+          "        crt: [X509Cert object],",
+          "        key: [PKey object]",
+          "    }",
+          "]",
+          "```"
+        ],
+        "params": [
+          {
+            "name": "certs",
+            "descript": "服务器证书列表",
+            "detail": []
+          },
+          {
+            "name": "port",
+            "descript": "指定 ssl 服务器侦听端口",
+            "detail": []
+          },
+          {
+            "name": "listener",
+            "descript": "指定 ssl 接收到的内置消息处理器，处理函数，链式处理数组，路由对象，详见 mq.Handler",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief SslServer 构造函数\n\n    certs 格式为：\n    ```JavaScript\n    [\n        {\n            name: \"fibjs.org\",\n            crt: [X509Cert object],\n            key: [PKey object]\n        },\n        {\n            name: \"*.fibjs.org\",\n            crt: [X509Cert object],\n            key: [PKey object]\n        }\n    ]\n    ```\n    @param certs 服务器证书列表\n    @param addr 指定 ssl 服务器侦听地址，为 \"\" 则在本机所有地址侦听\n    @param port 指定 ssl 服务器侦听端口\n    @param listener 指定 ssl 接收到的连接的内置消息处理器，处理函数，链式处理数组，路由对象，详见 mq.Handler\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "SslServer",
+      "type": null,
+      "params": [
+        {
+          "type": "Array",
+          "name": "certs",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "addr",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "port",
+          "default": null
+        },
+        {
+          "type": "Handler",
+          "name": "listener",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "SslServer 构造函数",
+        "detail": [
+          "certs 格式为：",
+          "```JavaScript",
+          "[",
+          "    {",
+          "        name: \"fibjs.org\",",
+          "        crt: [X509Cert object],",
+          "        key: [PKey object]",
+          "    },",
+          "    {",
+          "        name: \"*.fibjs.org\",",
+          "        crt: [X509Cert object],",
+          "        key: [PKey object]",
+          "    }",
+          "]",
+          "```"
+        ],
+        "params": [
+          {
+            "name": "certs",
+            "descript": "服务器证书列表",
+            "detail": []
+          },
+          {
+            "name": "addr",
+            "descript": "指定 ssl 服务器侦听地址，为 \"\" 则在本机所有地址侦听",
+            "detail": []
+          },
+          {
+            "name": "port",
+            "descript": "指定 ssl 服务器侦听端口",
+            "detail": []
+          },
+          {
+            "name": "listener",
+            "descript": "指定 ssl 接收到的连接的内置消息处理器，处理函数，链式处理数组，路由对象，详见 mq.Handler",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief SslServer 构造函数，在所有本机地址侦听\n    @param crt X509Cert 证书，用于客户端验证服务器\n    @param key PKey 私钥，用于与客户端会话\n    @param port 指定 ssl 服务器侦听端口\n    @param listener 指定 ssl 接收到的内置消息处理器，处理函数，链式处理数组，路由对象，详见 mq.Handler\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "SslServer",
+      "type": null,
+      "params": [
+        {
+          "type": "X509Cert",
+          "name": "crt",
+          "default": null
+        },
+        {
+          "type": "PKey",
+          "name": "key",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "port",
+          "default": null
+        },
+        {
+          "type": "Handler",
+          "name": "listener",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "SslServer 构造函数，在所有本机地址侦听",
+        "detail": [],
+        "params": [
+          {
+            "name": "crt",
+            "descript": "X509Cert 证书，用于客户端验证服务器",
+            "detail": []
+          },
+          {
+            "name": "key",
+            "descript": "PKey 私钥，用于与客户端会话",
+            "detail": []
+          },
+          {
+            "name": "port",
+            "descript": "指定 ssl 服务器侦听端口",
+            "detail": []
+          },
+          {
+            "name": "listener",
+            "descript": "指定 ssl 接收到的内置消息处理器，处理函数，链式处理数组，路由对象，详见 mq.Handler",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief SslServer 构造函数\n    @param crt X509Cert 证书，用于客户端验证服务器\n    @param key PKey 私钥，用于与客户端会话\n    @param addr 指定 ssl 服务器侦听地址，为 \"\" 则在本机所有地址侦听\n    @param port 指定 ssl 服务器侦听端口\n    @param listener 指定 ssl 接收到的连接的内置消息处理器，处理函数，链式处理数组，路由对象，详见 mq.Handler\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "SslServer",
+      "type": null,
+      "params": [
+        {
+          "type": "X509Cert",
+          "name": "crt",
+          "default": null
+        },
+        {
+          "type": "PKey",
+          "name": "key",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "addr",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "port",
+          "default": null
+        },
+        {
+          "type": "Handler",
+          "name": "listener",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "SslServer 构造函数",
+        "detail": [],
+        "params": [
+          {
+            "name": "crt",
+            "descript": "X509Cert 证书，用于客户端验证服务器",
+            "detail": []
+          },
+          {
+            "name": "key",
+            "descript": "PKey 私钥，用于与客户端会话",
+            "detail": []
+          },
+          {
+            "name": "addr",
+            "descript": "指定 ssl 服务器侦听地址，为 \"\" 则在本机所有地址侦听",
+            "detail": []
+          },
+          {
+            "name": "port",
+            "descript": "指定 ssl 服务器侦听端口",
+            "detail": []
+          },
+          {
+            "name": "listener",
+            "descript": "指定 ssl 接收到的连接的内置消息处理器，处理函数，链式处理数组，路由对象，详见 mq.Handler",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 设定证书验证模式，缺省为 VERIFY_NONE ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "verification",
+      "type": "Integer",
+      "doc": {
+        "descript": "设定证书验证模式，缺省为 VERIFY_NONE",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 客户端证书验证证书链",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "ca",
+      "type": "X509Cert",
+      "doc": {
+        "descript": "客户端证书验证证书链",
+        "detail": [],
+        "params": []
+      }
+    }
+  ]
+}

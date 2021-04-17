@@ -1,0 +1,278 @@
+{
+  "declare": {
+    "comments": "! @brief http 响应消息对象 ",
+    "type": "interface",
+    "name": "HttpResponse",
+    "extend": "HttpMessage",
+    "doc": {
+      "descript": "http 响应消息对象",
+      "detail": [],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "method",
+      "comments": "! @brief HttpResponse 构造函数，创建一个新的 HttpResponse 对象 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "HttpResponse",
+      "type": null,
+      "params": null,
+      "doc": {
+        "descript": "HttpResponse 构造函数，创建一个新的 HttpResponse 对象",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和设置响应消息的返回状态 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "statusCode",
+      "type": "Integer",
+      "doc": {
+        "descript": "查询和设置响应消息的返回状态",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和设置响应消息的返回消息 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "statusMessage",
+      "type": "String",
+      "doc": {
+        "descript": "查询和设置响应消息的返回消息",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 设置响应消息的返回状态，返回消息，并添加响应头\n     @param statusCode 指定响应消息的返回状态\n     @param statusMessage 指定响应消息的返回消息\n     @param headers 指定响应消息添加的响应头\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "writeHead",
+      "type": null,
+      "params": [
+        {
+          "type": "Integer",
+          "name": "statusCode",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "statusMessage",
+          "default": null
+        },
+        {
+          "type": "Object",
+          "name": "headers",
+          "default": {
+            "value": "v8::Object::New(isolate)"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "设置响应消息的返回状态，返回消息，并添加响应头",
+        "detail": [],
+        "params": [
+          {
+            "name": "statusCode",
+            "descript": "指定响应消息的返回状态",
+            "detail": []
+          },
+          {
+            "name": "statusMessage",
+            "descript": "指定响应消息的返回消息",
+            "detail": []
+          },
+          {
+            "name": "headers",
+            "descript": "指定响应消息添加的响应头",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 设置响应消息的返回状态，返回消息，并添加响应头\n     @param statusCode 指定响应消息的返回状态\n     @param headers 指定响应消息添加的响应头\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "writeHead",
+      "type": null,
+      "params": [
+        {
+          "type": "Integer",
+          "name": "statusCode",
+          "default": null
+        },
+        {
+          "type": "Object",
+          "name": "headers",
+          "default": {
+            "value": "v8::Object::New(isolate)"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "设置响应消息的返回状态，返回消息，并添加响应头",
+        "detail": [],
+        "params": [
+          {
+            "name": "statusCode",
+            "descript": "指定响应消息的返回状态",
+            "detail": []
+          },
+          {
+            "name": "headers",
+            "descript": "指定响应消息添加的响应头",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 返回当前消息的 HttpCookie 对象列表 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "cookies",
+      "type": "NArray",
+      "doc": {
+        "descript": "返回当前消息的 HttpCookie 对象列表",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 向 cookies 添加一个 HttpCookie 对象\n     @param cookie 指定要添加的 HttpCookie 对象\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "addCookie",
+      "type": null,
+      "params": [
+        {
+          "type": "HttpCookie",
+          "name": "cookie",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "向 cookies 添加一个 HttpCookie 对象",
+        "detail": [],
+        "params": [
+          {
+            "name": "cookie",
+            "descript": "指定要添加的 HttpCookie 对象",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 发送重定向到客户端\n     @param url 重定向的地址\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "redirect",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "url",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "发送重定向到客户端",
+        "detail": [],
+        "params": [
+          {
+            "name": "url",
+            "descript": "重定向的地址",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 发送重定向到客户端\n     @param statusCode 指定响应消息的返回状态，接受的状态为：301, 302, 307\n     @param url 重定向的地址\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "redirect",
+      "type": null,
+      "params": [
+        {
+          "type": "Integer",
+          "name": "statusCode",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "url",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "发送重定向到客户端",
+        "detail": [],
+        "params": [
+          {
+            "name": "statusCode",
+            "descript": "指定响应消息的返回状态，接受的状态为：301, 302, 307",
+            "detail": []
+          },
+          {
+            "name": "url",
+            "descript": "重定向的地址",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 仅发送格式化 http 头到给定的流对象\n     @param stm 指定接收格式化消息的流对象\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "sendHeader",
+      "type": null,
+      "params": [
+        {
+          "type": "Stream",
+          "name": "stm",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "仅发送格式化 http 头到给定的流对象",
+        "detail": [],
+        "params": [
+          {
+            "name": "stm",
+            "descript": "指定接收格式化消息的流对象",
+            "detail": []
+          }
+        ]
+      }
+    }
+  ]
+}

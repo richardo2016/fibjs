@@ -1,0 +1,528 @@
+{
+  "declare": {
+    "comments": "! @brief 数据库访问模块\n\n 基础模块。可用于创建和操作数据库资源，引用方式：\n ```JavaScript\n var db = require('db');\n ```\n ",
+    "type": "module",
+    "name": "db",
+    "extend": "object",
+    "module": true,
+    "doc": {
+      "descript": "数据库访问模块",
+      "detail": [
+        "基础模块。可用于创建和操作数据库资源，引用方式：",
+        "```JavaScript",
+        "var db = require('db');",
+        "```"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "method",
+      "comments": "! @brief 打开一个数据库，此方法为通用入口，根据提供的 connString 不同调用不同的引擎\n     @param connString 数据库描述，如：mysql://user:pass\\@host/db\n     @return 返回数据库连接对象\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": "async",
+      "name": "open",
+      "type": "object",
+      "params": [
+        {
+          "type": "String",
+          "name": "connString",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "打开一个数据库，此方法为通用入口，根据提供的 connString 不同调用不同的引擎",
+        "detail": [],
+        "params": [
+          {
+            "name": "connString",
+            "descript": "数据库描述，如：mysql://user:pass\\@host/db",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回数据库连接对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 打开一个 mysql 数据库\n     @param connString 数据库描述，如：mysql://user:pass\\@host/db\n     @return 返回数据库连接对象\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": "async",
+      "name": "openMySQL",
+      "type": "MySQL",
+      "params": [
+        {
+          "type": "String",
+          "name": "connString",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "打开一个 mysql 数据库",
+        "detail": [],
+        "params": [
+          {
+            "name": "connString",
+            "descript": "数据库描述，如：mysql://user:pass\\@host/db",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回数据库连接对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 打开一个 mysql 数据库\n     @param connString 数据库描述，如：mssql://user:pass\\@host/db\n     @return 返回数据库连接对象\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": "async",
+      "name": "openMSSQL",
+      "type": "MSSQL",
+      "params": [
+        {
+          "type": "String",
+          "name": "connString",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "打开一个 mysql 数据库",
+        "detail": [],
+        "params": [
+          {
+            "name": "connString",
+            "descript": "数据库描述，如：mssql://user:pass\\@host/db",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回数据库连接对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 打开一个 sqlite 数据库\n     @param connString 数据库描述，如：sqlite:test.db 或者 test.db\n     @return 返回数据库连接对象\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": "async",
+      "name": "openSQLite",
+      "type": "SQLite",
+      "params": [
+        {
+          "type": "String",
+          "name": "connString",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "打开一个 sqlite 数据库",
+        "detail": [],
+        "params": [
+          {
+            "name": "connString",
+            "descript": "数据库描述，如：sqlite:test.db 或者 test.db",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回数据库连接对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 打开一个 mongodb 数据库\n     @param connString 数据库描述\n     @return 返回数据库连接对象\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": "async",
+      "name": "openMongoDB",
+      "type": "MongoDB",
+      "params": [
+        {
+          "type": "String",
+          "name": "connString",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "打开一个 mongodb 数据库",
+        "detail": [],
+        "params": [
+          {
+            "name": "connString",
+            "descript": "数据库描述",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回数据库连接对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 打开一个 leveldb 数据库\n     @param connString 数据库描述，如：level:test.db 或者 test.db\n     @return 返回数据库对象\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": "async",
+      "name": "openLevelDB",
+      "type": "LevelDB",
+      "params": [
+        {
+          "type": "String",
+          "name": "connString",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "打开一个 leveldb 数据库",
+        "detail": [],
+        "params": [
+          {
+            "name": "connString",
+            "descript": "数据库描述，如：level:test.db 或者 test.db",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回数据库对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 打开一个 Redis 数据库\n     @param connString 数据库描述，如：redis://server:port 或者 \"server\"\n     @return 返回数据库连接对象\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": "async",
+      "name": "openRedis",
+      "type": "Redis",
+      "params": [
+        {
+          "type": "String",
+          "name": "connString",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "打开一个 Redis 数据库",
+        "detail": [],
+        "params": [
+          {
+            "name": "connString",
+            "descript": "数据库描述，如：redis://server:port 或者 \"server\"",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回数据库连接对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 格式化一个 sql 命令，并返回格式化结果\n\n     @param method 指定请求的方法\n     @param opts 参数列表\n     @return 返回格式化之后的 sql 命令\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "format",
+      "type": "String",
+      "params": [
+        {
+          "type": "String",
+          "name": "method",
+          "default": null
+        },
+        {
+          "type": "Object",
+          "name": "opts",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "格式化一个 sql 命令，并返回格式化结果",
+        "detail": [],
+        "params": [
+          {
+            "name": "method",
+            "descript": "指定请求的方法",
+            "detail": []
+          },
+          {
+            "name": "opts",
+            "descript": "参数列表",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回格式化之后的 sql 命令",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 格式化一个 sql 命令，并返回格式化结果\n\n     @param sql 格式化字符串，可选参数用 ? 指定。例如：'SELECT FROM TEST WHERE [id]=?'\n     @param args 可选参数列表\n     @return 返回格式化之后的 sql 命令\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "format",
+      "type": "String",
+      "params": [
+        {
+          "type": "String",
+          "name": "sql",
+          "default": null
+        },
+        {
+          "type": "...",
+          "name": "args",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "格式化一个 sql 命令，并返回格式化结果",
+        "detail": [],
+        "params": [
+          {
+            "name": "sql",
+            "descript": "格式化字符串，可选参数用 ? 指定。例如：'SELECT FROM TEST WHERE [id]=?'",
+            "detail": []
+          },
+          {
+            "name": "args",
+            "descript": "可选参数列表",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回格式化之后的 sql 命令",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 格式化一个 mysql 命令，并返回格式化结果\n\n     @param method 指定请求的方法\n     @param opts 参数列表\n     @return 返回格式化之后的 mysql 命令\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "formatMySQL",
+      "type": "String",
+      "params": [
+        {
+          "type": "String",
+          "name": "method",
+          "default": null
+        },
+        {
+          "type": "Object",
+          "name": "opts",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "格式化一个 mysql 命令，并返回格式化结果",
+        "detail": [],
+        "params": [
+          {
+            "name": "method",
+            "descript": "指定请求的方法",
+            "detail": []
+          },
+          {
+            "name": "opts",
+            "descript": "参数列表",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回格式化之后的 mysql 命令",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 格式化一个 mysql 命令，并返回格式化结果\n\n     @param sql 格式化字符串，可选参数用 ? 指定。例如：'SELECT FROM TEST WHERE [id]=?'\n     @param args 可选参数列表\n     @return 返回格式化之后的 sql 命令\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "formatMySQL",
+      "type": "String",
+      "params": [
+        {
+          "type": "String",
+          "name": "sql",
+          "default": null
+        },
+        {
+          "type": "...",
+          "name": "args",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "格式化一个 mysql 命令，并返回格式化结果",
+        "detail": [],
+        "params": [
+          {
+            "name": "sql",
+            "descript": "格式化字符串，可选参数用 ? 指定。例如：'SELECT FROM TEST WHERE [id]=?'",
+            "detail": []
+          },
+          {
+            "name": "args",
+            "descript": "可选参数列表",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回格式化之后的 sql 命令",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 格式化一个 mssql 命令，并返回格式化结果\n\n     @param method 指定请求的方法\n     @param opts 参数列表\n     @return 返回格式化之后的 mssql 命令\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "formatMSSQL",
+      "type": "String",
+      "params": [
+        {
+          "type": "String",
+          "name": "method",
+          "default": null
+        },
+        {
+          "type": "Object",
+          "name": "opts",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "格式化一个 mssql 命令，并返回格式化结果",
+        "detail": [],
+        "params": [
+          {
+            "name": "method",
+            "descript": "指定请求的方法",
+            "detail": []
+          },
+          {
+            "name": "opts",
+            "descript": "参数列表",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回格式化之后的 mssql 命令",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 格式化一个 mssql 命令，并返回格式化结果\n\n     @param sql 格式化字符串，可选参数用 ? 指定。例如：'SELECT FROM TEST WHERE [id]=?'\n     @param args 可选参数列表\n     @return 返回格式化之后的 sql 命令\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "formatMSSQL",
+      "type": "String",
+      "params": [
+        {
+          "type": "String",
+          "name": "sql",
+          "default": null
+        },
+        {
+          "type": "...",
+          "name": "args",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "格式化一个 mssql 命令，并返回格式化结果",
+        "detail": [],
+        "params": [
+          {
+            "name": "sql",
+            "descript": "格式化字符串，可选参数用 ? 指定。例如：'SELECT FROM TEST WHERE [id]=?'",
+            "detail": []
+          },
+          {
+            "name": "args",
+            "descript": "可选参数列表",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回格式化之后的 sql 命令",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 将字符串编码为 SQL 安全编码字符串\n     @param str 要编码的字符串\n     @param mysql 指定 mysql 编码，缺省为 false\n     @return 返回编码后的字符串\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "escape",
+      "type": "String",
+      "params": [
+        {
+          "type": "String",
+          "name": "str",
+          "default": null
+        },
+        {
+          "type": "Boolean",
+          "name": "mysql",
+          "default": {
+            "value": "false"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "将字符串编码为 SQL 安全编码字符串",
+        "detail": [],
+        "params": [
+          {
+            "name": "str",
+            "descript": "要编码的字符串",
+            "detail": []
+          },
+          {
+            "name": "mysql",
+            "descript": "指定 mysql 编码，缺省为 false",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回编码后的字符串",
+          "detail": []
+        }
+      }
+    }
+  ],
+  "collect": "Utility"
+}

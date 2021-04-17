@@ -1,0 +1,164 @@
+{
+  "declare": {
+    "comments": "! @brief 流操作对象，用于二进制数据流读写\n\nStream 为基础对象，用于为流处理定义标准借口，不能独立创建 ",
+    "type": "interface",
+    "name": "Stream",
+    "extend": "object",
+    "doc": {
+      "descript": "流操作对象，用于二进制数据流读写",
+      "detail": [
+        "Stream 为基础对象，用于为流处理定义标准借口，不能独立创建"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询 Stream 对应的文件描述符值, 由子类实现 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "fd",
+      "type": "Integer",
+      "doc": {
+        "descript": "查询 Stream 对应的文件描述符值, 由子类实现",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 从流内读取指定大小的数据\n     @param bytes 指定要读取的数据量，缺省为读取随机大小的数据块，读出的数据尺寸取决于设备\n     @return 返回从流内读取的数据，若无数据可读，或者连接中断，则返回 null\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "read",
+      "type": "Buffer",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "bytes",
+          "default": {
+            "value": "-1"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "从流内读取指定大小的数据",
+        "detail": [],
+        "params": [
+          {
+            "name": "bytes",
+            "descript": "指定要读取的数据量，缺省为读取随机大小的数据块，读出的数据尺寸取决于设备",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回从流内读取的数据，若无数据可读，或者连接中断，则返回 null",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 将给定的数据写入流\n     @param data 给定要写入的数据\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "write",
+      "type": null,
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "data",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "将给定的数据写入流",
+        "detail": [],
+        "params": [
+          {
+            "name": "data",
+            "descript": "给定要写入的数据",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 将文件缓冲区内容写入物理设备 ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "flush",
+      "type": null,
+      "params": null,
+      "doc": {
+        "descript": "将文件缓冲区内容写入物理设备",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 关闭当前流对象 ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "close",
+      "type": null,
+      "params": null,
+      "doc": {
+        "descript": "关闭当前流对象",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 复制流数据到目标流中\n     @param stm 目标流对象\n     @param bytes 复制的字节数\n     @return 返回复制的字节数\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "copyTo",
+      "type": "Long",
+      "params": [
+        {
+          "type": "Stream",
+          "name": "stm",
+          "default": null
+        },
+        {
+          "type": "Long",
+          "name": "bytes",
+          "default": {
+            "value": "-1"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "复制流数据到目标流中",
+        "detail": [],
+        "params": [
+          {
+            "name": "stm",
+            "descript": "目标流对象",
+            "detail": []
+          },
+          {
+            "name": "bytes",
+            "descript": "复制的字节数",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回复制的字节数",
+          "detail": []
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,248 @@
+{
+  "declare": {
+    "comments": "! @brief zip 格式文件压缩解压模块\n\n 使用方法：\n ```JavaScript\n var zip = require('zip');\n ```\n ",
+    "type": "module",
+    "name": "zip",
+    "extend": "object",
+    "module": true,
+    "doc": {
+      "descript": "zip 格式文件压缩解压模块",
+      "detail": [
+        "使用方法：",
+        "```JavaScript",
+        "var zip = require('zip');",
+        "```"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "const",
+      "comments": "! @brief 压缩类型常量, 不压缩, 仅存储 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "ZIP_STORED",
+      "default": {
+        "value": "0"
+      },
+      "doc": {
+        "descript": "压缩类型常量, 不压缩, 仅存储",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 压缩类型常量, 需要依赖zlib库进行压缩 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "ZIP_DEFLATED",
+      "default": {
+        "value": "1"
+      },
+      "doc": {
+        "descript": "压缩类型常量, 需要依赖zlib库进行压缩",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief  判断文件是否是zip格式\n\t @param filename 文件名\n\t @return 返回true代表文件是zip文件\n\t ",
+      "deprecated": null,
+      "static": "static",
+      "async": "async",
+      "name": "isZipFile",
+      "type": "Boolean",
+      "params": [
+        {
+          "type": "String",
+          "name": "filename",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "判断文件是否是zip格式",
+        "detail": [],
+        "params": [
+          {
+            "name": "filename",
+            "descript": "文件名",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回true代表文件是zip文件",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 打开一个zip文件\n\t @param path 文件路径\n\t @param mod 打开文件模式, \"r\"代表读取, \"w\"代表创建, \"a\"代表在zip文件后追加\n\t @param compress_type 压缩类型, ZIP_STORED 代表不压缩, 仅存储。 默认使用ZIP_DEFLATED 代表使用zlib库进行压缩。\n\t @return 返回zip文件对象\n\t ",
+      "deprecated": null,
+      "static": "static",
+      "async": "async",
+      "name": "open",
+      "type": "ZipFile",
+      "params": [
+        {
+          "type": "String",
+          "name": "path",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "mod",
+          "default": {
+            "value": "\"r\""
+          }
+        },
+        {
+          "type": "Integer",
+          "name": "compress_type",
+          "default": {
+            "const": "ZIP_DEFLATED"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "打开一个zip文件",
+        "detail": [],
+        "params": [
+          {
+            "name": "path",
+            "descript": "文件路径",
+            "detail": []
+          },
+          {
+            "name": "mod",
+            "descript": "打开文件模式, \"r\"代表读取, \"w\"代表创建, \"a\"代表在zip文件后追加",
+            "detail": []
+          },
+          {
+            "name": "compress_type",
+            "descript": "压缩类型, ZIP_STORED 代表不压缩, 仅存储。 默认使用ZIP_DEFLATED 代表使用zlib库进行压缩。",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回zip文件对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 打开一个zip文件\n\t @param data zip文件数据\n\t @param mod 打开文件模式, \"r\"代表读取, \"w\"代表创建, \"a\"代表在zip文件后追加\n\t @param compress_type 压缩类型, ZIP_STORED 代表不压缩, 仅存储。 默认使用ZIP_DEFLATED 代表使用zlib库进行压缩。\n\t @return 返回zip文件对象\n\t ",
+      "deprecated": null,
+      "static": "static",
+      "async": "async",
+      "name": "open",
+      "type": "ZipFile",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "data",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "mod",
+          "default": {
+            "value": "\"r\""
+          }
+        },
+        {
+          "type": "Integer",
+          "name": "compress_type",
+          "default": {
+            "const": "ZIP_DEFLATED"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "打开一个zip文件",
+        "detail": [],
+        "params": [
+          {
+            "name": "data",
+            "descript": "zip文件数据",
+            "detail": []
+          },
+          {
+            "name": "mod",
+            "descript": "打开文件模式, \"r\"代表读取, \"w\"代表创建, \"a\"代表在zip文件后追加",
+            "detail": []
+          },
+          {
+            "name": "compress_type",
+            "descript": "压缩类型, ZIP_STORED 代表不压缩, 仅存储。 默认使用ZIP_DEFLATED 代表使用zlib库进行压缩。",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回zip文件对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 打开一个zip文件\n\t @param strm zip文件流\n\t @param mod 打开文件模式, \"r\"代表读取, \"w\"代表创建, \"a\"代表在zip文件后追加\n\t @param compress_type 压缩类型, ZIP_STORED 代表不压缩, 仅存储。 默认使用ZIP_DEFLATED 代表使用zlib库进行压缩。\n\t @return 返回zip文件对象\n\t ",
+      "deprecated": null,
+      "static": "static",
+      "async": "async",
+      "name": "open",
+      "type": "ZipFile",
+      "params": [
+        {
+          "type": "SeekableStream",
+          "name": "strm",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "mod",
+          "default": {
+            "value": "\"r\""
+          }
+        },
+        {
+          "type": "Integer",
+          "name": "compress_type",
+          "default": {
+            "const": "ZIP_DEFLATED"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "打开一个zip文件",
+        "detail": [],
+        "params": [
+          {
+            "name": "strm",
+            "descript": "zip文件流",
+            "detail": []
+          },
+          {
+            "name": "mod",
+            "descript": "打开文件模式, \"r\"代表读取, \"w\"代表创建, \"a\"代表在zip文件后追加",
+            "detail": []
+          },
+          {
+            "name": "compress_type",
+            "descript": "压缩类型, ZIP_STORED 代表不压缩, 仅存储。 默认使用ZIP_DEFLATED 代表使用zlib库进行压缩。",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回zip文件对象",
+          "detail": []
+        }
+      }
+    }
+  ],
+  "collect": "Compress"
+}

@@ -1,0 +1,861 @@
+{
+  "declare": {
+    "comments": "! @brief 事件触发对象，可用于建立观察者模式，支持事件触发的对象均继承于此，同一事件的同一函数只会产生一次回调\n\n Event 对象可独立创建，以用于组建自定义的事件系统：\n ```JavaScript\n var EventEmitter = require('events');\n\n var e = new EventEmitter();\n ```\n ",
+    "type": "interface",
+    "name": "EventEmitter",
+    "extend": "object",
+    "doc": {
+      "descript": "事件触发对象，可用于建立观察者模式，支持事件触发的对象均继承于此，同一事件的同一函数只会产生一次回调",
+      "detail": [
+        "Event 对象可独立创建，以用于组建自定义的事件系统：",
+        "```JavaScript",
+        "var EventEmitter = require('events');",
+        "",
+        "var e = new EventEmitter();",
+        "```"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "method",
+      "comments": "! @brief 构造函数 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "EventEmitter",
+      "type": null,
+      "params": null,
+      "doc": {
+        "descript": "构造函数",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "object",
+      "comments": "! @brief 事件触发对象 ",
+      "deprecated": null,
+      "name": "EventEmitter",
+      "type": "EventEmitter",
+      "doc": {
+        "descript": "事件触发对象",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 默认全局最大监听器数 ",
+      "deprecated": null,
+      "static": "static",
+      "readonly": null,
+      "name": "defaultMaxListeners",
+      "type": "Integer",
+      "doc": {
+        "descript": "默认全局最大监听器数",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 绑定一个事件处理函数到对象\n    @param ev 指定事件的名称\n    @param func 指定事件处理函数\n    @return 返回事件对象本身，便于链式调用\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "on",
+      "type": "Object",
+      "params": [
+        {
+          "type": "String",
+          "name": "ev",
+          "default": null
+        },
+        {
+          "type": "Function",
+          "name": "func",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "绑定一个事件处理函数到对象",
+        "detail": [],
+        "params": [
+          {
+            "name": "ev",
+            "descript": "指定事件的名称",
+            "detail": []
+          },
+          {
+            "name": "func",
+            "descript": "指定事件处理函数",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回事件对象本身，便于链式调用",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 绑定一个事件处理函数到对象\n    @param map 指定事件映射关系，对象属性名称将作为事件名称，属性的值将作为事件处理函数\n    @return 返回事件对象本身，便于链式调用\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "on",
+      "type": "Object",
+      "params": [
+        {
+          "type": "Object",
+          "name": "map",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "绑定一个事件处理函数到对象",
+        "detail": [],
+        "params": [
+          {
+            "name": "map",
+            "descript": "指定事件映射关系，对象属性名称将作为事件名称，属性的值将作为事件处理函数",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回事件对象本身，便于链式调用",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 绑定一个事件处理函数到对象\n    @param ev 指定事件的名称\n    @param func 指定事件处理函数\n    @return 返回事件对象本身，便于链式调用\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "addListener",
+      "type": "Object",
+      "params": [
+        {
+          "type": "String",
+          "name": "ev",
+          "default": null
+        },
+        {
+          "type": "Function",
+          "name": "func",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "绑定一个事件处理函数到对象",
+        "detail": [],
+        "params": [
+          {
+            "name": "ev",
+            "descript": "指定事件的名称",
+            "detail": []
+          },
+          {
+            "name": "func",
+            "descript": "指定事件处理函数",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回事件对象本身，便于链式调用",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 绑定一个事件处理函数到对象\n    @param map 指定事件映射关系，对象属性名称将作为事件名称，属性的值将作为事件处理函数\n    @return 返回事件对象本身，便于链式调用\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "addListener",
+      "type": "Object",
+      "params": [
+        {
+          "type": "Object",
+          "name": "map",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "绑定一个事件处理函数到对象",
+        "detail": [],
+        "params": [
+          {
+            "name": "map",
+            "descript": "指定事件映射关系，对象属性名称将作为事件名称，属性的值将作为事件处理函数",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回事件对象本身，便于链式调用",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 绑定一个事件处理函数到对象起始\n    @param ev 指定事件的名称\n    @param func 指定事件处理函数\n    @return 返回事件对象本身，便于链式调用\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "prependListener",
+      "type": "Object",
+      "params": [
+        {
+          "type": "String",
+          "name": "ev",
+          "default": null
+        },
+        {
+          "type": "Function",
+          "name": "func",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "绑定一个事件处理函数到对象起始",
+        "detail": [],
+        "params": [
+          {
+            "name": "ev",
+            "descript": "指定事件的名称",
+            "detail": []
+          },
+          {
+            "name": "func",
+            "descript": "指定事件处理函数",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回事件对象本身，便于链式调用",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 绑定一个事件处理函数到对象起始\n    @param map 指定事件映射关系，对象属性名称将作为事件名称，属性的值将作为事件处理函数\n    @return 返回事件对象本身，便于链式调用\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "prependListener",
+      "type": "Object",
+      "params": [
+        {
+          "type": "Object",
+          "name": "map",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "绑定一个事件处理函数到对象起始",
+        "detail": [],
+        "params": [
+          {
+            "name": "map",
+            "descript": "指定事件映射关系，对象属性名称将作为事件名称，属性的值将作为事件处理函数",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回事件对象本身，便于链式调用",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 绑定一个一次性事件处理函数到对象，一次性处理函数只会触发一次\n    @param ev 指定事件的名称\n    @param func 指定事件处理函数\n    @return 返回事件对象本身，便于链式调用\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "once",
+      "type": "Object",
+      "params": [
+        {
+          "type": "String",
+          "name": "ev",
+          "default": null
+        },
+        {
+          "type": "Function",
+          "name": "func",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "绑定一个一次性事件处理函数到对象，一次性处理函数只会触发一次",
+        "detail": [],
+        "params": [
+          {
+            "name": "ev",
+            "descript": "指定事件的名称",
+            "detail": []
+          },
+          {
+            "name": "func",
+            "descript": "指定事件处理函数",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回事件对象本身，便于链式调用",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 绑定一个一次性事件处理函数到对象，一次性处理函数只会触发一次\n    @param map 指定事件映射关系，对象属性名称将作为事件名称，属性的值将作为事件处理函数\n    @return 返回事件对象本身，便于链式调用\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "once",
+      "type": "Object",
+      "params": [
+        {
+          "type": "Object",
+          "name": "map",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "绑定一个一次性事件处理函数到对象，一次性处理函数只会触发一次",
+        "detail": [],
+        "params": [
+          {
+            "name": "map",
+            "descript": "指定事件映射关系，对象属性名称将作为事件名称，属性的值将作为事件处理函数",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回事件对象本身，便于链式调用",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 绑定一个事件处理函数到对象起始\n    @param ev 指定事件的名称\n    @param func 指定事件处理函数\n    @return 返回事件对象本身，便于链式调用\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "prependOnceListener",
+      "type": "Object",
+      "params": [
+        {
+          "type": "String",
+          "name": "ev",
+          "default": null
+        },
+        {
+          "type": "Function",
+          "name": "func",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "绑定一个事件处理函数到对象起始",
+        "detail": [],
+        "params": [
+          {
+            "name": "ev",
+            "descript": "指定事件的名称",
+            "detail": []
+          },
+          {
+            "name": "func",
+            "descript": "指定事件处理函数",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回事件对象本身，便于链式调用",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 绑定一个事件处理函数到对象起始\n    @param map 指定事件映射关系，对象属性名称将作为事件名称，属性的值将作为事件处理函数\n    @return 返回事件对象本身，便于链式调用\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "prependOnceListener",
+      "type": "Object",
+      "params": [
+        {
+          "type": "Object",
+          "name": "map",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "绑定一个事件处理函数到对象起始",
+        "detail": [],
+        "params": [
+          {
+            "name": "map",
+            "descript": "指定事件映射关系，对象属性名称将作为事件名称，属性的值将作为事件处理函数",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回事件对象本身，便于链式调用",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 从对象处理队列中取消指定函数\n    @param ev 指定事件的名称\n    @param func 指定事件处理函数\n    @return 返回事件对象本身，便于链式调用\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "off",
+      "type": "Object",
+      "params": [
+        {
+          "type": "String",
+          "name": "ev",
+          "default": null
+        },
+        {
+          "type": "Function",
+          "name": "func",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "从对象处理队列中取消指定函数",
+        "detail": [],
+        "params": [
+          {
+            "name": "ev",
+            "descript": "指定事件的名称",
+            "detail": []
+          },
+          {
+            "name": "func",
+            "descript": "指定事件处理函数",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回事件对象本身，便于链式调用",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 取消对象处理队列中的全部函数\n    @param ev 指定事件的名称\n    @return 返回事件对象本身，便于链式调用\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "off",
+      "type": "Object",
+      "params": [
+        {
+          "type": "String",
+          "name": "ev",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "取消对象处理队列中的全部函数",
+        "detail": [],
+        "params": [
+          {
+            "name": "ev",
+            "descript": "指定事件的名称",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回事件对象本身，便于链式调用",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 从对象处理队列中取消指定函数\n    @param map 指定事件映射关系，对象属性名称作为事件名称，属性的值作为事件处理函数\n    @return 返回事件对象本身，便于链式调用\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "off",
+      "type": "Object",
+      "params": [
+        {
+          "type": "Object",
+          "name": "map",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "从对象处理队列中取消指定函数",
+        "detail": [],
+        "params": [
+          {
+            "name": "map",
+            "descript": "指定事件映射关系，对象属性名称作为事件名称，属性的值作为事件处理函数",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回事件对象本身，便于链式调用",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 从对象处理队列中取消指定函数\n    @param ev 指定事件的名称\n    @param func 指定事件处理函数\n    @return 返回事件对象本身，便于链式调用\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "removeListener",
+      "type": "Object",
+      "params": [
+        {
+          "type": "String",
+          "name": "ev",
+          "default": null
+        },
+        {
+          "type": "Function",
+          "name": "func",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "从对象处理队列中取消指定函数",
+        "detail": [],
+        "params": [
+          {
+            "name": "ev",
+            "descript": "指定事件的名称",
+            "detail": []
+          },
+          {
+            "name": "func",
+            "descript": "指定事件处理函数",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回事件对象本身，便于链式调用",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 取消对象处理队列中的全部函数\n    @param ev 指定事件的名称\n    @return 返回事件对象本身，便于链式调用\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "removeListener",
+      "type": "Object",
+      "params": [
+        {
+          "type": "String",
+          "name": "ev",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "取消对象处理队列中的全部函数",
+        "detail": [],
+        "params": [
+          {
+            "name": "ev",
+            "descript": "指定事件的名称",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回事件对象本身，便于链式调用",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 从对象处理队列中取消指定函数\n    @param map 指定事件映射关系，对象属性名称作为事件名称，属性的值作为事件处理函数\n    @return 返回事件对象本身，便于链式调用\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "removeListener",
+      "type": "Object",
+      "params": [
+        {
+          "type": "Object",
+          "name": "map",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "从对象处理队列中取消指定函数",
+        "detail": [],
+        "params": [
+          {
+            "name": "map",
+            "descript": "指定事件映射关系，对象属性名称作为事件名称，属性的值作为事件处理函数",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回事件对象本身，便于链式调用",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 从对象处理队列中取消所有事件的所有监听器， 如果指定事件，则移除指定事件的所有监听器。\n    @param ev 指定事件的名称\n    @return 返回事件对象本身，便于链式调用\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "removeAllListeners",
+      "type": "Object",
+      "params": [
+        {
+          "type": "String",
+          "name": "ev",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "从对象处理队列中取消所有事件的所有监听器， 如果指定事件，则移除指定事件的所有监听器。",
+        "detail": [],
+        "params": [
+          {
+            "name": "ev",
+            "descript": "指定事件的名称",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回事件对象本身，便于链式调用",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 从对象处理队列中取消所有事件的所有监听器， 如果指定事件，则移除指定事件的所有监听器。\n    @param evs 指定事件的名称\n    @return 返回事件对象本身，便于链式调用\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "removeAllListeners",
+      "type": "Object",
+      "params": [
+        {
+          "type": "Array",
+          "name": "evs",
+          "default": {
+            "value": "v8::Array::New(isolate)"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "从对象处理队列中取消所有事件的所有监听器， 如果指定事件，则移除指定事件的所有监听器。",
+        "detail": [],
+        "params": [
+          {
+            "name": "evs",
+            "descript": "指定事件的名称",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回事件对象本身，便于链式调用",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": " 监听器的默认限制的数量，仅用于兼容\n    @param n 指定事件的数量\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "setMaxListeners",
+      "type": null,
+      "params": [
+        {
+          "type": "Integer",
+          "name": "n",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "监听器的默认限制的数量，仅用于兼容",
+        "detail": [],
+        "params": [
+          {
+            "name": "n",
+            "descript": "指定事件的数量",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": " 获取监听器的默认限制的数量，仅用于兼容\n    @return 返回默认限制数量\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "getMaxListeners",
+      "type": "Integer",
+      "params": null,
+      "doc": {
+        "descript": "获取监听器的默认限制的数量，仅用于兼容",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "返回默认限制数量",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查询对象指定事件的监听器数组\n    @param ev 指定事件的名称\n    @return 返回指定事件的监听器数组\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "listeners",
+      "type": "Array",
+      "params": [
+        {
+          "type": "String",
+          "name": "ev",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "查询对象指定事件的监听器数组",
+        "detail": [],
+        "params": [
+          {
+            "name": "ev",
+            "descript": "指定事件的名称",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回指定事件的监听器数组",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查询对象指定事件的监听器数量\n    @param ev 指定事件的名称\n    @return 返回指定事件的监听器数量\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "listenerCount",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "String",
+          "name": "ev",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "查询对象指定事件的监听器数量",
+        "detail": [],
+        "params": [
+          {
+            "name": "ev",
+            "descript": "指定事件的名称",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回指定事件的监听器数量",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查询监听器事件名称\n    @return 返回事件名称数组\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "eventNames",
+      "type": "Array",
+      "params": null,
+      "doc": {
+        "descript": "查询监听器事件名称",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "返回事件名称数组",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 主动触发一个事件\n    @param ev 事件名称\n    @param args 事件参数，将会传递给事件处理函数\n    @return 返回事件触发状态，有响应事件返回 true，否则返回 false\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "emit",
+      "type": "Boolean",
+      "params": [
+        {
+          "type": "String",
+          "name": "ev",
+          "default": null
+        },
+        {
+          "type": "...",
+          "name": "args",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "主动触发一个事件",
+        "detail": [],
+        "params": [
+          {
+            "name": "ev",
+            "descript": "事件名称",
+            "detail": []
+          },
+          {
+            "name": "args",
+            "descript": "事件参数，将会传递给事件处理函数",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回事件触发状态，有响应事件返回 true，否则返回 false",
+          "detail": []
+        }
+      }
+    }
+  ]
+}

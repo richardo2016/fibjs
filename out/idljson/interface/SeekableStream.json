@@ -1,0 +1,194 @@
+{
+  "declare": {
+    "comments": "! @brief 可移动当前指针的流对象接口 ",
+    "type": "interface",
+    "name": "SeekableStream",
+    "extend": "Stream",
+    "doc": {
+      "descript": "可移动当前指针的流对象接口",
+      "detail": [],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "method",
+      "comments": "! @brief 移动文件当前操作位置\n      @param offset 指定新的位置\n      @param whence 指定位置基准，允许的值为：SEEK_SET, SEEK_CUR, SEEK_END\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "seek",
+      "type": null,
+      "params": [
+        {
+          "type": "Long",
+          "name": "offset",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "whence",
+          "default": {
+            "const": [
+              "fs",
+              "SEEK_SET"
+            ]
+          }
+        }
+      ],
+      "doc": {
+        "descript": "移动文件当前操作位置",
+        "detail": [],
+        "params": [
+          {
+            "name": "offset",
+            "descript": "指定新的位置",
+            "detail": []
+          },
+          {
+            "name": "whence",
+            "descript": "指定位置基准，允许的值为：SEEK_SET, SEEK_CUR, SEEK_END",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查询流当前位置\n     @return 返回流当前位置\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "tell",
+      "type": "Long",
+      "params": null,
+      "doc": {
+        "descript": "查询流当前位置",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "返回流当前位置",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 移动当前位置到流开头 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "rewind",
+      "type": null,
+      "params": null,
+      "doc": {
+        "descript": "移动当前位置到流开头",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查询流尺寸\n     @return 返回流尺寸\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "size",
+      "type": "Long",
+      "params": null,
+      "doc": {
+        "descript": "查询流尺寸",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "返回流尺寸",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 从流内读取剩余的全部数据\n     @return 返回从流内读取的数据，若无数据可读，或者连接中断，则返回 null\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "readAll",
+      "type": "Buffer",
+      "params": null,
+      "doc": {
+        "descript": "从流内读取剩余的全部数据",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "返回从流内读取的数据，若无数据可读，或者连接中断，则返回 null",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 修改文件尺寸，如果新尺寸小于原尺寸，则文件被截断\n      @param bytes 新的文件尺寸\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "truncate",
+      "type": null,
+      "params": [
+        {
+          "type": "Long",
+          "name": "bytes",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "修改文件尺寸，如果新尺寸小于原尺寸，则文件被截断",
+        "detail": [],
+        "params": [
+          {
+            "name": "bytes",
+            "descript": "新的文件尺寸",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查询文件是否到结尾\n     @return 返回 True 表示结尾\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "eof",
+      "type": "Boolean",
+      "params": null,
+      "doc": {
+        "descript": "查询文件是否到结尾",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "返回 True 表示结尾",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查询当前文件的基础信息\n     @return 返回 Stat 对象描述文件信息\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "stat",
+      "type": "Stat",
+      "params": null,
+      "doc": {
+        "descript": "查询当前文件的基础信息",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "返回 Stat 对象描述文件信息",
+          "detail": []
+        }
+      }
+    }
+  ]
+}

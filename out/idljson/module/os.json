@@ -1,0 +1,562 @@
+{
+  "declare": {
+    "comments": "! @brief 操作系统与文件系统处理模块\n\n 使用方法：\n ```JavaScript\n var os = require('os');\n ```\n ",
+    "type": "module",
+    "name": "os",
+    "extend": "object",
+    "module": true,
+    "doc": {
+      "descript": "操作系统与文件系统处理模块",
+      "detail": [
+        "使用方法：",
+        "```JavaScript",
+        "var os = require('os');",
+        "```"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "object",
+      "comments": "! @brief Service 构造函数，参见 Service ",
+      "deprecated": null,
+      "name": "Service",
+      "type": "Service",
+      "doc": {
+        "descript": "Service 构造函数，参见 Service",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查询当前运行环境主机名 \n     @return 返回主机名\n    ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "hostname",
+      "type": "String",
+      "params": null,
+      "doc": {
+        "descript": "查询当前运行环境主机名",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "返回主机名",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查询当前 CPU 的字节顺序\n     @return 返回字节顺序\n    ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "endianness",
+      "type": "String",
+      "params": null,
+      "doc": {
+        "descript": "查询当前 CPU 的字节顺序",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "返回字节顺序",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查询当前运行环境操作系统名称 \n     @return 返回系统名称\n    ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "type",
+      "type": "String",
+      "params": null,
+      "doc": {
+        "descript": "查询当前运行环境操作系统名称",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "返回系统名称",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查询当前运行环境操作系统版本\n     @return 返回版本信息\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "release",
+      "type": "String",
+      "params": null,
+      "doc": {
+        "descript": "查询当前运行环境操作系统版本",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "返回版本信息",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查询当前用户目录 \n     @return 返回目录字符串\n    ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "homedir",
+      "type": "String",
+      "params": null,
+      "doc": {
+        "descript": "查询当前用户目录",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "返回目录字符串",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查询当前 cpu 环境\n     @return 返回 cpu 类型，可能的结果为 'amd64', 'arm', 'arm64', 'ia32' \n    ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "arch",
+      "type": "String",
+      "params": null,
+      "doc": {
+        "descript": "查询当前 cpu 环境",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "返回 cpu 类型，可能的结果为 'amd64', 'arm', 'arm64', 'ia32'",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询运行环境当前时区 ",
+      "deprecated": null,
+      "static": "static",
+      "readonly": "readonly",
+      "name": "timezone",
+      "type": "Integer",
+      "doc": {
+        "descript": "查询运行环境当前时区",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询当前运行环境行结尾标识，posix:\\\"\\\\n\\\"；windows:\\\"\\\\r\\\\n\\\"   ",
+      "deprecated": null,
+      "static": "static",
+      "readonly": "readonly",
+      "name": "EOL",
+      "type": "String",
+      "doc": {
+        "descript": "查询当前运行环境行结尾标识，posix:\\\"\\\\n\\\"；windows:\\\"\\\\r\\\\n\\\"",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查询运行环境运行时间，以秒为单位\n     @return 返回表示时间的数值\n    ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "uptime",
+      "type": "Number",
+      "params": null,
+      "doc": {
+        "descript": "查询运行环境运行时间，以秒为单位",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "返回表示时间的数值",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查询运行环境 1分钟，5分钟，15分钟平均负载\n     @return 返回包含三个负载数据的数组\n    ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "loadavg",
+      "type": "Array",
+      "params": null,
+      "doc": {
+        "descript": "查询运行环境 1分钟，5分钟，15分钟平均负载",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "返回包含三个负载数据的数组",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查询运行环境总内存，以字节为单位\n     @return 返回内存数据\n    ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "totalmem",
+      "type": "Long",
+      "params": null,
+      "doc": {
+        "descript": "查询运行环境总内存，以字节为单位",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "返回内存数据",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查询运行环境可用内存，以字节为单位\n     @return 返回内存数据\n    ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "freemem",
+      "type": "Long",
+      "params": null,
+      "doc": {
+        "descript": "查询运行环境可用内存，以字节为单位",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "返回内存数据",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查询当前运行环境 cpu 个数和参数\n     @return 返回包含 cpu 参数的数组，每一项对应一个 cpu\n    ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "cpus",
+      "type": "Array",
+      "params": null,
+      "doc": {
+        "descript": "查询当前运行环境 cpu 个数和参数",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "返回包含 cpu 参数的数组，每一项对应一个 cpu",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查询当前运行环境 cpu 个数\n     @return 返回 cpu 个数\n    ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "cpuNumbers",
+      "type": "Integer",
+      "params": null,
+      "doc": {
+        "descript": "查询当前运行环境 cpu 个数",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "返回 cpu 个数",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查询当前运行环境临时文件目录\n     @return 返回临时文件目录\n    ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "tmpdir",
+      "type": "String",
+      "params": null,
+      "doc": {
+        "descript": "查询当前运行环境临时文件目录",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "返回临时文件目录",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 返回当前有效执行用户信息\n     @param options 用于解释结果字符串的字符编码\n     @return 当前有效执行用户信息\n    ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "userInfo",
+      "type": "Object",
+      "params": [
+        {
+          "type": "Object",
+          "name": "options",
+          "default": {
+            "value": "v8::Object::New(isolate)"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "返回当前有效执行用户信息",
+        "detail": [],
+        "params": [
+          {
+            "name": "options",
+            "descript": "用于解释结果字符串的字符编码",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "当前有效执行用户信息",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查询当前运行环境网络信息\n     @return 返回网卡信息\n    ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "networkInterfaces",
+      "type": "Object",
+      "params": null,
+      "doc": {
+        "descript": "查询当前运行环境网络信息",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "返回网卡信息",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查询当前主机的打印机信息\n     @return 返回打印机信息\n    ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "printerInfo",
+      "type": "Array",
+      "params": null,
+      "doc": {
+        "descript": "查询当前主机的打印机信息",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "返回打印机信息",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 创建一个打印机输出对象\n     @param name 打印机名称\n     @return 返回打印机输出对象\n    ",
+      "deprecated": null,
+      "static": "static",
+      "async": "async",
+      "name": "openPrinter",
+      "type": "BufferedStream",
+      "params": [
+        {
+          "type": "String",
+          "name": "name",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "创建一个打印机输出对象",
+        "detail": [],
+        "params": [
+          {
+            "name": "name",
+            "descript": "打印机名称",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回打印机输出对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查询当前平台名称\n     @return 返回平台名称，可能的结果为 'darwin', 'freebsd', 'linux', 或 'win32' \n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "platform",
+      "type": "String",
+      "params": null,
+      "doc": {
+        "descript": "查询当前平台名称",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "返回平台名称，可能的结果为 'darwin', 'freebsd', 'linux', 或 'win32'",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 解析时间字符串或查询运行环境当前时间\n     @param tmString 时间字符串，缺省则查询当前时间\n     @return 返回 javascript Date 对象\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "time",
+      "type": "Date",
+      "params": [
+        {
+          "type": "String",
+          "name": "tmString",
+          "default": {
+            "value": "\"\""
+          }
+        }
+      ],
+      "doc": {
+        "descript": "解析时间字符串或查询运行环境当前时间",
+        "detail": [],
+        "params": [
+          {
+            "name": "tmString",
+            "descript": "时间字符串，缺省则查询当前时间",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回 javascript Date 对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 时间计算函数，根据 part 指定计算时间\n     @param d 指定用于计算 Date 对象\n     @param num 指定运算的数值\n     @param part 指定运算的时间部位，接收值为：\"year\", \"month\", \"day\", \"hour\", \"minute\", \"second\"\n     @return 返回 javascript Date 对象\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "dateAdd",
+      "type": "Date",
+      "params": [
+        {
+          "type": "Date",
+          "name": "d",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "num",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "part",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "时间计算函数，根据 part 指定计算时间",
+        "detail": [],
+        "params": [
+          {
+            "name": "d",
+            "descript": "指定用于计算 Date 对象",
+            "detail": []
+          },
+          {
+            "name": "num",
+            "descript": "指定运算的数值",
+            "detail": []
+          },
+          {
+            "name": "part",
+            "descript": "指定运算的时间部位，接收值为：\"year\", \"month\", \"day\", \"hour\", \"minute\", \"second\"",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回 javascript Date 对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询当前运行执行文件完整路径 ",
+      "deprecated": null,
+      "static": "static",
+      "readonly": "readonly",
+      "name": "execPath",
+      "type": "String",
+      "doc": {
+        "descript": "查询当前运行执行文件完整路径",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查询当前进程内存使用报告\n\n     内存报告生成类似以下结果：\n     ```JavaScript\n     {\n       \"rss\": 8622080,\n       \"heapTotal\": 4083456,\n       \"heapUsed\": 1621800,\n       \"nativeObjects\": 122\n     }\n     ```\n     其中：\n     - rss 返回进程当前占用物理内存大小\n     - heapTotal 返回 v8 引擎堆内存大小\n     - heapUsed 返回 v8 引擎正在使用堆内存大小\n     - nativeObjects 返回当前有效内置对象数\n     @return 返回包含内存报告\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "memoryUsage",
+      "type": "Object",
+      "params": null,
+      "doc": {
+        "descript": "查询当前进程内存使用报告",
+        "detail": [
+          "内存报告生成类似以下结果：",
+          "```JavaScript",
+          "{",
+          "  \"rss\": 8622080,",
+          "  \"heapTotal\": 4083456,",
+          "  \"heapUsed\": 1621800,",
+          "  \"nativeObjects\": 122",
+          "}",
+          "```",
+          "其中：",
+          "- rss 返回进程当前占用物理内存大小",
+          "- heapTotal 返回 v8 引擎堆内存大小",
+          "- heapUsed 返回 v8 引擎正在使用堆内存大小",
+          "- nativeObjects 返回当前有效内置对象数"
+        ],
+        "params": [],
+        "return": {
+          "descript": "返回包含内存报告",
+          "detail": []
+        }
+      }
+    }
+  ],
+  "collect": "System"
+}

@@ -1,0 +1,66 @@
+{
+  "declare": {
+    "comments": "! @brief 基础对象，所有对象均继承于此",
+    "type": "interface",
+    "name": "object",
+    "doc": {
+      "descript": "基础对象，所有对象均继承于此",
+      "detail": [],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "method",
+      "comments": "! @brief 返回对象的字符串表示，一般返回 \"[Native Object]\"，对象可以根据自己的特性重新实现\n     @return 返回对象的字符串表示\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "toString",
+      "type": "String",
+      "params": null,
+      "doc": {
+        "descript": "返回对象的字符串表示，一般返回 \"[Native Object]\"，对象可以根据自己的特性重新实现",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "返回对象的字符串表示",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 返回对象的 JSON 格式表示，一般返回对象定义的可读属性集合\n     @param key 未使用\n     @return 返回包含可 JSON 序列化的值\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "toJSON",
+      "type": "Value",
+      "params": [
+        {
+          "type": "String",
+          "name": "key",
+          "default": {
+            "value": "\"\""
+          }
+        }
+      ],
+      "doc": {
+        "descript": "返回对象的 JSON 格式表示，一般返回对象定义的可读属性集合",
+        "detail": [],
+        "params": [
+          {
+            "name": "key",
+            "descript": "未使用",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回包含可 JSON 序列化的值",
+          "detail": []
+        }
+      }
+    }
+  ]
+}

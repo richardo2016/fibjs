@@ -1,0 +1,283 @@
+{
+  "declare": {
+    "comments": "! @brief 缓存读取对象\n\n BufferedReader 对象用于对二进制流对象数据进行缓存，并提供文本读取能力，仅支持 utf-8 格式转换。创建方法：\n ```JavaScript\n var reader = new io.BufferedStream(stream);\n ```\n ",
+    "type": "interface",
+    "name": "BufferedStream",
+    "extend": "Stream",
+    "doc": {
+      "descript": "缓存读取对象",
+      "detail": [
+        "BufferedReader 对象用于对二进制流对象数据进行缓存，并提供文本读取能力，仅支持 utf-8 格式转换。创建方法：",
+        "```JavaScript",
+        "var reader = new io.BufferedStream(stream);",
+        "```"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "method",
+      "comments": "! @brief BufferedStream 构造函数\n      @param stm BufferedStream 的二进制基础流对象\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "BufferedStream",
+      "type": null,
+      "params": [
+        {
+          "type": "Stream",
+          "name": "stm",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "BufferedStream 构造函数",
+        "detail": [],
+        "params": [
+          {
+            "name": "stm",
+            "descript": "BufferedStream 的二进制基础流对象",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 读取指定字符的文本\n     @param size 指定读取的文本字符个数，以 utf8 或者指定的编码字节数为准\n     @return 返回读取的文本字符串，若无数据可读，或者连接中断，则返回 null\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "readText",
+      "type": "String",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "size",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "读取指定字符的文本",
+        "detail": [],
+        "params": [
+          {
+            "name": "size",
+            "descript": "指定读取的文本字符个数，以 utf8 或者指定的编码字节数为准",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回读取的文本字符串，若无数据可读，或者连接中断，则返回 null",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 读取一行文本，行结尾标识基于 EOL 属性的设置，缺省时，posix:\\\"\\\\n\\\"；windows:\\\"\\\\r\\\\n\\\"\n     @param maxlen 指定此次读取的最大字符串，以 utf8 编码字节数为准，缺省不限制字符数\n     @return 返回读取的文本字符串，若无数据可读，或者连接中断，则返回 null\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "readLine",
+      "type": "String",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "maxlen",
+          "default": {
+            "value": "-1"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "读取一行文本，行结尾标识基于 EOL 属性的设置，缺省时，posix:\\\"\\\\n\\\"；windows:\\\"\\\\r\\\\n\\\"",
+        "detail": [],
+        "params": [
+          {
+            "name": "maxlen",
+            "descript": "指定此次读取的最大字符串，以 utf8 编码字节数为准，缺省不限制字符数",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回读取的文本字符串，若无数据可读，或者连接中断，则返回 null",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 以数组方式读取一组文本行，行结尾标识基于 EOL 属性的设置，缺省时，posix:\\\"\\\\n\\\"；windows:\\\"\\\\r\\\\n\\\"\n     @param maxlines 指定此次读取的最大行数，缺省读取全部文本行\n     @return 返回读取的文本行数组，若无数据可读，或者连接中断，空数组\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "readLines",
+      "type": "Array",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "maxlines",
+          "default": {
+            "value": "-1"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "以数组方式读取一组文本行，行结尾标识基于 EOL 属性的设置，缺省时，posix:\\\"\\\\n\\\"；windows:\\\"\\\\r\\\\n\\\"",
+        "detail": [],
+        "params": [
+          {
+            "name": "maxlines",
+            "descript": "指定此次读取的最大行数，缺省读取全部文本行",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回读取的文本行数组，若无数据可读，或者连接中断，空数组",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 读取一个文本字符串，以指定的字节为结尾\n     @param mk 指定结尾的字符串\n     @param maxlen 指定此次读取的最大字符串，以 utf8 编码字节数为准，缺省不限制字符数\n     @return 返回读取的文本字符串，若无数据可读，或者连接中断，则返回 null\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "readUntil",
+      "type": "String",
+      "params": [
+        {
+          "type": "String",
+          "name": "mk",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "maxlen",
+          "default": {
+            "value": "-1"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "读取一个文本字符串，以指定的字节为结尾",
+        "detail": [],
+        "params": [
+          {
+            "name": "mk",
+            "descript": "指定结尾的字符串",
+            "detail": []
+          },
+          {
+            "name": "maxlen",
+            "descript": "指定此次读取的最大字符串，以 utf8 编码字节数为准，缺省不限制字符数",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回读取的文本字符串，若无数据可读，或者连接中断，则返回 null",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 写入一个字符串\n     @param txt 指定写入的字符串\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "writeText",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "txt",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "写入一个字符串",
+        "detail": [],
+        "params": [
+          {
+            "name": "txt",
+            "descript": "指定写入的字符串",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 写入一个字符串，并写入换行符\n     @param txt 指定写入的字符串\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "writeLine",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "txt",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "写入一个字符串，并写入换行符",
+        "detail": [],
+        "params": [
+          {
+            "name": "txt",
+            "descript": "指定写入的字符串",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询创建缓存对象时的流对象 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "stream",
+      "type": "Stream",
+      "doc": {
+        "descript": "查询创建缓存对象时的流对象",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和设置当前对象处理文本时的字符集，缺省为 utf-8 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "charset",
+      "type": "String",
+      "doc": {
+        "descript": "查询和设置当前对象处理文本时的字符集，缺省为 utf-8",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和设置行结尾标识，缺省时，posix:\\\"\\\\n\\\"；windows:\\\"\\\\r\\\\n\\\"   ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "EOL",
+      "type": "String",
+      "doc": {
+        "descript": "查询和设置行结尾标识，缺省时，posix:\\\"\\\\n\\\"；windows:\\\"\\\\r\\\\n\\\"",
+        "detail": [],
+        "params": []
+      }
+    }
+  ]
+}

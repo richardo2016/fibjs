@@ -1,0 +1,235 @@
+{
+  "declare": {
+    "comments": "! @brief uuid 唯一 id 模块\n\n 基础模块。提供唯一 id 的创建于操作\n ```JavaScript\n var uuid = require('uuid');\n ```\n ",
+    "type": "module",
+    "name": "uuid",
+    "extend": "object",
+    "module": true,
+    "doc": {
+      "descript": "uuid 唯一 id 模块",
+      "detail": [
+        "基础模块。提供唯一 id 的创建于操作",
+        "```JavaScript",
+        "var uuid = require('uuid');",
+        "```"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "const",
+      "comments": "! @brief md5 与 sha1 创建 uuid 时指定 name 命名为域名 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "DNS",
+      "default": {
+        "value": "0"
+      },
+      "doc": {
+        "descript": "md5 与 sha1 创建 uuid 时指定 name 命名为域名",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief md5 与 sha1 创建 uuid 时指定 name 命名为 url 地址 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "URL",
+      "default": {
+        "value": "1"
+      },
+      "doc": {
+        "descript": "md5 与 sha1 创建 uuid 时指定 name 命名为 url 地址",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief md5 与 sha1 创建 uuid 时指定 name 命名为 ISO OID ",
+      "deprecated": null,
+      "const": "const",
+      "name": "OID",
+      "default": {
+        "value": "2"
+      },
+      "doc": {
+        "descript": "md5 与 sha1 创建 uuid 时指定 name 命名为 ISO OID",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief md5 与 sha1 创建 uuid 时指定 name 命名为 X.500 DN ",
+      "deprecated": null,
+      "const": "const",
+      "name": "X509",
+      "default": {
+        "value": "3"
+      },
+      "doc": {
+        "descript": "md5 与 sha1 创建 uuid 时指定 name 命名为 X.500 DN",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 使用时间和主机名创建 uuid\n     @return 返回一个生成的二进制 id\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "node",
+      "type": "Buffer",
+      "params": null,
+      "doc": {
+        "descript": "使用时间和主机名创建 uuid",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "返回一个生成的二进制 id",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 使用特定命名的 md5 创建 uuid\n     @param ns 指定命名空间，可以为 uuid.DNS, uuid.URL, uuid.OID, uuid.X509\n     @param name 指定名称\n     @return 返回一个生成的二进制 id\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "md5",
+      "type": "Buffer",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "ns",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "name",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "使用特定命名的 md5 创建 uuid",
+        "detail": [],
+        "params": [
+          {
+            "name": "ns",
+            "descript": "指定命名空间，可以为 uuid.DNS, uuid.URL, uuid.OID, uuid.X509",
+            "detail": []
+          },
+          {
+            "name": "name",
+            "descript": "指定名称",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回一个生成的二进制 id",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 使用随机数创建 uuid\n     @return 返回一个生成的二进制 id\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "random",
+      "type": "Buffer",
+      "params": null,
+      "doc": {
+        "descript": "使用随机数创建 uuid",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "返回一个生成的二进制 id",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 使用特定命名的 sha1 创建 uuid\n     @param ns 指定命名空间，可以为 uuid.DNS, uuid.URL, uuid.OID, uuid.X509\n     @param name 指定名称\n     @return 返回一个生成的二进制 id\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "sha1",
+      "type": "Buffer",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "ns",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "name",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "使用特定命名的 sha1 创建 uuid",
+        "detail": [],
+        "params": [
+          {
+            "name": "ns",
+            "descript": "指定命名空间，可以为 uuid.DNS, uuid.URL, uuid.OID, uuid.X509",
+            "detail": []
+          },
+          {
+            "name": "name",
+            "descript": "指定名称",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回一个生成的二进制 id",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 使用 Snowflake 算法创建 uuid\n     @return 返回一个生成的二进制 id\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "snowflake",
+      "type": "Buffer",
+      "params": null,
+      "doc": {
+        "descript": "使用 Snowflake 算法创建 uuid",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "返回一个生成的二进制 id",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和修改 Snowflake 算法的主机 id ",
+      "deprecated": null,
+      "static": "static",
+      "readonly": null,
+      "name": "hostID",
+      "type": "Integer",
+      "doc": {
+        "descript": "查询和修改 Snowflake 算法的主机 id",
+        "detail": [],
+        "params": []
+      }
+    }
+  ],
+  "collect": "Utility"
+}

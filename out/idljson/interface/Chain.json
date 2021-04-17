@@ -1,0 +1,103 @@
+{
+  "declare": {
+    "comments": "! @brief 消息处理器链处理对象\n\n 消息处理器链处理对象用于链接一系列消息处理器，按照指定的顺序链式处理。创建方法：\n ```JavaScript\n var chain = new mq.Chain([\n   func1, func2\n ]);\n ```\n ",
+    "type": "interface",
+    "name": "Chain",
+    "extend": "Handler",
+    "doc": {
+      "descript": "消息处理器链处理对象",
+      "detail": [
+        "消息处理器链处理对象用于链接一系列消息处理器，按照指定的顺序链式处理。创建方法：",
+        "```JavaScript",
+        "var chain = new mq.Chain([",
+        "  func1, func2",
+        "]);",
+        "```"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "method",
+      "comments": "! @brief 构造一个消息处理器链处理对象\n     @param hdlrs 处理器数组\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "Chain",
+      "type": null,
+      "params": [
+        {
+          "type": "Array",
+          "name": "hdlrs",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "构造一个消息处理器链处理对象",
+        "detail": [],
+        "params": [
+          {
+            "name": "hdlrs",
+            "descript": "处理器数组",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 添加处理器数组\n     @param hdlrs 处理器数组\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "append",
+      "type": null,
+      "params": [
+        {
+          "type": "Array",
+          "name": "hdlrs",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "添加处理器数组",
+        "detail": [],
+        "params": [
+          {
+            "name": "hdlrs",
+            "descript": "处理器数组",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 添加处理器\n     @param hdlr 内置消息处理器，处理函数，链式处理数组，路由对象，详见 mq.Handler\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "append",
+      "type": null,
+      "params": [
+        {
+          "type": "Handler",
+          "name": "hdlr",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "添加处理器",
+        "detail": [],
+        "params": [
+          {
+            "name": "hdlr",
+            "descript": "内置消息处理器，处理函数，链式处理数组，路由对象，详见 mq.Handler",
+            "detail": []
+          }
+        ]
+      }
+    }
+  ]
+}

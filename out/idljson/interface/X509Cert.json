@@ -1,0 +1,444 @@
+{
+  "declare": {
+    "comments": "! @brief x509 证书对象\n\n X509Cert 对象属于 crypto 模块，创建：\n ```JavaScript\n var k = new crypto.X509Cert();\n ```\n ",
+    "type": "interface",
+    "name": "X509Cert",
+    "extend": "object",
+    "doc": {
+      "descript": "x509 证书对象",
+      "detail": [
+        "X509Cert 对象属于 crypto 模块，创建：",
+        "```JavaScript",
+        "var k = new crypto.X509Cert();",
+        "```"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "method",
+      "comments": "! @brief X509Cert 构造函数 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "X509Cert",
+      "type": null,
+      "params": null,
+      "doc": {
+        "descript": "X509Cert 构造函数",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief X509Cert 构造函数，加载一个 DER 格式的证书\n     @param derCert DER 格式的证书\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "X509Cert",
+      "type": null,
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "derCert",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "X509Cert 构造函数，加载一个 DER 格式的证书",
+        "detail": [],
+        "params": [
+          {
+            "name": "derCert",
+            "descript": "DER 格式的证书",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief X509Cert 构造函数，加载一个 CRT/PEM/TXT 格式的证书\n\n    load 加载 mozilla 的 certdata,txt， 可于 http://hg.mozilla.org/releases/mozilla-release/raw-file/default/security/nss/lib/ckfw/builtins/certdata.txt 下载使用\n     @param txtCert CRT/PEM/TXT 格式的证书\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "X509Cert",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "txtCert",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "X509Cert 构造函数，加载一个 CRT/PEM/TXT 格式的证书",
+        "detail": [
+          "load 加载 mozilla 的 certdata,txt， 可于 http://hg.mozilla.org/releases/mozilla-release/raw-file/default/security/nss/lib/ckfw/builtins/certdata.txt 下载使用"
+        ],
+        "params": [
+          {
+            "name": "txtCert",
+            "descript": "CRT/PEM/TXT 格式的证书",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 加载一个 DER 格式的证书，可多次调用\n     @param derCert DER 格式的证书\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "load",
+      "type": null,
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "derCert",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "加载一个 DER 格式的证书，可多次调用",
+        "detail": [],
+        "params": [
+          {
+            "name": "derCert",
+            "descript": "DER 格式的证书",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 加载一个 CRT/PEM/TXT 格式的证书，可多次调用\n\n    load 加载 mozilla 的 certdata,txt， 可于 http://hg.mozilla.org/releases/mozilla-release/raw-file/default/security/nss/lib/ckfw/builtins/certdata.txt 下载使用\n     @param txtCert CRT/PEM/TXT 格式的证书\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "load",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "txtCert",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "加载一个 CRT/PEM/TXT 格式的证书，可多次调用",
+        "detail": [
+          "load 加载 mozilla 的 certdata,txt， 可于 http://hg.mozilla.org/releases/mozilla-release/raw-file/default/security/nss/lib/ckfw/builtins/certdata.txt 下载使用"
+        ],
+        "params": [
+          {
+            "name": "txtCert",
+            "descript": "CRT/PEM/TXT 格式的证书",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 加载一个 CRT/PEM/DER/TXT 格式的证书，可多次调用\n\n    loadFile 加载 mozilla 的 certdata,txt， 可于 http://hg.mozilla.org/releases/mozilla-release/raw-file/default/security/nss/lib/ckfw/builtins/certdata.txt 下载使用\n     @param filename 证书文件名\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "loadFile",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "filename",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "加载一个 CRT/PEM/DER/TXT 格式的证书，可多次调用",
+        "detail": [
+          "loadFile 加载 mozilla 的 certdata,txt， 可于 http://hg.mozilla.org/releases/mozilla-release/raw-file/default/security/nss/lib/ckfw/builtins/certdata.txt 下载使用"
+        ],
+        "params": [
+          {
+            "name": "filename",
+            "descript": "证书文件名",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 加载自带的缺省根证书\n    此证书内容源自：http://hg.mozilla.org/releases/mozilla-release/raw-file/default/security/nss/lib/ckfw/builtins/certdata.txt ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "loadRootCerts",
+      "type": null,
+      "params": null,
+      "doc": {
+        "descript": "加载自带的缺省根证书",
+        "detail": [
+          "此证书内容源自：http://hg.mozilla.org/releases/mozilla-release/raw-file/default/security/nss/lib/ckfw/builtins/certdata.txt"
+        ],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 使用当前证书链验证给定的证书\n     @param cert 给定需要验证的证书\n     @return 如果验证成功则返回 True\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "verify",
+      "type": "Boolean",
+      "params": [
+        {
+          "type": "X509Cert",
+          "name": "cert",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "使用当前证书链验证给定的证书",
+        "detail": [],
+        "params": [
+          {
+            "name": "cert",
+            "descript": "给定需要验证的证书",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "如果验证成功则返回 True",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 导出已经加载的证书\n     @param pem 指定输出 PEM 格式的撤销证书，缺省为 true\n     @return 以数组方式导出证书链\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "dump",
+      "type": "Array",
+      "params": [
+        {
+          "type": "Boolean",
+          "name": "pem",
+          "default": {
+            "value": "true"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "导出已经加载的证书",
+        "detail": [],
+        "params": [
+          {
+            "name": "pem",
+            "descript": "指定输出 PEM 格式的撤销证书，缺省为 true",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "以数组方式导出证书链",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 清空已经加载的证书 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "clear",
+      "type": null,
+      "params": null,
+      "doc": {
+        "descript": "清空已经加载的证书",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 获取证书的版本 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "version",
+      "type": "Integer",
+      "doc": {
+        "descript": "获取证书的版本",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 获取证书的序列号 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "serial",
+      "type": "String",
+      "doc": {
+        "descript": "获取证书的序列号",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 获取证书颁发者的可分辨名称 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "issuer",
+      "type": "String",
+      "doc": {
+        "descript": "获取证书颁发者的可分辨名称",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 获取证书的主题可分辨名称 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "subject",
+      "type": "String",
+      "doc": {
+        "descript": "获取证书的主题可分辨名称",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 获取证书的生效时间 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "notBefore",
+      "type": "Date",
+      "doc": {
+        "descript": "获取证书的生效时间",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 获取证书的到期时间 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "notAfter",
+      "type": "Date",
+      "doc": {
+        "descript": "获取证书的到期时间",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 获取证书是否是 ca 证书 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "ca",
+      "type": "Boolean",
+      "doc": {
+        "descript": "获取证书是否是 ca 证书",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 获取证书的 pathlen ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "pathlen",
+      "type": "Integer",
+      "doc": {
+        "descript": "获取证书的 pathlen",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 获取证书的使用范围\n\n    结果为全部或部分以下内容：digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment, keyAgreement, keyCertSign, cRLSign\n    ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "usage",
+      "type": "String",
+      "doc": {
+        "descript": "获取证书的使用范围",
+        "detail": [
+          "结果为全部或部分以下内容：digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment, keyAgreement, keyCertSign, cRLSign"
+        ],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 获取证书的 Netscape 证书类型\n\n    结果为全部或部分以下内容：client, server, email, objsign, reserved, sslCA, emailCA, objCA\n     ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "type",
+      "type": "String",
+      "doc": {
+        "descript": "获取证书的 Netscape 证书类型",
+        "detail": [
+          "结果为全部或部分以下内容：client, server, email, objsign, reserved, sslCA, emailCA, objCA"
+        ],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 获取证书的公钥 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "publicKey",
+      "type": "PKey",
+      "doc": {
+        "descript": "获取证书的公钥",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 获取证书链中得下一个证书 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "next",
+      "type": "X509Cert",
+      "doc": {
+        "descript": "获取证书链中得下一个证书",
+        "detail": [],
+        "params": []
+      }
+    }
+  ]
+}

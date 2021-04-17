@@ -1,0 +1,123 @@
+{
+  "declare": {
+    "comments": "! @brief 独立线程工作对象\n ",
+    "type": "interface",
+    "name": "Worker",
+    "extend": "EventEmitter",
+    "doc": {
+      "descript": "独立线程工作对象",
+      "detail": [],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "method",
+      "comments": "! @brief Worker 对象构造函数\n     @param path 指定 Worker 入口脚本，只接受绝对路径\n     @param opts 构造选项，暂未支持\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "Worker",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "path",
+          "default": null
+        },
+        {
+          "type": "Object",
+          "name": "opts",
+          "default": {
+            "value": "v8::Object::New(isolate)"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "Worker 对象构造函数",
+        "detail": [],
+        "params": [
+          {
+            "name": "path",
+            "descript": "指定 Worker 入口脚本，只接受绝对路径",
+            "detail": []
+          },
+          {
+            "name": "opts",
+            "descript": "构造选项，暂未支持",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 向 Master 或 Worker 发送消息，\n     @param data 指定发送的消息内容\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "postMessage",
+      "type": null,
+      "params": [
+        {
+          "type": "Value",
+          "name": "data",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "向 Master 或 Worker 发送消息，",
+        "detail": [],
+        "params": [
+          {
+            "name": "data",
+            "descript": "指定发送的消息内容",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和绑定接受 load 消息事件，相当于 on(\"load\", func); ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "onload",
+      "type": "Function",
+      "doc": {
+        "descript": "查询和绑定接受 load 消息事件，相当于 on(\"load\", func);",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和绑定接受 postMessage 消息事件，相当于 on(\"message\", func); ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "onmessage",
+      "type": "Function",
+      "doc": {
+        "descript": "查询和绑定接受 postMessage 消息事件，相当于 on(\"message\", func);",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和绑定接受 error 消息事件，相当于 on(\"error\", func); ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "onerror",
+      "type": "Function",
+      "doc": {
+        "descript": "查询和绑定接受 error 消息事件，相当于 on(\"error\", func);",
+        "detail": [],
+        "params": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "declare": {
+    "comments": "! @brief SQL Server 数据库连接对象\n\n 使用 db.open 或 db.openMySQL 创建，创建方式：\n ```JavaScript\n var sql = db.openMSSQL(\"mssql://user:pass@host/db\");\n ```\n",
+    "type": "interface",
+    "name": "MSSQL",
+    "extend": "DbConnection",
+    "doc": {
+      "descript": "SQL Server 数据库连接对象",
+      "detail": [
+        "使用 db.open 或 db.openMySQL 创建，创建方式：",
+        "```JavaScript",
+        "var sql = db.openMSSQL(\"mssql://user:pass@host/db\");",
+        "```"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "method",
+      "comments": "! @brief 选择当前数据库连接的缺省数据库\n\t @param dbName 指定数据库名\n\t ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "use",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "dbName",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "选择当前数据库连接的缺省数据库",
+        "detail": [],
+        "params": [
+          {
+            "name": "dbName",
+            "descript": "指定数据库名",
+            "detail": []
+          }
+        ]
+      }
+    }
+  ]
+}

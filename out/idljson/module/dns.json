@@ -1,0 +1,84 @@
+{
+  "declare": {
+    "comments": "! @brief dns 域名查询模块\n\n 基础模块，引用方式：\n ```JavaScript\n var dns = require('dns');\n ```\n ",
+    "type": "module",
+    "name": "dns",
+    "extend": "object",
+    "module": true,
+    "doc": {
+      "descript": "dns 域名查询模块",
+      "detail": [
+        "基础模块，引用方式：",
+        "```JavaScript",
+        "var dns = require('dns');",
+        "```"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "method",
+      "comments": "! @brief 查询给定的主机名的地址\n     @param name 指定主机名\n     @return 返回查询的 ip 字符串数组\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": "async",
+      "name": "resolve",
+      "type": "NArray",
+      "params": [
+        {
+          "type": "String",
+          "name": "name",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "查询给定的主机名的地址",
+        "detail": [],
+        "params": [
+          {
+            "name": "name",
+            "descript": "指定主机名",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回查询的 ip 字符串数组",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查询给定的主机名的地址\n     @param name 指定主机名\n     @return 返回查询的 ip 字符串\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": "async",
+      "name": "lookup",
+      "type": "String",
+      "params": [
+        {
+          "type": "String",
+          "name": "name",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "查询给定的主机名的地址",
+        "detail": [],
+        "params": [
+          {
+            "name": "name",
+            "descript": "指定主机名",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回查询的 ip 字符串",
+          "detail": []
+        }
+      }
+    }
+  ],
+  "collect": "Network"
+}

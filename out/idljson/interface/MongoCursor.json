@@ -1,0 +1,306 @@
+{
+  "declare": {
+    "comments": "! @brief mongodb 数据库数据游标对象 ",
+    "type": "interface",
+    "name": "MongoCursor",
+    "extend": "object",
+    "doc": {
+      "descript": "mongodb 数据库数据游标对象",
+      "detail": [],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "method",
+      "comments": "! @brief 指定返回结果时跳过的记录数\n    @param num 记录数\n    @return 返回游标对象本身便于链式调用\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "skip",
+      "type": "MongoCursor",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "num",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "指定返回结果时跳过的记录数",
+        "detail": [],
+        "params": [
+          {
+            "name": "num",
+            "descript": "记录数",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回游标对象本身便于链式调用",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 指定返回结果的最大记录数\n    @param size 记录数\n    @return 返回游标对象本身便于链式调用\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "limit",
+      "type": "MongoCursor",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "size",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "指定返回结果的最大记录数",
+        "detail": [],
+        "params": [
+          {
+            "name": "size",
+            "descript": "记录数",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回游标对象本身便于链式调用",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 设定返回结果的排序\n    @param opts 指定排序条件\n    @return 返回游标对象本身便于链式调用\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "sort",
+      "type": "MongoCursor",
+      "params": [
+        {
+          "type": "Object",
+          "name": "opts",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "设定返回结果的排序",
+        "detail": [],
+        "params": [
+          {
+            "name": "opts",
+            "descript": "指定排序条件",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回游标对象本身便于链式调用",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查询当前游标是否有下一条记录\n    @return 有记录则返回 true\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "hasNext",
+      "type": "Boolean",
+      "params": null,
+      "doc": {
+        "descript": "查询当前游标是否有下一条记录",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "有记录则返回 true",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 返回当前游标的下一条记录\n    @return 记录对象，无记录则返回 null\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "next",
+      "type": "Object",
+      "params": null,
+      "doc": {
+        "descript": "返回当前游标的下一条记录",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "记录对象，无记录则返回 null",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查询游标的记录总数\n    @param applySkipLimit 指定是否查询 skip 和 limit 后的记录数，缺省为 false，查询全部记录数\n    @return 返回记录总数\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "count",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "Boolean",
+          "name": "applySkipLimit",
+          "default": {
+            "value": "false"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "查询游标的记录总数",
+        "detail": [],
+        "params": [
+          {
+            "name": "applySkipLimit",
+            "descript": "指定是否查询 skip 和 limit 后的记录数，缺省为 false，查询全部记录数",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回记录总数",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查询游标的记录总数，相当于 count(true)\n    @return 返回记录总数\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "size",
+      "type": "Integer",
+      "params": null,
+      "doc": {
+        "descript": "查询游标的记录总数，相当于 count(true)",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "返回记录总数",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 遍历全部记录并回调处理函数\n    @param func 指定处理函数\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "forEach",
+      "type": null,
+      "params": [
+        {
+          "type": "Function",
+          "name": "func",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "遍历全部记录并回调处理函数",
+        "detail": [],
+        "params": [
+          {
+            "name": "func",
+            "descript": "指定处理函数",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 遍历处理全部记录，并返回处理结果\n    @param func 指定处理函数\n    @return 返回处理结果数组\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "map",
+      "type": "Array",
+      "params": [
+        {
+          "type": "Function",
+          "name": "func",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "遍历处理全部记录，并返回处理结果",
+        "detail": [],
+        "params": [
+          {
+            "name": "func",
+            "descript": "指定处理函数",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回处理结果数组",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 返回当前游标全部记录的数组\n   @return 返回包含全部数据的 Javascript 数组\n  ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "toArray",
+      "type": "Array",
+      "params": null,
+      "doc": {
+        "descript": "返回当前游标全部记录的数组",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "返回包含全部数据的 Javascript 数组",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 修改 mongodb 服务器缺省索引策略，使用指定的索引进行查询\n    @param opts 指定强制使用的索引\n    @return 返回游标对象本身便于链式调用\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "hint",
+      "type": "MongoCursor",
+      "params": [
+        {
+          "type": "Object",
+          "name": "opts",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "修改 mongodb 服务器缺省索引策略，使用指定的索引进行查询",
+        "detail": [],
+        "params": [
+          {
+            "name": "opts",
+            "descript": "指定强制使用的索引",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回游标对象本身便于链式调用",
+          "detail": []
+        }
+      }
+    }
+  ]
+}

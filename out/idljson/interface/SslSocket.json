@@ -1,0 +1,246 @@
+{
+  "declare": {
+    "comments": "! @brief ssl 网络套接口对象\n\n SslSocket 属于 ssl 模块，创建方法\n ```JavaScript\n var s = new ssl.Socket();\n ```\n ",
+    "type": "interface",
+    "name": "SslSocket",
+    "extend": "Stream",
+    "doc": {
+      "descript": "ssl 网络套接口对象",
+      "detail": [
+        "SslSocket 属于 ssl 模块，创建方法",
+        "```JavaScript",
+        "var s = new ssl.Socket();",
+        "```"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "method",
+      "comments": "! @brief SslSocket 构造函数，创建一个新的 SslSocket 对象\n\n    certs 格式为：\n    ```JavaScript\n    [\n        {\n            name: \"fibjs.org\",\n            crt: [X509Cert object],\n            key: [PKey object]\n        },\n        {\n            name: \"*.fibjs.org\",\n            crt: [X509Cert object],\n            key: [PKey object]\n        }\n    ]\n    ```\n    @param certs 服务器证书列表\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "SslSocket",
+      "type": null,
+      "params": [
+        {
+          "type": "Array",
+          "name": "certs",
+          "default": {
+            "value": "v8::Array::New(isolate)"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "SslSocket 构造函数，创建一个新的 SslSocket 对象",
+        "detail": [
+          "certs 格式为：",
+          "```JavaScript",
+          "[",
+          "    {",
+          "        name: \"fibjs.org\",",
+          "        crt: [X509Cert object],",
+          "        key: [PKey object]",
+          "    },",
+          "    {",
+          "        name: \"*.fibjs.org\",",
+          "        crt: [X509Cert object],",
+          "        key: [PKey object]",
+          "    }",
+          "]",
+          "```"
+        ],
+        "params": [
+          {
+            "name": "certs",
+            "descript": "服务器证书列表",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief SslSocket 构造函数，创建一个新的 SslSocket 对象\n    @param crt X509Cert 证书，用于客户端验证服务器\n    @param key PKey 私钥，用于与客户端会话\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "SslSocket",
+      "type": null,
+      "params": [
+        {
+          "type": "X509Cert",
+          "name": "crt",
+          "default": null
+        },
+        {
+          "type": "PKey",
+          "name": "key",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "SslSocket 构造函数，创建一个新的 SslSocket 对象",
+        "detail": [],
+        "params": [
+          {
+            "name": "crt",
+            "descript": "X509Cert 证书，用于客户端验证服务器",
+            "detail": []
+          },
+          {
+            "name": "key",
+            "descript": "PKey 私钥，用于与客户端会话",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 设定证书验证模式，缺省为 VERIFY_REQUIRED ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "verification",
+      "type": "Integer",
+      "doc": {
+        "descript": "设定证书验证模式，缺省为 VERIFY_REQUIRED",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 证书链，客户端模式 connect 时自动引用 ssl.ca，服务器模式 accept 生成 SslSocket 自动引用当前 SslSocket 的 ca",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "ca",
+      "type": "X509Cert",
+      "doc": {
+        "descript": "证书链，客户端模式 connect 时自动引用 ssl.ca，服务器模式 accept 生成 SslSocket 自动引用当前 SslSocket 的 ca",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 连接对方的证书 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "peerCert",
+      "type": "X509Cert",
+      "doc": {
+        "descript": "连接对方的证书",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 连接的主机名 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "hostname",
+      "type": "String",
+      "doc": {
+        "descript": "连接的主机名",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询消息 ssl 建立时的下层流对象 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "stream",
+      "type": "Stream",
+      "doc": {
+        "descript": "查询消息 ssl 建立时的下层流对象",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 在给定的连接上连接 ssl 连接，客户端模式\n    @param s 给定的底层连接\n    @param server_name 指定服务器名称，可缺省\n    @return 连接成功返回 0，证书可选验证时，验证不成功则返回非 0，详细错误见 ssl 模块\n  ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "connect",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "Stream",
+          "name": "s",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "server_name",
+          "default": {
+            "value": "\"\""
+          }
+        }
+      ],
+      "doc": {
+        "descript": "在给定的连接上连接 ssl 连接，客户端模式",
+        "detail": [],
+        "params": [
+          {
+            "name": "s",
+            "descript": "给定的底层连接",
+            "detail": []
+          },
+          {
+            "name": "server_name",
+            "descript": "指定服务器名称，可缺省",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "连接成功返回 0，证书可选验证时，验证不成功则返回非 0，详细错误见 ssl 模块",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 在给定的连接上接收一个 ssl 连接，并生成一个新的 SslSocket\n    @param s 给定的底层连接\n    @return 返回新建立的 SslSocket 对象\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "accept",
+      "type": "SslSocket",
+      "params": [
+        {
+          "type": "Stream",
+          "name": "s",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "在给定的连接上接收一个 ssl 连接，并生成一个新的 SslSocket",
+        "detail": [],
+        "params": [
+          {
+            "name": "s",
+            "descript": "给定的底层连接",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回新建立的 SslSocket 对象",
+          "detail": []
+        }
+      }
+    }
+  ]
+}

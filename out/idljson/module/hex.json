@@ -1,0 +1,89 @@
+{
+  "declare": {
+    "comments": "! @brief hex 编码与解码模块\n 引用方式：\n ```JavaScript\n var encoding = require('encoding');\n var hex = encoding.hex;\n ```\n 或者\n ```JavaScript\n var hex = require('hex');\n ```\n ",
+    "type": "module",
+    "name": "hex",
+    "extend": "object",
+    "module": true,
+    "doc": {
+      "descript": "hex 编码与解码模块",
+      "detail": [
+        "引用方式：",
+        "```JavaScript",
+        "var encoding = require('encoding');",
+        "var hex = encoding.hex;",
+        "```",
+        "或者",
+        "```JavaScript",
+        "var hex = require('hex');",
+        "```"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "method",
+      "comments": "! @brief 以 hex 方式编码数据\n\t @param data 要编码的数据\n\t @return 返回编码的字符串\n\t ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "encode",
+      "type": "String",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "data",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "以 hex 方式编码数据",
+        "detail": [],
+        "params": [
+          {
+            "name": "data",
+            "descript": "要编码的数据",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回编码的字符串",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 以 hex 方式解码字符串为二进制数据\n\t @param data 要解码的字符串\n\t @return 返回解码的二进制数据\n\t ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "decode",
+      "type": "Buffer",
+      "params": [
+        {
+          "type": "String",
+          "name": "data",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "以 hex 方式解码字符串为二进制数据",
+        "detail": [],
+        "params": [
+          {
+            "name": "data",
+            "descript": "要解码的字符串",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回解码的二进制数据",
+          "detail": []
+        }
+      }
+    }
+  ],
+  "collect": "Encoding"
+}

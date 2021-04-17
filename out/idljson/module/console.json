@@ -1,0 +1,1746 @@
+{
+  "declare": {
+    "comments": "! @brief 控制台访问对象\n\n 全局对象。可用于提示信息，警告和错误记录。通过启动配置文件，可将日志定位到不同的设备，以便于跟踪。日志支持格式化输出，例如：\n ```JavaScript\n console.log(\"%d + %d = %d\", 100, 200, 100 + 200);\n ```\n 可以使用的格式化参数如下：\n - %s - 字符串\n - %d - 数字，包括整数和数字\n - %j - 以 JSON 格式输出对象\n - %% - 输出字符 '%' 本身\n ",
+    "type": "module",
+    "name": "console",
+    "extend": "object",
+    "module": true,
+    "doc": {
+      "descript": "控制台访问对象",
+      "detail": [
+        "全局对象。可用于提示信息，警告和错误记录。通过启动配置文件，可将日志定位到不同的设备，以便于跟踪。日志支持格式化输出，例如：",
+        "```JavaScript",
+        "console.log(\"%d + %d = %d\", 100, 200, 100 + 200);",
+        "```",
+        "可以使用的格式化参数如下：",
+        "- %s - 字符串",
+        "- %d - 数字，包括整数和数字",
+        "- %j - 以 JSON 格式输出对象",
+        "- %% - 输出字符 '%' 本身"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "const",
+      "comments": "! @brief loglevel 级别常量 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "FATAL",
+      "default": {
+        "value": "0"
+      },
+      "doc": {
+        "descript": "loglevel 级别常量",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief loglevel 级别常量 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "ALERT",
+      "default": {
+        "value": "1"
+      },
+      "doc": {
+        "descript": "loglevel 级别常量",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief loglevel 级别常量 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "CRIT",
+      "default": {
+        "value": "2"
+      },
+      "doc": {
+        "descript": "loglevel 级别常量",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief loglevel 级别常量 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "ERROR",
+      "default": {
+        "value": "3"
+      },
+      "doc": {
+        "descript": "loglevel 级别常量",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief loglevel 级别常量 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "WARN",
+      "default": {
+        "value": "4"
+      },
+      "doc": {
+        "descript": "loglevel 级别常量",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief loglevel 级别常量 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "NOTICE",
+      "default": {
+        "value": "5"
+      },
+      "doc": {
+        "descript": "loglevel 级别常量",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief loglevel 级别常量 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "INFO",
+      "default": {
+        "value": "6"
+      },
+      "doc": {
+        "descript": "loglevel 级别常量",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief loglevel 级别常量 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "DEBUG",
+      "default": {
+        "value": "7"
+      },
+      "doc": {
+        "descript": "loglevel 级别常量",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief loglevel 仅用于输出，信息输出后不换行，file 和 syslog 不保存此级别信息 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "PRINT",
+      "default": {
+        "value": "9"
+      },
+      "doc": {
+        "descript": "loglevel 仅用于输出，信息输出后不换行，file 和 syslog 不保存此级别信息",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief loglevel 级别常量 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "NOTSET",
+      "default": {
+        "value": "10"
+      },
+      "doc": {
+        "descript": "loglevel 级别常量",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 输出级别，用以过滤输出信息，缺省为 NOTSET，全部输出。信息过滤之后才会输出给 add 设定的各个设备。\n     ",
+      "deprecated": null,
+      "static": "static",
+      "readonly": null,
+      "name": "loglevel",
+      "type": "Integer",
+      "doc": {
+        "descript": "输出级别，用以过滤输出信息，缺省为 NOTSET，全部输出。信息过滤之后才会输出给 add 设定的各个设备。",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询终端每行字符数 ",
+      "deprecated": null,
+      "static": "static",
+      "readonly": "readonly",
+      "name": "width",
+      "type": "Integer",
+      "doc": {
+        "descript": "查询终端每行字符数",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询终端行数 ",
+      "deprecated": null,
+      "static": "static",
+      "readonly": "readonly",
+      "name": "height",
+      "type": "Integer",
+      "doc": {
+        "descript": "查询终端行数",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 添加 console 输出系统，支持的设备为 console, syslog, event，最多可以添加 10 个输出\n\n     通过配置 console，可以将程序输出和系统错误发往不同设备，用于运行环境信息收集。\n\n     type 为配置，为设备名称字符串：\n\n     ```JavaScript\n     console.add(\"console\");\n     ```\n\n     syslog 仅在 posix 平台有效：\n     ```JavaScript\n     console.add(\"syslog\");\n     ```\n\n     event 仅在 windows 平台有效：\n     ```JavaScript\n     console.add(\"event\");\n     ```\n\n     @param type 输出设备\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "add",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "type",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "添加 console 输出系统，支持的设备为 console, syslog, event，最多可以添加 10 个输出",
+        "detail": [
+          "通过配置 console，可以将程序输出和系统错误发往不同设备，用于运行环境信息收集。",
+          "",
+          "type 为配置，为设备名称字符串：",
+          "",
+          "```JavaScript",
+          "console.add(\"console\");",
+          "```",
+          "",
+          "syslog 仅在 posix 平台有效：",
+          "```JavaScript",
+          "console.add(\"syslog\");",
+          "```",
+          "",
+          "event 仅在 windows 平台有效：",
+          "```JavaScript",
+          "console.add(\"event\");",
+          "```",
+          ""
+        ],
+        "params": [
+          {
+            "name": "type",
+            "descript": "输出设备",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 添加 console 输出系统，支持的设备为 console, syslog, event 和 file，最多可以添加 10 个输出\n\n     通过配置 console，可以将程序输出和系统错误发往不同设备，用于运行环境信息收集。\n\n     cfg 可以为一个设备配置对象：\n     ```JavaScript\n     console.add({\n        type: \"console\",\n        levels: [console.INFO, console.ERROR]  // 选项，省略则输出全部级别日志\n     });\n     ```\n\n     syslog 仅在 posix 平台有效：\n     ```JavaScript\n     console.add({\n        type: \"syslog\",\n        levels: [console.INFO, console.ERROR]\n     });\n     ```\n\n     event 仅在 windows 平台有效：\n     ```JavaScript\n     console.add({\n        type: \"event\",\n        levels: [console.INFO, console.ERROR]\n     });\n     ```\n\n     file 日志：\n     ```JavaScript\n     console.add({\n        type: \"file\",\n        levels: [console.INFO, console.ERROR],\n        // 必选项，指定日志输出文件，可使用 s% 指定插入日期位置，不指定则添加在结尾\n        path: \"path/to/file_%s.log\",\n        // 选项，可选值为 \"day\", \"hour\", \"minute\", \"###k\", \"###m\", \"###g\"，缺省为 \"1m\"\n        split: \"30m\",\n        // 选项，可选范围为 2-128，缺省为 128\n        count: 10\n     });\n     ```\n\n     @param cfg 输出配置\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "add",
+      "type": null,
+      "params": [
+        {
+          "type": "Object",
+          "name": "cfg",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "添加 console 输出系统，支持的设备为 console, syslog, event 和 file，最多可以添加 10 个输出",
+        "detail": [
+          "通过配置 console，可以将程序输出和系统错误发往不同设备，用于运行环境信息收集。",
+          "",
+          "cfg 可以为一个设备配置对象：",
+          "```JavaScript",
+          "console.add({",
+          "   type: \"console\",",
+          "   levels: [console.INFO, console.ERROR]  // 选项，省略则输出全部级别日志",
+          "});",
+          "```",
+          "",
+          "syslog 仅在 posix 平台有效：",
+          "```JavaScript",
+          "console.add({",
+          "   type: \"syslog\",",
+          "   levels: [console.INFO, console.ERROR]",
+          "});",
+          "```",
+          "",
+          "event 仅在 windows 平台有效：",
+          "```JavaScript",
+          "console.add({",
+          "   type: \"event\",",
+          "   levels: [console.INFO, console.ERROR]",
+          "});",
+          "```",
+          "",
+          "file 日志：",
+          "```JavaScript",
+          "console.add({",
+          "   type: \"file\",",
+          "   levels: [console.INFO, console.ERROR],",
+          "   // 必选项，指定日志输出文件，可使用 s% 指定插入日期位置，不指定则添加在结尾",
+          "   path: \"path/to/file_%s.log\",",
+          "   // 选项，可选值为 \"day\", \"hour\", \"minute\", \"###k\", \"###m\", \"###g\"，缺省为 \"1m\"",
+          "   split: \"30m\",",
+          "   // 选项，可选范围为 2-128，缺省为 128",
+          "   count: 10",
+          "});",
+          "```",
+          ""
+        ],
+        "params": [
+          {
+            "name": "cfg",
+            "descript": "输出配置",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 批量添加 console 输出系统，支持的设备为 console, syslog, event 和 file，最多可以添加 10 个输出\n\n     通过配置 console，可以将程序输出和系统错误发往不同设备，用于运行环境信息收集。\n\n     ```JavaScript\n     console.add([\"console\", {\n        type: \"syslog\",\n        levels: [console.INFO, console.ERROR]\n     }]);\n     ```\n\n     @param cfg 输出配置数组\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "add",
+      "type": null,
+      "params": [
+        {
+          "type": "Array",
+          "name": "cfg",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "批量添加 console 输出系统，支持的设备为 console, syslog, event 和 file，最多可以添加 10 个输出",
+        "detail": [
+          "通过配置 console，可以将程序输出和系统错误发往不同设备，用于运行环境信息收集。",
+          "",
+          "```JavaScript",
+          "console.add([\"console\", {",
+          "   type: \"syslog\",",
+          "   levels: [console.INFO, console.ERROR]",
+          "}]);",
+          "```",
+          ""
+        ],
+        "params": [
+          {
+            "name": "cfg",
+            "descript": "输出配置数组",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 初始化到缺省设置，只在 console 输出信息 ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "reset",
+      "type": null,
+      "params": null,
+      "doc": {
+        "descript": "初始化到缺省设置，只在 console 输出信息",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 记录普通日志信息，与 info 等同\n\n     记录一般等级的日志信息。通常用于输出非错误性提示信息。\n     @param fmt 格式化字符串\n     @param args 可选参数列表\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "log",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "fmt",
+          "default": null
+        },
+        {
+          "type": "...",
+          "name": "args",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "记录普通日志信息，与 info 等同",
+        "detail": [
+          "记录一般等级的日志信息。通常用于输出非错误性提示信息。"
+        ],
+        "params": [
+          {
+            "name": "fmt",
+            "descript": "格式化字符串",
+            "detail": []
+          },
+          {
+            "name": "args",
+            "descript": "可选参数列表",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 记录普通日志信息，与 info 等同\n\n     记录一般等级的日志信息。通常用于输出非错误性提示信息。\n     @param args 可选参数列表\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "log",
+      "type": null,
+      "params": [
+        {
+          "type": "...",
+          "name": "args",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "记录普通日志信息，与 info 等同",
+        "detail": [
+          "记录一般等级的日志信息。通常用于输出非错误性提示信息。"
+        ],
+        "params": [
+          {
+            "name": "args",
+            "descript": "可选参数列表",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 记录调试日志信息\n\n     记录调试日志信息。通常用于输出调试信息。不重要。\n     @param fmt 格式化字符串\n     @param args 可选参数列表\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "debug",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "fmt",
+          "default": null
+        },
+        {
+          "type": "...",
+          "name": "args",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "记录调试日志信息",
+        "detail": [
+          "记录调试日志信息。通常用于输出调试信息。不重要。"
+        ],
+        "params": [
+          {
+            "name": "fmt",
+            "descript": "格式化字符串",
+            "detail": []
+          },
+          {
+            "name": "args",
+            "descript": "可选参数列表",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 记录调试日志信息\n\n     记录调试日志信息。通常用于输出调试信息。不重要。\n     @param args 可选参数列表\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "debug",
+      "type": null,
+      "params": [
+        {
+          "type": "...",
+          "name": "args",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "记录调试日志信息",
+        "detail": [
+          "记录调试日志信息。通常用于输出调试信息。不重要。"
+        ],
+        "params": [
+          {
+            "name": "args",
+            "descript": "可选参数列表",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 记录普通日志信息，与 log 等同\n\n     记录一般等级的日志信息。通常用于输出非错误性提示信息。\n     @param fmt 格式化字符串\n     @param args 可选参数列表\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "info",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "fmt",
+          "default": null
+        },
+        {
+          "type": "...",
+          "name": "args",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "记录普通日志信息，与 log 等同",
+        "detail": [
+          "记录一般等级的日志信息。通常用于输出非错误性提示信息。"
+        ],
+        "params": [
+          {
+            "name": "fmt",
+            "descript": "格式化字符串",
+            "detail": []
+          },
+          {
+            "name": "args",
+            "descript": "可选参数列表",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 记录普通日志信息，与 log 等同\n\n     记录一般等级的日志信息。通常用于输出非错误性提示信息。\n     @param args 可选参数列表\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "info",
+      "type": null,
+      "params": [
+        {
+          "type": "...",
+          "name": "args",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "记录普通日志信息，与 log 等同",
+        "detail": [
+          "记录一般等级的日志信息。通常用于输出非错误性提示信息。"
+        ],
+        "params": [
+          {
+            "name": "args",
+            "descript": "可选参数列表",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 记录警告日志信息\n\n     记录警告日志信息。通常用于输出提示性调试信息。一般重要。\n     @param fmt 格式化字符串\n     @param args 可选参数列表\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "notice",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "fmt",
+          "default": null
+        },
+        {
+          "type": "...",
+          "name": "args",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "记录警告日志信息",
+        "detail": [
+          "记录警告日志信息。通常用于输出提示性调试信息。一般重要。"
+        ],
+        "params": [
+          {
+            "name": "fmt",
+            "descript": "格式化字符串",
+            "detail": []
+          },
+          {
+            "name": "args",
+            "descript": "可选参数列表",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 记录警告日志信息\n\n     记录警告日志信息。通常用于输出提示性调试信息。一般重要。\n     @param args 可选参数列表\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "notice",
+      "type": null,
+      "params": [
+        {
+          "type": "...",
+          "name": "args",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "记录警告日志信息",
+        "detail": [
+          "记录警告日志信息。通常用于输出提示性调试信息。一般重要。"
+        ],
+        "params": [
+          {
+            "name": "args",
+            "descript": "可选参数列表",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 记录警告日志信息\n\n     记录警告日志信息。通常用于输出警告性调试信息。重要。\n     @param fmt 格式化字符串\n     @param args 可选参数列表\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "warn",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "fmt",
+          "default": null
+        },
+        {
+          "type": "...",
+          "name": "args",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "记录警告日志信息",
+        "detail": [
+          "记录警告日志信息。通常用于输出警告性调试信息。重要。"
+        ],
+        "params": [
+          {
+            "name": "fmt",
+            "descript": "格式化字符串",
+            "detail": []
+          },
+          {
+            "name": "args",
+            "descript": "可选参数列表",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 记录警告日志信息\n\n     记录警告日志信息。通常用于输出警告性调试信息。重要。\n     @param args 可选参数列表\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "warn",
+      "type": null,
+      "params": [
+        {
+          "type": "...",
+          "name": "args",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "记录警告日志信息",
+        "detail": [
+          "记录警告日志信息。通常用于输出警告性调试信息。重要。"
+        ],
+        "params": [
+          {
+            "name": "args",
+            "descript": "可选参数列表",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 记录错误日志信息\n\n     记录用于错误日志信息。通常用于输出错误信息。非常重要。系统的出错信息也会以此等级记录。\n     @param fmt 格式化字符串\n     @param args 可选参数列表\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "error",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "fmt",
+          "default": null
+        },
+        {
+          "type": "...",
+          "name": "args",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "记录错误日志信息",
+        "detail": [
+          "记录用于错误日志信息。通常用于输出错误信息。非常重要。系统的出错信息也会以此等级记录。"
+        ],
+        "params": [
+          {
+            "name": "fmt",
+            "descript": "格式化字符串",
+            "detail": []
+          },
+          {
+            "name": "args",
+            "descript": "可选参数列表",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 记录错误日志信息\n\n     记录用于错误日志信息。通常用于输出错误信息。非常重要。系统的出错信息也会以此等级记录。\n     @param args 可选参数列表\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "error",
+      "type": null,
+      "params": [
+        {
+          "type": "...",
+          "name": "args",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "记录错误日志信息",
+        "detail": [
+          "记录用于错误日志信息。通常用于输出错误信息。非常重要。系统的出错信息也会以此等级记录。"
+        ],
+        "params": [
+          {
+            "name": "args",
+            "descript": "可选参数列表",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 记录关键错误日志信息\n\n     记录用于关键错误日志信息。通常用于输出关键错误信息。非常重要。\n     @param fmt 格式化字符串\n     @param args 可选参数列表\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "crit",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "fmt",
+          "default": null
+        },
+        {
+          "type": "...",
+          "name": "args",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "记录关键错误日志信息",
+        "detail": [
+          "记录用于关键错误日志信息。通常用于输出关键错误信息。非常重要。"
+        ],
+        "params": [
+          {
+            "name": "fmt",
+            "descript": "格式化字符串",
+            "detail": []
+          },
+          {
+            "name": "args",
+            "descript": "可选参数列表",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 记录关键错误日志信息\n\n     记录用于关键错误日志信息。通常用于输出关键错误信息。非常重要。\n     @param args 可选参数列表\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "crit",
+      "type": null,
+      "params": [
+        {
+          "type": "...",
+          "name": "args",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "记录关键错误日志信息",
+        "detail": [
+          "记录用于关键错误日志信息。通常用于输出关键错误信息。非常重要。"
+        ],
+        "params": [
+          {
+            "name": "args",
+            "descript": "可选参数列表",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 记录警报错误日志信息\n\n     记录用于警报错误日志信息。通常用于输出警报错误信息。非常重要。为最高级别信息。\n     @param fmt 格式化字符串\n     @param args 可选参数列表\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "alert",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "fmt",
+          "default": null
+        },
+        {
+          "type": "...",
+          "name": "args",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "记录警报错误日志信息",
+        "detail": [
+          "记录用于警报错误日志信息。通常用于输出警报错误信息。非常重要。为最高级别信息。"
+        ],
+        "params": [
+          {
+            "name": "fmt",
+            "descript": "格式化字符串",
+            "detail": []
+          },
+          {
+            "name": "args",
+            "descript": "可选参数列表",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 记录警报错误日志信息\n\n     记录用于警报错误日志信息。通常用于输出警报错误信息。非常重要。为最高级别信息。\n     @param args 可选参数列表\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "alert",
+      "type": null,
+      "params": [
+        {
+          "type": "...",
+          "name": "args",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "记录警报错误日志信息",
+        "detail": [
+          "记录用于警报错误日志信息。通常用于输出警报错误信息。非常重要。为最高级别信息。"
+        ],
+        "params": [
+          {
+            "name": "args",
+            "descript": "可选参数列表",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 用 JSON 格式输出对象\n     @param obj 给定要显示的对象\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "dir",
+      "type": null,
+      "params": [
+        {
+          "type": "Value",
+          "name": "obj",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "用 JSON 格式输出对象",
+        "detail": [],
+        "params": [
+          {
+            "name": "obj",
+            "descript": "给定要显示的对象",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 启动一个计时器\n\n     @param label 标题，缺省为空字符串。\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "time",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "label",
+          "default": {
+            "value": "\"time\""
+          }
+        }
+      ],
+      "doc": {
+        "descript": "启动一个计时器",
+        "detail": [],
+        "params": [
+          {
+            "name": "label",
+            "descript": "标题，缺省为空字符串。",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 输出指定计时器当前计时值\n\n     @param label 标题，缺省为空字符串。\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "timeElapse",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "label",
+          "default": {
+            "value": "\"time\""
+          }
+        }
+      ],
+      "doc": {
+        "descript": "输出指定计时器当前计时值",
+        "detail": [],
+        "params": [
+          {
+            "name": "label",
+            "descript": "标题，缺省为空字符串。",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 结束指定计时器，并输出最后计时值\n\n     @param label 标题，缺省为空字符串。\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "timeEnd",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "label",
+          "default": {
+            "value": "\"time\""
+          }
+        }
+      ],
+      "doc": {
+        "descript": "结束指定计时器，并输出最后计时值",
+        "detail": [],
+        "params": [
+          {
+            "name": "label",
+            "descript": "标题，缺省为空字符串。",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 输出当前调用堆栈\n\n     通过日志输出当前调用堆栈。\n     @param label 标题，缺省为空字符串。\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "trace",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "label",
+          "default": {
+            "value": "\"trace\""
+          }
+        }
+      ],
+      "doc": {
+        "descript": "输出当前调用堆栈",
+        "detail": [
+          "通过日志输出当前调用堆栈。"
+        ],
+        "params": [
+          {
+            "name": "label",
+            "descript": "标题，缺省为空字符串。",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 断言测试，如果测试值为假，则报错\n     @param value 测试的数值\n     @param msg 报错信息\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "assert",
+      "type": null,
+      "params": [
+        {
+          "type": "Value",
+          "name": "value",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "msg",
+          "default": {
+            "value": "\"\""
+          }
+        }
+      ],
+      "doc": {
+        "descript": "断言测试，如果测试值为假，则报错",
+        "detail": [],
+        "params": [
+          {
+            "name": "value",
+            "descript": "测试的数值",
+            "detail": []
+          },
+          {
+            "name": "msg",
+            "descript": "报错信息",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 向控制台输出格式化文本，输出内容不会记入日志系统，输出文本后不会自动换行，可连续输出\n     @param fmt 格式化字符串\n     @param args 可选参数列表\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "print",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "fmt",
+          "default": null
+        },
+        {
+          "type": "...",
+          "name": "args",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "向控制台输出格式化文本，输出内容不会记入日志系统，输出文本后不会自动换行，可连续输出",
+        "detail": [],
+        "params": [
+          {
+            "name": "fmt",
+            "descript": "格式化字符串",
+            "detail": []
+          },
+          {
+            "name": "args",
+            "descript": "可选参数列表",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 向控制台输出格式化文本，输出内容不会记入日志系统，输出文本后不会自动换行，可连续输出\n     @param args 可选参数列表\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "print",
+      "type": null,
+      "params": [
+        {
+          "type": "...",
+          "name": "args",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "向控制台输出格式化文本，输出内容不会记入日志系统，输出文本后不会自动换行，可连续输出",
+        "detail": [],
+        "params": [
+          {
+            "name": "args",
+            "descript": "可选参数列表",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 移动控制台光标到指定位置\n     @param row 指定新光标的行坐标\n     @param column 指定新光标的列坐标\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "moveTo",
+      "type": null,
+      "params": [
+        {
+          "type": "Integer",
+          "name": "row",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "column",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "移动控制台光标到指定位置",
+        "detail": [],
+        "params": [
+          {
+            "name": "row",
+            "descript": "指定新光标的行坐标",
+            "detail": []
+          },
+          {
+            "name": "column",
+            "descript": "指定新光标的列坐标",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 隐藏控制台光标 ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "hideCursor",
+      "type": null,
+      "params": null,
+      "doc": {
+        "descript": "隐藏控制台光标",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 显示控制台光标 ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "showCursor",
+      "type": null,
+      "params": null,
+      "doc": {
+        "descript": "显示控制台光标",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 清除控制台 ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "clear",
+      "type": null,
+      "params": null,
+      "doc": {
+        "descript": "清除控制台",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 按下一个按键\n\n     参数 key 可以使用字符串传入功能键：\n     - 功能键：f1 - f12\n     - 方向键：up, down,left, right, home, end, pageup, pagedown\n     - 编辑键：backspace, delete, insert, enter, tab, escape, space\n     - 控制键：control, alt, shift, command\n     @param key 指定按键，单字符直接传入，功能键传入名称\n     @param modifier 指定控制键，可以为：control, alt, shift, command\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "keyDown",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "key",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "modifier",
+          "default": {
+            "value": "\"\""
+          }
+        }
+      ],
+      "doc": {
+        "descript": "按下一个按键",
+        "detail": [
+          "参数 key 可以使用字符串传入功能键：",
+          "- 功能键：f1 - f12",
+          "- 方向键：up, down,left, right, home, end, pageup, pagedown",
+          "- 编辑键：backspace, delete, insert, enter, tab, escape, space",
+          "- 控制键：control, alt, shift, command"
+        ],
+        "params": [
+          {
+            "name": "key",
+            "descript": "指定按键，单字符直接传入，功能键传入名称",
+            "detail": []
+          },
+          {
+            "name": "modifier",
+            "descript": "指定控制键，可以为：control, alt, shift, command",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 按下一个按键\n\n     参数 key 可以使用字符串传入功能键：\n     - 功能键：f1 - f12\n     - 方向键：up, down,left, right, home, end, pageup, pagedown\n     - 编辑键：backspace, delete, insert, enter, tab, escape, space\n     - 控制键：control, alt, shift, command\n     @param key 指定按键，单字符直接传入，功能键传入名称\n     @param modifier 指定控制键数组，可以为：control, alt, shift, command\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "keyDown",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "key",
+          "default": null
+        },
+        {
+          "type": "Array",
+          "name": "modifier",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "按下一个按键",
+        "detail": [
+          "参数 key 可以使用字符串传入功能键：",
+          "- 功能键：f1 - f12",
+          "- 方向键：up, down,left, right, home, end, pageup, pagedown",
+          "- 编辑键：backspace, delete, insert, enter, tab, escape, space",
+          "- 控制键：control, alt, shift, command"
+        ],
+        "params": [
+          {
+            "name": "key",
+            "descript": "指定按键，单字符直接传入，功能键传入名称",
+            "detail": []
+          },
+          {
+            "name": "modifier",
+            "descript": "指定控制键数组，可以为：control, alt, shift, command",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 松开一个按键\n\n     参数 key 可以使用字符串传入功能键：\n     - 功能键：f1 - f12\n     - 方向键：up, down,left, right, home, end, pageup, pagedown\n     - 编辑键：backspace, delete, insert, enter, tab, escape, space\n     - 控制键：control, alt, shift, command\n     @param key 指定按键，单字符直接传入，功能键传入名称\n     @param modifier 指定控制键，可以为：control, alt, shift, command\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "keyUp",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "key",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "modifier",
+          "default": {
+            "value": "\"\""
+          }
+        }
+      ],
+      "doc": {
+        "descript": "松开一个按键",
+        "detail": [
+          "参数 key 可以使用字符串传入功能键：",
+          "- 功能键：f1 - f12",
+          "- 方向键：up, down,left, right, home, end, pageup, pagedown",
+          "- 编辑键：backspace, delete, insert, enter, tab, escape, space",
+          "- 控制键：control, alt, shift, command"
+        ],
+        "params": [
+          {
+            "name": "key",
+            "descript": "指定按键，单字符直接传入，功能键传入名称",
+            "detail": []
+          },
+          {
+            "name": "modifier",
+            "descript": "指定控制键，可以为：control, alt, shift, command",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 松开一个按键\n\n     参数 key 可以使用字符串传入功能键：\n     - 功能键：f1 - f12\n     - 方向键：up, down,left, right, home, end, pageup, pagedown\n     - 编辑键：backspace, delete, insert, enter, tab, escape, space\n     - 控制键：control, alt, shift, command\n     @param key 指定按键，单字符直接传入，功能键传入名称\n     @param modifier 指定控制键数组，可以为：control, alt, shift, command\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "keyUp",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "key",
+          "default": null
+        },
+        {
+          "type": "Array",
+          "name": "modifier",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "松开一个按键",
+        "detail": [
+          "参数 key 可以使用字符串传入功能键：",
+          "- 功能键：f1 - f12",
+          "- 方向键：up, down,left, right, home, end, pageup, pagedown",
+          "- 编辑键：backspace, delete, insert, enter, tab, escape, space",
+          "- 控制键：control, alt, shift, command"
+        ],
+        "params": [
+          {
+            "name": "key",
+            "descript": "指定按键，单字符直接传入，功能键传入名称",
+            "detail": []
+          },
+          {
+            "name": "modifier",
+            "descript": "指定控制键数组，可以为：control, alt, shift, command",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 点击并松开一个按键\n\n     参数 key 可以使用字符串传入功能键：\n     - 功能键：f1 - f12\n     - 方向键：up, down,left, right, home, end, pageup, pagedown\n     - 编辑键：backspace, delete, insert, enter, tab, escape, space\n     - 控制键：control, alt, shift, command\n     @param key 指定按键，单字符直接传入，功能键传入名称\n     @param modifier 指定控制键，可以为：control, alt, shift, command\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "keyTap",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "key",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "modifier",
+          "default": {
+            "value": "\"\""
+          }
+        }
+      ],
+      "doc": {
+        "descript": "点击并松开一个按键",
+        "detail": [
+          "参数 key 可以使用字符串传入功能键：",
+          "- 功能键：f1 - f12",
+          "- 方向键：up, down,left, right, home, end, pageup, pagedown",
+          "- 编辑键：backspace, delete, insert, enter, tab, escape, space",
+          "- 控制键：control, alt, shift, command"
+        ],
+        "params": [
+          {
+            "name": "key",
+            "descript": "指定按键，单字符直接传入，功能键传入名称",
+            "detail": []
+          },
+          {
+            "name": "modifier",
+            "descript": "指定控制键，可以为：control, alt, shift, command",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 点击并松开一个按键\n\n     参数 key 可以使用字符串传入功能键：\n     - 功能键：f1 - f12\n     - 方向键：up, down,left, right, home, end, pageup, pagedown\n     - 编辑键：backspace, delete, insert, enter, tab, escape, space\n     - 控制键：control, alt, shift, command\n     @param key 指定按键，单字符直接传入，功能键传入名称\n     @param modifier 指定控制键数组，可以为：control, alt, shift, command\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "keyTap",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "key",
+          "default": null
+        },
+        {
+          "type": "Array",
+          "name": "modifier",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "点击并松开一个按键",
+        "detail": [
+          "参数 key 可以使用字符串传入功能键：",
+          "- 功能键：f1 - f12",
+          "- 方向键：up, down,left, right, home, end, pageup, pagedown",
+          "- 编辑键：backspace, delete, insert, enter, tab, escape, space",
+          "- 控制键：control, alt, shift, command"
+        ],
+        "params": [
+          {
+            "name": "key",
+            "descript": "指定按键，单字符直接传入，功能键传入名称",
+            "detail": []
+          },
+          {
+            "name": "modifier",
+            "descript": "指定控制键数组，可以为：control, alt, shift, command",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 输入一个字符串\n     @param text 指定输入的字符串\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "typeString",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "text",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "输入一个字符串",
+        "detail": [],
+        "params": [
+          {
+            "name": "text",
+            "descript": "指定输入的字符串",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 移动鼠标到指定的位置\n     @param x 指定 x 坐标\n     @param y 指定 y 坐标\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "moveMouse",
+      "type": null,
+      "params": [
+        {
+          "type": "Integer",
+          "name": "x",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "y",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "移动鼠标到指定的位置",
+        "detail": [],
+        "params": [
+          {
+            "name": "x",
+            "descript": "指定 x 坐标",
+            "detail": []
+          },
+          {
+            "name": "y",
+            "descript": "指定 y 坐标",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 按下一个鼠标键\n     @param button 指定鼠标键名称，允许值为: left, right, moddle\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "mouseUp",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "button",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "按下一个鼠标键",
+        "detail": [],
+        "params": [
+          {
+            "name": "button",
+            "descript": "指定鼠标键名称，允许值为: left, right, moddle",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 放开一个鼠标键\n     @param button 指定鼠标键名称，允许值为: left, right, moddle\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "mouseDown",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "button",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "放开一个鼠标键",
+        "detail": [],
+        "params": [
+          {
+            "name": "button",
+            "descript": "指定鼠标键名称，允许值为: left, right, moddle",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 点击一个鼠标键\n     @param button 指定鼠标键名称，允许值为: left, right, moddle\n     @param dbclick 指定是否双击，缺省为 false\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "clickMouse",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "button",
+          "default": null
+        },
+        {
+          "type": "Boolean",
+          "name": "dbclick",
+          "default": {
+            "value": "false"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "点击一个鼠标键",
+        "detail": [],
+        "params": [
+          {
+            "name": "button",
+            "descript": "指定鼠标键名称，允许值为: left, right, moddle",
+            "detail": []
+          },
+          {
+            "name": "dbclick",
+            "descript": "指定是否双击，缺省为 false",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 从控制台读取用户输入\n     @param msg 提示信息\n     @return 返回用户输入的信息\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": "async",
+      "name": "readLine",
+      "type": "String",
+      "params": [
+        {
+          "type": "String",
+          "name": "msg",
+          "default": {
+            "value": "\"\""
+          }
+        }
+      ],
+      "doc": {
+        "descript": "从控制台读取用户输入",
+        "detail": [],
+        "params": [
+          {
+            "name": "msg",
+            "descript": "提示信息",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回用户输入的信息",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 从控制台读取用户输入的密码\n     @param msg 提示信息\n     @return 返回用户输入的密码\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": "async",
+      "name": "getpass",
+      "type": "String",
+      "params": [
+        {
+          "type": "String",
+          "name": "msg",
+          "default": {
+            "value": "\"\""
+          }
+        }
+      ],
+      "doc": {
+        "descript": "从控制台读取用户输入的密码",
+        "detail": [],
+        "params": [
+          {
+            "name": "msg",
+            "descript": "提示信息",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回用户输入的密码",
+          "detail": []
+        }
+      }
+    }
+  ],
+  "collect": "System"
+}

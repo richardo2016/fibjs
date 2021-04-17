@@ -1,0 +1,600 @@
+{
+  "declare": {
+    "comments": "! @brief 安全沙箱对象，用于管理一个独立的运行空间\n\n  所有的代码都运行在自己的沙箱中，全局的 require 会调用当前沙箱加载模块，沙箱会通过 require 传递给加载的沙箱。下面的示例创建一个沙箱，限制只允许访问全局基础模块中的 assert 模块，并添加 a 和 b 两个定制模块：\n ```JavaScript\n var vm = require('vm');\n var sbox = new vm.SandBox({\n   a: 100,\n   b: 200,\n   assert: require('assert')\n });\n\n var mod_in_sbox = sbox.require('./path/to/mod');\n ```\n ",
+    "type": "interface",
+    "name": "SandBox",
+    "extend": "object",
+    "doc": {
+      "descript": "安全沙箱对象，用于管理一个独立的运行空间",
+      "detail": [
+        " 所有的代码都运行在自己的沙箱中，全局的 require 会调用当前沙箱加载模块，沙箱会通过 require 传递给加载的沙箱。下面的示例创建一个沙箱，限制只允许访问全局基础模块中的 assert 模块，并添加 a 和 b 两个定制模块：",
+        "```JavaScript",
+        "var vm = require('vm');",
+        "var sbox = new vm.SandBox({",
+        "  a: 100,",
+        "  b: 200,",
+        "  assert: require('assert')",
+        "});",
+        "",
+        "var mod_in_sbox = sbox.require('./path/to/mod');",
+        "```"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "method",
+      "comments": "! @brief 构造一个新的安全沙箱对象，并初始化基础模块\n     @param mods 指定要添加的模块对象字典\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "SandBox",
+      "type": null,
+      "params": [
+        {
+          "type": "Object",
+          "name": "mods",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "构造一个新的安全沙箱对象，并初始化基础模块",
+        "detail": [],
+        "params": [
+          {
+            "name": "mods",
+            "descript": "指定要添加的模块对象字典",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 构造一个新的安全沙箱对象，并初始化基础模块\n     @param mods 指定要添加的模块对象字典\n     @param require 自定义 require 函数，当模块不存在时，先调用自定义函数，无返回再从文件中加载\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "SandBox",
+      "type": null,
+      "params": [
+        {
+          "type": "Object",
+          "name": "mods",
+          "default": null
+        },
+        {
+          "type": "Function",
+          "name": "require",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "构造一个新的安全沙箱对象，并初始化基础模块",
+        "detail": [],
+        "params": [
+          {
+            "name": "mods",
+            "descript": "指定要添加的模块对象字典",
+            "detail": []
+          },
+          {
+            "name": "require",
+            "descript": "自定义 require 函数，当模块不存在时，先调用自定义函数，无返回再从文件中加载",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 构造一个独立 Global 新的安全沙箱对象，并初始化基础模块\n     @param mods 指定要添加的模块对象字典\n     @param global 指定初始化的 Global 属性\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "SandBox",
+      "type": null,
+      "params": [
+        {
+          "type": "Object",
+          "name": "mods",
+          "default": null
+        },
+        {
+          "type": "Object",
+          "name": "global",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "构造一个独立 Global 新的安全沙箱对象，并初始化基础模块",
+        "detail": [],
+        "params": [
+          {
+            "name": "mods",
+            "descript": "指定要添加的模块对象字典",
+            "detail": []
+          },
+          {
+            "name": "global",
+            "descript": "指定初始化的 Global 属性",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 构造一个独立 Global 新的安全沙箱对象，并初始化基础模块\n     @param mods 指定要添加的模块对象字典\n     @param require 自定义 require 函数，当模块不存在时，先调用自定义函数，无返回再从文件中加载\n     @param global 指定初始化的 Global 属性\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "SandBox",
+      "type": null,
+      "params": [
+        {
+          "type": "Object",
+          "name": "mods",
+          "default": null
+        },
+        {
+          "type": "Function",
+          "name": "require",
+          "default": null
+        },
+        {
+          "type": "Object",
+          "name": "global",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "构造一个独立 Global 新的安全沙箱对象，并初始化基础模块",
+        "detail": [],
+        "params": [
+          {
+            "name": "mods",
+            "descript": "指定要添加的模块对象字典",
+            "detail": []
+          },
+          {
+            "name": "require",
+            "descript": "自定义 require 函数，当模块不存在时，先调用自定义函数，无返回再从文件中加载",
+            "detail": []
+          },
+          {
+            "name": "global",
+            "descript": "指定初始化的 Global 属性",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 向沙箱中添加一个基础模块\n     @param id 指定要添加的模块名称，此路径与当前运行脚本无关，必须为绝对路径或者模块名\n     @param mod 指定要添加的模块对象\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "add",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "id",
+          "default": null
+        },
+        {
+          "type": "Value",
+          "name": "mod",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "向沙箱中添加一个基础模块",
+        "detail": [],
+        "params": [
+          {
+            "name": "id",
+            "descript": "指定要添加的模块名称，此路径与当前运行脚本无关，必须为绝对路径或者模块名",
+            "detail": []
+          },
+          {
+            "name": "mod",
+            "descript": "指定要添加的模块对象",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 向沙箱中添加一组基础模块\n     @param mods 指定要添加的模块对象字典，添加的 javascript 模块将会生成一份复制，以避免沙箱修改对象产生互相干扰\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "add",
+      "type": null,
+      "params": [
+        {
+          "type": "Object",
+          "name": "mods",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "向沙箱中添加一组基础模块",
+        "detail": [],
+        "params": [
+          {
+            "name": "mods",
+            "descript": "指定要添加的模块对象字典，添加的 javascript 模块将会生成一份复制，以避免沙箱修改对象产生互相干扰",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 向沙箱中添加一个脚本模块\n     @param srcname 指定要添加的脚本名称，srcname 必须包含扩展名，比如 json 或者 js, jsc\n     @param script 指定要添加的二进制代码\n     @return 返回加载的模块对象\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "addScript",
+      "type": "Value",
+      "params": [
+        {
+          "type": "String",
+          "name": "srcname",
+          "default": null
+        },
+        {
+          "type": "Buffer",
+          "name": "script",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "向沙箱中添加一个脚本模块",
+        "detail": [],
+        "params": [
+          {
+            "name": "srcname",
+            "descript": "指定要添加的脚本名称，srcname 必须包含扩展名，比如 json 或者 js, jsc",
+            "detail": []
+          },
+          {
+            "name": "script",
+            "descript": "指定要添加的二进制代码",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回加载的模块对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 从沙箱中删除指定的基础模块\n     @param id 指定要删除的模块名称，此路径与当前运行脚本无关，必须为绝对路径或者模块名\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "remove",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "id",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "从沙箱中删除指定的基础模块",
+        "detail": [],
+        "params": [
+          {
+            "name": "id",
+            "descript": "指定要删除的模块名称，此路径与当前运行脚本无关，必须为绝对路径或者模块名",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 从沙箱中检测基础模块是否存在\n     @param id 指定要检测的模块名称，此路径与当前运行脚本无关，必须为绝对路径或者模块名\n     @return 是否存在\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "has",
+      "type": "Boolean",
+      "params": [
+        {
+          "type": "String",
+          "name": "id",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "从沙箱中检测基础模块是否存在",
+        "detail": [],
+        "params": [
+          {
+            "name": "id",
+            "descript": "指定要检测的模块名称，此路径与当前运行脚本无关，必须为绝对路径或者模块名",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "是否存在",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 复制当前沙箱，新沙箱包含当前沙箱的模块，以及相同的名称和 require 函数\n     @return 复制的新沙箱\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "clone",
+      "type": "SandBox",
+      "params": null,
+      "doc": {
+        "descript": "复制当前沙箱，新沙箱包含当前沙箱的模块，以及相同的名称和 require 函数",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "复制的新沙箱",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 冻结当前沙箱，冻结后的沙箱，对 global 所做的修改将被忽略 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "freeze",
+      "type": null,
+      "params": null,
+      "doc": {
+        "descript": "冻结当前沙箱，冻结后的沙箱，对 global 所做的修改将被忽略",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 重新加载沙箱内的模块，此操作只会重新初始化模块，复位模块内的变量，不更新模块代码 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "refresh",
+      "type": null,
+      "params": null,
+      "doc": {
+        "descript": "重新加载沙箱内的模块，此操作只会重新初始化模块，复位模块内的变量，不更新模块代码",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 运行一个脚本\n     @param fname 指定要运行的脚本路径，此路径与当前运行脚本无关，必须为绝对路径\n     @param argv 指定要运行的参数，此参数可在脚本内使用 argv 获取\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "run",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "fname",
+          "default": null
+        },
+        {
+          "type": "Array",
+          "name": "argv",
+          "default": {
+            "value": "v8::Array::New(isolate)"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "运行一个脚本",
+        "detail": [],
+        "params": [
+          {
+            "name": "fname",
+            "descript": "指定要运行的脚本路径，此路径与当前运行脚本无关，必须为绝对路径",
+            "detail": []
+          },
+          {
+            "name": "argv",
+            "descript": "指定要运行的参数，此参数可在脚本内使用 argv 获取",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查询一个模块并返回模块完整文件名\n     @param id 指定要加载的模块名称\n     @param base 指定查找路径\n     @return 返回加载的模块完整文件名\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "resolve",
+      "type": "String",
+      "params": [
+        {
+          "type": "String",
+          "name": "id",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "base",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "查询一个模块并返回模块完整文件名",
+        "detail": [],
+        "params": [
+          {
+            "name": "id",
+            "descript": "指定要加载的模块名称",
+            "detail": []
+          },
+          {
+            "name": "base",
+            "descript": "指定查找路径",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回加载的模块完整文件名",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 加载一个模块并返回模块对象\n     @param id 指定要加载的模块名称\n     @param base 指定查找路径\n     @return 返回加载的模块对象\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "require",
+      "type": "Value",
+      "params": [
+        {
+          "type": "String",
+          "name": "id",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "base",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "加载一个模块并返回模块对象",
+        "detail": [],
+        "params": [
+          {
+            "name": "id",
+            "descript": "指定要加载的模块名称",
+            "detail": []
+          },
+          {
+            "name": "base",
+            "descript": "指定查找路径",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回加载的模块对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 对指定的 extname 添加 compiler, extname 不可为系统内置扩展名 (包括 {'.js', '.json', '.jsc', '.wasm'}), compiler 需返回有效的 javascript 脚本.\n\n      ```JavaScript\n      var vm = require('vm');\n      var sbox = new vm.SandBox({\n      });\n\n      // 编译 typescript 脚本为 js 并加载\n      sbox.setModuleCompiler('.ts', tsCompiler);\n      var mod_ts = sbox.require('./a.ts');\n\n      // 编译 coffee 脚本为 js 并加载\n      sbox.setModuleCompiler('.coffee', cafeCompiler);\n      var mod_coffee = sbox.require('./a.coffee');\n\n      // 编译 jsx 脚本为 js 并加载\n      sbox.setModuleCompiler('.jsx', reactCompiler);\n      var mod_react = sbox.require('./a.jsx');\n\n      // 编译 yml 脚本为自定义的内容(如 API 集合) 并加载\n      sbox.setModuleCompiler('.yml', yaml2Rest)\n      sbox.setModuleCompiler('.yaml', yaml2Rest)\n\n      // 编译 markdown 为自定义的内容(如 html 字符串或 XmlDocument 对象) 并加载\n      sbox.setModuleCompiler('.md', mdCompiler)\n      sbox.setModuleCompiler('.markdown', mdCompiler)\n      ```\n\n     @param extname 指定的 extname, 必须以 '.' 开头, 且为非系统内置扩展名\n     @param compiler 编译回调函数, 所有带 extname 的文件仅会 require 一次. 该回调函数格式为 `compiler(buf, requireInfo)`, buf 为读取到的文件 Buffer, requireInfo 结构为 `{filename: string}`.\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "setModuleCompiler",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "extname",
+          "default": null
+        },
+        {
+          "type": "Function",
+          "name": "compiler",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "对指定的 extname 添加 compiler, extname 不可为系统内置扩展名 (包括 {'.js', '.json', '.jsc', '.wasm'}), compiler 需返回有效的 javascript 脚本.",
+        "detail": [
+          " ```JavaScript",
+          " var vm = require('vm');",
+          " var sbox = new vm.SandBox({",
+          " });",
+          "",
+          " // 编译 typescript 脚本为 js 并加载",
+          " sbox.setModuleCompiler('.ts', tsCompiler);",
+          " var mod_ts = sbox.require('./a.ts');",
+          "",
+          " // 编译 coffee 脚本为 js 并加载",
+          " sbox.setModuleCompiler('.coffee', cafeCompiler);",
+          " var mod_coffee = sbox.require('./a.coffee');",
+          "",
+          " // 编译 jsx 脚本为 js 并加载",
+          " sbox.setModuleCompiler('.jsx', reactCompiler);",
+          " var mod_react = sbox.require('./a.jsx');",
+          "",
+          " // 编译 yml 脚本为自定义的内容(如 API 集合) 并加载",
+          " sbox.setModuleCompiler('.yml', yaml2Rest)",
+          " sbox.setModuleCompiler('.yaml', yaml2Rest)",
+          "",
+          " // 编译 markdown 为自定义的内容(如 html 字符串或 XmlDocument 对象) 并加载",
+          " sbox.setModuleCompiler('.md', mdCompiler)",
+          " sbox.setModuleCompiler('.markdown', mdCompiler)",
+          " ```",
+          ""
+        ],
+        "params": [
+          {
+            "name": "extname",
+            "descript": "指定的 extname, 必须以 '.' 开头, 且为非系统内置扩展名",
+            "detail": []
+          },
+          {
+            "name": "compiler",
+            "descript": "编译回调函数, 所有带 extname 的文件仅会 require 一次. 该回调函数格式为 `compiler(buf, requireInfo)`, buf 为读取到的文件 Buffer, requireInfo 结构为 `{filename: string}`.",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询沙箱的 global 对象 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "global",
+      "type": "Object",
+      "doc": {
+        "descript": "查询沙箱的 global 对象",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询沙箱中现存的所有模块的字典对象\n     ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "modules",
+      "type": "Object",
+      "doc": {
+        "descript": "查询沙箱中现存的所有模块的字典对象",
+        "detail": [],
+        "params": []
+      }
+    }
+  ]
+}

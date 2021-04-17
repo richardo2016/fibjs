@@ -1,0 +1,253 @@
+{
+  "declare": {
+    "comments": "! @brief 流解码对象\n ",
+    "type": "interface",
+    "name": "StringDecoder",
+    "extend": "object",
+    "doc": {
+      "descript": "流解码对象",
+      "detail": [],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "method",
+      "comments": "! @brief 解码器构造函数\n     @param encoding 解码编码. 默认 'utf8'.\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "StringDecoder",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "encoding",
+          "default": {
+            "value": "\"utf8\""
+          }
+        }
+      ],
+      "doc": {
+        "descript": "解码器构造函数",
+        "detail": [],
+        "params": [
+          {
+            "name": "encoding",
+            "descript": "解码编码. 默认 'utf8'.",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 将内部存留的 buffer 作为字符返回。不完整的 UTF-8 和 UTF-16 字节会尝试补全。\n     @return 解码后的字符串.\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "end",
+      "type": "String",
+      "params": null,
+      "doc": {
+        "descript": "将内部存留的 buffer 作为字符返回。不完整的 UTF-8 和 UTF-16 字节会尝试补全。",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "解码后的字符串.",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 将内部存留的 buffer 作为字符返回。不完整的 UTF-8 和 UTF-16 字节会尝试补全。\n     @param buf 需要解码的 Buffer. 在执行 end 之前，会先调用 write 将 buffer 写入。\n     @return 解码后的字符串.\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "end",
+      "type": "String",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "buf",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "将内部存留的 buffer 作为字符返回。不完整的 UTF-8 和 UTF-16 字节会尝试补全。",
+        "detail": [],
+        "params": [
+          {
+            "name": "buf",
+            "descript": "需要解码的 Buffer. 在执行 end 之前，会先调用 write 将 buffer 写入。",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "解码后的字符串.",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 返回一个解码后的字符串, 确保任何非完整的末尾字符被省略此次不返回，并被存储在内部供下一次的 write 或者 end 方法使用。\n     @param  buf 需要解码的 Buffer。\n     @return 解码后的字符串.\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "write",
+      "type": "String",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "buf",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "返回一个解码后的字符串, 确保任何非完整的末尾字符被省略此次不返回，并被存储在内部供下一次的 write 或者 end 方法使用。",
+        "detail": [],
+        "params": [
+          {
+            "name": "buf",
+            "descript": "需要解码的 Buffer。",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "解码后的字符串.",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 内部使用。.\n     @param buf 需要解码的 Buffer。\n     @param offset 解码偏移量\n     @return 解码后的字符串.\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "text",
+      "type": "String",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "buf",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "offset",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "内部使用。.",
+        "detail": [],
+        "params": [
+          {
+            "name": "buf",
+            "descript": "需要解码的 Buffer。",
+            "detail": []
+          },
+          {
+            "name": "offset",
+            "descript": "解码偏移量",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "解码后的字符串.",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 内部使用。.\n     @param buf A Buffer containing the bytes to decode.\n     @return 解码后的字符串.\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "fillLast",
+      "type": "String",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "buf",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "内部使用。.",
+        "detail": [],
+        "params": [
+          {
+            "name": "buf",
+            "descript": "A Buffer containing the bytes to decode.",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "解码后的字符串.",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 内部使用。 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "lastNeed",
+      "type": "Integer",
+      "doc": {
+        "descript": "内部使用。",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 内部使用。 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "lastTotal",
+      "type": "Integer",
+      "doc": {
+        "descript": "内部使用。",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 内部使用。 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "lastChar",
+      "type": "Buffer",
+      "doc": {
+        "descript": "内部使用。",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 解码编码.内部使用。 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "encoding",
+      "type": "String",
+      "doc": {
+        "descript": "解码编码.内部使用。",
+        "detail": [],
+        "params": []
+      }
+    }
+  ]
+}

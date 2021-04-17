@@ -1,0 +1,891 @@
+{
+  "declare": {
+    "comments": "! @brief fs 模块常用常量定义模块\n\n 引用方法：\n ```JavaScript\n var constants = require('fs').constants\n ```\n ",
+    "type": "module",
+    "name": "fs_constants",
+    "extend": "object",
+    "module": true,
+    "doc": {
+      "descript": "fs 模块常用常量定义模块",
+      "detail": [
+        "引用方法：",
+        "```JavaScript",
+        "var constants = require('fs').constants",
+        "```"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "const",
+      "comments": "! @brief seek 方式常量，移动到绝对位置 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "SEEK_SET",
+      "default": {
+        "value": "0"
+      },
+      "doc": {
+        "descript": "seek 方式常量，移动到绝对位置",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief seek 方式常量，移动到当前位置的相对位置 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "SEEK_CUR",
+      "default": {
+        "value": "1"
+      },
+      "doc": {
+        "descript": "seek 方式常量，移动到当前位置的相对位置",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief seek 方式常量，移动到文件结尾的相对位置 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "SEEK_END",
+      "default": {
+        "value": "2"
+      },
+      "doc": {
+        "descript": "seek 方式常量，移动到文件结尾的相对位置",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "",
+      "deprecated": null,
+      "const": "const",
+      "name": "UV_FS_SYMLINK_DIR",
+      "default": {
+        "value": "1"
+      },
+      "doc": {
+        "descript": "",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "",
+      "deprecated": null,
+      "const": "const",
+      "name": "UV_FS_SYMLINK_JUNCTION",
+      "default": {
+        "value": "2"
+      },
+      "doc": {
+        "descript": "",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "",
+      "deprecated": null,
+      "const": "const",
+      "name": "O_RDONLY",
+      "default": {
+        "value": "0"
+      },
+      "doc": {
+        "descript": "",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "",
+      "deprecated": null,
+      "const": "const",
+      "name": "O_WRONLY",
+      "default": {
+        "value": "1"
+      },
+      "doc": {
+        "descript": "",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "",
+      "deprecated": null,
+      "const": "const",
+      "name": "O_RDWR",
+      "default": {
+        "value": "2"
+      },
+      "doc": {
+        "descript": "",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "",
+      "deprecated": null,
+      "const": "const",
+      "name": "UV_DIRENT_UNKNOWN",
+      "default": {
+        "value": "0"
+      },
+      "doc": {
+        "descript": "",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "",
+      "deprecated": null,
+      "const": "const",
+      "name": "UV_DIRENT_FILE",
+      "default": {
+        "value": "1"
+      },
+      "doc": {
+        "descript": "",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "",
+      "deprecated": null,
+      "const": "const",
+      "name": "UV_DIRENT_DIR",
+      "default": {
+        "value": "2"
+      },
+      "doc": {
+        "descript": "",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "",
+      "deprecated": null,
+      "const": "const",
+      "name": "UV_DIRENT_LINK",
+      "default": {
+        "value": "3"
+      },
+      "doc": {
+        "descript": "",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "",
+      "deprecated": null,
+      "const": "const",
+      "name": "UV_DIRENT_FIFO",
+      "default": {
+        "value": "4"
+      },
+      "doc": {
+        "descript": "",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "",
+      "deprecated": null,
+      "const": "const",
+      "name": "UV_DIRENT_SOCKET",
+      "default": {
+        "value": "5"
+      },
+      "doc": {
+        "descript": "",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "",
+      "deprecated": null,
+      "const": "const",
+      "name": "UV_DIRENT_CHAR",
+      "default": {
+        "value": "6"
+      },
+      "doc": {
+        "descript": "",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "",
+      "deprecated": null,
+      "const": "const",
+      "name": "UV_DIRENT_BLOCK",
+      "default": {
+        "value": "7"
+      },
+      "doc": {
+        "descript": "",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "",
+      "deprecated": null,
+      "const": "const",
+      "name": "S_IFMT",
+      "default": {
+        "value": "61440"
+      },
+      "doc": {
+        "descript": "",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "",
+      "deprecated": null,
+      "const": "const",
+      "name": "S_IFREG",
+      "default": {
+        "value": "32768"
+      },
+      "doc": {
+        "descript": "",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "",
+      "deprecated": null,
+      "const": "const",
+      "name": "S_IFDIR",
+      "default": {
+        "value": "16384"
+      },
+      "doc": {
+        "descript": "",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "",
+      "deprecated": null,
+      "const": "const",
+      "name": "S_IFCHR",
+      "default": {
+        "value": "8192"
+      },
+      "doc": {
+        "descript": "",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "",
+      "deprecated": null,
+      "const": "const",
+      "name": "S_IFBLK",
+      "default": {
+        "value": "24576"
+      },
+      "doc": {
+        "descript": "",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "",
+      "deprecated": null,
+      "const": "const",
+      "name": "S_IFIFO",
+      "default": {
+        "value": "4096"
+      },
+      "doc": {
+        "descript": "",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "",
+      "deprecated": null,
+      "const": "const",
+      "name": "S_IFLNK",
+      "default": {
+        "value": "40960"
+      },
+      "doc": {
+        "descript": "",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "",
+      "deprecated": null,
+      "const": "const",
+      "name": "S_IFSOCK",
+      "default": {
+        "value": "49152"
+      },
+      "doc": {
+        "descript": "",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "",
+      "deprecated": null,
+      "const": "const",
+      "name": "O_CREAT",
+      "default": {
+        "value": "512"
+      },
+      "doc": {
+        "descript": "",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "",
+      "deprecated": null,
+      "const": "const",
+      "name": "O_EXCL",
+      "default": {
+        "value": "2048"
+      },
+      "doc": {
+        "descript": "",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "",
+      "deprecated": null,
+      "const": "const",
+      "name": "UV_FS_O_FILEMAP",
+      "default": {
+        "value": "0"
+      },
+      "doc": {
+        "descript": "",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "",
+      "deprecated": null,
+      "const": "const",
+      "name": "O_NOCTTY",
+      "default": {
+        "value": "131072"
+      },
+      "doc": {
+        "descript": "",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "",
+      "deprecated": null,
+      "const": "const",
+      "name": "O_TRUNC",
+      "default": {
+        "value": "1024"
+      },
+      "doc": {
+        "descript": "",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "",
+      "deprecated": null,
+      "const": "const",
+      "name": "O_APPEND",
+      "default": {
+        "value": "8"
+      },
+      "doc": {
+        "descript": "",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "",
+      "deprecated": null,
+      "const": "const",
+      "name": "O_DIRECTORY",
+      "default": {
+        "value": "1048576"
+      },
+      "doc": {
+        "descript": "",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "",
+      "deprecated": null,
+      "const": "const",
+      "name": "O_NOFOLLOW",
+      "default": {
+        "value": "256"
+      },
+      "doc": {
+        "descript": "",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "",
+      "deprecated": null,
+      "const": "const",
+      "name": "O_SYNC",
+      "default": {
+        "value": "128"
+      },
+      "doc": {
+        "descript": "",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "",
+      "deprecated": null,
+      "const": "const",
+      "name": "O_DSYNC",
+      "default": {
+        "value": "4194304"
+      },
+      "doc": {
+        "descript": "",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "",
+      "deprecated": null,
+      "const": "const",
+      "name": "O_SYMLINK",
+      "default": {
+        "value": "2097152"
+      },
+      "doc": {
+        "descript": "",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "",
+      "deprecated": null,
+      "const": "const",
+      "name": "O_NONBLOCK",
+      "default": {
+        "value": "4"
+      },
+      "doc": {
+        "descript": "",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "",
+      "deprecated": null,
+      "const": "const",
+      "name": "S_IRWXU",
+      "default": {
+        "value": "448"
+      },
+      "doc": {
+        "descript": "",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "",
+      "deprecated": null,
+      "const": "const",
+      "name": "S_IRUSR",
+      "default": {
+        "value": "256"
+      },
+      "doc": {
+        "descript": "",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "",
+      "deprecated": null,
+      "const": "const",
+      "name": "S_IWUSR",
+      "default": {
+        "value": "128"
+      },
+      "doc": {
+        "descript": "",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "",
+      "deprecated": null,
+      "const": "const",
+      "name": "S_IXUSR",
+      "default": {
+        "value": "64"
+      },
+      "doc": {
+        "descript": "",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "",
+      "deprecated": null,
+      "const": "const",
+      "name": "S_IRWXG",
+      "default": {
+        "value": "56"
+      },
+      "doc": {
+        "descript": "",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "",
+      "deprecated": null,
+      "const": "const",
+      "name": "S_IRGRP",
+      "default": {
+        "value": "32"
+      },
+      "doc": {
+        "descript": "",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "",
+      "deprecated": null,
+      "const": "const",
+      "name": "S_IWGRP",
+      "default": {
+        "value": "16"
+      },
+      "doc": {
+        "descript": "",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "",
+      "deprecated": null,
+      "const": "const",
+      "name": "S_IXGRP",
+      "default": {
+        "value": "8"
+      },
+      "doc": {
+        "descript": "",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "",
+      "deprecated": null,
+      "const": "const",
+      "name": "S_IRWXO",
+      "default": {
+        "value": "7"
+      },
+      "doc": {
+        "descript": "",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "",
+      "deprecated": null,
+      "const": "const",
+      "name": "S_IROTH",
+      "default": {
+        "value": "4"
+      },
+      "doc": {
+        "descript": "",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "",
+      "deprecated": null,
+      "const": "const",
+      "name": "S_IWOTH",
+      "default": {
+        "value": "2"
+      },
+      "doc": {
+        "descript": "",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "",
+      "deprecated": null,
+      "const": "const",
+      "name": "S_IXOTH",
+      "default": {
+        "value": "1"
+      },
+      "doc": {
+        "descript": "",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "",
+      "deprecated": null,
+      "const": "const",
+      "name": "F_OK",
+      "default": {
+        "value": "0"
+      },
+      "doc": {
+        "descript": "",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "",
+      "deprecated": null,
+      "const": "const",
+      "name": "R_OK",
+      "default": {
+        "value": "4"
+      },
+      "doc": {
+        "descript": "",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "",
+      "deprecated": null,
+      "const": "const",
+      "name": "W_OK",
+      "default": {
+        "value": "2"
+      },
+      "doc": {
+        "descript": "",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "",
+      "deprecated": null,
+      "const": "const",
+      "name": "X_OK",
+      "default": {
+        "value": "1"
+      },
+      "doc": {
+        "descript": "",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "",
+      "deprecated": null,
+      "const": "const",
+      "name": "UV_FS_COPYFILE_EXCL",
+      "default": {
+        "value": "1"
+      },
+      "doc": {
+        "descript": "",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "",
+      "deprecated": null,
+      "const": "const",
+      "name": "COPYFILE_EXCL",
+      "default": {
+        "value": "1"
+      },
+      "doc": {
+        "descript": "",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "",
+      "deprecated": null,
+      "const": "const",
+      "name": "UV_FS_COPYFILE_FICLONE",
+      "default": {
+        "value": "2"
+      },
+      "doc": {
+        "descript": "",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "",
+      "deprecated": null,
+      "const": "const",
+      "name": "COPYFILE_FICLONE",
+      "default": {
+        "value": "2"
+      },
+      "doc": {
+        "descript": "",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "",
+      "deprecated": null,
+      "const": "const",
+      "name": "UV_FS_COPYFILE_FICLONE_FORCE",
+      "default": {
+        "value": "4"
+      },
+      "doc": {
+        "descript": "",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "",
+      "deprecated": null,
+      "const": "const",
+      "name": "COPYFILE_FICLONE_FORCE",
+      "default": {
+        "value": "4"
+      },
+      "doc": {
+        "descript": "",
+        "detail": [],
+        "params": []
+      }
+    }
+  ]
+}

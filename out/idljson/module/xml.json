@@ -1,0 +1,267 @@
+{
+  "declare": {
+    "comments": "! @brief xml 处理模块\n",
+    "type": "module",
+    "name": "xml",
+    "extend": "object",
+    "module": true,
+    "doc": {
+      "descript": "xml 处理模块",
+      "detail": [],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "const",
+      "comments": "! @brief XmlNode 的 nodeType 属性常量，表示节点为 XmlElement 对象\n    ",
+      "deprecated": null,
+      "const": "const",
+      "name": "ELEMENT_NODE",
+      "default": {
+        "value": "1"
+      },
+      "doc": {
+        "descript": "XmlNode 的 nodeType 属性常量，表示节点为 XmlElement 对象",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief XmlNode 的 nodeType 属性常量，表示节点为 XmlAttr 对象\n    ",
+      "deprecated": null,
+      "const": "const",
+      "name": "ATTRIBUTE_NODE",
+      "default": {
+        "value": "2"
+      },
+      "doc": {
+        "descript": "XmlNode 的 nodeType 属性常量，表示节点为 XmlAttr 对象",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief XmlNode 的 nodeType 属性常量，表示节点为 XmlText 对象\n    ",
+      "deprecated": null,
+      "const": "const",
+      "name": "TEXT_NODE",
+      "default": {
+        "value": "3"
+      },
+      "doc": {
+        "descript": "XmlNode 的 nodeType 属性常量，表示节点为 XmlText 对象",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief XmlNode 的 nodeType 属性常量，表示节点为 XmlCDATASection 对象\n    ",
+      "deprecated": null,
+      "const": "const",
+      "name": "CDATA_SECTION_NODE",
+      "default": {
+        "value": "4"
+      },
+      "doc": {
+        "descript": "XmlNode 的 nodeType 属性常量，表示节点为 XmlCDATASection 对象",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief XmlNode 的 nodeType 属性常量，表示节点为 XmlProcessingInstruction 对象\n    ",
+      "deprecated": null,
+      "const": "const",
+      "name": "PROCESSING_INSTRUCTION_NODE",
+      "default": {
+        "value": "7"
+      },
+      "doc": {
+        "descript": "XmlNode 的 nodeType 属性常量，表示节点为 XmlProcessingInstruction 对象",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief XmlNode 的 nodeType 属性常量，表示节点为 XmlComment 对象\n    ",
+      "deprecated": null,
+      "const": "const",
+      "name": "COMMENT_NODE",
+      "default": {
+        "value": "8"
+      },
+      "doc": {
+        "descript": "XmlNode 的 nodeType 属性常量，表示节点为 XmlComment 对象",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief XmlNode 的 nodeType 属性常量，表示节点为 XmlDocument 对象\n    ",
+      "deprecated": null,
+      "const": "const",
+      "name": "DOCUMENT_NODE",
+      "default": {
+        "value": "9"
+      },
+      "doc": {
+        "descript": "XmlNode 的 nodeType 属性常量，表示节点为 XmlDocument 对象",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief XmlNode 的 nodeType 属性常量，表示节点为 XmlDocumentType 对象\n    ",
+      "deprecated": null,
+      "const": "const",
+      "name": "DOCUMENT_TYPE_NODE",
+      "default": {
+        "value": "10"
+      },
+      "doc": {
+        "descript": "XmlNode 的 nodeType 属性常量，表示节点为 XmlDocumentType 对象",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "object",
+      "comments": "! @brief xml 文档对象，参见 XmlDocument 对象",
+      "deprecated": null,
+      "name": "Document",
+      "type": "XmlDocument",
+      "newable": true,
+      "doc": {
+        "descript": "xml 文档对象，参见 XmlDocument 对象",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 解析 xml/html 文本，并创建 XmlDocument 对象，不支持多语种\n     @param source 指定需要解析的 xml/html 文本\n     @param type 指定文本类型，缺省为 text/xml，也可指定为 text/html\n     @return 返回创建的 XmlDocument 对象\n    ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "parse",
+      "type": "XmlDocument",
+      "params": [
+        {
+          "type": "String",
+          "name": "source",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "type",
+          "default": {
+            "value": "\"text/xml\""
+          }
+        }
+      ],
+      "doc": {
+        "descript": "解析 xml/html 文本，并创建 XmlDocument 对象，不支持多语种",
+        "detail": [],
+        "params": [
+          {
+            "name": "source",
+            "descript": "指定需要解析的 xml/html 文本",
+            "detail": []
+          },
+          {
+            "name": "type",
+            "descript": "指定文本类型，缺省为 text/xml，也可指定为 text/html",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回创建的 XmlDocument 对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 解析 xml/html，并创建 XmlDocument 对象，解析时会根据指定的语种转换\n     @param source 指定需要解析的 xml/html 二进制数据\n     @param type 指定文本类型，缺省为 text/xml，也可指定为 text/html\n     @return 返回创建的 XmlDocument 对象\n    ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "parse",
+      "type": "XmlDocument",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "source",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "type",
+          "default": {
+            "value": "\"text/xml\""
+          }
+        }
+      ],
+      "doc": {
+        "descript": "解析 xml/html，并创建 XmlDocument 对象，解析时会根据指定的语种转换",
+        "detail": [],
+        "params": [
+          {
+            "name": "source",
+            "descript": "指定需要解析的 xml/html 二进制数据",
+            "detail": []
+          },
+          {
+            "name": "type",
+            "descript": "指定文本类型，缺省为 text/xml，也可指定为 text/html",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回创建的 XmlDocument 对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 序列化 XmlNode 为字符串\n     @param node 指定需要序列化的 XmlNode\n     @return 返回序列化的字符串\n    ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "serialize",
+      "type": "String",
+      "params": [
+        {
+          "type": "XmlNode",
+          "name": "node",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "序列化 XmlNode 为字符串",
+        "detail": [],
+        "params": [
+          {
+            "name": "node",
+            "descript": "指定需要序列化的 XmlNode",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回序列化的字符串",
+          "detail": []
+        }
+      }
+    }
+  ],
+  "collect": "Utility"
+}

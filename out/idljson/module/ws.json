@@ -1,0 +1,299 @@
+{
+  "declare": {
+    "comments": "! @brief websocket 支持模块\n\n 使用方法：\n ```JavaScript\n var ws = require('ws');\n ```\n 创建一个服务器：\n ```JavaScript\n var ws = require('ws');\n var http = require('http');\n\n var svr = new http.Server(80, {\n     '/ws': ws.upgrade((conn, req) => {\n         conn.onmessage = e => console.log(e.data);\n     })\n });\n svr.start();\n ```\n 使用 WebSocket 客户端：\n ```JavaScript\n var ws = require('ws');\n \n var conn = new ws.Socket('ws://127.0.0.1/ws');\n conn.onmessage = e => console.log(e.data);\n ```\n ",
+    "type": "module",
+    "name": "ws",
+    "extend": "object",
+    "module": true,
+    "doc": {
+      "descript": "websocket 支持模块",
+      "detail": [
+        "使用方法：",
+        "```JavaScript",
+        "var ws = require('ws');",
+        "```",
+        "创建一个服务器：",
+        "```JavaScript",
+        "var ws = require('ws');",
+        "var http = require('http');",
+        "",
+        "var svr = new http.Server(80, {",
+        "    '/ws': ws.upgrade((conn, req) => {",
+        "        conn.onmessage = e => console.log(e.data);",
+        "    })",
+        "});",
+        "svr.start();",
+        "```",
+        "使用 WebSocket 客户端：",
+        "```JavaScript",
+        "var ws = require('ws');",
+        "",
+        "var conn = new ws.Socket('ws://127.0.0.1/ws');",
+        "conn.onmessage = e => console.log(e.data);",
+        "```"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "const",
+      "comments": "! @brief 指定 websocket 消息类型 0，代表一个继续帧 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "CONTINUE",
+      "default": {
+        "value": "0"
+      },
+      "doc": {
+        "descript": "指定 websocket 消息类型 0，代表一个继续帧",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 指定 websocket 消息类型 1，代表一个文本帧 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "TEXT",
+      "default": {
+        "value": "1"
+      },
+      "doc": {
+        "descript": "指定 websocket 消息类型 1，代表一个文本帧",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 指定 websocket 消息类型 2，代表一个二进制帧 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "BINARY",
+      "default": {
+        "value": "2"
+      },
+      "doc": {
+        "descript": "指定 websocket 消息类型 2，代表一个二进制帧",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 指定 websocket 消息类型 8，连接关闭 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "CLOSE",
+      "default": {
+        "value": "8"
+      },
+      "doc": {
+        "descript": "指定 websocket 消息类型 8，连接关闭",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 指定 websocket 消息类型 9，代表一个 ping 帧 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "PING",
+      "default": {
+        "value": "9"
+      },
+      "doc": {
+        "descript": "指定 websocket 消息类型 9，代表一个 ping 帧",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 指定 websocket 消息类型 10，代表一个 pong 帧 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "PONG",
+      "default": {
+        "value": "10"
+      },
+      "doc": {
+        "descript": "指定 websocket 消息类型 10，代表一个 pong 帧",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 指定 WebSocket 状态，表示正在连接中",
+      "deprecated": null,
+      "const": "const",
+      "name": "CONNECTING",
+      "default": {
+        "value": "0"
+      },
+      "doc": {
+        "descript": "指定 WebSocket 状态，表示正在连接中",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 指定 WebSocket 状态，表示打开状态",
+      "deprecated": null,
+      "const": "const",
+      "name": "OPEN",
+      "default": {
+        "value": "1"
+      },
+      "doc": {
+        "descript": "指定 WebSocket 状态，表示打开状态",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 指定 WebSocket 状态，表示已发送 CLOSE 消息，等待关闭中",
+      "deprecated": null,
+      "const": "const",
+      "name": "CLOSING",
+      "default": {
+        "value": "2"
+      },
+      "doc": {
+        "descript": "指定 WebSocket 状态，表示已发送 CLOSE 消息，等待关闭中",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 指定 WebSocket 状态，表示已经关闭",
+      "deprecated": null,
+      "const": "const",
+      "name": "CLOSED",
+      "default": {
+        "value": "3"
+      },
+      "doc": {
+        "descript": "指定 WebSocket 状态，表示已经关闭",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "object",
+      "comments": "! @brief 创建一个 websocket 消息对象，参见 WebSocketMessage ",
+      "deprecated": null,
+      "name": "Message",
+      "type": "WebSocketMessage",
+      "newable": true,
+      "doc": {
+        "descript": "创建一个 websocket 消息对象，参见 WebSocketMessage",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "object",
+      "comments": "! @brief WebSocket 对象，参见 WebSocket ",
+      "deprecated": null,
+      "name": "Socket",
+      "type": "WebSocket",
+      "newable": true,
+      "doc": {
+        "descript": "WebSocket 对象，参见 WebSocket",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 创建一个 websocket 协议处理器，从 http 接收 upgrade 请求并握手，生成 WebSocket 对象\n     ```\n     @param accept 连接成功处理函数，回调将传递两个参数，第一个参数为接收到的 WebSocket 对象，第二个参数为握手时的 HttpRequest 对象\n     @return 返回协议处理器，可与 HttpServer, Chain, Routing 等对接\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "upgrade",
+      "type": "Handler",
+      "params": [
+        {
+          "type": "Function",
+          "name": "accept",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "创建一个 websocket 协议处理器，从 http 接收 upgrade 请求并握手，生成 WebSocket 对象",
+        "detail": [
+          "```"
+        ],
+        "params": [
+          {
+            "name": "accept",
+            "descript": "连接成功处理函数，回调将传递两个参数，第一个参数为接收到的 WebSocket 对象，第二个参数为握手时的 HttpRequest 对象",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回协议处理器，可与 HttpServer, Chain, Routing 等对接",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 创建一个 websocket 协议处理器，从 http 接收 upgrade 请求并握手，生成 WebSocket 对象\n     opts 包含请求的附加选项，支持的内容如下：\n     ```JavaScript\n     {\n         \"perMessageDeflate\": true, // 指定是否支持压缩，缺省支持\n         \"maxPayload\": 67108864 // 指定最大数据包尺寸，缺省为 67108864\n     }\n     ```\n     @param opts 连接选项，缺省是 {}\n     @param accept 连接成功处理函数，回调将传递两个参数，第一个参数为接收到的 WebSocket 对象，第二个参数为握手时的 HttpRequest 对象\n     @return 返回协议处理器，可与 HttpServer, Chain, Routing 等对接\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "upgrade",
+      "type": "Handler",
+      "params": [
+        {
+          "type": "Object",
+          "name": "opts",
+          "default": null
+        },
+        {
+          "type": "Function",
+          "name": "accept",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "创建一个 websocket 协议处理器，从 http 接收 upgrade 请求并握手，生成 WebSocket 对象",
+        "detail": [
+          "opts 包含请求的附加选项，支持的内容如下：",
+          "```JavaScript",
+          "{",
+          "    \"perMessageDeflate\": true, // 指定是否支持压缩，缺省支持",
+          "    \"maxPayload\": 67108864 // 指定最大数据包尺寸，缺省为 67108864",
+          "}",
+          "```"
+        ],
+        "params": [
+          {
+            "name": "opts",
+            "descript": "连接选项，缺省是 {}",
+            "detail": []
+          },
+          {
+            "name": "accept",
+            "descript": "连接成功处理函数，回调将传递两个参数，第一个参数为接收到的 WebSocket 对象，第二个参数为握手时的 HttpRequest 对象",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回协议处理器，可与 HttpServer, Chain, Routing 等对接",
+          "detail": []
+        }
+      }
+    }
+  ],
+  "collect": "Network"
+}

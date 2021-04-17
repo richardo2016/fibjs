@@ -1,0 +1,436 @@
+{
+  "declare": {
+    "comments": "! @brief Redis 数据库客户端 Hash 对象，此对象为包含指定 key 的客户端，只有调用其方法才会操作数据库\n\n 用以操作 Redis 的 Hash 对象，创建方法：\n ```JavaScript\n var db = require(\"db\");\n var rdb = new db.openRedis(\"redis-server\");\n var hash = rdb.getHash(\"test\");\n ```\n ",
+    "type": "interface",
+    "name": "RedisHash",
+    "extend": "object",
+    "doc": {
+      "descript": "Redis 数据库客户端 Hash 对象，此对象为包含指定 key 的客户端，只有调用其方法才会操作数据库",
+      "detail": [
+        "用以操作 Redis 的 Hash 对象，创建方法：",
+        "```JavaScript",
+        "var db = require(\"db\");",
+        "var rdb = new db.openRedis(\"redis-server\");",
+        "var hash = rdb.getHash(\"test\");",
+        "```"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "method",
+      "comments": "! @brief 将哈希表中的域 field 的值设为 value，如果域 field 已经存在于哈希表中，旧值将被覆盖\n     @param field 指定要修改的 field\n     @param value 指定要修改的数据 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "set",
+      "type": null,
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "field",
+          "default": null
+        },
+        {
+          "type": "Buffer",
+          "name": "value",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "将哈希表中的域 field 的值设为 value，如果域 field 已经存在于哈希表中，旧值将被覆盖",
+        "detail": [],
+        "params": [
+          {
+            "name": "field",
+            "descript": "指定要修改的 field",
+            "detail": []
+          },
+          {
+            "name": "value",
+            "descript": "指定要修改的数据",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 将哈希表中的域 field 的值设置为 value ，当且仅当域 field 不存在。若域 field 已经存在，该操作无效\n     @param field 指定要修改的 field\n     @param value 指定要修改的数据 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "setNX",
+      "type": null,
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "field",
+          "default": null
+        },
+        {
+          "type": "Buffer",
+          "name": "value",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "将哈希表中的域 field 的值设置为 value ，当且仅当域 field 不存在。若域 field 已经存在，该操作无效",
+        "detail": [],
+        "params": [
+          {
+            "name": "field",
+            "descript": "指定要修改的 field",
+            "detail": []
+          },
+          {
+            "name": "value",
+            "descript": "指定要修改的数据",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 同时将多个 field-value (域-值)对设置到哈希表中，此命令会覆盖哈希表中已存在的域\n     @param kvs 指定要设置的 field/value 对象",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "mset",
+      "type": null,
+      "params": [
+        {
+          "type": "Object",
+          "name": "kvs",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "同时将多个 field-value (域-值)对设置到哈希表中，此命令会覆盖哈希表中已存在的域",
+        "detail": [],
+        "params": [
+          {
+            "name": "kvs",
+            "descript": "指定要设置的 field/value 对象",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 同时将多个 field-value (域-值)对设置到哈希表中，此命令会覆盖哈希表中已存在的域\n     @param kvs 指定要设置的 field/value 列表",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "mset",
+      "type": null,
+      "params": [
+        {
+          "type": "...",
+          "name": "kvs",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "同时将多个 field-value (域-值)对设置到哈希表中，此命令会覆盖哈希表中已存在的域",
+        "detail": [],
+        "params": [
+          {
+            "name": "kvs",
+            "descript": "指定要设置的 field/value 列表",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 返回哈希表中给定域 field 的值\n     @param field 指定要查询的 field\n     @return 给定域的值，当给定域不存在或是给定 key 不存在时，返回 null ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "get",
+      "type": "Buffer",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "field",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "返回哈希表中给定域 field 的值",
+        "detail": [],
+        "params": [
+          {
+            "name": "field",
+            "descript": "指定要查询的 field",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "给定域的值，当给定域不存在或是给定 key 不存在时，返回 null",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 返回哈希表中，一个或多个给定域的值\n     @param fields 指定要查询的域数组\n     @return 一个包含所有给定域的值的列表 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "mget",
+      "type": "NArray",
+      "params": [
+        {
+          "type": "Array",
+          "name": "fields",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "返回哈希表中，一个或多个给定域的值",
+        "detail": [],
+        "params": [
+          {
+            "name": "fields",
+            "descript": "指定要查询的域数组",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "一个包含所有给定域的值的列表",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 返回哈希表中，一个或多个给定域的值\n     @param fields 指定要查询的域列表\n     @return 一个包含所有给定域的值的列表 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "mget",
+      "type": "NArray",
+      "params": [
+        {
+          "type": "...",
+          "name": "fields",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "返回哈希表中，一个或多个给定域的值",
+        "detail": [],
+        "params": [
+          {
+            "name": "fields",
+            "descript": "指定要查询的域列表",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "一个包含所有给定域的值的列表",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 将域所储存的值加上增量\n     @param field 指定要修改的域\n     @param num 指定要加上的数值\n     @return 加上 num 之后，域的值 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "incr",
+      "type": "Long",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "field",
+          "default": null
+        },
+        {
+          "type": "Long",
+          "name": "num",
+          "default": {
+            "value": "1"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "将域所储存的值加上增量",
+        "detail": [],
+        "params": [
+          {
+            "name": "field",
+            "descript": "指定要修改的域",
+            "detail": []
+          },
+          {
+            "name": "num",
+            "descript": "指定要加上的数值",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "加上 num 之后，域的值",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 返回哈希表中，所有的域和值\n     @return 返回一个包含哈希表中所有域的列表 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "getAll",
+      "type": "NArray",
+      "params": null,
+      "doc": {
+        "descript": "返回哈希表中，所有的域和值",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "返回一个包含哈希表中所有域的列表",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 返回哈希表中的所有域\n     @return 返回值里，紧跟每个域名(field name)之后是域的值(value)，所以返回值的长度是哈希表大小的两倍 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "keys",
+      "type": "NArray",
+      "params": null,
+      "doc": {
+        "descript": "返回哈希表中的所有域",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "返回值里，紧跟每个域名(field name)之后是域的值(value)，所以返回值的长度是哈希表大小的两倍",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 返回哈希表中域的数量\n     @return 返回哈希表中域的数量 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "len",
+      "type": "Integer",
+      "params": null,
+      "doc": {
+        "descript": "返回哈希表中域的数量",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "返回哈希表中域的数量",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查看哈希表中，给定域 field 是否存在\n     @param field 指定要查询的 field\n     @return 如果哈希表含有给定域，返回 true，如果哈希表不含有给定域，或 key 不存在，返回 false ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "exists",
+      "type": "Boolean",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "field",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "查看哈希表中，给定域 field 是否存在",
+        "detail": [],
+        "params": [
+          {
+            "name": "field",
+            "descript": "指定要查询的 field",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "如果哈希表含有给定域，返回 true，如果哈希表不含有给定域，或 key 不存在，返回 false",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 删除哈希表中的一个或多个指定域，不存在的域将被忽略\n     @param fields 指定要删除的域数组\n     @return 被删除域的数量 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "del",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "Array",
+          "name": "fields",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "删除哈希表中的一个或多个指定域，不存在的域将被忽略",
+        "detail": [],
+        "params": [
+          {
+            "name": "fields",
+            "descript": "指定要删除的域数组",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "被删除域的数量",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 删除哈希表中的一个或多个指定域，不存在的域将被忽略\n     @param fields 指定要删除的域列表\n     @return 被删除域的数量 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "del",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "...",
+          "name": "fields",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "删除哈希表中的一个或多个指定域，不存在的域将被忽略",
+        "detail": [],
+        "params": [
+          {
+            "name": "fields",
+            "descript": "指定要删除的域列表",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "被删除域的数量",
+          "detail": []
+        }
+      }
+    }
+  ]
+}

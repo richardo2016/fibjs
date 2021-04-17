@@ -1,0 +1,601 @@
+{
+  "declare": {
+    "comments": "! @brief 数据库连接对象，用于建立和维护一个数据库连接会话。",
+    "type": "interface",
+    "name": "DbConnection",
+    "extend": "object",
+    "doc": {
+      "descript": "数据库连接对象，用于建立和维护一个数据库连接会话。",
+      "detail": [],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询当前连接数据库类型 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "type",
+      "type": "String",
+      "doc": {
+        "descript": "查询当前连接数据库类型",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 关闭当前数据库连接 ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "close",
+      "type": null,
+      "params": null,
+      "doc": {
+        "descript": "关闭当前数据库连接",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 在当前数据库连接上启动一个事务\n    \n     @param point 指定事务的名称，缺省不指定\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "begin",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "point",
+          "default": {
+            "value": "\"\""
+          }
+        }
+      ],
+      "doc": {
+        "descript": "在当前数据库连接上启动一个事务",
+        "detail": [],
+        "params": [
+          {
+            "name": "point",
+            "descript": "指定事务的名称，缺省不指定",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 提交当前数据库连接上的事务\n    \n     @param point 指定事务的名称，缺省不指定\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "commit",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "point",
+          "default": {
+            "value": "\"\""
+          }
+        }
+      ],
+      "doc": {
+        "descript": "提交当前数据库连接上的事务",
+        "detail": [],
+        "params": [
+          {
+            "name": "point",
+            "descript": "指定事务的名称，缺省不指定",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 回滚当前数据库连接上的事务\n    \n     @param point 指定事务的名称，缺省不指定\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "rollback",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "point",
+          "default": {
+            "value": "\"\""
+          }
+        }
+      ],
+      "doc": {
+        "descript": "回滚当前数据库连接上的事务",
+        "detail": [],
+        "params": [
+          {
+            "name": "point",
+            "descript": "指定事务的名称，缺省不指定",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 进入事务执行一个函数，并根据函数执行情况提交或者回滚 \n     func 执行有三种结果：\n     * 函数正常返回，包括运行结束和主动 return，此时事务将自动提交\n     * 函数返回 false，此时事务将回滚\n     * 函数运行错误，事务自动回滚\n\n     @param func 以事务方式执行的函数\n     @return 返回事务是否提交，正常 commit 时返回 true, rollback 时返回 false，如果事务出错则抛出错误\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "trans",
+      "type": "Boolean",
+      "params": [
+        {
+          "type": "Function",
+          "name": "func",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "进入事务执行一个函数，并根据函数执行情况提交或者回滚",
+        "detail": [
+          "func 执行有三种结果：",
+          "* 函数正常返回，包括运行结束和主动 return，此时事务将自动提交",
+          "* 函数返回 false，此时事务将回滚",
+          "* 函数运行错误，事务自动回滚",
+          ""
+        ],
+        "params": [
+          {
+            "name": "func",
+            "descript": "以事务方式执行的函数",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回事务是否提交，正常 commit 时返回 true, rollback 时返回 false，如果事务出错则抛出错误",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 进入事务执行一个函数，并根据函数执行情况提交或者回滚 \n     func 执行有三种结果：\n     * 函数正常返回，包括运行结束和主动 return，此时事务将自动提交\n     * 函数返回 false，此时事务将回滚\n     * 函数运行错误，事务自动回滚\n\n     @param point 指定事务的名称\n     @param func 以事务方式执行的函数\n     @return 返回事务是否提交，正常 commit 时返回 true, rollback 时返回 false，如果事务出错则抛出错误\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "trans",
+      "type": "Boolean",
+      "params": [
+        {
+          "type": "String",
+          "name": "point",
+          "default": null
+        },
+        {
+          "type": "Function",
+          "name": "func",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "进入事务执行一个函数，并根据函数执行情况提交或者回滚",
+        "detail": [
+          "func 执行有三种结果：",
+          "* 函数正常返回，包括运行结束和主动 return，此时事务将自动提交",
+          "* 函数返回 false，此时事务将回滚",
+          "* 函数运行错误，事务自动回滚",
+          ""
+        ],
+        "params": [
+          {
+            "name": "point",
+            "descript": "指定事务的名称",
+            "detail": []
+          },
+          {
+            "name": "func",
+            "descript": "以事务方式执行的函数",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回事务是否提交，正常 commit 时返回 true, rollback 时返回 false，如果事务出错则抛出错误",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 执行一个 sql 命令，并返回执行结果，可根据参数格式化字符串\n\n     @param sql 格式化字符串，可选参数用 ? 指定。例如：'SELECT FROM TEST WHERE [id]=?'\n     @param args 可选参数列表\n     @return 返回包含结果记录的数组，如果请求是 UPDATE 或者 INSERT，返回结果还会包含 affected 和 insertId，mssql 不支持 insertId。\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "execute",
+      "type": "NArray",
+      "params": [
+        {
+          "type": "String",
+          "name": "sql",
+          "default": null
+        },
+        {
+          "type": "...",
+          "name": "args",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "执行一个 sql 命令，并返回执行结果，可根据参数格式化字符串",
+        "detail": [],
+        "params": [
+          {
+            "name": "sql",
+            "descript": "格式化字符串，可选参数用 ? 指定。例如：'SELECT FROM TEST WHERE [id]=?'",
+            "detail": []
+          },
+          {
+            "name": "args",
+            "descript": "可选参数列表",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回包含结果记录的数组，如果请求是 UPDATE 或者 INSERT，返回结果还会包含 affected 和 insertId，mssql 不支持 insertId。",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 创建数据表\n\n     @param opts 参数列表\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "createTable",
+      "type": null,
+      "params": [
+        {
+          "type": "Object",
+          "name": "opts",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "创建数据表",
+        "detail": [],
+        "params": [
+          {
+            "name": "opts",
+            "descript": "参数列表",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 删除数据表\n\n     @param opts 参数列表\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "dropTable",
+      "type": null,
+      "params": [
+        {
+          "type": "Object",
+          "name": "opts",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "删除数据表",
+        "detail": [],
+        "params": [
+          {
+            "name": "opts",
+            "descript": "参数列表",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 创建数据表索引\n\n     @param opts 参数列表\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "createIndex",
+      "type": null,
+      "params": [
+        {
+          "type": "Object",
+          "name": "opts",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "创建数据表索引",
+        "detail": [],
+        "params": [
+          {
+            "name": "opts",
+            "descript": "参数列表",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 删除数据表索引\n\n     @param opts 参数列表\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "dropIndex",
+      "type": null,
+      "params": [
+        {
+          "type": "Object",
+          "name": "opts",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "删除数据表索引",
+        "detail": [],
+        "params": [
+          {
+            "name": "opts",
+            "descript": "参数列表",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 插入新记录\n\n     @param opts 参数列表\n     @return 返回包含插入的 id，如果引擎不支持则返回 0\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "insert",
+      "type": "Number",
+      "params": [
+        {
+          "type": "Object",
+          "name": "opts",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "插入新记录",
+        "detail": [],
+        "params": [
+          {
+            "name": "opts",
+            "descript": "参数列表",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回包含插入的 id，如果引擎不支持则返回 0",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 根据指定的条件查询数据\n\n     @param opts 参数列表\n     @return 返回包含结果记录\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "find",
+      "type": "NArray",
+      "params": [
+        {
+          "type": "Object",
+          "name": "opts",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "根据指定的条件查询数据",
+        "detail": [],
+        "params": [
+          {
+            "name": "opts",
+            "descript": "参数列表",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回包含结果记录",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 根据指定的条件统计数据记录数\n\n     @param opts 参数列表\n     @return 返回包含结果记录数\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "count",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "Object",
+          "name": "opts",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "根据指定的条件统计数据记录数",
+        "detail": [],
+        "params": [
+          {
+            "name": "opts",
+            "descript": "参数列表",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回包含结果记录数",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 根据指定的条件更新数据\n\n     @param opts 参数列表\n     @return 返回包含更新的记录数\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "update",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "Object",
+          "name": "opts",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "根据指定的条件更新数据",
+        "detail": [],
+        "params": [
+          {
+            "name": "opts",
+            "descript": "参数列表",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回包含更新的记录数",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 根据指定的条件删除数据\n\n     @param opts 可选参数列表\n     @return 返回包含更新的记录数\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "remove",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "Object",
+          "name": "opts",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "根据指定的条件删除数据",
+        "detail": [],
+        "params": [
+          {
+            "name": "opts",
+            "descript": "可选参数列表",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回包含更新的记录数",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 格式化一个 sql 命令，并返回格式化结果\n\n     @param method 指定请求的方法\n     @param opts 可选参数列表\n     @return 返回格式化之后的 sql 命令\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "format",
+      "type": "String",
+      "params": [
+        {
+          "type": "String",
+          "name": "method",
+          "default": null
+        },
+        {
+          "type": "Object",
+          "name": "opts",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "格式化一个 sql 命令，并返回格式化结果",
+        "detail": [],
+        "params": [
+          {
+            "name": "method",
+            "descript": "指定请求的方法",
+            "detail": []
+          },
+          {
+            "name": "opts",
+            "descript": "可选参数列表",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回格式化之后的 sql 命令",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 格式化一个 sql 命令，并返回格式化结果\n\n     @param sql 格式化字符串，可选参数用 ? 指定。例如：'SELECT FROM TEST WHERE [id]=?'\n     @param args 可选参数列表\n     @return 返回格式化之后的 sql 命令\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "format",
+      "type": "String",
+      "params": [
+        {
+          "type": "String",
+          "name": "sql",
+          "default": null
+        },
+        {
+          "type": "...",
+          "name": "args",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "格式化一个 sql 命令，并返回格式化结果",
+        "detail": [],
+        "params": [
+          {
+            "name": "sql",
+            "descript": "格式化字符串，可选参数用 ? 指定。例如：'SELECT FROM TEST WHERE [id]=?'",
+            "detail": []
+          },
+          {
+            "name": "args",
+            "descript": "可选参数列表",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回格式化之后的 sql 命令",
+          "detail": []
+        }
+      }
+    }
+  ]
+}

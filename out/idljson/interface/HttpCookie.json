@@ -1,0 +1,273 @@
+{
+  "declare": {
+    "comments": "! @brief http Cookie 对象，用于添加和处理 cookie ",
+    "type": "interface",
+    "name": "HttpCookie",
+    "extend": "object",
+    "doc": {
+      "descript": "http Cookie 对象，用于添加和处理 cookie",
+      "detail": [],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "method",
+      "comments": "! @brief HttpCookie 构造函数，创建一个新的 HttpCookie 对象\n\n     opts 可以设置的选项如下：\n     ```JavaScript\n     {\n         \"name\": \"\", // 指定创建的 cookie 名称\n         \"value\": \"\", // 指定创建的 cookie 值\n         \"expires\": Date, // 指定创建的 cookie 过期时间\n         \"domain\": \"\", // 指定创建的 cookie 的域名范围\n         \"path\": \"\", // 指定创建的 cookie 的路径范围\n         \"secure\": false, // 指定创建的 cookie 是否仅通过 https 传递\n         \"httpOnly\": false, // 指定创建的 cookie 仅允许 http 请求\n     }\n     ```\n     @param opts 指定创建的 cookie 的属性\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "HttpCookie",
+      "type": null,
+      "params": [
+        {
+          "type": "Object",
+          "name": "opts",
+          "default": {
+            "value": "v8::Object::New(isolate)"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "HttpCookie 构造函数，创建一个新的 HttpCookie 对象",
+        "detail": [
+          "opts 可以设置的选项如下：",
+          "```JavaScript",
+          "{",
+          "    \"name\": \"\", // 指定创建的 cookie 名称",
+          "    \"value\": \"\", // 指定创建的 cookie 值",
+          "    \"expires\": Date, // 指定创建的 cookie 过期时间",
+          "    \"domain\": \"\", // 指定创建的 cookie 的域名范围",
+          "    \"path\": \"\", // 指定创建的 cookie 的路径范围",
+          "    \"secure\": false, // 指定创建的 cookie 是否仅通过 https 传递",
+          "    \"httpOnly\": false, // 指定创建的 cookie 仅允许 http 请求",
+          "}",
+          "```"
+        ],
+        "params": [
+          {
+            "name": "opts",
+            "descript": "指定创建的 cookie 的属性",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief HttpCookie 构造函数，创建一个新的 HttpCookie 对象\n\n     opts 可以设置的选项如下：\n     ```JavaScript\n     {\n         \"expires\": Date, // 指定创建的 cookie 过期时间\n         \"domain\": \"\", // 指定创建的 cookie 的域名范围\n         \"path\": \"\", // 指定创建的 cookie 的路径范围\n         \"secure\": false, // 指定创建的 cookie 是否仅通过 https 传递\n         \"httpOnly\": false, // 指定创建的 cookie 仅允许 http 请求\n     }\n     ```\n     @param name 指定创建的 cookie 名称\n     @param value 指定创建的 cookie 值\n     @param opts 指定创建的 cookie 的其它属性\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "HttpCookie",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "name",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "value",
+          "default": null
+        },
+        {
+          "type": "Object",
+          "name": "opts",
+          "default": {
+            "value": "v8::Object::New(isolate)"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "HttpCookie 构造函数，创建一个新的 HttpCookie 对象",
+        "detail": [
+          "opts 可以设置的选项如下：",
+          "```JavaScript",
+          "{",
+          "    \"expires\": Date, // 指定创建的 cookie 过期时间",
+          "    \"domain\": \"\", // 指定创建的 cookie 的域名范围",
+          "    \"path\": \"\", // 指定创建的 cookie 的路径范围",
+          "    \"secure\": false, // 指定创建的 cookie 是否仅通过 https 传递",
+          "    \"httpOnly\": false, // 指定创建的 cookie 仅允许 http 请求",
+          "}",
+          "```"
+        ],
+        "params": [
+          {
+            "name": "name",
+            "descript": "指定创建的 cookie 名称",
+            "detail": []
+          },
+          {
+            "name": "value",
+            "descript": "指定创建的 cookie 值",
+            "detail": []
+          },
+          {
+            "name": "opts",
+            "descript": "指定创建的 cookie 的其它属性",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 解析给定的字符串，填充 cookie 对象\n     @param header 指定需要解析的 header 字符串\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "parse",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "header",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "解析给定的字符串，填充 cookie 对象",
+        "detail": [],
+        "params": [
+          {
+            "name": "header",
+            "descript": "指定需要解析的 header 字符串",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 检测给定的 url 是否匹配当前设置\n     @param url 指定测试的 url\n     @return 匹配成功返回 true\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "match",
+      "type": "Boolean",
+      "params": [
+        {
+          "type": "String",
+          "name": "url",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "检测给定的 url 是否匹配当前设置",
+        "detail": [],
+        "params": [
+          {
+            "name": "url",
+            "descript": "指定测试的 url",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "匹配成功返回 true",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和设置 cookie 名称 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "name",
+      "type": "String",
+      "doc": {
+        "descript": "查询和设置 cookie 名称",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和设置 cookie 的值 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "value",
+      "type": "String",
+      "doc": {
+        "descript": "查询和设置 cookie 的值",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和设置 cookie 的域名范围 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "domain",
+      "type": "String",
+      "doc": {
+        "descript": "查询和设置 cookie 的域名范围",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和设置 cookie 的路径范围 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "path",
+      "type": "String",
+      "doc": {
+        "descript": "查询和设置 cookie 的路径范围",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和设置 cookie 的过期时间 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "expires",
+      "type": "Date",
+      "doc": {
+        "descript": "查询和设置 cookie 的过期时间",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和设置 cookie 是否仅允许 http 请求，缺省 false ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "httpOnly",
+      "type": "Boolean",
+      "doc": {
+        "descript": "查询和设置 cookie 是否仅允许 http 请求，缺省 false",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和设置 cookie 是否仅通过 https 传递，缺省 false ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "secure",
+      "type": "Boolean",
+      "doc": {
+        "descript": "查询和设置 cookie 是否仅通过 https 传递，缺省 false",
+        "detail": [],
+        "params": []
+      }
+    }
+  ]
+}

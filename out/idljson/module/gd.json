@@ -1,0 +1,973 @@
+{
+  "declare": {
+    "comments": "! @brief 图像文件处理模块\n\n 基础模块。可用于创建和操作图像文件，引用方式：\n ```JavaScript\n var gd = require('gd');\n ```\n ",
+    "type": "module",
+    "name": "gd",
+    "extend": "object",
+    "module": true,
+    "doc": {
+      "descript": "图像文件处理模块",
+      "detail": [
+        "基础模块。可用于创建和操作图像文件，引用方式：",
+        "```JavaScript",
+        "var gd = require('gd');",
+        "```"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "const",
+      "comments": "! @brief 图像格式常量，标示当前图像来源为未知 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "NONE",
+      "default": {
+        "value": "0"
+      },
+      "doc": {
+        "descript": "图像格式常量，标示当前图像来源为未知",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 图像格式常量，标示当前图像来源为 jpeg 格式数据 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "JPEG",
+      "default": {
+        "value": "1"
+      },
+      "doc": {
+        "descript": "图像格式常量，标示当前图像来源为 jpeg 格式数据",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 图像格式常量，标示当前图像来源为 gif 格式数据 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "GIF",
+      "default": {
+        "value": "2"
+      },
+      "doc": {
+        "descript": "图像格式常量，标示当前图像来源为 gif 格式数据",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 图像格式常量，标示当前图像来源为 png 格式数据 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "PNG",
+      "default": {
+        "value": "3"
+      },
+      "doc": {
+        "descript": "图像格式常量，标示当前图像来源为 png 格式数据",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 图像格式常量，标示当前图像来源为 tiff 格式数据 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "TIFF",
+      "default": {
+        "value": "4"
+      },
+      "doc": {
+        "descript": "图像格式常量，标示当前图像来源为 tiff 格式数据",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 图像格式常量，标示当前图像来源为 bmp 格式数据 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "BMP",
+      "default": {
+        "value": "5"
+      },
+      "doc": {
+        "descript": "图像格式常量，标示当前图像来源为 bmp 格式数据",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 图像格式常量，标示当前图像来源为 webp 格式数据 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "WEBP",
+      "default": {
+        "value": "6"
+      },
+      "doc": {
+        "descript": "图像格式常量，标示当前图像来源为 webp 格式数据",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 图像类型常量，标示当前图像为真彩色图像 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "TRUECOLOR",
+      "default": {
+        "value": "0"
+      },
+      "doc": {
+        "descript": "图像类型常量，标示当前图像为真彩色图像",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 图像类型常量，标示当前图像为调色板图像 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "PALETTE",
+      "default": {
+        "value": "1"
+      },
+      "doc": {
+        "descript": "图像类型常量，标示当前图像为调色板图像",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 扇形绘制样式，绘制一条连接开始和结束点的圆弧 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "ARC",
+      "default": {
+        "value": "0"
+      },
+      "doc": {
+        "descript": "扇形绘制样式，绘制一条连接开始和结束点的圆弧",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 扇形绘制样式，绘制一条连接原点，开始和结束点的直线 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "CHORD",
+      "default": {
+        "value": "1"
+      },
+      "doc": {
+        "descript": "扇形绘制样式，绘制一条连接原点，开始和结束点的直线",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 扇形绘制样式，绘制不填充的扇形 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "NOFILL",
+      "default": {
+        "value": "2"
+      },
+      "doc": {
+        "descript": "扇形绘制样式，绘制不填充的扇形",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 扇形绘制样式，绘制一条连接起点和终点的弧和连接原点的直线 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "EDGED",
+      "default": {
+        "value": "4"
+      },
+      "doc": {
+        "descript": "扇形绘制样式，绘制一条连接起点和终点的弧和连接原点的直线",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 镜像方向，横向做镜像处理 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "HORIZONTAL",
+      "default": {
+        "value": "1"
+      },
+      "doc": {
+        "descript": "镜像方向，横向做镜像处理",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 镜像方向，纵向做镜像处理 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "VERTICAL",
+      "default": {
+        "value": "2"
+      },
+      "doc": {
+        "descript": "镜像方向，纵向做镜像处理",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 镜像方向，横向和纵向都做镜像处理 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "BOTH",
+      "default": {
+        "value": "3"
+      },
+      "doc": {
+        "descript": "镜像方向，横向和纵向都做镜像处理",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 旋转方向，向左旋转 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "LEFT",
+      "default": {
+        "value": "1"
+      },
+      "doc": {
+        "descript": "旋转方向，向左旋转",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 旋转方向，向右旋转 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "RIGHT",
+      "default": {
+        "value": "2"
+      },
+      "doc": {
+        "descript": "旋转方向，向右旋转",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 滤波器类型：用平均移除法来达到轮廓效果",
+      "deprecated": null,
+      "const": "const",
+      "name": "MEAN_REMOVAL",
+      "default": {
+        "value": "0"
+      },
+      "doc": {
+        "descript": "滤波器类型：用平均移除法来达到轮廓效果",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 滤波器类型：用边缘检测来突出图像的边缘 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "EDGEDETECT",
+      "default": {
+        "value": "1"
+      },
+      "doc": {
+        "descript": "滤波器类型：用边缘检测来突出图像的边缘",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 滤波器类型：使图像浮雕化 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "EMBOSS",
+      "default": {
+        "value": "2"
+      },
+      "doc": {
+        "descript": "滤波器类型：使图像浮雕化",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 滤波器类型：模糊图像 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "SELECTIVE_BLUR",
+      "default": {
+        "value": "3"
+      },
+      "doc": {
+        "descript": "滤波器类型：模糊图像",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 滤波器类型：用高斯算法模糊图像 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "GAUSSIAN_BLUR",
+      "default": {
+        "value": "4"
+      },
+      "doc": {
+        "descript": "滤波器类型：用高斯算法模糊图像",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 滤波器类型：将图像中所有颜色反转 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "NEGATE",
+      "default": {
+        "value": "5"
+      },
+      "doc": {
+        "descript": "滤波器类型：将图像中所有颜色反转",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 滤波器类型：将图像转换为灰度图 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "GRAYSCALE",
+      "default": {
+        "value": "6"
+      },
+      "doc": {
+        "descript": "滤波器类型：将图像转换为灰度图",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 滤波器类型：使图像更柔滑，用arg1设定柔滑级别 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "SMOOTH",
+      "default": {
+        "value": "7"
+      },
+      "doc": {
+        "descript": "滤波器类型：使图像更柔滑，用arg1设定柔滑级别",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 滤波器类型：改变图像的亮度，用arg1设定亮度级别，取值范围是-255~255 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "BRIGHTNESS",
+      "default": {
+        "value": "8"
+      },
+      "doc": {
+        "descript": "滤波器类型：改变图像的亮度，用arg1设定亮度级别，取值范围是-255~255",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 滤波器类型：改变图像的对比度，用arg1设定对比度级别，取值范围是0~100 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "CONTRAST",
+      "default": {
+        "value": "9"
+      },
+      "doc": {
+        "descript": "滤波器类型：改变图像的对比度，用arg1设定对比度级别，取值范围是0~100",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 滤波器类型：改变图像的色调，用arg1、arg2、arg3分别指定red、blue、green，每种颜色范围是0~255，arg4为透明度，取值返回是0~127 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "COLORIZE",
+      "default": {
+        "value": "10"
+      },
+      "doc": {
+        "descript": "滤波器类型：改变图像的色调，用arg1、arg2、arg3分别指定red、blue、green，每种颜色范围是0~255，arg4为透明度，取值返回是0~127",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 创建一个新图像\n     @param width 指定图像宽度\n     @param height 指定图像高度\n     @param color 指定图像类型，允许值为 gd.TRUECOLOR 或 gd.PALETTE\n     @return 返回创建成功的图像对象\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": "async",
+      "name": "create",
+      "type": "Image",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "width",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "height",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "color",
+          "default": {
+            "const": [
+              "gd",
+              "TRUECOLOR"
+            ]
+          }
+        }
+      ],
+      "doc": {
+        "descript": "创建一个新图像",
+        "detail": [],
+        "params": [
+          {
+            "name": "width",
+            "descript": "指定图像宽度",
+            "detail": []
+          },
+          {
+            "name": "height",
+            "descript": "指定图像高度",
+            "detail": []
+          },
+          {
+            "name": "color",
+            "descript": "指定图像类型，允许值为 gd.TRUECOLOR 或 gd.PALETTE",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回创建成功的图像对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 从格式数据中解码图像\n     @param data 给定解码的图像数据\n     @return 返回解码成功的图像对象\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": "async",
+      "name": "load",
+      "type": "Image",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "data",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "从格式数据中解码图像",
+        "detail": [],
+        "params": [
+          {
+            "name": "data",
+            "descript": "给定解码的图像数据",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回解码成功的图像对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 从流对象中解码图像\n     @param stm 给定图像数据所在的流对象\n     @return 返回解码成功的图像对象\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": "async",
+      "name": "load",
+      "type": "Image",
+      "params": [
+        {
+          "type": "SeekableStream",
+          "name": "stm",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "从流对象中解码图像",
+        "detail": [],
+        "params": [
+          {
+            "name": "stm",
+            "descript": "给定图像数据所在的流对象",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回解码成功的图像对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 从指定文件中解码图像\n     @param fname 指定文件名\n     @return 返回解码成功的图像对象\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": "async",
+      "name": "load",
+      "type": "Image",
+      "params": [
+        {
+          "type": "String",
+          "name": "fname",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "从指定文件中解码图像",
+        "detail": [],
+        "params": [
+          {
+            "name": "fname",
+            "descript": "指定文件名",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回解码成功的图像对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 通过 rgb 颜色分量生成组合颜色\n     @param red 红色分量，范围为 0-255\n     @param green 绿色分量，范围为 0-255\n     @param blue 蓝色分量，范围为 0-255\n     @return 返回组合颜色\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "rgb",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "red",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "green",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "blue",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "通过 rgb 颜色分量生成组合颜色",
+        "detail": [],
+        "params": [
+          {
+            "name": "red",
+            "descript": "红色分量，范围为 0-255",
+            "detail": []
+          },
+          {
+            "name": "green",
+            "descript": "绿色分量，范围为 0-255",
+            "detail": []
+          },
+          {
+            "name": "blue",
+            "descript": "蓝色分量，范围为 0-255",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回组合颜色",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 通过 rgba 颜色分量生成组合颜色\n     @param red 红色分量，范围为 0-255\n     @param green 绿色分量，范围为 0-255\n     @param blue 蓝色分量，范围为 0-255\n     @param alpha 透明分量，范围为 0.0-1.0\n     @return 返回组合颜色\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "rgba",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "red",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "green",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "blue",
+          "default": null
+        },
+        {
+          "type": "Number",
+          "name": "alpha",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "通过 rgba 颜色分量生成组合颜色",
+        "detail": [],
+        "params": [
+          {
+            "name": "red",
+            "descript": "红色分量，范围为 0-255",
+            "detail": []
+          },
+          {
+            "name": "green",
+            "descript": "绿色分量，范围为 0-255",
+            "detail": []
+          },
+          {
+            "name": "blue",
+            "descript": "蓝色分量，范围为 0-255",
+            "detail": []
+          },
+          {
+            "name": "alpha",
+            "descript": "透明分量，范围为 0.0-1.0",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回组合颜色",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 通过 hsl 颜色分量生成组合颜色\n     @param hue 色相分量，范围为 0-360\n     @param saturation 饱和度分量，范围为 0.0-1.0\n     @param lightness 亮度分量，范围为 0.0-1.0\n     @return 返回组合颜色\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "hsl",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "Number",
+          "name": "hue",
+          "default": null
+        },
+        {
+          "type": "Number",
+          "name": "saturation",
+          "default": null
+        },
+        {
+          "type": "Number",
+          "name": "lightness",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "通过 hsl 颜色分量生成组合颜色",
+        "detail": [],
+        "params": [
+          {
+            "name": "hue",
+            "descript": "色相分量，范围为 0-360",
+            "detail": []
+          },
+          {
+            "name": "saturation",
+            "descript": "饱和度分量，范围为 0.0-1.0",
+            "detail": []
+          },
+          {
+            "name": "lightness",
+            "descript": "亮度分量，范围为 0.0-1.0",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回组合颜色",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 通过 hsla 颜色分量生成组合颜色\n     @param hue 色相分量，范围为 0-360\n     @param saturation 饱和度分量，范围为 0.0-1.0\n     @param lightness 亮度分量，范围为 0.0-1.0\n     @param alpha 透明分量，范围为 0.0-1.0\n     @return 返回组合颜色\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "hsla",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "Number",
+          "name": "hue",
+          "default": null
+        },
+        {
+          "type": "Number",
+          "name": "saturation",
+          "default": null
+        },
+        {
+          "type": "Number",
+          "name": "lightness",
+          "default": null
+        },
+        {
+          "type": "Number",
+          "name": "alpha",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "通过 hsla 颜色分量生成组合颜色",
+        "detail": [],
+        "params": [
+          {
+            "name": "hue",
+            "descript": "色相分量，范围为 0-360",
+            "detail": []
+          },
+          {
+            "name": "saturation",
+            "descript": "饱和度分量，范围为 0.0-1.0",
+            "detail": []
+          },
+          {
+            "name": "lightness",
+            "descript": "亮度分量，范围为 0.0-1.0",
+            "detail": []
+          },
+          {
+            "name": "alpha",
+            "descript": "透明分量，范围为 0.0-1.0",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回组合颜色",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 通过 hsb 颜色分量生成组合颜色\n     @param hue 色相分量，范围为 0-360\n     @param saturation 饱和度分量，范围为 0.0-1.0\n     @param brightness 明亮程度分量，范围为 0.0-1.0\n     @return 返回组合颜色\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "hsb",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "Number",
+          "name": "hue",
+          "default": null
+        },
+        {
+          "type": "Number",
+          "name": "saturation",
+          "default": null
+        },
+        {
+          "type": "Number",
+          "name": "brightness",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "通过 hsb 颜色分量生成组合颜色",
+        "detail": [],
+        "params": [
+          {
+            "name": "hue",
+            "descript": "色相分量，范围为 0-360",
+            "detail": []
+          },
+          {
+            "name": "saturation",
+            "descript": "饱和度分量，范围为 0.0-1.0",
+            "detail": []
+          },
+          {
+            "name": "brightness",
+            "descript": "明亮程度分量，范围为 0.0-1.0",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回组合颜色",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 通过 hsba 颜色分量生成组合颜色\n     @param hue 色相分量，范围为 0-360\n     @param saturation 饱和度分量，范围为 0.0-1.0\n     @param brightness 明亮程度分量，范围为 0.0-1.0\n     @param alpha 透明分量，范围为 0.0-1.0\n     @return 返回组合颜色\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "hsba",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "Number",
+          "name": "hue",
+          "default": null
+        },
+        {
+          "type": "Number",
+          "name": "saturation",
+          "default": null
+        },
+        {
+          "type": "Number",
+          "name": "brightness",
+          "default": null
+        },
+        {
+          "type": "Number",
+          "name": "alpha",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "通过 hsba 颜色分量生成组合颜色",
+        "detail": [],
+        "params": [
+          {
+            "name": "hue",
+            "descript": "色相分量，范围为 0-360",
+            "detail": []
+          },
+          {
+            "name": "saturation",
+            "descript": "饱和度分量，范围为 0.0-1.0",
+            "detail": []
+          },
+          {
+            "name": "brightness",
+            "descript": "明亮程度分量，范围为 0.0-1.0",
+            "detail": []
+          },
+          {
+            "name": "alpha",
+            "descript": "透明分量，范围为 0.0-1.0",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回组合颜色",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 通过字符串生成组合颜色\n     @param color 指定颜色的字符串，如：\"#ff0000\", \"ff0000\", \"#f00\", \"f00\"\n     @return 返回组合颜色\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "color",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "String",
+          "name": "color",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "通过字符串生成组合颜色",
+        "detail": [],
+        "params": [
+          {
+            "name": "color",
+            "descript": "指定颜色的字符串，如：\"#ff0000\", \"ff0000\", \"#f00\", \"f00\"",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回组合颜色",
+          "detail": []
+        }
+      }
+    }
+  ],
+  "collect": "Utility"
+}

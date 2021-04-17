@@ -1,0 +1,284 @@
+{
+  "declare": {
+    "comments": "! @brief Redis 数据库客户端 Set 对象，此对象为包含指定 key 的客户端，只有调用其方法才会操作数据库\n\n 用以操作 Redis 的 Set 对象，创建方法：\n ```JavaScript\n var db = require(\"db\");\n var rdb = new db.openRedis(\"redis-server\");\n var set = rdb.getSet(\"test\");\n ```\n ",
+    "type": "interface",
+    "name": "RedisSet",
+    "extend": "object",
+    "doc": {
+      "descript": "Redis 数据库客户端 Set 对象，此对象为包含指定 key 的客户端，只有调用其方法才会操作数据库",
+      "detail": [
+        "用以操作 Redis 的 Set 对象，创建方法：",
+        "```JavaScript",
+        "var db = require(\"db\");",
+        "var rdb = new db.openRedis(\"redis-server\");",
+        "var set = rdb.getSet(\"test\");",
+        "```"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "method",
+      "comments": "! @brief 将一个或多个 member 元素加入到集合 key 当中，已经存在于集合的 member 元素将被忽略\n     @param members 指定要添加的元素数组\n     @return 被添加到集合中的新元素的数量，不包括被忽略的元素 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "add",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "Array",
+          "name": "members",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "将一个或多个 member 元素加入到集合 key 当中，已经存在于集合的 member 元素将被忽略",
+        "detail": [],
+        "params": [
+          {
+            "name": "members",
+            "descript": "指定要添加的元素数组",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "被添加到集合中的新元素的数量，不包括被忽略的元素",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 同时将多个 field-value (域-值)对设置到哈希表中，此命令会覆盖哈希表中已存在的域\n     @param members 指定要添加的元素列表\n     @return 被添加到集合中的新元素的数量，不包括被忽略的元素  ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "add",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "...",
+          "name": "members",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "同时将多个 field-value (域-值)对设置到哈希表中，此命令会覆盖哈希表中已存在的域",
+        "detail": [],
+        "params": [
+          {
+            "name": "members",
+            "descript": "指定要添加的元素列表",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "被添加到集合中的新元素的数量，不包括被忽略的元素",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 移除集合中的一个或多个 member 元素\n     @param members 指定要移除的元素数组\n     @return 被成功移除的元素的数量，不包括被忽略的元素 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "remove",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "Array",
+          "name": "members",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "移除集合中的一个或多个 member 元素",
+        "detail": [],
+        "params": [
+          {
+            "name": "members",
+            "descript": "指定要移除的元素数组",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "被成功移除的元素的数量，不包括被忽略的元素",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 移除集合中的一个或多个 member 元素\n     @param members 指定要移除的元素列表\n     @return 被成功移除的元素的数量，不包括被忽略的元素  ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "remove",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "...",
+          "name": "members",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "移除集合中的一个或多个 member 元素",
+        "detail": [],
+        "params": [
+          {
+            "name": "members",
+            "descript": "指定要移除的元素列表",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "被成功移除的元素的数量，不包括被忽略的元素",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 返回集合中元素的数量\n     @return 返回集合的长度 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "len",
+      "type": "Integer",
+      "params": null,
+      "doc": {
+        "descript": "返回集合中元素的数量",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "返回集合的长度",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 判断 member 元素是否集合的成员\n     @param member 指定检查的 member\n     @return 如果 member 元素是集合的成员，返回 true ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "exists",
+      "type": "Boolean",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "member",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "判断 member 元素是否集合的成员",
+        "detail": [],
+        "params": [
+          {
+            "name": "member",
+            "descript": "指定检查的 member",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "如果 member 元素是集合的成员，返回 true",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 返回集合中的所有成员\n     @return 集合中所有成员的列表 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "members",
+      "type": "NArray",
+      "params": null,
+      "doc": {
+        "descript": "返回集合中的所有成员",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "集合中所有成员的列表",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 移除并返回集合中的一个随机元素\n     @return 被移除的随机元素。当集合是空集时，返回 null ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "pop",
+      "type": "Buffer",
+      "params": null,
+      "doc": {
+        "descript": "移除并返回集合中的一个随机元素",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "被移除的随机元素。当集合是空集时，返回 null",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 从集合中获取随机的一个元素\n     @return 返回一个元素；如果集合为空，返回 null ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "randMember",
+      "type": "Value",
+      "params": null,
+      "doc": {
+        "descript": "从集合中获取随机的一个元素",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "返回一个元素；如果集合为空，返回 null",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 从集合中获取随机的若干元素\n     @param count 指定返回的元素个数。正数，返回一个包含 count 个元素的数组；负数，返回一个数组，数组中的元素可能会重复出现多次，而数组的长度为 count 的绝对值\n     @return 返回一个列表；如果集合为空，返回空列表 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "randMember",
+      "type": "Value",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "count",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "从集合中获取随机的若干元素",
+        "detail": [],
+        "params": [
+          {
+            "name": "count",
+            "descript": "指定返回的元素个数。正数，返回一个包含 count 个元素的数组；负数，返回一个数组，数组中的元素可能会重复出现多次，而数组的长度为 count 的绝对值",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回一个列表；如果集合为空，返回空列表",
+          "detail": []
+        }
+      }
+    }
+  ]
+}

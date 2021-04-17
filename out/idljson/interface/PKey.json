@@ -1,0 +1,738 @@
+{
+  "declare": {
+    "comments": "! @brief 不对称加密算法对象\n\n PKey 对象属于 crypto 模块，创建：\n ```JavaScript\n var k = new crypto.PKey();\n ```\n ",
+    "type": "interface",
+    "name": "PKey",
+    "extend": "object",
+    "doc": {
+      "descript": "不对称加密算法对象",
+      "detail": [
+        "PKey 对象属于 crypto 模块，创建：",
+        "```JavaScript",
+        "var k = new crypto.PKey();",
+        "```"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "method",
+      "comments": "! @brief PKey 构造函数 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "PKey",
+      "type": null,
+      "params": null,
+      "doc": {
+        "descript": "PKey 构造函数",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 通过 DER 格式的密钥构造 PKey\n     @param DerKey DER 格式的密钥\n     @param password 解密密码\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "PKey",
+      "type": null,
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "DerKey",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "password",
+          "default": {
+            "value": "\"\""
+          }
+        }
+      ],
+      "doc": {
+        "descript": "通过 DER 格式的密钥构造 PKey",
+        "detail": [],
+        "params": [
+          {
+            "name": "DerKey",
+            "descript": "DER 格式的密钥",
+            "detail": []
+          },
+          {
+            "name": "password",
+            "descript": "解密密码",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 通过 PEM 格式的密钥构造 PKey\n     @param pemKey PEM 格式的密钥\n     @param password 解密密码\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "PKey",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "pemKey",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "password",
+          "default": {
+            "value": "\"\""
+          }
+        }
+      ],
+      "doc": {
+        "descript": "通过 PEM 格式的密钥构造 PKey",
+        "detail": [],
+        "params": [
+          {
+            "name": "pemKey",
+            "descript": "PEM 格式的密钥",
+            "detail": []
+          },
+          {
+            "name": "password",
+            "descript": "解密密码",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 通过 JSON 格式的密钥构造 PKey\n\n     jsonKey 的格式支持以下四种，RSA 私钥：\n     ```JavaScript\n     {\n        \"kty\": \"RSA\",\n        \"n\": \"0m5lvKpWqy9JS7tV2HIPqHCYHLquSuxIC3F8strIQLJKO3rZmTT96KTnhsOfBO7Y1bI7mnT0PB3_vcHd9ekWMEoZJQw7MuB8KeM_Wn54-elJr5DNLk5bMppSGxX7ZnumiXGG51_X3Yp-_EbGtDG80GxXXix7Mucyo7K25uE0uW8=\",\n        \"e\": \"AQAB\",\n        \"d\": \"agN2O9NxMHL1MTMi75WfL9Pxvl-KWXKqZSF6mjzAsF9iKI8euyHIXYFepzU8kual1RsjDhCnzvWqFvZplW8lXqrHf_P-rS_9Y4gBUw6pjnI_DnFIRwWHRvrUHHSCfWOdTCIKdOTkgLZuGFuhEY3RMIW0WSYejjLtftwy0RVxAzk=\",\n        \"p\": \"6a4G1qmfwWmn1biigN7IVFlkbLf9oVe6g7rOmHxI-hn1GRxKDSVuAUrmR1IhuAnca9M0y7SD-7TUs6wjOxWxaw==\",\n        \"q\": \"5ofkxFKdPBD0CQHMb9q13AMHUVe0rJ-hSjqqIBrmqApUOneyAcMV76M0QyIQnI2p3POa4Qu_7XChDwRVl7LlDQ==\",\n        \"dp\": \"2mXGiGwCHl8j-FBWuID-1C6z-BRB3MBEVoeKPOOzxOPruatB3mWEGXsqG7A8SWgV9URxTI2K6P3J6Z7RUpBkvw==\",\n        \"dq\": \"oagn5vfb5NQqnOpS9xkSsD67cfIj821ZSFlNFYhnuOzNVda7z_qCtnHm4zDPH0lEFXoKYMfBhfqWJpaugttjPQ==\",\n        \"qi\": \"dqEQgxNmOVFrF4s776hTqeC6oEDila8EvpVb2F2ZvwAOLjCQ66OiAZK1BiYGHqUy0NeqNmtlsLSuBEZQZvqZwg==\"\n     }\n     ```\n     RSA 公钥：\n     ```JavaScript\n     {\n        \"kty\": \"RSA\",\n        \"n\": \"0m5lvKpWqy9JS7tV2HIPqHCYHLquSuxIC3F8strIQLJKO3rZmTT96KTnhsOfBO7Y1bI7mnT0PB3_vcHd9ekWMEoZJQw7MuB8KeM_Wn54-elJr5DNLk5bMppSGxX7ZnumiXGG51_X3Yp-_EbGtDG80GxXXix7Mucyo7K25uE0uW8=\",\n        \"e\": \"AQAB\"\n     }\n     ```\n     EC 私钥：\n     ```JavaScript\n     {\n        \"kty\": \"EC\",\n        \"crv\": \"P-521\",\n        \"x\": \"ATfNNFuuvlGxrTGoXgyfSAGgRNNDnO3rN3k74urKJdVS14RYhdnSwm91Bm-F1l-T1XKlAY2yRnzG9w1Ukvo8c0wL\",\n        \"y\": \"ASBHqrruB6kdkEUB3vlW3-UIkk4HtKdUeTwN-7m3j2rgZvYR1ffRAapDvWqKGiBjomqWafxokBkbDI0c95f6f4XU\",\n        \"d\": \"AfkIbUHXfW41njdpoKuqqKludcoLJS8D_oMEwkj-GVaXFNKccIoF5iKGu2c69kNDjo83R_7wyGlfRczsklkik1ST\"\n     }\n     ```\n     EC 公钥：\n     ```JavaScript\n     {\n        \"kty\": \"EC\",\n        \"crv\": \"P-521\",\n        \"x\": \"ATfNNFuuvlGxrTGoXgyfSAGgRNNDnO3rN3k74urKJdVS14RYhdnSwm91Bm-F1l-T1XKlAY2yRnzG9w1Ukvo8c0wL\",\n        \"y\": \"ASBHqrruB6kdkEUB3vlW3-UIkk4HtKdUeTwN-7m3j2rgZvYR1ffRAapDvWqKGiBjomqWafxokBkbDI0c95f6f4XU\"\n     }\n     ```\n     @param jsonKey JSON 格式的密钥\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "PKey",
+      "type": null,
+      "params": [
+        {
+          "type": "Object",
+          "name": "jsonKey",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "通过 JSON 格式的密钥构造 PKey",
+        "detail": [
+          "jsonKey 的格式支持以下四种，RSA 私钥：",
+          "```JavaScript",
+          "{",
+          "   \"kty\": \"RSA\",",
+          "   \"n\": \"0m5lvKpWqy9JS7tV2HIPqHCYHLquSuxIC3F8strIQLJKO3rZmTT96KTnhsOfBO7Y1bI7mnT0PB3_vcHd9ekWMEoZJQw7MuB8KeM_Wn54-elJr5DNLk5bMppSGxX7ZnumiXGG51_X3Yp-_EbGtDG80GxXXix7Mucyo7K25uE0uW8=\",",
+          "   \"e\": \"AQAB\",",
+          "   \"d\": \"agN2O9NxMHL1MTMi75WfL9Pxvl-KWXKqZSF6mjzAsF9iKI8euyHIXYFepzU8kual1RsjDhCnzvWqFvZplW8lXqrHf_P-rS_9Y4gBUw6pjnI_DnFIRwWHRvrUHHSCfWOdTCIKdOTkgLZuGFuhEY3RMIW0WSYejjLtftwy0RVxAzk=\",",
+          "   \"p\": \"6a4G1qmfwWmn1biigN7IVFlkbLf9oVe6g7rOmHxI-hn1GRxKDSVuAUrmR1IhuAnca9M0y7SD-7TUs6wjOxWxaw==\",",
+          "   \"q\": \"5ofkxFKdPBD0CQHMb9q13AMHUVe0rJ-hSjqqIBrmqApUOneyAcMV76M0QyIQnI2p3POa4Qu_7XChDwRVl7LlDQ==\",",
+          "   \"dp\": \"2mXGiGwCHl8j-FBWuID-1C6z-BRB3MBEVoeKPOOzxOPruatB3mWEGXsqG7A8SWgV9URxTI2K6P3J6Z7RUpBkvw==\",",
+          "   \"dq\": \"oagn5vfb5NQqnOpS9xkSsD67cfIj821ZSFlNFYhnuOzNVda7z_qCtnHm4zDPH0lEFXoKYMfBhfqWJpaugttjPQ==\",",
+          "   \"qi\": \"dqEQgxNmOVFrF4s776hTqeC6oEDila8EvpVb2F2ZvwAOLjCQ66OiAZK1BiYGHqUy0NeqNmtlsLSuBEZQZvqZwg==\"",
+          "}",
+          "```",
+          "RSA 公钥：",
+          "```JavaScript",
+          "{",
+          "   \"kty\": \"RSA\",",
+          "   \"n\": \"0m5lvKpWqy9JS7tV2HIPqHCYHLquSuxIC3F8strIQLJKO3rZmTT96KTnhsOfBO7Y1bI7mnT0PB3_vcHd9ekWMEoZJQw7MuB8KeM_Wn54-elJr5DNLk5bMppSGxX7ZnumiXGG51_X3Yp-_EbGtDG80GxXXix7Mucyo7K25uE0uW8=\",",
+          "   \"e\": \"AQAB\"",
+          "}",
+          "```",
+          "EC 私钥：",
+          "```JavaScript",
+          "{",
+          "   \"kty\": \"EC\",",
+          "   \"crv\": \"P-521\",",
+          "   \"x\": \"ATfNNFuuvlGxrTGoXgyfSAGgRNNDnO3rN3k74urKJdVS14RYhdnSwm91Bm-F1l-T1XKlAY2yRnzG9w1Ukvo8c0wL\",",
+          "   \"y\": \"ASBHqrruB6kdkEUB3vlW3-UIkk4HtKdUeTwN-7m3j2rgZvYR1ffRAapDvWqKGiBjomqWafxokBkbDI0c95f6f4XU\",",
+          "   \"d\": \"AfkIbUHXfW41njdpoKuqqKludcoLJS8D_oMEwkj-GVaXFNKccIoF5iKGu2c69kNDjo83R_7wyGlfRczsklkik1ST\"",
+          "}",
+          "```",
+          "EC 公钥：",
+          "```JavaScript",
+          "{",
+          "   \"kty\": \"EC\",",
+          "   \"crv\": \"P-521\",",
+          "   \"x\": \"ATfNNFuuvlGxrTGoXgyfSAGgRNNDnO3rN3k74urKJdVS14RYhdnSwm91Bm-F1l-T1XKlAY2yRnzG9w1Ukvo8c0wL\",",
+          "   \"y\": \"ASBHqrruB6kdkEUB3vlW3-UIkk4HtKdUeTwN-7m3j2rgZvYR1ffRAapDvWqKGiBjomqWafxokBkbDI0c95f6f4XU\"",
+          "}",
+          "```"
+        ],
+        "params": [
+          {
+            "name": "jsonKey",
+            "descript": "JSON 格式的密钥",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 返回当前算法名称 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "name",
+      "type": "String",
+      "doc": {
+        "descript": "返回当前算法名称",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 返回当前算法密码长度，以位为单位 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "keySize",
+      "type": "Integer",
+      "doc": {
+        "descript": "返回当前算法密码长度，以位为单位",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 返回当前密钥的公钥\n     @return 当前密钥的公钥\n    ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "publicKey",
+      "type": "PKey",
+      "doc": {
+        "descript": "返回当前密钥的公钥",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "当前密钥的公钥",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 生成一个 RSA 私钥\n     @param size 指定 RSA 密钥长度，bit 为单位\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "genRsaKey",
+      "type": null,
+      "params": [
+        {
+          "type": "Integer",
+          "name": "size",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "生成一个 RSA 私钥",
+        "detail": [],
+        "params": [
+          {
+            "name": "size",
+            "descript": "指定 RSA 密钥长度，bit 为单位",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 生成一个 EC 私钥\n     @param curve 指定预置椭圆曲线，可选值为：\"secp521r1\", \"brainpoolP512r1\", \"secp384r1\", \"brainpoolP384r1\", \"secp256r1\", \"secp256k1\", \"brainpoolP256r1\", \"secp224r1\", \"secp224k1\", \"secp192r1\", \"secp192k1\"\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "genEcKey",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "curve",
+          "default": {
+            "value": "\"secp521r1\""
+          }
+        }
+      ],
+      "doc": {
+        "descript": "生成一个 EC 私钥",
+        "detail": [],
+        "params": [
+          {
+            "name": "curve",
+            "descript": "指定预置椭圆曲线，可选值为：\"secp521r1\", \"brainpoolP512r1\", \"secp384r1\", \"brainpoolP384r1\", \"secp256r1\", \"secp256k1\", \"brainpoolP256r1\", \"secp224r1\", \"secp224k1\", \"secp192r1\", \"secp192k1\"",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 生成一个 SM2 私钥\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "genSm2Key",
+      "type": null,
+      "params": null,
+      "doc": {
+        "descript": "生成一个 SM2 私钥",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查询当前密钥是否为私钥\n     @return 为 True 表示为私钥\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "isPrivate",
+      "type": "Boolean",
+      "params": null,
+      "doc": {
+        "descript": "查询当前密钥是否为私钥",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "为 True 表示为私钥",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 复制当前密钥\n     @return 当前密钥的复制对象\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "clone",
+      "type": "PKey",
+      "params": null,
+      "doc": {
+        "descript": "复制当前密钥",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "当前密钥的复制对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 加载一个 DER 格式的密钥\n     @param DerKey DER 格式的密钥\n     @param password 解密密码\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "importKey",
+      "type": null,
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "DerKey",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "password",
+          "default": {
+            "value": "\"\""
+          }
+        }
+      ],
+      "doc": {
+        "descript": "加载一个 DER 格式的密钥",
+        "detail": [],
+        "params": [
+          {
+            "name": "DerKey",
+            "descript": "DER 格式的密钥",
+            "detail": []
+          },
+          {
+            "name": "password",
+            "descript": "解密密码",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 加载一个 PEM 格式的密钥\n     @param pemKey PEM 格式的密钥\n     @param password 解密密码\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "importKey",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "pemKey",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "password",
+          "default": {
+            "value": "\"\""
+          }
+        }
+      ],
+      "doc": {
+        "descript": "加载一个 PEM 格式的密钥",
+        "detail": [],
+        "params": [
+          {
+            "name": "pemKey",
+            "descript": "PEM 格式的密钥",
+            "detail": []
+          },
+          {
+            "name": "password",
+            "descript": "解密密码",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 加载一个 JSON 格式的密钥\n\n     jsonKey 的格式支持以下四种，RSA 私钥：\n     ```JavaScript\n     {\n        \"kty\": \"RSA\",\n        \"n\": \"0m5lvKpWqy9JS7tV2HIPqHCYHLquSuxIC3F8strIQLJKO3rZmTT96KTnhsOfBO7Y1bI7mnT0PB3_vcHd9ekWMEoZJQw7MuB8KeM_Wn54-elJr5DNLk5bMppSGxX7ZnumiXGG51_X3Yp-_EbGtDG80GxXXix7Mucyo7K25uE0uW8=\",\n        \"e\": \"AQAB\",\n        \"d\": \"agN2O9NxMHL1MTMi75WfL9Pxvl-KWXKqZSF6mjzAsF9iKI8euyHIXYFepzU8kual1RsjDhCnzvWqFvZplW8lXqrHf_P-rS_9Y4gBUw6pjnI_DnFIRwWHRvrUHHSCfWOdTCIKdOTkgLZuGFuhEY3RMIW0WSYejjLtftwy0RVxAzk=\",\n        \"p\": \"6a4G1qmfwWmn1biigN7IVFlkbLf9oVe6g7rOmHxI-hn1GRxKDSVuAUrmR1IhuAnca9M0y7SD-7TUs6wjOxWxaw==\",\n        \"q\": \"5ofkxFKdPBD0CQHMb9q13AMHUVe0rJ-hSjqqIBrmqApUOneyAcMV76M0QyIQnI2p3POa4Qu_7XChDwRVl7LlDQ==\",\n        \"dp\": \"2mXGiGwCHl8j-FBWuID-1C6z-BRB3MBEVoeKPOOzxOPruatB3mWEGXsqG7A8SWgV9URxTI2K6P3J6Z7RUpBkvw==\",\n        \"dq\": \"oagn5vfb5NQqnOpS9xkSsD67cfIj821ZSFlNFYhnuOzNVda7z_qCtnHm4zDPH0lEFXoKYMfBhfqWJpaugttjPQ==\",\n        \"qi\": \"dqEQgxNmOVFrF4s776hTqeC6oEDila8EvpVb2F2ZvwAOLjCQ66OiAZK1BiYGHqUy0NeqNmtlsLSuBEZQZvqZwg==\"\n     }\n     ```\n     RSA 公钥：\n     ```JavaScript\n     {\n        \"kty\": \"RSA\",\n        \"n\": \"0m5lvKpWqy9JS7tV2HIPqHCYHLquSuxIC3F8strIQLJKO3rZmTT96KTnhsOfBO7Y1bI7mnT0PB3_vcHd9ekWMEoZJQw7MuB8KeM_Wn54-elJr5DNLk5bMppSGxX7ZnumiXGG51_X3Yp-_EbGtDG80GxXXix7Mucyo7K25uE0uW8=\",\n        \"e\": \"AQAB\"\n     }\n     ```\n     EC 私钥：\n     ```JavaScript\n     {\n        \"kty\": \"EC\",\n        \"crv\": \"P-521\",\n        \"x\": \"ATfNNFuuvlGxrTGoXgyfSAGgRNNDnO3rN3k74urKJdVS14RYhdnSwm91Bm-F1l-T1XKlAY2yRnzG9w1Ukvo8c0wL\",\n        \"y\": \"ASBHqrruB6kdkEUB3vlW3-UIkk4HtKdUeTwN-7m3j2rgZvYR1ffRAapDvWqKGiBjomqWafxokBkbDI0c95f6f4XU\",\n        \"d\": \"AfkIbUHXfW41njdpoKuqqKludcoLJS8D_oMEwkj-GVaXFNKccIoF5iKGu2c69kNDjo83R_7wyGlfRczsklkik1ST\"\n     }\n     ```\n     EC 公钥：\n     ```JavaScript\n     {\n        \"kty\": \"EC\",\n        \"crv\": \"P-521\",\n        \"x\": \"ATfNNFuuvlGxrTGoXgyfSAGgRNNDnO3rN3k74urKJdVS14RYhdnSwm91Bm-F1l-T1XKlAY2yRnzG9w1Ukvo8c0wL\",\n        \"y\": \"ASBHqrruB6kdkEUB3vlW3-UIkk4HtKdUeTwN-7m3j2rgZvYR1ffRAapDvWqKGiBjomqWafxokBkbDI0c95f6f4XU\"\n     }\n     ```\n     @param jsonKey JSON 格式的密钥\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "importKey",
+      "type": null,
+      "params": [
+        {
+          "type": "Object",
+          "name": "jsonKey",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "加载一个 JSON 格式的密钥",
+        "detail": [
+          "jsonKey 的格式支持以下四种，RSA 私钥：",
+          "```JavaScript",
+          "{",
+          "   \"kty\": \"RSA\",",
+          "   \"n\": \"0m5lvKpWqy9JS7tV2HIPqHCYHLquSuxIC3F8strIQLJKO3rZmTT96KTnhsOfBO7Y1bI7mnT0PB3_vcHd9ekWMEoZJQw7MuB8KeM_Wn54-elJr5DNLk5bMppSGxX7ZnumiXGG51_X3Yp-_EbGtDG80GxXXix7Mucyo7K25uE0uW8=\",",
+          "   \"e\": \"AQAB\",",
+          "   \"d\": \"agN2O9NxMHL1MTMi75WfL9Pxvl-KWXKqZSF6mjzAsF9iKI8euyHIXYFepzU8kual1RsjDhCnzvWqFvZplW8lXqrHf_P-rS_9Y4gBUw6pjnI_DnFIRwWHRvrUHHSCfWOdTCIKdOTkgLZuGFuhEY3RMIW0WSYejjLtftwy0RVxAzk=\",",
+          "   \"p\": \"6a4G1qmfwWmn1biigN7IVFlkbLf9oVe6g7rOmHxI-hn1GRxKDSVuAUrmR1IhuAnca9M0y7SD-7TUs6wjOxWxaw==\",",
+          "   \"q\": \"5ofkxFKdPBD0CQHMb9q13AMHUVe0rJ-hSjqqIBrmqApUOneyAcMV76M0QyIQnI2p3POa4Qu_7XChDwRVl7LlDQ==\",",
+          "   \"dp\": \"2mXGiGwCHl8j-FBWuID-1C6z-BRB3MBEVoeKPOOzxOPruatB3mWEGXsqG7A8SWgV9URxTI2K6P3J6Z7RUpBkvw==\",",
+          "   \"dq\": \"oagn5vfb5NQqnOpS9xkSsD67cfIj821ZSFlNFYhnuOzNVda7z_qCtnHm4zDPH0lEFXoKYMfBhfqWJpaugttjPQ==\",",
+          "   \"qi\": \"dqEQgxNmOVFrF4s776hTqeC6oEDila8EvpVb2F2ZvwAOLjCQ66OiAZK1BiYGHqUy0NeqNmtlsLSuBEZQZvqZwg==\"",
+          "}",
+          "```",
+          "RSA 公钥：",
+          "```JavaScript",
+          "{",
+          "   \"kty\": \"RSA\",",
+          "   \"n\": \"0m5lvKpWqy9JS7tV2HIPqHCYHLquSuxIC3F8strIQLJKO3rZmTT96KTnhsOfBO7Y1bI7mnT0PB3_vcHd9ekWMEoZJQw7MuB8KeM_Wn54-elJr5DNLk5bMppSGxX7ZnumiXGG51_X3Yp-_EbGtDG80GxXXix7Mucyo7K25uE0uW8=\",",
+          "   \"e\": \"AQAB\"",
+          "}",
+          "```",
+          "EC 私钥：",
+          "```JavaScript",
+          "{",
+          "   \"kty\": \"EC\",",
+          "   \"crv\": \"P-521\",",
+          "   \"x\": \"ATfNNFuuvlGxrTGoXgyfSAGgRNNDnO3rN3k74urKJdVS14RYhdnSwm91Bm-F1l-T1XKlAY2yRnzG9w1Ukvo8c0wL\",",
+          "   \"y\": \"ASBHqrruB6kdkEUB3vlW3-UIkk4HtKdUeTwN-7m3j2rgZvYR1ffRAapDvWqKGiBjomqWafxokBkbDI0c95f6f4XU\",",
+          "   \"d\": \"AfkIbUHXfW41njdpoKuqqKludcoLJS8D_oMEwkj-GVaXFNKccIoF5iKGu2c69kNDjo83R_7wyGlfRczsklkik1ST\"",
+          "}",
+          "```",
+          "EC 公钥：",
+          "```JavaScript",
+          "{",
+          "   \"kty\": \"EC\",",
+          "   \"crv\": \"P-521\",",
+          "   \"x\": \"ATfNNFuuvlGxrTGoXgyfSAGgRNNDnO3rN3k74urKJdVS14RYhdnSwm91Bm-F1l-T1XKlAY2yRnzG9w1Ukvo8c0wL\",",
+          "   \"y\": \"ASBHqrruB6kdkEUB3vlW3-UIkk4HtKdUeTwN-7m3j2rgZvYR1ffRAapDvWqKGiBjomqWafxokBkbDI0c95f6f4XU\"",
+          "}",
+          "```"
+        ],
+        "params": [
+          {
+            "name": "jsonKey",
+            "descript": "JSON 格式的密钥",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 加载一个 PEM/DER 格式的密钥文件\n     @param filename 密钥文件名\n     @param password 解密密码\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "importFile",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "filename",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "password",
+          "default": {
+            "value": "\"\""
+          }
+        }
+      ],
+      "doc": {
+        "descript": "加载一个 PEM/DER 格式的密钥文件",
+        "detail": [],
+        "params": [
+          {
+            "name": "filename",
+            "descript": "密钥文件名",
+            "detail": []
+          },
+          {
+            "name": "password",
+            "descript": "解密密码",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 返回当前 key 的 PEM 格式编码\n     @return 当前 key 的 PEM 格式编码\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "exportPem",
+      "type": "String",
+      "params": null,
+      "doc": {
+        "descript": "返回当前 key 的 PEM 格式编码",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "当前 key 的 PEM 格式编码",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 返回当前 key 的 DER 格式编码\n     @return 当前 key 的 DER 格式编码\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "exportDer",
+      "type": "Buffer",
+      "params": null,
+      "doc": {
+        "descript": "返回当前 key 的 DER 格式编码",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "当前 key 的 DER 格式编码",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 返回当前 key 的 DER 格式编码\n     @return 当前 key 的 DER 格式编码\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "exportJson",
+      "type": "Object",
+      "params": null,
+      "doc": {
+        "descript": "返回当前 key 的 DER 格式编码",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "当前 key 的 DER 格式编码",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 使用当前算法密码公钥加密数据\n     @param data 指定要加密的数据\n     @return 返回加密后的数据\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "encrypt",
+      "type": "Buffer",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "data",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "使用当前算法密码公钥加密数据",
+        "detail": [],
+        "params": [
+          {
+            "name": "data",
+            "descript": "指定要加密的数据",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回加密后的数据",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 使用当前算法密码私钥解密数据\n     @param data 指定要解密的数据\n     @return 返回解密后的数据\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "decrypt",
+      "type": "Buffer",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "data",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "使用当前算法密码私钥解密数据",
+        "detail": [],
+        "params": [
+          {
+            "name": "data",
+            "descript": "指定要解密的数据",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回解密后的数据",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 使用当前算法密码私钥签名数据\n     @param data 指定要签名的数据\n     @param alg 指定要签名的算法, 默认0. 支持算法: 0=NONE,1=MD2,2=MD4,3=MD5,4=SHA1,5=SHA224,6=SHA256,7=SHA384,8=SHA512,9=RIPEMD160\n     @return 返回签名后的数据\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "sign",
+      "type": "Buffer",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "data",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "alg",
+          "default": {
+            "value": "0"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "使用当前算法密码私钥签名数据",
+        "detail": [],
+        "params": [
+          {
+            "name": "data",
+            "descript": "指定要签名的数据",
+            "detail": []
+          },
+          {
+            "name": "alg",
+            "descript": "指定要签名的算法, 默认0. 支持算法: 0=NONE,1=MD2,2=MD4,3=MD5,4=SHA1,5=SHA224,6=SHA256,7=SHA384,8=SHA512,9=RIPEMD160",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回签名后的数据",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 使用当前算法密码公钥验证数据\n     @param data 指定要验证的数据\n     @param sign 指定要验证的签名\n     @param alg 指定要签名的算法, 默认0. 支持算法: 0=NONE,1=MD2,2=MD4,3=MD5,4=SHA1,5=SHA224,6=SHA256,7=SHA384,8=SHA512,9=RIPEMD160\n     @return 返回验证后的结果\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "verify",
+      "type": "Boolean",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "data",
+          "default": null
+        },
+        {
+          "type": "Buffer",
+          "name": "sign",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "alg",
+          "default": {
+            "value": "0"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "使用当前算法密码公钥验证数据",
+        "detail": [],
+        "params": [
+          {
+            "name": "data",
+            "descript": "指定要验证的数据",
+            "detail": []
+          },
+          {
+            "name": "sign",
+            "descript": "指定要验证的签名",
+            "detail": []
+          },
+          {
+            "name": "alg",
+            "descript": "指定要签名的算法, 默认0. 支持算法: 0=NONE,1=MD2,2=MD4,3=MD5,4=SHA1,5=SHA224,6=SHA256,7=SHA384,8=SHA512,9=RIPEMD160",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回验证后的结果",
+          "detail": []
+        }
+      }
+    }
+  ]
+}

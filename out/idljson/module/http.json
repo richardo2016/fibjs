@@ -1,0 +1,803 @@
+{
+  "declare": {
+    "comments": "! @brief 超文本传输协议模块，用以支持 http 协议处理，模块别名：https ",
+    "type": "module",
+    "name": "http",
+    "extend": "object",
+    "module": true,
+    "doc": {
+      "descript": "超文本传输协议模块，用以支持 http 协议处理，模块别名：https",
+      "detail": [],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "object",
+      "comments": "! @brief 创建一个 http 请求对象，参见 HttpRequest ",
+      "deprecated": null,
+      "name": "Request",
+      "type": "HttpRequest",
+      "newable": true,
+      "doc": {
+        "descript": "创建一个 http 请求对象，参见 HttpRequest",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "object",
+      "comments": "! @brief 创建一个 http 响应对象，参见 HttpResponse ",
+      "deprecated": null,
+      "name": "Response",
+      "type": "HttpResponse",
+      "newable": true,
+      "doc": {
+        "descript": "创建一个 http 响应对象，参见 HttpResponse",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "object",
+      "comments": "! @brief 创建一个 http cookie 对象，参见 HttpCookie ",
+      "deprecated": null,
+      "name": "Cookie",
+      "type": "HttpCookie",
+      "newable": true,
+      "doc": {
+        "descript": "创建一个 http cookie 对象，参见 HttpCookie",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "object",
+      "comments": "! @brief 创建一个 http 服务器，参见 HttpServer ",
+      "deprecated": null,
+      "name": "Server",
+      "type": "HttpServer",
+      "newable": true,
+      "doc": {
+        "descript": "创建一个 http 服务器，参见 HttpServer",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "object",
+      "comments": "! @brief 创建一个 http 客户端，参见 HttpClient ",
+      "deprecated": null,
+      "name": "Client",
+      "type": "HttpClient",
+      "newable": true,
+      "doc": {
+        "descript": "创建一个 http 客户端，参见 HttpClient",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "object",
+      "comments": "! @brief 创建一个 https 服务器，参见 HttpsServer ",
+      "deprecated": null,
+      "name": "HttpsServer",
+      "type": "HttpsServer",
+      "newable": true,
+      "doc": {
+        "descript": "创建一个 https 服务器，参见 HttpsServer",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "object",
+      "comments": "! @brief 创建一个 http 协议处理器对象，参见 HttpHandler ",
+      "deprecated": null,
+      "name": "Handler",
+      "type": "HttpHandler",
+      "newable": true,
+      "doc": {
+        "descript": "创建一个 http 协议处理器对象，参见 HttpHandler",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "object",
+      "comments": "! @brief 创建一个 http 请求转发处理器对象，参见 HttpRepeater ",
+      "deprecated": null,
+      "name": "Repeater",
+      "type": "HttpRepeater",
+      "newable": true,
+      "doc": {
+        "descript": "创建一个 http 请求转发处理器对象，参见 HttpRepeater",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 返回标准的 HTTP 响应状态码的集合，以及各自的简短描述。 ",
+      "deprecated": null,
+      "static": "static",
+      "readonly": "readonly",
+      "name": "STATUS_CODES",
+      "type": "Array",
+      "doc": {
+        "descript": "返回标准的 HTTP 响应状态码的集合，以及各自的简短描述。",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 返回http客户端的 HttpCookie 对象列表 ",
+      "deprecated": null,
+      "static": "static",
+      "readonly": "readonly",
+      "name": "cookies",
+      "type": "NArray",
+      "doc": {
+        "descript": "返回http客户端的 HttpCookie 对象列表",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和设置超时时间 ",
+      "deprecated": null,
+      "static": "static",
+      "readonly": null,
+      "name": "timeout",
+      "type": "Integer",
+      "doc": {
+        "descript": "查询和设置超时时间",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief cookie 功能开关，默认开启 ",
+      "deprecated": null,
+      "static": "static",
+      "readonly": null,
+      "name": "enableCookie",
+      "type": "Boolean",
+      "doc": {
+        "descript": "cookie 功能开关，默认开启",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 自动 redirect 功能开关，默认开启 ",
+      "deprecated": null,
+      "static": "static",
+      "readonly": null,
+      "name": "autoRedirect",
+      "type": "Boolean",
+      "doc": {
+        "descript": "自动 redirect 功能开关，默认开启",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 自动解压缩功能开关，默认开启 ",
+      "deprecated": null,
+      "static": "static",
+      "readonly": null,
+      "name": "enableEncoding",
+      "type": "Boolean",
+      "doc": {
+        "descript": "自动解压缩功能开关，默认开启",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和设置 body 最大尺寸，以 MB 为单位，缺省为 -1，不限制尺寸 ",
+      "deprecated": null,
+      "static": "static",
+      "readonly": null,
+      "name": "maxBodySize",
+      "type": "Integer",
+      "doc": {
+        "descript": "查询和设置 body 最大尺寸，以 MB 为单位，缺省为 -1，不限制尺寸",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和设置 http 请求中的浏览器标识 ",
+      "deprecated": null,
+      "static": "static",
+      "readonly": null,
+      "name": "userAgent",
+      "type": "String",
+      "doc": {
+        "descript": "查询和设置 http 请求中的浏览器标识",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和设置 keep-alive 最大缓存连接数，缺省 128 ",
+      "deprecated": null,
+      "static": "static",
+      "readonly": null,
+      "name": "poolSize",
+      "type": "Integer",
+      "doc": {
+        "descript": "查询和设置 keep-alive 最大缓存连接数，缺省 128",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和设置 keep-alive 缓存连接超时时间，缺省 10000 ms ",
+      "deprecated": null,
+      "static": "static",
+      "readonly": null,
+      "name": "poolTimeout",
+      "type": "Integer",
+      "doc": {
+        "descript": "查询和设置 keep-alive 缓存连接超时时间，缺省 10000 ms",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和设置代理服务器 ",
+      "deprecated": null,
+      "static": "static",
+      "readonly": null,
+      "name": "proxyAgent",
+      "type": "String",
+      "doc": {
+        "descript": "查询和设置代理服务器",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 创建一个 http 静态文件处理器，用以用静态文件响应 http 消息\n\n     fileHandler 支持 gzip 预压缩，当请求接受 gzip 编码，且相同路径下 filename.ext.gz 文件存在时，将直接返回此文件，\n     从而避免重复压缩带来服务器负载。\n     @param root 文件根路径\n     @param mimes 扩展 mime 设置\n     @param autoIndex 是否支持浏览目录文件，缺省为 false，不支持\n     @return 返回一个静态文件处理器用于处理 http 消息\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "fileHandler",
+      "type": "Handler",
+      "params": [
+        {
+          "type": "String",
+          "name": "root",
+          "default": null
+        },
+        {
+          "type": "Object",
+          "name": "mimes",
+          "default": {
+            "value": "v8::Object::New(isolate)"
+          }
+        },
+        {
+          "type": "Boolean",
+          "name": "autoIndex",
+          "default": {
+            "value": "false"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "创建一个 http 静态文件处理器，用以用静态文件响应 http 消息",
+        "detail": [
+          "fileHandler 支持 gzip 预压缩，当请求接受 gzip 编码，且相同路径下 filename.ext.gz 文件存在时，将直接返回此文件，",
+          "从而避免重复压缩带来服务器负载。"
+        ],
+        "params": [
+          {
+            "name": "root",
+            "descript": "文件根路径",
+            "detail": []
+          },
+          {
+            "name": "mimes",
+            "descript": "扩展 mime 设置",
+            "detail": []
+          },
+          {
+            "name": "autoIndex",
+            "descript": "是否支持浏览目录文件，缺省为 false，不支持",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回一个静态文件处理器用于处理 http 消息",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 设定缺省客户端证书\n    @param crt X509Cert 证书，用于客户端验证服务器\n    @param key PKey 私钥，用于与客户端会话\n   ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "setClientCert",
+      "type": null,
+      "params": [
+        {
+          "type": "X509Cert",
+          "name": "crt",
+          "default": null
+        },
+        {
+          "type": "PKey",
+          "name": "key",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "设定缺省客户端证书",
+        "detail": [],
+        "params": [
+          {
+            "name": "crt",
+            "descript": "X509Cert 证书，用于客户端验证服务器",
+            "detail": []
+          },
+          {
+            "name": "key",
+            "descript": "PKey 私钥，用于与客户端会话",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 发送 http 请求到指定的流对象，并返回结果\n     @param conn 指定处理请求的流对象\n     @param req 要发送的 HttpRequest 对象\n     @return 返回服务器响应\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": "async",
+      "name": "request",
+      "type": "HttpResponse",
+      "params": [
+        {
+          "type": "Stream",
+          "name": "conn",
+          "default": null
+        },
+        {
+          "type": "HttpRequest",
+          "name": "req",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "发送 http 请求到指定的流对象，并返回结果",
+        "detail": [],
+        "params": [
+          {
+            "name": "conn",
+            "descript": "指定处理请求的流对象",
+            "detail": []
+          },
+          {
+            "name": "req",
+            "descript": "要发送的 HttpRequest 对象",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回服务器响应",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 发送 http 请求到指定的流对象，并返回结果\n     @param conn 指定处理请求的流对象\n     @param req 要发送的 HttpRequest 对象\n     @param response_body 指定 response.body 的流\n     @return 返回服务器响应\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": "async",
+      "name": "request",
+      "type": "HttpResponse",
+      "params": [
+        {
+          "type": "Stream",
+          "name": "conn",
+          "default": null
+        },
+        {
+          "type": "HttpRequest",
+          "name": "req",
+          "default": null
+        },
+        {
+          "type": "SeekableStream",
+          "name": "response_body",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "发送 http 请求到指定的流对象，并返回结果",
+        "detail": [],
+        "params": [
+          {
+            "name": "conn",
+            "descript": "指定处理请求的流对象",
+            "detail": []
+          },
+          {
+            "name": "req",
+            "descript": "要发送的 HttpRequest 对象",
+            "detail": []
+          },
+          {
+            "name": "response_body",
+            "descript": "指定 response.body 的流",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回服务器响应",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 请求指定的 url，并返回结果\n     opts 包含请求的附加选项，支持的内容如下：\n     ```JavaScript\n     {\n         \"query\": {},\n         \"body\": SeekableStream | Buffer | String | {},\n         \"json\": {},\n         \"pack\": {},\n         \"headers\": {},\n         \"response_body\": SeekableStream //指定接受 resposne 数据的流\n     }\n     ```\n     其中 body，json，pack 不得同时出现。缺省为 {}，不包含任何附加信息\n     @param method 指定 http 请求方法：GET, POST 等\n     @param url 指定 url，必须是包含主机的完整 url\n     @param opts 指定附加信息\n     @return 返回服务器响应\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": "async",
+      "name": "request",
+      "type": "HttpResponse",
+      "params": [
+        {
+          "type": "String",
+          "name": "method",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "url",
+          "default": null
+        },
+        {
+          "type": "Object",
+          "name": "opts",
+          "default": {
+            "value": "v8::Object::New(isolate)"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "请求指定的 url，并返回结果",
+        "detail": [
+          "opts 包含请求的附加选项，支持的内容如下：",
+          "```JavaScript",
+          "{",
+          "    \"query\": {},",
+          "    \"body\": SeekableStream | Buffer | String | {},",
+          "    \"json\": {},",
+          "    \"pack\": {},",
+          "    \"headers\": {},",
+          "    \"response_body\": SeekableStream //指定接受 resposne 数据的流",
+          "}",
+          "```",
+          "其中 body，json，pack 不得同时出现。缺省为 {}，不包含任何附加信息"
+        ],
+        "params": [
+          {
+            "name": "method",
+            "descript": "指定 http 请求方法：GET, POST 等",
+            "detail": []
+          },
+          {
+            "name": "url",
+            "descript": "指定 url，必须是包含主机的完整 url",
+            "detail": []
+          },
+          {
+            "name": "opts",
+            "descript": "指定附加信息",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回服务器响应",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 用 GET 方法请求指定的 url，并返回结果，等同于 request(\"GET\", ...)\n     opts 包含请求的附加选项，支持的内容如下：\n     ```JavaScript\n     {\n         \"query\": {},\n         \"body\": SeekableStream | Buffer | String | {},\n         \"json\": {},\n         \"pack\": {},\n         \"headers\": {}\n     }\n     ```\n     其中 body，json，pack 不得同时出现。缺省为 {}，不包含任何附加信息\n     @param url 指定 url，必须是包含主机的完整 url\n     @param opts 指定附加信息\n     @return 返回服务器响应\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": "async",
+      "name": "get",
+      "type": "HttpResponse",
+      "params": [
+        {
+          "type": "String",
+          "name": "url",
+          "default": null
+        },
+        {
+          "type": "Object",
+          "name": "opts",
+          "default": {
+            "value": "v8::Object::New(isolate)"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "用 GET 方法请求指定的 url，并返回结果，等同于 request(\"GET\", ...)",
+        "detail": [
+          "opts 包含请求的附加选项，支持的内容如下：",
+          "```JavaScript",
+          "{",
+          "    \"query\": {},",
+          "    \"body\": SeekableStream | Buffer | String | {},",
+          "    \"json\": {},",
+          "    \"pack\": {},",
+          "    \"headers\": {}",
+          "}",
+          "```",
+          "其中 body，json，pack 不得同时出现。缺省为 {}，不包含任何附加信息"
+        ],
+        "params": [
+          {
+            "name": "url",
+            "descript": "指定 url，必须是包含主机的完整 url",
+            "detail": []
+          },
+          {
+            "name": "opts",
+            "descript": "指定附加信息",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回服务器响应",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 用 POST 方法请求指定的 url，并返回结果，等同于 request(\"POST\", ...)\n     opts 包含请求的附加选项，支持的内容如下：\n     ```JavaScript\n     {\n         \"query\": {},\n         \"body\": SeekableStream | Buffer | String | {},\n         \"json\": {},\n         \"pack\": {},\n         \"headers\": {}\n     }\n     ```\n     其中 body，json，pack 不得同时出现。缺省为 {}，不包含任何附加信息\n     @param url 指定 url，必须是包含主机的完整 url\n     @param opts 指定附加信息\n     @return 返回服务器响应\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": "async",
+      "name": "post",
+      "type": "HttpResponse",
+      "params": [
+        {
+          "type": "String",
+          "name": "url",
+          "default": null
+        },
+        {
+          "type": "Object",
+          "name": "opts",
+          "default": {
+            "value": "v8::Object::New(isolate)"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "用 POST 方法请求指定的 url，并返回结果，等同于 request(\"POST\", ...)",
+        "detail": [
+          "opts 包含请求的附加选项，支持的内容如下：",
+          "```JavaScript",
+          "{",
+          "    \"query\": {},",
+          "    \"body\": SeekableStream | Buffer | String | {},",
+          "    \"json\": {},",
+          "    \"pack\": {},",
+          "    \"headers\": {}",
+          "}",
+          "```",
+          "其中 body，json，pack 不得同时出现。缺省为 {}，不包含任何附加信息"
+        ],
+        "params": [
+          {
+            "name": "url",
+            "descript": "指定 url，必须是包含主机的完整 url",
+            "detail": []
+          },
+          {
+            "name": "opts",
+            "descript": "指定附加信息",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回服务器响应",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 用 DELETE 方法请求指定的 url，并返回结果，等同于 request(\"DELETE\", ...)\n     opts 包含请求的附加选项，支持的内容如下：\n     ```JavaScript\n     {\n         \"query\": {},\n         \"body\": SeekableStream | Buffer | String | {},\n         \"json\": {},\n         \"pack\": {},\n         \"headers\": {}\n     }\n     ```\n     其中 body，json，pack 不得同时出现。缺省为 {}，不包含任何附加信息\n     @param url 指定 url，必须是包含主机的完整 url\n     @param opts 指定附加信息\n     @return 返回服务器响应\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": "async",
+      "name": "del",
+      "type": "HttpResponse",
+      "params": [
+        {
+          "type": "String",
+          "name": "url",
+          "default": null
+        },
+        {
+          "type": "Object",
+          "name": "opts",
+          "default": {
+            "value": "v8::Object::New(isolate)"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "用 DELETE 方法请求指定的 url，并返回结果，等同于 request(\"DELETE\", ...)",
+        "detail": [
+          "opts 包含请求的附加选项，支持的内容如下：",
+          "```JavaScript",
+          "{",
+          "    \"query\": {},",
+          "    \"body\": SeekableStream | Buffer | String | {},",
+          "    \"json\": {},",
+          "    \"pack\": {},",
+          "    \"headers\": {}",
+          "}",
+          "```",
+          "其中 body，json，pack 不得同时出现。缺省为 {}，不包含任何附加信息"
+        ],
+        "params": [
+          {
+            "name": "url",
+            "descript": "指定 url，必须是包含主机的完整 url",
+            "detail": []
+          },
+          {
+            "name": "opts",
+            "descript": "指定附加信息",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回服务器响应",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 用 PUT 方法请求指定的 url，并返回结果，等同于 request(\"PUT\", ...)\n     opts 包含请求的附加选项，支持的内容如下：\n     ```JavaScript\n     {\n         \"query\": {},\n         \"body\": SeekableStream | Buffer | String | {},\n         \"json\": {},\n         \"pack\": {},\n         \"headers\": {}\n     }\n     ```\n     其中 body，json，pack 不得同时出现。缺省为 {}，不包含任何附加信息\n     @param url 指定 url，必须是包含主机的完整 url\n     @param opts 指定附加信息\n     @return 返回服务器响应\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": "async",
+      "name": "put",
+      "type": "HttpResponse",
+      "params": [
+        {
+          "type": "String",
+          "name": "url",
+          "default": null
+        },
+        {
+          "type": "Object",
+          "name": "opts",
+          "default": {
+            "value": "v8::Object::New(isolate)"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "用 PUT 方法请求指定的 url，并返回结果，等同于 request(\"PUT\", ...)",
+        "detail": [
+          "opts 包含请求的附加选项，支持的内容如下：",
+          "```JavaScript",
+          "{",
+          "    \"query\": {},",
+          "    \"body\": SeekableStream | Buffer | String | {},",
+          "    \"json\": {},",
+          "    \"pack\": {},",
+          "    \"headers\": {}",
+          "}",
+          "```",
+          "其中 body，json，pack 不得同时出现。缺省为 {}，不包含任何附加信息"
+        ],
+        "params": [
+          {
+            "name": "url",
+            "descript": "指定 url，必须是包含主机的完整 url",
+            "detail": []
+          },
+          {
+            "name": "opts",
+            "descript": "指定附加信息",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回服务器响应",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 用 PATCH 方法请求指定的 url，并返回结果，等同于 request(\"PATCH\", ...)\n     opts 包含请求的附加选项，支持的内容如下：\n     ```JavaScript\n     {\n         \"query\": {},\n         \"body\": SeekableStream | Buffer | String | {},\n         \"json\": {},\n         \"pack\": {},\n         \"headers\": {}\n     }\n     ```\n     其中 body，json，pack 不得同时出现。缺省为 {}，不包含任何附加信息\n     @param url 指定 url，必须是包含主机的完整 url\n     @param opts 指定附加信息\n     @return 返回服务器响应\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": "async",
+      "name": "patch",
+      "type": "HttpResponse",
+      "params": [
+        {
+          "type": "String",
+          "name": "url",
+          "default": null
+        },
+        {
+          "type": "Object",
+          "name": "opts",
+          "default": {
+            "value": "v8::Object::New(isolate)"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "用 PATCH 方法请求指定的 url，并返回结果，等同于 request(\"PATCH\", ...)",
+        "detail": [
+          "opts 包含请求的附加选项，支持的内容如下：",
+          "```JavaScript",
+          "{",
+          "    \"query\": {},",
+          "    \"body\": SeekableStream | Buffer | String | {},",
+          "    \"json\": {},",
+          "    \"pack\": {},",
+          "    \"headers\": {}",
+          "}",
+          "```",
+          "其中 body，json，pack 不得同时出现。缺省为 {}，不包含任何附加信息"
+        ],
+        "params": [
+          {
+            "name": "url",
+            "descript": "指定 url，必须是包含主机的完整 url",
+            "detail": []
+          },
+          {
+            "name": "opts",
+            "descript": "指定附加信息",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回服务器响应",
+          "detail": []
+        }
+      }
+    }
+  ],
+  "collect": "Network"
+}

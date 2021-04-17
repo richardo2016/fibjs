@@ -1,0 +1,242 @@
+{
+  "declare": {
+    "comments": "! @brief 编码与解码模块，用于处理不同的数据编码格式与二进制之间的转换\n 引用方式：\n ```JavaScript\n var encoding = require('encoding');\n ```\n ",
+    "type": "module",
+    "name": "encoding",
+    "extend": "object",
+    "module": true,
+    "doc": {
+      "descript": "编码与解码模块，用于处理不同的数据编码格式与二进制之间的转换",
+      "detail": [
+        "引用方式：",
+        "```JavaScript",
+        "var encoding = require('encoding');",
+        "```"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "object",
+      "comments": "! @brief base32 编码与解码模块 ",
+      "deprecated": null,
+      "name": "base32",
+      "type": "base32",
+      "doc": {
+        "descript": "base32 编码与解码模块",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "object",
+      "comments": "! @brief base64 编码与解码模块 ",
+      "deprecated": null,
+      "name": "base64",
+      "type": "base64",
+      "doc": {
+        "descript": "base64 编码与解码模块",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "object",
+      "comments": "! @brief base64vlq 编码与解码模块 ",
+      "deprecated": null,
+      "name": "base64vlq",
+      "type": "base64vlq",
+      "doc": {
+        "descript": "base64vlq 编码与解码模块",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "object",
+      "comments": "! @brief hex 编码与解码模块 ",
+      "deprecated": null,
+      "name": "hex",
+      "type": "hex",
+      "doc": {
+        "descript": "hex 编码与解码模块",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "object",
+      "comments": "! @brief iconv 编码与解码模块 ",
+      "deprecated": null,
+      "name": "iconv",
+      "type": "iconv",
+      "doc": {
+        "descript": "iconv 编码与解码模块",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "object",
+      "comments": "! @brief json 编码与解码模块 ",
+      "deprecated": null,
+      "name": "json",
+      "type": "json",
+      "doc": {
+        "descript": "json 编码与解码模块",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "object",
+      "comments": "! @brief msgpack 编码与解码模块 ",
+      "deprecated": null,
+      "name": "msgpack",
+      "type": "msgpack",
+      "doc": {
+        "descript": "msgpack 编码与解码模块",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 将字符串编码为 javascript 转义字符串，用以在 javascript 代码中包含文本\n     @param str 要编码的字符串\n     @param json 是否生成json兼容字符串\n     @return 返回编码的字符串\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "jsstr",
+      "type": "String",
+      "params": [
+        {
+          "type": "String",
+          "name": "str",
+          "default": null
+        },
+        {
+          "type": "Boolean",
+          "name": "json",
+          "default": {
+            "value": "false"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "将字符串编码为 javascript 转义字符串，用以在 javascript 代码中包含文本",
+        "detail": [],
+        "params": [
+          {
+            "name": "str",
+            "descript": "要编码的字符串",
+            "detail": []
+          },
+          {
+            "name": "json",
+            "descript": "是否生成json兼容字符串",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回编码的字符串",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief url 字符串安全编码\n     @param url 要编码的 url\n     @return 返回编码的字符串\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "encodeURI",
+      "type": "String",
+      "params": [
+        {
+          "type": "String",
+          "name": "url",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "url 字符串安全编码",
+        "detail": [],
+        "params": [
+          {
+            "name": "url",
+            "descript": "要编码的 url",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回编码的字符串",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief url 部件字符串安全编码\n     @param url 要编码的 url\n     @return 返回编码的字符串\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "encodeURIComponent",
+      "type": "String",
+      "params": [
+        {
+          "type": "String",
+          "name": "url",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "url 部件字符串安全编码",
+        "detail": [],
+        "params": [
+          {
+            "name": "url",
+            "descript": "要编码的 url",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回编码的字符串",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief url 安全字符串解码\n     @param url 要解码的 url\n     @return 返回解码的字符串\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "decodeURI",
+      "type": "String",
+      "params": [
+        {
+          "type": "String",
+          "name": "url",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "url 安全字符串解码",
+        "detail": [],
+        "params": [
+          {
+            "name": "url",
+            "descript": "要解码的 url",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回解码的字符串",
+          "detail": []
+        }
+      }
+    }
+  ],
+  "collect": "Encoding"
+}

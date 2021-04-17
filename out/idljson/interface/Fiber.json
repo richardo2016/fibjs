@@ -1,0 +1,117 @@
+{
+  "declare": {
+    "comments": "! @brief 纤程操作对象，此对象不可直接创建\n\n 使用 coroutine.start 创建纤程后，将返回此对象，用于纤程处理和纤程间通信。\n 纤程主函数可以通过 this 访问本纤程对象，也可通过 coroutine.current 获取当前纤程。\n ```JavaScript\n function func(v1)\n {\n   console.log(v1 + this.v);\n }\n\n var fb = coroutine.start(func,100);\n\n fb.v = 123;\n\n fb.join();\n ```\n\n 纤程局部存储通过共享的 Fiber 对象完成，通过 coroutine.current 获取当前纤程，通过修改和查询其变量达到共享数据的目的。\n\n ```JavaScript\n function func()\n {\n   console.log(coroutine.current().v);\n }\n\n coroutine.current().v = 100;\n\n func();\n ```\n\n 纤程在创建时，会自动复制当前纤程的局部变量到新的纤程，之后，各自的局部变量的修改不会相互影响，除非变量本身为对象引用。\n\n ```JavaScript\n function func()\n {\n   console.log(coroutine.current().v);\n }\n\n coroutine.current().v = 100;\n\n var fb = coroutine.start(func);\n\n coroutine.current().v = 200;\n\n fb.join();\n ```\n ",
+    "type": "interface",
+    "name": "Fiber",
+    "extend": "object",
+    "doc": {
+      "descript": "纤程操作对象，此对象不可直接创建",
+      "detail": [
+        "使用 coroutine.start 创建纤程后，将返回此对象，用于纤程处理和纤程间通信。",
+        "纤程主函数可以通过 this 访问本纤程对象，也可通过 coroutine.current 获取当前纤程。",
+        "```JavaScript",
+        "function func(v1)",
+        "{",
+        "  console.log(v1 + this.v);",
+        "}",
+        "",
+        "var fb = coroutine.start(func,100);",
+        "",
+        "fb.v = 123;",
+        "",
+        "fb.join();",
+        "```",
+        "",
+        "纤程局部存储通过共享的 Fiber 对象完成，通过 coroutine.current 获取当前纤程，通过修改和查询其变量达到共享数据的目的。",
+        "",
+        "```JavaScript",
+        "function func()",
+        "{",
+        "  console.log(coroutine.current().v);",
+        "}",
+        "",
+        "coroutine.current().v = 100;",
+        "",
+        "func();",
+        "```",
+        "",
+        "纤程在创建时，会自动复制当前纤程的局部变量到新的纤程，之后，各自的局部变量的修改不会相互影响，除非变量本身为对象引用。",
+        "",
+        "```JavaScript",
+        "function func()",
+        "{",
+        "  console.log(coroutine.current().v);",
+        "}",
+        "",
+        "coroutine.current().v = 100;",
+        "",
+        "var fb = coroutine.start(func);",
+        "",
+        "coroutine.current().v = 200;",
+        "",
+        "fb.join();",
+        "```"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "method",
+      "comments": "! @brief 等待纤程结束 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "join",
+      "type": null,
+      "params": null,
+      "doc": {
+        "descript": "等待纤程结束",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询纤程的唯一 id ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "id",
+      "type": "Long",
+      "doc": {
+        "descript": "查询纤程的唯一 id",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询纤程的调用纤程 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "caller",
+      "type": "Fiber",
+      "doc": {
+        "descript": "查询纤程的调用纤程",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询纤程的调用堆栈",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "stack",
+      "type": "String",
+      "doc": {
+        "descript": "查询纤程的调用堆栈",
+        "detail": [],
+        "params": []
+      }
+    }
+  ]
+}

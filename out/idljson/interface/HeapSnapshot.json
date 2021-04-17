@@ -1,0 +1,146 @@
+{
+  "declare": {
+    "comments": "! @brief HeapSnapshots记录JS堆在某个时刻的状态 ",
+    "type": "interface",
+    "name": "HeapSnapshot",
+    "extend": "object",
+    "doc": {
+      "descript": "HeapSnapshots记录JS堆在某个时刻的状态",
+      "detail": [],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "method",
+      "comments": "! @brief 和指定的堆快照进行比较\n     @param before 待比较的堆快照\n     @return 返回堆快照的比较结果\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "diff",
+      "type": "Object",
+      "params": [
+        {
+          "type": "HeapSnapshot",
+          "name": "before",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "和指定的堆快照进行比较",
+        "detail": [],
+        "params": [
+          {
+            "name": "before",
+            "descript": "待比较的堆快照",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回堆快照的比较结果",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 根据ID获取堆视图节点\n     @param id 数字类型的节点ID\n     @return 返回获取到的堆视图节点\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "getNodeById",
+      "type": "HeapGraphNode",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "id",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "根据ID获取堆视图节点",
+        "detail": [],
+        "params": [
+          {
+            "name": "id",
+            "descript": "数字类型的节点ID",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回获取到的堆视图节点",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 根据指定名称保存HeapSnapshot\n     @param fname 快照名称\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "save",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "fname",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "根据指定名称保存HeapSnapshot",
+        "detail": [],
+        "params": [
+          {
+            "name": "fname",
+            "descript": "快照名称",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 时间信息 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "time",
+      "type": "Date",
+      "doc": {
+        "descript": "时间信息",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 堆视图的根节点 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "root",
+      "type": "HeapGraphNode",
+      "doc": {
+        "descript": "堆视图的根节点",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 堆视图节点组成的列表 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "nodes",
+      "type": "NArray",
+      "doc": {
+        "descript": "堆视图节点组成的列表",
+        "detail": [],
+        "params": []
+      }
+    }
+  ]
+}

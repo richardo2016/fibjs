@@ -1,0 +1,164 @@
+{
+  "declare": {
+    "comments": "! @brief 消息队列模块 ",
+    "type": "module",
+    "name": "mq",
+    "extend": "object",
+    "module": true,
+    "doc": {
+      "descript": "消息队列模块",
+      "detail": [],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "object",
+      "comments": "! @brief 创建一个消息对象，参见 Message ",
+      "deprecated": null,
+      "name": "Message",
+      "type": "Message",
+      "doc": {
+        "descript": "创建一个消息对象，参见 Message",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "object",
+      "comments": "! @brief 创建一个 http 协议处理器对象，参见 HttpHandler ",
+      "deprecated": null,
+      "name": "HttpHandler",
+      "type": "HttpHandler",
+      "doc": {
+        "descript": "创建一个 http 协议处理器对象，参见 HttpHandler",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "object",
+      "comments": "! @brief 创建一个消息处理器对象，传递值内置处理器则直接返回\n\n     hdlr 接受内置消息处理器，处理函数，链式处理数组，路由对象：\n     - Function javascript 函数，将使用此函数进行处理\n     - Handler 内置处理器，将使用此处理器进行处理\n     - 链式处理数组，等同于返回 new mq.Chain(hdlr)，参见 Chain\n     - 路由对象，等同于返回 new mq.Routing(hdlr)，参见 Routing\n\n     消息处理函数语法如下：\n     ```JavaScript\n     function func(v){\n     }\n     ```\n     参数 v 为正在处理的消息，返回结果允许有四种:\n     - Function javascript 函数，将使用此函数进行下一阶段处理\n     - Handler 内置处理器，将使用此处理器进行下一阶段处理\n     - 链式处理数组，等同于 new mq.Chain(v)，参见 Chain\n     - 路由对象，等同于 new mq.Routing(v)，参见 Routing\n\n     无返回或者其他的返回结果将结束消息处理。\n     @param hdlr 内置消息处理器，处理函数，链式处理数组，路由对象\n     @return 返回封装了处理函数的处理器\n     ",
+      "deprecated": null,
+      "name": "Handler",
+      "type": "Handler",
+      "doc": {
+        "descript": "创建一个消息处理器对象，传递值内置处理器则直接返回",
+        "detail": [
+          "hdlr 接受内置消息处理器，处理函数，链式处理数组，路由对象：",
+          "- Function javascript 函数，将使用此函数进行处理",
+          "- Handler 内置处理器，将使用此处理器进行处理",
+          "- 链式处理数组，等同于返回 new mq.Chain(hdlr)，参见 Chain",
+          "- 路由对象，等同于返回 new mq.Routing(hdlr)，参见 Routing",
+          "",
+          "消息处理函数语法如下：",
+          "```JavaScript",
+          "function func(v){",
+          "}",
+          "```",
+          "参数 v 为正在处理的消息，返回结果允许有四种:",
+          "- Function javascript 函数，将使用此函数进行下一阶段处理",
+          "- Handler 内置处理器，将使用此处理器进行下一阶段处理",
+          "- 链式处理数组，等同于 new mq.Chain(v)，参见 Chain",
+          "- 路由对象，等同于 new mq.Routing(v)，参见 Routing",
+          "",
+          "无返回或者其他的返回结果将结束消息处理。"
+        ],
+        "params": [
+          {
+            "name": "hdlr",
+            "descript": "内置消息处理器，处理函数，链式处理数组，路由对象",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回封装了处理函数的处理器",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "object",
+      "comments": "! @brief 创建一个消息处理器链处理对象，参见 Chain ",
+      "deprecated": null,
+      "name": "Chain",
+      "type": "Chain",
+      "doc": {
+        "descript": "创建一个消息处理器链处理对象，参见 Chain",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "object",
+      "comments": "! @brief 创建一个消息处理器路由对象，参见 Routing",
+      "deprecated": null,
+      "name": "Routing",
+      "type": "Routing",
+      "doc": {
+        "descript": "创建一个消息处理器路由对象，参见 Routing",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 创建一个空处理器对象，次处理对象不做任何处理直接返回\n     @return 返回空处理函数\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "nullHandler",
+      "type": "Handler",
+      "params": null,
+      "doc": {
+        "descript": "创建一个空处理器对象，次处理对象不做任何处理直接返回",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "返回空处理函数",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 使用给定的处理器处理一个消息或对象\n\n    不同于处理器的 invoke 方法，此方法将循环调用每个处理器的返回处理器，直到处理器返回 null 为止。\n     @param hdlr 指定使用的处理器\n     @param v 指定要处理的消息或对象\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": "async",
+      "name": "invoke",
+      "type": null,
+      "params": [
+        {
+          "type": "Handler",
+          "name": "hdlr",
+          "default": null
+        },
+        {
+          "type": "object",
+          "name": "v",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "使用给定的处理器处理一个消息或对象",
+        "detail": [
+          "不同于处理器的 invoke 方法，此方法将循环调用每个处理器的返回处理器，直到处理器返回 null 为止。"
+        ],
+        "params": [
+          {
+            "name": "hdlr",
+            "descript": "指定使用的处理器",
+            "detail": []
+          },
+          {
+            "name": "v",
+            "descript": "指定要处理的消息或对象",
+            "detail": []
+          }
+        ]
+      }
+    }
+  ],
+  "collect": "Network"
+}

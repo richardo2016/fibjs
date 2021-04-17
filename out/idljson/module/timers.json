@@ -1,0 +1,387 @@
+{
+  "declare": {
+    "comments": "! @brief timers 模块 ",
+    "type": "module",
+    "name": "timers",
+    "extend": "object",
+    "module": true,
+    "doc": {
+      "descript": "timers 模块",
+      "detail": [],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "method",
+      "comments": "! @brief 在指定的时间后调用函数\n    @param callback 指定回调函数\n    @param timeout 指定延时的时间，以毫秒为单位。超过 2^31 的话,立即执行。\n    @param args 额外的参数，传入到指定的 callback 内，可选。\n    @return 返回定时器对象\n    ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "setTimeout",
+      "type": "Timer",
+      "params": [
+        {
+          "type": "Function",
+          "name": "callback",
+          "default": null
+        },
+        {
+          "type": "Number",
+          "name": "timeout",
+          "default": {
+            "value": "1"
+          }
+        },
+        {
+          "type": "...",
+          "name": "args",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "在指定的时间后调用函数",
+        "detail": [],
+        "params": [
+          {
+            "name": "callback",
+            "descript": "指定回调函数",
+            "detail": []
+          },
+          {
+            "name": "timeout",
+            "descript": "指定延时的时间，以毫秒为单位。超过 2^31 的话,立即执行。",
+            "detail": []
+          },
+          {
+            "name": "args",
+            "descript": "额外的参数，传入到指定的 callback 内，可选。",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回定时器对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 清除指定的定时器\n     @param t 指定要清除的定时器\n    ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "clearTimeout",
+      "type": null,
+      "params": [
+        {
+          "type": "Value",
+          "name": "t",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "清除指定的定时器",
+        "detail": [],
+        "params": [
+          {
+            "name": "t",
+            "descript": "指定要清除的定时器",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 每间隔指定的时间后调用函数\n     @param callback 指定回调函数\n     @param timeout 指定间隔的时间，以毫秒为单位。超过 2^31 的话,立即执行。\n     @param args 额外的参数，传入到指定的 callback 内，可选。\n     @return 返回定时器对象\n    ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "setInterval",
+      "type": "Timer",
+      "params": [
+        {
+          "type": "Function",
+          "name": "callback",
+          "default": null
+        },
+        {
+          "type": "Number",
+          "name": "timeout",
+          "default": null
+        },
+        {
+          "type": "...",
+          "name": "args",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "每间隔指定的时间后调用函数",
+        "detail": [],
+        "params": [
+          {
+            "name": "callback",
+            "descript": "指定回调函数",
+            "detail": []
+          },
+          {
+            "name": "timeout",
+            "descript": "指定间隔的时间，以毫秒为单位。超过 2^31 的话,立即执行。",
+            "detail": []
+          },
+          {
+            "name": "args",
+            "descript": "额外的参数，传入到指定的 callback 内，可选。",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回定时器对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 清除指定的定时器\n     @param t 指定要清除的定时器\n    ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "clearInterval",
+      "type": null,
+      "params": [
+        {
+          "type": "Value",
+          "name": "t",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "清除指定的定时器",
+        "detail": [],
+        "params": [
+          {
+            "name": "t",
+            "descript": "指定要清除的定时器",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 每间隔指定的时间后调用函数，这是个高精度定时器，会主动打断正在运行的 JavaScript 脚本执行定时器\n     由于 setHrInterval 的定时器会中断正在运行的代码执行回调，因此不要在回调函数内修改可能影响其它模块的数据，或者在回调中调用任何标记为 async 的 api 函数，否则将会产生不可预知的结果。例如：\n     ```JavaScript\n        var timers = require('timers');\n\n        var cnt = 0;\n        timers.setHrInterval(() => {\n            cnt++;\n        }, 100);\n\n        while (cnt < 10);\n\n        console.error(\"===============================> done\");\n     ```\n     这段代码中，第 8 行的循环并不会因为 cnt 的改变而结束，因为 JavaScript 在优化代码时会认定在这个循环过程中 cnt 不会被改变。\n     @param callback 指定回调函数\n     @param timeout 指定间隔的时间，以毫秒为单位。超过 2^31 的话,立即执行。\n     @param args 额外的参数，传入到指定的 callback 内，可选。\n     @return 返回定时器对象\n    ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "setHrInterval",
+      "type": "Timer",
+      "params": [
+        {
+          "type": "Function",
+          "name": "callback",
+          "default": null
+        },
+        {
+          "type": "Number",
+          "name": "timeout",
+          "default": null
+        },
+        {
+          "type": "...",
+          "name": "args",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "每间隔指定的时间后调用函数，这是个高精度定时器，会主动打断正在运行的 JavaScript 脚本执行定时器",
+        "detail": [
+          "由于 setHrInterval 的定时器会中断正在运行的代码执行回调，因此不要在回调函数内修改可能影响其它模块的数据，或者在回调中调用任何标记为 async 的 api 函数，否则将会产生不可预知的结果。例如：",
+          "```JavaScript",
+          "   var timers = require('timers');",
+          "",
+          "   var cnt = 0;",
+          "   timers.setHrInterval(() => {",
+          "       cnt++;",
+          "   }, 100);",
+          "",
+          "   while (cnt < 10);",
+          "",
+          "   console.error(\"===============================> done\");",
+          "```",
+          "这段代码中，第 8 行的循环并不会因为 cnt 的改变而结束，因为 JavaScript 在优化代码时会认定在这个循环过程中 cnt 不会被改变。"
+        ],
+        "params": [
+          {
+            "name": "callback",
+            "descript": "指定回调函数",
+            "detail": []
+          },
+          {
+            "name": "timeout",
+            "descript": "指定间隔的时间，以毫秒为单位。超过 2^31 的话,立即执行。",
+            "detail": []
+          },
+          {
+            "name": "args",
+            "descript": "额外的参数，传入到指定的 callback 内，可选。",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回定时器对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 清除指定的定时器\n     @param t 指定要清除的定时器\n    ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "clearHrInterval",
+      "type": null,
+      "params": [
+        {
+          "type": "Value",
+          "name": "t",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "清除指定的定时器",
+        "detail": [],
+        "params": [
+          {
+            "name": "t",
+            "descript": "指定要清除的定时器",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 下一个空闲时间立即执行回调函数\n     @param callback 指定回调函数\n     @param args 额外的参数，传入到指定的 callback 内，可选。\n     @return 返回定时器对象\n    ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "setImmediate",
+      "type": "Timer",
+      "params": [
+        {
+          "type": "Function",
+          "name": "callback",
+          "default": null
+        },
+        {
+          "type": "...",
+          "name": "args",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "下一个空闲时间立即执行回调函数",
+        "detail": [],
+        "params": [
+          {
+            "name": "callback",
+            "descript": "指定回调函数",
+            "detail": []
+          },
+          {
+            "name": "args",
+            "descript": "额外的参数，传入到指定的 callback 内，可选。",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回定时器对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 清除指定的定时器\n     @param t 指定要清除的定时器\n    ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "clearImmediate",
+      "type": null,
+      "params": [
+        {
+          "type": "Value",
+          "name": "t",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "清除指定的定时器",
+        "detail": [],
+        "params": [
+          {
+            "name": "t",
+            "descript": "指定要清除的定时器",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 调用给定的函数，并在超时时间到期时中断函数运行\n     @param func 指定要运行的函数\n     @param timeout 指定超时时间\n     @param args 额外的参数，传入到指定的 callback 内，可选。\n     @return 返回 func 的运行结果\n    ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "call",
+      "type": "Value",
+      "params": [
+        {
+          "type": "Function",
+          "name": "func",
+          "default": null
+        },
+        {
+          "type": "Number",
+          "name": "timeout",
+          "default": null
+        },
+        {
+          "type": "...",
+          "name": "args",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "调用给定的函数，并在超时时间到期时中断函数运行",
+        "detail": [],
+        "params": [
+          {
+            "name": "func",
+            "descript": "指定要运行的函数",
+            "detail": []
+          },
+          {
+            "name": "timeout",
+            "descript": "指定超时时间",
+            "detail": []
+          },
+          {
+            "name": "args",
+            "descript": "额外的参数，传入到指定的 callback 内，可选。",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回 func 的运行结果",
+          "detail": []
+        }
+      }
+    }
+  ],
+  "collect": "System"
+}

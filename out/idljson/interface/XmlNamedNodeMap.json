@@ -1,0 +1,105 @@
+{
+  "declare": {
+    "comments": "! @brief XmlNamedNodeMap 对象表示一个无顺序的属性列表\n",
+    "type": "interface",
+    "name": "XmlNamedNodeMap",
+    "extend": "object",
+    "doc": {
+      "descript": "XmlNamedNodeMap 对象表示一个无顺序的属性列表",
+      "detail": [],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "prop",
+      "comments": "! @brief 返回属性列表中的属性数目\n    ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "length",
+      "type": "Integer",
+      "doc": {
+        "descript": "返回属性列表中的属性数目",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 返回属性列表中处于指定的索引号的属性\n     @param index 指定要查询的索引\n     @return 指定索引号的属性\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "item",
+      "type": "XmlAttr",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "index",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "返回属性列表中处于指定的索引号的属性",
+        "detail": [],
+        "params": [
+          {
+            "name": "index",
+            "descript": "指定要查询的索引",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "指定索引号的属性",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "operator",
+      "comments": "! @brief 可使用下标直接访问数据\n    ",
+      "deprecated": null,
+      "readonly": "readonly",
+      "name": "[]",
+      "type": "XmlAttr",
+      "index": null,
+      "doc": {
+        "descript": "可使用下标直接访问数据",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查询指定名称的属性\n     @param name 指定要查询的名称\n     @return 返回查询出的属性\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "getNamedItem",
+      "type": "XmlAttr",
+      "params": [
+        {
+          "type": "String",
+          "name": "name",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "查询指定名称的属性",
+        "detail": [],
+        "params": [
+          {
+            "name": "name",
+            "descript": "指定要查询的名称",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回查询出的属性",
+          "detail": []
+        }
+      }
+    }
+  ]
+}

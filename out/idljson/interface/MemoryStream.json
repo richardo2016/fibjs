@@ -1,0 +1,96 @@
+{
+  "declare": {
+    "comments": "! @brief 内存流对象\n\n MemoryStream 对象创建一个基于内存的流对象，创建方法：\n ```JavaScript\n var ms = new io.MemoryStream();\n ```\n ",
+    "type": "interface",
+    "name": "MemoryStream",
+    "extend": "SeekableStream",
+    "doc": {
+      "descript": "内存流对象",
+      "detail": [
+        "MemoryStream 对象创建一个基于内存的流对象，创建方法：",
+        "```JavaScript",
+        "var ms = new io.MemoryStream();",
+        "```"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "method",
+      "comments": "! @brief MemoryStream 构造函数 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "MemoryStream",
+      "type": null,
+      "params": null,
+      "doc": {
+        "descript": "MemoryStream 构造函数",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 强制设定内存流对象的最后更新时间\n     @param d 指定要设定的时间\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "setTime",
+      "type": null,
+      "params": [
+        {
+          "type": "Date",
+          "name": "d",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "强制设定内存流对象的最后更新时间",
+        "detail": [],
+        "params": [
+          {
+            "name": "d",
+            "descript": "指定要设定的时间",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 创建当前内存流的一个只读副本\n     @return 返回只读的内存流对象\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "clone",
+      "type": "MemoryStream",
+      "params": null,
+      "doc": {
+        "descript": "创建当前内存流的一个只读副本",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "返回只读的内存流对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 清空内存文件数据，复位指针 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "clear",
+      "type": null,
+      "params": null,
+      "doc": {
+        "descript": "清空内存文件数据，复位指针",
+        "detail": [],
+        "params": []
+      }
+    }
+  ]
+}
