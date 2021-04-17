@@ -44,7 +44,7 @@ result_t TypeScript::getTsModule(v8::Local<v8::Object>& retVal)
     JSValue v;
     global_base::require("@fibjs/internal-ts/lib/typescript", v);
 
-    retVal = isolate->toLocalObject(v);
+    retVal = v8::Local<v8::Object>::Cast(v);
 
     return 0;
 }
