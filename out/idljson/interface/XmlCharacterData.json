@@ -1,0 +1,234 @@
+{
+  "declare": {
+    "comments": "! @brief XmlCharacterData 接口提供了 XmlText 和 XmlComment 节点的常用功能\n\nXmlCharacterData 是 XmlText 和 XmlComment 节点的超接口。文档从不包含 XmlCharacterData 节点，它们只包含 XmlText 节点和 XmlComment 节点。但由于这两种节点具有相似的功能，因此此处定义了这些函数，以便 XmlText 和 XmlComment 可以继承它。\n",
+    "type": "interface",
+    "name": "XmlCharacterData",
+    "extend": "XmlNode",
+    "doc": {
+      "descript": "XmlCharacterData 接口提供了 XmlText 和 XmlComment 节点的常用功能",
+      "detail": [
+        "XmlCharacterData 是 XmlText 和 XmlComment 节点的超接口。文档从不包含 XmlCharacterData 节点，它们只包含 XmlText 节点和 XmlComment 节点。但由于这两种节点具有相似的功能，因此此处定义了这些函数，以便 XmlText 和 XmlComment 可以继承它。"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "prop",
+      "comments": "! @brief 该节点包含的文本\n    ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "data",
+      "type": "String",
+      "doc": {
+        "descript": "该节点包含的文本",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 该节点包含的字符数\n    ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "length",
+      "type": "Integer",
+      "doc": {
+        "descript": "该节点包含的字符数",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 从节点中提取子串\n     @param offset 要返回的第一个字符的位置\n     @param count 要返回的子串中的字符数\n     @return 返回提取的字符串\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "substringData",
+      "type": "String",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "offset",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "count",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "从节点中提取子串",
+        "detail": [],
+        "params": [
+          {
+            "name": "offset",
+            "descript": "要返回的第一个字符的位置",
+            "detail": []
+          },
+          {
+            "name": "count",
+            "descript": "要返回的子串中的字符数",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回提取的字符串",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 把字符串附加到节点上\n     @param arg 要附加到节点的字符串\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "appendData",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "arg",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "把字符串附加到节点上",
+        "detail": [],
+        "params": [
+          {
+            "name": "arg",
+            "descript": "要附加到节点的字符串",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 把字符串插入节点\n     @param offset 要把字符串插入节点的字符位置\n     @param arg 要插入的字符串\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "insertData",
+      "type": null,
+      "params": [
+        {
+          "type": "Integer",
+          "name": "offset",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "arg",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "把字符串插入节点",
+        "detail": [],
+        "params": [
+          {
+            "name": "offset",
+            "descript": "要把字符串插入节点的字符位置",
+            "detail": []
+          },
+          {
+            "name": "arg",
+            "descript": "要插入的字符串",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 从节点删除文本\n     @param offset 要删除的第一个字符的位置\n     @param count 要删除的字符的数量\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "deleteData",
+      "type": null,
+      "params": [
+        {
+          "type": "Integer",
+          "name": "offset",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "count",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "从节点删除文本",
+        "detail": [],
+        "params": [
+          {
+            "name": "offset",
+            "descript": "要删除的第一个字符的位置",
+            "detail": []
+          },
+          {
+            "name": "count",
+            "descript": "要删除的字符的数量",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 用指定的字符串替换节点的字符\n     @param offset 节点要替换的字符位置\n     @param count 要替换的字符的数量\n     @param arg 要插入的字符串\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "replaceData",
+      "type": null,
+      "params": [
+        {
+          "type": "Integer",
+          "name": "offset",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "count",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "arg",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "用指定的字符串替换节点的字符",
+        "detail": [],
+        "params": [
+          {
+            "name": "offset",
+            "descript": "节点要替换的字符位置",
+            "detail": []
+          },
+          {
+            "name": "count",
+            "descript": "要替换的字符的数量",
+            "detail": []
+          },
+          {
+            "name": "arg",
+            "descript": "要插入的字符串",
+            "detail": []
+          }
+        ]
+      }
+    }
+  ]
+}

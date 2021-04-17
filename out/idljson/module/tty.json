@@ -1,0 +1,53 @@
+{
+  "declare": {
+    "comments": "! @brief tty 模块\n\n 使用方法：\n ```JavaScript\n const tty = require('tty');\n ```\n ",
+    "type": "module",
+    "name": "tty",
+    "extend": "object",
+    "module": true,
+    "doc": {
+      "descript": "tty 模块",
+      "detail": [
+        "使用方法：",
+        "```JavaScript",
+        "const tty = require('tty');",
+        "```"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "method",
+      "comments": "! @brief 查询是否是命令交互窗口\n    @param fd 文件描述符\n     @return 如果文件描述符同一个终端窗口关联则返回 true ，否则返回 false\n    ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "isatty",
+      "type": "Boolean",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "fd",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "查询是否是命令交互窗口",
+        "detail": [],
+        "params": [
+          {
+            "name": "fd",
+            "descript": "文件描述符",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "如果文件描述符同一个终端窗口关联则返回 true ，否则返回 false",
+          "detail": []
+        }
+      }
+    }
+  ],
+  "collect": "System"
+}

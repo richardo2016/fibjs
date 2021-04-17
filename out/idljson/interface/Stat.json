@@ -1,0 +1,511 @@
+{
+  "declare": {
+    "comments": "! @brief 文件的基础信息对象\n\n  Stat 对象通过 fs.stat, File.stat, fs.readdir 查询，不可独立创建\n ",
+    "type": "interface",
+    "name": "Stat",
+    "extend": "object",
+    "doc": {
+      "descript": "文件的基础信息对象",
+      "detail": [
+        "Stat 对象通过 fs.stat, File.stat, fs.readdir 查询，不可独立创建"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "prop",
+      "comments": "! @brief 文件名称 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "name",
+      "type": "String",
+      "doc": {
+        "descript": "文件名称",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 包含该文件的设备 ID ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "dev",
+      "type": "Integer",
+      "doc": {
+        "descript": "包含该文件的设备 ID",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 文件中的 Inode 数量 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "ino",
+      "type": "Integer",
+      "doc": {
+        "descript": "文件中的 Inode 数量",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 文件权限，Windows 不支持此属性 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "mode",
+      "type": "Integer",
+      "doc": {
+        "descript": "文件权限，Windows 不支持此属性",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 与此文件相关联的硬链接数量 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "nlink",
+      "type": "Integer",
+      "doc": {
+        "descript": "与此文件相关联的硬链接数量",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 文件拥有者的id ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "uid",
+      "type": "Integer",
+      "doc": {
+        "descript": "文件拥有者的id",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 文件所属的组id ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "gid",
+      "type": "Integer",
+      "doc": {
+        "descript": "文件所属的组id",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 对于特殊类型的文件, 包含该文件的设备 ID ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "rdev",
+      "type": "Integer",
+      "doc": {
+        "descript": "对于特殊类型的文件, 包含该文件的设备 ID",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 文件尺寸 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "size",
+      "type": "Number",
+      "doc": {
+        "descript": "文件尺寸",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 在 I/O 操作中文件系统区块大小 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "blksize",
+      "type": "Integer",
+      "doc": {
+        "descript": "在 I/O 操作中文件系统区块大小",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 分配给该文件的区块数量 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "blocks",
+      "type": "Integer",
+      "doc": {
+        "descript": "分配给该文件的区块数量",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 文件最后修改时间 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "mtime",
+      "type": "Date",
+      "doc": {
+        "descript": "文件最后修改时间",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 文件最后修改时间(ms) ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "mtimeMs",
+      "type": "Number",
+      "doc": {
+        "descript": "文件最后修改时间(ms)",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 文件最后访问时间 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "atime",
+      "type": "Date",
+      "doc": {
+        "descript": "文件最后访问时间",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 文件最后访问时间(ms) ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "atimeMs",
+      "type": "Number",
+      "doc": {
+        "descript": "文件最后访问时间(ms)",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 文件创建时间 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "ctime",
+      "type": "Date",
+      "doc": {
+        "descript": "文件创建时间",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 文件创建时间(ms) ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "ctimeMs",
+      "type": "Number",
+      "doc": {
+        "descript": "文件创建时间(ms)",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 文件产生时间 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "birthtime",
+      "type": "Date",
+      "doc": {
+        "descript": "文件产生时间",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 文件产生时间(ms) ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "birthtimeMs",
+      "type": "Number",
+      "doc": {
+        "descript": "文件产生时间(ms)",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查询文件是否有写入权限\n     @return 为 true 则有写入权限\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "isWritable",
+      "type": "Boolean",
+      "params": null,
+      "doc": {
+        "descript": "查询文件是否有写入权限",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "为 true 则有写入权限",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查询文件是否有读权限\n     @return 为 true 则有读权限\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "isReadable",
+      "type": "Boolean",
+      "params": null,
+      "doc": {
+        "descript": "查询文件是否有读权限",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "为 true 则有读权限",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查询文件是否有执行权限\n     @return 为 true 则有执行权限\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "isExecutable",
+      "type": "Boolean",
+      "params": null,
+      "doc": {
+        "descript": "查询文件是否有执行权限",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "为 true 则有执行权限",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查询文件是否隐藏\n     @return 为 true 则隐藏\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "isHidden",
+      "type": "Boolean",
+      "params": null,
+      "doc": {
+        "descript": "查询文件是否隐藏",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "为 true 则隐藏",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查询 Stat 是否描述了一个 block device\n     @return 为 true 表示描述了一个 block device\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "isBlockDevice",
+      "type": "Boolean",
+      "params": null,
+      "doc": {
+        "descript": "查询 Stat 是否描述了一个 block device",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "为 true 表示描述了一个 block device",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查询 Stat 是否描述了一个 character device\n     @return 为 true 表示描述了一个 character device\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "isCharacterDevice",
+      "type": "Boolean",
+      "params": null,
+      "doc": {
+        "descript": "查询 Stat 是否描述了一个 character device",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "为 true 表示描述了一个 character device",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查询文件是否是目录\n     @return 为 true 则是目录\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "isDirectory",
+      "type": "Boolean",
+      "params": null,
+      "doc": {
+        "descript": "查询文件是否是目录",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "为 true 则是目录",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查询 Stat 是否描述了一个 FIFO 管道\n     @return 为 true 表示描述了一个 FIFO 管道\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "isFIFO",
+      "type": "Boolean",
+      "params": null,
+      "doc": {
+        "descript": "查询 Stat 是否描述了一个 FIFO 管道",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "为 true 表示描述了一个 FIFO 管道",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查询文件是否是文件\n     @return 为 true 则是文件\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "isFile",
+      "type": "Boolean",
+      "params": null,
+      "doc": {
+        "descript": "查询文件是否是文件",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "为 true 则是文件",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查询文件是否是符号链接\n     @return 为 true 则是符号链接\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "isSymbolicLink",
+      "type": "Boolean",
+      "params": null,
+      "doc": {
+        "descript": "查询文件是否是符号链接",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "为 true 则是符号链接",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查询文件是否是内存文件\n     @return 为 true 则是内存文件\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "isMemory",
+      "type": "Boolean",
+      "params": null,
+      "doc": {
+        "descript": "查询文件是否是内存文件",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "为 true 则是内存文件",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查询文件是否是 Socket\n     @return 为 true 则是 Socket\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "isSocket",
+      "type": "Boolean",
+      "params": null,
+      "doc": {
+        "descript": "查询文件是否是 Socket",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "为 true 则是 Socket",
+          "detail": []
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,353 @@
+{
+  "declare": {
+    "comments": "! @brief x509 证书请求对象\n\n X509Req 对象属于 crypto 模块，创建：\n ```JavaScript\n var k = new crypto.X509Req();\n ```\n ",
+    "type": "interface",
+    "name": "X509Req",
+    "extend": "object",
+    "doc": {
+      "descript": "x509 证书请求对象",
+      "detail": [
+        "X509Req 对象属于 crypto 模块，创建：",
+        "```JavaScript",
+        "var k = new crypto.X509Req();",
+        "```"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "method",
+      "comments": "! @brief X509Req 构造函数 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "X509Req",
+      "type": null,
+      "params": null,
+      "doc": {
+        "descript": "X509Req 构造函数",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief X509Req 构造函数，根据给定的信息创建一个证书请求\n     @param subject 证书的主题可分辨名称\n     @param key 证书的公钥\n     @param hash 证书摘要算法，缺省为 hash.SHA1\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "X509Req",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "subject",
+          "default": null
+        },
+        {
+          "type": "PKey",
+          "name": "key",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "hash",
+          "default": {
+            "const": [
+              "hash",
+              "SHA1"
+            ]
+          }
+        }
+      ],
+      "doc": {
+        "descript": "X509Req 构造函数，根据给定的信息创建一个证书请求",
+        "detail": [],
+        "params": [
+          {
+            "name": "subject",
+            "descript": "证书的主题可分辨名称",
+            "detail": []
+          },
+          {
+            "name": "key",
+            "descript": "证书的公钥",
+            "detail": []
+          },
+          {
+            "name": "hash",
+            "descript": "证书摘要算法，缺省为 hash.SHA1",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief X509Req 构造函数，加载一个 DER 格式的证书请求\n     @param derReq DER 格式的证书请求\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "X509Req",
+      "type": null,
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "derReq",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "X509Req 构造函数，加载一个 DER 格式的证书请求",
+        "detail": [],
+        "params": [
+          {
+            "name": "derReq",
+            "descript": "DER 格式的证书请求",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief X509Req 构造函数，加载一个 PEM 格式的证书请求\n     @param pemReq DER 格式的证书请求\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "X509Req",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "pemReq",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "X509Req 构造函数，加载一个 PEM 格式的证书请求",
+        "detail": [],
+        "params": [
+          {
+            "name": "pemReq",
+            "descript": "DER 格式的证书请求",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 加载一个 DER 格式的证书请求\n     @param derReq DER 格式的证书请求\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "load",
+      "type": null,
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "derReq",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "加载一个 DER 格式的证书请求",
+        "detail": [],
+        "params": [
+          {
+            "name": "derReq",
+            "descript": "DER 格式的证书请求",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 加载一个 PEM 格式的证书请求\n     @param pemReq PEM 格式的证书请求\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "load",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "pemReq",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "加载一个 PEM 格式的证书请求",
+        "detail": [],
+        "params": [
+          {
+            "name": "pemReq",
+            "descript": "PEM 格式的证书请求",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 加载一个 PEM/DER 格式的证书请求，可多次调用\n     @param filename 证书请求文件名\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "loadFile",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "filename",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "加载一个 PEM/DER 格式的证书请求，可多次调用",
+        "detail": [],
+        "params": [
+          {
+            "name": "filename",
+            "descript": "证书请求文件名",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 返回当前证书请求的 PEM 格式编码\n     @return 当前证书请求的 PEM 格式编码\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "exportPem",
+      "type": "String",
+      "params": null,
+      "doc": {
+        "descript": "返回当前证书请求的 PEM 格式编码",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "当前证书请求的 PEM 格式编码",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 返回当前证书请求的 DER 格式编码\n     @return 当前证书请求的 DER 格式编码\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "exportDer",
+      "type": "Buffer",
+      "params": null,
+      "doc": {
+        "descript": "返回当前证书请求的 DER 格式编码",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "当前证书请求的 DER 格式编码",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 签名当前证书请求为正式证书\n\n    opts 接收的字段如下：\n    ```JavaScript\n    {\n        ca: false,      // 证书为 ca，缺省为 false\n        pathlen: -1,    // 证书深度，缺省为 -1\n        notBefore: \"\",  // 证书生效时间，缺省为当前时间\n        notAfter: \"\",   // 证书失效时间，缺省为 notBefore 后一年\n        usage: \"\",      // 证书使用范围，接收：digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment, keyAgreement, keyCertSign, cRLSign\n        type: \"\"        // 证书 Netscape 证书类型，接收：client, server, email, objsign, reserved, sslCA, emailCA, objCA\n    }\n    ```\n     @param issuer 签名机构的可分辨名称\n     @param key 签名机构的私钥\n     @param opts 其他可选参数\n     @return 返回签名后的正式证书\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "sign",
+      "type": "X509Cert",
+      "params": [
+        {
+          "type": "String",
+          "name": "issuer",
+          "default": null
+        },
+        {
+          "type": "PKey",
+          "name": "key",
+          "default": null
+        },
+        {
+          "type": "Object",
+          "name": "opts",
+          "default": {
+            "value": "v8::Object::New(isolate)"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "签名当前证书请求为正式证书",
+        "detail": [
+          "opts 接收的字段如下：",
+          "```JavaScript",
+          "{",
+          "    ca: false,      // 证书为 ca，缺省为 false",
+          "    pathlen: -1,    // 证书深度，缺省为 -1",
+          "    notBefore: \"\",  // 证书生效时间，缺省为当前时间",
+          "    notAfter: \"\",   // 证书失效时间，缺省为 notBefore 后一年",
+          "    usage: \"\",      // 证书使用范围，接收：digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment, keyAgreement, keyCertSign, cRLSign",
+          "    type: \"\"        // 证书 Netscape 证书类型，接收：client, server, email, objsign, reserved, sslCA, emailCA, objCA",
+          "}",
+          "```"
+        ],
+        "params": [
+          {
+            "name": "issuer",
+            "descript": "签名机构的可分辨名称",
+            "detail": []
+          },
+          {
+            "name": "key",
+            "descript": "签名机构的私钥",
+            "detail": []
+          },
+          {
+            "name": "opts",
+            "descript": "其他可选参数",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回签名后的正式证书",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 获取证书的主题可分辨名称 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "subject",
+      "type": "String",
+      "doc": {
+        "descript": "获取证书的主题可分辨名称",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 获取证书的公钥 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "publicKey",
+      "type": "PKey",
+      "doc": {
+        "descript": "获取证书的公钥",
+        "detail": [],
+        "params": []
+      }
+    }
+  ]
+}

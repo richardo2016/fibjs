@@ -1,0 +1,385 @@
+{
+  "declare": {
+    "comments": "! @brief WebSocket 包协议转换处理器\n\n  用以将 Http 协议转换为 WebSocket 包协议消息。创建方式：\n  ```JavaScript\n  var ws = require('ws');\n  var http = require('http');\n\n  var serv = new http.Server(8811, ws.upgrade((conn) => {\n  conn.onmessage = msg => {\n      conn.send(new Date());\n  };\n  }));\n\n  serv.run(r => 0);\n\n  var sock = new ws.Socket('ws://127.0.0.1:8811');\n  sock.on('open', () => {\n      setInterval(() => {\n          sock.send('get date');\n      }, 1000);\n  });\n\n  sock.onmessage = evt => {\n    console.log(evt.data);\n  }\n  ```\n ",
+    "type": "interface",
+    "name": "WebSocket",
+    "extend": "EventEmitter",
+    "doc": {
+      "descript": "WebSocket 包协议转换处理器",
+      "detail": [
+        "用以将 Http 协议转换为 WebSocket 包协议消息。创建方式：",
+        "```JavaScript",
+        "var ws = require('ws');",
+        "var http = require('http');",
+        "",
+        "var serv = new http.Server(8811, ws.upgrade((conn) => {",
+        "conn.onmessage = msg => {",
+        "    conn.send(new Date());",
+        "};",
+        "}));",
+        "",
+        "serv.run(r => 0);",
+        "",
+        "var sock = new ws.Socket('ws://127.0.0.1:8811');",
+        "sock.on('open', () => {",
+        "    setInterval(() => {",
+        "        sock.send('get date');",
+        "    }, 1000);",
+        "});",
+        "",
+        "sock.onmessage = evt => {",
+        "  console.log(evt.data);",
+        "}",
+        "```"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "method",
+      "comments": "! @brief WebSocket 构造函数\n     @param url 指定连接的服务器\n     @param protocol 指定握手协议，缺省为 \"\"\n     @param origin 指定握手时模拟的源，缺省为 \"\"\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "WebSocket",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "url",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "protocol",
+          "default": {
+            "value": "\"\""
+          }
+        },
+        {
+          "type": "String",
+          "name": "origin",
+          "default": {
+            "value": "\"\""
+          }
+        }
+      ],
+      "doc": {
+        "descript": "WebSocket 构造函数",
+        "detail": [],
+        "params": [
+          {
+            "name": "url",
+            "descript": "指定连接的服务器",
+            "detail": []
+          },
+          {
+            "name": "protocol",
+            "descript": "指定握手协议，缺省为 \"\"",
+            "detail": []
+          },
+          {
+            "name": "origin",
+            "descript": "指定握手时模拟的源，缺省为 \"\"",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief WebSocket 构造函数\n     opts 包含请求的附加选项，支持的内容如下：\n     ```JavaScript\n     {\n         \"protocol\": \"\", // 指定握手协议，缺省为空\n         \"origin\": \"\", // 指定握手时模拟的源，缺省为空\n         \"perMessageDeflate\": true, // 指定是否支持压缩，缺省支持\n         \"maxPayload\": 67108864, // 指定最大数据包尺寸，缺省为 67108864\n         \"httpClient\": hc, // 自定义 httpClient 对象，缺省使用全局 httpClient\n         \"headers\": // 指定 http(s) 连接时携带的 header，缺省为 {}，\n     }\n     ```\n     @param url 指定连接的服务器\n     @param opts 连接选项，缺省是 {}\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "WebSocket",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "url",
+          "default": null
+        },
+        {
+          "type": "Object",
+          "name": "opts",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "WebSocket 构造函数",
+        "detail": [
+          "opts 包含请求的附加选项，支持的内容如下：",
+          "```JavaScript",
+          "{",
+          "    \"protocol\": \"\", // 指定握手协议，缺省为空",
+          "    \"origin\": \"\", // 指定握手时模拟的源，缺省为空",
+          "    \"perMessageDeflate\": true, // 指定是否支持压缩，缺省支持",
+          "    \"maxPayload\": 67108864, // 指定最大数据包尺寸，缺省为 67108864",
+          "    \"httpClient\": hc, // 自定义 httpClient 对象，缺省使用全局 httpClient",
+          "    \"headers\": // 指定 http(s) 连接时携带的 header，缺省为 {}，",
+          "}",
+          "```"
+        ],
+        "params": [
+          {
+            "name": "url",
+            "descript": "指定连接的服务器",
+            "detail": []
+          },
+          {
+            "name": "opts",
+            "descript": "连接选项，缺省是 {}",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询当前对象连接的服务器 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "url",
+      "type": "String",
+      "doc": {
+        "descript": "查询当前对象连接的服务器",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询当前对象连接时的协议 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "protocol",
+      "type": "String",
+      "doc": {
+        "descript": "查询当前对象连接时的协议",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询当前对象连接的源 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "origin",
+      "type": "String",
+      "doc": {
+        "descript": "查询当前对象连接的源",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询当前对象的连接状态，参见 ws ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "readyState",
+      "type": "Integer",
+      "doc": {
+        "descript": "查询当前对象的连接状态，参见 ws",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 关闭当前连接，此操作会向对方发送 CLOSE 数据包，并等待对方响应\n     @param code 指定关闭的代码，允许值为 3000-4999 或者 1000，缺省为 1000\n     @param reason 指定关闭的原因，缺省为 \"\"\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "close",
+      "type": null,
+      "params": [
+        {
+          "type": "Integer",
+          "name": "code",
+          "default": {
+            "value": "1000"
+          }
+        },
+        {
+          "type": "String",
+          "name": "reason",
+          "default": {
+            "value": "\"\""
+          }
+        }
+      ],
+      "doc": {
+        "descript": "关闭当前连接，此操作会向对方发送 CLOSE 数据包，并等待对方响应",
+        "detail": [],
+        "params": [
+          {
+            "name": "code",
+            "descript": "指定关闭的代码，允许值为 3000-4999 或者 1000，缺省为 1000",
+            "detail": []
+          },
+          {
+            "name": "reason",
+            "descript": "指定关闭的原因，缺省为 \"\"",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 向对方发送一段文本\n     @param data 指定发送的文本\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "send",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "data",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "向对方发送一段文本",
+        "detail": [],
+        "params": [
+          {
+            "name": "data",
+            "descript": "指定发送的文本",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 向对方发送一段二进制数据\n     @param data 指定发送的二进制数据\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "send",
+      "type": null,
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "data",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "向对方发送一段二进制数据",
+        "detail": [],
+        "params": [
+          {
+            "name": "data",
+            "descript": "指定发送的二进制数据",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和绑定连接成功事件，相当于 on(\"open\", func); ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "onopen",
+      "type": "Function",
+      "doc": {
+        "descript": "查询和绑定连接成功事件，相当于 on(\"open\", func);",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和绑定接受到对方消息的事件，相当于 on(\"message\", func); ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "onmessage",
+      "type": "Function",
+      "doc": {
+        "descript": "查询和绑定接受到对方消息的事件，相当于 on(\"message\", func);",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和绑定连接关闭的事件，相当于 on(\"close\", func); ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "onclose",
+      "type": "Function",
+      "doc": {
+        "descript": "查询和绑定连接关闭的事件，相当于 on(\"close\", func);",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和绑定错误发生的事件，相当于 on(\"error\", func); ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "onerror",
+      "type": "Function",
+      "doc": {
+        "descript": "查询和绑定错误发生的事件，相当于 on(\"error\", func);",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 维持 fibjs 进程不退出，在对象绑定期间阻止 fibjs 进程退出\n     @return 返回当前对象\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "ref",
+      "type": "WebSocket",
+      "params": null,
+      "doc": {
+        "descript": "维持 fibjs 进程不退出，在对象绑定期间阻止 fibjs 进程退出",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "返回当前对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 允许 fibjs 进程退出，在对象绑定期间允许 fibjs 进程退出\n     @return 返回当前对象\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "unref",
+      "type": "WebSocket",
+      "params": null,
+      "doc": {
+        "descript": "允许 fibjs 进程退出，在对象绑定期间允许 fibjs 进程退出",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "返回当前对象",
+          "detail": []
+        }
+      }
+    }
+  ]
+}

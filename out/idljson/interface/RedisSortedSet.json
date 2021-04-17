@@ -1,0 +1,448 @@
+{
+  "declare": {
+    "comments": "! @brief Redis 数据库客户端 SortedSet 对象，此对象为包含指定 key 的客户端，只有调用其方法才会操作数据库\n\n 用以操作 Redis 的 SortedSet 对象，创建方法：\n ```JavaScript\n var db = require(\"db\");\n var rdb = new db.openRedis(\"redis-server\");\n var set = rdb.getSortedSet(\"test\");\n ```\n ",
+    "type": "interface",
+    "name": "RedisSortedSet",
+    "extend": "object",
+    "doc": {
+      "descript": "Redis 数据库客户端 SortedSet 对象，此对象为包含指定 key 的客户端，只有调用其方法才会操作数据库",
+      "detail": [
+        "用以操作 Redis 的 SortedSet 对象，创建方法：",
+        "```JavaScript",
+        "var db = require(\"db\");",
+        "var rdb = new db.openRedis(\"redis-server\");",
+        "var set = rdb.getSortedSet(\"test\");",
+        "```"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "method",
+      "comments": "! @brief 将一个或多个 member 元素及其 score 值加入到有序集当中\n     @param sms 指定要添加的 member/score 对象\n     @return 被成功添加的新成员的数量，不包括那些被更新的、已经存在的成员 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "add",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "Object",
+          "name": "sms",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "将一个或多个 member 元素及其 score 值加入到有序集当中",
+        "detail": [],
+        "params": [
+          {
+            "name": "sms",
+            "descript": "指定要添加的 member/score 对象",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "被成功添加的新成员的数量，不包括那些被更新的、已经存在的成员",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 将一个或多个 member 元素及其 score 值加入到有序集当中\n     @param sms 指定要添加的 member/score 列表\n     @return 被成功添加的新成员的数量，不包括那些被更新的、已经存在的成员 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "add",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "...",
+          "name": "sms",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "将一个或多个 member 元素及其 score 值加入到有序集当中",
+        "detail": [],
+        "params": [
+          {
+            "name": "sms",
+            "descript": "指定要添加的 member/score 列表",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "被成功添加的新成员的数量，不包括那些被更新的、已经存在的成员",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 返回有序集中，成员 member 的 score 值\n     @param member 指定要查询的 member\n     @return member 成员的 score 值，以字符串形式表示 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "score",
+      "type": "Buffer",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "member",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "返回有序集中，成员 member 的 score 值",
+        "detail": [],
+        "params": [
+          {
+            "name": "member",
+            "descript": "指定要查询的 member",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "member 成员的 score 值，以字符串形式表示",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 为有序集的成员 member 的 score 值加上增量 num\n     @param member 指定要修改的 member\n     @param num 指定要加上的数值\n     @return member 成员的新 score 值，以字符串形式表示 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "incr",
+      "type": "Buffer",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "member",
+          "default": null
+        },
+        {
+          "type": "Long",
+          "name": "num",
+          "default": {
+            "value": "1"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "为有序集的成员 member 的 score 值加上增量 num",
+        "detail": [],
+        "params": [
+          {
+            "name": "member",
+            "descript": "指定要修改的 member",
+            "detail": []
+          },
+          {
+            "name": "num",
+            "descript": "指定要加上的数值",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "member 成员的新 score 值，以字符串形式表示",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 移除有序集中的一个或多个 member 元素\n     @param members 指定要移除的元素数组\n     @return 被成功移除的元素的数量，不包括被忽略的元素 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "remove",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "Array",
+          "name": "members",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "移除有序集中的一个或多个 member 元素",
+        "detail": [],
+        "params": [
+          {
+            "name": "members",
+            "descript": "指定要移除的元素数组",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "被成功移除的元素的数量，不包括被忽略的元素",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 移除有序集中的一个或多个 member 元素\n     @param members 指定要移除的元素列表\n     @return 被成功移除的元素的数量，不包括被忽略的元素  ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "remove",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "...",
+          "name": "members",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "移除有序集中的一个或多个 member 元素",
+        "detail": [],
+        "params": [
+          {
+            "name": "members",
+            "descript": "指定要移除的元素列表",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "被成功移除的元素的数量，不包括被忽略的元素",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 返回有序集中元素的数量\n     @return 返回有序集的长度 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "len",
+      "type": "Integer",
+      "params": null,
+      "doc": {
+        "descript": "返回有序集中元素的数量",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "返回有序集的长度",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 返回有序集中， score 值在 min 和 max 之间(默认包括 score 值等于 min 或 max )的成员的数量\n     @param min 指定统计的最小 score\n     @param max 指定统计的最大 score\n     @return score 值在 min 和 max 之间的成员的数量 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "count",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "min",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "max",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "返回有序集中， score 值在 min 和 max 之间(默认包括 score 值等于 min 或 max )的成员的数量",
+        "detail": [],
+        "params": [
+          {
+            "name": "min",
+            "descript": "指定统计的最小 score",
+            "detail": []
+          },
+          {
+            "name": "max",
+            "descript": "指定统计的最大 score",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "score 值在 min 和 max 之间的成员的数量",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 返回有序集中，指定区间内的成员，成员的位置按 score 值递增(从小到大)来排序\n     @param start 指定查询的起始下标，0 表示第一个元素，-1 表示最后一个元素\n     @param stop 指定查询的结束下标，0 表示第一个元素，-1 表示最后一个元素\n     @param withScores 指定是否在结果中包含 score\n     @return 指定区间内，带有 score 值(可选)的有序集成员的列表 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "range",
+      "type": "NArray",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "start",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "stop",
+          "default": null
+        },
+        {
+          "type": "Boolean",
+          "name": "withScores",
+          "default": {
+            "value": "false"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "返回有序集中，指定区间内的成员，成员的位置按 score 值递增(从小到大)来排序",
+        "detail": [],
+        "params": [
+          {
+            "name": "start",
+            "descript": "指定查询的起始下标，0 表示第一个元素，-1 表示最后一个元素",
+            "detail": []
+          },
+          {
+            "name": "stop",
+            "descript": "指定查询的结束下标，0 表示第一个元素，-1 表示最后一个元素",
+            "detail": []
+          },
+          {
+            "name": "withScores",
+            "descript": "指定是否在结果中包含 score",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "指定区间内，带有 score 值(可选)的有序集成员的列表",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 返回有序集中，指定区间内的成员，成员的位置按 score 值递减(从大到小)来排序\n     @param start 指定查询的起始下标，0 表示第一个元素，-1 表示最后一个元素\n     @param stop 指定查询的结束下标，0 表示第一个元素，-1 表示最后一个元素\n     @param withScores 指定是否在结果中包含 score\n     @return 指定区间内，带有 score 值(可选)的有序集成员的列表 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "rangeRev",
+      "type": "NArray",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "start",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "stop",
+          "default": null
+        },
+        {
+          "type": "Boolean",
+          "name": "withScores",
+          "default": {
+            "value": "false"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "返回有序集中，指定区间内的成员，成员的位置按 score 值递减(从大到小)来排序",
+        "detail": [],
+        "params": [
+          {
+            "name": "start",
+            "descript": "指定查询的起始下标，0 表示第一个元素，-1 表示最后一个元素",
+            "detail": []
+          },
+          {
+            "name": "stop",
+            "descript": "指定查询的结束下标，0 表示第一个元素，-1 表示最后一个元素",
+            "detail": []
+          },
+          {
+            "name": "withScores",
+            "descript": "指定是否在结果中包含 score",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "指定区间内，带有 score 值(可选)的有序集成员的列表",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 有序集中成员 member 的排名。其中有序集成员按 score 值递增(从小到大)顺序排列\n     @param member 指定要查询的 member\n     @return member 如果 member 是有序集 key 的成员，返回 member 的排名。如果 member 不是有序集 key 的成员，返回 nil ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "rank",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "member",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "有序集中成员 member 的排名。其中有序集成员按 score 值递增(从小到大)顺序排列",
+        "detail": [],
+        "params": [
+          {
+            "name": "member",
+            "descript": "指定要查询的 member",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "member 如果 member 是有序集 key 的成员，返回 member 的排名。如果 member 不是有序集 key 的成员，返回 nil",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 有序集中成员 member 的排名。其中有序集成员按 score 值递减(从大到小)顺序排列\n     @param member 指定要查询的 member\n     @return member 如果 member 是有序集 key 的成员，返回 member 的排名。如果 member 不是有序集 key 的成员，返回 nil ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "rankRev",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "member",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "有序集中成员 member 的排名。其中有序集成员按 score 值递减(从大到小)顺序排列",
+        "detail": [],
+        "params": [
+          {
+            "name": "member",
+            "descript": "指定要查询的 member",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "member 如果 member 是有序集 key 的成员，返回 member 的排名。如果 member 不是有序集 key 的成员，返回 nil",
+          "detail": []
+        }
+      }
+    }
+  ]
+}

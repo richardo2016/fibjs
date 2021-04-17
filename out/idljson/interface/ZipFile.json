@@ -1,0 +1,463 @@
+{
+  "declare": {
+    "comments": "! @brief zip 文件访问对象 ",
+    "type": "interface",
+    "name": "ZipFile",
+    "extend": "object",
+    "doc": {
+      "descript": "zip 文件访问对象",
+      "detail": [],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "method",
+      "comments": "! @brief 获取文件名列表\n\t @return 返回包含文件名的列表对象\n\t ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "namelist",
+      "type": "NArray",
+      "params": null,
+      "doc": {
+        "descript": "获取文件名列表",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "返回包含文件名的列表对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 获取文件信息列表 \n\t 文件信息包含字段有：filename, date, compress_type, compress_size, file_size, password, data\n\t @return 返回包含文件信息的列表对象\n\t ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "infolist",
+      "type": "NArray",
+      "params": null,
+      "doc": {
+        "descript": "获取文件信息列表",
+        "detail": [
+          "文件信息包含字段有：filename, date, compress_type, compress_size, file_size, password, data"
+        ],
+        "params": [],
+        "return": {
+          "descript": "返回包含文件信息的列表对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 获取文件信息\n\t 文件信息包含字段有：filename, date, compress_type, compress_size, file_size, password, data\n\t @param member 指定要获取信息的文件名\n\t @return 返回文件信息对象\n\t",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "getinfo",
+      "type": "NObject",
+      "params": [
+        {
+          "type": "String",
+          "name": "member",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "获取文件信息",
+        "detail": [
+          "文件信息包含字段有：filename, date, compress_type, compress_size, file_size, password, data"
+        ],
+        "params": [
+          {
+            "name": "member",
+            "descript": "指定要获取信息的文件名",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回文件信息对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 返回从压缩文件读取的数据\n\t @param member 指定要读取的文件名\n\t @param password 解压密码, 默认没有密码\n\t @return 返回文件的所有数据\n\t ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "read",
+      "type": "Buffer",
+      "params": [
+        {
+          "type": "String",
+          "name": "member",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "password",
+          "default": {
+            "value": "\"\""
+          }
+        }
+      ],
+      "doc": {
+        "descript": "返回从压缩文件读取的数据",
+        "detail": [],
+        "params": [
+          {
+            "name": "member",
+            "descript": "指定要读取的文件名",
+            "detail": []
+          },
+          {
+            "name": "password",
+            "descript": "解压密码, 默认没有密码",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回文件的所有数据",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 解压所有文件\n\t @param password 解压密码, 默认没有密码\n\t @return 包含所有文件数据及信息的列表\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "readAll",
+      "type": "NArray",
+      "params": [
+        {
+          "type": "String",
+          "name": "password",
+          "default": {
+            "value": "\"\""
+          }
+        }
+      ],
+      "doc": {
+        "descript": "解压所有文件",
+        "detail": [],
+        "params": [
+          {
+            "name": "password",
+            "descript": "解压密码, 默认没有密码",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "包含所有文件数据及信息的列表",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 解压指定文件\n\t @param member 指定要解压的文件名\n\t @param path 指定要解压到的路径\n\t @param password 解压密码, 默认没有密码\n\t ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "extract",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "member",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "path",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "password",
+          "default": {
+            "value": "\"\""
+          }
+        }
+      ],
+      "doc": {
+        "descript": "解压指定文件",
+        "detail": [],
+        "params": [
+          {
+            "name": "member",
+            "descript": "指定要解压的文件名",
+            "detail": []
+          },
+          {
+            "name": "path",
+            "descript": "指定要解压到的路径",
+            "detail": []
+          },
+          {
+            "name": "password",
+            "descript": "解压密码, 默认没有密码",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 解压指定文件到流\n\t @param member 指定要解压的文件名\n\t @param strm 指定要解压到的流\n\t @param password 解压密码, 默认没有密码\n\t ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "extract",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "member",
+          "default": null
+        },
+        {
+          "type": "SeekableStream",
+          "name": "strm",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "password",
+          "default": {
+            "value": "\"\""
+          }
+        }
+      ],
+      "doc": {
+        "descript": "解压指定文件到流",
+        "detail": [],
+        "params": [
+          {
+            "name": "member",
+            "descript": "指定要解压的文件名",
+            "detail": []
+          },
+          {
+            "name": "strm",
+            "descript": "指定要解压到的流",
+            "detail": []
+          },
+          {
+            "name": "password",
+            "descript": "解压密码, 默认没有密码",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 解压所有文件到指定路径\n\t @param path 指定要解压到的路径\n\t @param password 解压密码, 默认没有密码\n\t ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "extractAll",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "path",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "password",
+          "default": {
+            "value": "\"\""
+          }
+        }
+      ],
+      "doc": {
+        "descript": "解压所有文件到指定路径",
+        "detail": [],
+        "params": [
+          {
+            "name": "path",
+            "descript": "指定要解压到的路径",
+            "detail": []
+          },
+          {
+            "name": "password",
+            "descript": "解压密码, 默认没有密码",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 写入指定文件到压缩文件\n\t @param filename 指定要写入的文件\n\t @param inZipName 压缩在zip文件内的文件名\n\t @param password 解压密码, 默认没有密码\n\t ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "write",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "filename",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "inZipName",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "password",
+          "default": {
+            "value": "\"\""
+          }
+        }
+      ],
+      "doc": {
+        "descript": "写入指定文件到压缩文件",
+        "detail": [],
+        "params": [
+          {
+            "name": "filename",
+            "descript": "指定要写入的文件",
+            "detail": []
+          },
+          {
+            "name": "inZipName",
+            "descript": "压缩在zip文件内的文件名",
+            "detail": []
+          },
+          {
+            "name": "password",
+            "descript": "解压密码, 默认没有密码",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 写入指定文件到压缩文件\n\t @param data 指定要写入的文件数据\n\t @param inZipName 压缩在zip文件内的文件名\n\t @param password 解压密码, 默认没有密码\n\t ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "write",
+      "type": null,
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "data",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "inZipName",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "password",
+          "default": {
+            "value": "\"\""
+          }
+        }
+      ],
+      "doc": {
+        "descript": "写入指定文件到压缩文件",
+        "detail": [],
+        "params": [
+          {
+            "name": "data",
+            "descript": "指定要写入的文件数据",
+            "detail": []
+          },
+          {
+            "name": "inZipName",
+            "descript": "压缩在zip文件内的文件名",
+            "detail": []
+          },
+          {
+            "name": "password",
+            "descript": "解压密码, 默认没有密码",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 写入指定文件到压缩文件\n\t @param strm 指定要写入文件数据流\n\t @param inZipName 压缩在zip文件内的文件名\n\t @param password 解压密码, 默认没有密码\n\t ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "write",
+      "type": null,
+      "params": [
+        {
+          "type": "SeekableStream",
+          "name": "strm",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "inZipName",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "password",
+          "default": {
+            "value": "\"\""
+          }
+        }
+      ],
+      "doc": {
+        "descript": "写入指定文件到压缩文件",
+        "detail": [],
+        "params": [
+          {
+            "name": "strm",
+            "descript": "指定要写入文件数据流",
+            "detail": []
+          },
+          {
+            "name": "inZipName",
+            "descript": "压缩在zip文件内的文件名",
+            "detail": []
+          },
+          {
+            "name": "password",
+            "descript": "解压密码, 默认没有密码",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 关闭打开的zip文件 ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "close",
+      "type": null,
+      "params": null,
+      "doc": {
+        "descript": "关闭打开的zip文件",
+        "detail": [],
+        "params": []
+      }
+    }
+  ]
+}

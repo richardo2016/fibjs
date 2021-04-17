@@ -1,0 +1,86 @@
+{
+  "declare": {
+    "comments": "! @brief tty 写流对象, 用于处理 tty 输出\n\n 没有途径可以单独创建该类, 全局只有 `process.stdout` 实例\n\n ```JavaScript\n // 清除屏幕上光标以右的内容\n process.stdout.clearLine(1)\n ```\n ",
+    "type": "interface",
+    "name": "TTYOutputStream",
+    "extend": "Stream",
+    "doc": {
+      "descript": "tty 写流对象, 用于处理 tty 输出",
+      "detail": [
+        "没有途径可以单独创建该类, 全局只有 `process.stdout` 实例",
+        "",
+        "```JavaScript",
+        "// 清除屏幕上光标以右的内容",
+        "process.stdout.clearLine(1)",
+        "```"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "prop",
+      "comments": "! @brief 恒为 true\n    ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "isTTY",
+      "type": "Boolean",
+      "doc": {
+        "descript": "恒为 true",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 根据 dir 指示的方向 clear line\n\n     dir 的方向:\n     - -1: 从光标起往行起始清理\n     - 0: 清理整行\n     - 1: 从光标起往行结尾清理\n\n     @param dir 清理方向\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "clearLine",
+      "type": null,
+      "params": [
+        {
+          "type": "Integer",
+          "name": "dir",
+          "default": {
+            "value": "0"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "根据 dir 指示的方向 clear line",
+        "detail": [
+          "dir 的方向:",
+          "- -1: 从光标起往行起始清理",
+          "- 0: 清理整行",
+          "- 1: 从光标起往行结尾清理",
+          ""
+        ],
+        "params": [
+          {
+            "name": "dir",
+            "descript": "清理方向",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 清除从光标处起到屏幕结尾的字符\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "clearScreenDown",
+      "type": null,
+      "params": null,
+      "doc": {
+        "descript": "清除从光标处起到屏幕结尾的字符",
+        "detail": [],
+        "params": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,900 @@
+{
+  "declare": {
+    "comments": "! @brief 信息摘要计算模块，可用于计算信息摘要和摘要签名 ",
+    "type": "module",
+    "name": "hash",
+    "extend": "object",
+    "module": true,
+    "doc": {
+      "descript": "信息摘要计算模块，可用于计算信息摘要和摘要签名",
+      "detail": [],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "const",
+      "comments": "! @brief MD2 信息摘要算法标识常量 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "MD2",
+      "default": {
+        "value": "1"
+      },
+      "doc": {
+        "descript": "MD2 信息摘要算法标识常量",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief MD4 信息摘要算法标识常量 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "MD4",
+      "default": {
+        "value": "2"
+      },
+      "doc": {
+        "descript": "MD4 信息摘要算法标识常量",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief MD5 信息摘要算法标识常量 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "MD5",
+      "default": {
+        "value": "3"
+      },
+      "doc": {
+        "descript": "MD5 信息摘要算法标识常量",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief SHA1 信息摘要算法标识常量 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "SHA1",
+      "default": {
+        "value": "4"
+      },
+      "doc": {
+        "descript": "SHA1 信息摘要算法标识常量",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief SHA224 信息摘要算法标识常量 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "SHA224",
+      "default": {
+        "value": "5"
+      },
+      "doc": {
+        "descript": "SHA224 信息摘要算法标识常量",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief SHA256 信息摘要算法标识常量 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "SHA256",
+      "default": {
+        "value": "6"
+      },
+      "doc": {
+        "descript": "SHA256 信息摘要算法标识常量",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief SHA384 信息摘要算法标识常量 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "SHA384",
+      "default": {
+        "value": "7"
+      },
+      "doc": {
+        "descript": "SHA384 信息摘要算法标识常量",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief SHA512 信息摘要算法标识常量 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "SHA512",
+      "default": {
+        "value": "8"
+      },
+      "doc": {
+        "descript": "SHA512 信息摘要算法标识常量",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief RIPEMD160 信息摘要算法标识常量 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "RIPEMD160",
+      "default": {
+        "value": "9"
+      },
+      "doc": {
+        "descript": "RIPEMD160 信息摘要算法标识常量",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief SM3 信息摘要算法标识常量 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "SM3",
+      "default": {
+        "value": "10"
+      },
+      "doc": {
+        "descript": "SM3 信息摘要算法标识常量",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 根据指定的算法标识创建一个信息摘要运算对象\n     @param algo 指定摘要运算算法\n     @param data 创建同时更新的二进制数据\n     @return 返回构造的信息摘要对象\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "digest",
+      "type": "Digest",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "algo",
+          "default": null
+        },
+        {
+          "type": "Buffer",
+          "name": "data",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "根据指定的算法标识创建一个信息摘要运算对象",
+        "detail": [],
+        "params": [
+          {
+            "name": "algo",
+            "descript": "指定摘要运算算法",
+            "detail": []
+          },
+          {
+            "name": "data",
+            "descript": "创建同时更新的二进制数据",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回构造的信息摘要对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 根据指定的算法标识创建一个信息摘要运算对象\n     @param algo 指定摘要运算算法\n     @return 返回构造的信息摘要对象\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "digest",
+      "type": "Digest",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "algo",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "根据指定的算法标识创建一个信息摘要运算对象",
+        "detail": [],
+        "params": [
+          {
+            "name": "algo",
+            "descript": "指定摘要运算算法",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回构造的信息摘要对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 创建一个 MD2 信息摘要运算对象\n     @param data 创建同时更新的二进制数据\n     @return 返回构造的信息摘要对象\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "md2",
+      "type": "Digest",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "data",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "创建一个 MD2 信息摘要运算对象",
+        "detail": [],
+        "params": [
+          {
+            "name": "data",
+            "descript": "创建同时更新的二进制数据",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回构造的信息摘要对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 创建一个 MD4 信息摘要运算对象\n     @param data 创建同时更新的二进制数据\n     @return 返回构造的信息摘要对象\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "md4",
+      "type": "Digest",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "data",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "创建一个 MD4 信息摘要运算对象",
+        "detail": [],
+        "params": [
+          {
+            "name": "data",
+            "descript": "创建同时更新的二进制数据",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回构造的信息摘要对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 创建一个 MD5 信息摘要运算对象\n     @param data 创建同时更新的二进制数据\n     @return 返回构造的信息摘要对象\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "md5",
+      "type": "Digest",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "data",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "创建一个 MD5 信息摘要运算对象",
+        "detail": [],
+        "params": [
+          {
+            "name": "data",
+            "descript": "创建同时更新的二进制数据",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回构造的信息摘要对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 创建一个 SHA1 信息摘要运算对象\n     @param data 创建同时更新的二进制数据\n     @return 返回构造的信息摘要对象\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "sha1",
+      "type": "Digest",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "data",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "创建一个 SHA1 信息摘要运算对象",
+        "detail": [],
+        "params": [
+          {
+            "name": "data",
+            "descript": "创建同时更新的二进制数据",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回构造的信息摘要对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 创建一个 SHA224 信息摘要运算对象\n     @param data 创建同时更新的二进制数据\n     @return 返回构造的信息摘要对象\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "sha224",
+      "type": "Digest",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "data",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "创建一个 SHA224 信息摘要运算对象",
+        "detail": [],
+        "params": [
+          {
+            "name": "data",
+            "descript": "创建同时更新的二进制数据",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回构造的信息摘要对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 创建一个 SHA256 信息摘要运算对象\n     @param data 创建同时更新的二进制数据\n     @return 返回构造的信息摘要对象\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "sha256",
+      "type": "Digest",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "data",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "创建一个 SHA256 信息摘要运算对象",
+        "detail": [],
+        "params": [
+          {
+            "name": "data",
+            "descript": "创建同时更新的二进制数据",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回构造的信息摘要对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 创建一个 SHA384 信息摘要运算对象\n     @param data 创建同时更新的二进制数据\n     @return 返回构造的信息摘要对象\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "sha384",
+      "type": "Digest",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "data",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "创建一个 SHA384 信息摘要运算对象",
+        "detail": [],
+        "params": [
+          {
+            "name": "data",
+            "descript": "创建同时更新的二进制数据",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回构造的信息摘要对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 创建一个 SHA512 信息摘要运算对象\n     @param data 创建同时更新的二进制数据\n     @return 返回构造的信息摘要对象\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "sha512",
+      "type": "Digest",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "data",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "创建一个 SHA512 信息摘要运算对象",
+        "detail": [],
+        "params": [
+          {
+            "name": "data",
+            "descript": "创建同时更新的二进制数据",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回构造的信息摘要对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 创建一个 RIPEMD160 信息摘要运算对象\n     @param data 创建同时更新的二进制数据\n     @return 返回构造的信息摘要对象\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "ripemd160",
+      "type": "Digest",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "data",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "创建一个 RIPEMD160 信息摘要运算对象",
+        "detail": [],
+        "params": [
+          {
+            "name": "data",
+            "descript": "创建同时更新的二进制数据",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回构造的信息摘要对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 创建一个 SM3 信息摘要运算对象\n     @param data 创建同时更新的二进制数据\n     @return 返回构造的信息摘要对象\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "sm3",
+      "type": "Digest",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "data",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "创建一个 SM3 信息摘要运算对象",
+        "detail": [],
+        "params": [
+          {
+            "name": "data",
+            "descript": "创建同时更新的二进制数据",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回构造的信息摘要对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 根据指定的算法标识创建一个信息摘要签名运算对象\n     @param algo 指定摘要运算算法\n     @param key 二进制签名密钥\n     @return 返回构造的信息摘要对象\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "hmac",
+      "type": "Digest",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "algo",
+          "default": null
+        },
+        {
+          "type": "Buffer",
+          "name": "key",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "根据指定的算法标识创建一个信息摘要签名运算对象",
+        "detail": [],
+        "params": [
+          {
+            "name": "algo",
+            "descript": "指定摘要运算算法",
+            "detail": []
+          },
+          {
+            "name": "key",
+            "descript": "二进制签名密钥",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回构造的信息摘要对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 创建一个 MD2 信息摘要签名运算对象\n     @param key 二进制签名密钥\n     @return 返回构造的信息摘要对象\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "hmac_md2",
+      "type": "Digest",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "key",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "创建一个 MD2 信息摘要签名运算对象",
+        "detail": [],
+        "params": [
+          {
+            "name": "key",
+            "descript": "二进制签名密钥",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回构造的信息摘要对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 创建一个 MD4 信息摘要签名运算对象\n     @param key 二进制签名密钥\n     @return 返回构造的信息摘要对象\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "hmac_md4",
+      "type": "Digest",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "key",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "创建一个 MD4 信息摘要签名运算对象",
+        "detail": [],
+        "params": [
+          {
+            "name": "key",
+            "descript": "二进制签名密钥",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回构造的信息摘要对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 创建一个 MD5 信息摘要签名运算对象\n     @param key 二进制签名密钥\n     @return 返回构造的信息摘要对象\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "hmac_md5",
+      "type": "Digest",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "key",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "创建一个 MD5 信息摘要签名运算对象",
+        "detail": [],
+        "params": [
+          {
+            "name": "key",
+            "descript": "二进制签名密钥",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回构造的信息摘要对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 创建一个 SHA1 信息摘要签名运算对象\n     @param key 二进制签名密钥\n     @return 返回构造的信息摘要对象\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "hmac_sha1",
+      "type": "Digest",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "key",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "创建一个 SHA1 信息摘要签名运算对象",
+        "detail": [],
+        "params": [
+          {
+            "name": "key",
+            "descript": "二进制签名密钥",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回构造的信息摘要对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 创建一个 SHA224 信息摘要签名运算对象\n     @param key 二进制签名密钥\n     @return 返回构造的信息摘要对象\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "hmac_sha224",
+      "type": "Digest",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "key",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "创建一个 SHA224 信息摘要签名运算对象",
+        "detail": [],
+        "params": [
+          {
+            "name": "key",
+            "descript": "二进制签名密钥",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回构造的信息摘要对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 创建一个 SHA256 信息摘要签名运算对象\n     @param key 二进制签名密钥\n     @return 返回构造的信息摘要对象\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "hmac_sha256",
+      "type": "Digest",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "key",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "创建一个 SHA256 信息摘要签名运算对象",
+        "detail": [],
+        "params": [
+          {
+            "name": "key",
+            "descript": "二进制签名密钥",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回构造的信息摘要对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 创建一个 SHA384 信息摘要签名运算对象\n     @param key 二进制签名密钥\n     @return 返回构造的信息摘要对象\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "hmac_sha384",
+      "type": "Digest",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "key",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "创建一个 SHA384 信息摘要签名运算对象",
+        "detail": [],
+        "params": [
+          {
+            "name": "key",
+            "descript": "二进制签名密钥",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回构造的信息摘要对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 创建一个 SHA512 信息摘要签名运算对象\n     @param key 二进制签名密钥\n     @return 返回构造的信息摘要对象\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "hmac_sha512",
+      "type": "Digest",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "key",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "创建一个 SHA512 信息摘要签名运算对象",
+        "detail": [],
+        "params": [
+          {
+            "name": "key",
+            "descript": "二进制签名密钥",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回构造的信息摘要对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 创建一个 RIPEMD160 信息摘要签名运算对象\n     @param key 二进制签名密钥\n     @return 返回构造的信息摘要对象\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "hmac_ripemd160",
+      "type": "Digest",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "key",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "创建一个 RIPEMD160 信息摘要签名运算对象",
+        "detail": [],
+        "params": [
+          {
+            "name": "key",
+            "descript": "二进制签名密钥",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回构造的信息摘要对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 创建一个 SM3 信息摘要签名运算对象\n     @param key 二进制签名密钥\n     @return 返回构造的信息摘要对象\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "hmac_sm3",
+      "type": "Digest",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "key",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "创建一个 SM3 信息摘要签名运算对象",
+        "detail": [],
+        "params": [
+          {
+            "name": "key",
+            "descript": "二进制签名密钥",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回构造的信息摘要对象",
+          "detail": []
+        }
+      }
+    }
+  ],
+  "collect": "Crypto"
+}

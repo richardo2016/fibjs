@@ -1,0 +1,93 @@
+{
+  "declare": {
+    "comments": "! @brief 信息摘要对象 ",
+    "type": "interface",
+    "name": "Digest",
+    "extend": "object",
+    "doc": {
+      "descript": "信息摘要对象",
+      "detail": [],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "method",
+      "comments": "! @brief 更新二进制摘要信息\n     @param data 二进制数据块\n     @return 返回信息摘要对象本身\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "update",
+      "type": "Digest",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "data",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "更新二进制摘要信息",
+        "detail": [],
+        "params": [
+          {
+            "name": "data",
+            "descript": "二进制数据块",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回信息摘要对象本身",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 计算并返回摘要\n     @param codec 指定编码格式，允许值为：\"buffer\", \"hex\", \"base64\", \"utf8\", 或者系统支持的字符集\n     @return 返回指定编码的摘要表示\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "digest",
+      "type": "Value",
+      "params": [
+        {
+          "type": "String",
+          "name": "codec",
+          "default": {
+            "value": "\"buffer\""
+          }
+        }
+      ],
+      "doc": {
+        "descript": "计算并返回摘要",
+        "detail": [],
+        "params": [
+          {
+            "name": "codec",
+            "descript": "指定编码格式，允许值为：\"buffer\", \"hex\", \"base64\", \"utf8\", 或者系统支持的字符集",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回指定编码的摘要表示",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询当前信息摘要算法的摘要字节数 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "size",
+      "type": "Integer",
+      "doc": {
+        "descript": "查询当前信息摘要算法的摘要字节数",
+        "detail": [],
+        "params": []
+      }
+    }
+  ]
+}

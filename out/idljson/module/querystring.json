@@ -1,0 +1,218 @@
+{
+  "declare": {
+    "comments": "! @brief http query 处理模块\n\n 引用方法：\n ```JavaScript\n var querystring = require('querystring');\n ```\n ",
+    "type": "module",
+    "name": "querystring",
+    "extend": "object",
+    "module": true,
+    "doc": {
+      "descript": "http query 处理模块",
+      "detail": [
+        "引用方法：",
+        "```JavaScript",
+        "var querystring = require('querystring');",
+        "```"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "method",
+      "comments": "! @brief url 部件字符串安全编码\n     @param str 要编码的 url\n     @return 返回编码的字符串\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "escape",
+      "type": "String",
+      "params": [
+        {
+          "type": "String",
+          "name": "str",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "url 部件字符串安全编码",
+        "detail": [],
+        "params": [
+          {
+            "name": "str",
+            "descript": "要编码的 url",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回编码的字符串",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief url 安全字符串解码\n     @param str 要解码的 url\n     @return 返回解码的字符串\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "unescape",
+      "type": "String",
+      "params": [
+        {
+          "type": "String",
+          "name": "str",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "url 安全字符串解码",
+        "detail": [],
+        "params": [
+          {
+            "name": "str",
+            "descript": "要解码的 url",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回解码的字符串",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 解析 query 字符串\n     @param str 要解析的字符串\n     @param sep 解析时使用的分割字符串，缺省为 &\n     @param eq 解析时使用的赋值字符串，缺省为 =\n     @param opt 解析参数，暂未支持\n     @return 返回解码的对象\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "parse",
+      "type": "HttpCollection",
+      "params": [
+        {
+          "type": "String",
+          "name": "str",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "sep",
+          "default": {
+            "value": "\"&\""
+          }
+        },
+        {
+          "type": "String",
+          "name": "eq",
+          "default": {
+            "value": "\"=\""
+          }
+        },
+        {
+          "type": "Object",
+          "name": "opt",
+          "default": {
+            "value": "v8::Object::New(isolate)"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "解析 query 字符串",
+        "detail": [],
+        "params": [
+          {
+            "name": "str",
+            "descript": "要解析的字符串",
+            "detail": []
+          },
+          {
+            "name": "sep",
+            "descript": "解析时使用的分割字符串，缺省为 &",
+            "detail": []
+          },
+          {
+            "name": "eq",
+            "descript": "解析时使用的赋值字符串，缺省为 =",
+            "detail": []
+          },
+          {
+            "name": "opt",
+            "descript": "解析参数，暂未支持",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回解码的对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 序列化一个对象为 query 字符串\n     @param obj 要序列化的对象\n     @param sep 序列化时使用的分割字符串，缺省为 &\n     @param eq 序列化时使用的赋值字符串，缺省为 =\n     @param opt 解析参数，暂未支持\n     @return 返回序列化后的字符串\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "stringify",
+      "type": "String",
+      "params": [
+        {
+          "type": "Object",
+          "name": "obj",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "sep",
+          "default": {
+            "value": "\"&\""
+          }
+        },
+        {
+          "type": "String",
+          "name": "eq",
+          "default": {
+            "value": "\"=\""
+          }
+        },
+        {
+          "type": "Object",
+          "name": "opt",
+          "default": {
+            "value": "v8::Object::New(isolate)"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "序列化一个对象为 query 字符串",
+        "detail": [],
+        "params": [
+          {
+            "name": "obj",
+            "descript": "要序列化的对象",
+            "detail": []
+          },
+          {
+            "name": "sep",
+            "descript": "序列化时使用的分割字符串，缺省为 &",
+            "detail": []
+          },
+          {
+            "name": "eq",
+            "descript": "序列化时使用的赋值字符串，缺省为 =",
+            "detail": []
+          },
+          {
+            "name": "opt",
+            "descript": "解析参数，暂未支持",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回序列化后的字符串",
+          "detail": []
+        }
+      }
+    }
+  ],
+  "collect": "Network"
+}

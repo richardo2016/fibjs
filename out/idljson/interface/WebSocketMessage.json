@@ -1,0 +1,132 @@
+{
+  "declare": {
+    "comments": "! @brief websocket 消息对象\n\n 创建方法：\n ```JavaScript\n var ws = require(\"ws\");\n\n var msg = new ws.Message();\n ``` ",
+    "type": "interface",
+    "name": "WebSocketMessage",
+    "extend": "Message",
+    "doc": {
+      "descript": "websocket 消息对象",
+      "detail": [
+        "创建方法：",
+        "```JavaScript",
+        "var ws = require(\"ws\");",
+        "",
+        "var msg = new ws.Message();",
+        "```"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "method",
+      "comments": "! @brief 包处理消息对象构造函数\n\t@param type websocket 消息类型，缺省为 websocket.BINARY\n\t@param masked websocket 消息掩码，缺省为 true\n    @param compress 标记消息是否压缩，缺省为 false\n\t@param maxSize 最大包尺寸，以 MB 为单位，缺省为 67108864(64M)\n\t ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "WebSocketMessage",
+      "type": null,
+      "params": [
+        {
+          "type": "Integer",
+          "name": "type",
+          "default": {
+            "const": [
+              "ws",
+              "BINARY"
+            ]
+          }
+        },
+        {
+          "type": "Boolean",
+          "name": "masked",
+          "default": {
+            "value": "true"
+          }
+        },
+        {
+          "type": "Boolean",
+          "name": "compress",
+          "default": {
+            "value": "false"
+          }
+        },
+        {
+          "type": "Integer",
+          "name": "maxSize",
+          "default": {
+            "value": "67108864"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "包处理消息对象构造函数",
+        "detail": [],
+        "params": [
+          {
+            "name": "type",
+            "descript": "websocket 消息类型，缺省为 websocket.BINARY",
+            "detail": []
+          },
+          {
+            "name": "masked",
+            "descript": "websocket 消息掩码，缺省为 true",
+            "detail": []
+          },
+          {
+            "name": "compress",
+            "descript": "标记消息是否压缩，缺省为 false",
+            "detail": []
+          },
+          {
+            "name": "maxSize",
+            "descript": "最大包尺寸，以 MB 为单位，缺省为 67108864(64M)",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和读取 websocket 掩码标记，缺省为 true ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "masked",
+      "type": "Boolean",
+      "doc": {
+        "descript": "查询和读取 websocket 掩码标记，缺省为 true",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和读取 websocket 压缩状态，缺省为 false ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "compress",
+      "type": "Boolean",
+      "doc": {
+        "descript": "查询和读取 websocket 压缩状态，缺省为 false",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和设置最大包尺寸，以字节为单位，缺省为 67108864(64M) ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "maxSize",
+      "type": "Integer",
+      "doc": {
+        "descript": "查询和设置最大包尺寸，以字节为单位，缺省为 67108864(64M)",
+        "detail": [],
+        "params": []
+      }
+    }
+  ]
+}

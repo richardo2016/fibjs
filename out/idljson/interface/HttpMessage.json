@@ -1,0 +1,437 @@
+{
+  "declare": {
+    "comments": "! @brief http 基础消息对象  ",
+    "type": "interface",
+    "name": "HttpMessage",
+    "extend": "Message",
+    "doc": {
+      "descript": "http 基础消息对象",
+      "detail": [],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "prop",
+      "comments": "! @brief 协议版本信息，允许的格式为：HTTP/#.# ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "protocol",
+      "type": "String",
+      "doc": {
+        "descript": "协议版本信息，允许的格式为：HTTP/#.#",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 包含消息中 http 消息头的容器，只读属性 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "headers",
+      "type": "HttpCollection",
+      "doc": {
+        "descript": "包含消息中 http 消息头的容器，只读属性",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和设定是否保持连接 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "keepAlive",
+      "type": "Boolean",
+      "doc": {
+        "descript": "查询和设定是否保持连接",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和设定是否是升级协议 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "upgrade",
+      "type": "Boolean",
+      "doc": {
+        "descript": "查询和设定是否是升级协议",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和设置最大请求头个数，缺省为 128 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "maxHeadersCount",
+      "type": "Integer",
+      "doc": {
+        "descript": "查询和设置最大请求头个数，缺省为 128",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和设置 body 最大尺寸，以 MB 为单位，缺省为 64 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "maxBodySize",
+      "type": "Integer",
+      "doc": {
+        "descript": "查询和设置 body 最大尺寸，以 MB 为单位，缺省为 64",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询当前对象的来源 socket ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "socket",
+      "type": "Stream",
+      "doc": {
+        "descript": "查询当前对象的来源 socket",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 检查是否存在指定键值的消息头\n     @param name 指定要检查的键值\n     @return 返回键值是否存在\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "hasHeader",
+      "type": "Boolean",
+      "params": [
+        {
+          "type": "String",
+          "name": "name",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "检查是否存在指定键值的消息头",
+        "detail": [],
+        "params": [
+          {
+            "name": "name",
+            "descript": "指定要检查的键值",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回键值是否存在",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查询指定键值的第一个消息头\n     @param name 指定要查询的键值\n     @return 返回键值所对应的值，若不存在，则返回 undefined\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "firstHeader",
+      "type": "String",
+      "params": [
+        {
+          "type": "String",
+          "name": "name",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "查询指定键值的第一个消息头",
+        "detail": [],
+        "params": [
+          {
+            "name": "name",
+            "descript": "指定要查询的键值",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回键值所对应的值，若不存在，则返回 undefined",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查询指定键值的全部消息头\n     @param name 指定要查询的键值，传递空字符串返回全部键值的结果\n     @return 返回键值所对应全部值的数组，若数据不存在，则返回 null\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "allHeader",
+      "type": "NObject",
+      "params": [
+        {
+          "type": "String",
+          "name": "name",
+          "default": {
+            "value": "\"\""
+          }
+        }
+      ],
+      "doc": {
+        "descript": "查询指定键值的全部消息头",
+        "detail": [],
+        "params": [
+          {
+            "name": "name",
+            "descript": "指定要查询的键值，传递空字符串返回全部键值的结果",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回键值所对应全部值的数组，若数据不存在，则返回 null",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 添加一个消息头，添加数据并不修改已存在的键值的消息头\n     @param map 指定要添加的键值数据字典\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "addHeader",
+      "type": null,
+      "params": [
+        {
+          "type": "Object",
+          "name": "map",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "添加一个消息头，添加数据并不修改已存在的键值的消息头",
+        "detail": [],
+        "params": [
+          {
+            "name": "map",
+            "descript": "指定要添加的键值数据字典",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 添加指定名称的一组消息头，添加数据并不修改已存在的键值的消息头\n     @param name 指定要添加的键值\n     @param values 指定要添加的一组数据\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "addHeader",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "name",
+          "default": null
+        },
+        {
+          "type": "Array",
+          "name": "values",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "添加指定名称的一组消息头，添加数据并不修改已存在的键值的消息头",
+        "detail": [],
+        "params": [
+          {
+            "name": "name",
+            "descript": "指定要添加的键值",
+            "detail": []
+          },
+          {
+            "name": "values",
+            "descript": "指定要添加的一组数据",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 添加一个消息头，添加数据并不修改已存在的键值的消息头\n     @param name 指定要添加的键值\n     @param value 指定要添加的数据\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "addHeader",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "name",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "value",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "添加一个消息头，添加数据并不修改已存在的键值的消息头",
+        "detail": [],
+        "params": [
+          {
+            "name": "name",
+            "descript": "指定要添加的键值",
+            "detail": []
+          },
+          {
+            "name": "value",
+            "descript": "指定要添加的数据",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 设定一个消息头，设定数据将修改键值所对应的第一个数值，并清除相同键值的其余消息头\n     @param map 指定要设定的键值数据字典\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "setHeader",
+      "type": null,
+      "params": [
+        {
+          "type": "Object",
+          "name": "map",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "设定一个消息头，设定数据将修改键值所对应的第一个数值，并清除相同键值的其余消息头",
+        "detail": [],
+        "params": [
+          {
+            "name": "map",
+            "descript": "指定要设定的键值数据字典",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 设定指定名称的一组消息头，设定数据将修改键值所对应的数值，并清除相同键值的其余消息头\n     @param name 指定要设定的键值\n     @param values 指定要设定的一组数据\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "setHeader",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "name",
+          "default": null
+        },
+        {
+          "type": "Array",
+          "name": "values",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "设定指定名称的一组消息头，设定数据将修改键值所对应的数值，并清除相同键值的其余消息头",
+        "detail": [],
+        "params": [
+          {
+            "name": "name",
+            "descript": "指定要设定的键值",
+            "detail": []
+          },
+          {
+            "name": "values",
+            "descript": "指定要设定的一组数据",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 设定一个消息头，设定数据将修改键值所对应的第一个数值，并清除相同键值的其余消息头\n     @param name 指定要设定的键值\n     @param value 指定要设定的数据\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "setHeader",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "name",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "value",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "设定一个消息头，设定数据将修改键值所对应的第一个数值，并清除相同键值的其余消息头",
+        "detail": [],
+        "params": [
+          {
+            "name": "name",
+            "descript": "指定要设定的键值",
+            "detail": []
+          },
+          {
+            "name": "value",
+            "descript": "指定要设定的数据",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 删除指定键值的全部消息头\n     @param name 指定要删除的键值\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "removeHeader",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "name",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "删除指定键值的全部消息头",
+        "detail": [],
+        "params": [
+          {
+            "name": "name",
+            "descript": "指定要删除的键值",
+            "detail": []
+          }
+        ]
+      }
+    }
+  ]
+}

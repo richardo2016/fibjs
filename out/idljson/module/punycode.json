@@ -1,0 +1,148 @@
+{
+  "declare": {
+    "comments": "! @brief punycode 国际化域名转换模块\n\n Punycode 是由 RFC 3492 定义的主要用于国际化域名的字符编码方案。因为 URL 中主机名限制只能是 ASCII 字符，包括非 ASCII 字符的主机名必须使用 punycode 算法转化为ASCII。\n\n 使用方法：\n ```JavaScript\n var punycode = require('punycode');\n ```\n ",
+    "type": "module",
+    "name": "punycode",
+    "extend": "object",
+    "module": true,
+    "doc": {
+      "descript": "punycode 国际化域名转换模块",
+      "detail": [
+        "Punycode 是由 RFC 3492 定义的主要用于国际化域名的字符编码方案。因为 URL 中主机名限制只能是 ASCII 字符，包括非 ASCII 字符的主机名必须使用 punycode 算法转化为ASCII。",
+        "",
+        "使用方法：",
+        "```JavaScript",
+        "var punycode = require('punycode');",
+        "```"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "method",
+      "comments": "! @brief 将一个 Unicode 字符串转化为等价的只含有 ASCII 字符的 Punycode 字符串\n\t @param domain 给定Unicode 字符串\n\t @return 返回编码后的只含有 ASCII 字符的 Punycode 字符串\n\t ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "encode",
+      "type": "String",
+      "params": [
+        {
+          "type": "String",
+          "name": "domain",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "将一个 Unicode 字符串转化为等价的只含有 ASCII 字符的 Punycode 字符串",
+        "detail": [],
+        "params": [
+          {
+            "name": "domain",
+            "descript": "给定Unicode 字符串",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回编码后的只含有 ASCII 字符的 Punycode 字符串",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 将一个 Punycode 字符串转化为等价的 Unicode 字符串\n\t @param domain 给定Unicode 字符串\n\t @return 返回解码后的 Unicode 字符串\n\t ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "decode",
+      "type": "String",
+      "params": [
+        {
+          "type": "String",
+          "name": "domain",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "将一个 Punycode 字符串转化为等价的 Unicode 字符串",
+        "detail": [],
+        "params": [
+          {
+            "name": "domain",
+            "descript": "给定Unicode 字符串",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回解码后的 Unicode 字符串",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 转换一个代表了一个域名的Unicode字符串为一个只含有 ASCII 字符的字符串。只有代表了域名的部分的非 ASCII 字符串会被转换。也就是说，如果你调用了一个已经被转换为ASCII的字符串，也是没有问题的。\n\t @param domain 给定Unicode 字符串\n\t @return 返回编码后的 ASCII 字符串\n\t ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "toASCII",
+      "type": "String",
+      "params": [
+        {
+          "type": "String",
+          "name": "domain",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "转换一个代表了一个域名的Unicode字符串为一个只含有 ASCII 字符的字符串。只有代表了域名的部分的非 ASCII 字符串会被转换。也就是说，如果你调用了一个已经被转换为ASCII的字符串，也是没有问题的。",
+        "detail": [],
+        "params": [
+          {
+            "name": "domain",
+            "descript": "给定Unicode 字符串",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回编码后的 ASCII 字符串",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 转换一个代表了一个域名的Punycode字符串为一个Unicode字符串。只有代表了域名的部分的Punycode字符串会被转换。也就是说，如果你调用了一个已经被转换为Unicode的字符串，也是没有问题的。\n\t @param domain 给定 ASCII 字符串\n\t @return 返回解码后的 Unicode 字符串\n\t ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "toUnicode",
+      "type": "String",
+      "params": [
+        {
+          "type": "String",
+          "name": "domain",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "转换一个代表了一个域名的Punycode字符串为一个Unicode字符串。只有代表了域名的部分的Punycode字符串会被转换。也就是说，如果你调用了一个已经被转换为Unicode的字符串，也是没有问题的。",
+        "detail": [],
+        "params": [
+          {
+            "name": "domain",
+            "descript": "给定 ASCII 字符串",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回解码后的 Unicode 字符串",
+          "detail": []
+        }
+      }
+    }
+  ],
+  "collect": "Network"
+}

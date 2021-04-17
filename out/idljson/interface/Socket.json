@@ -1,0 +1,373 @@
+{
+  "declare": {
+    "comments": "! @brief 网络套接口对象\n\n Socket 属于 net 模块，创建方法\n ```JavaScript\n var s = new net.Socket();\n ```\n ",
+    "type": "interface",
+    "name": "Socket",
+    "extend": "Stream",
+    "doc": {
+      "descript": "网络套接口对象",
+      "detail": [
+        "Socket 属于 net 模块，创建方法",
+        "```JavaScript",
+        "var s = new net.Socket();",
+        "```"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "method",
+      "comments": "! @brief Socket 构造函数，创建一个新的 Socket 对象\n     @param family 指定地址集，缺省为 AF_INET，ipv4\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "Socket",
+      "type": null,
+      "params": [
+        {
+          "type": "Integer",
+          "name": "family",
+          "default": {
+            "const": [
+              "net",
+              "AF_INET"
+            ]
+          }
+        }
+      ],
+      "doc": {
+        "descript": "Socket 构造函数，创建一个新的 Socket 对象",
+        "detail": [],
+        "params": [
+          {
+            "name": "family",
+            "descript": "指定地址集，缺省为 AF_INET，ipv4",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询当前 Socket 对象的地址集 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "family",
+      "type": "Integer",
+      "doc": {
+        "descript": "查询当前 Socket 对象的地址集",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询当前连接的对方地址 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "remoteAddress",
+      "type": "String",
+      "doc": {
+        "descript": "查询当前连接的对方地址",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询当前连接的对方端口 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "remotePort",
+      "type": "Integer",
+      "doc": {
+        "descript": "查询当前连接的对方端口",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询当前连接的本地地址 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "localAddress",
+      "type": "String",
+      "doc": {
+        "descript": "查询当前连接的本地地址",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询当前连接的本地端口 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "localPort",
+      "type": "Integer",
+      "doc": {
+        "descript": "查询当前连接的本地端口",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和设置超时时间 单位毫秒",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "timeout",
+      "type": "Integer",
+      "doc": {
+        "descript": "查询和设置超时时间 单位毫秒",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 建立一个 tcp 连接\n     @param host 指定对方地址或主机名，也可以指向 unix socket 和 Windows pipe 路径\n     @param port 指定对方端口，连接 unix socket 和 Windows pipe 时，忽略此参数\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "connect",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "host",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "port",
+          "default": {
+            "value": "0"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "建立一个 tcp 连接",
+        "detail": [],
+        "params": [
+          {
+            "name": "host",
+            "descript": "指定对方地址或主机名，也可以指向 unix socket 和 Windows pipe 路径",
+            "detail": []
+          },
+          {
+            "name": "port",
+            "descript": "指定对方端口，连接 unix socket 和 Windows pipe 时，忽略此参数",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 将当前 Socket 绑定至本地所有地址的指定端口\n     @param port 指定绑定的端口\n     @param allowIPv4 指定是否接受 ipv4 连接，缺省为 true。本参数在 ipv6 时有效，并依赖于操作系统\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "bind",
+      "type": null,
+      "params": [
+        {
+          "type": "Integer",
+          "name": "port",
+          "default": null
+        },
+        {
+          "type": "Boolean",
+          "name": "allowIPv4",
+          "default": {
+            "value": "true"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "将当前 Socket 绑定至本地所有地址的指定端口",
+        "detail": [],
+        "params": [
+          {
+            "name": "port",
+            "descript": "指定绑定的端口",
+            "detail": []
+          },
+          {
+            "name": "allowIPv4",
+            "descript": "指定是否接受 ipv4 连接，缺省为 true。本参数在 ipv6 时有效，并依赖于操作系统",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 将当前 Socket 绑定至指定地址的指定端口\n     @param addr 指定绑定的地址，也可以指向 unix socket 和 Windows pipe 路径\n     @param port 指定绑定的端口，绑定 unix socket 和 Windows pipe 时，忽略此参数\n     @param allowIPv4 指定是否接受 ipv4 连接，缺省为 true。本参数在 ipv6 时有效，并依赖于操作系统\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "bind",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "addr",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "port",
+          "default": {
+            "value": "0"
+          }
+        },
+        {
+          "type": "Boolean",
+          "name": "allowIPv4",
+          "default": {
+            "value": "true"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "将当前 Socket 绑定至指定地址的指定端口",
+        "detail": [],
+        "params": [
+          {
+            "name": "addr",
+            "descript": "指定绑定的地址，也可以指向 unix socket 和 Windows pipe 路径",
+            "detail": []
+          },
+          {
+            "name": "port",
+            "descript": "指定绑定的端口，绑定 unix socket 和 Windows pipe 时，忽略此参数",
+            "detail": []
+          },
+          {
+            "name": "allowIPv4",
+            "descript": "指定是否接受 ipv4 连接，缺省为 true。本参数在 ipv6 时有效，并依赖于操作系统",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 开始监听连接请求\n     @param backlog 指定请求队列长度，超出的请求将被拒绝，缺省为 120\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "listen",
+      "type": null,
+      "params": [
+        {
+          "type": "Integer",
+          "name": "backlog",
+          "default": {
+            "value": "120"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "开始监听连接请求",
+        "detail": [],
+        "params": [
+          {
+            "name": "backlog",
+            "descript": "指定请求队列长度，超出的请求将被拒绝，缺省为 120",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 等待并接受一个连接\n     @return 返回接收到得连接对象\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "accept",
+      "type": "Socket",
+      "params": null,
+      "doc": {
+        "descript": "等待并接受一个连接",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "返回接收到得连接对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 从连接读取指定大小的数据，不同于 read 方法，recv 并不保证读完要求的数据，而是在读取到数据后立即返回\n     @param bytes 指定要读取的数据量，缺省读取任意尺寸的数据\n     @return 返回从连接读取的数据\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "recv",
+      "type": "Buffer",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "bytes",
+          "default": {
+            "value": "-1"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "从连接读取指定大小的数据，不同于 read 方法，recv 并不保证读完要求的数据，而是在读取到数据后立即返回",
+        "detail": [],
+        "params": [
+          {
+            "name": "bytes",
+            "descript": "指定要读取的数据量，缺省读取任意尺寸的数据",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回从连接读取的数据",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 将给定的数据写入连接，此方法等效于 write 方法\n     @param data 给定要写入的数据\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "send",
+      "type": null,
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "data",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "将给定的数据写入连接，此方法等效于 write 方法",
+        "detail": [],
+        "params": [
+          {
+            "name": "data",
+            "descript": "给定要写入的数据",
+            "detail": []
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,500 @@
+{
+  "declare": {
+    "comments": "! @brief 内存 profiler 模块\n\n 使用方法：\n ```JavaScript\n var profiler = require('profiler');\n ```\n ",
+    "type": "module",
+    "name": "profiler",
+    "extend": "object",
+    "module": true,
+    "doc": {
+      "descript": "内存 profiler 模块",
+      "detail": [
+        "使用方法：",
+        "```JavaScript",
+        "var profiler = require('profiler');",
+        "```"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "const",
+      "comments": "! @brief 隐藏节点，当显示给用户时可以被过滤掉 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "Node_Hidden",
+      "default": {
+        "value": "0"
+      },
+      "doc": {
+        "descript": "隐藏节点，当显示给用户时可以被过滤掉",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 数组 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "Node_Array",
+      "default": {
+        "value": "1"
+      },
+      "doc": {
+        "descript": "数组",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 字符串 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "Node_String",
+      "default": {
+        "value": "2"
+      },
+      "doc": {
+        "descript": "字符串",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief JS对象（字符串和数组除外） ",
+      "deprecated": null,
+      "const": "const",
+      "name": "Node_Object",
+      "default": {
+        "value": "3"
+      },
+      "doc": {
+        "descript": "JS对象（字符串和数组除外）",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 编译后的代码 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "Node_Code",
+      "default": {
+        "value": "4"
+      },
+      "doc": {
+        "descript": "编译后的代码",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 函数闭包 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "Node_Closure",
+      "default": {
+        "value": "5"
+      },
+      "doc": {
+        "descript": "函数闭包",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 正则表达式 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "Node_RegExp",
+      "default": {
+        "value": "6"
+      },
+      "doc": {
+        "descript": "正则表达式",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 堆中排好序的数字 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "Node_HeapNumber",
+      "default": {
+        "value": "7"
+      },
+      "doc": {
+        "descript": "堆中排好序的数字",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief Native对象（非v8堆上的） ",
+      "deprecated": null,
+      "const": "const",
+      "name": "Node_Native",
+      "default": {
+        "value": "8"
+      },
+      "doc": {
+        "descript": "Native对象（非v8堆上的）",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief Synthetic对象 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "Node_Synthetic",
+      "default": {
+        "value": "9"
+      },
+      "doc": {
+        "descript": "Synthetic对象",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 拼接的字符串 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "Node_ConsString",
+      "default": {
+        "value": "10"
+      },
+      "doc": {
+        "descript": "拼接的字符串",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 分割的字符串 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "Node_SlicedString",
+      "default": {
+        "value": "11"
+      },
+      "doc": {
+        "descript": "分割的字符串",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 符号（ES6） ",
+      "deprecated": null,
+      "const": "const",
+      "name": "Node_Symbol",
+      "default": {
+        "value": "12"
+      },
+      "doc": {
+        "descript": "符号（ES6）",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 堆中排好序的SIMD值(ES7) ",
+      "deprecated": null,
+      "const": "const",
+      "name": "Node_SimdValue",
+      "default": {
+        "value": "13"
+      },
+      "doc": {
+        "descript": "堆中排好序的SIMD值(ES7)",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 函数中的变量 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "Edge_ContextVariable",
+      "default": {
+        "value": "0"
+      },
+      "doc": {
+        "descript": "函数中的变量",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 数组中的元素 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "Edge_Element",
+      "default": {
+        "value": "1"
+      },
+      "doc": {
+        "descript": "数组中的元素",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 有名对象的属性 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "Edge_Property",
+      "default": {
+        "value": "2"
+      },
+      "doc": {
+        "descript": "有名对象的属性",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief JS无法进入的链接 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "Edge_Internal",
+      "default": {
+        "value": "3"
+      },
+      "doc": {
+        "descript": "JS无法进入的链接",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 指向需要事先计算出空间大小的节点 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "Edge_Hidden",
+      "default": {
+        "value": "4"
+      },
+      "doc": {
+        "descript": "指向需要事先计算出空间大小的节点",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 指向无法事先计算出空间大小的节点 ",
+      "deprecated": null,
+      "const": "const",
+      "name": "Edge_Shortcut",
+      "default": {
+        "value": "5"
+      },
+      "doc": {
+        "descript": "指向无法事先计算出空间大小的节点",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "const",
+      "comments": "! @brief 一个弱引用（被GC忽视） ",
+      "deprecated": null,
+      "const": "const",
+      "name": "Edge_Weak",
+      "default": {
+        "value": "6"
+      },
+      "doc": {
+        "descript": "一个弱引用（被GC忽视）",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 根据指定名称保存一个堆快照\n\t @param fname 堆快照名称\n\t ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "saveSnapshot",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "fname",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "根据指定名称保存一个堆快照",
+        "detail": [],
+        "params": [
+          {
+            "name": "fname",
+            "descript": "堆快照名称",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 根据指定名称读取一个堆快照\n\t @param fname 堆快照名称\n\t @return 返回读取到的堆快照\n\t ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "loadSnapshot",
+      "type": "HeapSnapshot",
+      "params": [
+        {
+          "type": "String",
+          "name": "fname",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "根据指定名称读取一个堆快照",
+        "detail": [],
+        "params": [
+          {
+            "name": "fname",
+            "descript": "堆快照名称",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回读取到的堆快照",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 获取当前时间节点的堆快照，堆快照记录了当前时刻JS堆的状态\n\t @return 返回获取到的堆信息快照\n\t ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "takeSnapshot",
+      "type": "HeapSnapshot",
+      "params": null,
+      "doc": {
+        "descript": "获取当前时间节点的堆快照，堆快照记录了当前时刻JS堆的状态",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "返回获取到的堆信息快照",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 执行给定的函数，并对比执行前后 v8 堆的变化\n\t @param test 给定要测试的函数\n\t @return 返回对比的结果\n\t ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "diff",
+      "type": "Object",
+      "params": [
+        {
+          "type": "Function",
+          "name": "test",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "执行给定的函数，并对比执行前后 v8 堆的变化",
+        "detail": [],
+        "params": [
+          {
+            "name": "test",
+            "descript": "给定要测试的函数",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回对比的结果",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 启动一次运行状态采样日志\n\t @param fname 给定日志存储文件名\n\t @param time 指定采样时间，缺省 1 分钟\n\t @param interval 指定间隔时间，缺省 100 毫秒\n     @return 返回采样定时器，可以通过 clear 方法提前停止采样\n\t ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "start",
+      "type": "Timer",
+      "params": [
+        {
+          "type": "String",
+          "name": "fname",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "time",
+          "default": {
+            "value": "60000"
+          }
+        },
+        {
+          "type": "Integer",
+          "name": "interval",
+          "default": {
+            "value": "100"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "启动一次运行状态采样日志",
+        "detail": [],
+        "params": [
+          {
+            "name": "fname",
+            "descript": "给定日志存储文件名",
+            "detail": []
+          },
+          {
+            "name": "time",
+            "descript": "指定采样时间，缺省 1 分钟",
+            "detail": []
+          },
+          {
+            "name": "interval",
+            "descript": "指定间隔时间，缺省 100 毫秒",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回采样定时器，可以通过 clear 方法提前停止采样",
+          "detail": []
+        }
+      }
+    }
+  ],
+  "collect": "Test Suite"
+}

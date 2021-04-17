@@ -1,0 +1,472 @@
+{
+  "declare": {
+    "comments": "! @brief Redis 数据库客户端 List 对象，此对象为包含指定 key 的客户端，只有调用其方法才会操作数据库\n\n 用以操作 Redis 的 List 对象，创建方法：\n ```JavaScript\n var db = require(\"db\");\n var rdb = new db.openRedis(\"redis-server\");\n var list = rdb.getList(\"test\");\n ```\n ",
+    "type": "interface",
+    "name": "RedisList",
+    "extend": "object",
+    "doc": {
+      "descript": "Redis 数据库客户端 List 对象，此对象为包含指定 key 的客户端，只有调用其方法才会操作数据库",
+      "detail": [
+        "用以操作 Redis 的 List 对象，创建方法：",
+        "```JavaScript",
+        "var db = require(\"db\");",
+        "var rdb = new db.openRedis(\"redis-server\");",
+        "var list = rdb.getList(\"test\");",
+        "```"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "method",
+      "comments": "! @brief 将一个或多个值 value 插入到列表的表头\n     @param values 指定要插入的数据\n     @return 插入后，列表的长度 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "push",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "Array",
+          "name": "values",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "将一个或多个值 value 插入到列表的表头",
+        "detail": [],
+        "params": [
+          {
+            "name": "values",
+            "descript": "指定要插入的数据",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "插入后，列表的长度",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 将一个或多个值 value 插入到列表的表头\n     @param values 指定要插入的数据\n     @return 插入后，列表的长度 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "push",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "...",
+          "name": "values",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "将一个或多个值 value 插入到列表的表头",
+        "detail": [],
+        "params": [
+          {
+            "name": "values",
+            "descript": "指定要插入的数据",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "插入后，列表的长度",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 移除并返回列表 key 的头元素\n     @return 列表的头元素，如果列表为空则返回 null ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "pop",
+      "type": "Buffer",
+      "params": null,
+      "doc": {
+        "descript": "移除并返回列表 key 的头元素",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "列表的头元素，如果列表为空则返回 null",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 将一个或多个值 value 插入到列表的表尾(最右边)\n     @param values 指定要插入的数据\n     @return 插入后，列表的长度 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "rpush",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "Array",
+          "name": "values",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "将一个或多个值 value 插入到列表的表尾(最右边)",
+        "detail": [],
+        "params": [
+          {
+            "name": "values",
+            "descript": "指定要插入的数据",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "插入后，列表的长度",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 将一个或多个值 value 插入到列表的表尾(最右边)\n     @param values 指定要插入的数据\n     @return 插入后，列表的长度 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "rpush",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "...",
+          "name": "values",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "将一个或多个值 value 插入到列表的表尾(最右边)",
+        "detail": [],
+        "params": [
+          {
+            "name": "values",
+            "descript": "指定要插入的数据",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "插入后，列表的长度",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 移除并返回列表 key 的表尾(最右边)元素\n     @return 列表的头元素，如果列表为空则返回 null ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "rpop",
+      "type": "Buffer",
+      "params": null,
+      "doc": {
+        "descript": "移除并返回列表 key 的表尾(最右边)元素",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "列表的头元素，如果列表为空则返回 null",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 将列表下标为 index 的元素的值设置为 value\n     @param index 指定要修改的下标\n     @param value 指定要修改的数据",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "set",
+      "type": null,
+      "params": [
+        {
+          "type": "Integer",
+          "name": "index",
+          "default": null
+        },
+        {
+          "type": "Buffer",
+          "name": "value",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "将列表下标为 index 的元素的值设置为 value",
+        "detail": [],
+        "params": [
+          {
+            "name": "index",
+            "descript": "指定要修改的下标",
+            "detail": []
+          },
+          {
+            "name": "value",
+            "descript": "指定要修改的数据",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 返回列表中，下标为 index 的元素\n     @param index 指定要查询的下标\n     @return 列表中下标为 index 的元素",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "get",
+      "type": "Buffer",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "index",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "返回列表中，下标为 index 的元素",
+        "detail": [],
+        "params": [
+          {
+            "name": "index",
+            "descript": "指定要查询的下标",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "列表中下标为 index 的元素",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 将值 value 插入到列表当中，位于值 pivot 之前\n     @param pivot 指定插入时查找的数据\n     @param value 指定要插入的数据\n     @return 插入后，列表的长度 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "insertBefore",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "pivot",
+          "default": null
+        },
+        {
+          "type": "Buffer",
+          "name": "value",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "将值 value 插入到列表当中，位于值 pivot 之前",
+        "detail": [],
+        "params": [
+          {
+            "name": "pivot",
+            "descript": "指定插入时查找的数据",
+            "detail": []
+          },
+          {
+            "name": "value",
+            "descript": "指定要插入的数据",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "插入后，列表的长度",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 将值 value 插入到列表当中，位于值 pivot 之后\n     @param pivot 指定插入时查找的数据\n     @param value 指定要插入的数据\n     @return 插入后，列表的长度 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "insertAfter",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "pivot",
+          "default": null
+        },
+        {
+          "type": "Buffer",
+          "name": "value",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "将值 value 插入到列表当中，位于值 pivot 之后",
+        "detail": [],
+        "params": [
+          {
+            "name": "pivot",
+            "descript": "指定插入时查找的数据",
+            "detail": []
+          },
+          {
+            "name": "value",
+            "descript": "指定要插入的数据",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "插入后，列表的长度",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 根据参数 count 的值，移除列表中与参数 value 相等的元素\n     @param count 指定删除的元素数量\n     @param value 指定要删除的数值\n     @return 被移除元素的数量 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "remove",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "count",
+          "default": null
+        },
+        {
+          "type": "Buffer",
+          "name": "value",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "根据参数 count 的值，移除列表中与参数 value 相等的元素",
+        "detail": [],
+        "params": [
+          {
+            "name": "count",
+            "descript": "指定删除的元素数量",
+            "detail": []
+          },
+          {
+            "name": "value",
+            "descript": "指定要删除的数值",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "被移除元素的数量",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 对一个列表进行修剪(trim)，就是说，让列表只保留指定区间内的元素，不在指定区间之内的元素都将被删除\n     @param start 指定修剪的起始下标，0 表示第一个元素，-1 表示最后一个元素\n     @param stop 指定修剪的结束下标，0 表示第一个元素，-1 表示最后一个元素 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "trim",
+      "type": null,
+      "params": [
+        {
+          "type": "Integer",
+          "name": "start",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "stop",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "对一个列表进行修剪(trim)，就是说，让列表只保留指定区间内的元素，不在指定区间之内的元素都将被删除",
+        "detail": [],
+        "params": [
+          {
+            "name": "start",
+            "descript": "指定修剪的起始下标，0 表示第一个元素，-1 表示最后一个元素",
+            "detail": []
+          },
+          {
+            "name": "stop",
+            "descript": "指定修剪的结束下标，0 表示第一个元素，-1 表示最后一个元素",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 返回列表的长度\n     @return 返回列表的长度 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "len",
+      "type": "Integer",
+      "params": null,
+      "doc": {
+        "descript": "返回列表的长度",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "返回列表的长度",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 返回列表中指定区间内的元素，区间以偏移量 start 和 stop 指定，包含 start 和 stop 的元素\n     @param start 指定查询的起始下标，0 表示第一个元素，-1 表示最后一个元素\n     @param stop 指定查询的结束下标，0 表示第一个元素，-1 表示最后一个元素\n     @return 包含指定区间内的元素的数组 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "range",
+      "type": "NArray",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "start",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "stop",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "返回列表中指定区间内的元素，区间以偏移量 start 和 stop 指定，包含 start 和 stop 的元素",
+        "detail": [],
+        "params": [
+          {
+            "name": "start",
+            "descript": "指定查询的起始下标，0 表示第一个元素，-1 表示最后一个元素",
+            "detail": []
+          },
+          {
+            "name": "stop",
+            "descript": "指定查询的结束下标，0 表示第一个元素，-1 表示最后一个元素",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "包含指定区间内的元素的数组",
+          "detail": []
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,435 @@
+{
+  "declare": {
+    "comments": "! @brief Url 处理对象\n\n 基础模块。提供 url 的格式化，解析与拼装\n ```JavaScript\n var url = new net.Url('http://www.xici.net/');\n var url = new net.Url({protocol: 'http:', hostname:'www.xici.net', pathname:'/'});\n ```\n ",
+    "type": "interface",
+    "name": "UrlObject",
+    "extend": "object",
+    "doc": {
+      "descript": "Url 处理对象",
+      "detail": [
+        "基础模块。提供 url 的格式化，解析与拼装",
+        "```JavaScript",
+        "var url = new net.Url('http://www.xici.net/');",
+        "var url = new net.Url({protocol: 'http:', hostname:'www.xici.net', pathname:'/'});",
+        "```"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "method",
+      "comments": "! @brief UrlObject 对象构造函数，使用参数构造\n     @param args 指定构造参数的字典对象，支持的字段有：protocol, slashes, username, password, hostname, port, pathname, query, hash\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "UrlObject",
+      "type": null,
+      "params": [
+        {
+          "type": "Object",
+          "name": "args",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "UrlObject 对象构造函数，使用参数构造",
+        "detail": [],
+        "params": [
+          {
+            "name": "args",
+            "descript": "指定构造参数的字典对象，支持的字段有：protocol, slashes, username, password, hostname, port, pathname, query, hash",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief UrlObject 对象构造函数，使用 url 字符串构造\n     @param url 指定构造 url 字符串\n     @param parseQueryString 指定是否解析 query\n     @param slashesDenoteHost  默认为false, 如果设置为true，则从字符串'//'之后到下一个'/'之前的字符串会被解析为host，例如'//foo/bar', 结果应该是{host: 'foo', pathname: '/bar'}而不是{pathname: '//foo/bar'}\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "UrlObject",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "url",
+          "default": {
+            "value": "\"\""
+          }
+        },
+        {
+          "type": "Boolean",
+          "name": "parseQueryString",
+          "default": {
+            "value": "false"
+          }
+        },
+        {
+          "type": "Boolean",
+          "name": "slashesDenoteHost",
+          "default": {
+            "value": "false"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "UrlObject 对象构造函数，使用 url 字符串构造",
+        "detail": [],
+        "params": [
+          {
+            "name": "url",
+            "descript": "指定构造 url 字符串",
+            "detail": []
+          },
+          {
+            "name": "parseQueryString",
+            "descript": "指定是否解析 query",
+            "detail": []
+          },
+          {
+            "name": "slashesDenoteHost",
+            "descript": "默认为false, 如果设置为true，则从字符串'//'之后到下一个'/'之前的字符串会被解析为host，例如'//foo/bar', 结果应该是{host: 'foo', pathname: '/bar'}而不是{pathname: '//foo/bar'}",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 解析一个 url 字符串\n     @param url 指定需要解析的 url 字符串\n     @param parseQueryString 指定是否解析 query\n     @param slashesDenoteHost  默认为false, 如果设置为true，则从字符串'//'之后到下一个'/'之前的字符串会被解析为host，例如'//foo/bar', 结果应该是{host: 'foo', pathname: '/bar'}而不是{pathname: '//foo/bar'}\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "parse",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "url",
+          "default": null
+        },
+        {
+          "type": "Boolean",
+          "name": "parseQueryString",
+          "default": {
+            "value": "false"
+          }
+        },
+        {
+          "type": "Boolean",
+          "name": "slashesDenoteHost",
+          "default": {
+            "value": "false"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "解析一个 url 字符串",
+        "detail": [],
+        "params": [
+          {
+            "name": "url",
+            "descript": "指定需要解析的 url 字符串",
+            "detail": []
+          },
+          {
+            "name": "parseQueryString",
+            "descript": "指定是否解析 query",
+            "detail": []
+          },
+          {
+            "name": "slashesDenoteHost",
+            "descript": "默认为false, 如果设置为true，则从字符串'//'之后到下一个'/'之前的字符串会被解析为host，例如'//foo/bar', 结果应该是{host: 'foo', pathname: '/bar'}而不是{pathname: '//foo/bar'}",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 使用指定的参数构造 UrlObject\n     @param args 指定构造参数的字典对象，支持的字段有：protocol, slashes, username, password, hostname, port, pathname, query, hash\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "format",
+      "type": null,
+      "params": [
+        {
+          "type": "Object",
+          "name": "args",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "使用指定的参数构造 UrlObject",
+        "detail": [],
+        "params": [
+          {
+            "name": "args",
+            "descript": "指定构造参数的字典对象，支持的字段有：protocol, slashes, username, password, hostname, port, pathname, query, hash",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 重定位 url 路径，自动识别新路径为相对路径还是绝对路径\n     @param url 指定新的路径\n     @return 返回包含重定位数据的对象\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "resolve",
+      "type": "UrlObject",
+      "params": [
+        {
+          "type": "String",
+          "name": "url",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "重定位 url 路径，自动识别新路径为相对路径还是绝对路径",
+        "detail": [],
+        "params": [
+          {
+            "name": "url",
+            "descript": "指定新的路径",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回包含重定位数据的对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 标准化路径\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "normalize",
+      "type": null,
+      "params": null,
+      "doc": {
+        "descript": "标准化路径",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和设置当前 UrlObject 对象中的完整 url 地址描述，此描述由其他所有属性组装而成\n     ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "href",
+      "type": "String",
+      "doc": {
+        "descript": "查询和设置当前 UrlObject 对象中的完整 url 地址描述，此描述由其他所有属性组装而成",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和设置当前 UrlObject 对象中的协议名称\n     ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "protocol",
+      "type": "String",
+      "doc": {
+        "descript": "查询和设置当前 UrlObject 对象中的协议名称",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和设置当前 UrlObject 对象是否包含双斜杠\n     ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "slashes",
+      "type": "Boolean",
+      "doc": {
+        "descript": "查询和设置当前 UrlObject 对象是否包含双斜杠",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和设置当前 UrlObject 对象中的完整验证字符串，由 username 和 password 属性组装而成\n     ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "auth",
+      "type": "String",
+      "doc": {
+        "descript": "查询和设置当前 UrlObject 对象中的完整验证字符串，由 username 和 password 属性组装而成",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和设置当前 UrlObject 对象中的验证用户\n     ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "username",
+      "type": "String",
+      "doc": {
+        "descript": "查询和设置当前 UrlObject 对象中的验证用户",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和设置当前 UrlObject 对象中的验证密码\n     ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "password",
+      "type": "String",
+      "doc": {
+        "descript": "查询和设置当前 UrlObject 对象中的验证密码",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和设置当前 UrlObject 对象中的完整主机描述，由 hastname 和 port 组装而成\n     ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "host",
+      "type": "String",
+      "doc": {
+        "descript": "查询和设置当前 UrlObject 对象中的完整主机描述，由 hastname 和 port 组装而成",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和设置当前 UrlObject 对象中的主机名\n     ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "hostname",
+      "type": "String",
+      "doc": {
+        "descript": "查询和设置当前 UrlObject 对象中的主机名",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和设置当前 UrlObject 对象中的端口号\n     ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "port",
+      "type": "String",
+      "doc": {
+        "descript": "查询和设置当前 UrlObject 对象中的端口号",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和设置当前 UrlObject 对象中的请求完整路径（含请求），由 pathname 和 query 组装而成\n     ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "path",
+      "type": "String",
+      "doc": {
+        "descript": "查询和设置当前 UrlObject 对象中的请求完整路径（含请求），由 pathname 和 query 组装而成",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和设置当前 UrlObject 对象中的路径\n     ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "pathname",
+      "type": "String",
+      "doc": {
+        "descript": "查询和设置当前 UrlObject 对象中的路径",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和设置当前 UrlObject 对象中的请求字符串（含“?”），等效于“?”+query\n     ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "search",
+      "type": "String",
+      "doc": {
+        "descript": "查询和设置当前 UrlObject 对象中的请求字符串（含“?”），等效于“?”+query",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和设置当前 UrlObject 对象中的请求字符串（ 不含“?”）\n     ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "query",
+      "type": "Value",
+      "doc": {
+        "descript": "查询和设置当前 UrlObject 对象中的请求字符串（ 不含“?”）",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和设置当前 UrlObject 对象中的请求锚点（含“\\#”）\n     ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "hash",
+      "type": "String",
+      "doc": {
+        "descript": "查询和设置当前 UrlObject 对象中的请求锚点（含“\\#”）",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询当前 UrlObject 对象中的请求字符串（ 不含“?”）\n     ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "searchParams",
+      "type": "HttpCollection",
+      "doc": {
+        "descript": "查询当前 UrlObject 对象中的请求字符串（ 不含“?”）",
+        "detail": [],
+        "params": []
+      }
+    }
+  ]
+}

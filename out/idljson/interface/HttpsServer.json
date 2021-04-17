@@ -1,0 +1,318 @@
+{
+  "declare": {
+    "comments": "! @brief https 服务器对象\n\n https 服务器对象是将 SslServer 和 HttpHandler 组合封装的对象，方便快速搭建服务器，逻辑上相当于：\n ```JavaScript\n var svr = new net.SslServer(crt, key, addr, port, new http.Handler(function(req){\n    ...\n }));\n ```\n\n 创建方法：\n ```JavaScript\n var http = require(\"http\");\n var svr = new http.HttpsServer(crt, key, 443, function(req){\n     ...\n });\n ```\n ",
+    "type": "interface",
+    "name": "HttpsServer",
+    "extend": "HttpServer",
+    "doc": {
+      "descript": "https 服务器对象",
+      "detail": [
+        "https 服务器对象是将 SslServer 和 HttpHandler 组合封装的对象，方便快速搭建服务器，逻辑上相当于：",
+        "```JavaScript",
+        "var svr = new net.SslServer(crt, key, addr, port, new http.Handler(function(req){",
+        "   ...",
+        "}));",
+        "```",
+        "",
+        "创建方法：",
+        "```JavaScript",
+        "var http = require(\"http\");",
+        "var svr = new http.HttpsServer(crt, key, 443, function(req){",
+        "    ...",
+        "});",
+        "```"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "method",
+      "comments": "! @brief HttpsServer 构造函数，在所有本机地址侦听\n\n    certs 格式为：\n    ```JavaScript\n    [\n        {\n            name: \"fibjs.org\",\n            crt: [X509Cert object],\n            key: [PKey object]\n        },\n        {\n            name: \"*.fibjs.org\",\n            crt: [X509Cert object],\n            key: [PKey object]\n        }\n    ]\n    ```\n    @param certs 服务器证书列表\n    @param port 指定 http 服务器侦听端口\n    @param hdlr http 内置消息处理器，处理函数，链式处理数组，路由对象，详见\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "HttpsServer",
+      "type": null,
+      "params": [
+        {
+          "type": "Array",
+          "name": "certs",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "port",
+          "default": null
+        },
+        {
+          "type": "Handler",
+          "name": "hdlr",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "HttpsServer 构造函数，在所有本机地址侦听",
+        "detail": [
+          "certs 格式为：",
+          "```JavaScript",
+          "[",
+          "    {",
+          "        name: \"fibjs.org\",",
+          "        crt: [X509Cert object],",
+          "        key: [PKey object]",
+          "    },",
+          "    {",
+          "        name: \"*.fibjs.org\",",
+          "        crt: [X509Cert object],",
+          "        key: [PKey object]",
+          "    }",
+          "]",
+          "```"
+        ],
+        "params": [
+          {
+            "name": "certs",
+            "descript": "服务器证书列表",
+            "detail": []
+          },
+          {
+            "name": "port",
+            "descript": "指定 http 服务器侦听端口",
+            "detail": []
+          },
+          {
+            "name": "hdlr",
+            "descript": "http 内置消息处理器，处理函数，链式处理数组，路由对象，详见",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief HttpsServer 构造函数\n\n    certs 格式为：\n    ```JavaScript\n    [\n        {\n            name: \"fibjs.org\",\n            crt: [X509Cert object],\n            key: [PKey object]\n        },\n        {\n            name: \"*.fibjs.org\",\n            crt: [X509Cert object],\n            key: [PKey object]\n        }\n    ]\n    ```\n    @param certs 服务器证书列表\n    @param addr 指定 http 服务器侦听地址，为 \"\" 则在本机所有地址侦听\n    @param port 指定 http 服务器侦听端口\n    @param hdlr http 内置消息处理器，处理函数，链式处理数组，路由对象，详见\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "HttpsServer",
+      "type": null,
+      "params": [
+        {
+          "type": "Array",
+          "name": "certs",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "addr",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "port",
+          "default": null
+        },
+        {
+          "type": "Handler",
+          "name": "hdlr",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "HttpsServer 构造函数",
+        "detail": [
+          "certs 格式为：",
+          "```JavaScript",
+          "[",
+          "    {",
+          "        name: \"fibjs.org\",",
+          "        crt: [X509Cert object],",
+          "        key: [PKey object]",
+          "    },",
+          "    {",
+          "        name: \"*.fibjs.org\",",
+          "        crt: [X509Cert object],",
+          "        key: [PKey object]",
+          "    }",
+          "]",
+          "```"
+        ],
+        "params": [
+          {
+            "name": "certs",
+            "descript": "服务器证书列表",
+            "detail": []
+          },
+          {
+            "name": "addr",
+            "descript": "指定 http 服务器侦听地址，为 \"\" 则在本机所有地址侦听",
+            "detail": []
+          },
+          {
+            "name": "port",
+            "descript": "指定 http 服务器侦听端口",
+            "detail": []
+          },
+          {
+            "name": "hdlr",
+            "descript": "http 内置消息处理器，处理函数，链式处理数组，路由对象，详见",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief HttpsServer 构造函数，在所有本机地址侦听\n    @param crt X509Cert 证书，用于客户端验证服务器\n    @param key PKey 私钥，用于与客户端会话\n    @param port 指定 http 服务器侦听端口\n    @param hdlr http 内置消息处理器，处理函数，链式处理数组，路由对象，详见\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "HttpsServer",
+      "type": null,
+      "params": [
+        {
+          "type": "X509Cert",
+          "name": "crt",
+          "default": null
+        },
+        {
+          "type": "PKey",
+          "name": "key",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "port",
+          "default": null
+        },
+        {
+          "type": "Handler",
+          "name": "hdlr",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "HttpsServer 构造函数，在所有本机地址侦听",
+        "detail": [],
+        "params": [
+          {
+            "name": "crt",
+            "descript": "X509Cert 证书，用于客户端验证服务器",
+            "detail": []
+          },
+          {
+            "name": "key",
+            "descript": "PKey 私钥，用于与客户端会话",
+            "detail": []
+          },
+          {
+            "name": "port",
+            "descript": "指定 http 服务器侦听端口",
+            "detail": []
+          },
+          {
+            "name": "hdlr",
+            "descript": "http 内置消息处理器，处理函数，链式处理数组，路由对象，详见",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief HttpsServer 构造函数\n    @param crt X509Cert 证书，用于客户端验证服务器\n    @param key PKey 私钥，用于与客户端会话\n    @param addr 指定 http 服务器侦听地址，为 \"\" 则在本机所有地址侦听\n    @param port 指定 http 服务器侦听端口\n    @param hdlr http 内置消息处理器，处理函数，链式处理数组，路由对象，详见\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "HttpsServer",
+      "type": null,
+      "params": [
+        {
+          "type": "X509Cert",
+          "name": "crt",
+          "default": null
+        },
+        {
+          "type": "PKey",
+          "name": "key",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "addr",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "port",
+          "default": null
+        },
+        {
+          "type": "Handler",
+          "name": "hdlr",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "HttpsServer 构造函数",
+        "detail": [],
+        "params": [
+          {
+            "name": "crt",
+            "descript": "X509Cert 证书，用于客户端验证服务器",
+            "detail": []
+          },
+          {
+            "name": "key",
+            "descript": "PKey 私钥，用于与客户端会话",
+            "detail": []
+          },
+          {
+            "name": "addr",
+            "descript": "指定 http 服务器侦听地址，为 \"\" 则在本机所有地址侦听",
+            "detail": []
+          },
+          {
+            "name": "port",
+            "descript": "指定 http 服务器侦听端口",
+            "detail": []
+          },
+          {
+            "name": "hdlr",
+            "descript": "http 内置消息处理器，处理函数，链式处理数组，路由对象，详见",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 设定证书验证模式，缺省为 VERIFY_NONE ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "verification",
+      "type": "Integer",
+      "doc": {
+        "descript": "设定证书验证模式，缺省为 VERIFY_NONE",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 客户端证书验证 ca ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "ca",
+      "type": "X509Cert",
+      "doc": {
+        "descript": "客户端证书验证 ca",
+        "detail": [],
+        "params": []
+      }
+    }
+  ]
+}

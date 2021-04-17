@@ -1,0 +1,222 @@
+{
+  "declare": {
+    "comments": "! @brief http 服务器对象\n\n http 服务器对象是将 TcpServer 和 HttpHandler 组合封装的对象，方便快速搭建服务器，逻辑上相当于：\n ```JavaScript\n var svr = new net.TcpServer(addr, port, new http.Handler(function(req){\n    ...\n }));\n ```\n\n 创建方法：\n ```JavaScript\n var http = require(\"http\");\n var svr = new http.Server(80, function(req){\n     ...\n });\n ```\n ",
+    "type": "interface",
+    "name": "HttpServer",
+    "extend": "TcpServer",
+    "doc": {
+      "descript": "http 服务器对象",
+      "detail": [
+        "http 服务器对象是将 TcpServer 和 HttpHandler 组合封装的对象，方便快速搭建服务器，逻辑上相当于：",
+        "```JavaScript",
+        "var svr = new net.TcpServer(addr, port, new http.Handler(function(req){",
+        "   ...",
+        "}));",
+        "```",
+        "",
+        "创建方法：",
+        "```JavaScript",
+        "var http = require(\"http\");",
+        "var svr = new http.Server(80, function(req){",
+        "    ...",
+        "});",
+        "```"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "method",
+      "comments": "! @brief HttpServer 构造函数，在所有本机地址侦听\n    @param port 指定 http 服务器侦听端口\n    @param hdlr http 内置消息处理器，处理函数，链式处理数组，路由对象，详见 mq.Handler\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "HttpServer",
+      "type": null,
+      "params": [
+        {
+          "type": "Integer",
+          "name": "port",
+          "default": null
+        },
+        {
+          "type": "Handler",
+          "name": "hdlr",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "HttpServer 构造函数，在所有本机地址侦听",
+        "detail": [],
+        "params": [
+          {
+            "name": "port",
+            "descript": "指定 http 服务器侦听端口",
+            "detail": []
+          },
+          {
+            "name": "hdlr",
+            "descript": "http 内置消息处理器，处理函数，链式处理数组，路由对象，详见 mq.Handler",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief HttpServer 构造函数\n    @param addr 指定 http 服务器侦听地址，为 \"\" 则在本机所有地址侦听\n    @param port 指定 http 服务器侦听端口\n    @param hdlr http 内置消息处理器，处理函数，链式处理数组，路由对象，详见 mq.Handler\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "HttpServer",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "addr",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "port",
+          "default": null
+        },
+        {
+          "type": "Handler",
+          "name": "hdlr",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "HttpServer 构造函数",
+        "detail": [],
+        "params": [
+          {
+            "name": "addr",
+            "descript": "指定 http 服务器侦听地址，为 \"\" 则在本机所有地址侦听",
+            "detail": []
+          },
+          {
+            "name": "port",
+            "descript": "指定 http 服务器侦听端口",
+            "detail": []
+          },
+          {
+            "name": "hdlr",
+            "descript": "http 内置消息处理器，处理函数，链式处理数组，路由对象，详见 mq.Handler",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief HttpServer 构造函数\n    @param addr 指定 http 服务器侦听地址，为 \"\" 则在本机所有地址侦听\n    @param hdlr http 内置消息处理器，处理函数，链式处理数组，路由对象，详见 mq.Handler\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "HttpServer",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "addr",
+          "default": null
+        },
+        {
+          "type": "Handler",
+          "name": "hdlr",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "HttpServer 构造函数",
+        "detail": [],
+        "params": [
+          {
+            "name": "addr",
+            "descript": "指定 http 服务器侦听地址，为 \"\" 则在本机所有地址侦听",
+            "detail": []
+          },
+          {
+            "name": "hdlr",
+            "descript": "http 内置消息处理器，处理函数，链式处理数组，路由对象，详见 mq.Handler",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 允许跨域请求\n     @param allowHeaders 指定接受的 http 头字段\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "enableCrossOrigin",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "allowHeaders",
+          "default": {
+            "value": "\"Content-Type\""
+          }
+        }
+      ],
+      "doc": {
+        "descript": "允许跨域请求",
+        "detail": [],
+        "params": [
+          {
+            "name": "allowHeaders",
+            "descript": "指定接受的 http 头字段",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和设置最大请求头个数，缺省为 128 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "maxHeadersCount",
+      "type": "Integer",
+      "doc": {
+        "descript": "查询和设置最大请求头个数，缺省为 128",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和设置 body 最大尺寸，以 MB 为单位，缺省为 64 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "maxBodySize",
+      "type": "Integer",
+      "doc": {
+        "descript": "查询和设置 body 最大尺寸，以 MB 为单位，缺省为 64",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和设置服务器名称，缺省为：fibjs/0.x.0 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "serverName",
+      "type": "String",
+      "doc": {
+        "descript": "查询和设置服务器名称，缺省为：fibjs/0.x.0",
+        "detail": [],
+        "params": []
+      }
+    }
+  ]
+}

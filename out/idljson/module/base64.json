@@ -1,0 +1,101 @@
+{
+  "declare": {
+    "comments": "! @brief base64 编码与解码模块\n 引用方式：\n ```JavaScript\n var encoding = require('encoding');\n var base64 = encoding.base64;\n ```\n 或者\n ```JavaScript\n var base64 = require('base64');\n ```\n ",
+    "type": "module",
+    "name": "base64",
+    "extend": "object",
+    "module": true,
+    "doc": {
+      "descript": "base64 编码与解码模块",
+      "detail": [
+        "引用方式：",
+        "```JavaScript",
+        "var encoding = require('encoding');",
+        "var base64 = encoding.base64;",
+        "```",
+        "或者",
+        "```JavaScript",
+        "var base64 = require('base64');",
+        "```"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "method",
+      "comments": "! @brief 以 base64 方式编码数据\n\t @param data 要编码的数据\n\t @param url 指定是否使用 url 安全字符编码\n\t @return 返回编码的字符串\n\t ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "encode",
+      "type": "String",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "data",
+          "default": null
+        },
+        {
+          "type": "Boolean",
+          "name": "url",
+          "default": {
+            "value": "false"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "以 base64 方式编码数据",
+        "detail": [],
+        "params": [
+          {
+            "name": "data",
+            "descript": "要编码的数据",
+            "detail": []
+          },
+          {
+            "name": "url",
+            "descript": "指定是否使用 url 安全字符编码",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回编码的字符串",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 以 base64 方式解码字符串为二进制数据\n\t @param data 要解码的字符串\n\t @return 返回解码的二进制数据\n\t ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "decode",
+      "type": "Buffer",
+      "params": [
+        {
+          "type": "String",
+          "name": "data",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "以 base64 方式解码字符串为二进制数据",
+        "detail": [],
+        "params": [
+          {
+            "name": "data",
+            "descript": "要解码的字符串",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回解码的二进制数据",
+          "detail": []
+        }
+      }
+    }
+  ],
+  "collect": "Encoding"
+}

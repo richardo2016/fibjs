@@ -1,0 +1,74 @@
+{
+  "declare": {
+    "comments": "! @brief XmlNodeList 对象代表一个有顺序的节点列表\n",
+    "type": "interface",
+    "name": "XmlNodeList",
+    "extend": "object",
+    "doc": {
+      "descript": "XmlNodeList 对象代表一个有顺序的节点列表",
+      "detail": [],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "prop",
+      "comments": "! @brief 返回节点列表中的节点数目\n    ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "length",
+      "type": "Integer",
+      "doc": {
+        "descript": "返回节点列表中的节点数目",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 返回节点列表中处于指定的索引号的节点\n     @param index 指定要查询的索引\n     @return 指定索引号的节点\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "item",
+      "type": "XmlNode",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "index",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "返回节点列表中处于指定的索引号的节点",
+        "detail": [],
+        "params": [
+          {
+            "name": "index",
+            "descript": "指定要查询的索引",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "指定索引号的节点",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "operator",
+      "comments": "! @brief 可使用下标直接访问数据\n    ",
+      "deprecated": null,
+      "readonly": "readonly",
+      "name": "[]",
+      "type": "XmlNode",
+      "index": null,
+      "doc": {
+        "descript": "可使用下标直接访问数据",
+        "detail": [],
+        "params": []
+      }
+    }
+  ]
+}

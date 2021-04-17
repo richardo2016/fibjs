@@ -1,0 +1,114 @@
+{
+  "declare": {
+    "comments": "! @brief HeapGraphNode表示堆视图中的一个节点 ",
+    "type": "interface",
+    "name": "HeapGraphNode",
+    "extend": "object",
+    "doc": {
+      "descript": "HeapGraphNode表示堆视图中的一个节点",
+      "detail": [],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "prop",
+      "comments": "! @brief 节点类型，可能的值：\n     - profiler.Node_Hidden,         隐藏节点，当显示给用户时可以被过滤掉\n     - profiler.Node_Array,          数组\n     - profiler.Node_String,         字符串\n     - profiler.Node_Object,         JS对象（字符串和数组除外）\n     - profiler.Node_Code,           编译后的代码\n     - profiler.Node_Closure,        函数闭包\n     - profiler.Node_RegExp,         正则表达式\n     - profiler.Node_HeapNumber,     堆中排好序的数字\n     - profiler.Node_Native,         Native对象（非v8堆上的）\n     - profiler.Node_Synthetic,      Synthetic对象\n     - profiler.Node_ConsString,     拼接的字符串\n     - profiler.Node_SlicedString,   分割的字符串\n     - profiler.Node_Symbol,         符号（ES6）\n     - profiler.Node_SimdValue,      堆中排好序的SIMD值(ES7)\n    ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "type",
+      "type": "Integer",
+      "doc": {
+        "descript": "节点类型，可能的值：",
+        "detail": [
+          "- profiler.Node_Hidden,         隐藏节点，当显示给用户时可以被过滤掉",
+          "- profiler.Node_Array,          数组",
+          "- profiler.Node_String,         字符串",
+          "- profiler.Node_Object,         JS对象（字符串和数组除外）",
+          "- profiler.Node_Code,           编译后的代码",
+          "- profiler.Node_Closure,        函数闭包",
+          "- profiler.Node_RegExp,         正则表达式",
+          "- profiler.Node_HeapNumber,     堆中排好序的数字",
+          "- profiler.Node_Native,         Native对象（非v8堆上的）",
+          "- profiler.Node_Synthetic,      Synthetic对象",
+          "- profiler.Node_ConsString,     拼接的字符串",
+          "- profiler.Node_SlicedString,   分割的字符串",
+          "- profiler.Node_Symbol,         符号（ES6）",
+          "- profiler.Node_SimdValue,      堆中排好序的SIMD值(ES7)"
+        ],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 节点名称 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "name",
+      "type": "String",
+      "doc": {
+        "descript": "节点名称",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 节点的描述 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "description",
+      "type": "String",
+      "doc": {
+        "descript": "节点的描述",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 节点ID ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "id",
+      "type": "Integer",
+      "doc": {
+        "descript": "节点ID",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 节点大小，单位为字节 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "shallowSize",
+      "type": "Integer",
+      "doc": {
+        "descript": "节点大小，单位为字节",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 子节点列表，由HeapGraphEdge类型对象组成 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "childs",
+      "type": "NArray",
+      "doc": {
+        "descript": "子节点列表，由HeapGraphEdge类型对象组成",
+        "detail": [],
+        "params": []
+      }
+    }
+  ]
+}

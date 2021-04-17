@@ -1,0 +1,503 @@
+{
+  "declare": {
+    "comments": "! @brief 测试套件模块，用以定义管理测试套件\n\n使用方法 ：\n\n```JavaScript\nvar test = require('test');\ntest.setup();\n\ndescribe('test', () => {\n    before(() => {\n        // setup before the whole test\n    });\n\n    beforeEach(() => {\n        // setup before each test\n    });\n\n    after(() => {\n        // cleanup after the whole test\n    });\n\n    afterEach(() => {\n        // cleanup after each test\n    });\n\n    it('case', () => {\n        assert.ok(true);\n    });\n\n    // ignored test case\n    xit('case', () => {\n        assert.ok(true);\n    });\n\n    // ignored test case\n    it.skip('case', () => {\n        assert.ok(true);\n    });\n\n    // only test case\n    oit('case', () => {\n        assert.ok(true);\n    });\n\n    // only test case\n    it.only('case', () => {\n        assert.ok(true);\n    });\n});\n\n// async function test\ndescribe('test async', () => {\n  it('pass case', async() => {\n    assert.ok(true);\n  });\n\n  it('error case', async() => {\n      throw new Error('some thing wrong!');\n  });\n});\n\n// callback function test\n// cannot use callback mode in jsc\ndescribe('test callback', () => {\n  it('pass case', done => {\n    setTimeout(() => {\n      assert.ok(true);\n      done();\n    }, 0);\n  });\n\n  it('error case', done => {\n    setTimeout(() => {\n      done(new Error('some thing wrong!'));\n    }, 0);\n  });\n});\n\nprocess.exit(-test.run(console.DEBUG));\n```\n ",
+    "type": "module",
+    "name": "test",
+    "extend": "object",
+    "module": true,
+    "doc": {
+      "descript": "测试套件模块，用以定义管理测试套件",
+      "detail": [
+        "使用方法 ：",
+        "",
+        "```JavaScript",
+        "var test = require('test');",
+        "test.setup();",
+        "",
+        "describe('test', () => {",
+        "  before(() => {",
+        "      // setup before the whole test",
+        "  });",
+        "",
+        "  beforeEach(() => {",
+        "      // setup before each test",
+        "  });",
+        "",
+        "  after(() => {",
+        "      // cleanup after the whole test",
+        "  });",
+        "",
+        "  afterEach(() => {",
+        "      // cleanup after each test",
+        "  });",
+        "",
+        "  it('case', () => {",
+        "      assert.ok(true);",
+        "  });",
+        "",
+        "  // ignored test case",
+        "  xit('case', () => {",
+        "      assert.ok(true);",
+        "  });",
+        "",
+        "  // ignored test case",
+        "  it.skip('case', () => {",
+        "      assert.ok(true);",
+        "  });",
+        "",
+        "  // only test case",
+        "  oit('case', () => {",
+        "      assert.ok(true);",
+        "  });",
+        "",
+        "  // only test case",
+        "  it.only('case', () => {",
+        "      assert.ok(true);",
+        "  });",
+        "});",
+        "",
+        "// async function test",
+        "describe('test async', () => {",
+        "it('pass case', async() => {",
+        "  assert.ok(true);",
+        "});",
+        "",
+        "it('error case', async() => {",
+        "    throw new Error('some thing wrong!');",
+        "});",
+        "});",
+        "",
+        "// callback function test",
+        "// cannot use callback mode in jsc",
+        "describe('test callback', () => {",
+        "it('pass case', done => {",
+        "  setTimeout(() => {",
+        "    assert.ok(true);",
+        "    done();",
+        "  }, 0);",
+        "});",
+        "",
+        "it('error case', done => {",
+        "  setTimeout(() => {",
+        "    done(new Error('some thing wrong!'));",
+        "  }, 0);",
+        "});",
+        "});",
+        "",
+        "process.exit(-test.run(console.DEBUG));",
+        "```"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "method",
+      "comments": "! @brief 定义一个测试模块，可嵌套定义\n     @param name 定义模块名称\n     @param block 模块初始化代码\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "describe",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "name",
+          "default": null
+        },
+        {
+          "type": "Function",
+          "name": "block",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "定义一个测试模块，可嵌套定义",
+        "detail": [],
+        "params": [
+          {
+            "name": "name",
+            "descript": "定义模块名称",
+            "detail": []
+          },
+          {
+            "name": "block",
+            "descript": "模块初始化代码",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 暂停测试的模块定义，test.setup 后可使用 describe.skip 调用\n     @param name 定义模块名称\n     @param block 模块初始化代码\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "xdescribe",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "name",
+          "default": null
+        },
+        {
+          "type": "Function",
+          "name": "block",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "暂停测试的模块定义，test.setup 后可使用 describe.skip 调用",
+        "detail": [],
+        "params": [
+          {
+            "name": "name",
+            "descript": "定义模块名称",
+            "detail": []
+          },
+          {
+            "name": "block",
+            "descript": "模块初始化代码",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 独立测试的模块定义，test.setup 后可使用 describe.only 调用\n     @param name 定义模块名称\n     @param block 模块初始化代码\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "odescribe",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "name",
+          "default": null
+        },
+        {
+          "type": "Function",
+          "name": "block",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "独立测试的模块定义，test.setup 后可使用 describe.only 调用",
+        "detail": [],
+        "params": [
+          {
+            "name": "name",
+            "descript": "定义模块名称",
+            "detail": []
+          },
+          {
+            "name": "block",
+            "descript": "模块初始化代码",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 定义一个测试项目\n     @param name 定义项目名称\n     @param block 测试内容\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "it",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "name",
+          "default": null
+        },
+        {
+          "type": "Function",
+          "name": "block",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "定义一个测试项目",
+        "detail": [],
+        "params": [
+          {
+            "name": "name",
+            "descript": "定义项目名称",
+            "detail": []
+          },
+          {
+            "name": "block",
+            "descript": "测试内容",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 暂停测试的项目定义，test.setup 后可使用 it.skip 调用\n     @param name 定义项目名称\n     @param block 测试内容\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "xit",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "name",
+          "default": null
+        },
+        {
+          "type": "Function",
+          "name": "block",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "暂停测试的项目定义，test.setup 后可使用 it.skip 调用",
+        "detail": [],
+        "params": [
+          {
+            "name": "name",
+            "descript": "定义项目名称",
+            "detail": []
+          },
+          {
+            "name": "block",
+            "descript": "测试内容",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 独立测试的项目定义，test.setup 后可使用 it.only 调用\n     @param name 定义项目名称\n     @param block 测试内容\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "oit",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "name",
+          "default": null
+        },
+        {
+          "type": "Function",
+          "name": "block",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "独立测试的项目定义，test.setup 后可使用 it.only 调用",
+        "detail": [],
+        "params": [
+          {
+            "name": "name",
+            "descript": "定义项目名称",
+            "detail": []
+          },
+          {
+            "name": "block",
+            "descript": "测试内容",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 定义当前测试模块进入事件\n     @param func 事件函数\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "before",
+      "type": null,
+      "params": [
+        {
+          "type": "Function",
+          "name": "func",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "定义当前测试模块进入事件",
+        "detail": [],
+        "params": [
+          {
+            "name": "func",
+            "descript": "事件函数",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 定义当前测试模块退出事件\n     @param func 事件函数\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "after",
+      "type": null,
+      "params": [
+        {
+          "type": "Function",
+          "name": "func",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "定义当前测试模块退出事件",
+        "detail": [],
+        "params": [
+          {
+            "name": "func",
+            "descript": "事件函数",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 定义当前测试模块测试项目进入事件\n     @param func 事件函数\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "beforeEach",
+      "type": null,
+      "params": [
+        {
+          "type": "Function",
+          "name": "func",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "定义当前测试模块测试项目进入事件",
+        "detail": [],
+        "params": [
+          {
+            "name": "func",
+            "descript": "事件函数",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 定义当前测试模块测试项目退出事件\n     @param func 事件函数\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "afterEach",
+      "type": null,
+      "params": [
+        {
+          "type": "Function",
+          "name": "func",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "定义当前测试模块测试项目退出事件",
+        "detail": [],
+        "params": [
+          {
+            "name": "func",
+            "descript": "事件函数",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 开始执行定义的测试模块\n     @param loglevel 指定进行测试时的日志输出级别，ERROR 时，项目报错信息集中在报告后显示，低于 ERROR 时，输出信息随时显示，高于 ERROR 时，只显示报告\n     @return 返回测试用例统计结果，正确则返回 0，错误则返回错误个数\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "run",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "loglevel",
+          "default": {
+            "const": [
+              "console",
+              "ERROR"
+            ]
+          }
+        }
+      ],
+      "doc": {
+        "descript": "开始执行定义的测试模块",
+        "detail": [],
+        "params": [
+          {
+            "name": "loglevel",
+            "descript": "指定进行测试时的日志输出级别，ERROR 时，项目报错信息集中在报告后显示，低于 ERROR 时，输出信息随时显示，高于 ERROR 时，只显示报告",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回测试用例统计结果，正确则返回 0，错误则返回错误个数",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "object",
+      "comments": "! @brief 断言测试模块，如果测试值为假，则报错，报错行为可设定继续运行或者错误抛出 ",
+      "deprecated": null,
+      "name": "assert",
+      "type": "assert",
+      "doc": {
+        "descript": "断言测试模块，如果测试值为假，则报错，报错行为可设定继续运行或者错误抛出",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 初始化当前脚本的测试环境，将 test 模块方法复制为当前脚本全局变量 ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "setup",
+      "type": null,
+      "params": null,
+      "doc": {
+        "descript": "初始化当前脚本的测试环境，将 test 模块方法复制为当前脚本全局变量",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 设置和查询慢速测试警告阀值，以 ms 为单位，缺省为 75\n     ",
+      "deprecated": null,
+      "static": "static",
+      "readonly": null,
+      "name": "slow",
+      "type": "Integer",
+      "doc": {
+        "descript": "设置和查询慢速测试警告阀值，以 ms 为单位，缺省为 75",
+        "detail": [],
+        "params": []
+      }
+    }
+  ],
+  "collect": "Test Suite"
+}

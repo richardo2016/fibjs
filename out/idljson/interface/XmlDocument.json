@@ -1,0 +1,563 @@
+{
+  "declare": {
+    "comments": "! @brief XmlDocument 对象代表整个 XML 文档\n\nXmlDocument 对象是一棵文档树的根，可为我们提供对文档数据的最初（或最顶层）的访问入口。\n用于元素节点、文本节点、注释、处理指令等均无法存在于 XmlDocument 之外， XmlDocument 对象同样提供了创建这些对象的方法。 XmlNode 对象提供了一个 ownerDocument 属性，此属性可把它们与在其中创建它们的 XmlDocument 关联起来。\n",
+    "type": "interface",
+    "name": "XmlDocument",
+    "extend": "XmlNode",
+    "doc": {
+      "descript": "XmlDocument 对象代表整个 XML 文档",
+      "detail": [
+        "XmlDocument 对象是一棵文档树的根，可为我们提供对文档数据的最初（或最顶层）的访问入口。",
+        "用于元素节点、文本节点、注释、处理指令等均无法存在于 XmlDocument 之外， XmlDocument 对象同样提供了创建这些对象的方法。 XmlNode 对象提供了一个 ownerDocument 属性，此属性可把它们与在其中创建它们的 XmlDocument 关联起来。"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "method",
+      "comments": "! @brief 构造一个 XmlDocument 对象\n     @param type 指定文档对象的类型，缺省为 \"text/xml\"，若需要处理 html 则需要指定 \"text/html\"\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "XmlDocument",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "type",
+          "default": {
+            "value": "\"text/xml\""
+          }
+        }
+      ],
+      "doc": {
+        "descript": "构造一个 XmlDocument 对象",
+        "detail": [],
+        "params": [
+          {
+            "name": "type",
+            "descript": "指定文档对象的类型，缺省为 \"text/xml\"，若需要处理 html 则需要指定 \"text/html\"",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 通过解析一个 XML/HTML 字符串来组成该文档，不支持多语种\n     @param source 要解析的 XML/HTML 文本，取决于文档创建时的类型\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "load",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "source",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "通过解析一个 XML/HTML 字符串来组成该文档，不支持多语种",
+        "detail": [],
+        "params": [
+          {
+            "name": "source",
+            "descript": "要解析的 XML/HTML 文本，取决于文档创建时的类型",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 通过解析一个二进制 XML/HTML 字符串来组成该文档，并根据语种自动转换\n     @param source 要解析的 XML/HTML 文本，取决于文档创建时的类型\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "load",
+      "type": null,
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "source",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "通过解析一个二进制 XML/HTML 字符串来组成该文档，并根据语种自动转换",
+        "detail": [],
+        "params": [
+          {
+            "name": "source",
+            "descript": "要解析的 XML/HTML 文本，取决于文档创建时的类型",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 返回用于文档的编码（在解析时）\n    ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "inputEncoding",
+      "type": "String",
+      "doc": {
+        "descript": "返回用于文档的编码（在解析时）",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 设置或返回文档是否为 standalone\n    ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "xmlStandalone",
+      "type": "Boolean",
+      "doc": {
+        "descript": "设置或返回文档是否为 standalone",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 设置或返回文档的 XML 版本\n    ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "xmlVersion",
+      "type": "String",
+      "doc": {
+        "descript": "设置或返回文档的 XML 版本",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 返回与文档相关的文档类型声明（Document Type Declaration）\n\n    对于没有 DTD 的 XML 文档，则返回 null。此属性可提供对 XmlDocumentType 对象（ XmlDocument 的一个子节点）的直接访问。\n    ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "doctype",
+      "type": "XmlDocumentType",
+      "doc": {
+        "descript": "返回与文档相关的文档类型声明（Document Type Declaration）",
+        "detail": [
+          "对于没有 DTD 的 XML 文档，则返回 null。此属性可提供对 XmlDocumentType 对象（ XmlDocument 的一个子节点）的直接访问。"
+        ],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 返回文档的根节点\n    ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "documentElement",
+      "type": "XmlElement",
+      "doc": {
+        "descript": "返回文档的根节点",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 返回 HTML 文档的 head 节点，仅在 html 模式有效\n    ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "head",
+      "type": "XmlElement",
+      "doc": {
+        "descript": "返回 HTML 文档的 head 节点，仅在 html 模式有效",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 返回 HTML 文档的 title 节点的内容，仅在 html 模式有效\n    ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "title",
+      "type": "String",
+      "doc": {
+        "descript": "返回 HTML 文档的 title 节点的内容，仅在 html 模式有效",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 返回 HTML 文档的 body 节点，仅在 html 模式有效\n    ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "body",
+      "type": "XmlElement",
+      "doc": {
+        "descript": "返回 HTML 文档的 body 节点，仅在 html 模式有效",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 返回带有指定名称的所有元素的一个节点列表\n\n     该方法将返回一个 XmlNodeList 对象（可以作为只读数组处理），该对象存放文档中具有指定标签名的所有 XmlElement 节点，它们存放的顺序就是在源文档中出现的顺序。 XmlNodeList 对象是“活”的，即如果在文档中添加或删除了指定标签名的元素，它的内容会自动进行必要的更新。\n     @param tagName 需检索的标签名。值 \"*\" 匹配所有的标签\n     @return 文档树中具有指定标记的 XmlElement 节点的 XmlNodeList 集合。返回的元素节点的顺序就是它们在源文档中出现的顺序。\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "getElementsByTagName",
+      "type": "XmlNodeList",
+      "params": [
+        {
+          "type": "String",
+          "name": "tagName",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "返回带有指定名称的所有元素的一个节点列表",
+        "detail": [
+          "该方法将返回一个 XmlNodeList 对象（可以作为只读数组处理），该对象存放文档中具有指定标签名的所有 XmlElement 节点，它们存放的顺序就是在源文档中出现的顺序。 XmlNodeList 对象是“活”的，即如果在文档中添加或删除了指定标签名的元素，它的内容会自动进行必要的更新。"
+        ],
+        "params": [
+          {
+            "name": "tagName",
+            "descript": "需检索的标签名。值 \"*\" 匹配所有的标签",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "文档树中具有指定标记的 XmlElement 节点的 XmlNodeList 集合。返回的元素节点的顺序就是它们在源文档中出现的顺序。",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 返回带有指定命名空间和名称的所有元素的一个节点列表\n\n     该方法与 getElementsByTagName() 方法相似，只是它根据命名空间和名称来检索元素。\n     @param namespaceURI 指定检索的命名空间 URI。值 \"*\" 可匹配所有的标签\n     @param localName 需检索的标签名。值 \"*\" 匹配所有的标签\n     @return 文档树中具有指定标记的 XmlElement 节点的 XmlNodeList 集合。返回的元素节点的顺序就是它们在源文档中出现的顺序。\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "getElementsByTagNameNS",
+      "type": "XmlNodeList",
+      "params": [
+        {
+          "type": "String",
+          "name": "namespaceURI",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "localName",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "返回带有指定命名空间和名称的所有元素的一个节点列表",
+        "detail": [
+          "该方法与 getElementsByTagName() 方法相似，只是它根据命名空间和名称来检索元素。"
+        ],
+        "params": [
+          {
+            "name": "namespaceURI",
+            "descript": "指定检索的命名空间 URI。值 \"*\" 可匹配所有的标签",
+            "detail": []
+          },
+          {
+            "name": "localName",
+            "descript": "需检索的标签名。值 \"*\" 匹配所有的标签",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "文档树中具有指定标记的 XmlElement 节点的 XmlNodeList 集合。返回的元素节点的顺序就是它们在源文档中出现的顺序。",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 返回拥有指定 id 属性的元素\n\n     该方法将遍历文档的子孙节点，返回一个 XmlElement 节点对象，表示第一个具有指定 id 属性的文档元素。。\n     @param id 需检索的 id\n     @return 节点树中具有指定 id 属性的 XmlElement 节点\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "getElementById",
+      "type": "XmlElement",
+      "params": [
+        {
+          "type": "String",
+          "name": "id",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "返回拥有指定 id 属性的元素",
+        "detail": [
+          "该方法将遍历文档的子孙节点，返回一个 XmlElement 节点对象，表示第一个具有指定 id 属性的文档元素。。"
+        ],
+        "params": [
+          {
+            "name": "id",
+            "descript": "需检索的 id",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "节点树中具有指定 id 属性的 XmlElement 节点",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 返回带有指定 class 名称的所有元素的一个节点列表\n\n     该方法将返回一个 XmlNodeList 对象（可以作为只读数组处理），该对象存放文档中具有指定 class 名的所有 XmlElement 节点，它们存放的顺序就是在源文档中出现的顺序。 XmlNodeList 对象是“活”的，即如果在文档中添加或删除了指定标签名的元素，它的内容会自动进行必要的更新。\n     @param className 需检索的 class 名称\n     @return 文档树中具有指定 class 名的 XmlElement 节点的 XmlNodeList 集合。返回的元素节点的顺序就是它们在源文档中出现的顺序。\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "getElementsByClassName",
+      "type": "XmlNodeList",
+      "params": [
+        {
+          "type": "String",
+          "name": "className",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "返回带有指定 class 名称的所有元素的一个节点列表",
+        "detail": [
+          "该方法将返回一个 XmlNodeList 对象（可以作为只读数组处理），该对象存放文档中具有指定 class 名的所有 XmlElement 节点，它们存放的顺序就是在源文档中出现的顺序。 XmlNodeList 对象是“活”的，即如果在文档中添加或删除了指定标签名的元素，它的内容会自动进行必要的更新。"
+        ],
+        "params": [
+          {
+            "name": "className",
+            "descript": "需检索的 class 名称",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "文档树中具有指定 class 名的 XmlElement 节点的 XmlNodeList 集合。返回的元素节点的顺序就是它们在源文档中出现的顺序。",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 创建元素节点\n     @param tagName 指定元素节点规定名称\n     @return 返回新创建的 XmlElement 节点，具有指定的标签名\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "createElement",
+      "type": "XmlElement",
+      "params": [
+        {
+          "type": "String",
+          "name": "tagName",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "创建元素节点",
+        "detail": [],
+        "params": [
+          {
+            "name": "tagName",
+            "descript": "指定元素节点规定名称",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回新创建的 XmlElement 节点，具有指定的标签名",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 创建带有指定命名空间的元素节点\n     @param namespaceURI 指定元素节点命名空间 URI\n     @param qualifiedName 指定元素节点规定名称\n     @return 返回新创建的 XmlElement 节点，具有指定的标签名\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "createElementNS",
+      "type": "XmlElement",
+      "params": [
+        {
+          "type": "String",
+          "name": "namespaceURI",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "qualifiedName",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "创建带有指定命名空间的元素节点",
+        "detail": [],
+        "params": [
+          {
+            "name": "namespaceURI",
+            "descript": "指定元素节点命名空间 URI",
+            "detail": []
+          },
+          {
+            "name": "qualifiedName",
+            "descript": "指定元素节点规定名称",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回新创建的 XmlElement 节点，具有指定的标签名",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 创建文本节点\n     @param data 指定此节点的文本\n     @return 返回新创建的 XmlText 节点，表示指定的 data 字符串\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "createTextNode",
+      "type": "XmlText",
+      "params": [
+        {
+          "type": "String",
+          "name": "data",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "创建文本节点",
+        "detail": [],
+        "params": [
+          {
+            "name": "data",
+            "descript": "指定此节点的文本",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回新创建的 XmlText 节点，表示指定的 data 字符串",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 创建注释节点\n     @param data 指定此节点的注释文本\n     @return 返回新创建的 XmlComment 节点，注释文本为指定的 data\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "createComment",
+      "type": "XmlComment",
+      "params": [
+        {
+          "type": "String",
+          "name": "data",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "创建注释节点",
+        "detail": [],
+        "params": [
+          {
+            "name": "data",
+            "descript": "指定此节点的注释文本",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回新创建的 XmlComment 节点，注释文本为指定的 data",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 创建 XmlCDATASection 节点\n     @param data 指定此节点规定 CDATA 数据\n     @return 返回新创建的 XmlCDATASection 节点，内容为指定的 data\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "createCDATASection",
+      "type": "XmlCDATASection",
+      "params": [
+        {
+          "type": "String",
+          "name": "data",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "创建 XmlCDATASection 节点",
+        "detail": [],
+        "params": [
+          {
+            "name": "data",
+            "descript": "指定此节点规定 CDATA 数据",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回新创建的 XmlCDATASection 节点，内容为指定的 data",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 创建 XmlProcessingInstruction 节点\n     @param target 指定处理指令的目标\n     @param data 指定处理指令的内容文本\n     @return 新创建的 ProcessingInstruction 节点\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "createProcessingInstruction",
+      "type": "XmlProcessingInstruction",
+      "params": [
+        {
+          "type": "String",
+          "name": "target",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "data",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "创建 XmlProcessingInstruction 节点",
+        "detail": [],
+        "params": [
+          {
+            "name": "target",
+            "descript": "指定处理指令的目标",
+            "detail": []
+          },
+          {
+            "name": "data",
+            "descript": "指定处理指令的内容文本",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "新创建的 ProcessingInstruction 节点",
+          "detail": []
+        }
+      }
+    }
+  ]
+}

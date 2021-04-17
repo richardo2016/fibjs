@@ -1,0 +1,302 @@
+{
+  "declare": {
+    "comments": "! @brief x509 撤销证书对象\n\n X509Crl 对象属于 crypto 模块，创建：\n ```JavaScript\n var k = new crypto.X509Crl();\n ```\n ",
+    "type": "interface",
+    "name": "X509Crl",
+    "extend": "object",
+    "doc": {
+      "descript": "x509 撤销证书对象",
+      "detail": [
+        "X509Crl 对象属于 crypto 模块，创建：",
+        "```JavaScript",
+        "var k = new crypto.X509Crl();",
+        "```"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "method",
+      "comments": "! @brief X509Crl 构造函数 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "X509Crl",
+      "type": null,
+      "params": null,
+      "doc": {
+        "descript": "X509Crl 构造函数",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief X509Crl 构造函数,加载一个 DER 格式的撤销证书\n     @param derCrl DER 格式的撤销证书\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "X509Crl",
+      "type": null,
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "derCrl",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "X509Crl 构造函数,加载一个 DER 格式的撤销证书",
+        "detail": [],
+        "params": [
+          {
+            "name": "derCrl",
+            "descript": "DER 格式的撤销证书",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief X509Crl 构造函数,加载一个 PEM 格式的撤销证书\n     @param pemCrl PEM 格式的撤销证书\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "X509Crl",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "pemCrl",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "X509Crl 构造函数,加载一个 PEM 格式的撤销证书",
+        "detail": [],
+        "params": [
+          {
+            "name": "pemCrl",
+            "descript": "PEM 格式的撤销证书",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 加载一个 DER 格式的撤销证书，可多次调用\n     @param derCrl DER 格式的撤销证书\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "load",
+      "type": null,
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "derCrl",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "加载一个 DER 格式的撤销证书，可多次调用",
+        "detail": [],
+        "params": [
+          {
+            "name": "derCrl",
+            "descript": "DER 格式的撤销证书",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 加载一个 PEM 格式的撤销证书，可多次调用\n     @param pemCrl PEM 格式的撤销证书\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "load",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "pemCrl",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "加载一个 PEM 格式的撤销证书，可多次调用",
+        "detail": [],
+        "params": [
+          {
+            "name": "pemCrl",
+            "descript": "PEM 格式的撤销证书",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 加载一个 PEM/DER 格式的撤销证书，可多次调用\n     @param filename 撤销证书文件名\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "loadFile",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "filename",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "加载一个 PEM/DER 格式的撤销证书，可多次调用",
+        "detail": [],
+        "params": [
+          {
+            "name": "filename",
+            "descript": "撤销证书文件名",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 导出已经加载的撤销证书\n     @param pem 指定输出 PEM 格式的撤销证书，缺省为 true\n     @return 以数组方式导出撤销证书链\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "dump",
+      "type": "Array",
+      "params": [
+        {
+          "type": "Boolean",
+          "name": "pem",
+          "default": {
+            "value": "true"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "导出已经加载的撤销证书",
+        "detail": [],
+        "params": [
+          {
+            "name": "pem",
+            "descript": "指定输出 PEM 格式的撤销证书，缺省为 true",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "以数组方式导出撤销证书链",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 清空已经加载的撤销证书\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "clear",
+      "type": null,
+      "params": null,
+      "doc": {
+        "descript": "清空已经加载的撤销证书",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 获取证书的版本 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "version",
+      "type": "Integer",
+      "doc": {
+        "descript": "获取证书的版本",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 获取证书颁发者的可分辨名称 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "issuer",
+      "type": "String",
+      "doc": {
+        "descript": "获取证书颁发者的可分辨名称",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 获取证书吊销序列号列表 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "serials",
+      "type": "Array",
+      "doc": {
+        "descript": "获取证书吊销序列号列表",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 获取证书的本次更新时间 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "thisUpdate",
+      "type": "Date",
+      "doc": {
+        "descript": "获取证书的本次更新时间",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 获取证书的下次更新时间 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "nextUpdate",
+      "type": "Date",
+      "doc": {
+        "descript": "获取证书的下次更新时间",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 获取证书链中得下一个证书 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "next",
+      "type": "X509Crl",
+      "doc": {
+        "descript": "获取证书链中得下一个证书",
+        "detail": [],
+        "params": []
+      }
+    }
+  ]
+}

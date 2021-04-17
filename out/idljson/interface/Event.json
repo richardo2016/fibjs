@@ -1,0 +1,125 @@
+{
+  "declare": {
+    "comments": "! @brief 事件对象\n\n通过一个事件达到对一组纤程进行控制的目的（事件对象的状态为bool类型）\n\n ",
+    "type": "interface",
+    "name": "Event",
+    "extend": "Lock",
+    "doc": {
+      "descript": "事件对象",
+      "detail": [
+        "通过一个事件达到对一组纤程进行控制的目的（事件对象的状态为bool类型）"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "method",
+      "comments": "! @brief 事件对象构造函数\n     @param value 指定是否等待，为 true 时等待，缺省为 false\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "Event",
+      "type": null,
+      "params": [
+        {
+          "type": "Boolean",
+          "name": "value",
+          "default": {
+            "value": "false"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "事件对象构造函数",
+        "detail": [],
+        "params": [
+          {
+            "name": "value",
+            "descript": "指定是否等待，为 true 时等待，缺省为 false",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 判断事件对象是否为真\n     @return 如果事件为真，返回 true\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "isSet",
+      "type": "Boolean",
+      "params": null,
+      "doc": {
+        "descript": "判断事件对象是否为真",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "如果事件为真，返回 true",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 激活事件（将事件状态改为true），并调用pulse() ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "set",
+      "type": null,
+      "params": null,
+      "doc": {
+        "descript": "激活事件（将事件状态改为true），并调用pulse()",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 激活等待该事件的所有纤程 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "pulse",
+      "type": null,
+      "params": null,
+      "doc": {
+        "descript": "激活等待该事件的所有纤程",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 重置事件（将事件状态改为false） ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "clear",
+      "type": null,
+      "params": null,
+      "doc": {
+        "descript": "重置事件（将事件状态改为false）",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 等待一个事件 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "wait",
+      "type": null,
+      "params": null,
+      "doc": {
+        "descript": "等待一个事件",
+        "detail": [],
+        "params": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "declare": {
+    "comments": "! @brief mongodb 数据库数据唯一标识对象，用于存储传递 oid ",
+    "type": "interface",
+    "name": "MongoID",
+    "extend": "object",
+    "doc": {
+      "descript": "mongodb 数据库数据唯一标识对象，用于存储传递 oid",
+      "detail": [],
+      "params": []
+    }
+  },
+  "members": []
+}

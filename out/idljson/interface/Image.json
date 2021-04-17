@@ -1,0 +1,3088 @@
+{
+  "declare": {
+    "comments": "! @brief 图像处理对象，用以对图像进行转换，绘制，存储等操作\n\n Image 对象属于 gd 模块，创建：\n ```JavaScript\n var img = gd.create(640, 480);\n var img1 = gd.load(data);\n ```\n ",
+    "type": "interface",
+    "name": "Image",
+    "extend": "object",
+    "doc": {
+      "descript": "图像处理对象，用以对图像进行转换，绘制，存储等操作",
+      "detail": [
+        "Image 对象属于 gd 模块，创建：",
+        "```JavaScript",
+        "var img = gd.create(640, 480);",
+        "var img1 = gd.load(data);",
+        "```"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询图像宽度 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "width",
+      "type": "Integer",
+      "doc": {
+        "descript": "查询图像宽度",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询图像高度 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "height",
+      "type": "Integer",
+      "doc": {
+        "descript": "查询图像高度",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询图像来源格式，结果为 gd.PNG, gd.JPEG, gd.GIF, gd.BMP, gd.WEBP ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "format",
+      "type": "Integer",
+      "doc": {
+        "descript": "查询图像来源格式，结果为 gd.PNG, gd.JPEG, gd.GIF, gd.BMP, gd.WEBP",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询图像类型，结果为 gd.TRUECOLOR, gd.PALETTE ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "type",
+      "type": "Integer",
+      "doc": {
+        "descript": "查询图像类型，结果为 gd.TRUECOLOR, gd.PALETTE",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询图像颜色表内的颜色总数 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "colorsTotal",
+      "type": "Integer",
+      "doc": {
+        "descript": "查询图像颜色表内的颜色总数",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和设定指定的颜色为透明色 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "transparent",
+      "type": "Integer",
+      "doc": {
+        "descript": "查询和设定指定的颜色为透明色",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和设定图像是否渐进式，仅支持 jpeg 格式时 ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "progressive",
+      "type": "Boolean",
+      "doc": {
+        "descript": "查询和设定图像是否渐进式，仅支持 jpeg 格式时",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief查询和设定绘图时是否计算 alpha 层，缺省为 true ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "alphaBlending",
+      "type": "Boolean",
+      "doc": {
+        "descript": "查询和设定绘图时是否计算 alpha 层，缺省为 true",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 按照指定的格式返回图像数据\n     @param format 指定返回数据的格式，允许值为 gd.PNG, gd.JPEG, gd.GIF, gd.BMP, gd.WEBP, 缺省为 gd.PNG\n     @param quality 当格式为 gd.JPEG 或 gd.WEBP 时用于指定压缩质量，缺省为 85，其他格式忽略此参数\n     @return 返回格式化的数据\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "getData",
+      "type": "Buffer",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "format",
+          "default": {
+            "const": [
+              "gd",
+              "PNG"
+            ]
+          }
+        },
+        {
+          "type": "Integer",
+          "name": "quality",
+          "default": {
+            "value": "85"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "按照指定的格式返回图像数据",
+        "detail": [],
+        "params": [
+          {
+            "name": "format",
+            "descript": "指定返回数据的格式，允许值为 gd.PNG, gd.JPEG, gd.GIF, gd.BMP, gd.WEBP, 缺省为 gd.PNG",
+            "detail": []
+          },
+          {
+            "name": "quality",
+            "descript": "当格式为 gd.JPEG 或 gd.WEBP 时用于指定压缩质量，缺省为 85，其他格式忽略此参数",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回格式化的数据",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 按照指定的格式将图像数据存入流对象\n     @param stm 指定要存入的流对象\n     @param format 指定返回数据的格式，允许值为 gd.PNG, gd.JPEG, gd.GIF, gd.BMP, gd.WEBP, 缺省为 gd.PNG\n     @param quality 当格式为 gd.JPEG 或 gd.WEBP 时用于指定压缩质量，缺省为 85，其他格式忽略此参数\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "save",
+      "type": null,
+      "params": [
+        {
+          "type": "Stream",
+          "name": "stm",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "format",
+          "default": {
+            "const": [
+              "gd",
+              "PNG"
+            ]
+          }
+        },
+        {
+          "type": "Integer",
+          "name": "quality",
+          "default": {
+            "value": "85"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "按照指定的格式将图像数据存入流对象",
+        "detail": [],
+        "params": [
+          {
+            "name": "stm",
+            "descript": "指定要存入的流对象",
+            "detail": []
+          },
+          {
+            "name": "format",
+            "descript": "指定返回数据的格式，允许值为 gd.PNG, gd.JPEG, gd.GIF, gd.BMP, gd.WEBP, 缺省为 gd.PNG",
+            "detail": []
+          },
+          {
+            "name": "quality",
+            "descript": "当格式为 gd.JPEG 或 gd.WEBP 时用于指定压缩质量，缺省为 85，其他格式忽略此参数",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 按照指定的格式将图像数据存入指定文件，文件将被强制覆盖\n     @param fname 指定文件名\n     @param format 指定返回数据的格式，允许值为 gd.PNG, gd.JPEG, gd.GIF, gd.BMP, gd.WEBP, 缺省为 gd.PNG\n     @param quality 当格式为 gd.JPEG 时用于指定压缩质量，缺省为 85，其他格式忽略此参数\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "save",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "fname",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "format",
+          "default": {
+            "const": [
+              "gd",
+              "PNG"
+            ]
+          }
+        },
+        {
+          "type": "Integer",
+          "name": "quality",
+          "default": {
+            "value": "85"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "按照指定的格式将图像数据存入指定文件，文件将被强制覆盖",
+        "detail": [],
+        "params": [
+          {
+            "name": "fname",
+            "descript": "指定文件名",
+            "detail": []
+          },
+          {
+            "name": "format",
+            "descript": "指定返回数据的格式，允许值为 gd.PNG, gd.JPEG, gd.GIF, gd.BMP, gd.WEBP, 缺省为 gd.PNG",
+            "detail": []
+          },
+          {
+            "name": "quality",
+            "descript": "当格式为 gd.JPEG 时用于指定压缩质量，缺省为 85，其他格式忽略此参数",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 为指定的颜色申请一个颜色号，对于 gd.PALETTE 图像，颜色号为调色板索引，对于 gd.TRUECOLOR 图像，颜色号为 rgb 编码数值\n     @param red 红色分量，范围为 0-255\n     @param green 绿色分量，范围为 0-255\n     @param blue 蓝色分量，范围为 0-255\n     @return 返回颜色号，不成功返回 -1\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "colorAllocate",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "red",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "green",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "blue",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "为指定的颜色申请一个颜色号，对于 gd.PALETTE 图像，颜色号为调色板索引，对于 gd.TRUECOLOR 图像，颜色号为 rgb 编码数值",
+        "detail": [],
+        "params": [
+          {
+            "name": "red",
+            "descript": "红色分量，范围为 0-255",
+            "detail": []
+          },
+          {
+            "name": "green",
+            "descript": "绿色分量，范围为 0-255",
+            "detail": []
+          },
+          {
+            "name": "blue",
+            "descript": "蓝色分量，范围为 0-255",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回颜色号，不成功返回 -1",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 为指定的颜色申请一个颜色号，对于 gd.PALETTE 图像，颜色号为调色板索引，对于 gd.TRUECOLOR 图像，颜色号为 rgb 编码数值\n     @param color 组合颜色值，可由 gd.color, gb.rgb, gd.rgba 等函数生成\n     @return 返回颜色号，不成功返回 -1\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "colorAllocate",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "color",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "为指定的颜色申请一个颜色号，对于 gd.PALETTE 图像，颜色号为调色板索引，对于 gd.TRUECOLOR 图像，颜色号为 rgb 编码数值",
+        "detail": [],
+        "params": [
+          {
+            "name": "color",
+            "descript": "组合颜色值，可由 gd.color, gb.rgb, gd.rgba 等函数生成",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回颜色号，不成功返回 -1",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 为指定的颜色及透明申请一个颜色号，对于 gd.PALETTE 图像，颜色号为调色板索引，对于 gd.TRUECOLOR 图像，颜色号为 rgba 编码数值\n     @param red 红色分量，范围为 0-255\n     @param green 绿色分量，范围为 0-255\n     @param blue 蓝色分量，范围为 0-255\n     @param alpha 透明分量，范围为 0-1.0\n     @return 返回颜色号，不成功返回 -1\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "colorAllocateAlpha",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "red",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "green",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "blue",
+          "default": null
+        },
+        {
+          "type": "Number",
+          "name": "alpha",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "为指定的颜色及透明申请一个颜色号，对于 gd.PALETTE 图像，颜色号为调色板索引，对于 gd.TRUECOLOR 图像，颜色号为 rgba 编码数值",
+        "detail": [],
+        "params": [
+          {
+            "name": "red",
+            "descript": "红色分量，范围为 0-255",
+            "detail": []
+          },
+          {
+            "name": "green",
+            "descript": "绿色分量，范围为 0-255",
+            "detail": []
+          },
+          {
+            "name": "blue",
+            "descript": "蓝色分量，范围为 0-255",
+            "detail": []
+          },
+          {
+            "name": "alpha",
+            "descript": "透明分量，范围为 0-1.0",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回颜色号，不成功返回 -1",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 为指定的颜色及透明申请一个颜色号，对于 gd.PALETTE 图像，颜色号为调色板索引，对于 gd.TRUECOLOR 图像，颜色号为 rgba 编码数值\n     @param color 组合颜色值，可由 gd.color, gb.rgb, gd.rgba 等函数生成\n     @return 返回颜色号，不成功返回 -1\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "colorAllocateAlpha",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "color",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "为指定的颜色及透明申请一个颜色号，对于 gd.PALETTE 图像，颜色号为调色板索引，对于 gd.TRUECOLOR 图像，颜色号为 rgba 编码数值",
+        "detail": [],
+        "params": [
+          {
+            "name": "color",
+            "descript": "组合颜色值，可由 gd.color, gb.rgb, gd.rgba 等函数生成",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回颜色号，不成功返回 -1",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 为指定的颜色查找一个最接近的颜色号，对于 gd.PALETTE 图像，颜色号为调色板索引，对于 gd.TRUECOLOR 图像，颜色号为 rgb 编码数值\n     @param red 红色分量，范围为 0-255\n     @param green 绿色分量，范围为 0-255\n     @param blue 蓝色分量，范围为 0-255\n     @return 返回颜色号，不成功返回 -1\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "colorClosest",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "red",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "green",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "blue",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "为指定的颜色查找一个最接近的颜色号，对于 gd.PALETTE 图像，颜色号为调色板索引，对于 gd.TRUECOLOR 图像，颜色号为 rgb 编码数值",
+        "detail": [],
+        "params": [
+          {
+            "name": "red",
+            "descript": "红色分量，范围为 0-255",
+            "detail": []
+          },
+          {
+            "name": "green",
+            "descript": "绿色分量，范围为 0-255",
+            "detail": []
+          },
+          {
+            "name": "blue",
+            "descript": "蓝色分量，范围为 0-255",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回颜色号，不成功返回 -1",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 为指定的颜色查找一个最接近的颜色号，对于 gd.PALETTE 图像，颜色号为调色板索引，对于 gd.TRUECOLOR 图像，颜色号为 rgb 编码数值\n     @param color 组合颜色值，可由 gd.color, gb.rgb, gd.rgba 等函数生成\n     @return 返回颜色号，不成功返回 -1\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "colorClosest",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "color",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "为指定的颜色查找一个最接近的颜色号，对于 gd.PALETTE 图像，颜色号为调色板索引，对于 gd.TRUECOLOR 图像，颜色号为 rgb 编码数值",
+        "detail": [],
+        "params": [
+          {
+            "name": "color",
+            "descript": "组合颜色值，可由 gd.color, gb.rgb, gd.rgba 等函数生成",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回颜色号，不成功返回 -1",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 为指定的颜色查找一个最接近的颜色号，此方法使用 Hue/White/Black 计算查找最接近颜色，对于 gd.PALETTE 图像，颜色号为调色板索引，对于 gd.TRUECOLOR 图像，颜色号为 rgb 编码数值\n     @param red 红色分量，范围为 0-255\n     @param green 绿色分量，范围为 0-255\n     @param blue 蓝色分量，范围为 0-255\n     @return 返回颜色号，不成功返回 -1\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "colorClosestHWB",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "red",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "green",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "blue",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "为指定的颜色查找一个最接近的颜色号，此方法使用 Hue/White/Black 计算查找最接近颜色，对于 gd.PALETTE 图像，颜色号为调色板索引，对于 gd.TRUECOLOR 图像，颜色号为 rgb 编码数值",
+        "detail": [],
+        "params": [
+          {
+            "name": "red",
+            "descript": "红色分量，范围为 0-255",
+            "detail": []
+          },
+          {
+            "name": "green",
+            "descript": "绿色分量，范围为 0-255",
+            "detail": []
+          },
+          {
+            "name": "blue",
+            "descript": "蓝色分量，范围为 0-255",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回颜色号，不成功返回 -1",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 为指定的颜色查找一个最接近的颜色号，此方法使用 Hue/White/Black 计算查找最接近颜色，对于 gd.PALETTE 图像，颜色号为调色板索引，对于 gd.TRUECOLOR 图像，颜色号为 rgb 编码数值\n     @param color 组合颜色值，可由 gd.color, gb.rgb, gd.rgba 等函数生成\n     @return 返回颜色号，不成功返回 -1\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "colorClosestHWB",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "color",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "为指定的颜色查找一个最接近的颜色号，此方法使用 Hue/White/Black 计算查找最接近颜色，对于 gd.PALETTE 图像，颜色号为调色板索引，对于 gd.TRUECOLOR 图像，颜色号为 rgb 编码数值",
+        "detail": [],
+        "params": [
+          {
+            "name": "color",
+            "descript": "组合颜色值，可由 gd.color, gb.rgb, gd.rgba 等函数生成",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回颜色号，不成功返回 -1",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 为指定的颜色及透明查找一个最接近的颜色号，对于 gd.PALETTE 图像，颜色号为调色板索引，对于 gd.TRUECOLOR 图像，颜色号为 rgba 编码数值\n     @param red 红色分量，范围为 0-255\n     @param green 绿色分量，范围为 0-255\n     @param blue 蓝色分量，范围为 0-255\n     @param alpha 透明分量，范围为 0-1.0\n     @return 返回颜色号，不成功返回 -1\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "colorClosestAlpha",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "red",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "green",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "blue",
+          "default": null
+        },
+        {
+          "type": "Number",
+          "name": "alpha",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "为指定的颜色及透明查找一个最接近的颜色号，对于 gd.PALETTE 图像，颜色号为调色板索引，对于 gd.TRUECOLOR 图像，颜色号为 rgba 编码数值",
+        "detail": [],
+        "params": [
+          {
+            "name": "red",
+            "descript": "红色分量，范围为 0-255",
+            "detail": []
+          },
+          {
+            "name": "green",
+            "descript": "绿色分量，范围为 0-255",
+            "detail": []
+          },
+          {
+            "name": "blue",
+            "descript": "蓝色分量，范围为 0-255",
+            "detail": []
+          },
+          {
+            "name": "alpha",
+            "descript": "透明分量，范围为 0-1.0",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回颜色号，不成功返回 -1",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 为指定的颜色及透明查找一个最接近的颜色号，对于 gd.PALETTE 图像，颜色号为调色板索引，对于 gd.TRUECOLOR 图像，颜色号为 rgba 编码数值\n     @param color 组合颜色值，可由 gd.color, gb.rgb, gd.rgba 等函数生成\n     @return 返回颜色号，不成功返回 -1\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "colorClosestAlpha",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "color",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "为指定的颜色及透明查找一个最接近的颜色号，对于 gd.PALETTE 图像，颜色号为调色板索引，对于 gd.TRUECOLOR 图像，颜色号为 rgba 编码数值",
+        "detail": [],
+        "params": [
+          {
+            "name": "color",
+            "descript": "组合颜色值，可由 gd.color, gb.rgb, gd.rgba 等函数生成",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回颜色号，不成功返回 -1",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查找指定的颜色对应的颜色号，对于 gd.PALETTE 图像，颜色号为调色板索引，对于 gd.TRUECOLOR 图像，颜色号为 rgb 编码数值\n     @param red 红色分量，范围为 0-255\n     @param green 绿色分量，范围为 0-255\n     @param blue 蓝色分量，范围为 0-255\n     @return 返回颜色号，不成功返回 -1\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "colorExact",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "red",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "green",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "blue",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "查找指定的颜色对应的颜色号，对于 gd.PALETTE 图像，颜色号为调色板索引，对于 gd.TRUECOLOR 图像，颜色号为 rgb 编码数值",
+        "detail": [],
+        "params": [
+          {
+            "name": "red",
+            "descript": "红色分量，范围为 0-255",
+            "detail": []
+          },
+          {
+            "name": "green",
+            "descript": "绿色分量，范围为 0-255",
+            "detail": []
+          },
+          {
+            "name": "blue",
+            "descript": "蓝色分量，范围为 0-255",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回颜色号，不成功返回 -1",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查找指定的颜色对应的颜色号，对于 gd.PALETTE 图像，颜色号为调色板索引，对于 gd.TRUECOLOR 图像，颜色号为 rgb 编码数值\n     @param color 组合颜色值，可由 gd.color, gb.rgb, gd.rgba 等函数生成\n     @return 返回颜色号，不成功返回 -1\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "colorExact",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "color",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "查找指定的颜色对应的颜色号，对于 gd.PALETTE 图像，颜色号为调色板索引，对于 gd.TRUECOLOR 图像，颜色号为 rgb 编码数值",
+        "detail": [],
+        "params": [
+          {
+            "name": "color",
+            "descript": "组合颜色值，可由 gd.color, gb.rgb, gd.rgba 等函数生成",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回颜色号，不成功返回 -1",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查找指定的颜色及透明对应的颜色号，对于 gd.PALETTE 图像，颜色号为调色板索引，对于 gd.TRUECOLOR 图像，颜色号为 rgba 编码数值\n     @param red 红色分量，范围为 0-255\n     @param green 绿色分量，范围为 0-255\n     @param blue 蓝色分量，范围为 0-255\n     @param alpha 透明分量，范围为 0-1.0\n     @return 返回颜色号，不成功返回 -1\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "colorExactAlpha",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "red",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "green",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "blue",
+          "default": null
+        },
+        {
+          "type": "Number",
+          "name": "alpha",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "查找指定的颜色及透明对应的颜色号，对于 gd.PALETTE 图像，颜色号为调色板索引，对于 gd.TRUECOLOR 图像，颜色号为 rgba 编码数值",
+        "detail": [],
+        "params": [
+          {
+            "name": "red",
+            "descript": "红色分量，范围为 0-255",
+            "detail": []
+          },
+          {
+            "name": "green",
+            "descript": "绿色分量，范围为 0-255",
+            "detail": []
+          },
+          {
+            "name": "blue",
+            "descript": "蓝色分量，范围为 0-255",
+            "detail": []
+          },
+          {
+            "name": "alpha",
+            "descript": "透明分量，范围为 0-1.0",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回颜色号，不成功返回 -1",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查找指定的颜色及透明对应的颜色号，对于 gd.PALETTE 图像，颜色号为调色板索引，对于 gd.TRUECOLOR 图像，颜色号为 rgba 编码数值\n     @param color 组合颜色值，可由 gd.color, gb.rgb, gd.rgba 等函数生成\n     @return 返回颜色号，不成功返回 -1\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "colorExactAlpha",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "color",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "查找指定的颜色及透明对应的颜色号，对于 gd.PALETTE 图像，颜色号为调色板索引，对于 gd.TRUECOLOR 图像，颜色号为 rgba 编码数值",
+        "detail": [],
+        "params": [
+          {
+            "name": "color",
+            "descript": "组合颜色值，可由 gd.color, gb.rgb, gd.rgba 等函数生成",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回颜色号，不成功返回 -1",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查找指定的颜色对应的颜色号，如果颜色不存在，则为其申请一个新颜色号，对于 gd.PALETTE 图像，颜色号为调色板索引，对于 gd.TRUECOLOR 图像，颜色号为 rgb 编码数值\n     @param red 红色分量，范围为 0-255\n     @param green 绿色分量，范围为 0-255\n     @param blue 蓝色分量，范围为 0-255\n     @return 返回颜色号，不成功返回 -1\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "colorResolve",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "red",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "green",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "blue",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "查找指定的颜色对应的颜色号，如果颜色不存在，则为其申请一个新颜色号，对于 gd.PALETTE 图像，颜色号为调色板索引，对于 gd.TRUECOLOR 图像，颜色号为 rgb 编码数值",
+        "detail": [],
+        "params": [
+          {
+            "name": "red",
+            "descript": "红色分量，范围为 0-255",
+            "detail": []
+          },
+          {
+            "name": "green",
+            "descript": "绿色分量，范围为 0-255",
+            "detail": []
+          },
+          {
+            "name": "blue",
+            "descript": "蓝色分量，范围为 0-255",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回颜色号，不成功返回 -1",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查找指定的颜色对应的颜色号，如果颜色不存在，则为其申请一个新颜色号，对于 gd.PALETTE 图像，颜色号为调色板索引，对于 gd.TRUECOLOR 图像，颜色号为 rgb 编码数值\n     @param color 组合颜色值，可由 gd.color, gb.rgb, gd.rgba 等函数生成\n     @return 返回颜色号，不成功返回 -1\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "colorResolve",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "color",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "查找指定的颜色对应的颜色号，如果颜色不存在，则为其申请一个新颜色号，对于 gd.PALETTE 图像，颜色号为调色板索引，对于 gd.TRUECOLOR 图像，颜色号为 rgb 编码数值",
+        "detail": [],
+        "params": [
+          {
+            "name": "color",
+            "descript": "组合颜色值，可由 gd.color, gb.rgb, gd.rgba 等函数生成",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回颜色号，不成功返回 -1",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查找指定的颜色及透明对应的颜色号，如果颜色不存在，则为其申请一个新颜色号，对于 gd.PALETTE 图像，颜色号为调色板索引，对于 gd.TRUECOLOR 图像，颜色号为 rgba 编码数值\n     @param red 红色分量，范围为 0-255\n     @param green 绿色分量，范围为 0-255\n     @param blue 蓝色分量，范围为 0-255\n     @param alpha 透明分量，范围为 0-1.0\n     @return 返回颜色号，不成功返回 -1\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "colorResolveAlpha",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "red",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "green",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "blue",
+          "default": null
+        },
+        {
+          "type": "Number",
+          "name": "alpha",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "查找指定的颜色及透明对应的颜色号，如果颜色不存在，则为其申请一个新颜色号，对于 gd.PALETTE 图像，颜色号为调色板索引，对于 gd.TRUECOLOR 图像，颜色号为 rgba 编码数值",
+        "detail": [],
+        "params": [
+          {
+            "name": "red",
+            "descript": "红色分量，范围为 0-255",
+            "detail": []
+          },
+          {
+            "name": "green",
+            "descript": "绿色分量，范围为 0-255",
+            "detail": []
+          },
+          {
+            "name": "blue",
+            "descript": "蓝色分量，范围为 0-255",
+            "detail": []
+          },
+          {
+            "name": "alpha",
+            "descript": "透明分量，范围为 0-1.0",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回颜色号，不成功返回 -1",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查找指定的颜色及透明对应的颜色号，如果颜色不存在，则为其申请一个新颜色号，对于 gd.PALETTE 图像，颜色号为调色板索引，对于 gd.TRUECOLOR 图像，颜色号为 rgba 编码数值\n     @param color 组合颜色值，可由 gd.color, gb.rgb, gd.rgba 等函数生成\n     @return 返回颜色号，不成功返回 -1\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "colorResolveAlpha",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "color",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "查找指定的颜色及透明对应的颜色号，如果颜色不存在，则为其申请一个新颜色号，对于 gd.PALETTE 图像，颜色号为调色板索引，对于 gd.TRUECOLOR 图像，颜色号为 rgba 编码数值",
+        "detail": [],
+        "params": [
+          {
+            "name": "color",
+            "descript": "组合颜色值，可由 gd.color, gb.rgb, gd.rgba 等函数生成",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回颜色号，不成功返回 -1",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 释放指定的颜色号，释放的颜色号将会被再次申请后替换\n     @param color 指定要释放的颜色号\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "colorDeallocate",
+      "type": null,
+      "params": [
+        {
+          "type": "Integer",
+          "name": "color",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "释放指定的颜色号，释放的颜色号将会被再次申请后替换",
+        "detail": [],
+        "params": [
+          {
+            "name": "color",
+            "descript": "指定要释放的颜色号",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 设定绘图的剪切窗口，设定后，所有的绘制将被剪切在窗口内部\n     @param x1 剪切窗口的左上 x 坐标\n     @param y1 剪切窗口的左上 y 坐标\n     @param x2 剪切窗口的右下 x 坐标\n     @param y2 剪切窗口的右下 y 坐标\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "clip",
+      "type": null,
+      "params": [
+        {
+          "type": "Integer",
+          "name": "x1",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "y1",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "x2",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "y2",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "设定绘图的剪切窗口，设定后，所有的绘制将被剪切在窗口内部",
+        "detail": [],
+        "params": [
+          {
+            "name": "x1",
+            "descript": "剪切窗口的左上 x 坐标",
+            "detail": []
+          },
+          {
+            "name": "y1",
+            "descript": "剪切窗口的左上 y 坐标",
+            "detail": []
+          },
+          {
+            "name": "x2",
+            "descript": "剪切窗口的右下 x 坐标",
+            "detail": []
+          },
+          {
+            "name": "y2",
+            "descript": "剪切窗口的右下 y 坐标",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查询指定位置点的颜色\n     @param x 指定查询的 x 坐标\n     @param y 指定查询的 y 坐标\n     @return 返回指定点的颜色号\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "getPixel",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "x",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "y",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "查询指定位置点的颜色",
+        "detail": [],
+        "params": [
+          {
+            "name": "x",
+            "descript": "指定查询的 x 坐标",
+            "detail": []
+          },
+          {
+            "name": "y",
+            "descript": "指定查询的 y 坐标",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回指定点的颜色号",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查询指定位置点的真彩色颜色\n     @param x 指定查询的 x 坐标\n     @param y 指定查询的 y 坐标\n     @return 返回指定点的颜色号\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "getTrueColorPixel",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "x",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "y",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "查询指定位置点的真彩色颜色",
+        "detail": [],
+        "params": [
+          {
+            "name": "x",
+            "descript": "指定查询的 x 坐标",
+            "detail": []
+          },
+          {
+            "name": "y",
+            "descript": "指定查询的 y 坐标",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回指定点的颜色号",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 在指定位置画一个点\n     @param x 指定画点的 x 坐标\n     @param y 指定画点的 y 坐标\n     @param color 指定画点的颜色号\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "setPixel",
+      "type": null,
+      "params": [
+        {
+          "type": "Integer",
+          "name": "x",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "y",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "color",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "在指定位置画一个点",
+        "detail": [],
+        "params": [
+          {
+            "name": "x",
+            "descript": "指定画点的 x 坐标",
+            "detail": []
+          },
+          {
+            "name": "y",
+            "descript": "指定画点的 y 坐标",
+            "detail": []
+          },
+          {
+            "name": "color",
+            "descript": "指定画点的颜色号",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 设定画线的宽度，line, rectangle, arc 等方法画线时缺省宽度为一个像素，可使用此方法改变线的宽度\n     @param thickness 画线的宽度\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "setThickness",
+      "type": null,
+      "params": [
+        {
+          "type": "Integer",
+          "name": "thickness",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "设定画线的宽度，line, rectangle, arc 等方法画线时缺省宽度为一个像素，可使用此方法改变线的宽度",
+        "detail": [],
+        "params": [
+          {
+            "name": "thickness",
+            "descript": "画线的宽度",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 在指定的位置画一条线\n     @param x1 指定画线的起始 x 坐标\n     @param y1 指定画线的起始 y 坐标\n     @param x2 指定画线的结束 x 坐标\n     @param y2 指定画线的结束 y 坐标\n     @param color 指定画线的颜色号\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "line",
+      "type": null,
+      "params": [
+        {
+          "type": "Integer",
+          "name": "x1",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "y1",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "x2",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "y2",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "color",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "在指定的位置画一条线",
+        "detail": [],
+        "params": [
+          {
+            "name": "x1",
+            "descript": "指定画线的起始 x 坐标",
+            "detail": []
+          },
+          {
+            "name": "y1",
+            "descript": "指定画线的起始 y 坐标",
+            "detail": []
+          },
+          {
+            "name": "x2",
+            "descript": "指定画线的结束 x 坐标",
+            "detail": []
+          },
+          {
+            "name": "y2",
+            "descript": "指定画线的结束 y 坐标",
+            "detail": []
+          },
+          {
+            "name": "color",
+            "descript": "指定画线的颜色号",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 在指定的位置画一个矩形\n     @param x1 指定左上角 x 坐标\n     @param y1 指定左上角 y 坐标\n     @param x2 指定右下角 x 坐标\n     @param y2 指定右下角 y 坐标\n     @param color 指定矩形的颜色号\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "rectangle",
+      "type": null,
+      "params": [
+        {
+          "type": "Integer",
+          "name": "x1",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "y1",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "x2",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "y2",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "color",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "在指定的位置画一个矩形",
+        "detail": [],
+        "params": [
+          {
+            "name": "x1",
+            "descript": "指定左上角 x 坐标",
+            "detail": []
+          },
+          {
+            "name": "y1",
+            "descript": "指定左上角 y 坐标",
+            "detail": []
+          },
+          {
+            "name": "x2",
+            "descript": "指定右下角 x 坐标",
+            "detail": []
+          },
+          {
+            "name": "y2",
+            "descript": "指定右下角 y 坐标",
+            "detail": []
+          },
+          {
+            "name": "color",
+            "descript": "指定矩形的颜色号",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 在指定的位置画一个填充的矩形\n     @param x1 指定左上角 x 坐标\n     @param y1 指定左上角 y 坐标\n     @param x2 指定右下角 x 坐标\n     @param y2 指定右下角 y 坐标\n     @param color 指定矩形的颜色号\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "filledRectangle",
+      "type": null,
+      "params": [
+        {
+          "type": "Integer",
+          "name": "x1",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "y1",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "x2",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "y2",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "color",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "在指定的位置画一个填充的矩形",
+        "detail": [],
+        "params": [
+          {
+            "name": "x1",
+            "descript": "指定左上角 x 坐标",
+            "detail": []
+          },
+          {
+            "name": "y1",
+            "descript": "指定左上角 y 坐标",
+            "detail": []
+          },
+          {
+            "name": "x2",
+            "descript": "指定右下角 x 坐标",
+            "detail": []
+          },
+          {
+            "name": "y2",
+            "descript": "指定右下角 y 坐标",
+            "detail": []
+          },
+          {
+            "name": "color",
+            "descript": "指定矩形的颜色号",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 根据给定的点绘制一个多边形\n     @param points 包含多边形点的数组，如 [[1, 1], [1, 10], [10, 15], [10, 20]]\n     @param color 指定矩形的颜色号\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "polygon",
+      "type": null,
+      "params": [
+        {
+          "type": "Array",
+          "name": "points",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "color",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "根据给定的点绘制一个多边形",
+        "detail": [],
+        "params": [
+          {
+            "name": "points",
+            "descript": "包含多边形点的数组，如 [[1, 1], [1, 10], [10, 15], [10, 20]]",
+            "detail": []
+          },
+          {
+            "name": "color",
+            "descript": "指定矩形的颜色号",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 根据给定的点绘制一个开放多边形\n     @param points 包含多边形点的数组，如 [[1, 1], [1, 10], [10, 15], [10, 20]]\n     @param color 指定矩形的颜色号\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "openPolygon",
+      "type": null,
+      "params": [
+        {
+          "type": "Array",
+          "name": "points",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "color",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "根据给定的点绘制一个开放多边形",
+        "detail": [],
+        "params": [
+          {
+            "name": "points",
+            "descript": "包含多边形点的数组，如 [[1, 1], [1, 10], [10, 15], [10, 20]]",
+            "detail": []
+          },
+          {
+            "name": "color",
+            "descript": "指定矩形的颜色号",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 根据给定的点绘制一个填充多边形\n     @param points 包含多边形点的数组，如 [[1, 1], [1, 10], [10, 15], [10, 20]]\n     @param color 指定矩形的颜色号\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "filledPolygon",
+      "type": null,
+      "params": [
+        {
+          "type": "Array",
+          "name": "points",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "color",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "根据给定的点绘制一个填充多边形",
+        "detail": [],
+        "params": [
+          {
+            "name": "points",
+            "descript": "包含多边形点的数组，如 [[1, 1], [1, 10], [10, 15], [10, 20]]",
+            "detail": []
+          },
+          {
+            "name": "color",
+            "descript": "指定矩形的颜色号",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 画一个椭圆\n     @param x 椭圆中心的 x 坐标\n     @param y 椭圆中心的 y 坐标\n     @param width 椭圆的宽度\n     @param height 椭圆的高度\n     @param color 指定矩形的颜色号\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "ellipse",
+      "type": null,
+      "params": [
+        {
+          "type": "Integer",
+          "name": "x",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "y",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "width",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "height",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "color",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "画一个椭圆",
+        "detail": [],
+        "params": [
+          {
+            "name": "x",
+            "descript": "椭圆中心的 x 坐标",
+            "detail": []
+          },
+          {
+            "name": "y",
+            "descript": "椭圆中心的 y 坐标",
+            "detail": []
+          },
+          {
+            "name": "width",
+            "descript": "椭圆的宽度",
+            "detail": []
+          },
+          {
+            "name": "height",
+            "descript": "椭圆的高度",
+            "detail": []
+          },
+          {
+            "name": "color",
+            "descript": "指定矩形的颜色号",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 画一个填充的椭圆\n     @param x 椭圆中心的 x 坐标\n     @param y 椭圆中心的 y 坐标\n     @param width 椭圆的宽度\n     @param height 椭圆的高度\n     @param color 指定矩形的颜色号\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "filledEllipse",
+      "type": null,
+      "params": [
+        {
+          "type": "Integer",
+          "name": "x",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "y",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "width",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "height",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "color",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "画一个填充的椭圆",
+        "detail": [],
+        "params": [
+          {
+            "name": "x",
+            "descript": "椭圆中心的 x 坐标",
+            "detail": []
+          },
+          {
+            "name": "y",
+            "descript": "椭圆中心的 y 坐标",
+            "detail": []
+          },
+          {
+            "name": "width",
+            "descript": "椭圆的宽度",
+            "detail": []
+          },
+          {
+            "name": "height",
+            "descript": "椭圆的高度",
+            "detail": []
+          },
+          {
+            "name": "color",
+            "descript": "指定矩形的颜色号",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 画一个扇形\n     @param x 扇形中心的 x 坐标\n     @param y 扇形中心的 y 坐标\n     @param width 扇形所在椭圆的宽度\n     @param height 扇形所在椭圆的高度\n     @param start 扇形开始的角度，范围为 0-360\n     @param end 扇形结束的角度，范围为 0-360\n     @param color 指定矩形的颜色号\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "arc",
+      "type": null,
+      "params": [
+        {
+          "type": "Integer",
+          "name": "x",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "y",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "width",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "height",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "start",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "end",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "color",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "画一个扇形",
+        "detail": [],
+        "params": [
+          {
+            "name": "x",
+            "descript": "扇形中心的 x 坐标",
+            "detail": []
+          },
+          {
+            "name": "y",
+            "descript": "扇形中心的 y 坐标",
+            "detail": []
+          },
+          {
+            "name": "width",
+            "descript": "扇形所在椭圆的宽度",
+            "detail": []
+          },
+          {
+            "name": "height",
+            "descript": "扇形所在椭圆的高度",
+            "detail": []
+          },
+          {
+            "name": "start",
+            "descript": "扇形开始的角度，范围为 0-360",
+            "detail": []
+          },
+          {
+            "name": "end",
+            "descript": "扇形结束的角度，范围为 0-360",
+            "detail": []
+          },
+          {
+            "name": "color",
+            "descript": "指定矩形的颜色号",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 画一个填充扇形\n     @param x 扇形中心的 x 坐标\n     @param y 扇形中心的 y 坐标\n     @param width 扇形所在椭圆的宽度\n     @param height 扇形所在椭圆的高度\n     @param start 扇形开始的角度，范围为 0-360\n     @param end 扇形结束的角度，范围为 0-360\n     @param color 指定矩形的颜色号\n     @param style 指定扇形的样式，允许的值有 gd.ARC, gd.CHORD, gd.NOFILL, gd.EDGED 及其组合\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "filledArc",
+      "type": null,
+      "params": [
+        {
+          "type": "Integer",
+          "name": "x",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "y",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "width",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "height",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "start",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "end",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "color",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "style",
+          "default": {
+            "const": [
+              "gd",
+              "ARC"
+            ]
+          }
+        }
+      ],
+      "doc": {
+        "descript": "画一个填充扇形",
+        "detail": [],
+        "params": [
+          {
+            "name": "x",
+            "descript": "扇形中心的 x 坐标",
+            "detail": []
+          },
+          {
+            "name": "y",
+            "descript": "扇形中心的 y 坐标",
+            "detail": []
+          },
+          {
+            "name": "width",
+            "descript": "扇形所在椭圆的宽度",
+            "detail": []
+          },
+          {
+            "name": "height",
+            "descript": "扇形所在椭圆的高度",
+            "detail": []
+          },
+          {
+            "name": "start",
+            "descript": "扇形开始的角度，范围为 0-360",
+            "detail": []
+          },
+          {
+            "name": "end",
+            "descript": "扇形结束的角度，范围为 0-360",
+            "detail": []
+          },
+          {
+            "name": "color",
+            "descript": "指定矩形的颜色号",
+            "detail": []
+          },
+          {
+            "name": "style",
+            "descript": "指定扇形的样式，允许的值有 gd.ARC, gd.CHORD, gd.NOFILL, gd.EDGED 及其组合",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 从指定的点开始填充封闭区域\n     @param x 开始填充的 x 坐标\n     @param y 开始填充的 y 坐标\n     @param color 指定填充的颜色号\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "fill",
+      "type": null,
+      "params": [
+        {
+          "type": "Integer",
+          "name": "x",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "y",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "color",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "从指定的点开始填充封闭区域",
+        "detail": [],
+        "params": [
+          {
+            "name": "x",
+            "descript": "开始填充的 x 坐标",
+            "detail": []
+          },
+          {
+            "name": "y",
+            "descript": "开始填充的 y 坐标",
+            "detail": []
+          },
+          {
+            "name": "color",
+            "descript": "指定填充的颜色号",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 从指定的点开始在指定颜色的边框内填充封闭区域\n     @param x 开始填充的 x 坐标\n     @param y 开始填充的 y 坐标\n     @param borderColor 指定边框的颜色号\n     @param color 指定填充的颜色号\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "fillToBorder",
+      "type": null,
+      "params": [
+        {
+          "type": "Integer",
+          "name": "x",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "y",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "borderColor",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "color",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "从指定的点开始在指定颜色的边框内填充封闭区域",
+        "detail": [],
+        "params": [
+          {
+            "name": "x",
+            "descript": "开始填充的 x 坐标",
+            "detail": []
+          },
+          {
+            "name": "y",
+            "descript": "开始填充的 y 坐标",
+            "detail": []
+          },
+          {
+            "name": "borderColor",
+            "descript": "指定边框的颜色号",
+            "detail": []
+          },
+          {
+            "name": "color",
+            "descript": "指定填充的颜色号",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 替换图像中指定的颜色为新颜色\n     @param src 指定要替换的颜色\n     @param dst 指定新颜色\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "colorReplace",
+      "type": null,
+      "params": [
+        {
+          "type": "Integer",
+          "name": "src",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "dst",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "替换图像中指定的颜色为新颜色",
+        "detail": [],
+        "params": [
+          {
+            "name": "src",
+            "descript": "指定要替换的颜色",
+            "detail": []
+          },
+          {
+            "name": "dst",
+            "descript": "指定新颜色",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 复制当前图像为一个新图像\n     @return 返回复制的新图像对象\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "clone",
+      "type": "Image",
+      "params": null,
+      "doc": {
+        "descript": "复制当前图像为一个新图像",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "返回复制的新图像对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 根据图像拉伸生成一个新尺寸的图像\n     @param width 指定拉伸的宽度\n     @param height 指定拉伸的高度\n     @return 返回新图像对象\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "resample",
+      "type": "Image",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "width",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "height",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "根据图像拉伸生成一个新尺寸的图像",
+        "detail": [],
+        "params": [
+          {
+            "name": "width",
+            "descript": "指定拉伸的宽度",
+            "detail": []
+          },
+          {
+            "name": "height",
+            "descript": "指定拉伸的高度",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回新图像对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 剪切图像的一部分为一个新的图像\n     @param x 剪切窗口的左上 x 坐标\n     @param y 剪切窗口的左上 y 坐标\n     @param width 剪切窗口的宽度\n     @param height 剪切窗口的高度\n     @return 返回剪切出的图像\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "crop",
+      "type": "Image",
+      "params": [
+        {
+          "type": "Integer",
+          "name": "x",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "y",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "width",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "height",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "剪切图像的一部分为一个新的图像",
+        "detail": [],
+        "params": [
+          {
+            "name": "x",
+            "descript": "剪切窗口的左上 x 坐标",
+            "detail": []
+          },
+          {
+            "name": "y",
+            "descript": "剪切窗口的左上 y 坐标",
+            "detail": []
+          },
+          {
+            "name": "width",
+            "descript": "剪切窗口的宽度",
+            "detail": []
+          },
+          {
+            "name": "height",
+            "descript": "剪切窗口的高度",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回剪切出的图像",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 镜像当前图像\n     @param dir 镜像方向，允许值为 gd.BOTH,gd.HORIZONTAL, gd.VERTICAL, 缺省为 gd.HORIZONTAL\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "flip",
+      "type": null,
+      "params": [
+        {
+          "type": "Integer",
+          "name": "dir",
+          "default": {
+            "const": [
+              "gd",
+              "HORIZONTAL"
+            ]
+          }
+        }
+      ],
+      "doc": {
+        "descript": "镜像当前图像",
+        "detail": [],
+        "params": [
+          {
+            "name": "dir",
+            "descript": "镜像方向，允许值为 gd.BOTH,gd.HORIZONTAL, gd.VERTICAL, 缺省为 gd.HORIZONTAL",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 旋转当前图像\n     @param dir 旋转方向，允许值为 gd.LEFT, gd.RIGHT\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "rotate",
+      "type": null,
+      "params": [
+        {
+          "type": "Integer",
+          "name": "dir",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "旋转当前图像",
+        "detail": [],
+        "params": [
+          {
+            "name": "dir",
+            "descript": "旋转方向，允许值为 gd.LEFT, gd.RIGHT",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 转换当前图像类型\n     @param color 指定图像类型，允许值为 gd.TRUECOLOR 或 gd.PALETTE\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "convert",
+      "type": null,
+      "params": [
+        {
+          "type": "Integer",
+          "name": "color",
+          "default": {
+            "const": [
+              "gd",
+              "TRUECOLOR"
+            ]
+          }
+        }
+      ],
+      "doc": {
+        "descript": "转换当前图像类型",
+        "detail": [],
+        "params": [
+          {
+            "name": "color",
+            "descript": "指定图像类型，允许值为 gd.TRUECOLOR 或 gd.PALETTE",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 从一个图像中复制一个区域到指定的位置\n     @param source 源图像对象\n     @param dstX 指定复制目标的 x 坐标\n     @param dstY 指定复制目标的 y 坐标\n     @param srcX 指定复制源左上角的 x 坐标\n     @param srcY 指定复制源左上角的 y 坐标\n     @param width 指定复制的宽度\n     @param height 指定复制的高度\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "copy",
+      "type": null,
+      "params": [
+        {
+          "type": "Image",
+          "name": "source",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "dstX",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "dstY",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "srcX",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "srcY",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "width",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "height",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "从一个图像中复制一个区域到指定的位置",
+        "detail": [],
+        "params": [
+          {
+            "name": "source",
+            "descript": "源图像对象",
+            "detail": []
+          },
+          {
+            "name": "dstX",
+            "descript": "指定复制目标的 x 坐标",
+            "detail": []
+          },
+          {
+            "name": "dstY",
+            "descript": "指定复制目标的 y 坐标",
+            "detail": []
+          },
+          {
+            "name": "srcX",
+            "descript": "指定复制源左上角的 x 坐标",
+            "detail": []
+          },
+          {
+            "name": "srcY",
+            "descript": "指定复制源左上角的 y 坐标",
+            "detail": []
+          },
+          {
+            "name": "width",
+            "descript": "指定复制的宽度",
+            "detail": []
+          },
+          {
+            "name": "height",
+            "descript": "指定复制的高度",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 从一个图像中复制一个区域覆盖到指定的位置\n     @param source 源图像对象\n     @param dstX 指定复制目标的 x 坐标\n     @param dstY 指定复制目标的 y 坐标\n     @param srcX 指定复制源左上角的 x 坐标\n     @param srcY 指定复制源左上角的 y 坐标\n     @param width 指定复制的宽度\n     @param height 指定复制的高度\n     @param percent 指定覆盖的透明度\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "copyMerge",
+      "type": null,
+      "params": [
+        {
+          "type": "Image",
+          "name": "source",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "dstX",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "dstY",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "srcX",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "srcY",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "width",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "height",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "percent",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "从一个图像中复制一个区域覆盖到指定的位置",
+        "detail": [],
+        "params": [
+          {
+            "name": "source",
+            "descript": "源图像对象",
+            "detail": []
+          },
+          {
+            "name": "dstX",
+            "descript": "指定复制目标的 x 坐标",
+            "detail": []
+          },
+          {
+            "name": "dstY",
+            "descript": "指定复制目标的 y 坐标",
+            "detail": []
+          },
+          {
+            "name": "srcX",
+            "descript": "指定复制源左上角的 x 坐标",
+            "detail": []
+          },
+          {
+            "name": "srcY",
+            "descript": "指定复制源左上角的 y 坐标",
+            "detail": []
+          },
+          {
+            "name": "width",
+            "descript": "指定复制的宽度",
+            "detail": []
+          },
+          {
+            "name": "height",
+            "descript": "指定复制的高度",
+            "detail": []
+          },
+          {
+            "name": "percent",
+            "descript": "指定覆盖的透明度",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 从一个图像中复制一个区域的灰度覆盖到指定的位置\n     @param source 源图像对象\n     @param dstX 指定复制目标的 x 坐标\n     @param dstY 指定复制目标的 y 坐标\n     @param srcX 指定复制源左上角的 x 坐标\n     @param srcY 指定复制源左上角的 y 坐标\n     @param width 指定复制的宽度\n     @param height 指定复制的高度\n     @param percent 指定覆盖的透明度\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "copyMergeGray",
+      "type": null,
+      "params": [
+        {
+          "type": "Image",
+          "name": "source",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "dstX",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "dstY",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "srcX",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "srcY",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "width",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "height",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "percent",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "从一个图像中复制一个区域的灰度覆盖到指定的位置",
+        "detail": [],
+        "params": [
+          {
+            "name": "source",
+            "descript": "源图像对象",
+            "detail": []
+          },
+          {
+            "name": "dstX",
+            "descript": "指定复制目标的 x 坐标",
+            "detail": []
+          },
+          {
+            "name": "dstY",
+            "descript": "指定复制目标的 y 坐标",
+            "detail": []
+          },
+          {
+            "name": "srcX",
+            "descript": "指定复制源左上角的 x 坐标",
+            "detail": []
+          },
+          {
+            "name": "srcY",
+            "descript": "指定复制源左上角的 y 坐标",
+            "detail": []
+          },
+          {
+            "name": "width",
+            "descript": "指定复制的宽度",
+            "detail": []
+          },
+          {
+            "name": "height",
+            "descript": "指定复制的高度",
+            "detail": []
+          },
+          {
+            "name": "percent",
+            "descript": "指定覆盖的透明度",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 将一个图像中的一个区域拉伸后复制到指定的位置\n     @param source 源图像对象\n     @param dstX 指定复制目标的 x 坐标\n     @param dstY 指定复制目标的 y 坐标\n     @param srcX 指定复制源左上角的 x 坐标\n     @param srcY 指定复制源左上角的 y 坐标\n     @param dstW 指定复制的拉伸宽度\n     @param dstH 指定复制的拉伸高度\n     @param srcW 指定复制的源宽度\n     @param srcH 指定复制的源高度\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "copyResized",
+      "type": null,
+      "params": [
+        {
+          "type": "Image",
+          "name": "source",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "dstX",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "dstY",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "srcX",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "srcY",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "dstW",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "dstH",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "srcW",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "srcH",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "将一个图像中的一个区域拉伸后复制到指定的位置",
+        "detail": [],
+        "params": [
+          {
+            "name": "source",
+            "descript": "源图像对象",
+            "detail": []
+          },
+          {
+            "name": "dstX",
+            "descript": "指定复制目标的 x 坐标",
+            "detail": []
+          },
+          {
+            "name": "dstY",
+            "descript": "指定复制目标的 y 坐标",
+            "detail": []
+          },
+          {
+            "name": "srcX",
+            "descript": "指定复制源左上角的 x 坐标",
+            "detail": []
+          },
+          {
+            "name": "srcY",
+            "descript": "指定复制源左上角的 y 坐标",
+            "detail": []
+          },
+          {
+            "name": "dstW",
+            "descript": "指定复制的拉伸宽度",
+            "detail": []
+          },
+          {
+            "name": "dstH",
+            "descript": "指定复制的拉伸高度",
+            "detail": []
+          },
+          {
+            "name": "srcW",
+            "descript": "指定复制的源宽度",
+            "detail": []
+          },
+          {
+            "name": "srcH",
+            "descript": "指定复制的源高度",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 将一个图像中的一个区域拉伸后复制到指定的位置，不同与 copyResized，此方法拉伸时会对图像进行抖动\n     @param source 源图像对象\n     @param dstX 指定复制目标的 x 坐标\n     @param dstY 指定复制目标的 y 坐标\n     @param srcX 指定复制源左上角的 x 坐标\n     @param srcY 指定复制源左上角的 y 坐标\n     @param dstW 指定复制的拉伸宽度\n     @param dstH 指定复制的拉伸高度\n     @param srcW 指定复制的源宽度\n     @param srcH 指定复制的源高度\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "copyResampled",
+      "type": null,
+      "params": [
+        {
+          "type": "Image",
+          "name": "source",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "dstX",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "dstY",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "srcX",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "srcY",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "dstW",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "dstH",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "srcW",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "srcH",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "将一个图像中的一个区域拉伸后复制到指定的位置，不同与 copyResized，此方法拉伸时会对图像进行抖动",
+        "detail": [],
+        "params": [
+          {
+            "name": "source",
+            "descript": "源图像对象",
+            "detail": []
+          },
+          {
+            "name": "dstX",
+            "descript": "指定复制目标的 x 坐标",
+            "detail": []
+          },
+          {
+            "name": "dstY",
+            "descript": "指定复制目标的 y 坐标",
+            "detail": []
+          },
+          {
+            "name": "srcX",
+            "descript": "指定复制源左上角的 x 坐标",
+            "detail": []
+          },
+          {
+            "name": "srcY",
+            "descript": "指定复制源左上角的 y 坐标",
+            "detail": []
+          },
+          {
+            "name": "dstW",
+            "descript": "指定复制的拉伸宽度",
+            "detail": []
+          },
+          {
+            "name": "dstH",
+            "descript": "指定复制的拉伸高度",
+            "detail": []
+          },
+          {
+            "name": "srcW",
+            "descript": "指定复制的源宽度",
+            "detail": []
+          },
+          {
+            "name": "srcH",
+            "descript": "指定复制的源高度",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 将一个图像中的一个区域旋转后复制到指定的位置\n     @param source 源图像对象\n     @param dstX 指定复制目标的 x 坐标\n     @param dstY 指定复制目标的 y 坐标\n     @param srcX 指定复制源左上角的 x 坐标\n     @param srcY 指定复制源左上角的 y 坐标\n     @param width 指定复制的宽度\n     @param height 指定复制的高度\n     @param angle 指定旋转的角度\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "copyRotated",
+      "type": null,
+      "params": [
+        {
+          "type": "Image",
+          "name": "source",
+          "default": null
+        },
+        {
+          "type": "Number",
+          "name": "dstX",
+          "default": null
+        },
+        {
+          "type": "Number",
+          "name": "dstY",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "srcX",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "srcY",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "width",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "height",
+          "default": null
+        },
+        {
+          "type": "Number",
+          "name": "angle",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "将一个图像中的一个区域旋转后复制到指定的位置",
+        "detail": [],
+        "params": [
+          {
+            "name": "source",
+            "descript": "源图像对象",
+            "detail": []
+          },
+          {
+            "name": "dstX",
+            "descript": "指定复制目标的 x 坐标",
+            "detail": []
+          },
+          {
+            "name": "dstY",
+            "descript": "指定复制目标的 y 坐标",
+            "detail": []
+          },
+          {
+            "name": "srcX",
+            "descript": "指定复制源左上角的 x 坐标",
+            "detail": []
+          },
+          {
+            "name": "srcY",
+            "descript": "指定复制源左上角的 y 坐标",
+            "detail": []
+          },
+          {
+            "name": "width",
+            "descript": "指定复制的宽度",
+            "detail": []
+          },
+          {
+            "name": "height",
+            "descript": "指定复制的高度",
+            "detail": []
+          },
+          {
+            "name": "angle",
+            "descript": "指定旋转的角度",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 把过滤器 filterType应用到图像上，根据过滤器类型传入所需参数\n\n     参数 filterType 可以为以下数值：\n     - MEAN_REMOVAL,    用平均移除法来达到轮廓效果\n     - EDGEDETECT,      用边缘检测来突出图像的边缘\n     - EMBOSS,          使图像浮雕化\n     - SELECTIVE_BLUR,  模糊图像\n     - GAUSSIAN_BLUR,   用高斯算法模糊图像\n     - NEGATE,          将图像中所有颜色反转\n     - GRAYSCALE,       将图像转换为灰度图\n     - SMOOTH,          使图像更柔滑，用arg1设定柔滑级别\n     - BRIGHTNESS,      改变图像的亮度，用arg1设定亮度级别，取值范围是-255~255\n     - CONTRAST,        改变图像的对比度，用arg1设定对比度级别，取值范围是0~100\n     - COLORIZE,        改变图像的色调，用arg1、arg2、arg3分别指定red、blue、green分值，每种颜色范围是0~255，arg4为透明度，取值返回是0~127\n     @param filterType 过滤器类型\n     @param arg1 过滤器所需参数: SMOOTH 的平滑级别、BRIGHTNESS 的亮度级别、CONTRAST 的对比度级别、COLORIZE 的 red 分值\n     @param arg2 过滤器所需参数: COLORIZE 的 green 分值\n     @param arg3 过滤器所需参数: COLORIZE 的 blue 分值\n     @param arg4 过滤器所需参数: COLORIZE 的透明度 alpha 分值\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "filter",
+      "type": null,
+      "params": [
+        {
+          "type": "Integer",
+          "name": "filterType",
+          "default": null
+        },
+        {
+          "type": "Number",
+          "name": "arg1",
+          "default": {
+            "value": "0"
+          }
+        },
+        {
+          "type": "Number",
+          "name": "arg2",
+          "default": {
+            "value": "0"
+          }
+        },
+        {
+          "type": "Number",
+          "name": "arg3",
+          "default": {
+            "value": "0"
+          }
+        },
+        {
+          "type": "Number",
+          "name": "arg4",
+          "default": {
+            "value": "0"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "把过滤器 filterType应用到图像上，根据过滤器类型传入所需参数",
+        "detail": [
+          "参数 filterType 可以为以下数值：",
+          "- MEAN_REMOVAL,    用平均移除法来达到轮廓效果",
+          "- EDGEDETECT,      用边缘检测来突出图像的边缘",
+          "- EMBOSS,          使图像浮雕化",
+          "- SELECTIVE_BLUR,  模糊图像",
+          "- GAUSSIAN_BLUR,   用高斯算法模糊图像",
+          "- NEGATE,          将图像中所有颜色反转",
+          "- GRAYSCALE,       将图像转换为灰度图",
+          "- SMOOTH,          使图像更柔滑，用arg1设定柔滑级别",
+          "- BRIGHTNESS,      改变图像的亮度，用arg1设定亮度级别，取值范围是-255~255",
+          "- CONTRAST,        改变图像的对比度，用arg1设定对比度级别，取值范围是0~100",
+          "- COLORIZE,        改变图像的色调，用arg1、arg2、arg3分别指定red、blue、green分值，每种颜色范围是0~255，arg4为透明度，取值返回是0~127"
+        ],
+        "params": [
+          {
+            "name": "filterType",
+            "descript": "过滤器类型",
+            "detail": []
+          },
+          {
+            "name": "arg1",
+            "descript": "过滤器所需参数: SMOOTH 的平滑级别、BRIGHTNESS 的亮度级别、CONTRAST 的对比度级别、COLORIZE 的 red 分值",
+            "detail": []
+          },
+          {
+            "name": "arg2",
+            "descript": "过滤器所需参数: COLORIZE 的 green 分值",
+            "detail": []
+          },
+          {
+            "name": "arg3",
+            "descript": "过滤器所需参数: COLORIZE 的 blue 分值",
+            "detail": []
+          },
+          {
+            "name": "arg4",
+            "descript": "过滤器所需参数: COLORIZE 的透明度 alpha 分值",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 根据给定的矩阵，对当前图像进行仿射\n\n     参数 affine 是一个数组：\n     ```JavaScript\n        affine = [ a0, a1, b0, b1, a2, b2 ];\n        x' = a0x + a1y + a2;\n        y' = b0x + b1y + b2;\n     ```\n     @param affine 仿射矩阵，由  6 个 double 类型的数字组成\n     @param x 可选剪切区域的原点 x 坐标\n     @param y 可选剪切区域的原点 y 坐标\n     @param width 可选剪切区域的的宽度\n     @param height 可选剪切区域的的高度\n     @return 返回仿射后的图像\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "affine",
+      "type": "Image",
+      "params": [
+        {
+          "type": "Array",
+          "name": "affine",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "x",
+          "default": {
+            "value": "-1"
+          }
+        },
+        {
+          "type": "Integer",
+          "name": "y",
+          "default": {
+            "value": "-1"
+          }
+        },
+        {
+          "type": "Integer",
+          "name": "width",
+          "default": {
+            "value": "-1"
+          }
+        },
+        {
+          "type": "Integer",
+          "name": "height",
+          "default": {
+            "value": "-1"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "根据给定的矩阵，对当前图像进行仿射",
+        "detail": [
+          "参数 affine 是一个数组：",
+          "```JavaScript",
+          "   affine = [ a0, a1, b0, b1, a2, b2 ];",
+          "   x' = a0x + a1y + a2;",
+          "   y' = b0x + b1y + b2;",
+          "```"
+        ],
+        "params": [
+          {
+            "name": "affine",
+            "descript": "仿射矩阵，由  6 个 double 类型的数字组成",
+            "detail": []
+          },
+          {
+            "name": "x",
+            "descript": "可选剪切区域的原点 x 坐标",
+            "detail": []
+          },
+          {
+            "name": "y",
+            "descript": "可选剪切区域的原点 y 坐标",
+            "detail": []
+          },
+          {
+            "name": "width",
+            "descript": "可选剪切区域的的宽度",
+            "detail": []
+          },
+          {
+            "name": "height",
+            "descript": "可选剪切区域的的高度",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回仿射后的图像",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 对当前图像进行高斯模糊处理\n     @param radius 模糊半径\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": "async",
+      "name": "gaussianBlur",
+      "type": null,
+      "params": [
+        {
+          "type": "Integer",
+          "name": "radius",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "对当前图像进行高斯模糊处理",
+        "detail": [],
+        "params": [
+          {
+            "name": "radius",
+            "descript": "模糊半径",
+            "detail": []
+          }
+        ]
+      }
+    }
+  ]
+}

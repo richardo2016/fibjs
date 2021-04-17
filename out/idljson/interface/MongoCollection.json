@@ -1,0 +1,623 @@
+{
+  "declare": {
+    "comments": "! @brief mongodb 数据库数据集对象\n\n 使用 MongoDB.getCollection 创建：\n ```JavaScript\n var col1 = mdb.getCollection('test');\n var col = mdb.test;\n ```\n ",
+    "type": "interface",
+    "name": "MongoCollection",
+    "extend": "object",
+    "doc": {
+      "descript": "mongodb 数据库数据集对象",
+      "detail": [
+        "使用 MongoDB.getCollection 创建：",
+        "```JavaScript",
+        "var col1 = mdb.getCollection('test');",
+        "var col = mdb.test;",
+        "```"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "method",
+      "comments": "! @brief 根据给定的查询条件和返回字段设定，建立游标对象\n    @param query 指定查询条件的对象\n    @param projection 指定返回字段的对象\n    @return 返回游标对象\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "find",
+      "type": "MongoCursor",
+      "params": [
+        {
+          "type": "Object",
+          "name": "query",
+          "default": {
+            "value": "v8::Object::New(isolate)"
+          }
+        },
+        {
+          "type": "Object",
+          "name": "projection",
+          "default": {
+            "value": "v8::Object::New(isolate)"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "根据给定的查询条件和返回字段设定，建立游标对象",
+        "detail": [],
+        "params": [
+          {
+            "name": "query",
+            "descript": "指定查询条件的对象",
+            "detail": []
+          },
+          {
+            "name": "projection",
+            "descript": "指定返回字段的对象",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回游标对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 根据给定的查询条件和返回字段设定，查询一条结果\n    @param query 指定查询条件的对象\n    @param projection 指定返回字段的对象\n    @return 返回第一条结果\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "findOne",
+      "type": "Object",
+      "params": [
+        {
+          "type": "Object",
+          "name": "query",
+          "default": {
+            "value": "v8::Object::New(isolate)"
+          }
+        },
+        {
+          "type": "Object",
+          "name": "projection",
+          "default": {
+            "value": "v8::Object::New(isolate)"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "根据给定的查询条件和返回字段设定，查询一条结果",
+        "detail": [],
+        "params": [
+          {
+            "name": "query",
+            "descript": "指定查询条件的对象",
+            "detail": []
+          },
+          {
+            "name": "projection",
+            "descript": "指定返回字段的对象",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回第一条结果",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查询并修改\n    @param query 指定查询条件，修改数据\n    @return 返回修改前的结果及其他信息\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "findAndModify",
+      "type": "Object",
+      "params": [
+        {
+          "type": "Object",
+          "name": "query",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "查询并修改",
+        "detail": [],
+        "params": [
+          {
+            "name": "query",
+            "descript": "指定查询条件，修改数据",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回修改前的结果及其他信息",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 插入一组数据\n    @param documents 指定要插入的数据数组\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "insert",
+      "type": null,
+      "params": [
+        {
+          "type": "Array",
+          "name": "documents",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "插入一组数据",
+        "detail": [],
+        "params": [
+          {
+            "name": "documents",
+            "descript": "指定要插入的数据数组",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 插入一条数据\n    @param document 指定要插入的数据\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "insert",
+      "type": null,
+      "params": [
+        {
+          "type": "Object",
+          "name": "document",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "插入一条数据",
+        "detail": [],
+        "params": [
+          {
+            "name": "document",
+            "descript": "指定要插入的数据",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 保存一条数据，若数据包含 _id 字段，则为更新，否则为插入\n    @param document 指定要保存的数据\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "save",
+      "type": null,
+      "params": [
+        {
+          "type": "Object",
+          "name": "document",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "保存一条数据，若数据包含 _id 字段，则为更新，否则为插入",
+        "detail": [],
+        "params": [
+          {
+            "name": "document",
+            "descript": "指定要保存的数据",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 根据给定的查询条件更新数据\n    @param query 指定查询条件的对象\n    @param document 指定要更新的数据\n    @param upsert 数据不存在时，插入一条新数据，缺省为 false，不插入\n    @param multi 当符合条件的数据多于一条时，更新所有数据，缺省为 false，只更新第一条\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "update",
+      "type": null,
+      "params": [
+        {
+          "type": "Object",
+          "name": "query",
+          "default": null
+        },
+        {
+          "type": "Object",
+          "name": "document",
+          "default": null
+        },
+        {
+          "type": "Boolean",
+          "name": "upsert",
+          "default": {
+            "value": "false"
+          }
+        },
+        {
+          "type": "Boolean",
+          "name": "multi",
+          "default": {
+            "value": "false"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "根据给定的查询条件更新数据",
+        "detail": [],
+        "params": [
+          {
+            "name": "query",
+            "descript": "指定查询条件的对象",
+            "detail": []
+          },
+          {
+            "name": "document",
+            "descript": "指定要更新的数据",
+            "detail": []
+          },
+          {
+            "name": "upsert",
+            "descript": "数据不存在时，插入一条新数据，缺省为 false，不插入",
+            "detail": []
+          },
+          {
+            "name": "multi",
+            "descript": "当符合条件的数据多于一条时，更新所有数据，缺省为 false，只更新第一条",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 根据给定的查询条件更新数据\n    @param query 指定查询条件的对象\n    @param document 指定要更新的数据\n    @param options 以对象字段传递的 upsert 和 multi 选项\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "update",
+      "type": null,
+      "params": [
+        {
+          "type": "Object",
+          "name": "query",
+          "default": null
+        },
+        {
+          "type": "Object",
+          "name": "document",
+          "default": null
+        },
+        {
+          "type": "Object",
+          "name": "options",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "根据给定的查询条件更新数据",
+        "detail": [],
+        "params": [
+          {
+            "name": "query",
+            "descript": "指定查询条件的对象",
+            "detail": []
+          },
+          {
+            "name": "document",
+            "descript": "指定要更新的数据",
+            "detail": []
+          },
+          {
+            "name": "options",
+            "descript": "以对象字段传递的 upsert 和 multi 选项",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 根据给定的查询条件删除数据\n    @param query 指定查询条件的对象\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "remove",
+      "type": null,
+      "params": [
+        {
+          "type": "Object",
+          "name": "query",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "根据给定的查询条件删除数据",
+        "detail": [],
+        "params": [
+          {
+            "name": "query",
+            "descript": "指定查询条件的对象",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 执行数据库命令\n    @param cmd 给定命令对象\n    @return 返回命令返回结果\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "runCommand",
+      "type": "Object",
+      "params": [
+        {
+          "type": "Object",
+          "name": "cmd",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "执行数据库命令",
+        "detail": [],
+        "params": [
+          {
+            "name": "cmd",
+            "descript": "给定命令对象",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回命令返回结果",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 执行数据库命令\n    @param cmd 给定命令名称\n    @param arg 给定命令参数选项\n    @return 返回命令返回结果\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "runCommand",
+      "type": "Object",
+      "params": [
+        {
+          "type": "String",
+          "name": "cmd",
+          "default": null
+        },
+        {
+          "type": "Object",
+          "name": "arg",
+          "default": {
+            "value": "v8::Object::New(isolate)"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "执行数据库命令",
+        "detail": [],
+        "params": [
+          {
+            "name": "cmd",
+            "descript": "给定命令名称",
+            "detail": []
+          },
+          {
+            "name": "arg",
+            "descript": "给定命令参数选项",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回命令返回结果",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 删除当前集合 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "drop",
+      "type": null,
+      "params": null,
+      "doc": {
+        "descript": "删除当前集合",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 在当前集合上创建索引\n    @param keys 给定索引字段、顺序和方向\n    @param options 给定索引的选项，唯一索引等\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "ensureIndex",
+      "type": null,
+      "params": [
+        {
+          "type": "Object",
+          "name": "keys",
+          "default": null
+        },
+        {
+          "type": "Object",
+          "name": "options",
+          "default": {
+            "value": "v8::Object::New(isolate)"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "在当前集合上创建索引",
+        "detail": [],
+        "params": [
+          {
+            "name": "keys",
+            "descript": "给定索引字段、顺序和方向",
+            "detail": []
+          },
+          {
+            "name": "options",
+            "descript": "给定索引的选项，唯一索引等",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 重建当前集合的索引\n    @return 返回命令执行结果\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "reIndex",
+      "type": "Object",
+      "params": null,
+      "doc": {
+        "descript": "重建当前集合的索引",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "返回命令执行结果",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 删除当前集合指定名称的索引\n    @param name 给定要删除的索引名称\n    @return 返回命令执行结果\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "dropIndex",
+      "type": "Object",
+      "params": [
+        {
+          "type": "String",
+          "name": "name",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "删除当前集合指定名称的索引",
+        "detail": [],
+        "params": [
+          {
+            "name": "name",
+            "descript": "给定要删除的索引名称",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回命令执行结果",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 删除当前集合全部索引\n    @return 返回命令执行结果\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "dropIndexes",
+      "type": "Object",
+      "params": null,
+      "doc": {
+        "descript": "删除当前集合全部索引",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "返回命令执行结果",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查询当前集合全部索引\n    @return 返回包含索引的结果集\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "getIndexes",
+      "type": "Array",
+      "params": null,
+      "doc": {
+        "descript": "查询当前集合全部索引",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "返回包含索引的结果集",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 获取当前集合子命名空间的集合对象\n    @param name 子命名空间名称\n    @return 返回新集合对象\n   ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "getCollection",
+      "type": "MongoCollection",
+      "params": [
+        {
+          "type": "String",
+          "name": "name",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "获取当前集合子命名空间的集合对象",
+        "detail": [],
+        "params": [
+          {
+            "name": "name",
+            "descript": "子命名空间名称",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回新集合对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "operator",
+      "comments": "! @brief 以属性方式快速获取当前集合子命名空间的集合对象\n    @return 返回新集合对象\n   ",
+      "deprecated": null,
+      "readonly": "readonly",
+      "name": "[String]",
+      "type": "MongoCollection",
+      "index": "String",
+      "doc": {
+        "descript": "以属性方式快速获取当前集合子命名空间的集合对象",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "返回新集合对象",
+          "detail": []
+        }
+      }
+    }
+  ]
+}

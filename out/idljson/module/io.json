@@ -1,0 +1,151 @@
+{
+  "declare": {
+    "comments": "! @brief 输入输出处理模块\n\n 使用方法：\n ```JavaScript\n var io = require('io');\n ```\n ",
+    "type": "module",
+    "name": "io",
+    "extend": "object",
+    "module": true,
+    "doc": {
+      "descript": "输入输出处理模块",
+      "detail": [
+        "使用方法：",
+        "```JavaScript",
+        "var io = require('io');",
+        "```"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "object",
+      "comments": "! @brief 创建一个内存流对象，参见 MemoryStream ",
+      "deprecated": null,
+      "name": "MemoryStream",
+      "type": "MemoryStream",
+      "newable": true,
+      "doc": {
+        "descript": "创建一个内存流对象，参见 MemoryStream",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "object",
+      "comments": "! @brief 创建一个缓存流读取对象，参见 BufferedStream ",
+      "deprecated": null,
+      "name": "BufferedStream",
+      "type": "BufferedStream",
+      "newable": true,
+      "doc": {
+        "descript": "创建一个缓存流读取对象，参见 BufferedStream",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "object",
+      "comments": "! @brief 创建一个 Range 查询流读取对象，参见 RangeStream ",
+      "deprecated": null,
+      "name": "RangeStream",
+      "type": "RangeStream",
+      "newable": true,
+      "doc": {
+        "descript": "创建一个 Range 查询流读取对象，参见 RangeStream",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 复制流数据到目标流中\n     @param from 源流对象\n     @param to 目标流对象\n     @param bytes 复制的字节数\n     @return 返回复制的字节数\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": "async",
+      "name": "copyStream",
+      "type": "Long",
+      "params": [
+        {
+          "type": "Stream",
+          "name": "from",
+          "default": null
+        },
+        {
+          "type": "Stream",
+          "name": "to",
+          "default": null
+        },
+        {
+          "type": "Long",
+          "name": "bytes",
+          "default": {
+            "value": "-1"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "复制流数据到目标流中",
+        "detail": [],
+        "params": [
+          {
+            "name": "from",
+            "descript": "源流对象",
+            "detail": []
+          },
+          {
+            "name": "to",
+            "descript": "目标流对象",
+            "detail": []
+          },
+          {
+            "name": "bytes",
+            "descript": "复制的字节数",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回复制的字节数",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 双向复制流数据，直到流中无数据，或者流被关闭\n     @param stm1 流对象一\n     @param stm2 流对象二\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": "async",
+      "name": "bridge",
+      "type": null,
+      "params": [
+        {
+          "type": "Stream",
+          "name": "stm1",
+          "default": null
+        },
+        {
+          "type": "Stream",
+          "name": "stm2",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "双向复制流数据，直到流中无数据，或者流被关闭",
+        "detail": [],
+        "params": [
+          {
+            "name": "stm1",
+            "descript": "流对象一",
+            "detail": []
+          },
+          {
+            "name": "stm2",
+            "descript": "流对象二",
+            "detail": []
+          }
+        ]
+      }
+    }
+  ],
+  "collect": "File System"
+}

@@ -1,0 +1,93 @@
+{
+  "declare": {
+    "comments": "! @brief 文件系统观察对象\n\n 当调用 `fs.watch(target)` 成功时, 返回该类型对象\n ```JavaScript\n var fs = require(\"fs\");\n var watcher = fs.watch((eventType, filename) => {\n    if (filename) {\n      console.log(filename);\n      // Prints: <Buffer ...>\n    }\n });\n\n watcher.close();\n\n // 带回调地调用\n fs.watch('./tmp', { encoding: 'buffer' }, (eventType, filename) => {\n  if (filename) {\n    console.log(filename);\n    // Prints: <Buffer ...>\n  }\n});\n ```\n",
+    "type": "interface",
+    "name": "FSWatcher",
+    "extend": "EventEmitter",
+    "doc": {
+      "descript": "文件系统观察对象",
+      "detail": [
+        "当调用 `fs.watch(target)` 成功时, 返回该类型对象",
+        "```JavaScript",
+        "var fs = require(\"fs\");",
+        "var watcher = fs.watch((eventType, filename) => {",
+        "   if (filename) {",
+        "     console.log(filename);",
+        "     // Prints: <Buffer ...>",
+        "   }",
+        "});",
+        "",
+        "watcher.close();",
+        "",
+        "// 带回调地调用",
+        "fs.watch('./tmp', { encoding: 'buffer' }, (eventType, filename) => {",
+        " if (filename) {",
+        "   console.log(filename);",
+        "   // Prints: <Buffer ...>",
+        " }",
+        "});",
+        "```"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和绑定\"文件改变\"事件，相当于 on(\"change\", func); ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "onchange",
+      "type": "Function",
+      "doc": {
+        "descript": "查询和绑定\"文件改变\"事件，相当于 on(\"change\", func);",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和绑定\"watcher 关闭\"的事件，相当于 on(\"close\", func); ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "onclose",
+      "type": "Function",
+      "doc": {
+        "descript": "查询和绑定\"watcher 关闭\"的事件，相当于 on(\"close\", func);",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和绑定\"错误发生\"的事件，相当于 on(\"error\", func); ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "onerror",
+      "type": "Function",
+      "doc": {
+        "descript": "查询和绑定\"错误发生\"的事件，相当于 on(\"error\", func);",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 关闭该 Watcher, 不再接收对应的文件变化处理事件 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "close",
+      "type": null,
+      "params": null,
+      "doc": {
+        "descript": "关闭该 Watcher, 不再接收对应的文件变化处理事件",
+        "detail": [],
+        "params": []
+      }
+    }
+  ]
+}

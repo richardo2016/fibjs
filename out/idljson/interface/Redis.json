@@ -1,0 +1,1832 @@
+{
+  "declare": {
+    "comments": "! @brief Redis 数据库客户端对象\n\n 用以创建和管理 Redis 数据库，创建方法：\n ```JavaScript\n var db = require(\"db\");\n var test = new db.openRedis(\"redis-server\");\n ```\n ",
+    "type": "interface",
+    "name": "Redis",
+    "extend": "object",
+    "doc": {
+      "descript": "Redis 数据库客户端对象",
+      "detail": [
+        "用以创建和管理 Redis 数据库，创建方法：",
+        "```JavaScript",
+        "var db = require(\"db\");",
+        "var test = new db.openRedis(\"redis-server\");",
+        "```"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "method",
+      "comments": "! @brief redis 基础命令方法\n     @param cmd 指定发送的命令\n     @param args 指定发送的参数\n     @return 返回服务器返回的结果 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "command",
+      "type": "Value",
+      "params": [
+        {
+          "type": "String",
+          "name": "cmd",
+          "default": null
+        },
+        {
+          "type": "...",
+          "name": "args",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "redis 基础命令方法",
+        "detail": [],
+        "params": [
+          {
+            "name": "cmd",
+            "descript": "指定发送的命令",
+            "detail": []
+          },
+          {
+            "name": "args",
+            "descript": "指定发送的参数",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回服务器返回的结果",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 将字符串值 value 关联到 key，如果 key 已经持有其他值， SET 就覆写旧值，无视类型\n     @param key 指定要关联的 key\n     @param value 指定要关联的数据\n     @param ttl 以毫秒为单位为 key 设置生存时间；如果 ttl 为 0 ，那么不设置生存时间 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "set",
+      "type": null,
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "key",
+          "default": null
+        },
+        {
+          "type": "Buffer",
+          "name": "value",
+          "default": null
+        },
+        {
+          "type": "Long",
+          "name": "ttl",
+          "default": {
+            "value": "0"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "将字符串值 value 关联到 key，如果 key 已经持有其他值， SET 就覆写旧值，无视类型",
+        "detail": [],
+        "params": [
+          {
+            "name": "key",
+            "descript": "指定要关联的 key",
+            "detail": []
+          },
+          {
+            "name": "value",
+            "descript": "指定要关联的数据",
+            "detail": []
+          },
+          {
+            "name": "ttl",
+            "descript": "以毫秒为单位为 key 设置生存时间；如果 ttl 为 0 ，那么不设置生存时间",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 将 key 的值设为 value ，当且仅当 key 不存在。若给定的 key 已经存在，则 SETNX 不做任何动作。\n     @param key 指定要关联的 key\n     @param value 指定要关联的数据\n     @param ttl 以毫秒为单位为 key 设置生存时间；如果 ttl 为 0 ，那么不设置生存时间 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "setNX",
+      "type": null,
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "key",
+          "default": null
+        },
+        {
+          "type": "Buffer",
+          "name": "value",
+          "default": null
+        },
+        {
+          "type": "Long",
+          "name": "ttl",
+          "default": {
+            "value": "0"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "将 key 的值设为 value ，当且仅当 key 不存在。若给定的 key 已经存在，则 SETNX 不做任何动作。",
+        "detail": [],
+        "params": [
+          {
+            "name": "key",
+            "descript": "指定要关联的 key",
+            "detail": []
+          },
+          {
+            "name": "value",
+            "descript": "指定要关联的数据",
+            "detail": []
+          },
+          {
+            "name": "ttl",
+            "descript": "以毫秒为单位为 key 设置生存时间；如果 ttl 为 0 ，那么不设置生存时间",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 将 key 的值设为 value，只在键已经存在时，才对键进行设置操作。\n     @param key 指定要关联的 key\n     @param value 指定要关联的数据\n     @param ttl 以毫秒为单位为 key 设置生存时间；如果 ttl 为 0 ，那么不设置生存时间 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "setXX",
+      "type": null,
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "key",
+          "default": null
+        },
+        {
+          "type": "Buffer",
+          "name": "value",
+          "default": null
+        },
+        {
+          "type": "Long",
+          "name": "ttl",
+          "default": {
+            "value": "0"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "将 key 的值设为 value，只在键已经存在时，才对键进行设置操作。",
+        "detail": [],
+        "params": [
+          {
+            "name": "key",
+            "descript": "指定要关联的 key",
+            "detail": []
+          },
+          {
+            "name": "value",
+            "descript": "指定要关联的数据",
+            "detail": []
+          },
+          {
+            "name": "ttl",
+            "descript": "以毫秒为单位为 key 设置生存时间；如果 ttl 为 0 ，那么不设置生存时间",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 同时设置一个或多个 key-value 对。如果某个给定 key 已经存在，那么 MSET 会用新值覆盖原来的旧值\n     @param kvs 指定要设置的 key/value 对象",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "mset",
+      "type": null,
+      "params": [
+        {
+          "type": "Object",
+          "name": "kvs",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "同时设置一个或多个 key-value 对。如果某个给定 key 已经存在，那么 MSET 会用新值覆盖原来的旧值",
+        "detail": [],
+        "params": [
+          {
+            "name": "kvs",
+            "descript": "指定要设置的 key/value 对象",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 同时设置一个或多个 key-value 对。如果某个给定 key 已经存在，那么 MSET 会用新值覆盖原来的旧值\n     @param kvs 指定要设置的 key/value 列表",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "mset",
+      "type": null,
+      "params": [
+        {
+          "type": "...",
+          "name": "kvs",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "同时设置一个或多个 key-value 对。如果某个给定 key 已经存在，那么 MSET 会用新值覆盖原来的旧值",
+        "detail": [],
+        "params": [
+          {
+            "name": "kvs",
+            "descript": "指定要设置的 key/value 列表",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 同时设置一个或多个 key-value 对，当且仅当所有给定 key 都不存在\n     @param kvs 指定要设置的 key/value 对象",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "msetNX",
+      "type": null,
+      "params": [
+        {
+          "type": "Object",
+          "name": "kvs",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "同时设置一个或多个 key-value 对，当且仅当所有给定 key 都不存在",
+        "detail": [],
+        "params": [
+          {
+            "name": "kvs",
+            "descript": "指定要设置的 key/value 对象",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 同时设置一个或多个 key-value 对，当且仅当所有给定 key 都不存在\n     @param kvs 指定要设置的 key/value 列表",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "msetNX",
+      "type": null,
+      "params": [
+        {
+          "type": "...",
+          "name": "kvs",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "同时设置一个或多个 key-value 对，当且仅当所有给定 key 都不存在",
+        "detail": [],
+        "params": [
+          {
+            "name": "kvs",
+            "descript": "指定要设置的 key/value 列表",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 如果 key 已经存在并且是一个字符串，append 命令将 value 追加到 key 原来的值的末尾。如果 key 不存在，append 就简单地将给定 key 设为 value\n     @param key 指定要追加的 key\n     @param value 指定要追加的数据\n     @return 追加 value 之后， key 中字符串的长度 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "append",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "key",
+          "default": null
+        },
+        {
+          "type": "Buffer",
+          "name": "value",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "如果 key 已经存在并且是一个字符串，append 命令将 value 追加到 key 原来的值的末尾。如果 key 不存在，append 就简单地将给定 key 设为 value",
+        "detail": [],
+        "params": [
+          {
+            "name": "key",
+            "descript": "指定要追加的 key",
+            "detail": []
+          },
+          {
+            "name": "value",
+            "descript": "指定要追加的数据",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "追加 value 之后， key 中字符串的长度",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 用 value 参数覆写给定 key 所储存的字符串值，从偏移量 offset 开始\n     @param key 指定要修改的 key\n     @param offset 指定修改的字节偏移\n     @param value 指定要覆盖的数据\n     @return 被修改之后，字符串的长度 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "setRange",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "key",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "offset",
+          "default": null
+        },
+        {
+          "type": "Buffer",
+          "name": "value",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "用 value 参数覆写给定 key 所储存的字符串值，从偏移量 offset 开始",
+        "detail": [],
+        "params": [
+          {
+            "name": "key",
+            "descript": "指定要修改的 key",
+            "detail": []
+          },
+          {
+            "name": "offset",
+            "descript": "指定修改的字节偏移",
+            "detail": []
+          },
+          {
+            "name": "value",
+            "descript": "指定要覆盖的数据",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "被修改之后，字符串的长度",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 返回 key 中字符串值的子字符串，字符串的截取范围由 start 和 end 两个偏移量决定(包括 start 和 end 在内)\n     @param key 指定要查询的 key\n     @param start 指定查询的起始字节偏移\n     @param end 指定查询的结束字节偏移\n     @return 截取得出的子字符串 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "getRange",
+      "type": "Buffer",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "key",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "start",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "end",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "返回 key 中字符串值的子字符串，字符串的截取范围由 start 和 end 两个偏移量决定(包括 start 和 end 在内)",
+        "detail": [],
+        "params": [
+          {
+            "name": "key",
+            "descript": "指定要查询的 key",
+            "detail": []
+          },
+          {
+            "name": "start",
+            "descript": "指定查询的起始字节偏移",
+            "detail": []
+          },
+          {
+            "name": "end",
+            "descript": "指定查询的结束字节偏移",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "截取得出的子字符串",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 返回 key 所储存的字符串值的长度。当 key 储存的不是字符串值时，返回一个错误\n     @param key 指定要计算的 key\n     @return 字符串值的长度。当 key 不存在时，返回 0 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "strlen",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "key",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "返回 key 所储存的字符串值的长度。当 key 储存的不是字符串值时，返回一个错误",
+        "detail": [],
+        "params": [
+          {
+            "name": "key",
+            "descript": "指定要计算的 key",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "字符串值的长度。当 key 不存在时，返回 0",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 计算给定字符串中，被设置为 1 的比特位的数量\n     @param key 指定要计算的 key\n     @param start 指定要计算的起始字节，可以使用负数值，-1 表示最后一个字节，而 -2 表示倒数第二个字节，以此类推\n     @param end 指定要计算的结束字节，可以使用负数值，-1 表示最后一个字节，而 -2 表示倒数第二个字节，以此类推\n     @return 被设置为 1 的位的数量 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "bitcount",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "key",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "start",
+          "default": {
+            "value": "0"
+          }
+        },
+        {
+          "type": "Integer",
+          "name": "end",
+          "default": {
+            "value": "-1"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "计算给定字符串中，被设置为 1 的比特位的数量",
+        "detail": [],
+        "params": [
+          {
+            "name": "key",
+            "descript": "指定要计算的 key",
+            "detail": []
+          },
+          {
+            "name": "start",
+            "descript": "指定要计算的起始字节，可以使用负数值，-1 表示最后一个字节，而 -2 表示倒数第二个字节，以此类推",
+            "detail": []
+          },
+          {
+            "name": "end",
+            "descript": "指定要计算的结束字节，可以使用负数值，-1 表示最后一个字节，而 -2 表示倒数第二个字节，以此类推",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "被设置为 1 的位的数量",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 返回 key 所关联的字符串值，如果 key 不存在那么返回特殊值 Null\n     @param key 指定要关联的 key\n     @return 当 key 不存在时，返回 Null ，否则，返回 key 的值 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "get",
+      "type": "Buffer",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "key",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "返回 key 所关联的字符串值，如果 key 不存在那么返回特殊值 Null",
+        "detail": [],
+        "params": [
+          {
+            "name": "key",
+            "descript": "指定要关联的 key",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "当 key 不存在时，返回 Null ，否则，返回 key 的值",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 返回所有(一个或多个)给定 key 的值。如果给定的 key 里面，有某个 key 不存在，那么这个 key 返回特殊值 nil 。\n     @param keys 指定要查询的 key 数组\n     @return 一个包含所有给定 key 的值的列表 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "mget",
+      "type": "NArray",
+      "params": [
+        {
+          "type": "Array",
+          "name": "keys",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "返回所有(一个或多个)给定 key 的值。如果给定的 key 里面，有某个 key 不存在，那么这个 key 返回特殊值 nil 。",
+        "detail": [],
+        "params": [
+          {
+            "name": "keys",
+            "descript": "指定要查询的 key 数组",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "一个包含所有给定 key 的值的列表",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 返回所有(一个或多个)给定 key 的值。如果给定的 key 里面，有某个 key 不存在，那么这个 key 返回特殊值 nil 。\n     @param keys 指定要查询的 key 列表\n     @return 一个包含所有给定 key 的值的列表 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "mget",
+      "type": "NArray",
+      "params": [
+        {
+          "type": "...",
+          "name": "keys",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "返回所有(一个或多个)给定 key 的值。如果给定的 key 里面，有某个 key 不存在，那么这个 key 返回特殊值 nil 。",
+        "detail": [],
+        "params": [
+          {
+            "name": "keys",
+            "descript": "指定要查询的 key 列表",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "一个包含所有给定 key 的值的列表",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 将给定 key 的值设为 value ，并返回 key 的旧值(old value)\n     @param key 指定要查询修改的 key\n     @param value 指定修改的数值\n     @return 返回给定 key 的旧值 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "getset",
+      "type": "Buffer",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "key",
+          "default": null
+        },
+        {
+          "type": "Buffer",
+          "name": "value",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "将给定 key 的值设为 value ，并返回 key 的旧值(old value)",
+        "detail": [],
+        "params": [
+          {
+            "name": "key",
+            "descript": "指定要查询修改的 key",
+            "detail": []
+          },
+          {
+            "name": "value",
+            "descript": "指定修改的数值",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回给定 key 的旧值",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 将 key 所储存的值减去减量\n     @param key 指定要修改的 key\n     @param num 指定要减去的数值\n     @return 减去 num 之后，key 的值 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "decr",
+      "type": "Long",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "key",
+          "default": null
+        },
+        {
+          "type": "Long",
+          "name": "num",
+          "default": {
+            "value": "1"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "将 key 所储存的值减去减量",
+        "detail": [],
+        "params": [
+          {
+            "name": "key",
+            "descript": "指定要修改的 key",
+            "detail": []
+          },
+          {
+            "name": "num",
+            "descript": "指定要减去的数值",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "减去 num 之后，key 的值",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 将 key 所储存的值加上增量\n     @param key 指定要修改的 key\n     @param num 指定要加上的数值\n     @return 加上 num 之后，key 的值 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "incr",
+      "type": "Long",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "key",
+          "default": null
+        },
+        {
+          "type": "Long",
+          "name": "num",
+          "default": {
+            "value": "1"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "将 key 所储存的值加上增量",
+        "detail": [],
+        "params": [
+          {
+            "name": "key",
+            "descript": "指定要修改的 key",
+            "detail": []
+          },
+          {
+            "name": "num",
+            "descript": "指定要加上的数值",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "加上 num 之后，key 的值",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 对 key 所储存的字符串值，设置或清除指定偏移量上的位(bit)\n     @param key 指定要修改的 key\n     @param offset 指定修改的位偏移\n     @param value 指定设置或清除的参数，可以是 0 也可以是 1\n     @return 指定偏移量原来储存的位 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "setBit",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "key",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "offset",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "value",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "对 key 所储存的字符串值，设置或清除指定偏移量上的位(bit)",
+        "detail": [],
+        "params": [
+          {
+            "name": "key",
+            "descript": "指定要修改的 key",
+            "detail": []
+          },
+          {
+            "name": "offset",
+            "descript": "指定修改的位偏移",
+            "detail": []
+          },
+          {
+            "name": "value",
+            "descript": "指定设置或清除的参数，可以是 0 也可以是 1",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "指定偏移量原来储存的位",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 对 key 所储存的字符串值，获取指定偏移量上的位(bit)\n     @param key 指定要查询的 key\n     @param offset 指定查询的位偏移\n     @return 字符串值指定偏移量上的位(bit) ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "getBit",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "key",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "offset",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "对 key 所储存的字符串值，获取指定偏移量上的位(bit)",
+        "detail": [],
+        "params": [
+          {
+            "name": "key",
+            "descript": "指定要查询的 key",
+            "detail": []
+          },
+          {
+            "name": "offset",
+            "descript": "指定查询的位偏移",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "字符串值指定偏移量上的位(bit)",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 检查给定 key 是否存在\n     @param key 指定要关联的 key\n     @return 若 key 存在，返回 True，否则返回 False ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "exists",
+      "type": "Boolean",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "key",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "检查给定 key 是否存在",
+        "detail": [],
+        "params": [
+          {
+            "name": "key",
+            "descript": "指定要关联的 key",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "若 key 存在，返回 True，否则返回 False",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 返回 key 所储存的值的类型\n     @param key 指定要查询的 key\n     @return 返回 key 所储存的值的类型，可能的值为 none(key不存在) string(字符串) list(列表) set(集合) zset(有序集) hash(哈希表) ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "type",
+      "type": "String",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "key",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "返回 key 所储存的值的类型",
+        "detail": [],
+        "params": [
+          {
+            "name": "key",
+            "descript": "指定要查询的 key",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回 key 所储存的值的类型，可能的值为 none(key不存在) string(字符串) list(列表) set(集合) zset(有序集) hash(哈希表)",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查找所有符合给定模式 pattern 的 key\n     @param pattern 指定查询模式\n     @return 符合给定模式的 key 列表 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "keys",
+      "type": "NArray",
+      "params": [
+        {
+          "type": "String",
+          "name": "pattern",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "查找所有符合给定模式 pattern 的 key",
+        "detail": [],
+        "params": [
+          {
+            "name": "pattern",
+            "descript": "指定查询模式",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "符合给定模式的 key 列表",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 删除给定的一个或多个 key，不存在的 key 会被忽略\n     @param keys 指定要删除的 key 数组\n     @return 被删除 key 的数量 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "del",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "Array",
+          "name": "keys",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "删除给定的一个或多个 key，不存在的 key 会被忽略",
+        "detail": [],
+        "params": [
+          {
+            "name": "keys",
+            "descript": "指定要删除的 key 数组",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "被删除 key 的数量",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 删除给定的一个或多个 key，不存在的 key 会被忽略\n     @param keys 指定要删除的 key 列表\n     @return 被删除 key 的数量 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "del",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "...",
+          "name": "keys",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "删除给定的一个或多个 key，不存在的 key 会被忽略",
+        "detail": [],
+        "params": [
+          {
+            "name": "keys",
+            "descript": "指定要删除的 key 列表",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "被删除 key 的数量",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 为给定 key 设置生存时间，当 key 过期时，它会被自动删除\n     @param key 指定要设定的 key\n     @param ttl 以毫秒为单位为 key 设置生存时间\n     @return 若 key 存在，返回 True，否则返回 False ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "expire",
+      "type": "Boolean",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "key",
+          "default": null
+        },
+        {
+          "type": "Long",
+          "name": "ttl",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "为给定 key 设置生存时间，当 key 过期时，它会被自动删除",
+        "detail": [],
+        "params": [
+          {
+            "name": "key",
+            "descript": "指定要设定的 key",
+            "detail": []
+          },
+          {
+            "name": "ttl",
+            "descript": "以毫秒为单位为 key 设置生存时间",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "若 key 存在，返回 True，否则返回 False",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 返回给定 key 的剩余生存时间\n     @param key 指定要查询的 key\n     @return 以毫秒为单位，返回 key 的剩余生存时间，当 key 不存在时，返回 -2，当 key 存在但没有设置剩余生存时间时，返回 -1 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "ttl",
+      "type": "Long",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "key",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "返回给定 key 的剩余生存时间",
+        "detail": [],
+        "params": [
+          {
+            "name": "key",
+            "descript": "指定要查询的 key",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "以毫秒为单位，返回 key 的剩余生存时间，当 key 不存在时，返回 -2，当 key 存在但没有设置剩余生存时间时，返回 -1",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 移除给定 key 的生存时间，将这个 key 从『易失的』(带生存时间 key )转换成『持久的』(一个不带生存时间、永不过期的 key)\n     @param key 指定要设定的 key\n     @return 若 key 存在，返回 True，否则返回 False ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "persist",
+      "type": "Boolean",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "key",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "移除给定 key 的生存时间，将这个 key 从『易失的』(带生存时间 key )转换成『持久的』(一个不带生存时间、永不过期的 key)",
+        "detail": [],
+        "params": [
+          {
+            "name": "key",
+            "descript": "指定要设定的 key",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "若 key 存在，返回 True，否则返回 False",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 将 key 改名为 newkey，当 key 和 newkey 相同，或者 key 不存在时，返回一个错误\n     @param key 指定要改名的 key\n     @param newkey 指定要改名的目的 key ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "rename",
+      "type": null,
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "key",
+          "default": null
+        },
+        {
+          "type": "Buffer",
+          "name": "newkey",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "将 key 改名为 newkey，当 key 和 newkey 相同，或者 key 不存在时，返回一个错误",
+        "detail": [],
+        "params": [
+          {
+            "name": "key",
+            "descript": "指定要改名的 key",
+            "detail": []
+          },
+          {
+            "name": "newkey",
+            "descript": "指定要改名的目的 key",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 当且仅当 newkey 不存在时，将 key 改名为 newkey，当 key 不存在时，返回一个错误\n     @param key 指定要改名的 key\n     @param newkey 指定要改名的目的 key\n     @return 修改成功时，返回 True，如果 newkey 已经存在，返回 False ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "renameNX",
+      "type": "Boolean",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "key",
+          "default": null
+        },
+        {
+          "type": "Buffer",
+          "name": "newkey",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "当且仅当 newkey 不存在时，将 key 改名为 newkey，当 key 不存在时，返回一个错误",
+        "detail": [],
+        "params": [
+          {
+            "name": "key",
+            "descript": "指定要改名的 key",
+            "detail": []
+          },
+          {
+            "name": "newkey",
+            "descript": "指定要改名的目的 key",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "修改成功时，返回 True，如果 newkey 已经存在，返回 False",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 订阅给定的一个频道的信息，当消息发生时自动调用 func，func 包含两个参数，依次为 channel 和 message，同一频道同一函数只会回调一次\n     @param channel 指定订阅的频道名称\n     @param func 指定回调函数\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "sub",
+      "type": null,
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "channel",
+          "default": null
+        },
+        {
+          "type": "Function",
+          "name": "func",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "订阅给定的一个频道的信息，当消息发生时自动调用 func，func 包含两个参数，依次为 channel 和 message，同一频道同一函数只会回调一次",
+        "detail": [],
+        "params": [
+          {
+            "name": "channel",
+            "descript": "指定订阅的频道名称",
+            "detail": []
+          },
+          {
+            "name": "func",
+            "descript": "指定回调函数",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 订阅给定的一组频道的信息，当消息发生时自动调用相应的回调函数，同一频道同一函数只会回调一次\n     @param map 指定频道映射关系，对象属性名称将作为频道名称，属性的值将作为回调函数\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "sub",
+      "type": null,
+      "params": [
+        {
+          "type": "Object",
+          "name": "map",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "订阅给定的一组频道的信息，当消息发生时自动调用相应的回调函数，同一频道同一函数只会回调一次",
+        "detail": [],
+        "params": [
+          {
+            "name": "map",
+            "descript": "指定频道映射关系，对象属性名称将作为频道名称，属性的值将作为回调函数",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 退订给定的频道的全部回调\n     @param channel 指定退订的频道名称\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "unsub",
+      "type": null,
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "channel",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "退订给定的频道的全部回调",
+        "detail": [],
+        "params": [
+          {
+            "name": "channel",
+            "descript": "指定退订的频道名称",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 退订给定的频道的指定回调函数\n     @param channel 指定退订的频道名称\n     @param func 指定退订的回调函数\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "unsub",
+      "type": null,
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "channel",
+          "default": null
+        },
+        {
+          "type": "Function",
+          "name": "func",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "退订给定的频道的指定回调函数",
+        "detail": [],
+        "params": [
+          {
+            "name": "channel",
+            "descript": "指定退订的频道名称",
+            "detail": []
+          },
+          {
+            "name": "func",
+            "descript": "指定退订的回调函数",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 退订一组给定的频道的全部回调\n     @param channels 指定退订的频道数组\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "unsub",
+      "type": null,
+      "params": [
+        {
+          "type": "Array",
+          "name": "channels",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "退订一组给定的频道的全部回调",
+        "detail": [],
+        "params": [
+          {
+            "name": "channels",
+            "descript": "指定退订的频道数组",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 退订给定的一组频道的指定回调函数\n     @param map 指定频道映射关系，对象属性名称将作为频道名称，属性的值将作为回调函数\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "unsub",
+      "type": null,
+      "params": [
+        {
+          "type": "Object",
+          "name": "map",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "退订给定的一组频道的指定回调函数",
+        "detail": [],
+        "params": [
+          {
+            "name": "map",
+            "descript": "指定频道映射关系，对象属性名称将作为频道名称，属性的值将作为回调函数",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 按照模板订阅一组频道的信息，当消息发生时自动调用 func，func 包含三个参数，依次为 channel，message 和 pattern，同一模板同一函数只会回调一次\n     @param pattern 指定订阅的频道模板\n     @param func 指定回调函数\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "psub",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "pattern",
+          "default": null
+        },
+        {
+          "type": "Function",
+          "name": "func",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "按照模板订阅一组频道的信息，当消息发生时自动调用 func，func 包含三个参数，依次为 channel，message 和 pattern，同一模板同一函数只会回调一次",
+        "detail": [],
+        "params": [
+          {
+            "name": "pattern",
+            "descript": "指定订阅的频道模板",
+            "detail": []
+          },
+          {
+            "name": "func",
+            "descript": "指定回调函数",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 订阅给定的一组频道模板的信息，当消息发生时自动调用相应的 func，同一频道同一函数只会回调一次\n     @param map 指定频道映射关系，对象属性名称将作为频道模板，属性的值将作为回调函数\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "psub",
+      "type": null,
+      "params": [
+        {
+          "type": "Object",
+          "name": "map",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "订阅给定的一组频道模板的信息，当消息发生时自动调用相应的 func，同一频道同一函数只会回调一次",
+        "detail": [],
+        "params": [
+          {
+            "name": "map",
+            "descript": "指定频道映射关系，对象属性名称将作为频道模板，属性的值将作为回调函数",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 退订给定模板的频道的全部回调\n     @param pattern 指定退订的频道模板\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "unpsub",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "pattern",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "退订给定模板的频道的全部回调",
+        "detail": [],
+        "params": [
+          {
+            "name": "pattern",
+            "descript": "指定退订的频道模板",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 退订给定模板的频道的指定回调函数\n     @param pattern 指定退订的频道模板\n     @param func 指定退订的回调函数\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "unpsub",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "pattern",
+          "default": null
+        },
+        {
+          "type": "Function",
+          "name": "func",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "退订给定模板的频道的指定回调函数",
+        "detail": [],
+        "params": [
+          {
+            "name": "pattern",
+            "descript": "指定退订的频道模板",
+            "detail": []
+          },
+          {
+            "name": "func",
+            "descript": "指定退订的回调函数",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 退订一组给定模板的频道的全部回调\n     @param patterns 指定发布的频道模板数组\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "unpsub",
+      "type": null,
+      "params": [
+        {
+          "type": "Array",
+          "name": "patterns",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "退订一组给定模板的频道的全部回调",
+        "detail": [],
+        "params": [
+          {
+            "name": "patterns",
+            "descript": "指定发布的频道模板数组",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 退订一组模板的频道的指定回调函数\n     @param map 指定频道映射关系，对象属性名称将作为频道模板，属性的值将作为回调函数\n     ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "unpsub",
+      "type": null,
+      "params": [
+        {
+          "type": "Object",
+          "name": "map",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "退订一组模板的频道的指定回调函数",
+        "detail": [],
+        "params": [
+          {
+            "name": "map",
+            "descript": "指定频道映射关系，对象属性名称将作为频道模板，属性的值将作为回调函数",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和设置错误处理函数，当 sub 出现错误或者网络中断时回调，当回调发生后，本对象的一切 sub 都将中止\n     ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "onsuberror",
+      "type": "Function",
+      "doc": {
+        "descript": "查询和设置错误处理函数，当 sub 出现错误或者网络中断时回调，当回调发生后，本对象的一切 sub 都将中止",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 将信息 message 发送到指定的频道 channel\n     @param channel 指定发布的频道\n     @param message 指定发布的消息\n     @return 接收此消息的客户端数量\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "pub",
+      "type": "Integer",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "channel",
+          "default": null
+        },
+        {
+          "type": "Buffer",
+          "name": "message",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "将信息 message 发送到指定的频道 channel",
+        "detail": [],
+        "params": [
+          {
+            "name": "channel",
+            "descript": "指定发布的频道",
+            "detail": []
+          },
+          {
+            "name": "message",
+            "descript": "指定发布的消息",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "接收此消息的客户端数量",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 获取指定 key 的 Hash 对象，此对象为包含指定 key 的客户端，只有调用其方法才会操作数据库\n     @param key 指定要获取的 key\n     @return 返回包含指定 key 的 Hash 对象 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "getHash",
+      "type": "RedisHash",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "key",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "获取指定 key 的 Hash 对象，此对象为包含指定 key 的客户端，只有调用其方法才会操作数据库",
+        "detail": [],
+        "params": [
+          {
+            "name": "key",
+            "descript": "指定要获取的 key",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回包含指定 key 的 Hash 对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 获取指定 key 的 List 对象，此对象为包含指定 key 的客户端，只有调用其方法才会操作数据库\n     @param key 指定要获取的 key\n     @return 返回包含指定 key 的 List 对象 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "getList",
+      "type": "RedisList",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "key",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "获取指定 key 的 List 对象，此对象为包含指定 key 的客户端，只有调用其方法才会操作数据库",
+        "detail": [],
+        "params": [
+          {
+            "name": "key",
+            "descript": "指定要获取的 key",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回包含指定 key 的 List 对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 获取指定 key 的 Set 对象，此对象为包含指定 key 的客户端，只有调用其方法才会操作数据库\n     @param key 指定要获取的 key\n     @return 返回包含指定 key 的 Set 对象 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "getSet",
+      "type": "RedisSet",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "key",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "获取指定 key 的 Set 对象，此对象为包含指定 key 的客户端，只有调用其方法才会操作数据库",
+        "detail": [],
+        "params": [
+          {
+            "name": "key",
+            "descript": "指定要获取的 key",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回包含指定 key 的 Set 对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 获取指定 key 的 SortedSet 对象，此对象为包含指定 key 的客户端，只有调用其方法才会操作数据库\n     @param key 指定要获取的 key\n     @return 返回包含指定 key 的 SortedSet 对象 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "getSortedSet",
+      "type": "RedisSortedSet",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "key",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "获取指定 key 的 SortedSet 对象，此对象为包含指定 key 的客户端，只有调用其方法才会操作数据库",
+        "detail": [],
+        "params": [
+          {
+            "name": "key",
+            "descript": "指定要获取的 key",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回包含指定 key 的 SortedSet 对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 序列化给定 key ，并返回被序列化的值，使用 restore 命令可以将这个值反序列化为 Redis 键\n     @param key 指定要序列化的 key\n     @return 返回序列化之后的值，如果 key 不存在，那么返回 null ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "dump",
+      "type": "Buffer",
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "key",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "序列化给定 key ，并返回被序列化的值，使用 restore 命令可以将这个值反序列化为 Redis 键",
+        "detail": [],
+        "params": [
+          {
+            "name": "key",
+            "descript": "指定要序列化的 key",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回序列化之后的值，如果 key 不存在，那么返回 null",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 反序列化给定的序列化值，并将它和给定的 key 关联\n     @param key 指定要反序列化的 key\n     @param data 指定要反序列化的数据\n     @param ttl 以毫秒为单位为 key 设置生存时间；如果 ttl 为 0 ，那么不设置生存时间",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "restore",
+      "type": null,
+      "params": [
+        {
+          "type": "Buffer",
+          "name": "key",
+          "default": null
+        },
+        {
+          "type": "Buffer",
+          "name": "data",
+          "default": null
+        },
+        {
+          "type": "Long",
+          "name": "ttl",
+          "default": {
+            "value": "0"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "反序列化给定的序列化值，并将它和给定的 key 关联",
+        "detail": [],
+        "params": [
+          {
+            "name": "key",
+            "descript": "指定要反序列化的 key",
+            "detail": []
+          },
+          {
+            "name": "data",
+            "descript": "指定要反序列化的数据",
+            "detail": []
+          },
+          {
+            "name": "ttl",
+            "descript": "以毫秒为单位为 key 设置生存时间；如果 ttl 为 0 ，那么不设置生存时间",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 关闭当前数据库连接或事务 ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "close",
+      "type": null,
+      "params": null,
+      "doc": {
+        "descript": "关闭当前数据库连接或事务",
+        "detail": [],
+        "params": []
+      }
+    }
+  ]
+}

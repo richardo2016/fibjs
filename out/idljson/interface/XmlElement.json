@@ -1,0 +1,583 @@
+{
+  "declare": {
+    "comments": "! @brief XmlElement 对象表示 XML 文档中的元素\n",
+    "type": "interface",
+    "name": "XmlElement",
+    "extend": "XmlNode",
+    "doc": {
+      "descript": "XmlElement 对象表示 XML 文档中的元素",
+      "detail": [],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询元素的命名空间的 URI。如果选定的节点无命名空间，则该属性返回 NULL\n    ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "namespaceURI",
+      "type": "String",
+      "doc": {
+        "descript": "查询元素的命名空间的 URI。如果选定的节点无命名空间，则该属性返回 NULL",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和设置元素的命名空间前缀。如果选定的节点无命名空间，则该属性返回 NULL\n    ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "prefix",
+      "type": "String",
+      "doc": {
+        "descript": "查询和设置元素的命名空间前缀。如果选定的节点无命名空间，则该属性返回 NULL",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询元素的本地名称。如果选定的节点无命名空间，则该属性等同于 nodeName\n    ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "localName",
+      "type": "String",
+      "doc": {
+        "descript": "查询元素的本地名称。如果选定的节点无命名空间，则该属性等同于 nodeName",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 返回元素的标签名\n    ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "tagName",
+      "type": "String",
+      "doc": {
+        "descript": "返回元素的标签名",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! 查询和设置元素的 id 属性\n    ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "id",
+      "type": "String",
+      "doc": {
+        "descript": "查询和设置元素的 id 属性",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! 查询和设置选定元素的文本。查询时，返回元素节点内所有文本节点的值；设置时，删除所有子节点，并用单个文本节点来替换它们。\n    ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "textContent",
+      "type": "String",
+      "doc": {
+        "descript": "查询和设置选定元素的文本。查询时，返回元素节点内所有文本节点的值；设置时，删除所有子节点，并用单个文本节点来替换它们。",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! 查询和设置选定元素的 HTML 文本，仅在 html 模式有效。查询时，返回元素节点内所有子节点的 HTML 编码；设置时，删除所有子节点，并用指定的 HTML 解码后替换它们。\n    ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "innerHTML",
+      "type": "String",
+      "doc": {
+        "descript": "查询和设置选定元素的 HTML 文本，仅在 html 模式有效。查询时，返回元素节点内所有子节点的 HTML 编码；设置时，删除所有子节点，并用指定的 HTML 解码后替换它们。",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! 查询和设置元素的 class 属性，仅在 html 模式有效\n    ",
+      "deprecated": null,
+      "static": null,
+      "readonly": null,
+      "name": "className",
+      "type": "String",
+      "doc": {
+        "descript": "查询和设置元素的 class 属性，仅在 html 模式有效",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 返回包含被选节点属性的 NamedNodeMap。如果被选节点不是元素，则该属性返回 NULL。\n    ",
+      "deprecated": null,
+      "static": null,
+      "readonly": "readonly",
+      "name": "attributes",
+      "type": "XmlNamedNodeMap",
+      "doc": {
+        "descript": "返回包含被选节点属性的 NamedNodeMap。如果被选节点不是元素，则该属性返回 NULL。",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 通过名称查询属性的值\n     @param name 指定查询的属性名\n     @return 返回属性的值\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "getAttribute",
+      "type": "String",
+      "params": [
+        {
+          "type": "String",
+          "name": "name",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "通过名称查询属性的值",
+        "detail": [],
+        "params": [
+          {
+            "name": "name",
+            "descript": "指定查询的属性名",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回属性的值",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 通过命名空间 URI 和名称来获取属性值\n     @param namespaceURI 指定查询的命名空间 URI\n     @param localName 指定查询的属性名\n     @return 返回属性的值\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "getAttributeNS",
+      "type": "String",
+      "params": [
+        {
+          "type": "String",
+          "name": "namespaceURI",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "localName",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "通过命名空间 URI 和名称来获取属性值",
+        "detail": [],
+        "params": [
+          {
+            "name": "namespaceURI",
+            "descript": "指定查询的命名空间 URI",
+            "detail": []
+          },
+          {
+            "name": "localName",
+            "descript": "指定查询的属性名",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回属性的值",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 创建或改变某个新属性\n\n     该方法把指定的属性设置为指定的值。如果不存在具有指定名称的属性，该方法将创建一个新属性\n     @param name 指定要设置的属性名\n     @param value 指定要设置的属性值\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "setAttribute",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "name",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "value",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "创建或改变某个新属性",
+        "detail": [
+          "该方法把指定的属性设置为指定的值。如果不存在具有指定名称的属性，该方法将创建一个新属性"
+        ],
+        "params": [
+          {
+            "name": "name",
+            "descript": "指定要设置的属性名",
+            "detail": []
+          },
+          {
+            "name": "value",
+            "descript": "指定要设置的属性值",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 创建或改变具有命名空间的属性\n\n     该方法与 setAttribute 方法类似，只是要创建或设置的属性由命名空间 URI 和限定名（由名字空间前缀、冒号和名字空间中的本地名构成）共同指定。除了可以改变一个属性的值以外，使用该方法还可以改变属性的名字空间前缀\n     @param namespaceURI 指定要设置的命名空间 URI\n     @param qualifiedName 指定要设置的属性名\n     @param value 指定要设置的属性值\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "setAttributeNS",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "namespaceURI",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "qualifiedName",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "value",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "创建或改变具有命名空间的属性",
+        "detail": [
+          "该方法与 setAttribute 方法类似，只是要创建或设置的属性由命名空间 URI 和限定名（由名字空间前缀、冒号和名字空间中的本地名构成）共同指定。除了可以改变一个属性的值以外，使用该方法还可以改变属性的名字空间前缀"
+        ],
+        "params": [
+          {
+            "name": "namespaceURI",
+            "descript": "指定要设置的命名空间 URI",
+            "detail": []
+          },
+          {
+            "name": "qualifiedName",
+            "descript": "指定要设置的属性名",
+            "detail": []
+          },
+          {
+            "name": "value",
+            "descript": "指定要设置的属性值",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 通过名称删除指定的属性\n     @param name 指定删除的属性名\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "removeAttribute",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "name",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "通过名称删除指定的属性",
+        "detail": [],
+        "params": [
+          {
+            "name": "name",
+            "descript": "指定删除的属性名",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 通过命名空间和名称删除指定的属性\n     @param namespaceURI 指定要删除的命名空间 URI\n     @param localName 指定删除的属性名\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "removeAttributeNS",
+      "type": null,
+      "params": [
+        {
+          "type": "String",
+          "name": "namespaceURI",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "localName",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "通过命名空间和名称删除指定的属性",
+        "detail": [],
+        "params": [
+          {
+            "name": "namespaceURI",
+            "descript": "指定要删除的命名空间 URI",
+            "detail": []
+          },
+          {
+            "name": "localName",
+            "descript": "指定删除的属性名",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查询当前节点是否拥有指定名称的属性\n     @param name 指定查询的属性名称\n     @return 如果当前元素节点拥有指定属性，则返回 true，否则返回 false\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "hasAttribute",
+      "type": "Boolean",
+      "params": [
+        {
+          "type": "String",
+          "name": "name",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "查询当前节点是否拥有指定名称的属性",
+        "detail": [],
+        "params": [
+          {
+            "name": "name",
+            "descript": "指定查询的属性名称",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "如果当前元素节点拥有指定属性，则返回 true，否则返回 false",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 查询当前节点是否拥有指定命名空间和名称的属性\n     @param namespaceURI 指定要查询的命名空间 URI\n     @param localName 指定查询的属性名称\n     @return 如果当前元素节点拥有指定属性，则返回 true，否则返回 false\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "hasAttributeNS",
+      "type": "Boolean",
+      "params": [
+        {
+          "type": "String",
+          "name": "namespaceURI",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "localName",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "查询当前节点是否拥有指定命名空间和名称的属性",
+        "detail": [],
+        "params": [
+          {
+            "name": "namespaceURI",
+            "descript": "指定要查询的命名空间 URI",
+            "detail": []
+          },
+          {
+            "name": "localName",
+            "descript": "指定查询的属性名称",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "如果当前元素节点拥有指定属性，则返回 true，否则返回 false",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 返回拥有指定名称的所有元素的 XmlNodeList\n\n     该方法将遍历指定元素的子孙节点，返回一个 XmlElement 节点的 XmlNodeList 对象，表示所有具有指定标签名的文档元素。元素在返回的数组中的顺序就是它们出现在文档源代码中的顺序。\n\n     XmlDocument 接口也定义了 getElementsByTagName 方法，它与该方法相似，但遍历整个文档，而不是遍历某个元素的子孙节点。\n     @param tagName 需检索的标签名。值 \"*\" 匹配所有的标签\n     @return 节点树中具有指定标记的 XmlElement 节点的 XmlNodeList 集合。返回的元素节点的顺序就是它们在源文档中出现的顺序。\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "getElementsByTagName",
+      "type": "XmlNodeList",
+      "params": [
+        {
+          "type": "String",
+          "name": "tagName",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "返回拥有指定名称的所有元素的 XmlNodeList",
+        "detail": [
+          "该方法将遍历指定元素的子孙节点，返回一个 XmlElement 节点的 XmlNodeList 对象，表示所有具有指定标签名的文档元素。元素在返回的数组中的顺序就是它们出现在文档源代码中的顺序。",
+          "",
+          "XmlDocument 接口也定义了 getElementsByTagName 方法，它与该方法相似，但遍历整个文档，而不是遍历某个元素的子孙节点。"
+        ],
+        "params": [
+          {
+            "name": "tagName",
+            "descript": "需检索的标签名。值 \"*\" 匹配所有的标签",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "节点树中具有指定标记的 XmlElement 节点的 XmlNodeList 集合。返回的元素节点的顺序就是它们在源文档中出现的顺序。",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 返回拥有指定命名空间和名称的所有元素的 XmlNodeList\n\n     该方法与 getElementsByTagName 方法相似，只是想获取的元素的标记名被指定为命名空间 URI 和在命名空间中定义的本地名的组合。\n     @param namespaceURI 指定要查询的命名空间 URI\n     @param localName 需检索的标签名。值 \"*\" 匹配所有的标签\n     @return 节点树中具有指定标记的 XmlElement 节点的 XmlNodeList 集合。返回的元素节点的顺序就是它们在源文档中出现的顺序。\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "getElementsByTagNameNS",
+      "type": "XmlNodeList",
+      "params": [
+        {
+          "type": "String",
+          "name": "namespaceURI",
+          "default": null
+        },
+        {
+          "type": "String",
+          "name": "localName",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "返回拥有指定命名空间和名称的所有元素的 XmlNodeList",
+        "detail": [
+          "该方法与 getElementsByTagName 方法相似，只是想获取的元素的标记名被指定为命名空间 URI 和在命名空间中定义的本地名的组合。"
+        ],
+        "params": [
+          {
+            "name": "namespaceURI",
+            "descript": "指定要查询的命名空间 URI",
+            "detail": []
+          },
+          {
+            "name": "localName",
+            "descript": "需检索的标签名。值 \"*\" 匹配所有的标签",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "节点树中具有指定标记的 XmlElement 节点的 XmlNodeList 集合。返回的元素节点的顺序就是它们在源文档中出现的顺序。",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 返回拥有指定 id 属性的元素\n\n     该方法将遍历指定元素的子孙节点，返回一个 XmlElement 节点对象，表示第一个具有指定 id 属性的文档元素。。\n\n     XmlDocument 接口也定义了 getElementsByTagName 方法，它与该方法相似，但遍历整个文档，而不是遍历某个元素的子孙节点。\n     @param id 需检索的 id\n     @return 节点树中具有指定 id 属性的 XmlElement 节点\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "getElementById",
+      "type": "XmlElement",
+      "params": [
+        {
+          "type": "String",
+          "name": "id",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "返回拥有指定 id 属性的元素",
+        "detail": [
+          "该方法将遍历指定元素的子孙节点，返回一个 XmlElement 节点对象，表示第一个具有指定 id 属性的文档元素。。",
+          "",
+          "XmlDocument 接口也定义了 getElementsByTagName 方法，它与该方法相似，但遍历整个文档，而不是遍历某个元素的子孙节点。"
+        ],
+        "params": [
+          {
+            "name": "id",
+            "descript": "需检索的 id",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "节点树中具有指定 id 属性的 XmlElement 节点",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 返回带有指定 class 名称的所有元素的一个节点列表\n\n     该方法将返回一个 XmlNodeList 对象（可以作为只读数组处理），该对象存放文档中具有指定 class 名的所有 XmlElement 节点，它们存放的顺序就是在源文档中出现的顺序。 XmlNodeList 对象是“活”的，即如果在文档中添加或删除了指定标签名的元素，它的内容会自动进行必要的更新。\n     @param className 需检索的 class 名称\n     @return 文档树中具有指定 class 名的 XmlElement 节点的 XmlNodeList 集合。返回的元素节点的顺序就是它们在源文档中出现的顺序。\n    ",
+      "deprecated": null,
+      "static": null,
+      "async": null,
+      "name": "getElementsByClassName",
+      "type": "XmlNodeList",
+      "params": [
+        {
+          "type": "String",
+          "name": "className",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "返回带有指定 class 名称的所有元素的一个节点列表",
+        "detail": [
+          "该方法将返回一个 XmlNodeList 对象（可以作为只读数组处理），该对象存放文档中具有指定 class 名的所有 XmlElement 节点，它们存放的顺序就是在源文档中出现的顺序。 XmlNodeList 对象是“活”的，即如果在文档中添加或删除了指定标签名的元素，它的内容会自动进行必要的更新。"
+        ],
+        "params": [
+          {
+            "name": "className",
+            "descript": "需检索的 class 名称",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "文档树中具有指定 class 名的 XmlElement 节点的 XmlNodeList 集合。返回的元素节点的顺序就是它们在源文档中出现的顺序。",
+          "detail": []
+        }
+      }
+    }
+  ]
+}

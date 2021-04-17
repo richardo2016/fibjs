@@ -1,0 +1,407 @@
+{
+  "declare": {
+    "comments": "! @brief 并发控制模块\n\n 引用方法：\n ```JavaScript\n var coroutine = require('coroutine');\n ```\n ",
+    "type": "module",
+    "name": "coroutine",
+    "extend": "object",
+    "module": true,
+    "doc": {
+      "descript": "并发控制模块",
+      "detail": [
+        "引用方法：",
+        "```JavaScript",
+        "var coroutine = require('coroutine');",
+        "```"
+      ],
+      "params": []
+    }
+  },
+  "members": [
+    {
+      "memType": "object",
+      "comments": "! @brief 锁对象，参见 Lock ",
+      "deprecated": null,
+      "name": "Lock",
+      "type": "Lock",
+      "doc": {
+        "descript": "锁对象，参见 Lock",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "object",
+      "comments": "! @brief 信号量对象，参见 Semaphore ",
+      "deprecated": null,
+      "name": "Semaphore",
+      "type": "Semaphore",
+      "doc": {
+        "descript": "信号量对象，参见 Semaphore",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "object",
+      "comments": "! @brief 条件变量对象，参见 Condition ",
+      "deprecated": null,
+      "name": "Condition",
+      "type": "Condition",
+      "doc": {
+        "descript": "条件变量对象，参见 Condition",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "object",
+      "comments": "! @brief 事件对象，参见 Event ",
+      "deprecated": null,
+      "name": "Event",
+      "type": "Event",
+      "doc": {
+        "descript": "事件对象，参见 Event",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "object",
+      "comments": "! @brief 独立线程工作对象，参见 Worker ",
+      "deprecated": null,
+      "name": "Worker",
+      "type": "Worker",
+      "doc": {
+        "descript": "独立线程工作对象，参见 Worker",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 启动一个纤程并返回纤程对象\n     @param func 制定纤程执行的函数\n     @param args 可变参数序列，此序列会在纤程内传递给函数\n     @return 返回纤程对象\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "start",
+      "type": "Fiber",
+      "params": [
+        {
+          "type": "Function",
+          "name": "func",
+          "default": null
+        },
+        {
+          "type": "...",
+          "name": "args",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "启动一个纤程并返回纤程对象",
+        "detail": [],
+        "params": [
+          {
+            "name": "func",
+            "descript": "制定纤程执行的函数",
+            "detail": []
+          },
+          {
+            "name": "args",
+            "descript": "可变参数序列，此序列会在纤程内传递给函数",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回纤程对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 并行执行一组函数，并等待返回\n     @param funcs 并行执行的函数数组\n     @param fibers 限制并发 fiber 数量，缺省为 -1，启用与 funcs 数量相同 fiber\n     @return 返回函数执行结果的数组\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "parallel",
+      "type": "Array",
+      "params": [
+        {
+          "type": "Array",
+          "name": "funcs",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "fibers",
+          "default": {
+            "value": "-1"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "并行执行一组函数，并等待返回",
+        "detail": [],
+        "params": [
+          {
+            "name": "funcs",
+            "descript": "并行执行的函数数组",
+            "detail": []
+          },
+          {
+            "name": "fibers",
+            "descript": "限制并发 fiber 数量，缺省为 -1，启用与 funcs 数量相同 fiber",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回函数执行结果的数组",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 并行执行一个函数处理一组数据，并等待返回\n     @param datas 并行执行的数据数组\n     @param func 并行执行的函数\n     @param fibers 限制并发 fiber 数量，缺省为 -1，启用与 datas 数量相同 fiber\n     @return 返回函数执行结果的数组\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "parallel",
+      "type": "Array",
+      "params": [
+        {
+          "type": "Array",
+          "name": "datas",
+          "default": null
+        },
+        {
+          "type": "Function",
+          "name": "func",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "fibers",
+          "default": {
+            "value": "-1"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "并行执行一个函数处理一组数据，并等待返回",
+        "detail": [],
+        "params": [
+          {
+            "name": "datas",
+            "descript": "并行执行的数据数组",
+            "detail": []
+          },
+          {
+            "name": "func",
+            "descript": "并行执行的函数",
+            "detail": []
+          },
+          {
+            "name": "fibers",
+            "descript": "限制并发 fiber 数量，缺省为 -1，启用与 datas 数量相同 fiber",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回函数执行结果的数组",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 并行执行一个函数多次，并等待返回\n     @param func 并行执行的函数数\n     @param num 重复任务数量\n     @param fibers 限制并发 fiber 数量，缺省为 -1，启用与 funcs 数量相同 fiber\n     @return 返回函数执行结果的数组\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "parallel",
+      "type": "Array",
+      "params": [
+        {
+          "type": "Function",
+          "name": "func",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "num",
+          "default": null
+        },
+        {
+          "type": "Integer",
+          "name": "fibers",
+          "default": {
+            "value": "-1"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "并行执行一个函数多次，并等待返回",
+        "detail": [],
+        "params": [
+          {
+            "name": "func",
+            "descript": "并行执行的函数数",
+            "detail": []
+          },
+          {
+            "name": "num",
+            "descript": "重复任务数量",
+            "detail": []
+          },
+          {
+            "name": "fibers",
+            "descript": "限制并发 fiber 数量，缺省为 -1，启用与 funcs 数量相同 fiber",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回函数执行结果的数组",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 并行执行一组函数，并等待返回\n     @param funcs 一组并行执行的函数\n     @return 返回函数执行结果的数组\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "parallel",
+      "type": "Array",
+      "params": [
+        {
+          "type": "...",
+          "name": "funcs",
+          "default": null
+        }
+      ],
+      "doc": {
+        "descript": "并行执行一组函数，并等待返回",
+        "detail": [],
+        "params": [
+          {
+            "name": "funcs",
+            "descript": "一组并行执行的函数",
+            "detail": []
+          }
+        ],
+        "return": {
+          "descript": "返回函数执行结果的数组",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 返回当前纤程\n     @return 当前纤程对象\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": null,
+      "name": "current",
+      "type": "Fiber",
+      "params": null,
+      "doc": {
+        "descript": "返回当前纤程",
+        "detail": [],
+        "params": [],
+        "return": {
+          "descript": "当前纤程对象",
+          "detail": []
+        }
+      }
+    },
+    {
+      "memType": "method",
+      "comments": "! @brief 暂停当前纤程指定的时间\n     @param ms 指定要暂停的时间，以毫秒为单位，缺省为 0，即有空闲立即回恢复运行\n     ",
+      "deprecated": null,
+      "static": "static",
+      "async": "async",
+      "name": "sleep",
+      "type": null,
+      "params": [
+        {
+          "type": "Integer",
+          "name": "ms",
+          "default": {
+            "value": "0"
+          }
+        }
+      ],
+      "doc": {
+        "descript": "暂停当前纤程指定的时间",
+        "detail": [],
+        "params": [
+          {
+            "name": "ms",
+            "descript": "指定要暂停的时间，以毫秒为单位，缺省为 0，即有空闲立即回恢复运行",
+            "detail": []
+          }
+        ]
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 返回当前正在运行的全部 fiber 数组 ",
+      "deprecated": null,
+      "static": "static",
+      "readonly": "readonly",
+      "name": "fibers",
+      "type": "Array",
+      "doc": {
+        "descript": "返回当前正在运行的全部 fiber 数组",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询和设置空闲 Fiber 数量，服务器抖动较大时可适度增加空闲 Fiber 数量。缺省为 256 ",
+      "deprecated": null,
+      "static": "static",
+      "readonly": null,
+      "name": "spareFibers",
+      "type": "Integer",
+      "doc": {
+        "descript": "查询和设置空闲 Fiber 数量，服务器抖动较大时可适度增加空闲 Fiber 数量。缺省为 256",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 查询当前 vm 编号 ",
+      "deprecated": null,
+      "static": "static",
+      "readonly": "readonly",
+      "name": "vmid",
+      "type": "Integer",
+      "doc": {
+        "descript": "查询当前 vm 编号",
+        "detail": [],
+        "params": []
+      }
+    },
+    {
+      "memType": "prop",
+      "comments": "! @brief 修改和查询本 vm 的输出级别，用以过滤输出信息，缺省为 console.NOTSET，全部输出\n     ",
+      "deprecated": null,
+      "static": "static",
+      "readonly": null,
+      "name": "loglevel",
+      "type": "Integer",
+      "doc": {
+        "descript": "修改和查询本 vm 的输出级别，用以过滤输出信息，缺省为 console.NOTSET，全部输出",
+        "detail": [],
+        "params": []
+      }
+    }
+  ],
+  "collect": "System"
+}
