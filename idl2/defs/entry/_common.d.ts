@@ -1,10 +1,9 @@
-
-
-
-
 /// <reference path="../class/EventEmitter.d.ts" />
 /// <reference path="../class/Buffer.d.ts" />
 
+/**
+ * @nocpp
+ */
 declare namespace Fibjs {
     interface ErrnoException extends Error {
         errno?: number;
@@ -22,6 +21,9 @@ declare namespace Fibjs {
         [k: string]: any
     }
 
+    /**
+     * @nocpp
+     */
     export interface ReadableStream extends Class_EventEmitter {
         readable: boolean;
         read(size?: number): string | Class_Buffer;
@@ -37,6 +39,9 @@ declare namespace Fibjs {
         [Symbol.asyncIterator](): AsyncIterableIterator<string | Class_Buffer>;
     }
 
+    /**
+     * @nocpp
+     */
     export interface WritableStream extends Class_EventEmitter {
         writable: boolean;
         write(buffer: Class_Buffer | string, cb?: Function): boolean;
@@ -47,6 +52,9 @@ declare namespace Fibjs {
         end(str: string, encoding?: string, cb?: Function): void;
     }
 
+    /**
+     * @nocpp
+     */
     export interface ReadWriteStream extends ReadableStream, WritableStream { }
 }
 

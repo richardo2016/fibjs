@@ -1,24 +1,26 @@
-
-
 /// <reference path="../entry/_common.d.ts" />
 /// <reference path="../class/object.d.ts" />
 
 /**
-	* @brief 二进制数据缓存对象，用于 io 读写的数据处理
-	* @detail Buffer 对象为全局基础类，在任何时候都可以直接以 new Buffer(...) 创建：,```JavaScript,var buf = new Buffer();,```
-	*/
+ * @brief 二进制数据缓存对象，用于 io 读写的数据处理
+ * 
+ *  Buffer 对象为全局基础类，在任何时候都可以直接以 new Buffer(...) 创建：
+ *  ```JavaScript
+ * 		var buf = new Buffer();
+ * 	```
+ * 
+ * */
 
 declare class Class_Buffer extends Class__object {
 
 	/**
-	* class self ref
-	*
-	* 
-	* @brief 二进制数据缓存对象，用于 io 读写的数据处理
-	* @static
-	* 
-	* @type Buffer
-	*/
+	 * class self ref
+	 * 
+	 * @brief 二进制数据缓存对象，用于 io 读写的数据处理
+	 * @static
+	 * 
+	 * @type Buffer
+	 */
 	static Buffer: typeof Class_Buffer
 
 	/**
