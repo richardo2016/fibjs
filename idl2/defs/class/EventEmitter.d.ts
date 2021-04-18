@@ -239,7 +239,7 @@ declare class Class_EventEmitter extends Class__object {
 
 	/**
 	 * 
-	 * 监听器的默认限制的数量，仅用于兼容
+	 * @brief 监听器的默认限制的数量，仅用于兼容
 	 * @param n 指定事件的数量
 	 * 
 	 * 
@@ -249,7 +249,7 @@ declare class Class_EventEmitter extends Class__object {
 
 	/**
 	 * 
-	 * 获取监听器的默认限制的数量，仅用于兼容
+	 * @brief 获取监听器的默认限制的数量，仅用于兼容
 	 * @return 返回默认限制数量
 	 * 
 	 * 

@@ -1,11 +1,17 @@
-/** @type {import("typescript")} */
+/** @type {import('../fibjs/internal-ts/lib/typescript')} */
 const ts = require('@fibjs/internal-ts/lib/typescript');
 
 const {
-    mapTsReturnTypeToIdlType,
     mapTsParamDataTypeToIdlType,
-    extract_class_name,
+    mapPropertyTypeToIdlDataType,
     findNocppTagFromJSDocTags,
+    extract_class_name,
+    extract_doc,
+    extractFunctionLikeSignature,
+    hasStaticModifier,
+    hasReadonlyModifier,
+    findBriefTag,
+    parse_brief_start_comment,
 } = require('./utils');
 
 const PROPERTY_TYPES = {
@@ -16,35 +22,34 @@ const PROPERTY_TYPES = {
     // object: ts.SyntaxKind.ObjectKeyword
 };
 
-/**
- * 
- * @param {string} briefTag 
- * 
- * @return {import("./ir").IParsedDoc}
- */
-function extract_doc(idlNode) {
-    const briefTag = idlNode.jsDocMeta.tags.find(tag => tag.name === 'brief')
-    let [briefLine, ...rest] = briefTag.comment.split('\n')
+/** @typedef {'interface' | 'module' | 'constructor' | 'method' | 'staticMethod' | 'property' | 'parameter'} IIDLNodeType */
 
-    rest = rest.filter(x => x);
-
-    return {
-        descript: briefLine,
-        detail: rest,
-        params: []
-    }
-}
-
-class IDL1Node {
+const IDL1Node = exports.IDL1Node = class IDL1Node {
+    /**
+     * @param {{
+     *  name: string,
+     *  type: IIDLNodeType
+     * }} param0 
+     * @param {IDL1Node} parent 
+     */
     constructor({ name, type }, parent) {
         this.children = [];
         this.name = name;
-        // this.type = type;
+
+        /**
+         * @description 输出为 idl node 时的类型
+         * 
+         * @type {IIDLNodeType}
+         */
+        this.idlNodeType = type;
 
         /** @description 经典的自定义 idl IR */
         this.version = 'classical';
 
-        /** @description 父 IDL1Node 节点 */
+        /**
+         * @description 父 IDL1Node 节点
+         * @type {IDL1Node | null}
+         **/
         this.parent = name === ROOT_NAME ? this : parent;
 
         /** @description 作为 interface 时的 meta */
@@ -63,36 +68,42 @@ class IDL1Node {
             docDetail: null,
         }
 
-        /**
-         * @description 输出为 idl node 时的类型
-         * 
-         * @type {'interface' | 'module' | 'member' | 'parameter' | 'parseddoc'}
-         */
-        this.idlNodeType = type;
-
-        /** @description 作为成员时的 meta */
+        /** @description 作为成员(constructor/function/property)时的 meta */
         this.memMeta = {
-            /** @description 作为成员函数时的返回值 */
+            /**
+             * @description 作为成员函数时的返回值
+             * @type {{
+             *  name: string
+             *  tag?: {
+             *      name: string,
+             *      text: string
+             *  }
+             * }}
+             **/
             returnType: null,
             /** @description 作为成员时的类型 */
             memType: null,
+            /** @description 作为成员时的数据类型, 适用于 'property', 'staticProperty' 等 */
+            memDataType: null,
             /** @description 是否已弃用 */
             deprecated: null,
-            /** @description 是否为静态方法 */
+            /** @description 是否为静态成员 */
             static: null,
+            /** @description 是否只读 */
+            readonly: null,
             /** @description 是否为异步方法 */
-            static: null,
+            async: null,
             /**
              * @description 作为成员函数时的参数
              * @type {{
              *  name: string
-             *  tag: {
+             *  tag?: {
              *      name: string,
              *      text: string
              *  }
              * }[]}
              **/
-            parameters: []
+            parameters: [],
         };
 
         /** @description 作为参数时的 meta */
@@ -109,7 +120,16 @@ class IDL1Node {
         this.jsDocMeta = {
             /** @description 完整的文本 */
             fullText: '',
-            /** @description 所有 tag */
+            /**
+             * @description 所有 tag
+             * @type {{
+             *  name: string
+             *  comment: string
+             *  tagNameFullText: string
+             *  defaultValueText: string
+             *  paramName: string
+             * }[]}
+             **/
             tags: [],
         }
 
@@ -200,14 +220,7 @@ class IDL1Node {
                 throw new Error(`[getIDLNodeWrapper] unsupported idlNodeType ${this.idlNodeType}`)
             case 'module':
             case 'interface': {
-                const briefTag = this.jsDocMeta.tags.find(tag => tag.name === 'brief')
-
-                try {
-                    briefTag.comment;
-                } catch (error) {
-                    console.error(error);
-                    throw new Error(`[getIDLNodeWrapper] cannot access briefTag.comment for ${this.idlNodeType} '${this.name}'`);
-                }
+                const briefTag = findBriefTag(this)
 
                 return getResult({
                     declare: {
@@ -222,7 +235,26 @@ class IDL1Node {
                     extend: null
                 });
             }
+            case 'staticProperty':
+            case 'property': {
+                const briefTag = findBriefTag(this, false)
+
+                return getResult({
+                    memType: this.idlNodeType === 'property' ? 'prop' : this.memMeta.memDataType,
+                    comments: briefTag ? `! @brief ${briefTag.comment}` : null,
+                    deprecated: this.memMeta.deprecated || null,
+                    static: this.memMeta.static || null,
+                    readonly: this.memMeta.readonly || null,
+                    name: this.name,
+                    type: this.memMeta.memDataType,
+                    deprecated: this.memMeta.deprecated || null,
+                    // doc: extract_doc(this),
+                    // doc: this.jsDocMeta
+                    doc: briefTag ? parse_brief_start_comment(briefTag.comment) : null
+                })
+            }
             case 'constructor':
+            case 'staticMethod':
             case 'method': {
                 const LINE_BREAKOR = '\n    ';
 
@@ -246,23 +278,13 @@ class IDL1Node {
                     static: this.memMeta.static || null,
                     async: this.memMeta.async || null,
                     name: this.name,
-                    type: this.memMeta.returnType || null,
+                    type: this.memMeta.returnType && this.idlNodeType !== 'constructor' ? this.memMeta.returnType.name : null,
                     params: childNodes.length ? childNodes : null,
-                    doc: {
-                        descript: "",
-                        detail: [],
-                        params: [],
-                        return: {
-                            descript: "",
-                            detail: []
-                        }
-                    }
+                    doc: extract_doc(this)
                 });
             }
             case 'parameter': {
-                const parentParamTag = this.parent.jsDocMeta.tags.find(tag => tag.nameFullText === this.name)
-
-                console.log('this.paramJsDocMeta is', this.paramJsDocMeta);
+                const parentParamTag = this.parent.jsDocMeta.tags.find(tag => tag.paramName === this.name)
 
                 return getResult({
                     type: this.paramMeta.idlDataType,
@@ -283,54 +305,17 @@ class IDL1Node {
     }
 }
 
-function getNameFromFunctionLikeNode(node) {
-    switch (node.kind) {
-        case ts.SyntaxKind.MethodDeclaration:
-            return node.name.text;
-        case ts.SyntaxKind.Constructor:
-            return node.parent.name.text;
-        default:
-            throw new Error(`[getNameFromFunctionLikeNode] unsupported function like node-kind ${node.kind}`)
-    }
-}
-
-function extractFunctionLikeSignature(signature, functionLikeNode) {
-    let parameters = [];
-
-    if (signature.parameters && signature.parameters.length) {
-        // console.log('signature.parameters is', signature.parameters);
-        signature.parameters.forEach(param => {
-            /* 在 jsdoc 中可能会有对应的注释 */
-            if (signature.parameters[0].declarations) {
-                const [declartion] = signature.parameters[0].declarations
-                const [tag] = declartion.symbol.getJsDocTags();
-
-                const paramName = param.getEscapedName();
-
-                parameters.push({
-                    name: paramName,
-                    tag
-                })
-
-                if (!tag) {
-                    // TODO: found out where no jsdoc for parameter
-                    // console.warn(`[extractFunctionLikeSignature] no and jsdoc tag found for parameter '${paramName}' in functionLike '${getNameFromFunctionLikeNode(functionLikeNode)}'`)
-                }
-            }
-        })
-    } else {
-        // console.log('signature is', signature);
-    }
-
-    return {
-        parameters
-    }
-}
-
+/**
+ * 
+ * @param {IDL1Node} parentIdlNode 
+ * @param {import('../fibjs/internal-ts/lib/typescript').TypeChecker} typeChecker 
+ * 
+ * @returns {(node: import('../fibjs/internal-ts/lib/typescript').Node) => void}
+ */
 const visit = (parentIdlNode, typeChecker) => node => {
     if (node.name) {
         // namespace for internal definition
-        if (node.name.text === 'ReadableStream') {
+        if (node.name.text === 'Buffer') {
             console.notice('[special node] node.name.text is', node.name.text);
             console.notice('[special node] node.kind is', node.kind);
             return;
@@ -338,12 +323,11 @@ const visit = (parentIdlNode, typeChecker) => node => {
 
         // console.notice('node.name.text is', node.name.text);
         // console.notice('node.kind is', node.kind);
-        // console.notice('Object.keys(node) is', Object.keys(node));
-        // if (node.jsDoc) {
-        //     console.notice('node.jsDoc is', node.jsDoc);
-        // }
     }
 
+    /**
+     * @type {InstanceType<IDL1Node>}
+     **/
     let idlNode = null;
 
     switch (node.kind) {
@@ -377,28 +361,47 @@ const visit = (parentIdlNode, typeChecker) => node => {
             ts.forEachChild(node, visit(idlNode = parentIdlNode.appendChild(constructorName, 'constructor'), typeChecker));
 
             const signature = typeChecker.getSignatureFromDeclaration(node);
-            const returnType = typeChecker.getReturnTypeOfSignature(signature);
-
-            idlNode.memMeta.__returnType = Object.keys(returnType);
-            idlNode.memMeta.returnType = mapTsReturnTypeToIdlType(returnType, signature, node);
 
             idlNode.idlNodeType = 'constructor';
-            idlNode.memMeta.parameters = extractFunctionLikeSignature(signature, node).parameters;
+            const infos = extractFunctionLikeSignature(signature, typeChecker, node);
+
+            idlNode.memMeta.parameters = infos.parameters;
+            idlNode.memMeta.returnType = infos.return;
+
             break;
         }
-        /** @description 成员方法 */
+        /** @description 成员方法或静态方法 */
         case ts.SyntaxKind.MethodDeclaration: {
             let memberFnName = node.name.text/*  || 'sth is MethodDeclaration' */;
-            ts.forEachChild(node, visit(idlNode = parentIdlNode.appendChild(memberFnName, 'method'), typeChecker));
+            const isStatic = hasStaticModifier(node);
+            const idlNodeType = isStatic ? 'staticMethod' : 'method';
+            ts.forEachChild(node, visit(idlNode = parentIdlNode.appendChild(memberFnName, idlNodeType), typeChecker));
+
+            if (isStatic) {
+                idlNode.memMeta.static = 'static'
+            }
 
             const signature = typeChecker.getSignatureFromDeclaration(node);
-            const returnType = typeChecker.getReturnTypeOfSignature(signature);
+            const infos = extractFunctionLikeSignature(signature, typeChecker, node);
 
-            idlNode.memMeta.__returnType = Object.keys(returnType);
-            idlNode.memMeta.returnType = mapTsReturnTypeToIdlType(returnType, signature, node);
+            idlNode.memMeta.parameters = infos.parameters;
+            idlNode.memMeta.returnType = infos.return;
 
-            idlNode.idlNodeType = 'method';
-            idlNode.memMeta.parameters = extractFunctionLikeSignature(signature, node).parameters;
+            break;
+        }
+        /** @description 成员属性或静态属性 */
+        case ts.SyntaxKind.PropertyDeclaration: {
+            let propertyName = node.symbol.getEscapedName();
+            const isStatic = hasStaticModifier(node);
+            const idlNodeType = isStatic ? 'staticProperty' : 'property';
+            ts.forEachChild(node, visit(idlNode = parentIdlNode.appendChild(propertyName, idlNodeType), typeChecker));
+
+            if (hasStaticModifier(node)) {
+                idlNode.memMeta.static = 'static'
+            }
+
+            idlNode.memMeta.memDataType = mapPropertyTypeToIdlDataType(node)
+
             break;
         }
         /** @description 函数参数 */
@@ -485,33 +488,37 @@ const visit = (parentIdlNode, typeChecker) => node => {
             const [jsDoc] = node.jsDoc;
             idlNode.jsDocMeta.fullText = jsDoc.getFullText()
             idlNode.jsDocMeta.tags = !jsDoc.tags ? [] : jsDoc.tags.map(tag => {
-                const nameFullText = tag.name ? tag.name.getFullText() : null
+                const tagNameFullText = tag.name ? tag.name.getFullText() : null
                 let matched;
-                matched = !nameFullText ? [] : (jsDoc.getFullText() || '').match(new RegExp(`@param\\s\\[${nameFullText}\\s?=\\s?(.+)\\]`))
+                matched = !tagNameFullText ? [] : (jsDoc.getFullText() || '').match(new RegExp(`@param\\s\\[${tagNameFullText}\\s?=\\s?(.+)\\]`))
                 const defaultValue = matched ? matched[1] : undefined
 
                 return {
                     name: tag.tagName.escapedText,
                     comment: tag.comment,
-                    tagNameFullText: tag.tagName ? tag.tagName.getFullText() : null,
-                    nameFullText,
+                    tagNameFullText,
                     defaultValueText: defaultValue,
-                    paramName: nameFullText,
+                    paramName: tagNameFullText,
                 }
             })
         }
 
         switch (idlNode.idlNodeType) {
+            case 'property':
+            case 'staticProperty':
             case 'constructor':
+            case 'staticMethod':
             case 'method': {
                 if (!!idlNode.jsDocMeta.tags.find(tag => tag.name === 'deprecated')) {
-                    idlNode.deprecated = true
+                    idlNode.memMeta.deprecated = true
                 }
-                if (!!idlNode.jsDocMeta.tags.find(tag => tag.name === 'static')) {
-                    idlNode.static = 'static'
+
+                if (hasReadonlyModifier(node) || idlNode.jsDocMeta.tags.find(tag => tag.name === 'readonly')) {
+                    idlNode.memMeta.readonly = 'readonly'
                 }
+
                 if (!!idlNode.jsDocMeta.tags.find(tag => tag.name === 'async')) {
-                    idlNode.async = true
+                    idlNode.memMeta.async = true
                 }
                 break;
             }
@@ -521,7 +528,7 @@ const visit = (parentIdlNode, typeChecker) => node => {
 
 const ROOT_NAME = 'root';
 
-module.exports = function ts2json(filenames, options) {
+exports.ts2json = function ts2json(filenames, options) {
     const idlNode = new IDL1Node({ name: ROOT_NAME, type: null }, null);
 
     const program = ts.createProgram(filenames, options);
