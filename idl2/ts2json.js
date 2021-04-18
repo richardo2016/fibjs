@@ -8,12 +8,18 @@ const PROPERTY_TYPES = {
     boolean: ts.SyntaxKind.BooleanKeyword,
     number: ts.SyntaxKind.NumberKeyword,
     string: ts.SyntaxKind.StringKeyword,
+    // object: ts.SyntaxKind.ObjectKeyword
 };
+
+function extract_class_name(className) {
+    return className.replace(/Class__?/, '')
+}
+
 class IDL1Node {
     constructor({ name, type }, parent) {
         this.children = [];
         this.name = name;
-        this.type = type;
+        // this.type = type;
 
         /** @description 经典的自定义 idl IR */
         this.version = 'classical';
@@ -26,7 +32,7 @@ class IDL1Node {
          * 
          * @type {'interface' | 'module' | 'member' | 'parameter' | 'parseddoc'}
          */
-        this.idlNodeType = null;
+        this.idlNodeType = type;
 
         /** @description 作为成员时的 meta */
         this.memMeta = {
@@ -67,10 +73,10 @@ class IDL1Node {
 
     getType() { return this.type; };
 
-    getObject() {
+    getIDLNodeWrapper() {
         let childNodes = [];
         if (this.children.length) {
-            childNodes = this.children.map(child => child.getObject())
+            childNodes = this.children.map(child => child.getIDLNodeWrapper())
         }
 
         if (this.name === ROOT_NAME) {
@@ -80,41 +86,70 @@ class IDL1Node {
             };
 
             childNodes.forEach(child => {
-                roots.interface[child.declare.name] = child;
+                switch (child.__idlNodeType__) {
+                    case 'interface': {
+                        roots.interface[child.idlNode.declare.name] = child;
+                        break
+                    }
+                    case 'module': {
+                        roots.module[child.idlNode.declare.name] = child;
+                        break
+                    }
+                    default: {
+                        console.log('[::getIDLNodeWrapper] child is', child);
+                        throw new Error(`[::getIDLNodeWrapper] unsupported idlNodeType ${child.__idlNodeType__} for mounting to root`)
+                    }
+                }
             })
 
             return roots
         }
 
-        const result = {
-            __idlNodeType__: this.idlNodeType,
-            __jsDocMeta__: this.jsDocMeta,
+        const getResult = (idlNode) => {
+            let result;
+
+            // must be { 'interface' | 'module' }
+            if (idlNode.declare) {
+                let targetName = idlNode.declare ? idlNode.declare.name : '';
+                result = {
+                    __idlNodeType__: this.idlNodeType,
+                    __jsDocMeta__: this.jsDocMeta,
+                    idlNode,
+                };
+
+                result.targetName = targetName.replace(/Class__?/, '');
+            } else {
+                return idlNode;
+            }
+
+            return result
         };
 
         switch (this.idlNodeType) {
             default:
+                throw new Error(`[getIDLNodeWrapper] unsupported idlNodeType ${this.idlNodeType}`)
+            case 'module':
             case 'interface':
-                return {
-                    ...result,
+                return getResult({
                     declare: {
-                        comments: [],
+                        comments: '',
+                        type: this.idlNodeType,
                         name: this.name,
-                        type: this.type,
                     },
                     members: childNodes,
                     doc: {},
                     extend: null
-                };
+                });
+            case 'constructor':
             case 'method': {
-                return {
-                    ...result,
-                    memType: this.idlNodeType,
+                return getResult({
+                    memType: /* this.idlNodeType */'method',
                     comments: this.memMeta.comments,
-                    deprecated: this.memMeta.deprecated,
-                    static: this.memMeta.static,
-                    async: this.memMeta.async,
+                    deprecated: this.memMeta.deprecated || null,
+                    static: this.memMeta.static || null,
+                    async: this.memMeta.async || null,
                     name: this.name,
-                    type: this.memMeta.returnType,
+                    type: this.memMeta.returnType || null,
                     params: childNodes.length ? childNodes : null,
                     doc: {
                         descript: "",
@@ -125,20 +160,26 @@ class IDL1Node {
                             detail: []
                         }
                     }
-                }
+                });
             }
             case 'parameter': {
                 const parentParamTag = this.parent.jsDocMeta.tags.find(tag => tag.nameFullText === this.name)
 
-                return {
-                    ...result,
+                return getResult({
                     type: "String",
                     name: this.name,
                     default: parentParamTag ? {
                         value: parentParamTag.defaultValue
                     } : undefined
-                }
+                });
             }
+            case 'tempProp:number': // what's this?
+            case 'tempProp:string': // what's this?
+            case 'tempProp:boolean': // what's this?
+            case undefined: // what's this?
+                return getResult({
+                    tempIDLNodeType: this.idlNodeType
+                });
         }
     }
 }
@@ -159,6 +200,13 @@ function getNodeComments(node) {
 
 const visit = (parentIdlNode, typeChecker) => node => {
     if (node.name) {
+        // namespace for internal definition
+        if (node.name.text === 'Fibjs') {
+            // console.notice('node.name.text is', node.name.text);
+            // console.notice('node.kind is', node.kind);
+            return;
+        }
+
         console.notice('node.name.text is', node.name.text);
         console.notice('node.kind is', node.kind);
         // console.notice('Object.keys(node) is', Object.keys(node));
@@ -170,24 +218,38 @@ const visit = (parentIdlNode, typeChecker) => node => {
     let idlNode = null;
 
     switch (node.kind) {
-        /** @description 内建成员方法 */
+        /** @description 接口声明 */
         case ts.SyntaxKind.ClassDeclaration: {
-            let clazzName = node.name.text;
-            ts.forEachChild(node, visit(idlNode = parentIdlNode.appendChild(clazzName), typeChecker));
+            let clazzName = extract_class_name(node.name.text);
+            ts.forEachChild(node, visit(idlNode = parentIdlNode.appendChild(clazzName, 'interface'), typeChecker));
 
             idlNode.idlNodeType = 'interface'
             break;
         }
-        /** @description 成员方法 */
-        case ts.SyntaxKind.MethodDeclaration: {
-            let memberFnName = node.name.text;
-            ts.forEachChild(node, visit(idlNode = parentIdlNode.appendChild(memberFnName), typeChecker));
+        case ts.SyntaxKind.Constructor: {
+            // console.log('[ts.SyntaxKind.Constructor] node is', node);
+            let constructorName = extract_class_name(node.parent.name.text);
+            ts.forEachChild(node, visit(idlNode = parentIdlNode.appendChild(constructorName, 'constructor'), typeChecker));
 
             const signature = typeChecker.getSignatureFromDeclaration(node);
             const returnType = typeChecker.getReturnTypeOfSignature(signature);
 
             idlNode.memMeta.__returnType = Object.keys(returnType);
-            idlNode.memMeta.returnType = mapTsTypeToIdlType(returnType.intrinsicName);
+            idlNode.memMeta.returnType = mapTsTypeToIdlType(returnType, signature, node);
+
+            idlNode.idlNodeType = 'constructor';
+            break;
+        }
+        /** @description 成员方法 */
+        case ts.SyntaxKind.MethodDeclaration: {
+            let memberFnName = node.name.text/*  || 'sth is MethodDeclaration' */;
+            ts.forEachChild(node, visit(idlNode = parentIdlNode.appendChild(memberFnName, 'method'), typeChecker));
+
+            const signature = typeChecker.getSignatureFromDeclaration(node);
+            const returnType = typeChecker.getReturnTypeOfSignature(signature);
+
+            idlNode.memMeta.__returnType = Object.keys(returnType);
+            idlNode.memMeta.returnType = mapTsTypeToIdlType(returnType, signature, node);
 
             idlNode.idlNodeType = 'method';
             break;
@@ -195,7 +257,7 @@ const visit = (parentIdlNode, typeChecker) => node => {
         /** @description 函数参数 */
         case ts.SyntaxKind.Parameter: {
             let paramName = node.name.text;
-            ts.forEachChild(node, visit(idlNode = parentIdlNode.appendChild(paramName), typeChecker));
+            ts.forEachChild(node, visit(idlNode = parentIdlNode.appendChild(paramName, 'parameter'), typeChecker));
 
             idlNode.idlNodeType = 'parameter';
             break;
@@ -203,7 +265,7 @@ const visit = (parentIdlNode, typeChecker) => node => {
         /** @description 模块声明 */
         case ts.SyntaxKind.ModuleDeclaration:
             let moduleName = node.name.text;
-            ts.forEachChild(node, visit(idlNode = parentIdlNode.appendChild(moduleName), typeChecker));
+            ts.forEachChild(node, visit(idlNode = parentIdlNode.appendChild(moduleName, 'module'), typeChecker));
 
             idlNode.idlNodeType = 'module';
             break;
@@ -242,7 +304,7 @@ const visit = (parentIdlNode, typeChecker) => node => {
             } else {
                 for (let type in PROPERTY_TYPES) {
                     if (propertyType.kind === PROPERTY_TYPES[type]) {
-                        parentIdlNode.appendChild(realPropertyName, type);
+                        parentIdlNode.appendChild(realPropertyName, `tempProp:${type}`);
                         break;
                     }
                 }
@@ -274,6 +336,7 @@ const visit = (parentIdlNode, typeChecker) => node => {
         }
 
         switch (idlNode.idlNodeType) {
+            case 'constructor':
             case 'method': {
                 idlNode.memMeta.comments = idlNode.jsDocMeta.fullText
                 if (!!idlNode.jsDocMeta.tags.find(tag => tag.name === 'deprecated')) {
@@ -300,10 +363,10 @@ module.exports = function ts2json(filenames, options) {
     const checker = program.getTypeChecker();
     const sourceFiles = program.getSourceFiles();
 
-    const sourceFile = sourceFiles[0];
+    sourceFiles.forEach(sourceFile => {
+        ts.forEachChild(sourceFile, visit(idlNode, checker));
+    })
 
-    ts.forEachChild(sourceFile, visit(idlNode, checker));
-
-    // return idlNode.getObject()[ROOT_NAME];
-    return idlNode.getObject();
+    // return idlNode.getIDLNodeWrapper()[ROOT_NAME];
+    return idlNode.getIDLNodeWrapper();
 };
