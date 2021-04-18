@@ -1,21 +1,8 @@
-/***************************************************************************
- *                                                                         *
- *   This file was automatically generated with idlc.js                    *
- *	 build info: 								   						   *
- *   	- fibjs	: 0.32.0                                                   *
- *   	- date	: Mar 20 2021 19:45:41                                     *
- *                                                                         *
- ***************************************************************************/
-
-/** 
- * @author Richard <richardo2016@gmail.com>
- *
- */
 
 
 
 
-// give all internal defined classes as reference
+
 /// <reference path="../entry/_common.d.ts" />
 
 /// <reference path="../class/Buffer.d.ts" />
@@ -192,8 +179,6 @@
 
 /// <reference path="../class/object.d.ts" />
 
-
-/** module Or Internal Object */
 /**
 	* @brief tty 模块
 	* @detail 使用方法：,```JavaScript,const tty = require('tty');,```
@@ -201,27 +186,19 @@
 declare module "tty" {
 
 
-	module tty {
 
 
 
-
-
-		/**
-		 * 
-		 * @brief 查询是否是命令交互窗口
-		 * @param fd 文件描述符
-		 * @return 如果文件描述符同一个终端窗口关联则返回 true ，否则返回 false
-		 * 
-		 * 
-		 * 
-		 */
-		export function isatty(fd: number): boolean;
-
-	} /** end of `module tty` */
-	export = tty
+	/**
+	 * 
+	 * @brief 查询是否是命令交互窗口
+	 * @param fd 文件描述符
+	 * @return 如果文件描述符同一个终端窗口关联则返回 true ，否则返回 false
+	 * 
+	 * 
+	 * 
+	 */
+	export function isatty(fd: number): boolean;
 }
-
-/** endof `module Or Internal Object` */
 
 

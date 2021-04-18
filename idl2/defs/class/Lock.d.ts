@@ -1,25 +1,8 @@
-/***************************************************************************
- *                                                                         *
- *   This file was automatically generated with idlc.js                    *
- *	 build info: 								   						   *
- *   	- fibjs	: 0.32.0                                                   *
- *   	- date	: Mar 20 2021 19:45:41                                     *
- *                                                                         *
- ***************************************************************************/
 
-/** 
- * @author Richard <richardo2016@gmail.com>
- *
- */
 
 /// <reference path="../entry/_common.d.ts" />
 /// <reference path="../class/object.d.ts" />
 
-
-
-
-
-/** module Or Internal Object */
 /**
 	* @brief 纤程锁对象
 	* @detail 不同于操作系统的锁，纤程锁是纯逻辑实现，加锁与解锁负荷很小,```JavaScript,var l = new coroutine.Lock();,l.acquire();,.....,l.release();,```
@@ -78,6 +61,5 @@ declare class Class_Lock extends Class__object {
 
 } /** endof class */
 
-/** endof `module Or Internal Object` */
 
 

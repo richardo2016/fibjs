@@ -1,25 +1,8 @@
-/***************************************************************************
- *                                                                         *
- *   This file was automatically generated with idlc.js                    *
- *	 build info: 								   						   *
- *   	- fibjs	: 0.32.0                                                   *
- *   	- date	: Mar 20 2021 19:45:41                                     *
- *                                                                         *
- ***************************************************************************/
 
-/** 
- * @author Richard <richardo2016@gmail.com>
- *
- */
 
 /// <reference path="../entry/_common.d.ts" />
 /// <reference path="../class/object.d.ts" />
 
-
-
-
-
-/** module Or Internal Object */
 /**
 	* @brief 数据库连接对象，用于建立和维护一个数据库连接会话。
 	* @detail 
@@ -261,6 +244,5 @@ declare class Class_DbConnection extends Class__object {
 
 } /** endof class */
 
-/** endof `module Or Internal Object` */
 
 

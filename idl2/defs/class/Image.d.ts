@@ -1,26 +1,8 @@
-/***************************************************************************
- *                                                                         *
- *   This file was automatically generated with idlc.js                    *
- *	 build info: 								   						   *
- *   	- fibjs	: 0.32.0                                                   *
- *   	- date	: Mar 20 2021 19:45:41                                     *
- *                                                                         *
- ***************************************************************************/
 
-/** 
- * @author Richard <richardo2016@gmail.com>
- *
- */
 
 /// <reference path="../entry/_common.d.ts" />
 /// <reference path="../class/object.d.ts" />
 
-
-
-
-
-
-/** module Or Internal Object */
 /**
 	* @brief 图像处理对象，用以对图像进行转换，绘制，存储等操作
 	* @detail Image 对象属于 gd 模块，创建：,```JavaScript,var img = gd.create(640, 480);,var img1 = gd.load(data);,```
@@ -854,6 +836,5 @@ declare class Class_Image extends Class__object {
 
 } /** endof class */
 
-/** endof `module Or Internal Object` */
 
 

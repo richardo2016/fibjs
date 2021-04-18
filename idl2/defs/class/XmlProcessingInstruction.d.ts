@@ -1,25 +1,8 @@
-/***************************************************************************
- *                                                                         *
- *   This file was automatically generated with idlc.js                    *
- *	 build info: 								   						   *
- *   	- fibjs	: 0.32.0                                                   *
- *   	- date	: Mar 20 2021 19:45:41                                     *
- *                                                                         *
- ***************************************************************************/
 
-/** 
- * @author Richard <richardo2016@gmail.com>
- *
- */
 
 /// <reference path="../entry/_common.d.ts" />
 /// <reference path="../class/object.d.ts" />
 
-
-
-
-
-/** module Or Internal Object */
 /**
 	* @brief XmlProcessingInstruction 对象表示 xml 处理指令
 	* @detail 
@@ -58,6 +41,5 @@ declare class Class_XmlProcessingInstruction extends Class_XmlNode {
 
 } /** endof class */
 
-/** endof `module Or Internal Object` */
 
 

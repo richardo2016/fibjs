@@ -1,25 +1,8 @@
-/***************************************************************************
- *                                                                         *
- *   This file was automatically generated with idlc.js                    *
- *	 build info: 								   						   *
- *   	- fibjs	: 0.32.0                                                   *
- *   	- date	: Mar 20 2021 19:45:41                                     *
- *                                                                         *
- ***************************************************************************/
 
-/** 
- * @author Richard <richardo2016@gmail.com>
- *
- */
 
 /// <reference path="../entry/_common.d.ts" />
 /// <reference path="../class/object.d.ts" />
 
-
-
-
-
-/** module Or Internal Object */
 /**
 	* @brief http 服务器对象
 	* @detail http 服务器对象是将 TcpServer 和 HttpHandler 组合封装的对象，方便快速搭建服务器，逻辑上相当于：,```JavaScript,var svr = new net.TcpServer(addr, port, new http.Handler(function(req){,   ...,}));,```,,创建方法：,```JavaScript,var http = require("http");,var svr = new http.Server(80, function(req){,    ...,});,```
@@ -101,6 +84,5 @@ declare class Class_HttpServer extends Class_TcpServer {
 
 } /** endof class */
 
-/** endof `module Or Internal Object` */
 
 

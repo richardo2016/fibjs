@@ -1,25 +1,8 @@
-/***************************************************************************
- *                                                                         *
- *   This file was automatically generated with idlc.js                    *
- *	 build info: 								   						   *
- *   	- fibjs	: 0.32.0                                                   *
- *   	- date	: Mar 20 2021 19:45:41                                     *
- *                                                                         *
- ***************************************************************************/
 
-/** 
- * @author Richard <richardo2016@gmail.com>
- *
- */
 
 /// <reference path="../entry/_common.d.ts" />
 /// <reference path="../class/object.d.ts" />
 
-
-
-
-
-/** module Or Internal Object */
 /**
 	* @brief ssl 协议转换处理器
 	* @detail 用以将数据流转换为 ssl 流协议。SslHandler 是对 SslSocket 的封装，用于构建服务器，逻辑上相当于：,```JavaScript,var ss = new ssl.Socket(crt, key);,,function(s){,   var s1 = ss.accept(s);,   hdlr.invoke(s1);,   s1.close();,},```
@@ -107,6 +90,5 @@ declare class Class_SslHandler extends Class_Handler {
 
 } /** endof class */
 
-/** endof `module Or Internal Object` */
 
 

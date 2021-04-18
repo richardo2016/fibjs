@@ -1,21 +1,8 @@
-/***************************************************************************
- *                                                                         *
- *   This file was automatically generated with idlc.js                    *
- *	 build info: 								   						   *
- *   	- fibjs	: 0.32.0                                                   *
- *   	- date	: Mar 20 2021 19:45:41                                     *
- *                                                                         *
- ***************************************************************************/
-
-/** 
- * @author Richard <richardo2016@gmail.com>
- *
- */
 
 
 
 
-// give all internal defined classes as reference
+
 /// <reference path="../entry/_common.d.ts" />
 
 /// <reference path="../class/Buffer.d.ts" />
@@ -192,25 +179,12 @@
 
 /// <reference path="../class/object.d.ts" />
 
-
-/** module Or Internal Object */
 /**
 	* @brief 常用常量定义模块
 	* @detail 引用方法：,```JavaScript,var constants = require('constants');,```
 	*/
 declare module "constants" {
 
-
-	module constants {
-
-
-
-
-
-	} /** end of `module constants` */
-	export = constants
 }
-
-/** endof `module Or Internal Object` */
 
 

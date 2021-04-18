@@ -1,16 +1,3 @@
-/***************************************************************************
- *                                                                         *
- *   This file was automatically generated with idlc.js                    *
- *	 build info: 								   						   *
- *   	- fibjs	: 0.32.0                                                   *
- *   	- date	: Mar 20 2021 19:45:41                                     *
- *                                                                         *
- ***************************************************************************/
-
-/** 
- * @author Richard <richardo2016@gmail.com>
- *
- */
 
 
 
@@ -23,7 +10,7 @@
 
 
 
-// give all internal defined classes as reference
+
 /// <reference path="../entry/_common.d.ts" />
 
 /// <reference path="../class/Buffer.d.ts" />
@@ -200,8 +187,6 @@
 
 /// <reference path="../class/object.d.ts" />
 
-
-/** module Or Internal Object */
 /**
 	* @brief 编码与解码模块，用于处理不同的数据编码格式与二进制之间的转换
 	* @detail 引用方式：,```JavaScript,var encoding = require('encoding');,```
@@ -217,133 +202,128 @@ declare module "encoding" {
 	import msgpackNS = require('msgpack')
 	import bsonNS = require('bson')
 
-	module encoding {
 
 
 
-		/**
-		 * 
-		 * @brief base32 编码与解码模块
-		 * 
-		 * 
-		 */
 
-		export const base32: typeof base32NS
+	/**
+	 * 
+	 * @brief base32 编码与解码模块
+	 * 
+	 * 
+	 */
 
-		/**
-		 * 
-		 * @brief base64 编码与解码模块
-		 * 
-		 * 
-		 */
+	export const base32: typeof base32NS
 
-		export const base64: typeof base64NS
+	/**
+	 * 
+	 * @brief base64 编码与解码模块
+	 * 
+	 * 
+	 */
 
-		/**
-		 * 
-		 * @brief base64vlq 编码与解码模块
-		 * 
-		 * 
-		 */
+	export const base64: typeof base64NS
 
-		export const base64vlq: typeof base64vlqNS
+	/**
+	 * 
+	 * @brief base64vlq 编码与解码模块
+	 * 
+	 * 
+	 */
 
-		/**
-		 * 
-		 * @brief hex 编码与解码模块
-		 * 
-		 * 
-		 */
+	export const base64vlq: typeof base64vlqNS
 
-		export const hex: typeof hexNS
+	/**
+	 * 
+	 * @brief hex 编码与解码模块
+	 * 
+	 * 
+	 */
 
-		/**
-		 * 
-		 * @brief iconv 编码与解码模块
-		 * 
-		 * 
-		 */
+	export const hex: typeof hexNS
 
-		export const iconv: typeof iconvNS
+	/**
+	 * 
+	 * @brief iconv 编码与解码模块
+	 * 
+	 * 
+	 */
 
-		/**
-		 * 
-		 * @brief json 编码与解码模块
-		 * 
-		 * 
-		 */
+	export const iconv: typeof iconvNS
 
-		export const json: typeof jsonNS
+	/**
+	 * 
+	 * @brief json 编码与解码模块
+	 * 
+	 * 
+	 */
 
-		/**
-		 * 
-		 * @brief msgpack 编码与解码模块
-		 * 
-		 * 
-		 */
+	export const json: typeof jsonNS
 
-		export const msgpack: typeof msgpackNS
+	/**
+	 * 
+	 * @brief msgpack 编码与解码模块
+	 * 
+	 * 
+	 */
 
-		/**
-		 * 
-		 * @brief bson 编码与解码模块
-		 * 
-		 * 
-		 */
+	export const msgpack: typeof msgpackNS
 
-		export const bson: typeof bsonNS
+	/**
+	 * 
+	 * @brief bson 编码与解码模块
+	 * 
+	 * 
+	 */
+
+	export const bson: typeof bsonNS
 
 
 
-		/**
-		 * 
-		 * @brief 将字符串编码为 javascript 转义字符串，用以在 javascript 代码中包含文本
-		 * @param str 要编码的字符串
-		 * @param json 是否生成json兼容字符串
-		 * @return 返回编码的字符串
-		 * 
-		 * 
-		 * 
-		 */
-		export function jsstr(str: string, json?: boolean/** = false*/): string;
+	/**
+	 * 
+	 * @brief 将字符串编码为 javascript 转义字符串，用以在 javascript 代码中包含文本
+	 * @param str 要编码的字符串
+	 * @param json 是否生成json兼容字符串
+	 * @return 返回编码的字符串
+	 * 
+	 * 
+	 * 
+	 */
+	export function jsstr(str: string, json?: boolean/** = false*/): string;
 
-		/**
-		 * 
-		 * @brief url 字符串安全编码
-		 * @param url 要编码的 url
-		 * @return 返回编码的字符串
-		 * 
-		 * 
-		 * 
-		 */
-		export function encodeURI(url: string): string;
+	/**
+	 * 
+	 * @brief url 字符串安全编码
+	 * @param url 要编码的 url
+	 * @return 返回编码的字符串
+	 * 
+	 * 
+	 * 
+	 */
+	export function encodeURI(url: string): string;
 
-		/**
-		 * 
-		 * @brief url 部件字符串安全编码
-		 * @param url 要编码的 url
-		 * @return 返回编码的字符串
-		 * 
-		 * 
-		 * 
-		 */
-		export function encodeURIComponent(url: string): string;
+	/**
+	 * 
+	 * @brief url 部件字符串安全编码
+	 * @param url 要编码的 url
+	 * @return 返回编码的字符串
+	 * 
+	 * 
+	 * 
+	 */
+	export function encodeURIComponent(url: string): string;
 
-		/**
-		 * 
-		 * @brief url 安全字符串解码
-		 * @param url 要解码的 url
-		 * @return 返回解码的字符串
-		 * 
-		 * 
-		 * 
-		 */
-		export function decodeURI(url: string): string;
-
-	} /** end of `module encoding` */
-	export = encoding
+	/**
+	 * 
+	 * @brief url 安全字符串解码
+	 * @param url 要解码的 url
+	 * @return 返回解码的字符串
+	 * 
+	 * 
+	 * 
+	 */
+	export function decodeURI(url: string): string;
 }
-
-/** endof `module Or Internal Object` */
 
 

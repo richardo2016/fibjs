@@ -1,25 +1,8 @@
-/***************************************************************************
- *                                                                         *
- *   This file was automatically generated with idlc.js                    *
- *	 build info: 								   						   *
- *   	- fibjs	: 0.32.0                                                   *
- *   	- date	: Mar 20 2021 19:45:41                                     *
- *                                                                         *
- ***************************************************************************/
 
-/** 
- * @author Richard <richardo2016@gmail.com>
- *
- */
 
 /// <reference path="../entry/_common.d.ts" />
 /// <reference path="../class/object.d.ts" />
 
-
-
-
-
-/** module Or Internal Object */
 /**
 	* @brief 文件的基础信息对象
 	* @detail Stat 对象通过 fs.stat, File.stat, fs.readdir 查询，不可独立创建
@@ -380,6 +363,5 @@ declare class Class_Stat extends Class__object {
 
 } /** endof class */
 
-/** endof `module Or Internal Object` */
 
 

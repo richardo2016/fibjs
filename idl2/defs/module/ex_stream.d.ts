@@ -1,29 +1,22 @@
-/***************************************************************************
- *                                                                         *
- *   This file was automatically generated with idlc.js                    *
- *	 build info: 								   						   *
- *   	- fibjs	: 0.32.0                                                   *
- *   	- date	: Mar 20 2021 19:45:41                                     *
- *                                                                         *
- ***************************************************************************/
-
-/** 
- * @author Richard <richardo2016@gmail.com>
- *
- */
-
-
-
 /// <reference path="../entry/_common.d.ts" />
-/// <reference path="../class/events.d.ts" />
+/// <reference path="events.d.ts" />
 
+/**
+ * @nocpp
+ */
 declare module "stream" {
     import * as events from "events";
 
+    /**
+     * @nocpp
+     */
     class internal extends events.EventEmitter {
         pipe<T extends Fibjs.WritableStream>(destination: T, options?: { end?: boolean; }): T;
     }
 
+    /**
+     * @nocpp
+     */
     namespace internal {
         export class Stream extends internal { }
 

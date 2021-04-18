@@ -1,25 +1,8 @@
-/***************************************************************************
- *                                                                         *
- *   This file was automatically generated with idlc.js                    *
- *	 build info: 								   						   *
- *   	- fibjs	: 0.32.0                                                   *
- *   	- date	: Mar 20 2021 19:45:41                                     *
- *                                                                         *
- ***************************************************************************/
 
-/** 
- * @author Richard <richardo2016@gmail.com>
- *
- */
 
 /// <reference path="../entry/_common.d.ts" />
 /// <reference path="../class/object.d.ts" />
 
-
-
-
-
-/** module Or Internal Object */
 /**
 	* @brief XmlCharacterData 接口提供了 XmlText 和 XmlComment 节点的常用功能
 	* @detail XmlCharacterData 是 XmlText 和 XmlComment 节点的超接口。文档从不包含 XmlCharacterData 节点，它们只包含 XmlText 节点和 XmlComment 节点。但由于这两种节点具有相似的功能，因此此处定义了这些函数，以便 XmlText 和 XmlComment 可以继承它。
@@ -114,6 +97,5 @@ declare class Class_XmlCharacterData extends Class_XmlNode {
 
 } /** endof class */
 
-/** endof `module Or Internal Object` */
 
 

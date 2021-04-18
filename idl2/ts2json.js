@@ -76,7 +76,17 @@ class IDL1Node {
     getIDLNodeWrapper() {
         let childNodes = [];
         if (this.children.length) {
-            childNodes = this.children.map(child => child.getIDLNodeWrapper())
+            this.children.forEach(child => {
+                const nocppTag = child.jsDocMeta.tags.find(tag => tag.name === 'nocpp')
+                if (nocppTag) return;
+                /* only check interface/module's tags */
+                if (child.declare && !child.jsDocMeta.tags.length) {
+                    console.warn(`[getIDLNodeWrapper] no jsDocMeta.tags provided for ${child.__idlNodeType__} '${child.name}'`)
+                    return;
+                }
+
+                childNodes.push(child.getIDLNodeWrapper())
+            })
         }
 
         if (this.name === ROOT_NAME) {
@@ -115,6 +125,7 @@ class IDL1Node {
                     __idlNodeType__: this.idlNodeType,
                     __jsDocMeta__: this.jsDocMeta,
                     idlNode,
+                    name: idlNode.name
                 };
 
                 result.targetName = targetName.replace(/Class__?/, '');
@@ -129,10 +140,22 @@ class IDL1Node {
             default:
                 throw new Error(`[getIDLNodeWrapper] unsupported idlNodeType ${this.idlNodeType}`)
             case 'module':
-            case 'interface':
+            case 'interface': {
+                const briefTag = this.jsDocMeta.tags.find(tag => tag.name === 'brief')
+                if (this.name === 'Buffer') {
+                    console.log('this.jsDocMeta', JSON.stringify(this.jsDocMeta, null, '\t'));
+                }
+
+                try {
+                    briefTag.comment;
+                } catch (error) {
+                    console.error(error);
+                    throw new Error(`[getIDLNodeWrapper] cannot access briefTag.comment for ${this.idlNodeType} '${this.name}'`);
+                }
+
                 return getResult({
                     declare: {
-                        comments: '',
+                        comments: `! @brief ${briefTag.comment}`,
                         type: this.idlNodeType,
                         name: this.name,
                     },
@@ -140,6 +163,7 @@ class IDL1Node {
                     doc: {},
                     extend: null
                 });
+            }
             case 'constructor':
             case 'method': {
                 return getResult({
@@ -168,9 +192,9 @@ class IDL1Node {
                 return getResult({
                     type: "String",
                     name: this.name,
-                    default: parentParamTag ? {
+                    default: parentParamTag && parentParamTag.defaultValue ? {
                         value: parentParamTag.defaultValue
-                    } : undefined
+                    } : null
                 });
             }
             case 'tempProp:number': // what's this?

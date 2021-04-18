@@ -1,25 +1,8 @@
-/***************************************************************************
- *                                                                         *
- *   This file was automatically generated with idlc.js                    *
- *	 build info: 								   						   *
- *   	- fibjs	: 0.32.0                                                   *
- *   	- date	: Mar 20 2021 19:45:41                                     *
- *                                                                         *
- ***************************************************************************/
 
-/** 
- * @author Richard <richardo2016@gmail.com>
- *
- */
 
 /// <reference path="../entry/_common.d.ts" />
 /// <reference path="../class/object.d.ts" />
 
-
-
-
-
-/** module Or Internal Object */
 /**
 	* @brief 消息处理器链处理对象
 	* @detail 消息处理器链处理对象用于链接一系列消息处理器，按照指定的顺序链式处理。创建方法：,```JavaScript,var chain = new mq.Chain([,  func1, func2,]);,```
@@ -62,6 +45,5 @@ declare class Class_Chain extends Class_Handler {
 
 } /** endof class */
 
-/** endof `module Or Internal Object` */
 
 

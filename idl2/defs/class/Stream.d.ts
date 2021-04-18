@@ -1,25 +1,8 @@
-/***************************************************************************
- *                                                                         *
- *   This file was automatically generated with idlc.js                    *
- *	 build info: 								   						   *
- *   	- fibjs	: 0.32.0                                                   *
- *   	- date	: Mar 20 2021 19:45:41                                     *
- *                                                                         *
- ***************************************************************************/
 
-/** 
- * @author Richard <richardo2016@gmail.com>
- *
- */
 
 /// <reference path="../entry/_common.d.ts" />
 /// <reference path="../class/object.d.ts" />
 
-
-
-
-
-/** module Or Internal Object */
 /**
 	* @brief 流操作对象，用于二进制数据流读写
 	* @detail Stream 为基础对象，用于为流处理定义标准借口，不能独立创建
@@ -93,6 +76,5 @@ declare class Class_Stream extends Class__object {
 
 } /** endof class */
 
-/** endof `module Or Internal Object` */
 
 

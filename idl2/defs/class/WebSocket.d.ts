@@ -1,25 +1,8 @@
-/***************************************************************************
- *                                                                         *
- *   This file was automatically generated with idlc.js                    *
- *	 build info: 								   						   *
- *   	- fibjs	: 0.32.0                                                   *
- *   	- date	: Mar 20 2021 19:45:41                                     *
- *                                                                         *
- ***************************************************************************/
 
-/** 
- * @author Richard <richardo2016@gmail.com>
- *
- */
 
 /// <reference path="../entry/_common.d.ts" />
 /// <reference path="../class/object.d.ts" />
 
-
-
-
-
-/** module Or Internal Object */
 /**
 	* @brief WebSocket 包协议转换处理器
 	* @detail 用以将 Http 协议转换为 WebSocket 包协议消息。创建方式：,```JavaScript,var ws = require('ws');,var http = require('http');,,var serv = new http.Server(8811, ws.upgrade((conn) => {,conn.onmessage = msg => {,    conn.send(new Date());,};,}));,,serv.run(r => 0);,,var sock = new ws.Socket('ws://127.0.0.1:8811');,sock.on('open', () => {,    setInterval(() => {,        sock.send('get date');,    }, 1000);,});,,sock.onmessage = evt => {,  console.log(evt.data);,},```
@@ -213,6 +196,5 @@ declare class Class_WebSocket extends Class_EventEmitter {
 
 } /** endof class */
 
-/** endof `module Or Internal Object` */
 
 

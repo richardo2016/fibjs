@@ -1,16 +1,4 @@
-/***************************************************************************
- *                                                                         *
- *   This file was automatically generated with idlc.js                    *
- *	 build info: 								   						   *
- *   	- fibjs	: 0.32.0                                                   *
- *   	- date	: Mar 20 2021 19:45:41                                     *
- *                                                                         *
- ***************************************************************************/
 
-/** 
- * @author Richard <richardo2016@gmail.com>
- *
- */
 
 /// <reference no-default-lib="true"/>
 
@@ -80,6 +68,9 @@
 import _Global = require('global');
 import _Process = require('process');
 
+/**
+ * @nocpp
+ */
 declare global {
     var exports: {
         [k: string]: any
