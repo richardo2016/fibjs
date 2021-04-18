@@ -20,6 +20,9 @@ declare module "stream" {
     namespace internal {
         export class Stream extends internal { }
 
+        /**
+         * @nocpp
+         */
         export interface ReadableOptions {
             highWaterMark?: number;
             encoding?: string;
@@ -28,6 +31,9 @@ declare module "stream" {
             destroy?(this: Readable, error: Error | null, callback: (error: Error | null) => void): void;
         }
 
+        /**
+         * @nocpp
+         */
         export class Readable extends Stream implements Fibjs.ReadableStream {
             readable: boolean;
             readonly readableHighWaterMark: number;
@@ -114,6 +120,9 @@ declare module "stream" {
             [Symbol.asyncIterator](): AsyncIterableIterator<any>;
         }
 
+        /**
+         * @nocpp
+         */
         export interface WritableOptions {
             highWaterMark?: number;
             decodeStrings?: boolean;
@@ -124,6 +133,9 @@ declare module "stream" {
             final?(this: Writable, callback: (error?: Error | null) => void): void;
         }
 
+        /**
+         * @nocpp
+         */
         export class Writable extends Stream implements Fibjs.WritableStream {
             writable: boolean;
             readonly writableHighWaterMark: number;
@@ -217,6 +229,7 @@ declare module "stream" {
             removeListener(map: object): object;
         }
 
+
         export interface DuplexOptions extends ReadableOptions, WritableOptions {
             allowHalfOpen?: boolean;
             readableObjectMode?: boolean;
@@ -228,6 +241,9 @@ declare module "stream" {
             destroy?(this: Duplex, error: Error | null, callback: (error: Error | null) => void): void;
         }
 
+        /**
+         * @nocpp
+         */
         // Note: Duplex extends both Readable and Writable.
         export class Duplex extends Readable implements Writable {
             writable: boolean;
@@ -250,6 +266,9 @@ declare module "stream" {
 
         type TransformCallback = (error?: Error, data?: any) => void;
 
+        /**
+         * @nocpp
+         */
         export interface TransformOptions extends DuplexOptions {
             read?(this: Transform, size: number): void;
             write?(this: Transform, chunk: any, encoding: string, callback: (error?: Error | null) => void): void;
@@ -260,12 +279,18 @@ declare module "stream" {
             flush?(this: Transform, callback: TransformCallback): void;
         }
 
+        /**
+         * @nocpp
+         */
         export class Transform extends Duplex {
             constructor(opts?: TransformOptions);
             _transform(chunk: any, encoding: string, callback: TransformCallback): void;
             _flush(callback: TransformCallback): void;
         }
 
+        /**
+         * @nocpp
+         */
         export class PassThrough extends Transform { }
 
         export function pipeline<T extends Fibjs.WritableStream>(stream1: Fibjs.ReadableStream, stream2: T, callback?: (err: Fibjs.ErrnoException) => void): T;
