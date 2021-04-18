@@ -1,25 +1,8 @@
-/***************************************************************************
- *                                                                         *
- *   This file was automatically generated with idlc.js                    *
- *	 build info: 								   						   *
- *   	- fibjs	: 0.32.0                                                   *
- *   	- date	: Mar 20 2021 19:45:41                                     *
- *                                                                         *
- ***************************************************************************/
 
-/** 
- * @author Richard <richardo2016@gmail.com>
- *
- */
 
 /// <reference path="../entry/_common.d.ts" />
 /// <reference path="../class/object.d.ts" />
 
-
-
-
-
-/** module Or Internal Object */
 /**
 	* @brief dgram.Socket 对象是一个封装了数据包函数功能的 EventEmitter。
 	* @detail DgramSocket 实例是由 dgram.createSocket() 创建的。创建 dgram.Socket 实例不需要使用 new 关键字。,,创建方法：,```JavaScript,var dgram = require('dgram');,var sock = dgram.createSocket('udp4');,```,,## 事件,DgramSocket 继承于 EventEmitter，对象的状态变化，以及数据接受，都是以事件的方式实现。,,### close 事件,** `close` 事件将在使用 `close()` 关闭一个 `socket` 之后触发。该事件一旦触发，这个 `socket` 上将不会触发新的 `message` 事件。**,,### error 事件,** 当有任何错误发生时，`error` 事件将被触发。 **,,### listening 事件,** 当一个 `socket` 开始监听数据包信息时，`listening` 事件将被触发。该事件会在创建 UDP socket 之后被立即触发。 **,,### message 事件,** 当有新的数据包被 `socket` 接收时，`message` 事件会被触发。`msg` 和 `rinfo` 会作为参数传递到该事件的处理函数中。 **,- msg: Buffer，消息,- rinfo: Object，远程地址信息,   - address: string，发送方地址,   - family: string，地址类型 ('IPv4' or 'IPv6'),   - port: number，发送者端口,   - size: number，消息大小
@@ -179,6 +162,5 @@ declare class Class_DgramSocket extends Class_EventEmitter {
 
 } /** endof class */
 
-/** endof `module Or Internal Object` */
 
 

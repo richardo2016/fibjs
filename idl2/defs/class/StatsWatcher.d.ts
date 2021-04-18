@@ -1,25 +1,8 @@
-/***************************************************************************
- *                                                                         *
- *   This file was automatically generated with idlc.js                    *
- *	 build info: 								   						   *
- *   	- fibjs	: 0.32.0                                                   *
- *   	- date	: Mar 20 2021 19:45:41                                     *
- *                                                                         *
- ***************************************************************************/
 
-/** 
- * @author Richard <richardo2016@gmail.com>
- *
- */
 
 /// <reference path="../entry/_common.d.ts" />
 /// <reference path="../class/object.d.ts" />
 
-
-
-
-
-/** module Or Internal Object */
 /**
 	* @brief 文件 Stats 观察对象
 	* @detail 当调用 `fs.watchFile(target, onchange)` 成功时, 返回该类型对象,```JavaScript,var fs = require("fs");,var statsWatcher = fs.watchFile(target, (curStat, prevStat) => {,   // process,   // ...,,   statsWatcher.unref();,});,```,**注意** 当且**仅当**被观察的目标文件 target 的 mtime 属性发生变化时才会触发 onchange 回调,,单纯地访问(access)目标文件 target 不会触发 onchange 回调.,,如果调用 `fs.watchFile(target)` 时, target 表示的文件或目录还不存在, 则onchange 回调**不会**被调用, 一直到该 target 被创建, 该回调才会开始被调用.,如果在 watcher 工作途中, )目标文件被删除, 则后续不会再有回调产生
@@ -76,6 +59,5 @@ declare class Class_StatsWatcher extends Class_EventEmitter {
 
 } /** endof class */
 
-/** endof `module Or Internal Object` */
 
 

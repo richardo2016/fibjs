@@ -1,25 +1,8 @@
-/***************************************************************************
- *                                                                         *
- *   This file was automatically generated with idlc.js                    *
- *	 build info: 								   						   *
- *   	- fibjs	: 0.32.0                                                   *
- *   	- date	: Mar 20 2021 19:45:41                                     *
- *                                                                         *
- ***************************************************************************/
 
-/** 
- * @author Richard <richardo2016@gmail.com>
- *
- */
 
 /// <reference path="../entry/_common.d.ts" />
 /// <reference path="../class/object.d.ts" />
 
-
-
-
-
-/** module Or Internal Object */
 /**
 	* @brief 文件系统观察对象
 	* @detail 当调用 `fs.watch(target)` 成功时, 返回该类型对象,```JavaScript,var fs = require("fs");,var watcher = fs.watch((eventType, filename) => {,   if (filename) {,     console.log(filename);,     // Prints: <Buffer ...>,   },});,,watcher.close();,,// 带回调地调用,fs.watch('./tmp', { encoding: 'buffer' }, (eventType, filename) => {, if (filename) {,   console.log(filename);,   // Prints: <Buffer ...>, },});,```
@@ -76,6 +59,5 @@ declare class Class_FSWatcher extends Class_EventEmitter {
 
 } /** endof class */
 
-/** endof `module Or Internal Object` */
 
 

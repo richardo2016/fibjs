@@ -1,21 +1,8 @@
-/***************************************************************************
- *                                                                         *
- *   This file was automatically generated with idlc.js                    *
- *	 build info: 								   						   *
- *   	- fibjs	: 0.32.0                                                   *
- *   	- date	: Mar 20 2021 19:45:41                                     *
- *                                                                         *
- ***************************************************************************/
-
-/** 
- * @author Richard <richardo2016@gmail.com>
- *
- */
 
 
 
 
-// give all internal defined classes as reference
+
 /// <reference path="../entry/_common.d.ts" />
 
 /// <reference path="../class/Buffer.d.ts" />
@@ -192,47 +179,32 @@
 
 /// <reference path="../class/object.d.ts" />
 
-
-/** module Or Internal Object */
 /**
 	* @brief bson 编码与解码模块
 	* @detail 引用方式：,```JavaScript,var encoding = require('encoding');,var bson = encoding.bson;,```,或者,```JavaScript,var bson = require('bson');,```
 	*/
 declare module "bson" {
+	/**
+	 * 
+	 * @brief 以 bson 格式编码变量
+	 * @param data 要编码的变量
+	 * @return 返回编码的二进制数据
+	 * 
+	 * 
+	 * 
+	 */
+	export function encode(data: Fibjs.AnyObject): Class_Buffer;
 
-
-	module bson {
-
-
-
-
-
-		/**
-		 * 
-		 * @brief 以 bson 格式编码变量
-		 * @param data 要编码的变量
-		 * @return 返回编码的二进制数据
-		 * 
-		 * 
-		 * 
-		 */
-		export function encode(data: Fibjs.AnyObject): Class_Buffer;
-
-		/**
-		 * 
-		 * @brief 以 bson 方式解码字符串为一个变量
-		 * @param data 要解码的二进制数据
-		 * @return 返回解码的变量
-		 * 
-		 * 
-		 * 
-		 */
-		export function decode(data: Class_Buffer): Fibjs.AnyObject;
-
-	} /** end of `module bson` */
-	export = bson
+	/**
+	 * 
+	 * @brief 以 bson 方式解码字符串为一个变量
+	 * @param data 要解码的二进制数据
+	 * @return 返回解码的变量
+	 * 
+	 * 
+	 * 
+	 */
+	export function decode(data: Class_Buffer): Fibjs.AnyObject;
 }
-
-/** endof `module Or Internal Object` */
 
 

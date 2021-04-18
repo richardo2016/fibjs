@@ -1,21 +1,8 @@
-/***************************************************************************
- *                                                                         *
- *   This file was automatically generated with idlc.js                    *
- *	 build info: 								   						   *
- *   	- fibjs	: 0.32.0                                                   *
- *   	- date	: Mar 20 2021 19:45:41                                     *
- *                                                                         *
- ***************************************************************************/
-
-/** 
- * @author Richard <richardo2016@gmail.com>
- *
- */
 
 
 
 
-// give all internal defined classes as reference
+
 /// <reference path="../entry/_common.d.ts" />
 
 /// <reference path="../class/Buffer.d.ts" />
@@ -192,8 +179,6 @@
 
 /// <reference path="../class/object.d.ts" />
 
-
-/** module Or Internal Object */
 /**
 	* @brief dns 域名查询模块
 	* @detail 基础模块，引用方式：,```JavaScript,var dns = require('dns');,```
@@ -201,38 +186,32 @@
 declare module "dns" {
 
 
-	module dns {
 
 
 
 
+	/**
+	 * 
+	 * @brief 查询给定的主机名的地址
+	 * @param name 指定主机名
+	 * @return 返回查询的 ip 字符串数组
+	 * 
+	 * 
+	 * @async
+	 */
+	export function resolve(name: string, callback?: Fibjs.AsyncCallback<any[]>/** = function (err: Error, result: any[]) {}*/): any[];
 
-		/**
-		 * 
-		 * @brief 查询给定的主机名的地址
-		 * @param name 指定主机名
-		 * @return 返回查询的 ip 字符串数组
-		 * 
-		 * 
-		 * @async
-		 */
-		export function resolve(name: string, callback?: Fibjs.AsyncCallback<any[]>/** = function (err: Error, result: any[]) {}*/): any[];
+	/**
+	 * 
+	 * @brief 查询给定的主机名的地址
+	 * @param name 指定主机名
+	 * @return 返回查询的 ip 字符串
+	 * 
+	 * 
+	 * @async
+	 */
+	export function lookup(name: string, callback?: Fibjs.AsyncCallback<string>/** = function (err: Error, result: string) {}*/): string;
 
-		/**
-		 * 
-		 * @brief 查询给定的主机名的地址
-		 * @param name 指定主机名
-		 * @return 返回查询的 ip 字符串
-		 * 
-		 * 
-		 * @async
-		 */
-		export function lookup(name: string, callback?: Fibjs.AsyncCallback<string>/** = function (err: Error, result: string) {}*/): string;
-
-	} /** end of `module dns` */
-	export = dns
 }
-
-/** endof `module Or Internal Object` */
 
 

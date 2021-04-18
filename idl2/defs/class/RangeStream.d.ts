@@ -1,25 +1,8 @@
-/***************************************************************************
- *                                                                         *
- *   This file was automatically generated with idlc.js                    *
- *	 build info: 								   						   *
- *   	- fibjs	: 0.32.0                                                   *
- *   	- date	: Mar 20 2021 19:45:41                                     *
- *                                                                         *
- ***************************************************************************/
 
-/** 
- * @author Richard <richardo2016@gmail.com>
- *
- */
 
 /// <reference path="../entry/_common.d.ts" />
 /// <reference path="../class/object.d.ts" />
 
-
-
-
-
-/** module Or Internal Object */
 /**
 	* @brief Range 查询流读取对象
 	* @detail RangeStream 对象用于对 SeekableStream 对象数据进行截取。创建方法：,```JavaScript,var stm = new io.RangeStream(stream, '0-10');,stm.end // 11,,var stm = new io.RangeStream(stream, 0, 10);,stm.end // 10,```
@@ -79,6 +62,5 @@ declare class Class_RangeStream extends Class_SeekableStream {
 
 } /** endof class */
 
-/** endof `module Or Internal Object` */
 
 

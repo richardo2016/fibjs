@@ -1,25 +1,8 @@
-/***************************************************************************
- *                                                                         *
- *   This file was automatically generated with idlc.js                    *
- *	 build info: 								   						   *
- *   	- fibjs	: 0.32.0                                                   *
- *   	- date	: Mar 20 2021 19:45:41                                     *
- *                                                                         *
- ***************************************************************************/
 
-/** 
- * @author Richard <richardo2016@gmail.com>
- *
- */
 
 /// <reference path="../entry/_common.d.ts" />
 /// <reference path="../class/object.d.ts" />
 
-
-
-
-
-/** module Or Internal Object */
 /**
 	* @brief LRU(least recently used) 缓存对象
 	* @detail LruCache 用以维护一个 LRU 缓存，创建方法：,```JavaScript,var util = require("util");,var c = new util.LruCache(10, 100);,```
@@ -162,6 +145,5 @@ declare class Class_LruCache extends Class_EventEmitter {
 
 } /** endof class */
 
-/** endof `module Or Internal Object` */
 
 

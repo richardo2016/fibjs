@@ -1,21 +1,3 @@
-/***************************************************************************
- *                                                                         *
- *   This file was automatically generated with idlc.js                    *
- *	 build info: 								   						   *
- *   	- fibjs	: 0.32.0                                                   *
- *   	- date	: Mar 20 2021 19:45:41                                     *
- *                                                                         *
- ***************************************************************************/
-
-/** 
- * @author Richard <richardo2016@gmail.com>
- *
- */
-
-
-
-
-// give all internal defined classes as reference
 /// <reference path="../entry/_common.d.ts" />
 
 /// <reference path="../class/Buffer.d.ts" />
@@ -192,34 +174,17 @@
 
 /// <reference path="../class/object.d.ts" />
 
-
-/** module Or Internal Object */
 /**
-	* @brief events module
-	* @detail 
-	*/
+ * @brief events module
+ * @detail 
+ */
 declare module "events" {
-
-
-	module events {
-
-
-
-		/**
-		 * 
-		 * @brief Class_EventEmitter
-		 * 
-		 * 
-		 */
-		export const EventEmitter: typeof Class_EventEmitter
-
-
-
-
-	} /** end of `module events` */
-	export = events
+	/**
+	 * 
+	 * @brief Class_EventEmitter
+	 * 
+	 */
+	export const EventEmitter: typeof Class_EventEmitter
 }
-
-/** endof `module Or Internal Object` */
 
 

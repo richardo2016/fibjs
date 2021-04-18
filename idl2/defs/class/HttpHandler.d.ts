@@ -1,25 +1,8 @@
-/***************************************************************************
- *                                                                         *
- *   This file was automatically generated with idlc.js                    *
- *	 build info: 								   						   *
- *   	- fibjs	: 0.32.0                                                   *
- *   	- date	: Mar 20 2021 19:45:41                                     *
- *                                                                         *
- ***************************************************************************/
 
-/** 
- * @author Richard <richardo2016@gmail.com>
- *
- */
 
 /// <reference path="../entry/_common.d.ts" />
 /// <reference path="../class/object.d.ts" />
 
-
-
-
-
-/** module Or Internal Object */
 /**
 	* @brief http 协议转换处理器
 	* @detail 用以将数据流转换为 http 协议消息，创建方式：,```JavaScript,var hdlr = new mq.HttpHandler(...);,```,或者：,```JavaScript,var hdlr = new http.Handler(...);,```
@@ -100,6 +83,5 @@ declare class Class_HttpHandler extends Class_Handler {
 
 } /** endof class */
 
-/** endof `module Or Internal Object` */
 
 

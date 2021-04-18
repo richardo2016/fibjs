@@ -1,25 +1,8 @@
-/***************************************************************************
- *                                                                         *
- *   This file was automatically generated with idlc.js                    *
- *	 build info: 								   						   *
- *   	- fibjs	: 0.32.0                                                   *
- *   	- date	: Mar 20 2021 19:45:41                                     *
- *                                                                         *
- ***************************************************************************/
 
-/** 
- * @author Richard <richardo2016@gmail.com>
- *
- */
 
 /// <reference path="../entry/_common.d.ts" />
 /// <reference path="../class/object.d.ts" />
 
-
-
-
-
-/** module Or Internal Object */
 /**
 	* @brief 事件对象
 	* @detail 通过一个事件达到对一组纤程进行控制的目的（事件对象的状态为bool类型）
@@ -84,6 +67,5 @@ declare class Class_Event extends Class_Lock {
 
 } /** endof class */
 
-/** endof `module Or Internal Object` */
 
 

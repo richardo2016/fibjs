@@ -1,19 +1,6 @@
-/***************************************************************************
- *                                                                         *
- *   This file was automatically generated with idlc.js                    *
- *	 build info: 								   						   *
- *   	- fibjs	: 0.32.0                                                   *
- *   	- date	: Mar 20 2021 19:45:41                                     *
- *                                                                         *
- ***************************************************************************/
-
-/** 
- * @author Richard <richardo2016@gmail.com>
- *
- */
 
 
-// give all internal defined classes as reference
+
 /// <reference path="../entry/_common.d.ts" />
 
 /// <reference path="../class/Buffer.d.ts" />
@@ -190,8 +177,6 @@
 
 /// <reference path="../class/object.d.ts" />
 
-
-/** module Or Internal Object */
 /**
 	* @brief 子进程管理模块
 	* @detail 引用方式：,```JavaScript,var child_process = require("child_process");,var child = child_process.spwan("ls");,```,,对于同时使用 nodejs 的用户, 需注意,- fibjs 的 `child_process.exec(command, args)` 和 nodejs 的同名 api 功能类似, 但在 windows 上, 并不会自动将 cmd.exe 作为 command 参数的执行环境;,- fibjs 的 child_process.[spawn|exec|execFile|run] 是同步/回调一体的 async 风格函数:,  - 如果最后一个参数不是函数, 则是同步的,  - 如果传递了函数作为最后一个参数, 则是异步的;,- fibjs 的 child_process.[exec|execFile] 的返回结果是一个对象, 该对象和 nodejs 同名 api 返回的对象**完全不相同**,- fibjs 的 `child_process.run` 在 nodejs 中没有对应 API
@@ -378,7 +363,5 @@ declare module "child_process" {
 	 * @async
 	 */
 }
-
-/** endof `module Or Internal Object` */
 
 

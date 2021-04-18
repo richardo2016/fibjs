@@ -1,22 +1,3 @@
-/***************************************************************************
- *                                                                         *
- *   This file was automatically generated with idlc.js                    *
- *	 build info: 								   						   *
- *   	- fibjs	: 0.32.0                                                   *
- *   	- date	: Mar 20 2021 19:45:41                                     *
- *                                                                         *
- ***************************************************************************/
-
-/** 
- * @author Richard <richardo2016@gmail.com>
- *
- */
-
-
-
-
-
-/** module Or Internal Object */
 /**
 	* @brief 基础对象，所有对象均继承于此
 	* @detail 
@@ -50,6 +31,5 @@ declare class Class__object {
 
 } /** endof class */
 
-/** endof `module Or Internal Object` */
 
 

@@ -1,25 +1,8 @@
-/***************************************************************************
- *                                                                         *
- *   This file was automatically generated with idlc.js                    *
- *	 build info: 								   						   *
- *   	- fibjs	: 0.32.0                                                   *
- *   	- date	: Mar 20 2021 19:45:41                                     *
- *                                                                         *
- ***************************************************************************/
 
-/** 
- * @author Richard <richardo2016@gmail.com>
- *
- */
 
 /// <reference path="../entry/_common.d.ts" />
 /// <reference path="../class/object.d.ts" />
 
-
-
-
-
-/** module Or Internal Object */
 /**
 	* @brief ssl 网络套接口对象
 	* @detail SslSocket 属于 ssl 模块，创建方法,```JavaScript,var s = new ssl.Socket();,```
@@ -152,6 +135,5 @@ declare class Class_SslSocket extends Class_Stream {
 
 } /** endof class */
 
-/** endof `module Or Internal Object` */
 
 

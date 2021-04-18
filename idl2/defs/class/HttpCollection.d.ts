@@ -1,25 +1,8 @@
-/***************************************************************************
- *                                                                         *
- *   This file was automatically generated with idlc.js                    *
- *	 build info: 								   						   *
- *   	- fibjs	: 0.32.0                                                   *
- *   	- date	: Mar 20 2021 19:45:41                                     *
- *                                                                         *
- ***************************************************************************/
 
-/** 
- * @author Richard <richardo2016@gmail.com>
- *
- */
 
 /// <reference path="../entry/_common.d.ts" />
 /// <reference path="../class/object.d.ts" />
 
-
-
-
-
-/** module Or Internal Object */
 /**
 	* @brief http 容器对象，用于 http header，cookie，query，form，等数据的存储与组织
 	* @detail 
@@ -186,6 +169,5 @@ declare class Class_HttpCollection extends Class__object {
 
 } /** endof class */
 
-/** endof `module Or Internal Object` */
 
 

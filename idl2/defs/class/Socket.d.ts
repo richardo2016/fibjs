@@ -1,26 +1,8 @@
-/***************************************************************************
- *                                                                         *
- *   This file was automatically generated with idlc.js                    *
- *	 build info: 								   						   *
- *   	- fibjs	: 0.32.0                                                   *
- *   	- date	: Mar 20 2021 19:45:41                                     *
- *                                                                         *
- ***************************************************************************/
 
-/** 
- * @author Richard <richardo2016@gmail.com>
- *
- */
 
 /// <reference path="../entry/_common.d.ts" />
 /// <reference path="../class/object.d.ts" />
 
-
-
-
-
-
-/** module Or Internal Object */
 /**
 	* @brief 网络套接口对象
 	* @detail Socket 属于 net 模块，创建方法,```JavaScript,var s = new net.Socket();,```
@@ -230,6 +212,5 @@ declare class Class_Socket extends Class_Stream {
 
 } /** endof class */
 
-/** endof `module Or Internal Object` */
 
 
