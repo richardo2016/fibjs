@@ -25,7 +25,7 @@ const { mkdirp, readdirr } = require('../fibjs/scripts/internal/helpers/fs')
 //     return path.join(IDL2_ROOT, relp)
 // })
 
-const idl2Json = require('./ts2json')([path.join(IDL2_ROOT, './index.d.ts')], {})
+const idl2Json = require('./ts2json').ts2json([path.join(IDL2_ROOT, './index.d.ts')], {})
 
 // whole dump
 const dumpedJson = JSON.stringify(idl2Json, null, '\t');

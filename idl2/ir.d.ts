@@ -37,6 +37,11 @@ declare namespace FIBJS_IDL {
         } | null
     }
 
+    export interface ISimpleParsedDoc {
+        descript: string
+        detail: string[]
+    }
+
     /**
     * @description 解析得到的注释区域得到的文档信息
     * 

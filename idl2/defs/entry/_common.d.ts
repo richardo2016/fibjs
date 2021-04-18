@@ -13,6 +13,25 @@ declare namespace Fibjs {
         stack?: string;
     }
 
+    /** @description 32 位带符号整型 */
+    type i32 = number;
+    /** @description 32 位无符号整型 */
+    type u32 = number;
+    /** @description 64 位带符号整型 */
+    type i64 = number;
+    /** @description 64 位无符号整型 */
+    type u64 = number;
+
+    /** @description 32 位浮点数 */
+    type f32 = number;
+    /** @description 64 位浮点数 */
+    type f64 = number;
+
+    /** @description 长整型 */
+    type long = number;
+    /** @description 浮点数 */
+    type float = number;
+
     interface AsyncCallback<T_RESP = any> {
         <T = T_RESP, T_CALLBACK_RESP = any, T_THIS = any>(this: T_THIS, err: Error, result?: T): T_CALLBACK_RESP | void
     }

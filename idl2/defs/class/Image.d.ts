@@ -99,7 +99,7 @@ declare class Class_Image extends Class__object {
 	 * class prop 
 	 *
 	 * 
-	 * @brief查询和设定绘图时是否计算 alpha 层，缺省为 true
+	 * @brief 查询和设定绘图时是否计算 alpha 层，缺省为 true
 	 * 
 	 * 
 	 * @type Boolean
