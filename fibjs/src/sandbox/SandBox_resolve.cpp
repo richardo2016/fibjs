@@ -281,6 +281,14 @@ result_t SandBox::resolveModule(exlib::string base, exlib::string& id, obj_ptr<B
             return 0;
         }
 
+        for (i = 0; opt_typescript_res[i].name && qstrcmp(opt_typescript_res[i].name, fname.c_str()); i++)
+            ;
+
+        if (opt_typescript_res[i].name) {
+            opt_typescript_res[i].getDate(data);
+            return 0;
+        }
+
         if (isPathSlash(base[base.length() - 1]))
             base.resize(base.length() - 1);
         fname = base;
