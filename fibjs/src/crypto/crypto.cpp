@@ -493,4 +493,84 @@ result_t crypto_base::pbkdf2(Buffer_base* password, Buffer_base* salt, int32_t i
 
     return pbkdf2(password, salt, iterations, size, mbedtls_md_get_type(mi), retVal, ac);
 }
+
+obj_ptr<NArray> g_hashes;
+class init_hashes {
+public:
+    init_hashes()
+    {
+        g_hashes = new NArray();
+
+        // g_hashes->append("RSA-MD4");
+        // g_hashes->append("RSA-MD5");
+        // g_hashes->append("RSA-MDC2");
+        // g_hashes->append("RSA-RIPEMD160");
+        // g_hashes->append("RSA-SHA1");
+        // g_hashes->append("RSA-SHA1-2");
+        // g_hashes->append("RSA-SHA224");
+        // g_hashes->append("RSA-SHA256");
+        // g_hashes->append("RSA-SHA3-224");
+        // g_hashes->append("RSA-SHA3-256");
+        // g_hashes->append("RSA-SHA3-384");
+        // g_hashes->append("RSA-SHA3-512");
+        // g_hashes->append("RSA-SHA384");
+        // g_hashes->append("RSA-SHA512");
+        // g_hashes->append("RSA-SHA512/224");
+        // g_hashes->append("RSA-SHA512/256");
+        // g_hashes->append("RSA-SM3");
+        // g_hashes->append("blake2b512");
+        // g_hashes->append("blake2s256");
+        // g_hashes->append("id-rsassa-pkcs1-v1_5-with-sha3-224");
+        // g_hashes->append("id-rsassa-pkcs1-v1_5-with-sha3-256");
+        // g_hashes->append("id-rsassa-pkcs1-v1_5-with-sha3-384");
+        // g_hashes->append("id-rsassa-pkcs1-v1_5-with-sha3-512");
+        g_hashes->append("md4");
+        // g_hashes->append("md4WithRSAEncryption");
+        g_hashes->append("md5");
+        // g_hashes->append("md5WithRSAEncryption");
+        g_hashes->append("md5-sha1");
+        // g_hashes->append("mdc2");
+        // g_hashes->append("mdc2WithRSA");
+        // g_hashes->append("ripemd");
+        g_hashes->append("ripemd160");
+        // g_hashes->append("ripemd160WithRSA");
+        // g_hashes->append("rmd160");
+        g_hashes->append("sha1");
+        // g_hashes->append("sha1WithRSAEncryption");
+        g_hashes->append("sha224");
+        // g_hashes->append("sha224WithRSAEncryption");
+        g_hashes->append("sha256");
+        // g_hashes->append("sha256WithRSAEncryption");
+        // g_hashes->append("sha3-224");
+        // g_hashes->append("sha3-256");
+        // g_hashes->append("sha3-384");
+        // g_hashes->append("sha3-512");
+        g_hashes->append("sha384");
+        // g_hashes->append("sha384WithRSAEncryption");
+        g_hashes->append("sha512");
+        // g_hashes->append("sha512WithRSAEncryption");
+        // g_hashes->append("sha512-224");
+        // g_hashes->append("sha512-224WithRSAEncryption");
+        // g_hashes->append("sha512-256");
+        // g_hashes->append("sha512-256WithRSAEncryption");
+        // g_hashes->append("shake128");
+        // g_hashes->append("shake256");
+        g_hashes->append("sm3");
+        // g_hashes->append("sm3WithRSAEncryption");
+        // g_hashes->append("ssl3-md5");
+        // g_hashes->append("ssl3-sha1");
+        // g_hashes->append("whirlpoo");
+    }
+
+} s_init_hashes;
+
+result_t crypto_base::getHashes(v8::Local<v8::Array>& retVal)
+{
+    v8::Local<v8::Value> v;
+    g_hashes->valueOf(v);
+
+    retVal = v8::Local<v8::Array>::Cast(v);
+
+    return 0;
+}
 }
