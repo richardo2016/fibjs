@@ -10,5 +10,7 @@
     "files.associations": {
         "*.idl": "java"
     },
-    "clang-format.fallbackStyle": "WebKit"
+    "clang-format.fallbackStyle": "WebKit",
+    "typescript.disableAutomaticTypeAcquisition": false,
+    "typescript.tsdk": "./fibjs/internal-ts/lib"
 }

@@ -1,3 +1,5 @@
+/// <reference path="../npm/types/index.d.ts" />
+
 var fs = require('fs');
 var path = require('path').posix;
 var encoding = require('encoding');
@@ -41,13 +43,10 @@ function enc_folder(dir, options) {
         }
 
         if (filter_file(f) === false)
-            return ;
+            return;
 
         console.log("encoding", path.join(dir, f));
         var code = fs.readTextFile(path.join(base, dir, f));
-
-        var pos = 0;
-        var sz = 20;
 
         var bin = zlib.deflate(new Buffer(code));
         var hex = bin.hex();
@@ -73,8 +72,8 @@ function enc_folder(dir, options) {
             current_idx: idx,
         }
 
-        on_txts({ ...file_ctx });
         on_datas({ ...file_ctx });
+        on_txts({ ...file_ctx });
     });
 
     dir && console.notice(`${leveler} resolving ${dir} :end\n`)
@@ -82,20 +81,20 @@ function enc_folder(dir, options) {
     return { txts, datas };
 }
 
-function pack_opt_tools () {
+function pack_opt_tools() {
     const { datas, txts } = enc_folder("", {
         base: path.join(__dirname, "../fibjs/scripts"),
         filter_file: (f) => {
             if (f.substr(0, 1) === '.') {
                 return false
             }
-        
+
             if (f.indexOf('.js') === -1) {
                 return false
             }
         }
     });
-    
+
     fs.writeFile(path.join(__dirname, "../fibjs/src/base/opt_tools.cpp"), `/*
 * opt_tools.cpp
 *
@@ -116,14 +115,14 @@ const OptData opt_tools[] = {
 }`);
 }
 
-function pack_opt_typescript_res () {
+function pack_opt_typescript_res() {
     const { datas, txts } = enc_folder("", {
         base: path.join(__dirname, "../fibjs/internal-ts"),
         filter_file: (f) => {
             if (f.substr(0, 1) === '.') {
                 return false
             }
-        
+
             if (
                 f.indexOf('.js') === -1
                 && f.indexOf('.json') === -1
@@ -144,7 +143,7 @@ function pack_opt_typescript_res () {
             }
         }
     });
-    
+
     fs.writeFile(path.join(__dirname, "../fibjs/src/base/opt_typescript_res.cpp"), `/*
 * opt_typescript_res.cpp
 *
