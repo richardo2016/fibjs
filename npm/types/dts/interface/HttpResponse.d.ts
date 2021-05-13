@@ -28,7 +28,7 @@ declare class Class_HttpResponse extends Class_HttpMessage {
      *      @param headers 指定响应消息添加的响应头
      *      
      */
-    writeHead(statusCode: number, statusMessage: string, headers: object): void;
+    writeHead(statusCode: number, statusMessage: string, headers?: object): void;
 
     /**
      * @description 设置响应消息的返回状态，返回消息，并添加响应头
@@ -36,7 +36,7 @@ declare class Class_HttpResponse extends Class_HttpMessage {
      *      @param headers 指定响应消息添加的响应头
      *      
      */
-    writeHead(statusCode: number, headers: object): void;
+    writeHead(statusCode: number, headers?: object): void;
 
     /**
      * @description 返回当前消息的 HttpCookie 对象列表 

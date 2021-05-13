@@ -24,7 +24,7 @@ declare module 'assert' {
      *      @param msg 断言失败时的提示信息
      *      
      */
-    function Function(actual: any, msg: string): void;
+    function Function(actual?: any, msg?: string): void;
 
     /**
      * @description 测试数值为真，为假则断言失败
@@ -32,7 +32,7 @@ declare module 'assert' {
      *      @param msg 断言失败时的提示信息
      *      
      */
-    function ok(actual: any, msg: string): void;
+    function ok(actual?: any, msg?: string): void;
 
     /**
      * @description 测试数值为假，为真则断言失败
@@ -40,7 +40,7 @@ declare module 'assert' {
      *      @param msg 断言失败时的提示信息
      *      
      */
-    function notOk(actual: any, msg: string): void;
+    function notOk(actual?: any, msg?: string): void;
 
     /**
      * @description 测试数值等于预期值，不相等则断言失败
@@ -49,7 +49,7 @@ declare module 'assert' {
      *      @param msg 断言失败时的提示信息
      *      
      */
-    function equal(actual: any, expected: any, msg: string): void;
+    function equal(actual?: any, expected?: any, msg?: string): void;
 
     /**
      * @description 测试数值不等于预期值，相等则断言失败
@@ -58,7 +58,7 @@ declare module 'assert' {
      *      @param msg 断言失败时的提示信息
      *      
      */
-    function notEqual(actual: any, expected: any, msg: string): void;
+    function notEqual(actual?: any, expected?: any, msg?: string): void;
 
     /**
      * @description 测试数值严格等于预期值，不相等则断言失败
@@ -67,7 +67,7 @@ declare module 'assert' {
      *      @param msg 断言失败时的提示信息
      *      
      */
-    function strictEqual(actual: any, expected: any, msg: string): void;
+    function strictEqual(actual?: any, expected?: any, msg?: string): void;
 
     /**
      * @description 测试数值不严格等于预期值，相等则断言失败
@@ -76,7 +76,7 @@ declare module 'assert' {
      *      @param msg 断言失败时的提示信息
      *      
      */
-    function notStrictEqual(actual: any, expected: any, msg: string): void;
+    function notStrictEqual(actual?: any, expected?: any, msg?: string): void;
 
     /**
      * @description 测试数值深度等于预期值，不相等则断言失败
@@ -85,7 +85,7 @@ declare module 'assert' {
      *      @param msg 断言失败时的提示信息
      *      
      */
-    function deepEqual(actual: any, expected: any, msg: string): void;
+    function deepEqual(actual?: any, expected?: any, msg?: string): void;
 
     /**
      * @description 测试数值不深度等于预期值，相等则断言失败
@@ -94,7 +94,7 @@ declare module 'assert' {
      *      @param msg 断言失败时的提示信息
      *      
      */
-    function notDeepEqual(actual: any, expected: any, msg: string): void;
+    function notDeepEqual(actual?: any, expected?: any, msg?: string): void;
 
     /**
      * @description 测试数值近似等于预期值，否则断言失败
@@ -104,7 +104,7 @@ declare module 'assert' {
      *      @param msg 断言失败时的提示信息
      *      
      */
-    function closeTo(actual: any, expected: any, delta: any, msg: string): void;
+    function closeTo(actual: any, expected: any, delta: any, msg?: string): void;
 
     /**
      * @description 测试数值不近似等于预期值，否则断言失败
@@ -114,7 +114,7 @@ declare module 'assert' {
      *      @param msg 断言失败时的提示信息
      *      
      */
-    function notCloseTo(actual: any, expected: any, delta: any, msg: string): void;
+    function notCloseTo(actual: any, expected: any, delta: any, msg?: string): void;
 
     /**
      * @description 测试数值小于预期值，大于或等于则断言失败
@@ -123,7 +123,7 @@ declare module 'assert' {
      *      @param msg 断言失败时的提示信息
      *      
      */
-    function lessThan(actual: any, expected: any, msg: string): void;
+    function lessThan(actual: any, expected: any, msg?: string): void;
 
     /**
      * @description 测试数值不小于预期值，小于则断言失败
@@ -132,7 +132,7 @@ declare module 'assert' {
      *      @param msg 断言失败时的提示信息
      *      
      */
-    function notLessThan(actual: any, expected: any, msg: string): void;
+    function notLessThan(actual: any, expected: any, msg?: string): void;
 
     /**
      * @description 测试数值大于预期值，小于或等于则断言失败
@@ -141,7 +141,7 @@ declare module 'assert' {
      *      @param msg 断言失败时的提示信息
      *      
      */
-    function greaterThan(actual: any, expected: any, msg: string): void;
+    function greaterThan(actual: any, expected: any, msg?: string): void;
 
     /**
      * @description 测试数值不大于预期值，大于则断言失败
@@ -150,7 +150,7 @@ declare module 'assert' {
      *      @param msg 断言失败时的提示信息
      *      
      */
-    function notGreaterThan(actual: any, expected: any, msg: string): void;
+    function notGreaterThan(actual: any, expected: any, msg?: string): void;
 
     /**
      * @description 测试变量存在，为假则断言失败
@@ -158,7 +158,7 @@ declare module 'assert' {
      *      @param msg 断言失败时的提示信息
      *      
      */
-    function exist(actual: any, msg: string): void;
+    function exist(actual: any, msg?: string): void;
 
     /**
      * @description 测试变量不存在，为真则断言失败
@@ -166,7 +166,7 @@ declare module 'assert' {
      *      @param msg 断言失败时的提示信息
      *      
      */
-    function notExist(actual: any, msg: string): void;
+    function notExist(actual: any, msg?: string): void;
 
     /**
      * @description 测试数值为布尔值真，否则断言失败
@@ -174,7 +174,7 @@ declare module 'assert' {
      *      @param msg 断言失败时的提示信息
      *      
      */
-    function isTrue(actual: any, msg: string): void;
+    function isTrue(actual: any, msg?: string): void;
 
     /**
      * @description 测试数值不为布尔值真，否则断言失败
@@ -182,7 +182,7 @@ declare module 'assert' {
      *      @param msg 断言失败时的提示信息
      *      
      */
-    function isNotTrue(actual: any, msg: string): void;
+    function isNotTrue(actual: any, msg?: string): void;
 
     /**
      * @description 测试数值为布尔值假，否则断言失败
@@ -190,7 +190,7 @@ declare module 'assert' {
      *      @param msg 断言失败时的提示信息
      *      
      */
-    function isFalse(actual: any, msg: string): void;
+    function isFalse(actual: any, msg?: string): void;
 
     /**
      * @description 测试数值不为布尔值假，否则断言失败
@@ -198,7 +198,7 @@ declare module 'assert' {
      *      @param msg 断言失败时的提示信息
      *      
      */
-    function isNotFalse(actual: any, msg: string): void;
+    function isNotFalse(actual: any, msg?: string): void;
 
     /**
      * @description 测试数值为 Null，否则断言失败
@@ -206,7 +206,7 @@ declare module 'assert' {
      *      @param msg 断言失败时的提示信息
      *      
      */
-    function isNull(actual: any, msg: string): void;
+    function isNull(actual: any, msg?: string): void;
 
     /**
      * @description 测试数值不为 Null，否则断言失败
@@ -214,7 +214,7 @@ declare module 'assert' {
      *      @param msg 断言失败时的提示信息
      *      
      */
-    function isNotNull(actual: any, msg: string): void;
+    function isNotNull(actual: any, msg?: string): void;
 
     /**
      * @description 测试数值为 undefined，否则断言失败
@@ -222,7 +222,7 @@ declare module 'assert' {
      *      @param msg 断言失败时的提示信息
      *      
      */
-    function isUndefined(actual: any, msg: string): void;
+    function isUndefined(actual: any, msg?: string): void;
 
     /**
      * @description 测试数值不为 undefined，否则断言失败
@@ -230,7 +230,7 @@ declare module 'assert' {
      *      @param msg 断言失败时的提示信息
      *      
      */
-    function isDefined(actual: any, msg: string): void;
+    function isDefined(actual: any, msg?: string): void;
 
     /**
      * @description 测试数值为函数，否则断言失败
@@ -238,7 +238,7 @@ declare module 'assert' {
      *      @param msg 断言失败时的提示信息
      *      
      */
-    function isFunction(actual: any, msg: string): void;
+    function isFunction(actual: any, msg?: string): void;
 
     /**
      * @description 测试数值不为函数，否则断言失败
@@ -246,7 +246,7 @@ declare module 'assert' {
      *      @param msg 断言失败时的提示信息
      *      
      */
-    function isNotFunction(actual: any, msg: string): void;
+    function isNotFunction(actual: any, msg?: string): void;
 
     /**
      * @description 测试数值为对象，否则断言失败
@@ -254,7 +254,7 @@ declare module 'assert' {
      *      @param msg 断言失败时的提示信息
      *      
      */
-    function isObject(actual: any, msg: string): void;
+    function isObject(actual: any, msg?: string): void;
 
     /**
      * @description 测试数值不为对象，否则断言失败
@@ -262,7 +262,7 @@ declare module 'assert' {
      *      @param msg 断言失败时的提示信息
      *      
      */
-    function isNotObject(actual: any, msg: string): void;
+    function isNotObject(actual: any, msg?: string): void;
 
     /**
      * @description 测试数值为数组，否则断言失败
@@ -270,7 +270,7 @@ declare module 'assert' {
      *      @param msg 断言失败时的提示信息
      *      
      */
-    function isArray(actual: any, msg: string): void;
+    function isArray(actual: any, msg?: string): void;
 
     /**
      * @description 测试数值不为数组，否则断言失败
@@ -278,7 +278,7 @@ declare module 'assert' {
      *      @param msg 断言失败时的提示信息
      *      
      */
-    function isNotArray(actual: any, msg: string): void;
+    function isNotArray(actual: any, msg?: string): void;
 
     /**
      * @description 测试数值为字符串，否则断言失败
@@ -286,7 +286,7 @@ declare module 'assert' {
      *      @param msg 断言失败时的提示信息
      *      
      */
-    function isString(actual: any, msg: string): void;
+    function isString(actual: any, msg?: string): void;
 
     /**
      * @description 测试数值不为字符串，否则断言失败
@@ -294,7 +294,7 @@ declare module 'assert' {
      *      @param msg 断言失败时的提示信息
      *      
      */
-    function isNotString(actual: any, msg: string): void;
+    function isNotString(actual: any, msg?: string): void;
 
     /**
      * @description 测试数值为数字，否则断言失败
@@ -302,7 +302,7 @@ declare module 'assert' {
      *      @param msg 断言失败时的提示信息
      *      
      */
-    function isNumber(actual: any, msg: string): void;
+    function isNumber(actual: any, msg?: string): void;
 
     /**
      * @description 测试数值不为数字，否则断言失败
@@ -310,7 +310,7 @@ declare module 'assert' {
      *      @param msg 断言失败时的提示信息
      *      
      */
-    function isNotNumber(actual: any, msg: string): void;
+    function isNotNumber(actual: any, msg?: string): void;
 
     /**
      * @description 测试数值为布尔，否则断言失败
@@ -318,7 +318,7 @@ declare module 'assert' {
      *      @param msg 断言失败时的提示信息
      *      
      */
-    function isBoolean(actual: any, msg: string): void;
+    function isBoolean(actual: any, msg?: string): void;
 
     /**
      * @description 测试数值不为布尔，否则断言失败
@@ -326,7 +326,7 @@ declare module 'assert' {
      *      @param msg 断言失败时的提示信息
      *      
      */
-    function isNotBoolean(actual: any, msg: string): void;
+    function isNotBoolean(actual: any, msg?: string): void;
 
     /**
      * @description 测试数值为给定类型，否则断言失败
@@ -335,7 +335,7 @@ declare module 'assert' {
      *      @param msg 断言失败时的提示信息
      *      
      */
-    function typeOf(actual: any, type: string, msg: string): void;
+    function typeOf(actual: any, type: string, msg?: string): void;
 
     /**
      * @description 测试数值不为给定类型，否则断言失败
@@ -344,7 +344,7 @@ declare module 'assert' {
      *      @param msg 断言失败时的提示信息
      *      
      */
-    function notTypeOf(actual: any, type: string, msg: string): void;
+    function notTypeOf(actual: any, type: string, msg?: string): void;
 
     /**
      * @description 测试对象中包含指定属性，否则断言失败
@@ -353,7 +353,7 @@ declare module 'assert' {
      *      @param msg 断言失败时的提示信息
      *      
      */
-    function property(object: any, prop: any, msg: string): void;
+    function property(object: any, prop: any, msg?: string): void;
 
     /**
      * @description 测试对象中不包含指定属性，否则断言失败
@@ -362,7 +362,7 @@ declare module 'assert' {
      *      @param msg 断言失败时的提示信息
      *      
      */
-    function notProperty(object: any, prop: any, msg: string): void;
+    function notProperty(object: any, prop: any, msg?: string): void;
 
     /**
      * @description 深度测试对象中包含指定属性，否则断言失败
@@ -371,7 +371,7 @@ declare module 'assert' {
      *      @param msg 断言失败时的提示信息
      *      
      */
-    function deepProperty(object: any, prop: any, msg: string): void;
+    function deepProperty(object: any, prop: any, msg?: string): void;
 
     /**
      * @description 深度测试对象中不包含指定属性，否则断言失败
@@ -380,7 +380,7 @@ declare module 'assert' {
      *      @param msg 断言失败时的提示信息
      *      
      */
-    function notDeepProperty(object: any, prop: any, msg: string): void;
+    function notDeepProperty(object: any, prop: any, msg?: string): void;
 
     /**
      * @description 测试对象中指定属性的值为给定值，否则断言失败
@@ -390,7 +390,7 @@ declare module 'assert' {
      *      @param msg 断言失败时的提示信息
      *      
      */
-    function propertyVal(object: any, prop: any, value: any, msg: string): void;
+    function propertyVal(object: any, prop: any, value: any, msg?: string): void;
 
     /**
      * @description 测试对象中指定属性的值不为给定值，否则断言失败
@@ -400,7 +400,7 @@ declare module 'assert' {
      *      @param msg 断言失败时的提示信息
      *      
      */
-    function propertyNotVal(object: any, prop: any, value: any, msg: string): void;
+    function propertyNotVal(object: any, prop: any, value: any, msg?: string): void;
 
     /**
      * @description 深度测试对象中指定属性的值为给定值，否则断言失败
@@ -410,7 +410,7 @@ declare module 'assert' {
      *      @param msg 断言失败时的提示信息
      *      
      */
-    function deepPropertyVal(object: any, prop: any, value: any, msg: string): void;
+    function deepPropertyVal(object: any, prop: any, value: any, msg?: string): void;
 
     /**
      * @description 深度测试对象中指定属性的值不为给定值，否则断言失败
@@ -420,7 +420,7 @@ declare module 'assert' {
      *      @param msg 断言失败时的提示信息
      *      
      */
-    function deepPropertyNotVal(object: any, prop: any, value: any, msg: string): void;
+    function deepPropertyNotVal(object: any, prop: any, value: any, msg?: string): void;
 
     /**
      * @description 测试给定的代码会抛出错误，未抛出则断言失败
@@ -429,7 +429,7 @@ declare module 'assert' {
      *      
      */
     /* Illegal function name 'throws' can't be used here
-    function throws(block: ()=>any, msg: string): void;
+    function throws(block: ()=>any, msg?: string): void;
     */
 
     /**
@@ -438,14 +438,14 @@ declare module 'assert' {
      *      @param msg 断言失败时的提示信息
      *      
      */
-    function doesNotThrow(block: ()=>any, msg: string): void;
+    function doesNotThrow(block: ()=>any, msg?: string): void;
 
     /**
      * @description 如果参数为真，则抛出
      *      @param object 参数
      *      
      */
-    function ifError(object: any): void;
+    function ifError(object?: any): void;
 
 }
 

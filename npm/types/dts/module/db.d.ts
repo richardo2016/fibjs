@@ -164,7 +164,7 @@ declare module 'db' {
      *      @return 返回编码后的字符串
      *      
      */
-    function escape(str: string, mysql: boolean): string;
+    function escape(str: string, mysql?: boolean): string;
 
 }
 

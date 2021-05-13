@@ -40,9 +40,9 @@ declare module 'zip' {
      * 	 @return 返回zip文件对象
      * 	 
      */
-    function open(path: string, mod: string, compress_type: number): Class_ZipFile;
+    function open(path: string, mod?: string, compress_type: number): Class_ZipFile;
 
-    function open(path: string, mod: string, compress_type: number, callback: (err: Error | undefined | null, retVal: Class_ZipFile)=>any): void;
+    function open(path: string, mod?: string, compress_type: number, callback?: (err: Error | undefined | null, retVal: Class_ZipFile)=>any): void;
 
     /**
      * @description 打开一个zip文件
@@ -52,9 +52,9 @@ declare module 'zip' {
      * 	 @return 返回zip文件对象
      * 	 
      */
-    function open(data: Class_Buffer, mod: string, compress_type: number): Class_ZipFile;
+    function open(data: Class_Buffer, mod?: string, compress_type: number): Class_ZipFile;
 
-    function open(data: Class_Buffer, mod: string, compress_type: number, callback: (err: Error | undefined | null, retVal: Class_ZipFile)=>any): void;
+    function open(data: Class_Buffer, mod?: string, compress_type: number, callback?: (err: Error | undefined | null, retVal: Class_ZipFile)=>any): void;
 
     /**
      * @description 打开一个zip文件
@@ -64,9 +64,9 @@ declare module 'zip' {
      * 	 @return 返回zip文件对象
      * 	 
      */
-    function open(strm: Class_SeekableStream, mod: string, compress_type: number): Class_ZipFile;
+    function open(strm: Class_SeekableStream, mod?: string, compress_type: number): Class_ZipFile;
 
-    function open(strm: Class_SeekableStream, mod: string, compress_type: number, callback: (err: Error | undefined | null, retVal: Class_ZipFile)=>any): void;
+    function open(strm: Class_SeekableStream, mod?: string, compress_type: number, callback?: (err: Error | undefined | null, retVal: Class_ZipFile)=>any): void;
 
 }
 

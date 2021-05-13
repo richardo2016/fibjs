@@ -144,7 +144,7 @@ declare module 'process' {
      *      @return 返回计时时间，格式为 [seconds, nanoseconds]
      *     
      */
-    function hrtime(diff: any[]): any[];
+    function hrtime(diff?: any[]): any[];
 
     /**
      * @description 退出当前进程，并返回 exitCode 作为进程结果     

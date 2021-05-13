@@ -11,7 +11,7 @@ declare class Class_Worker extends Class_EventEmitter {
      *      @param opts 构造选项，暂未支持
      *      
      */
-    constructor(path: string, opts: object);
+    constructor(path: string, opts?: object);
 
     /**
      * @description 向 Master 或 Worker 发送消息，

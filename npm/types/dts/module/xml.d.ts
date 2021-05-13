@@ -67,7 +67,7 @@ declare module 'xml' {
      *      @return 返回创建的 XmlDocument 对象
      *     
      */
-    function parse(source: string, type: string): Class_XmlDocument;
+    function parse(source: string, type?: string): Class_XmlDocument;
 
     /**
      * @description 解析 xml/html，并创建 XmlDocument 对象，解析时会根据指定的语种转换
@@ -76,7 +76,7 @@ declare module 'xml' {
      *      @return 返回创建的 XmlDocument 对象
      *     
      */
-    function parse(source: Class_Buffer, type: string): Class_XmlDocument;
+    function parse(source: Class_Buffer, type?: string): Class_XmlDocument;
 
     /**
      * @description 序列化 XmlNode 为字符串

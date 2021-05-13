@@ -341,7 +341,7 @@ declare module 'console' {
      *      @param label 标题，缺省为空字符串。
      *      
      */
-    function time(label: string): void;
+    function time(label?: string): void;
 
     /**
      * @description 输出指定计时器当前计时值
@@ -349,7 +349,7 @@ declare module 'console' {
      *      @param label 标题，缺省为空字符串。
      *      
      */
-    function timeElapse(label: string): void;
+    function timeElapse(label?: string): void;
 
     /**
      * @description 结束指定计时器，并输出最后计时值
@@ -357,7 +357,7 @@ declare module 'console' {
      *      @param label 标题，缺省为空字符串。
      *      
      */
-    function timeEnd(label: string): void;
+    function timeEnd(label?: string): void;
 
     /**
      * @description 输出当前调用堆栈
@@ -366,7 +366,7 @@ declare module 'console' {
      *      @param label 标题，缺省为空字符串。
      *      
      */
-    function trace(label: string): void;
+    function trace(label?: string): void;
 
     /**
      * @description 断言测试，如果测试值为假，则报错
@@ -374,7 +374,7 @@ declare module 'console' {
      *      @param msg 报错信息
      *      
      */
-    function assert(value: any, msg: string): void;
+    function assert(value: any, msg?: string): void;
 
     /**
      * @description 向控制台输出格式化文本，输出内容不会记入日志系统，输出文本后不会自动换行，可连续输出
@@ -426,7 +426,7 @@ declare module 'console' {
      *      @param modifier 指定控制键，可以为：control, alt, shift, command
      *      
      */
-    function keyDown(key: string, modifier: string): void;
+    function keyDown(key: string, modifier?: string): void;
 
     /**
      * @description 按下一个按键
@@ -454,7 +454,7 @@ declare module 'console' {
      *      @param modifier 指定控制键，可以为：control, alt, shift, command
      *      
      */
-    function keyUp(key: string, modifier: string): void;
+    function keyUp(key: string, modifier?: string): void;
 
     /**
      * @description 松开一个按键
@@ -482,7 +482,7 @@ declare module 'console' {
      *      @param modifier 指定控制键，可以为：control, alt, shift, command
      *      
      */
-    function keyTap(key: string, modifier: string): void;
+    function keyTap(key: string, modifier?: string): void;
 
     /**
      * @description 点击并松开一个按键
@@ -533,7 +533,7 @@ declare module 'console' {
      *      @param dbclick 指定是否双击，缺省为 false
      *      
      */
-    function clickMouse(button: string, dbclick: boolean): void;
+    function clickMouse(button: string, dbclick?: boolean): void;
 
     /**
      * @description 从控制台读取用户输入
@@ -541,9 +541,9 @@ declare module 'console' {
      *      @return 返回用户输入的信息
      *      
      */
-    function readLine(msg: string): string;
+    function readLine(msg?: string): string;
 
-    function readLine(msg: string, callback: (err: Error | undefined | null, retVal: string)=>any): void;
+    function readLine(msg?: string, callback?: (err: Error | undefined | null, retVal: string)=>any): void;
 
     /**
      * @description 从控制台读取用户输入的密码
@@ -551,9 +551,9 @@ declare module 'console' {
      *      @return 返回用户输入的密码
      *      
      */
-    function getpass(msg: string): string;
+    function getpass(msg?: string): string;
 
-    function getpass(msg: string, callback: (err: Error | undefined | null, retVal: string)=>any): void;
+    function getpass(msg?: string, callback?: (err: Error | undefined | null, retVal: string)=>any): void;
 
 }
 

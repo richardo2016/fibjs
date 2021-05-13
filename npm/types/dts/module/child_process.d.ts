@@ -65,7 +65,7 @@ declare module 'child_process' {
      *      @return 返回子进程对象
      *      
      */
-    function spawn(command: string, args: any[], options: object): Class_ChildProcess;
+    function spawn(command: string, args: any[], options?: object): Class_ChildProcess;
 
     /**
      * @description 用给定的命令发布一个子进程
@@ -87,7 +87,7 @@ declare module 'child_process' {
      *      @return 返回子进程对象
      *      
      */
-    function spawn(command: string, options: object): Class_ChildProcess;
+    function spawn(command: string, options?: object): Class_ChildProcess;
 
     /**
      * @description 在 shell 中执行一个命令并缓冲输出，当以回调方式执行时，函数将返回子进程对象
@@ -109,9 +109,9 @@ declare module 'child_process' {
      *      @return 返回子进程的 stdio 输出内容
      *      
      */
-    function exec(command: string, options: object): [stdout: any, stderr: any];
+    function exec(command: string, options?: object): [stdout: any, stderr: any];
 
-    function exec(command: string, options: object, callback: (err: Error | undefined | null, retVal: [stdout: any, stderr: any])=>any): void;
+    function exec(command: string, options?: object, callback?: (err: Error | undefined | null, retVal: [stdout: any, stderr: any])=>any): void;
 
     /**
      * @description 直接执行所指定的文件并缓冲输出，当以回调方式执行时，函数将返回子进程对象
@@ -134,9 +134,9 @@ declare module 'child_process' {
      *      @return 返回子进程的 stdio 输出内容
      *      
      */
-    function execFile(command: string, args: any[], options: object): [stdout: any, stderr: any];
+    function execFile(command: string, args: any[], options?: object): [stdout: any, stderr: any];
 
-    function execFile(command: string, args: any[], options: object, callback: (err: Error | undefined | null, retVal: [stdout: any, stderr: any])=>any): void;
+    function execFile(command: string, args: any[], options?: object, callback?: (err: Error | undefined | null, retVal: [stdout: any, stderr: any])=>any): void;
 
     /**
      * @description 直接执行所指定的文件并缓冲输出，当以回调方式执行时，函数将返回子进程对象
@@ -158,9 +158,9 @@ declare module 'child_process' {
      *      @return 返回子进程的 stdio 输出内容
      *      
      */
-    function execFile(command: string, options: object): [stdout: any, stderr: any];
+    function execFile(command: string, options?: object): [stdout: any, stderr: any];
 
-    function execFile(command: string, options: object, callback: (err: Error | undefined | null, retVal: [stdout: any, stderr: any])=>any): void;
+    function execFile(command: string, options?: object, callback?: (err: Error | undefined | null, retVal: [stdout: any, stderr: any])=>any): void;
 
     /**
      * @description 在子进程中执行一个模块
@@ -183,7 +183,7 @@ declare module 'child_process' {
      *      @return 返回子进程对象
      *      
      */
-    function fork(module: string, args: any[], options: object): Class_ChildProcess;
+    function fork(module: string, args: any[], options?: object): Class_ChildProcess;
 
     /**
      * @description 在子进程中执行一个模块
@@ -205,7 +205,7 @@ declare module 'child_process' {
      *      @return 返回子进程对象
      *      
      */
-    function fork(module: string, options: object): Class_ChildProcess;
+    function fork(module: string, options?: object): Class_ChildProcess;
 
     /**
      * @description 直接执行所指定的文件并返回 exitCode，当以回调方式执行时，函数将返回子进程对象
@@ -227,9 +227,9 @@ declare module 'child_process' {
      *      @return 返回子进程的 exitCode
      *      
      */
-    function run(command: string, args: any[], options: object): number;
+    function run(command: string, args: any[], options?: object): number;
 
-    function run(command: string, args: any[], options: object, callback: (err: Error | undefined | null, retVal: number)=>any): void;
+    function run(command: string, args: any[], options?: object, callback?: (err: Error | undefined | null, retVal: number)=>any): void;
 
     /**
      * @description 直接执行所指定的文件并返回 exitCode，当以回调方式执行时，函数将返回子进程对象
@@ -250,9 +250,9 @@ declare module 'child_process' {
      *      @return 返回子进程的 exitCode
      *      
      */
-    function run(command: string, options: object): number;
+    function run(command: string, options?: object): number;
 
-    function run(command: string, options: object, callback: (err: Error | undefined | null, retVal: number)=>any): void;
+    function run(command: string, options?: object, callback?: (err: Error | undefined | null, retVal: number)=>any): void;
 
 }
 

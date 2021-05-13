@@ -299,7 +299,7 @@ function isVoidDomType(type) {
  * @param {import('../../idl/ir').IIDLDefinition['members'][number]['overs']} methodHost 
  * @returns 
  */
-function generateDtsFunction(functionHost, normalParams, returnType, funcFlags) {
+function generateDtsFunction(functionHost, normalParams, returnType, { funcFlags, withOptionalParam = false } = {}) {
     let syncFunc;
     let asyncFunc;
 
@@ -327,7 +327,7 @@ function generateDtsFunction(functionHost, normalParams, returnType, funcFlags) 
         const params = Array.from(normalParams);
         params.push(
             dom.create.parameter(
-                'callback', callbackType
+                'callback', callbackType, withOptionalParam ? dom.ParameterFlags.Optional : dom.ParameterFlags.None
             )
         )
 
@@ -350,7 +350,7 @@ function generateDtsFunction(functionHost, normalParams, returnType, funcFlags) 
  * @param {import('../../idl/ir').IIDLDefinition['members'][number]['overs']} methodHost 
  * @returns 
  */
-function generateDtsMethod(methodHost, normalParams, returnType, memFlags) {
+function generateDtsMethod(methodHost, normalParams, returnType, { memFlags, withOptionalParam = false } = {}) {
     let syncMethod;
     let asyncMethod;
 
@@ -378,7 +378,7 @@ function generateDtsMethod(methodHost, normalParams, returnType, memFlags) {
         const params = Array.from(normalParams);
         params.push(
             dom.create.parameter(
-                'callback', callbackType
+                'callback', callbackType, withOptionalParam ? dom.ParameterFlags.Optional : dom.ParameterFlags.None
             )
         )
 
@@ -483,14 +483,22 @@ function processDeclareInterface(def, {
                 break
             }
             case 'method': {
+                let withOptionalParam = false;
                 function getMethodParam(paramsHost) {
                     return (paramsHost.params || []).map(memParam => {
                         const paramDomInfo = mapParamTypeToDtsType(memParam.type, getMapParamOptions(memParam));
 
+                        let paramFlag = paramDomInfo.isRestArgs ? dom.ParameterFlags.Rest : dom.ParameterFlags.None;
+
+                        if (!!memParam.default && !!memParam.default.value) {
+                            withOptionalParam = true;
+                            paramFlag |= dom.ParameterFlags.Optional
+                        }
+
                         return dom.create.parameter(
                             memParam.name,
                             paramDomInfo.type,
-                            paramDomInfo.isRestArgs ? dom.ParameterFlags.Rest : dom.ParameterFlags.None
+                            paramFlag
                         )
                     });
                 }
@@ -505,7 +513,7 @@ function processDeclareInterface(def, {
                                 over,
                                 getMethodParam(over),
                                 mapMemMethodReturnTypeToDtsType(mem.type, getMapMemberTypeOptions()),
-                                memFlags
+                                { memFlags, withOptionalParam }
                             )
 
                             syncMethod.jsDocComment = convertIDLCommentToJSDocComment(over.comments)
@@ -518,7 +526,7 @@ function processDeclareInterface(def, {
                     } else {
                         const { syncMethod, asyncMethod } = generateDtsMethod(
                             mem, getMethodParam(mem), mapMemMethodReturnTypeToDtsType(mem.type, getMapMemberTypeOptions()),
-                            memFlags
+                            { memFlags, withOptionalParam }
                         )
 
                         dtsUnitMember = syncMethod;
@@ -654,14 +662,22 @@ function processDeclareModule(def, {
                 break
             }
             case 'method': {
+                let withOptionalParam = false;
                 function getFunctionParams(paramsHost) {
                     return (paramsHost.params || []).map(param => {
                         const paramDomInfo = mapParamTypeToDtsType(param.type, getMapParamOptions(param));
 
+                        let paramFlag = paramDomInfo.isRestArgs ? dom.ParameterFlags.Rest : dom.ParameterFlags.None;
+
+                        if (!!param.default && !!param.default.value) {
+                            withOptionalParam = true;
+                            paramFlag |= dom.ParameterFlags.Optional;
+                        }
+
                         return dom.create.parameter(
                             param.name,
                             paramDomInfo.type,
-                            paramDomInfo.isRestArgs ? dom.ParameterFlags.Rest : dom.ParameterFlags.None
+                            paramFlag
                         )
                     });
                 }
@@ -673,7 +689,7 @@ function processDeclareModule(def, {
                             over,
                             getFunctionParams(over),
                             mapMemMethodReturnTypeToDtsType(mem.type, getMapMemberTypeOptions()),
-                            memFlags
+                            { funcFlags: memFlags, withOptionalParam }
                         )
 
                         syncFunc.jsDocComment = convertIDLCommentToJSDocComment(over.comments)
@@ -684,7 +700,11 @@ function processDeclareModule(def, {
                         }
                     });
                 } else {
-                    const { asyncFunc, syncFunc } = generateDtsFunction(mem, getFunctionParams(mem), mapMemMethodReturnTypeToDtsType(mem.type, getMapMemberTypeOptions()));
+                    const { asyncFunc, syncFunc } = generateDtsFunction(
+                        mem,
+                        getFunctionParams(mem), mapMemMethodReturnTypeToDtsType(mem.type, getMapMemberTypeOptions()),
+                        { withOptionalParam }
+                    );
 
                     dtsUnit.members.push(dtsUnitMember = syncFunc);
 
