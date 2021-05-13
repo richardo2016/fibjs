@@ -57,7 +57,7 @@ declare module 'encoding' {
      *      @return 返回编码的字符串
      *      
      */
-    function jsstr(str: string, json: boolean): string;
+    function jsstr(str: string, json?: boolean): string;
 
     /**
      * @description url 字符串安全编码

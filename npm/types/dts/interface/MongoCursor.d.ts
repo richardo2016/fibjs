@@ -52,7 +52,7 @@ declare class Class_MongoCursor extends Class_object {
      *     @return 返回记录总数
      *    
      */
-    count(applySkipLimit: boolean): number;
+    count(applySkipLimit?: boolean): number;
 
     /**
      * @description 查询游标的记录总数，相当于 count(true)

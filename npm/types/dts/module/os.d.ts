@@ -123,7 +123,7 @@ declare module 'os' {
      *      @return 当前有效执行用户信息
      *     
      */
-    function userInfo(options: object): object;
+    function userInfo(options?: object): object;
 
     /**
      * @description 查询当前运行环境网络信息
@@ -162,7 +162,7 @@ declare module 'os' {
      *      @return 返回 javascript Date 对象
      *      
      */
-    function time(tmString: string): typeof Date;
+    function time(tmString?: string): typeof Date;
 
     /**
      * @description 时间计算函数，根据 part 指定计算时间

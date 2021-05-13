@@ -87,7 +87,7 @@ declare class Class_Routing extends Class_Handler {
      *    @param map 初始化路由参数
      *    
      */
-    constructor(map: object);
+    constructor(map?: object);
 
     /**
      * @description 创建一个消息处理器路由对象

@@ -12,7 +12,7 @@ declare module 'timers' {
      *     @return 返回定时器对象
      *     
      */
-    function setTimeout(callback: ()=>any, timeout: number, ...args: any[]): Class_Timer;
+    function setTimeout(callback: ()=>any, timeout?: number, ...args: any[]): Class_Timer;
 
     /**
      * @description 清除指定的定时器

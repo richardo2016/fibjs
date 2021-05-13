@@ -39,7 +39,7 @@ declare module 'global' {
      *      @param argv 指定要运行的参数，此参数可在脚本内使用 argv 获取
      *      
      */
-    function run(fname: string, argv: any[]): void;
+    function run(fname: string, argv?: any[]): void;
 
     /**
      * @description 加载一个模块并返回模块对象，更多信息参阅 @ref module
@@ -128,7 +128,7 @@ declare module 'global' {
      *     @return 返回定时器对象
      *     
      */
-    function setTimeout(callback: ()=>any, timeout: number, ...args: any[]): Class_Timer;
+    function setTimeout(callback: ()=>any, timeout?: number, ...args: any[]): Class_Timer;
 
     /**
      * @description 清除指定的定时器

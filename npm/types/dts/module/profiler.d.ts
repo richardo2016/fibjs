@@ -154,7 +154,7 @@ declare module 'profiler' {
      *      @return 返回采样定时器，可以通过 clear 方法提前停止采样
      * 	 
      */
-    function start(fname: string, time: number, interval: number): Class_Timer;
+    function start(fname: string, time?: number, interval?: number): Class_Timer;
 
 }
 
