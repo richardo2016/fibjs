@@ -80,7 +80,7 @@ declare class Class_X509Cert extends Class_object {
      *      @return 以数组方式导出证书链
      *     
      */
-    dump(pem: boolean): any[];
+    dump(pem?: boolean): any[];
 
     /**
      * @description 清空已经加载的证书 

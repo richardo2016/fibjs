@@ -57,7 +57,7 @@ declare class Class_X509Crl extends Class_object {
      *      @return 以数组方式导出撤销证书链
      *     
      */
-    dump(pem: boolean): any[];
+    dump(pem?: boolean): any[];
 
     /**
      * @description 清空已经加载的撤销证书

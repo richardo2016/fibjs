@@ -17,7 +17,7 @@ declare class Class_LruCache extends Class_EventEmitter {
      *      @param timeout 元素失效时间，单位是 ms，小于等于 0 不失效，缺省为 0
      *      
      */
-    constructor(size: number, timeout: number);
+    constructor(size: number, timeout?: number);
 
     /**
      * @description 查询容器内数值个数 

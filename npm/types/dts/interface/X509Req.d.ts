@@ -96,9 +96,9 @@ declare class Class_X509Req extends Class_object {
      *      @return 返回签名后的正式证书
      *      
      */
-    sign(issuer: string, key: Class_PKey, opts: object): Class_X509Cert;
+    sign(issuer: string, key: Class_PKey, opts?: object): Class_X509Cert;
 
-    sign(issuer: string, key: Class_PKey, opts: object, callback: (err: Error | undefined | null, retVal: Class_X509Cert)=>any): void;
+    sign(issuer: string, key: Class_PKey, opts?: object, callback?: (err: Error | undefined | null, retVal: Class_X509Cert)=>any): void;
 
     /**
      * @description 获取证书的主题可分辨名称 

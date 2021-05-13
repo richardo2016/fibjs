@@ -131,9 +131,9 @@ declare class Class_HttpClient extends Class_object {
      *      @return 返回服务器响应
      *      
      */
-    request(method: string, url: string, opts: object): Class_HttpResponse;
+    request(method: string, url: string, opts?: object): Class_HttpResponse;
 
-    request(method: string, url: string, opts: object, callback: (err: Error | undefined | null, retVal: Class_HttpResponse)=>any): void;
+    request(method: string, url: string, opts?: object, callback?: (err: Error | undefined | null, retVal: Class_HttpResponse)=>any): void;
 
     /**
      * @description 用 GET 方法请求指定的 url，并返回结果，等同于 request("GET", ...)
@@ -153,9 +153,9 @@ declare class Class_HttpClient extends Class_object {
      *      @return 返回服务器响应
      *      
      */
-    get(url: string, opts: object): Class_HttpResponse;
+    get(url: string, opts?: object): Class_HttpResponse;
 
-    get(url: string, opts: object, callback: (err: Error | undefined | null, retVal: Class_HttpResponse)=>any): void;
+    get(url: string, opts?: object, callback?: (err: Error | undefined | null, retVal: Class_HttpResponse)=>any): void;
 
     /**
      * @description 用 POST 方法请求指定的 url，并返回结果，等同于 request("POST", ...)
@@ -175,9 +175,9 @@ declare class Class_HttpClient extends Class_object {
      *      @return 返回服务器响应
      *      
      */
-    post(url: string, opts: object): Class_HttpResponse;
+    post(url: string, opts?: object): Class_HttpResponse;
 
-    post(url: string, opts: object, callback: (err: Error | undefined | null, retVal: Class_HttpResponse)=>any): void;
+    post(url: string, opts?: object, callback?: (err: Error | undefined | null, retVal: Class_HttpResponse)=>any): void;
 
     /**
      * @description 用 DELETE 方法请求指定的 url，并返回结果，等同于 request("DELETE", ...)
@@ -197,9 +197,9 @@ declare class Class_HttpClient extends Class_object {
      *      @return 返回服务器响应
      *      
      */
-    del(url: string, opts: object): Class_HttpResponse;
+    del(url: string, opts?: object): Class_HttpResponse;
 
-    del(url: string, opts: object, callback: (err: Error | undefined | null, retVal: Class_HttpResponse)=>any): void;
+    del(url: string, opts?: object, callback?: (err: Error | undefined | null, retVal: Class_HttpResponse)=>any): void;
 
     /**
      * @description 用 PUT 方法请求指定的 url，并返回结果，等同于 request("PUT", ...)
@@ -219,9 +219,9 @@ declare class Class_HttpClient extends Class_object {
      *      @return 返回服务器响应
      *      
      */
-    put(url: string, opts: object): Class_HttpResponse;
+    put(url: string, opts?: object): Class_HttpResponse;
 
-    put(url: string, opts: object, callback: (err: Error | undefined | null, retVal: Class_HttpResponse)=>any): void;
+    put(url: string, opts?: object, callback?: (err: Error | undefined | null, retVal: Class_HttpResponse)=>any): void;
 
     /**
      * @description 用 PATCH 方法请求指定的 url，并返回结果，等同于 request("PATCH", ...)
@@ -241,9 +241,9 @@ declare class Class_HttpClient extends Class_object {
      *      @return 返回服务器响应
      *      
      */
-    patch(url: string, opts: object): Class_HttpResponse;
+    patch(url: string, opts?: object): Class_HttpResponse;
 
-    patch(url: string, opts: object, callback: (err: Error | undefined | null, retVal: Class_HttpResponse)=>any): void;
+    patch(url: string, opts?: object, callback?: (err: Error | undefined | null, retVal: Class_HttpResponse)=>any): void;
 
 }
 

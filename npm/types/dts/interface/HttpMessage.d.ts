@@ -63,7 +63,7 @@ declare class Class_HttpMessage extends Class_Message {
      *      @return 返回键值所对应全部值的数组，若数据不存在，则返回 null
      *      
      */
-    allHeader(name: string): object;
+    allHeader(name?: string): object;
 
     /**
      * @description 添加一个消息头，添加数据并不修改已存在的键值的消息头

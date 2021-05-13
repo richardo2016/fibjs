@@ -22,7 +22,7 @@ declare class Class_HttpCookie extends Class_object {
      *      @param opts 指定创建的 cookie 的属性
      *     
      */
-    constructor(opts: object);
+    constructor(opts?: object);
 
     /**
      * @description HttpCookie 构造函数，创建一个新的 HttpCookie 对象
@@ -42,7 +42,7 @@ declare class Class_HttpCookie extends Class_object {
      *      @param opts 指定创建的 cookie 的其它属性
      *     
      */
-    constructor(name: string, value: string, opts: object);
+    constructor(name: string, value: string, opts?: object);
 
     /**
      * @description 解析给定的字符串，填充 cookie 对象

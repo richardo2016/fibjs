@@ -16,7 +16,7 @@ declare class Class_object {
      *      @return 返回包含可 JSON 序列化的值
      *      
      */
-    toJSON(key: string): any;
+    toJSON(key?: string): any;
 
 }
 

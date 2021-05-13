@@ -26,7 +26,7 @@ declare module 'path' {
      *      @return 返回文件名称
      *      
      */
-    function basename(path: string, ext: string): string;
+    function basename(path: string, ext?: string): string;
 
     /**
      * @description 查询路径中的文件扩展名
@@ -129,7 +129,7 @@ declare module 'path' {
      *      @return 返回得到的新路径
      *      
      */
-    function toNamespacedPath(path: any): any;
+    function toNamespacedPath(path?: any): any;
 
     /**
      * @description 查询当前操作系统的路径分割字符，posix 返回 '/', windows 返回  '\\'

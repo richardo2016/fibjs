@@ -176,7 +176,7 @@ declare class Class_EventEmitter extends Class_object {
      *     @return 返回事件对象本身，便于链式调用
      *    
      */
-    removeAllListeners(evs: any[]): object;
+    removeAllListeners(evs?: any[]): object;
 
     /**
      *  监听器的默认限制的数量，仅用于兼容

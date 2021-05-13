@@ -31,7 +31,7 @@ declare class Class_HttpCollection extends Class_object {
      *      @return 返回键值所对应全部值的数组，若数据不存在，则返回 null
      *      
      */
-    all(name: string): object;
+    all(name?: string): object;
 
     /**
      * @description 添加一个键值数据，添加数据并不修改已存在的键值的数据

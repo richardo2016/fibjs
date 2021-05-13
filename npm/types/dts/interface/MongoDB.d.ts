@@ -44,7 +44,7 @@ declare class Class_MongoDB extends Class_object {
      *     @return 新 _objectid 对象
      *    
      */
-    oid(hexStr: string): Class_MongoID;
+    oid(hexStr?: string): Class_MongoID;
 
     /**
      * @description 关闭当前数据库连接 

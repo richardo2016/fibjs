@@ -20,7 +20,7 @@ declare module 'url' {
      *      @return 返回包含解析数据的对象
      *      
      */
-    function parse(url: string, parseQueryString: boolean, slashesDenoteHost: boolean): Class_UrlObject;
+    function parse(url: string, parseQueryString?: boolean, slashesDenoteHost?: boolean): Class_UrlObject;
 
     /**
      * @description 合并相对路径成为一个绝对路径

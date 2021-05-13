@@ -11,7 +11,7 @@ declare class Class_Service extends Class_EventEmitter {
      *      @param event 服务事件处理
      *      
      */
-    constructor(name: string, worker: ()=>any, event: object);
+    constructor(name: string, worker: ()=>any, event?: object);
 
     /**
      * @description 开始运行服务实体 
@@ -48,7 +48,7 @@ declare class Class_Service extends Class_EventEmitter {
      *      @param description 服务描述信息
      *      
      */
-    static install(name: string, cmd: string, displayName: string, description: string): void;
+    static install(name: string, cmd: string, displayName?: string, description?: string): void;
 
     /**
      * @description 从系统中卸载服务 

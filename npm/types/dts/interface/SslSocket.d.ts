@@ -33,7 +33,7 @@ declare class Class_SslSocket extends Class_Stream {
      *     @param certs 服务器证书列表
      *    
      */
-    constructor(certs: any[]);
+    constructor(certs?: any[]);
 
     /**
      * @description SslSocket 构造函数，创建一个新的 SslSocket 对象
@@ -75,9 +75,9 @@ declare class Class_SslSocket extends Class_Stream {
      *     @return 连接成功返回 0，证书可选验证时，验证不成功则返回非 0，详细错误见 ssl 模块
      *   
      */
-    connect(s: Class_Stream, server_name: string): number;
+    connect(s: Class_Stream, server_name?: string): number;
 
-    connect(s: Class_Stream, server_name: string, callback: (err: Error | undefined | null, retVal: number)=>any): void;
+    connect(s: Class_Stream, server_name?: string, callback?: (err: Error | undefined | null, retVal: number)=>any): void;
 
     /**
      * @description 在给定的连接上接收一个 ssl 连接，并生成一个新的 SslSocket

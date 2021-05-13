@@ -56,7 +56,7 @@ declare module 'coroutine' {
      *      @return 返回函数执行结果的数组
      *      
      */
-    function parallel(funcs: any[], fibers: number): any[];
+    function parallel(funcs: any[], fibers?: number): any[];
 
     /**
      * @description 并行执行一个函数处理一组数据，并等待返回
@@ -66,7 +66,7 @@ declare module 'coroutine' {
      *      @return 返回函数执行结果的数组
      *      
      */
-    function parallel(datas: any[], func: ()=>any, fibers: number): any[];
+    function parallel(datas: any[], func: ()=>any, fibers?: number): any[];
 
     /**
      * @description 并行执行一个函数多次，并等待返回
@@ -76,7 +76,7 @@ declare module 'coroutine' {
      *      @return 返回函数执行结果的数组
      *      
      */
-    function parallel(func: ()=>any, num: number, fibers: number): any[];
+    function parallel(func: ()=>any, num: number, fibers?: number): any[];
 
     /**
      * @description 并行执行一组函数，并等待返回
@@ -98,9 +98,9 @@ declare module 'coroutine' {
      *      @param ms 指定要暂停的时间，以毫秒为单位，缺省为 0，即有空闲立即回恢复运行
      *      
      */
-    function sleep(ms: number): void;
+    function sleep(ms?: number): void;
 
-    function sleep(ms: number, callback: (err: Error | undefined | null)=>any): void;
+    function sleep(ms?: number, callback?: (err: Error | undefined | null)=>any): void;
 
     /**
      * @description 返回当前正在运行的全部 fiber 数组 

@@ -195,7 +195,7 @@ declare module 'crypto' {
      *      @return 返回包含密钥的对象
      *     
      */
-    function loadPKey(filename: string, password: string): Class_PKey;
+    function loadPKey(filename: string, password?: string): Class_PKey;
 
     /**
      * @description 加载一个 CRT/PEM/DER/TXT 格式的证书，可多次调用
@@ -261,7 +261,7 @@ declare module 'crypto' {
      *      @return 返回生成的可视化字符串图像
      *      
      */
-    function randomArt(data: Class_Buffer, title: string, size: number): string;
+    function randomArt(data: Class_Buffer, title: string, size?: number): string;
 
     /**
      * @description 生成一个 RSA 私钥
@@ -279,9 +279,9 @@ declare module 'crypto' {
      *      @return 返回包含生成私钥的对象
      *     
      */
-    function genEcKey(curve: string): Class_PKey;
+    function genEcKey(curve?: string): Class_PKey;
 
-    function genEcKey(curve: string, callback: (err: Error | undefined | null, retVal: Class_PKey)=>any): void;
+    function genEcKey(curve?: string, callback?: (err: Error | undefined | null, retVal: Class_PKey)=>any): void;
 
     /**
      * @description 生成一个 SM2 私钥

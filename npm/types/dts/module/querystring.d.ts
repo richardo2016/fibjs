@@ -35,7 +35,7 @@ declare module 'querystring' {
      *      @return 返回解码的对象
      *      
      */
-    function parse(str: string, sep: string, eq: string, opt: object): Class_HttpCollection;
+    function parse(str: string, sep?: string, eq?: string, opt?: object): Class_HttpCollection;
 
     /**
      * @description 序列化一个对象为 query 字符串
@@ -46,7 +46,7 @@ declare module 'querystring' {
      *      @return 返回序列化后的字符串
      *      
      */
-    function stringify(obj: object, sep: string, eq: string, opt: object): string;
+    function stringify(obj: object, sep?: string, eq?: string, opt?: object): string;
 
 }
 

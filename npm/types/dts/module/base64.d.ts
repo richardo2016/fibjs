@@ -21,7 +21,7 @@ declare module 'base64' {
      * 	 @return 返回编码的字符串
      * 	 
      */
-    function encode(data: Class_Buffer, url: boolean): string;
+    function encode(data: Class_Buffer, url?: boolean): string;
 
     /**
      * @description 以 base64 方式解码字符串为二进制数据

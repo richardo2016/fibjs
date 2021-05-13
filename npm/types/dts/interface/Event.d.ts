@@ -13,7 +13,7 @@ declare class Class_Event extends Class_Lock {
      *      @param value 指定是否等待，为 true 时等待，缺省为 false
      *      
      */
-    constructor(value: boolean);
+    constructor(value?: boolean);
 
     /**
      * @description 判断事件对象是否为真

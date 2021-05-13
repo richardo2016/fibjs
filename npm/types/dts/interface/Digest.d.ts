@@ -20,7 +20,7 @@ declare class Class_Digest extends Class_object {
      *      @return 返回指定编码的摘要表示
      *      
      */
-    digest(codec: string): any;
+    digest(codec?: string): any;
 
     /**
      * @description 签名并返回摘要
