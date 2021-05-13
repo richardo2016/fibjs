@@ -1,3 +1,4 @@
+/// <reference path="../_import/_fibjs.d.ts" />
 /// <reference path="../interface/Lock.d.ts" />
 /**
  * @description 纤程信号量对象

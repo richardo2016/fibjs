@@ -1,3 +1,4 @@
+/// <reference path="../_import/_fibjs.d.ts" />
 /// <reference path="../interface/Timer.d.ts" />
 /**
  * @description timers 模块 

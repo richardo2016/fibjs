@@ -1,3 +1,4 @@
+/// <reference path="../_import/_fibjs.d.ts" />
 /// <reference path="../interface/HttpRequest.d.ts" />
 /// <reference path="../interface/HttpResponse.d.ts" />
 /// <reference path="../interface/HttpCookie.d.ts" />

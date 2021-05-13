@@ -1,3 +1,4 @@
+/// <reference path="../_import/_fibjs.d.ts" />
 /// <reference path="../interface/HeapSnapshot.d.ts" />
 /// <reference path="../interface/Timer.d.ts" />
 /**

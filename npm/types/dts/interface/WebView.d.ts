@@ -1,3 +1,4 @@
+/// <reference path="../_import/_fibjs.d.ts" />
 /// <reference path="../interface/EventEmitter.d.ts" />
 /**
  * @description 浏览器窗口对象

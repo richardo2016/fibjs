@@ -1,3 +1,4 @@
+/// <reference path="../_import/_fibjs.d.ts" />
 /// <reference path="../module/base32.d.ts" />
 /// <reference path="../module/base64.d.ts" />
 /// <reference path="../module/base64vlq.d.ts" />

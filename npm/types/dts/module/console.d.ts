@@ -1,3 +1,4 @@
+/// <reference path="../_import/_fibjs.d.ts" />
 /**
  * @description 控制台访问对象
  * 

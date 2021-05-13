@@ -1,3 +1,4 @@
+/// <reference path="../_import/_fibjs.d.ts" />
 /// <reference path="../interface/Handler.d.ts" />
 /**
  * @description 消息处理器路由对象
@@ -87,6 +88,14 @@ declare class Class_Routing extends Class_Handler {
      *    
      */
     constructor(map: object);
+
+    /**
+     * @description 创建一个消息处理器路由对象
+     *    @param method 指定 http 请求方法，"*" 接受所有方法
+     *    @param map 初始化路由参数
+     *    
+     */
+    constructor(method: string, map: object);
 
     /**
      * @description 从已有路由对象中添加规则，添加后原路由将被清空

@@ -1,3 +1,4 @@
+/// <reference path="../_import/_fibjs.d.ts" />
 /// <reference path="../interface/Cipher.d.ts" />
 /// <reference path="../interface/PKey.d.ts" />
 /// <reference path="../interface/X509Cert.d.ts" />

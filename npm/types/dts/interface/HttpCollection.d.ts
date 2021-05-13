@@ -1,3 +1,4 @@
+/// <reference path="../_import/_fibjs.d.ts" />
 /// <reference path="../interface/object.d.ts" />
 /**
  * @description http 容器对象，用于 http header，cookie，query，form，等数据的存储与组织 

@@ -1,3 +1,4 @@
+/// <reference path="../_import/_fibjs.d.ts" />
 /// <reference path="../interface/Stream.d.ts" />
 /**
  * @description tty 写流对象, 用于处理 tty 输出

@@ -1,3 +1,4 @@
+/// <reference path="../_import/_fibjs.d.ts" />
 /// <reference path="../interface/SslSocket.d.ts" />
 /// <reference path="../interface/SslHandler.d.ts" />
 /// <reference path="../interface/SslServer.d.ts" />

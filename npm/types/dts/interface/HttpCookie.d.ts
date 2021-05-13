@@ -1,3 +1,4 @@
+/// <reference path="../_import/_fibjs.d.ts" />
 /// <reference path="../interface/object.d.ts" />
 /**
  * @description http Cookie 对象，用于添加和处理 cookie 
@@ -22,6 +23,26 @@ declare class Class_HttpCookie extends Class_object {
      *     
      */
     constructor(opts: object);
+
+    /**
+     * @description HttpCookie 构造函数，创建一个新的 HttpCookie 对象
+     * 
+     *      opts 可以设置的选项如下：
+     *      ```JavaScript
+     *      {
+     *          "expires": Date, // 指定创建的 cookie 过期时间
+     *          "domain": "", // 指定创建的 cookie 的域名范围
+     *          "path": "", // 指定创建的 cookie 的路径范围
+     *          "secure": false, // 指定创建的 cookie 是否仅通过 https 传递
+     *          "httpOnly": false, // 指定创建的 cookie 仅允许 http 请求
+     *      }
+     *      ```
+     *      @param name 指定创建的 cookie 名称
+     *      @param value 指定创建的 cookie 值
+     *      @param opts 指定创建的 cookie 的其它属性
+     *     
+     */
+    constructor(name: string, value: string, opts: object);
 
     /**
      * @description 解析给定的字符串，填充 cookie 对象

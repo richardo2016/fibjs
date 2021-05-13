@@ -1,3 +1,4 @@
+/// <reference path="../_import/_fibjs.d.ts" />
 /// <reference path="../interface/WebSocketMessage.d.ts" />
 /// <reference path="../interface/WebSocket.d.ts" />
 /// <reference path="../interface/Handler.d.ts" />

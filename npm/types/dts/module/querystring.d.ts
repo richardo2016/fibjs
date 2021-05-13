@@ -1,3 +1,4 @@
+/// <reference path="../_import/_fibjs.d.ts" />
 /// <reference path="../interface/HttpCollection.d.ts" />
 /**
  * @description http query 处理模块

@@ -1,3 +1,4 @@
+/// <reference path="../_import/_fibjs.d.ts" />
 /// <reference path="../interface/object.d.ts" />
 /// <reference path="../interface/Buffer.d.ts" />
 /**
@@ -23,6 +24,31 @@ declare class Class_SandBox extends Class_object {
      *      
      */
     constructor(mods: object);
+
+    /**
+     * @description 构造一个新的安全沙箱对象，并初始化基础模块
+     *      @param mods 指定要添加的模块对象字典
+     *      @param require 自定义 require 函数，当模块不存在时，先调用自定义函数，无返回再从文件中加载
+     *      
+     */
+    constructor(mods: object, require: ()=>any);
+
+    /**
+     * @description 构造一个独立 Global 新的安全沙箱对象，并初始化基础模块
+     *      @param mods 指定要添加的模块对象字典
+     *      @param global 指定初始化的 Global 属性
+     *      
+     */
+    constructor(mods: object, global: object);
+
+    /**
+     * @description 构造一个独立 Global 新的安全沙箱对象，并初始化基础模块
+     *      @param mods 指定要添加的模块对象字典
+     *      @param require 自定义 require 函数，当模块不存在时，先调用自定义函数，无返回再从文件中加载
+     *      @param global 指定初始化的 Global 属性
+     *      
+     */
+    constructor(mods: object, require: ()=>any, global: object);
 
     /**
      * @description 向沙箱中添加一个基础模块

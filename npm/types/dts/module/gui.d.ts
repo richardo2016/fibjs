@@ -1,3 +1,4 @@
+/// <reference path="../_import/_fibjs.d.ts" />
 /// <reference path="../interface/WebView.d.ts" />
 /**
  * @description gui 模块

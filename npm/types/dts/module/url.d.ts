@@ -1,3 +1,4 @@
+/// <reference path="../_import/_fibjs.d.ts" />
 /// <reference path="../interface/UrlObject.d.ts" />
 /**
  * @description url 处理模块 

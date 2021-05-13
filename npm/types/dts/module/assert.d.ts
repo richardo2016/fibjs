@@ -1,3 +1,4 @@
+/// <reference path="../_import/_fibjs.d.ts" />
 /**
  * @description 断言测试模块，如果测试值为假，则报错，报错行为可设定继续运行或者错误抛出
  * 

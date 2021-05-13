@@ -1,3 +1,4 @@
+/// <reference path="../_import/_fibjs.d.ts" />
 /// <reference path="../module/fs_constants.d.ts" />
 /// <reference path="../interface/Stat.d.ts" />
 /// <reference path="../interface/Buffer.d.ts" />

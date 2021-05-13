@@ -1,3 +1,4 @@
+/// <reference path="../_import/_fibjs.d.ts" />
 /// <reference path="../interface/Stream.d.ts" />
 /**
  * @description 进程处理模块，用以管理当前进程的资源

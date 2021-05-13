@@ -1,3 +1,4 @@
+/// <reference path="../_import/_fibjs.d.ts" />
 /// <reference path="../interface/XmlDocument.d.ts" />
 /// <reference path="../interface/Buffer.d.ts" />
 /// <reference path="../interface/XmlNode.d.ts" />

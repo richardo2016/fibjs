@@ -1,3 +1,4 @@
+/// <reference path="../_import/_fibjs.d.ts" />
 /// <reference path="../interface/Lock.d.ts" />
 /// <reference path="../interface/Semaphore.d.ts" />
 /// <reference path="../interface/Condition.d.ts" />

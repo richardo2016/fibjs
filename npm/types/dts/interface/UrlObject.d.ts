@@ -1,3 +1,4 @@
+/// <reference path="../_import/_fibjs.d.ts" />
 /// <reference path="../interface/object.d.ts" />
 /// <reference path="../interface/HttpCollection.d.ts" />
 /**
@@ -17,6 +18,15 @@ declare class Class_UrlObject extends Class_object {
      *      
      */
     constructor(args: object);
+
+    /**
+     * @description UrlObject 对象构造函数，使用 url 字符串构造
+     *      @param url 指定构造 url 字符串
+     *      @param parseQueryString 指定是否解析 query
+     *      @param slashesDenoteHost  默认为false, 如果设置为true，则从字符串'//'之后到下一个'/'之前的字符串会被解析为host，例如'//foo/bar', 结果应该是{host: 'foo', pathname: '/bar'}而不是{pathname: '//foo/bar'}
+     *      
+     */
+    constructor(url: string, parseQueryString: boolean, slashesDenoteHost: boolean);
 
     /**
      * @description 解析一个 url 字符串

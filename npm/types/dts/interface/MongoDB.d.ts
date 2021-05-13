@@ -1,3 +1,4 @@
+/// <reference path="../_import/_fibjs.d.ts" />
 /// <reference path="../interface/object.d.ts" />
 /// <reference path="../interface/MongoCollection.d.ts" />
 /// <reference path="../interface/MongoID.d.ts" />

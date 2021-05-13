@@ -1,3 +1,4 @@
+/// <reference path="../_import/_fibjs.d.ts" />
 /**
  * @description 基础对象，所有对象均继承于此
  */

@@ -1,3 +1,4 @@
+/// <reference path="../_import/_fibjs.d.ts" />
 /// <reference path="../module/assert.d.ts" />
 /**
  * @description 测试套件模块，用以定义管理测试套件

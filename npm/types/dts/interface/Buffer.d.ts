@@ -1,3 +1,4 @@
+/// <reference path="../_import/_fibjs.d.ts" />
 /// <reference path="../interface/object.d.ts" />
 /**
  * @description 二进制数据缓存对象，用于 io 读写的数据处理
@@ -15,6 +16,49 @@ declare class Class_Buffer extends Class_object {
      *      
      */
     constructor(datas: any[]);
+
+    /**
+     * @description 缓存对象构造函数
+     *      @param datas 初始化数据数组
+     *      
+     */
+    constructor(datas: ArrayBuffer);
+
+    /**
+     * @description 缓存对象构造函数
+     *      @param datas 初始化数据数组
+     *      
+     */
+    constructor(datas: FIBJS.TypedArray);
+
+    /**
+     * @description 缓存对象构造函数
+     *      @param datas 初始化数据数组
+     *      
+     */
+    constructor(datas: ArrayBufferView);
+
+    /**
+     * @description 缓存对象构造函数
+     *      @param buffer 初始化Buffer对象
+     *      
+     */
+    constructor(buffer: Class_Buffer);
+
+    /**
+     * @description 缓存对象构造函数
+     *      @param str 初始化字符串，字符串将以 utf-8 格式写入，缺省则创建一个空对象
+     *      @param codec 指定编码格式，允许值为："hex", "base64", "utf8", 或者 iconv 模块支持的字符集
+     *      
+     */
+    constructor(str: string, codec: string);
+
+    /**
+     * @description 缓存对象构造函数
+     *      @param size 初始化缓冲区大小
+     *      
+     */
+    constructor(size: number);
 
     /**
      * @description 二进制数据缓存对象，用于 io 读写的数据处理 
@@ -159,14 +203,6 @@ declare class Class_Buffer extends Class_object {
     static compare(buf1: Class_Buffer, buf2: Class_Buffer): number;
 
     /**
-     * @description 比较缓存区的内容
-     *      @param buf 待比较缓存对象
-     *      @return 内容比较结果
-     *      
-     */
-    static compare(buf: Class_Buffer): number;
-
-    /**
      * @description 检测编码格式是否被支持
      *      @param codec 待检测的编码格式
      *      @return 是否支持
@@ -290,6 +326,14 @@ declare class Class_Buffer extends Class_object {
      *      
      */
     indexOf(v: string, offset: number): number;
+
+    /**
+     * @description 比较缓存区的内容
+     *      @param buf 待比较缓存对象
+     *      @return 内容比较结果
+     *      
+     */
+    compare(buf: Class_Buffer): number;
 
     /**
      * @description 从源缓存对象区域拷贝数据到目标缓存对象区域

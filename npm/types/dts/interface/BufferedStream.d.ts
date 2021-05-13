@@ -1,3 +1,4 @@
+/// <reference path="../_import/_fibjs.d.ts" />
 /// <reference path="../interface/Stream.d.ts" />
 /**
  * @description 缓存读取对象

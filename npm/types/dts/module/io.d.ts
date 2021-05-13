@@ -1,3 +1,4 @@
+/// <reference path="../_import/_fibjs.d.ts" />
 /// <reference path="../interface/MemoryStream.d.ts" />
 /// <reference path="../interface/BufferedStream.d.ts" />
 /// <reference path="../interface/RangeStream.d.ts" />
