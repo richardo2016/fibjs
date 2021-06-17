@@ -28,6 +28,12 @@ else
 	inform
 fi
 
+cd "${SOURCE_ROOT}/addons"
+sh build "$@"
+if [ $? != 0 ]; then
+	exit 1
+fi
+
 cd "${SOURCE_ROOT}/fibjs"
 sh build "$@"
 if [ $? != 0 ]; then
@@ -40,11 +46,11 @@ if [ $? != 0 ]; then
 	exit 1
 fi
 
-cd "${SOURCE_ROOT}/fibjs/installer"
-sh build "$@"
-if [ $? != 0 ]; then
-	exit 1
-fi
+# cd "${SOURCE_ROOT}/fibjs/installer"
+# sh build "$@"
+# if [ $? != 0 ]; then
+# 	exit 1
+# fi
 
 txtbld=$(tput bold)
 bldred=${txtbld}$(tput setaf 1)

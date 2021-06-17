@@ -1,0 +1,1 @@
+require('./bin/Windows_amd64_release/addon-hello');

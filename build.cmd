@@ -11,6 +11,10 @@ if "%USE_VENDER_DIST%" == "" (
 	) else goto inform
 )
 
+cd /d "%SOURCE_ROOT%/addons"
+call build %*%
+if ERRORLEVEL 1 goto exitbuild
+
 cd /d "%SOURCE_ROOT%/fibjs"
 call build %*%
 if ERRORLEVEL 1 goto exitbuild

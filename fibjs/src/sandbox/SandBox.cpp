@@ -73,6 +73,9 @@ SandBox::SandBox(bool extLoader)
     loader = new JsonLoader();
     m_loaders.push_back(loader);
 
+    loader = new DllLoader();
+    m_loaders.push_back(loader);
+
     m_global = false;
 }
 
