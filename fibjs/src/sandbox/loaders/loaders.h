@@ -50,7 +50,11 @@ public:
 class DllLoader : public SandBox::ExtLoader {
 public:
     DllLoader()
+#ifdef _WIN32
         : ExtLoader(".dll")
+#else
+        : ExtLoader(".so")
+#endif
     {
     }
 

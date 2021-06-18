@@ -10,6 +10,13 @@ include(../../vender/tools/option.cmake)
 # set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fvisibility=default")
 # set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fvisibility=default")
 
+set(CMAKE_SHARED_LIBRARY_PREFIX "")
+if(${CMAKE_HOST_SYSTEM_NAME} STREQUAL "Windows")
+	set(CMAKE_SHARED_LIBRARY_SUFFIX ".dll")
+else()
+	set(CMAKE_SHARED_LIBRARY_SUFFIX ".so")
+endif()
+
 add_library(${name} SHARED ${src_list} ${src_platform_list})
 
 set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/../../../bin/${CMAKE_HOST_SYSTEM_NAME}_${ARCH}_${BUILD_TYPE})
