@@ -55,8 +55,8 @@ public:
     }
 
 public:
-    virtual result_t compile(SandBox::Context* ctx, Buffer_base* src, exlib::string name,
-        exlib::string arg_names, v8::Local<v8::Script>& script);
+    virtual result_t run(SandBox::Context* ctx, Buffer_base* src, exlib::string name,
+        exlib::string arg_names, std::vector<v8::Local<v8::Value>>& args);
 };
 
 class CustomExtLoader : public JsLoader {
