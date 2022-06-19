@@ -360,6 +360,11 @@ result_t Image::load(Buffer_base* data)
     exlib::string strBuf;
     data->toString(strBuf);
 
+    int32_t buf_len;
+    data->get_length(buf_len);
+
+    printf("[feat] buf_len is %d \n", buf_len);
+    printf("[feat] original strBuf.length() is %d \n", strBuf.length());
     if (strBuf.length() < 2)
         return CHECK_ERROR(CALL_E_INVALIDARG);
 
@@ -382,10 +387,15 @@ result_t Image::load(Buffer_base* data)
     else
         return CHECK_ERROR(CALL_E_INVALID_DATA);
 
+    int32_t size = 0;
     switch (format) {
     case gd_base::C_GIF:
+        printf("[feat] start to loading, orignal strBuf.length() is %d \n", strBuf.length());
         m_image = gdImageCreateFromGifPtr((int32_t)strBuf.length(),
             (void*)strBuf.c_str());
+
+        gdImageGifPtr(m_image, &size);
+        printf("gif loaded, m_image.size is %d \n", size);
         break;
     case gd_base::C_PNG:
         m_image = gdImageCreateFromPngPtr((int32_t)strBuf.length(),
@@ -498,6 +508,7 @@ result_t Image::getData(int32_t format, int32_t quality,
     switch (format) {
     case gd_base::C_GIF:
         data = gdImageGifPtr(nowImage, &size);
+        printf("[feat] getData:: ret size is %d \n", size);
         break;
     case gd_base::C_PNG:
         data = gdImagePngPtr(nowImage, &size);

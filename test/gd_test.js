@@ -261,6 +261,26 @@ describe("gd", () => {
         assert.equal(img2.height, 150);
         sample_test(img2, [0xff0000, 0x0, 0x0]);
     });
+
+    it.only("gd gif", () => {
+        var GIF_FILE = path.resolve(__dirname, './gd_files/wjz.gif');
+        var DEST_FILE = path.resolve(__dirname, './gd_files/wjz2.gif');
+
+        var gif = gd.load(GIF_FILE);
+        var width = gif.width, height = gif.height;
+
+        assert.equal(gif.getData(gd.GIF, 1).length, 26396);
+
+        var gif2 = gif.resample(width * 0.5, height * 0.5);
+        assert.equal(gif.getData(gd.GIF, 1).length, 26396);
+        assert.equal(gif2.getData(gd.GIF, 1).length, 6912);
+
+        var gif3 = gif.resample(width, height);
+        assert.equal(gif3.getData(gd.GIF, 1).length, 26396);
+
+        // gif.save(DEST_FILE, gd.GIF, 1);
+        fs.writeFile(DEST_FILE, gif3.getData(gd.GIF, 1));
+    });
 });
 
 require.main === module && test.run(console.DEBUG);
