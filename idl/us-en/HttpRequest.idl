@@ -1,25 +1,27 @@
-
-/*! @brief http request message object */
+/*! @brief http request message object*/
 interface HttpRequest : HttpMessage
 {
-    /*! @brief HttpRequest constructor, creating a new HttpRequest object */
+    /*! @brief httprequest constructor to create a new HTTPRequest object*/
     HttpRequest();
 
-    /*! @brief method of querying and setting the request */
+    /*! @brief Get the response message object*/
+    readonly HttpResponse response;
+
+    /*! @brief query and set the request method*/
     String method;
 
-    /*! @brief querying and setting the address of the request */
+    /*! @brief query and set the request address*/
     String address;
 
-    /*! @brief querying and setting the query string of the request */
+    /*! @brief query and set the request query string*/
     String queryString;
 
-    /*! @brief get the container of the message's cookies */
+    /*! @brief Get the container containing message cookies*/
     readonly HttpCollection cookies;
 
-    /*! @brief get the container of the message's form */
+    /*! @brief Get the container containing message form*/
     readonly HttpCollection form;
 
-    /*! @brief get the container of the message's query */
+    /*! @brief Get the container containing message Query*/
     readonly HttpCollection query;
 };

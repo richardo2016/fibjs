@@ -1,55 +1,46 @@
-
-/*! @brief Smtp object
-
- */
+/*! @Brief SMTP object*/
 interface Smtp : object
 {
-    /*! @brief Smtp constructor */
+    /*! @Brief SMTP object constructor*/
     Smtp();
 
-    /*! @brief Connect to given server
-     @param host Server address or hostname
-     @param port Server port
-     @param family Address family, defualt is AF_INE, ipv4
-     */
-    connect(String host, Integer port, Integer family = net.AF_INET) async;
+    /*! @brief Create to the designated server 
+      @Param url specifies the protocol, it can be: tcp: // host: port or ssl: // host: port*/
+    connect(String url) async;
 
-    /*! @brief Send command and get response, throw error when server returns error
-     @param cmd Command name
-     @param arg Command arguments
-     @return Return server response when succeed
-     */
+    /*! @brief Send a specified command and return the response, the server error is thrown an error 
+      @Param cmd command name 
+      @param arg parameter 
+      If @Return is successful, return to the server response*/
     String command(String cmd, String arg) async;
 
-    /*! @brief Send HELO command, throw error when server returns error
-     @param hostname Hostname, defualt is localhost
-     */
+    /*! @Brief Send the Helo command, the server is reported to the error 
+      @Param hostname host name, the default is "LocalHost"*/
     hello(String hostname = "localhost") async;
 
-    /*! @brief Login with username and password, throw error when server returns error
-     @param username Username
-     @param password Password
-     */
+    /*! @Brief log in to the server with a designated user and password, and the server error is thrown out of error 
+      @param username user name 
+      @param password password*/
     login(String username, String password) async;
 
-    /*! @brief Indicates sender's e-mail address, throw error when server returns error
-     @param address Sender's e-mail address
-     */
+    /*! @brief specifies the sender mailbox, the server reports an error 
+      @param address sender mailbox*/
     from(String address) async;
 
-    /*! @brief Indicates receiver's e-mail address, throw error when server returns error
-     @param address Receiver's e-mail address
-     */
+    /*! @brief specifies the recipient mailbox, the server reports an error 
+      @param address recipient mailbox*/
     to(String address) async;
 
-    /*! @brief Send text to receiver, throw error when server returns error
-     @param txt Content to send
-     */
+    /*! @Brief Send a text to the recipient, the server is reported to the error 
+      @param txt to send text*/
     data(String txt) async;
 
-    /*! @brief Quit and close connection, throw error when server returns error */
+    /*! @brief exit and close the connection, the server reports an error*/
     quit() async;
 
-    /*! @brief Get Socket of current Smtp connection */
-    readonly Socket socket;
+    /*! @brief query and set timeout unit milliseconds*/
+    Integer timeout;
+
+    /*! @brief query the socket of the current connection of the SMTP object*/
+    readonly Stream socket;
 };

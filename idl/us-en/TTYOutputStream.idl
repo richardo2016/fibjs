@@ -1,0 +1,36 @@
+/*! @brief tty writing streaming objects for processing TTY output 
+
+  There is no way to create this category separately, only the overall situation is the instance of `Process.stdout` 
+
+  `` `Javascript 
+  // Clear the content on the right on the screen to the right 
+  Process.stdout.clearline (1) 
+  `` `*/
+interface TTYOutputStream : Stream
+{
+    /*! @brief constant True*/
+    readonly Boolean isTTY;
+
+    /*! @Brief Return to this tyoutputStream corresponding terminal number of the terminals*/
+    readonly Integer columns;
+
+    /*! @Brief Return to this line of terminal row corresponding to the terminals corresponding to this ttyoutputstream*/
+    readonly Integer rows;
+
+    /*! @Brief Clear Line according to DIR indications 
+
+      DIR direction: 
+      --1: Starting from the cursor to start cleaning up 
+      -0: Clean up the whole line 
+      -1: Clean up at the end of the cursor 
+
+      @param dir cleaning direction*/
+    clearLine(Integer dir = 0);
+
+    /*! @Brief Clear characters that start from the screen at the end of the cursor*/
+    clearScreenDown();
+
+    /*! @Brief Return to this size of the terminal corresponding to this ttyoutputStream 
+      @Return Returns the array [numcolumns, numrows], where Numcolumns and Numrows represent the number of columns and rows in the corresponding terminal*/
+    NArray getWindowSize();
+};

@@ -1,17 +1,45 @@
-/*! @brief Message digest object */
+/*! @brief information summary object*/
 interface Digest : object
 {
-    /*! @brief Update the binary digest
-     @param data The binary data blocks
-     */
-    update(Buffer data);
+    /*! @brief update binary summary information 
+      @Param Data binary data block 
+      @Return Return the information summary object itself*/
+    Digest update(Buffer data);
 
-    /*!	@brief Compute and return the digest
-     @param codec The encode format, can be "buffer", "hex", “base64”, "utf8" or any other character sets supported by the system.
-     @return The encode value representing the value of the digest
-     */
+    /*! @brief calculated and returned to Abstract 
+      @Param Codec specifies the encoding format, the allowable value is: "buffer", "hex", "base32", "base58", "base64", "UTF8", or the character set supported by iconv modules 
+      @Return Return to the specified encoding abstract representation*/
     Value digest(String codec = "buffer");
 
-    /*! @brief Query the number of bytes of the digest of the digest algorithm currently being used */
+    /*! @brief signature and return to Abstract 
+      OPTS supports the following parameters: 
+      `` `Javascript 
+      {{ 
+         ALG: 0, the Hash algorithm specifies the signature is effective at RSA, the default is 0. Support algorithm: 0 = None, 1 = md5, 2 = shay 3 = sha224,4 = sha256,5 = sha384,6 = Sha512,7 = ripemd160 
+         To: PK, specify the verification party key, only effective at ECSDSA or SM2 
+      } 
+      `` ` 
+
+      @Param Key's private key 
+      @param Opts designated signature options 
+      @Return returned to the data after the signature*/
+    Buffer sign(PKey key, Object opts = {}) async;
+
+    /*! @Brief verify whether the signature is consistent 
+      OPTS supports the following parameters: 
+      `` `Javascript 
+      {{ 
+         ALG: 0, the Hash algorithm specifies the signature is effective at RSA, the default is 0. Support algorithm: 0 = None, 1 = md5, 2 = shay 3 = sha224,4 = sha256,5 = sha384,6 = Sha512,7 = ripemd160 
+         To: PK, specify the verification party key, only effective at ECSDSA or SM2 
+      } 
+      `` ` 
+
+      @Param Key verify the signature public key 
+      @Param Sign specify the signature to be verified 
+      @param Opts specified verification options 
+      @Return Return to the results after verification*/
+    Boolean verify(PKey key, Buffer sign, Object opts = {}) async;
+
+    /*! @brief query the number of bytes of the current information summary algorithm*/
     readonly Integer size;
 };

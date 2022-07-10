@@ -1,6 +1,17 @@
-/*! @brief Object of timer */
+/*! @brief timer processor object*/
 interface Timer : object
 {
-	/*! @brief Cancel current timer	 */
-	clear();
+    /*! @Brief keeps the Fibjs process without exit, and the fibjs process is prevented from exiting during the timer waiting 
+      @Return Return the timer object*/
+    Timer ref();
+
+    /*! @brief allows the Fibjs process to exit, allowing the FIBJS process to exit during the timer waiting 
+      @Return Return the timer object*/
+    Timer unref();
+
+    /*! @brief cancel the current timer*/
+    clear();
+
+    /*! @brief query whether the current timer has been terminated*/
+    readonly Boolean stopped;
 };

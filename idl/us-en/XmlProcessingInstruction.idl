@@ -1,13 +1,9 @@
-
-/*! @brief XmlProcessingInstruction object represents an XML processing instruction
- */
+/*! @Brief XMLPROCESSINGINSTRUCTION object indicates the XML processing instruction*/
 interface XmlProcessingInstruction : XmlNode
 {
-    /*! @brief Get target of instruction
-    */
+    /*! @brief Return to the goal of the instructions here*/
     readonly String target;
 
-    /*! @brief Get or set instruction data
-    */
+    /*! @brief settings or returned to the content of the instruction here*/
     String data;
 };

@@ -1,56 +1,75 @@
-/*! @brief gui module
+/*! @brief GUI module 
 
-usage：
-```JavaScript
-var gui = require('gui');
-```
- */
+ Instructions: 
+ `` `Javascript 
+ var gui = request ('gui'); 
+ `` `*/
 module gui
 {
-    /*! @brief WebView ie simulate version，set to ie7 */
+    /*! @brief webview ie simulation version, specify IE7*/
     const IE7 = 7000;
 
-    /*! @brief WebView ie simulate version，set to ie8 */
+    /*! @brief webview ie simulation version, specify IE8*/
     const IE8 = 8000;
 
-    /*! @brief WebView ie simulate version，set to ie9 */
+    /*! @brief webview ie simulation version, specify IE9*/
     const IE9 = 9000;
 
-    /*! @brief WebView ie simulate version，set to ie10 */
+    /*! @brief webview ie simulation version, specify IE10*/
     const IE10 = 10000;
 
-    /*! @brief WebView ie simulate version，set to ie11 */
+    /*! @brief webview ie simulation version, specify IE11*/
     const IE11 = 11000;
 
-    /*! @brief WebView ie simulate version，set to edge */
+    /*! @brief webview ie simulation version, specify EDGE*/
     const EDGE = 11001;
 
-    /* Set the highest simulate version of ie.When the installed ie version is lower than this, use the system version.
-     @param ver ie version
-    */
+    /*Set the highest simulation version in the webview. When the system IE version is lower than this version, the installation version of the simulation system will be installed 
+      @param Ver specifies IE simulation version*/
     static setVersion(Integer ver);
 
-    /*! @brief use a URL to open a window
+    /*! @brief opens a window and access the designated URL
 
-     supported params:
-     ```JavaScript
-     {
-         "left": 100, // the left corner if the window: x，default to the system value.
-         "right": 100, // the left corner if the window:  y，default to the system value.
-         "width": 100, // window width，default to the system value.
-         "height": 100, // window height，default to the system value.
-         "border": true, // whether or not has border, default to true.
-         "caption": true, // whether or not has title, default to true.
-         "resizable": true, // whether or not is resizable, default to true.
-         "maximize": false, // whether or not can be maximized, default to false.
-         "visible": true, // whether or not is visible, default to true.
-         "debug": true // whether or not throw the webview error and print log, default to true.
+     Support the following parameters:
+     `` `Javascript
+     {{
+         "LEFT": 100, // The upper left corner of the window, automatically set the default system
+         "Right": 100, // The upper left corner of the window, automatically set the default system
+         "width": 100, // window width, automatic setting of the default system
+         "Height": 100, // Window height, automatic setting of default systems
+         "border": true, // Whether there are borders, default and border
+         "CAPTION": TRUE, // Whether there is a title bar, the default is the title bar
+         "resizable": true, whether it can change the size, the default can change
+         "Maximize": False, whether to maximize the display, the default is not maximized
+         "FullScreen": False, // Whether to display a full screen window, the default is not full screen
+         "DEBUG": true, whether to output errors in WebView and console information, default display or inherit the global settings
      }
-     ```
-     when set the width & height, but leave the left & right to default, the window will opened in the center of the screen.
-     @param url request url.Also can use fs:path to access the local file.
-     @param opt the initialize params
-     @return window object
-	*/
+     `` `
+     When the Width and Heights are set and the left or right is not set, the window will automatically stand in the middle
+     @Param URL specified the URL, you can use FS: Path to access the local file system
+     @param Opt open the window parameter
+     @Return Return to open the window object*/
     static WebView open(String url, Object opt = {});
+
+    /*! @Brief opens an empty browser window
+
+     Support the following parameters:
+     `` `Javascript
+     {{
+         "LEFT": 100, // The upper left corner of the window, automatically set the default system
+         "Right": 100, // The upper left corner of the window, automatically set the default system
+         "width": 100, // window width, automatic setting of the default system
+         "Height": 100, // Window height, automatic setting of default systems
+         "border": true, // Whether there are borders, default and border
+         "CAPTION": TRUE, // Whether there is a title bar, the default is the title bar
+         "resizable": true, whether it can change the size, the default can change
+         "Maximize": False, whether to maximize the display, the default is not maximized
+         "FullScreen": False, // Whether to display a full screen window, the default is not full screen
+         "DEBUG": true, whether to output errors in WebView and console information, default display or inherit the global settings
+     }
+     `` `
+     When the Width and Heights are set and the left or right is not set, the window will automatically stand in the middle
+     @param Opt open the window parameter
+     @Return Return to open the window object*/
+    static WebView open(Object opt = {});
 };

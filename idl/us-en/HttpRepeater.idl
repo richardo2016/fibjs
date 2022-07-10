@@ -1,0 +1,29 @@
+/*! @brief http request forwarding processor 
+ 
+  HTTP is used to forward http requests to the back -end server 
+  The usage is as follows: 
+
+  `` `Javascript 
+  var http = request ('http'); 
+  var hr = new http.repeater ('http://10.0.0.100:8080/test'); 
+  `` `*/
+interface HttpRepeater : Handler
+{
+    /*! @Brief httprepeater constructed function to create a new HTTPRepeater object 
+      @Param url specifies a back -end server URL*/
+    HttpRepeater(String url);
+
+    /*! @Brief httprepeater constructed function to create a new HTTPRepeater object 
+      @Param urls specify a set of back -end server URL*/
+    HttpRepeater(Array urls);
+
+    /*! @brief Load a new set of back -end URL 
+      @Param urls specify a set of back -end server URL*/
+    load(Array urls);
+
+    /*! @brief query the current rear server URL list*/
+    readonly NArray urls;
+
+    /*! @brief request HTTPClient objects used inside the processor*/
+    readonly HttpClient client;
+};

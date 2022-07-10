@@ -1,159 +1,241 @@
-/*! @brief Message digest calculation module, can be used to calculate the message digest and summary Signature. */
+/*! @brief information summary calculation module, which can be used to calculate information summary and summary signature*/
 module hash
 {
-    /*! @brief MD2 Constant identifying the message digest algorithm. */
-    const Integer MD2 = 1;
+    /*! @Brief MD5 Information Abstract Algorithm Identity Constitution*/
+    const MD5 = 1;
 
-    /*! @brief MD4 Constant identifying the message digest algorithm. */
-    const Integer MD4 = 2;
+    /*! @Brief SHA1 Information Abstract Algorithm Idential Constitution*/
+    const SHA1 = 2;
 
-    /*! @brief MD5 Constant identifying the message digest algorithm. */
-    const Integer MD5 = 3;
+    /*! @Brief SHA224 Information Abstract Algorithm Identan Metal*/
+    const SHA224 = 3;
 
-    /*! @brief SHA1 Constant identifying the message digest algorithm. */
-    const Integer SHA1 = 4;
+    /*! @Brief SHA256 Information Abstract Algorithm Identity Constitution*/
+    const SHA256 = 4;
 
-    /*! @brief SHA224 Constant identifying the message digest algorithm. */
-    const Integer SHA224 = 5;
+    /*! @Brief SHA384 Information Abstract Algorithm Identity Constitution*/
+    const SHA384 = 5;
 
-    /*! @brief SHA256 Constant identifying the message digest algorithm. */
-    const Integer SHA256 = 6;
+    /*! @Brief SHA512 Information Abstract Algorithm Identity Constitution*/
+    const SHA512 = 6;
 
-    /*! @brief SHA384 Constant identifying the message digest algorithm. */
-    const Integer SHA384 = 7;
+    /*! @Brief Ripemd160 Information Abstract Algorithm Identity Constitution*/
+    const RIPEMD160 = 7;
 
-    /*! @brief SHA512 Constant identifying the message digest algorithm. */
-    const Integer SHA512 = 8;
+    /*ly*/
+    const SM3 = 8;
 
-    /*! @brief RIPEMD160 Constant identifying the message digest algorithm. */
-    const Integer RIPEMD160 = 9;
+    /*! @Brief KECCAK256 Information Abstract Algorithm Identity Constitution*/
+    const KECCAK256 = 9;
 
-    /*! @brief Create a message digest object with the specified algorithm.
-     @param algo Specifies the digest algorithm.
-     @param data Binary data needs to be updated.
-     @return Returns the message digest object.
-     */
-    static Digest digest(Integer algo, Buffer data);
+    /*! @Brief KECCAK384 Information Abstract Algorithm Identan Metal*/
+    const KECCAK384 = 10;
 
-    /*! @brief Create a message digest object with the specified algorithm.
-     @param algo Specifies the digest algorithm.
-     @return Returns the message digest object.
-     */
-    static Digest digest(Integer algo);
+    /*! @Brief KECCAK512 Information Abstract Algorithm Identan Metal*/
+    const KECCAK512 = 11;
 
-    /*! @brief Create a MD2 message digest object.
-     @param data Binary data needs to be updated.
-     @return Returns the message digest object.
-     */
-    static Digest md2(Buffer data);
+    /*! @Brief Blake2s Information Abstract Algorithm Identity Constitution*/
+    const BLAKE2S = 12;
 
-    /*! @brief Create a MD4 message digest object.
-     @param data Binary data needs to be updated.
-     @return Returns the message digest object.
-     */
-    static Digest md4(Buffer data);
+    /*! @Brief Blake2b Information Abstract Algorithm Identan Metal*/
+    const BLAKE2B = 13;
 
-    /*! @brief Create a MD5 message digest object.
-     @param data Binary data needs to be updated.
-     @return Returns the message digest object.
-     */
-    static Digest md5(Buffer data);
+    /*! @Brief Blake2SP Information Abstract Algorithm Identity Constitution*/
+    const BLAKE2SP = 14;
 
-    /*! @brief Create a SHA1 message digest object.
-     @param data Binary data needs to be updated.
-     @return Returns the message digest object.
-     */
-    static Digest sha1(Buffer data);
+    /*! @Brief Blake2bp Information Abstract Algorithm Identity Constitution*/
+    const BLAKE2BP = 15;
 
-    /*! @brief Create a SHA224 message digest object.
-     @param data Binary data needs to be updated.
-     @return Returns the message digest object.
-     */
-    static Digest sha224(Buffer data);
+    /*! @brief creates an information summary operation object based on the specified algorithm identification 
+      @Param Algo specified abstract computing algorithm 
+      @Param Data Create the binary data updated at the same time, the default is NULL, not updated the data 
+      @Return Returns the information abstract object of the structure*/
+    static Digest digest(Integer algo, Buffer data = null);
 
-    /*! @brief Create a SHA256 message digest object.
-     @param data Binary data needs to be updated.
-     @return Returns the message digest object.
-     */
-    static Digest sha256(Buffer data);
+    /*! @brief Create a MD5 information abstract operation object 
+      @Param Data Create the binary data updated at the same time, the default is NULL, not updated the data 
+      @Return Returns the information abstract object of the structure*/
+    static Digest md5(Buffer data = null);
 
-    /*! @brief Create a SHA384 message digest object.
-     @param data Binary data needs to be updated.
-     @return Returns the message digest object.
-     */
-    static Digest sha384(Buffer data);
+    /*! @brief Create a SHA1 information abstract operation object 
+      @Param Data Create the binary data updated at the same time, the default is NULL, not updated the data 
+      @Return Returns the information abstract object of the structure*/
+    static Digest sha1(Buffer data = null);
 
-    /*! @brief Create a SHA512 message digest object.
-     @param data Binary data needs to be updated.
-     @return Returns the message digest object.
-     */
-    static Digest sha512(Buffer data);
+    /*! @brief Create a SHA224 information abstract operation object 
+      @Param Data Create the binary data updated at the same time, the default is NULL, not updated the data 
+      @Return Returns the information abstract object of the structure*/
+    static Digest sha224(Buffer data = null);
 
-    /*! @brief Create a RIPEMD160 message digest object.
-     @param data Binary data needs to be updated.
-     @return Returns the message digest object.
-     */
-    static Digest ripemd160(Buffer data);
+    /*! @brief Create a SHA256 information abstract operation object 
+      @Param Data Create the binary data updated at the same time, the default is NULL, not updated the data 
+      @Return Returns the information abstract object of the structure*/
+    static Digest sha256(Buffer data = null);
 
-    /*! @brief Create a message signature digest object with the specified algorithm.
-     @param algo Specifies the digest algorithm.
-     @param key Binary signature key.
-     @return Returns the message digest object.
-     */
-    static Digest hmac(Integer algo, Buffer key);
+    /*! @brief Create a SHA384 information abstract operation object 
+      @Param Data Create the binary data updated at the same time, the default is NULL, not updated the data 
+      @Return Returns the information abstract object of the structure*/
+    static Digest sha384(Buffer data = null);
 
-    /*! @brief Create a MD2 message digest signature object.
-     @param key Binary signature key.
-     @return Returns the message digest object.
-     */
-    static Digest hmac_md2(Buffer key);
+    /*! @brief Create a SHA512 information abstract operation object 
+      @Param Data Create the binary data updated at the same time, the default is NULL, not updated the data 
+      @Return Returns the information abstract object of the structure*/
+    static Digest sha512(Buffer data = null);
 
-    /*! @brief Create a MD4 message digest signature object.
-     @param key Binary signature key.
-     @return Returns the message digest object.
-     */
-    static Digest hmac_md4(Buffer key);
+    /*! @brief Create a RipeMD160 information summary operation object 
+      @Param Data Create the binary data updated at the same time, the default is NULL, not updated the data 
+      @Return Returns the information abstract object of the structure*/
+    static Digest ripemd160(Buffer data = null);
 
-    /*! @brief Create a MD5 message digest signature object.
-     @param key Binary signature key.
-     @return Returns the message digest object.
-     */
-    static Digest hmac_md5(Buffer key);
+    /*! @brief Create a SM3 information summary operation object 
+      @Param Data Create the binary data updated at the same time, the default is NULL, not updated the data 
+      @Return Returns the information abstract object of the structure*/
+    static Digest sm3(Buffer data = null);
 
-    /*! @brief Create a SHA1 message digest signature object.
-     @param key Binary signature key.
-     @return Returns the message digest object.
-     */
-    static Digest hmac_sha1(Buffer key);
+    /*! @brief Create a SM3 information summary operation object and prepare pre -processing 
+      @param Pubkey Signature Public Key 
+      @Param ID signature ID 
+      @Param Data Create the binary data updated at the same time, the default is NULL, not updated the data 
+      @Return Returns the information abstract object of the structure*/
+    static Digest sm3(PKey pubKey, String id, Buffer data = null);
 
-    /*! @brief Create a SHA224 message digest signature object.
-     @param key Binary signature key.
-     @return Returns the message digest object.
-     */
-    static Digest hmac_sha224(Buffer key);
+    /*! @brief Create a KECCAK256 information summary operation object 
+      @Param Data Create the binary data updated at the same time, the default is NULL, not updated the data 
+      @Return Returns the information abstract object of the structure*/
+    static Digest keccak256(Buffer data = null);
 
-    /*! @brief Create a SHA256 message digest signature object.
-     @param key Binary signature key.
-     @return Returns the message digest object.
-     */
-    static Digest hmac_sha256(Buffer key);
+    /*! @brief Create a KECCAK384 information summary operation object 
+      @Param Data Create the binary data updated at the same time, the default is NULL, not updated the data 
+      @Return Returns the information abstract object of the structure*/
+    static Digest keccak384(Buffer data = null);
 
-    /*! @brief Create a SHA384 message digest signature object.
-     @param key Binary signature key.
-     @return Returns the message digest object.
-     */
-    static Digest hmac_sha384(Buffer key);
+    /*! @brief Create a KECCAK512 information summary operation object 
+      @Param Data Create the binary data updated at the same time, the default is NULL, not updated the data 
+      @Return Returns the information abstract object of the structure*/
+    static Digest keccak512(Buffer data = null);
 
-    /*! @brief Create a SHA512 message digest signature object.
-     @param key Binary signature key.
-     @return Returns the message digest object.
-     */
-    static Digest hmac_sha512(Buffer key);
+    /*! @brief Create a Blake2S information summary operation object 
+      @Param Data Create the binary data updated at the same time, the default is NULL, not updated the data 
+      @Return Returns the information abstract object of the structure*/
+    static Digest blake2s(Buffer data = null);
 
-    /*! @brief Create a RIPEMD160 message digest signature object.
-     @param key Binary signature key.
-     @return Returns the message digest object.
-     */
-    static Digest hmac_ripemd160(Buffer key);
+    /*! @brief Create a Blake2b information summary operation object 
+      @Param Data Create the binary data updated at the same time, the default is NULL, not updated the data 
+      @Return Returns the information abstract object of the structure*/
+    static Digest blake2b(Buffer data = null);
+
+    /*! @brief Create a Blake2SP information summary operation object 
+      @Param Data Create the binary data updated at the same time, the default is NULL, not updated the data 
+      @Return Returns the information abstract object of the structure*/
+    static Digest blake2sp(Buffer data = null);
+
+    /*! @brief Create a Blake2bp information summary operation object 
+      @Param Data Create the binary data updated at the same time, the default is NULL, not updated the data 
+      @Return Returns the information abstract object of the structure*/
+    static Digest blake2bp(Buffer data = null);
+
+    /*! @brief Create an information summary computing object based on the specified algorithm identification 
+      @Param Algo specified abstract computing algorithm 
+      @Param KEY binary signature key 
+      @Param Data Create the binary data updated at the same time, the default is NULL, not updated the data 
+      @Return Returns the information abstract object of the structure*/
+    static Digest hmac(Integer algo, Buffer key, Buffer data = null);
+
+    /*! @brief Create a MD5 information Abstract Signature Computing Object 
+      @Param KEY binary signature key 
+      @Param Data Create the binary data updated at the same time, the default is NULL, not updated the data 
+      @Return Returns the information abstract object of the structure*/
+    static Digest hmac_md5(Buffer key, Buffer data = null);
+
+    /*! @brief Create a SHA1 Information Abstract Signature Computing Object 
+      @Param KEY binary signature key 
+      @Param Data Create the binary data updated at the same time, the default is NULL, not updated the data 
+      @Return Returns the information abstract object of the structure*/
+    static Digest hmac_sha1(Buffer key, Buffer data = null);
+
+    /*! @brief Create a SHA224 information Abstract Signature Computing Object 
+      @Param KEY binary signature key 
+      @Param Data Create the binary data updated at the same time, the default is NULL, not updated the data 
+      @Return Returns the information abstract object of the structure*/
+    static Digest hmac_sha224(Buffer key, Buffer data = null);
+
+    /*! @brief Create a SHA256 information Abstract Signature Computing Object 
+      @Param KEY binary signature key 
+      @Param Data Create the binary data updated at the same time, the default is NULL, not updated the data 
+      @Return Returns the information abstract object of the structure*/
+    static Digest hmac_sha256(Buffer key, Buffer data = null);
+
+    /*! @brief Create a SHA384 information Abstract Signature Computing Object 
+      @Param KEY binary signature key 
+      @Param Data Create the binary data updated at the same time, the default is NULL, not updated the data 
+      @Return Returns the information abstract object of the structure*/
+    static Digest hmac_sha384(Buffer key, Buffer data = null);
+
+    /*! @brief Create a SHA512 information Abstract Signature Computing Object 
+      @Param KEY binary signature key 
+      @Param Data Create the binary data updated at the same time, the default is NULL, not updated the data 
+      @Return Returns the information abstract object of the structure*/
+    static Digest hmac_sha512(Buffer key, Buffer data = null);
+
+    /*! @brief Create a RipeMD160 information Abstract Signature Computing Object 
+      @Param KEY binary signature key 
+      @Param Data Create the binary data updated at the same time, the default is NULL, not updated the data 
+      @Return Returns the information abstract object of the structure*/
+    static Digest hmac_ripemd160(Buffer key, Buffer data = null);
+
+    /*! @brief Create a SM3 Information Abstract Signature Computing Object 
+      @Param KEY binary signature key 
+      @Param Data Create the binary data updated at the same time, the default is NULL, not updated the data 
+      @Return Returns the information abstract object of the structure*/
+    static Digest hmac_sm3(Buffer key, Buffer data = null);
+
+    /*! @brief Create a SM3 Information Abstract Signature Computing Object and Pre -processing 
+      @param Pubkey Signature Public Key 
+      @Param ID signature ID 
+      @Param KEY binary signature key 
+      @Param Data Create the binary data updated at the same time, the default is NULL, not updated the data 
+      @Return Returns the information abstract object of the structure*/
+    static Digest hmac_sm3(PKey pubKey, String id, Buffer key, Buffer data = null);
+
+    /*! @brief Create a KECCAK256 information Abstract Signature Computing Object 
+      @Param KEY binary signature key 
+      @Param Data Create the binary data updated at the same time, the default is NULL, not updated the data 
+      @Return Returns the information abstract object of the structure*/
+    static Digest hmac_keccak256(Buffer key, Buffer data = null);
+
+    /*! @brief Create a KECCAK384 information Abstract Signature Computing Object 
+      @Param KEY binary signature key 
+      @Param Data Create the binary data updated at the same time, the default is NULL, not updated the data 
+      @Return Returns the information abstract object of the structure*/
+    static Digest hmac_keccak384(Buffer key, Buffer data = null);
+
+    /*! @brief Create a KECCAK512 information Abstract Signature Computing Object 
+      @Param KEY binary signature key 
+      @Param Data Create the binary data updated at the same time, the default is NULL, not updated the data 
+      @Return Returns the information abstract object of the structure*/
+    static Digest hmac_keccak512(Buffer key, Buffer data = null);
+
+    /*! @brief Create a Blake2S information Abstract Signature Computing Object 
+      @Param KEY binary signature key 
+      @Param Data Create the binary data updated at the same time, the default is NULL, not updated the data 
+      @Return Returns the information abstract object of the structure*/
+    static Digest hmac_blake2s(Buffer key, Buffer data = null);
+
+    /*! @brief Create a Blake2b information Abstract Signature Computing Object 
+      @Param KEY binary signature key 
+      @Param Data Create the binary data updated at the same time, the default is NULL, not updated the data 
+      @Return Returns the information abstract object of the structure*/
+    static Digest hmac_blake2b(Buffer key, Buffer data = null);
+
+    /*! @brief Create a Blake2SP information Abstract Signature Computing Object 
+      @Param KEY binary signature key 
+      @Param Data Create the binary data updated at the same time, the default is NULL, not updated the data 
+      @Return Returns the information abstract object of the structure*/
+    static Digest hmac_blake2sp(Buffer key, Buffer data = null);
+
+    /*! @brief Create a Blake2bp information Abstract Signature Computing Object 
+      @Param KEY binary signature key 
+      @Param Data Create the binary data updated at the same time, the default is NULL, not updated the data 
+      @Return Returns the information abstract object of the structure*/
+    static Digest hmac_blake2bp(Buffer key, Buffer data = null);
 };
-

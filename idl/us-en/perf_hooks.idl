@@ -1,0 +1,11 @@
+/*! @Brief Perf_hooks Basic Module 
+
+  Quote method: 
+  `` `Javascript 
+  var perf_hooks = reques ('perf_hooks'); 
+  `` `*/
+module perf_hooks
+{
+    /*! @Brief Performance basic performance monitoring module*/
+    static performance;
+};

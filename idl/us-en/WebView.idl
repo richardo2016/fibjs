@@ -1,0 +1,132 @@
+/*! @Brief Browser window object
+ WebView is a window component embedded in a browser. At present, it only supports Windows, MacOS (10.10+). Use the IE/EDGE kernel in Windows, use wkwebview.
+ 
+ Since the JavaScript program in WebView is not in the same engine as Fibjs, if you need to communicate with the host program, you need to pass the message.
+
+ WebView is used for communication is External, External supports one method postmessage and two events onMessage and OnClose.
+
+ A simple communication example code is as follows:
+ `` `Javascript
+ // index.js
+ var gui = request ('gui');
+ var webview = gui.open ('fs: //index.html');
+
+ webview.onMessage = msg => console.log (msg);
+ 
+ webView.onload = EVT => WebView.postmessage ("Hello from Fibjs");
+
+ webview.wait ();
+ `` `
+
+ The content of index.html is as follows:
+ `` `html
+ <script>
+     external.onClose = Function () {
+     }
+
+     external.onMessage = Function (MSG) {
+         external.postmessage ("Send Back:" + MSG);
+     };
+ </script>
+ `` `
+ 
+Before the user window is closed, the External.onClose event will be triggered, and External.onClose can determine whether to close it. If the External.onClose returns false, the operation is canceled, otherwise the window will be closed.
+
+ The following examples will be closed after 5 seconds after the user point is closed.
+ `` `html
+ <script language = "javascript">
+     var bclose = false;
+     external.onClose = Function () {
+         if (! BClose) {
+             settimeout (function () {
+                 bclose = true;
+                 window.close ();
+             }, 5000);
+             Return false;
+         }
+     }
+ </script>
+ `` `
+ In the above code, because Window.Close itself also triggers the onClose event, a switch variable needs to be added to identify whether the event is required.*/
+interface WebView : EventEmitter
+{
+    /*! @brief Load the specified URL page 
+ @param url specified URL*/
+    loadUrl(String url) async;
+
+    /*! @brief query the URL of the current page 
+ @Return Return to the URL of the current page*/
+    String getUrl() async;
+
+    /*! @Brief Set the page of WebView HTML 
+ @Param html settings HTML*/
+    setHtml(String html) async;
+
+    /*! @brief refresh the current page*/
+    reload() async;
+
+    /*! @brief Return to the previous page*/
+    goBack() async;
+
+    /*! @brief advance to the next page*/
+    goForward() async;
+
+    /*! @brief Print the current window document 
+ @Param Mode print parameters, 0: Quick printing; 1: standard printing; 2: print preview. Deficiency is 1*/
+    print(Integer mode = 1) async;
+
+    /*! @Brief runs a section of JavaScript code in the current window 
+ @Param Code specifies the JavaScript code to be executed*/
+    executeJavaScript(String code) async;
+
+    /*! @brief Turn off the current window*/
+    close() async;
+
+    /*! @Brief Send a message to webview 
+      PostMessage needs to send messages after the window is loaded, and the messages sent before that will be lost. Therefore, it is recommended to call this method after the onLoad event is triggered. 
+ @param msg to send a message*/
+    postMessage(String msg) async;
+
+    /*! @brief query and binding loading successful events, equivalent to on ("open", func);*/
+    Function onopen;
+
+    /*! @brief query and binding loading successful events, equivalent to on ("load", func);*/
+    Function onload;
+
+    /*! @brief query and binding page address changes, which is equivalent to on ("address", func);*/
+    Function onaddress;
+
+    /*! @brief query and binding page titles to change the event, which is equivalent to on ("title", func);*/
+    Function ontitle;
+
+    /*! @brief query and binding windows move events, equivalent to on ("move", func); 
+
+ The following example will output the upper left corner of the window when the window moves: 
+ `` `Javascript 
+ var gui = request ('gui'); 
+ var webview = gui.open ('fs: //index.html'); 
+
+ webView.onmove = EVT => Console.log (EVT.Left, EVT.TOP); 
+ `` `*/
+    Function onmove;
+
+    /*! @brief query and binding window size changes, which is equivalent to on ("size", func); 
+
+      The following examples will change the size of the large hour output window in the window: 
+      `` `Javascript 
+      var gui = request ('gui'); 
+      var webview = gui.open ('fs: //index.html'); 
+
+      webview.onresize = EVT => Console.log (Evt.Width, EVT.Height); 
+      `` `*/
+    Function onresize;
+
+    /*! @brief query and binding windows off the event. After the webview is closed, it will trigger this time, which is equivalent to on ("closed", func);*/
+    Function onclosed;
+
+    /*! @brief query and binding accepts the postmessage message event in WebView, which is equivalent to on ("message", func);*/
+    Function onmessage;
+
+    /*! @brief query and binding acceptance of downloading transformation events in WebView, equivalent to on ("download", func);*/
+    Function ondownload;
+};

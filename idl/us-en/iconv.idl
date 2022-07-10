@@ -1,33 +1,42 @@
-/*! @brief iconv Module with encode and decode operations between text and binary.
- to use:
- @code
- var encoding = require('encoding');
- var iconv = encoding.iconv;
- @endcode
- or:
- @code
- var iconv = require('iconv');
- @endcode
- */
+/*! @Brief iconv encoding and decoding module 
+
+  Quote method: 
+  `` `Javascript 
+  var encoding = reques ('enCoding'); 
+  var iconv = encoding.iconv; 
+  `` ` 
+  or 
+  `` `Javascript 
+  var iconv = request ('iconv'); 
+  `` ` 
+  iconv uses the encoded encoding of the system for processing. The ICONV module also supports the following built -in encoding set: 
+  `` `Javascript 
+  "UTF8", "UTF-8", 
+
+  "ucs2", "ucs-2", "UTF16", "UTF-16", 
+  "ucs2le", "ucs-2le", "UTF16LE", "UTF -6LE", 
+  "UCS2BE", "UCS-2BE", "UTF16BE", "UTF-16BE", 
+ 
+  "ucs4", "ucs-4", "UTF32", "UTF-32", 
+  "UCS4LE", "UCS-4LE", "UTF32le", "UTF-32le", 
+  "UCS4BE", "UCS-4BE", "UTF32BE", "UTF-32BE" 
+  `` `*/
 module iconv
 {
-	/*! @brief Convert text to binary with iconv.
-	 @param charset The charset to be use.
-	 @param data The text to be converted.
-	 @return The binary encoded result.
-	 */
-	static Buffer encode(String charset, String data);
+    /*! @brief uses iconv to convert text into binary data 
+ @param charset specified character set 
+ @param data to be converted 
+ @Return Return to decoding binary data*/
+    static Buffer encode(String charset, String data);
 
-	/*! @brief Convert binary to text with iconv.
-	 @param charset The charset to be use.
-	 @param data Binary to be converted.
-	 @return The text decoded result.
-	 */
-	static String decode(String charset, Buffer data);
+    /*! @brief uses iconv to convert the buffer content into text 
+ @param charset specified character set 
+ @Param Data to be converted binary data 
+ @Return Return the encoded string*/
+    static String decode(String charset, Buffer data);
 
-	/*! @brief detect whether a charset is supported.
-	 @param charset The charset to be detect.
-	 @return whether to support charset.
-	 */
+    /*! @brief test whether the character set is supported 
+ @param charset specified character set 
+ @Return Return to support the character set*/
     static Boolean isEncoding(String charset);
 };

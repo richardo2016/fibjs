@@ -1,0 +1,14 @@
+/*! @Brief Worker Basic Module 
+
+  Quote method: 
+  `` `Javascript 
+  var worker_threads = reques ('worker_threads'); 
+  `` `*/
+module worker_threads
+{
+    /*! @brief independent thread work object, see worker*/
+    static Worker;
+
+    /*! @brief query whether the current worker is the main thread*/
+    static readonly Boolean isMainThread;
+};

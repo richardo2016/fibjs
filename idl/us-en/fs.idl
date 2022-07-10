@@ -1,231 +1,356 @@
+/*! @brief file system processing module 
 
-/*! @brief file system module
+  Instructions: 
+  `` `Javascript 
+  var fs = reques ('fs'); 
+  `` ` 
 
- how to use
- @code
- var fs = require('fs');
- @endcode
- */
+  Some attention points: 
+
+  -Axing `fs.watch (FILENAME)` will return a Watcher inherited from Eventedemitter, which supports 'Change', 'Changeonly', 'renameonly' 
+  -` FS.Watchfile (target) `and` fs.unwatchfile (target) `can still be used in pairs 
+  -`fs.watchfile (target)` will return a Statswatcher object inherited from Eventedemitter, call `fs.unwatchfile (target)` equivalent to calling `statswatcher.close ()`). 
+  -I because of the implementation of UV on Linux, the `fs.watch`` recursive` option is only stable supported by Win32/Darwin. You can still try to try in linux `fs.watch ('/path/to', { Recursive: true}, handler) `, but you may find that the timing of` Handler` is recovered from what you expect*/
 module fs
 {
-    /*! @brief seek methods const move to absolute position */
-    const Integer SEEK_SET = 0;
+    /*! @brief seek mode constant, move to the absolute position*/
+    const SEEK_SET = 0;
 
-    /*! @brief seek methods const move to current relative position */
-    const Integer SEEK_CUR = 1;
+    /*! @brief seek mode constant, move to the relative position of the current position*/
+    const SEEK_CUR = 1;
 
-    /*! @brief seek methods const，move to the end of file */
-    const Integer SEEK_END = 2;
+    /*! @brief seek mode constant, move to the relative position of the end of the file*/
+    const SEEK_END = 2;
 
-    /*! @brief search if the file or directory exists
-     @param path assign the search path
-     @return return True indicates the file or directory exists
-     */
+    /*! FS module constant object*/
+    static fs_constants new constants();
+
+    /*! @brief query whether the specified file or directory exists 
+      @param Path specifies the path to query 
+      @Return Return True represents file or directory existence*/
     static Boolean exists(String path) async;
 
-    /*! @brief search if the file or directory exists. Sync version of fs.exists().
-     @param path assign the search path
-     @return return True indicates the file or directory exists
-     */
-    static Boolean existsSync(String path);
+    /*! @brief query the user's permissions to the specified file 
+      @param Path specifies the path to query 
+      @Param Mode specifies the permissions of the query, the default is whether the file exists*/
+    static access(String path, Integer mode = 0) async;
 
-    /*! @brief the file you want to delete
-     @param path the path you want to delete
-     */
+    /*! @brief Create a hard link file, do not support this method under Windows 
+      @param OldPath source file 
+      @param newpath to be created*/
+    static link(String oldPath, String newPath) async;
+
+    /*! @brief Delete the specified file 
+      @Param Path specify the path to be deleted*/
     static unlink(String path) async;
 
-    /*! @brief the file you want to delete. Sync version of fs.unlink().
-     @param path the path you want to delete
-     */
-    static unlinkSync(String path);
-
-    /*! @brief create a directory 
-     @param path assign the name of directory
-     @param mode assign file ownership, Windows user ignore this
-     */
+    /*! @brief Create a directory 
+      @param Path specifies the directory name to be created 
+      @Param Mode specifies file permissions, Windows ignores this parameter, default value: 0777*/
     static mkdir(String path, Integer mode = 0777) async;
 
-    /*! @brief create a directory. Sync version of fs.mkdir().
-     @param path assign the name of directory
-     @param mode assign file ownership, Windows user ignore this
-     */
-    static mkdirSync(String path, Integer mode = 0777);
+    /*! @brief Create a directory 
 
-    /*! @brief delete a directory
-     @param path the name of targeting directory
-     */
+      Create parameters can contain the following values: 
+      `` `Javascript 
+      {{ 
+          recursive: false, // Specify whether the parent directory does not exist or whether it is created automatically, the default value: false 
+          MODE: 0777 // Specify file permissions, Windows ignores this parameter, default value: 0777 
+      } 
+      `` ` 
+      @param Path specifies the directory name to be created 
+      @param Opt specify the creation parameters*/
+    static mkdir(String path, Object opt) async;
+
+    /*! @brief Delete a directory 
+      @Param Path specifies the directory name to be deleted*/
     static rmdir(String path) async;
 
-    /*! @brief delete a directory. Sync version of fs.rmdir().
-     @param path the name of targeting directory
-     */
-    static rmdirSync(String path);
-
-    /*! @brief rename a file
-     @param from the targeting file name
-     @param to the name you want to change to
-     */
+    /*! @brief renamed a file 
+      @param from specifically specified the name of the name 
+      @param to specify the new file name to be modified*/
     static rename(String from, String to) async;
 
-    /*! @brief rename a file
-     @param from the targeting file name. Sync version of fs.rename().
-     @param to the name you want to change to
-     */
-    static renameSync(String from, String to);
+    /*! @brief copy SRC to Dest. By default, if Dest already exists, it covers it. 
 
-    /*! @brief copy file
-     @param from file path 
-     @param to new file path
-     */
-    static copy(String from, String to) async;
+      MODE is an optional integer that specifies the behavior of copy operation. Can create masks consisting of two or more values (such as fs.constants.copyfile_excl | fs.constants.copyfile_ficlone). 
+      -Fs.constants.copyfile_exCl -If Dest exists, the copy operation will fail. 
+      -Fs.constants.copyfile_ficlone-Copy operation will try to create a Copy-On-Write link. If the platform does not support copying when writing, use a backup copy mechanism. 
+      -Fs.constants.copyfile_ficlone_force -Copy operation will try to create a copy link when writing. If the platform does not support copying when writing, the copy operation will fail. 
 
-    /*! @brief check the permission of targeting file, Windows does not support this
-     @param path the path to the targeting file
-     @param mode targeting file permission
-     */
+      @param from specifies the source document name to be copied 
+      @Param to specify the target file name to be copied 
+      @Param Mode specifies the decoration of the copy operation, the default is 0*/
+    static copyFile(String from, String to, Integer mode = 0) async;
+
+    /*! @brief Set the access permissions of the specified file, Windows does not support this method 
+      @param Path specified files 
+      @Param Mode specified access to settings*/
     static chmod(String path, Integer mode) async;
 
-    /*! @brief check the permission of targeting file, Windows does not support this.
-         Sync version of fs.chmod().
-     @param path the path to the targeting file
-     @param mode targeting file permission
-     */
-    static chmodSync(String path, Integer mode);
+    /*! @brief Set the access permissions of the specified file. If the file is soft connection, it does not change the permissions of the pointing file. It can only be available on the MacOS and BSD series platforms 
+      @param Path specified files 
+      @Param Mode specified access to settings*/
+    static lchmod(String path, Integer mode) async;
 
-    /*! @brief check file basic infomation/stat
-     @param path the path to the targeting file
-     @return return file basic infomation/stat
-     */
+    /*! @brief Set the owner of the specified file, Windows does not support this method 
+      @param Path specified the settings of the settings 
+      @param uid file owner user ID 
+      @param gid file owner group ID*/
+    static chown(String path, Integer uid, Integer gid) async;
+
+    /*! @brief Set the owner of the specified file, if the specified file is a soft connection, it will not change the owner of the file to the file, Windows does not support this method 
+      @param Path specified the settings of the settings 
+      @param uid file owner user ID 
+      @param gid file owner group ID*/
+    static lchown(String path, Integer uid, Integer gid) async;
+
+    /*! @brief Query Basic Information of the specified file 
+      @param Path specify the file of the query 
+      @Return Return to the basic information of the file*/
     static Stat stat(String path) async;
 
-    /*! @brief check file basic infomation/stat. Sync version of fs.stat().
-     @param path the path to the targeting file
-     @return return file basic infomation/stat
-     */
-    static Stat statSync(String path);
-
-    /*! @brief The function obtains information about the file pointed to by path. It is like fs.stat() except in the case where the named file is a symbolic link; It returns information about the link, while fs.stat() returns information about the file the link references.
-     @param path the path to the targeting file
-     @return return file basic information/stat
-     */
+    /*! @brief query the basic information of the specified file. Unlike STAT, when Path is a soft connection, the backing information will be returned. 
+      @param Path specify the file of the query 
+      @Return Return to the basic information of the file*/
     static Stat lstat(String path) async;
 
-    /*! @brief read value of a symbolic link, not supported on windows
-     @param path the path to the symbolic link file
-     @return file path the symbolic link file referred
-     */
+    /*! @brief read the specified soft connection file, this method does not support under Windows 
+      @param Path specifies the soft connection file read 
+      @Return Return to the file name of the soft connection direction*/
     static String readlink(String path) async;
 
-    /*! @brief It expands all symbolic links and resolves relative path to absolute path.
-     @param path the path to be resolved
-     @return return the canonicalized absolute pathname 
-     */
+    /*! @Brief returns the absolute path of the specified path. If the specified path contains the relative path, it will be expanded 
+      @param Path specifies the path of reading 
+      @Return returns the absolute path after processing*/
     static String realpath(String path) async;
 
-    /*! @brief create symbolic link file
-     @param target the target file to be linked to
-     @param linkpath to be created symbolic link file
-     @param type the symbolic type, options are 'file', 'dir', 'junction', default to be 'file', it is used only on windows，when 'junction' is used linkpath has to be absolute path, and target will be resolved as absolute path automatically
-     */
+    /*! @brief Create soft connection files 
+      @Param Target target files can be a file, directory, or no way to exist 
+      @param linkpath will be created soft connection files 
+      @Param Type's soft connection types, optional types are 'file', 'dir', 'junction', and the default is 'file'. This parameter is only valid on Windows. The path linkpath must be an absolute path, and the target will be automatically transformed into an absolute path.*/
     static symlink(String target, String linkpath, String type = "file") async;
 
-    /*! @brief change the size of file, if size to be changed is more than the file was, '\0' will be add, otherwise the content after size will be lost.
-     @param path the file to be changed size
-     @param len the file size after truncate
-     */
+    /*! @brief Modify the size of the file. If the specified length is greater than the size of the source file, it is filled with '\ 0', otherwise the content of the file will be lost 
+      @param Path specify the path of the modified file 
+      @param len Specify the size of the file after modifying*/
     static truncate(String path, Integer len) async;
 
-    /*! @brief read fileinfo inside target directory 
-     @param path the path to the directory
-     @return return a array of files' info in target directory
-     */
-    static List readdir(String path) async;
+    /*! @brief According to the file descriptor, read the file content 
+      @Param FD file descriptor 
+      @param buffer read the Buffer object written by the results 
+      @param Offset buffer writes the offset, the default is 0 
+      @Param Langth file read the number by byte, the default is 0 
+      @Param Position file read position, defaults to the current file location 
+      @Return actually read the number of bytes read*/
+    static Integer read(Integer fd, Buffer buffer, Integer offset = 0, Integer length = 0, Integer position = -1) async;
 
-    /*! @brief read fileinfo inside target directory. Sync version of fs.readdir().
-     @param path the path to the directory
-     @return return a array of files' info in target directory
-     */
-    static List readdirSync(String path);
+    /*! @brief changes the file mode according to the file descriptor. It is only effective in the POSIX system. 
+      @Param FD file descriptor 
+      @Param Mode file mode*/
+    static fchmod(Integer fd, Integer mode) async;
 
-    /*! @brief open text file to read, write, or read and write
-     @param fname the name of file
-     @param flags define the method for opening file, default is 'r', read only, other supported methods see below:
-     - 'r' ready only, throw excption if file dose not exists
-     - 'r+' read and write, throw excption if file dose not exists
-     - 'w' write only, create new if file dose not exist, othewise overwrite
-     - 'w+' ready and write, create new if file dose not exist, othewise overwrite
-     - 'a' write only add file, create new if file dose not exist, othewise overwrite
-     - 'a+' read and write to add file, create new if file dose not exist, othewise overwrite
-     @return return opened file object
-     */
-    static SeekableStream open(String fname, String flags = "r") async;
+    /*! @brief changes the owner according to the file descriptor. It is only effective in the POSIX system. 
+      @Param FD file descriptor 
+      @Param UID user ID 
+      @Param GID group ID*/
+    static fchown(Integer fd, Integer uid, Integer gid) async;
 
-    /*! @brief open text file to read, write, or read and write. Sync version of fs.open().
-     @param fname the name of file
-     @param flags define the method for opening file, default is 'r', read only, other supported methods see below:
-     - 'r' ready only, throw excption if file dose not exists
-     - 'r+' read and write, throw excption if file dose not exists
-     - 'w' write only, create new if file dose not exist, othewise overwrite
-     - 'w+' ready and write, create new if file dose not exist, othewise overwrite
-     - 'a' write only add file, create new if file dose not exist, othewise overwrite
-     - 'a+' read and write to add file, create new if file dose not exist, othewise overwrite
-     @return return opened file object
-     */
-    static SeekableStream openSync(String fname, String flags = "r");
+    /*! @brief Based on the file descriptor, synchronous data to the disk 
+      @Param FD file descriptor*/
+    static fdatasync(Integer fd) async;
 
-    /*! @brief open text file to read, write, or read and write
-     @param fname the name of file
-     @param flags define the method for opening file, default is 'r', read only, other supported methods see below:
-     - 'r' ready only, throw excption if file dose not exists
-     - 'r+' read and write, throw excption if file dose not exists
-     - 'w' write only, create new if file dose not exist, othewise overwrite
-     - 'w+' ready and write, create new if file dose not exist, othewise overwrite
-     - 'a' write only add file, create new if file dose not exist, othewise overwrite
-     - 'a+' read and write to add file, create new if file dose not exist, othewise overwrite
-     @return return opened file object
-     */
+    /*! @brief Based on the file descriptor, synchronous data to the disk 
+      @Param FD file descriptor*/
+    static fsync(Integer fd) async;
+
+    /*! @Brief read the file information of the specified directory 
+      @param Path specify the directory of query query 
+      @Return Return to the file information array of the directory*/
+    static NArray readdir(String path) async;
+
+    /*! @Brief read the file information of the specified directory 
+      @param Path specify the directory of query query 
+      @param Opts specify parameters, not support for the time being 
+      @Return Return to the file information array of the directory*/
+    static NArray readdir(String path, Object opts) async;
+
+    /*! @brief open the file for reading, writing, or reading and writing at the same time 
+
+      The way the parameter Flags supports as follows: 
+      -'r' reads only, and the file does not exist and throw an error. 
+      -'r+' read and write method, the file does not exist and throw an error. 
+      -'W' only write the way, the file does not exist, and it will be created automatically, and the existence will be cleared. 
+      -'W+' Reading and writing method, the file does not exist and it is automatically created. 
+      -'A' only write the addition method, and the file is automatically created. 
+      -'A+' Read and write added method, and the file is automatically created. 
+      @param fname specified file name 
+      @Param Flags specifies the file opening method, the default is "R", only the way to read 
+      @Return Return to open file object*/
+    static SeekableStream openFile(String fname, String flags = "r") async;
+
+    /*! @brief open the file descriptor 
+
+      The way the parameter Flags supports as follows: 
+      -'r' reads only, and the file does not exist and throw an error. 
+      -'r+' read and write method, the file does not exist and throw an error. 
+      -'W' only write the way, the file does not exist, and it will be created automatically, and the existence will be cleared. 
+      -'W+' Reading and writing method, the file does not exist and it is automatically created. 
+      -'A' only write the addition method, and the file is automatically created. 
+      -'A+' Read and write added method, and the file is automatically created. 
+      @param fname specified file name 
+      @Param Flags specifies the file opening method, the default is "R", only the way to read 
+      @Param Mode When creating files, the specified file mode, default 0666 
+      @Return Return to open file descriptor*/
+    static Integer open(String fname, String flags = "r", Integer mode = 0666) async;
+
+    /*! @brief Turn off the file descriptor 
+      @Param FD file descriptor*/
+    static close(Integer fd) async;
+
+    /*! @brief opens the text file for reading, writing, or reading and writing at the same time 
+
+      The way the parameter Flags supports as follows: 
+      -'r' reads only, and the file does not exist and throw an error. 
+      -'r+' read and write method, the file does not exist and throw an error. 
+      -'W' only write the way, the file does not exist, and it will be created automatically, and the existence will be cleared. 
+      -'W+' Reading and writing method, the file does not exist and it is automatically created. 
+      -'A' only write the addition method, and the file is automatically created. 
+      -'A+' Read and write added method, and the file is automatically created. 
+      @param fname specified file name 
+      @Param Flags specifies the file opening method, the default is "R", only the way to read 
+      @Return Return to open file object*/
     static BufferedStream openTextStream(String fname, String flags = "r") async;
 
-    /*! @brief open file and read the conent.
-     @param fname the name of file
-     @return file content
-     */
+    /*! @brief open the text file and read the content 
+      @param fname specified file name 
+      @Return Return file text content*/
     static String readTextFile(String fname) async;
 
-    /*! @brief open a file, read the content
-     @param fname assign file name
-     @return return content of opened file
-     */
-    static String readFile(String fname) async;
+    /*! @brief open the file and read the content 
+      @param fname specified file name 
+      @Param Encoding specifies the decoding method, default does not decoding 
+      @Return Return file text content*/
+    static Variant readFile(String fname, String encoding = "") async;
 
-    /*! @brief open a file, read the content. Sync version of fs.readFile().
-     @param fname assign file name
-     @return return content of opened file
-     */
-    static Buffer readFileSync(String fname);
+    /*! @brief open the file and read the content 
 
-    /*! @brief open file, ready each line of text content intot an array, end of line is recognized based on EOL definition, by default, posix system: "\n"; windows system: "\r\n"
-     @param fname assign file name
-     @param maxlines define the maximum number of line to read, read all lines by default
-     @return return the array containing every line of file content, if no content or connection is lost, then return an empty array
-     */
+      Options supports options are as follows: 
+      `` `Javascript 
+      {{ 
+          "ENCODING": "UTF8" // Specify the decoding method, the default is not decoded 
+      } 
+      `` ` 
+      @param fname specified file name 
+      @param options specify read options 
+      @Return Return file text content*/
+    static Variant readFile(String fname, Object options) async;
+
+    /*! @brief open the file and read a set of text lines in an array. 
+      @param fname specified file name 
+      @Param MaxLines specifies the maximum number of rows read this time, defaults to all text lines 
+      @Return returns the text line array read, if no data can be read, or interrupted, empty array*/
     static Array readLines(String fname, Integer maxlines = -1);
 
-    /*! @brief create text file and write to file 创建文本文件，并写入内容
-     @param fname assign file name
-     @param txt sting to be written
-     */
+    /*! @brief Create a text file and write the content 
+      @param fname specified file name 
+      @param txt specify the string to be written*/
     static writeTextFile(String fname, String txt) async;
 
-    /*! @brief create file, and write new content
-     @param fname assign file name
-     @param txt the content you are going to write into file
-     */
-    static writeFile(String fname, String txt) async;
+    /*! @brief Create binary files and write content 
+      @param fname specified file name 
+      @param data specifies the binary data to be written*/
+    static writeFile(String fname, Buffer data) async;
 
-    /*! @brief create file, and write new content. Sync version of fs.writeFile().
-     @param fname assign file name
-     @param txt the content you are going to write into file
-     */
-    static writeFileSync(String fname, Buffer data);
+    /*! @brief Create binary files and write content 
+      @param fname specified file name 
+      @param data specifies the binary data to be written*/
+    static appendFile(String fname, Buffer data) async;
+
+    /*! @brief Set ZIP virtual file mapping 
+      @Param FNAME specify the mapping path 
+      @Param Data specifies the mapping zip file data*/
+    static setZipFS(String fname, Buffer data);
+
+    /*! @brief Clear ZIP virtual file mapping 
+      @Param FNAME specify the mapping path, default to clear all the cache*/
+    static clearZipFS(String fname = "");
+
+    /*! @brief Observe a file and return the corresponding Watcher object 
+      @param FNAME specifies the file object to be observed 
+      @Return fswatcher object*/
+    static FSWatcher watch(String fname);
+
+    /*! @brief Observe a file and return the corresponding Watcher object 
+      @param FNAME specifies the file object to be observed 
+      @param callback `(Evttype: 'Change' | 'rename', Filename: String) => Any` when the file object changes, the processing recovery recovery recovery 
+      @Return fswatcher object*/
+    static FSWatcher watch(String fname, Function callback);
+
+    /*! @brief Observe a file and return the corresponding Watcher object 
+     
+      Options supports options are as follows: 
+      `` `Javascript 
+      {{ 
+          "Persistent": true, // {boolean} default: true whether the target file is still observed, the process will not exit 
+          "recursive": false, // {boolean} default: false for FNAME as a folder, whether to observe all the sub -directory below it recursively 
+          "ENCODING": "UTF8", // {ENUM} default: 'UTF8' Specify the character encoding of the fnames passed in 
+      } 
+      `` ` 
+      @param FNAME specifies the file object to be observed 
+      @param Options Observation Options 
+      @Return fswatcher object*/
+    static FSWatcher watch(String fname, Object options);
+
+    /*! @brief Observe a file and return the corresponding Watcher object 
+
+      Options supports options are as follows: 
+      `` `Javascript 
+      {{ 
+          "Persistent": true, // {boolean} default: true whether the target file is still observed, the process will not exit 
+          "recursive": false, // {boolean} default: false for FNAME as a folder, whether to observe all the sub -directory below it recursively 
+          "ENCODING": "UTF8", // {ENUM} default: 'UTF8' Specify the character encoding of the fnames passed in 
+      } 
+      `` ` 
+      @param FNAME specifies the file object to be observed 
+      @param Options Observation Options 
+      @param callback `(Evttype: 'Change' | 'rename', Filename: String) => Any` when the file object changes, the processing recovery recovery recovery 
+      @Return fswatcher object*/
+    static FSWatcher watch(String fname, Object options, Function callback);
+
+    /*! @brief Observe a file and return the corresponding StatsWatcher object 
+      @param FNAME specifies the file object to be observed 
+      @param callback `(Cursstats: Stats, PrevStats: Stats) => ANY` When the stats of the file object change 
+      @Return statswatcher object*/
+    static StatsWatcher watchFile(String fname, Function callback);
+
+    /*! @brief Observe a file and return the corresponding StatsWatcher object 
+    
+      Options supports options are as follows: 
+      `` `Javascript 
+      {{ 
+          "Persistent": true, // {boolean} default: true whether the target file is still observed, the process will not exit 
+          "recursive": false, // {boolean} default: false for FNAME as a folder, whether to observe all the sub -directory below it recursively 
+          "ENCODING": "UTF8", // {ENUM} default: 'UTF8' Specify the character encoding of the fnames passed in 
+      } 
+      `` ` 
+      @param FNAME specifies the file object to be observed 
+      @param Options Observation Options 
+      @param callback `(Cursstats: Stats, PrevStats: Stats) => ANY` When the stats of the file object change 
+      @Return statswatcher object*/
+    static StatsWatcher watchFile(String fname, Object options, Function callback);
+
+    /*! @brief removes all the callbacks from observation events from observing FNAME's Statswatcher 
+      @param FNAME specifies the file object to be observed 
+
+      @Return statswatcher object*/
+    static unwatchFile(String fname);
+
+    /*! @brief Remove the callback of the observation of FNAME's Statswatcher's observation event. 
+     Even if Callback no longer statswatcher's observation event will not report an error in the callback 
+
+      @param FNAME specifies the file object to be observed 
+      @param callback to remove 
+      @Return statswatcher object*/
+    static unwatchFile(String fname, Function callback);
 };

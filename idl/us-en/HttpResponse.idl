@@ -1,23 +1,46 @@
-
-/*! @brief http response message object */
+/*! @brief http responded to the message object*/
 interface HttpResponse : HttpMessage
 {
-    /*! @brief HttpResponse constructor, creating a new HttpResponse object */
+    /*! @Brief httpresponse constructor to create a new HTTPRESPONSE object*/
     HttpResponse();
 
-    /*! @brief querying and setting the status of the response message */
-    Integer status;
+    /*! @brief query and set the return state of response message*/
+    Integer statusCode;
 
-    /*! @brief returning the HttpCookie object list of the current message */
-    readonly List cookies;
+    /*! @brief query and set the return message to the response message*/
+    String statusMessage;
 
-    /*! @brief add a HttpCookie object to cookies
-     @param cookie spcify the HttpCookie object to be added
-     */
+    /*! @brief query whether the current response is normal*/
+    readonly Boolean ok;
+
+    /*! @brief set the return state of the response message, return the message, and add the response header 
+      @Param Statuscode specifies the return state of the response message 
+      @Param StatusMessage specify the return message of the response message 
+      @Param Headers Specify the response header added to the response message*/
+    writeHead(Integer statusCode, String statusMessage, Object headers = {});
+
+    /*! @brief set the return state of the response message, return the message, and add the response header 
+      @Param Statuscode specifies the return state of the response message 
+      @Param Headers Specify the response header added to the response message*/
+    writeHead(Integer statusCode, Object headers = {});
+
+    /*! @brief Return to the current message httpcookie object list*/
+    readonly NArray cookies;
+
+    /*! @Brief adds a httpcookie object to Cookies 
+      @Param Cookie Specify the HTTPCOOKIE object to be added*/
     addCookie(HttpCookie cookie);
 
-    /*! @brief send a redirect url to the client
-     @param url url to the redirected address
-     */
+    /*! @brief Send redirection to the client 
+      @Param URL redirection*/
     redirect(String url);
+
+    /*! @brief Send redirection to the client 
+      @Param Statuscode specifies the return state of the response message. The acceptance status is: 301, 302, 307 
+      @Param URL redirection*/
+    redirect(Integer statusCode, String url);
+
+    /*! @Brief only send formattable HTTP head to a given stream object 
+      @Param STM specify the stream object of the receiving format message*/
+    sendHeader(Stream stm) async;
 };

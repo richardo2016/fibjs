@@ -1,0 +1,20 @@
+/*! @brief TTY streaming objects, used to read, write 
+
+  There is no way to create this category separately, only the overall situation is the instance of `Process.stdin` 
+
+  `` `Javascript 
+  process.stdin.read (1) 
+  `` `*/
+interface TTYInputStream : Stream
+{
+    /*! @brief constant True*/
+    readonly Boolean isTTY;
+
+    /*! @brief query whether it is in RAW MODE. When True, it means that when tty is configured to operate with RAW Device*/
+    readonly Boolean isRaw;
+
+    /*! @brief Set TTY whether to work with RAW MODE 
+      @Param Israwmode is true, indicating that working with RAW MODE; otherwise, work in the default mode. 
+      @Return back to yourself*/
+    TTYInputStream setRawMode(Boolean isRawMode);
+};

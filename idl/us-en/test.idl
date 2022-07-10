@@ -1,87 +1,150 @@
+/*! @brief test kit module to define the management test kit
 
-/*! @brief Test Suite module that defines the test suite management
+Instructions :
 
- To use it:
- @code
- var test = require('test');
- @endcode
- */
+`` `Javascript
+var test = request ('test');
+test.setup ();
+
+description ('test', () => {
+    before (() => {{
+        // Setup BeFore The WHOLE TEST
+    });
+
+    beforeeach (() => {{{
+        // Setup Before Each Test
+    });
+
+    after (() => {{{
+        // Cleanup after the Whole Test
+    });
+
+    afterReach (() => {{{
+        // Cleanup After Each Test
+    });
+
+    it ('case', () => {
+        assert.ok (true);
+    });
+
+    // IGNORED TEST CASE
+    xit ('case', () => {
+        assert.ok (true);
+    });
+
+    // IGNORED TEST CASE
+    it.skip ('case', () => {
+        assert.ok (true);
+    });
+
+    // only test case
+    oit ('case', () => {
+        assert.ok (true);
+    });
+
+    // only test case
+    it.only ('case', () => {
+        assert.ok (true);
+    });
+});
+
+// Async Function Test
+description ('test async', () => {
+  IT ('PASS CASE', Async () => {
+    assert.ok (true);
+  });
+
+  IT ('error case', async () => {
+      Throw New Error ('Some Thing Wrong!');
+  });
+});
+
+// callback function test
+// Cannot use callback mode in jsc
+description ('test callback', () => {
+  IT ('PASS CASE', Done => {
+    settimeout (() => {{
+      assert.ok (true);
+      done ().
+    }, 0);
+  });
+
+  IT ('Error Case', Done => {
+    settimeout (() => {{
+      Done (new error ('some things wrong!');
+    }, 0);
+  });
+
+  IT ('Check in Done', do => {{
+    settimeout (() => {{
+      done (() => {{{
+        assert.ok (true);
+      });
+    }, 0);
+  });
+});
+
+Process.exit (-test.run (console.debug));
+`` `*/
 module test
 {
-    /*! @brief Definition of BDD (Behavior Drive Development) test environment that supports describe, xdescribe, it, xit, before, after, beforeEach and afterEach, while initializing assert and expect
-     */
-    const Integer BDD = 0;
-
-    /*! @brief Definition of TDD (Test Drive Development) test environment to support suite, xsuite, test, xtest, setup, teardown, suiteSetup and suiteTeardown, while initializing assert and expect
-     */
-    const Integer TDD = 1;
-
-    /*! @brief The definition of a test module and can be nested definition
-     @param name Module name
-     @param block Initial code
-     */
+    /*! @brief Define a test module, nested definition 
+      @param name Define module name 
+      @Param Block module initialization code*/
     static describe(String name, Function block);
 
-    /*! @brief The definition of a test module to be stopped
-     @param name Module name
-     @param block Initial code
-     */
+    /*! @Brief pause test module definition, test.setup can be called by description.skip 
+      @param name Define module name 
+      @Param Block module initialization code*/
     static xdescribe(String name, Function block);
 
-    /*! @brief Define a test project
-     @param name Project name
-     @param block Test block
-     */
+    /*! @Brief independent test module definition, test.setup can be called by description.only after testup 
+      @param name Define module name 
+      @Param Block module initialization code*/
+    static odescribe(String name, Function block);
+
+    /*! @brief Define a test item 
+      @param name Definition project name 
+      @Param Block test content*/
     static it(String name, Function block);
 
-    /*! @brief Prohibit test project definition
-     @param name Project name
-     @param block Test block
-     */
+    /*! @brief pause test project definition, test.setup can be called with IT.SKIP call 
+      @param name Definition project name 
+      @Param Block test content*/
     static xit(String name, Function block);
 
-    /*! @brief Define the incident event for current test module
-     @param func Event handler
-     */
+    /*! @brief independent test project definition, test.setup can be called with IT.ONLY 
+      @param name Definition project name 
+      @Param Block test content*/
+    static oit(String name, Function block);
+
+    /*! @brief Define the current test module to enter the event 
+      @param func event function*/
     static before(Function func);
 
-    /*! @brief Define the exit event for current test module
-     @param func Event handler
-     */
+    /*! @brief Define the current test module exit event 
+      @param func event function*/
     static after(Function func);
 
-    /*! @brief Define the incident event for current test project
-     @param func Event handler
-     */
+    /*! @brief Define the current test module test project to enter the event 
+      @param func event function*/
     static beforeEach(Function func);
 
-    /*! @brief Define the exit event for current test project
-     @param func Event handler
-     */
+    /*! @brief Define the current test module test items exit incident 
+      @param func event function*/
     static afterEach(Function func);
 
-    /*! @brief Module to start executing definition
-     @param loglevel Log output level is specified when tested, ERROR, the project focused on the report the error message is displayed, below ERROR, output information displayed at any time, while higher than ERROR, display only reports
-     @return Return the statistical result of test case, return 0 when meet no error, return the error number of errors.
-     */
+    /*! @brief Start executing the defined test module 
+      @Param Loglevel specifies the log output level when testing. When ERROR, the project reporting information is concentrated after the report shows that when the ERROR is lower, the output information is displayed at any time. When the report is higher than the ERROR, only the report is displayed. 
+      @Return Return to the statistical results of the test case, the correct is returned 0, and the error returns the error number*/
     static Integer run(Integer loglevel = console.ERROR);
 
-    /*! @brief Assertion test module, if the test is false, then the error, error behavior can be set to continue to run or throw an error */
+    /*! @brief asserted the test module. If the test value is fake, the error is reported.*/
     static assert;
 
-    /*! @brief expect Grammar test engine
-     @param actual Value to test
-     @param msg Message when error occurs
-     @return Return Expect for chain operations
-     */
-    static Expect expect(Value actual, String msg = "");
+    /*! @Brief initialize the test environment of the current script, copy the test module method to the current script global variable*/
+    static setup();
 
-    /*! @brief The current test environment initialization script, the test module method to copy a global variable for the current script
-     @param mode Indicates initial mode, default is BDD
-     */
-    static setup(Integer mode = BDD);
-
-    /*! @brief Set and get slow test warning threshold in ms, default is 75
-     */
+    /*! @brief settings and query slow test warnings, take MS as a unit, and the default is 75*/
     static Integer slow;
 };

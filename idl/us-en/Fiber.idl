@@ -1,60 +1,63 @@
+/*! @brief fiber -range operation object, this object cannot be created directly
 
-/*! @brief Fiber operation object, this object cannot be created directly.
-
- This object, which is used to issue fibers and communications between fibers, will be returned after the fiber is created by coroutine.start.
- Fiber's main function can access the fiber by this, or get the fiber by coroutine.current.
- @code
- function func(v1)
- {
-   console.log(v1 + this.v);
+ After using Coroutine.start to create a fiber course, this object will be returned for fibroburation processing and communication between fibrous ducts.
+ The main function of the fibrous path can be accessing this fiber course through this, or the current fiber course can be obtained through Coroutine.CURRENT.
+ `` `Javascript
+ Function func (v1)
+ {{
+   console.log (v1 + this.V);
  }
 
- var fb = coroutine.start(func,100);
+ var fb = coroutine.start (func, 100);
 
  fb.v = 123;
 
- fb.join();
- @endcode
+ fb.join ();
+ `` `
 
- Fiber Local Storage is done by the shared Fiber object. Current fiber can be accessed by coroutine.current, and the data can be shared by querying and modifying the fiber's variables.
+ The local storage of the fiber course is completed by shared FIBER objects, obtaining the current fiber course through Coroutine.CURRENT, and the purpose of modifying and querying its variables to achieve the purpose of sharing data.
 
- @code
- function func()
- {
-   console.log(coroutine.current().v);
+ `` `Javascript
+ Function func ()
+ {{
+   console.log (coroutine.current (). v);
  }
 
- coroutine.current().v = 100;
+ coroutine.current (). v = 100;
 
- func();
- @endcode
+ func ();
+ `` `
 
- When a new fiber is created, the current fiber's local variables will be copied to the new fiber.
- After that, each fiber's local variables won't have any effect on other's, unless the variable is referenced by other objects.
+ When the fiber is created, the local variables of the current fiber range will be automatically copied to the new fiber course. After that, the modification of their respective local variables will not affect each other unless the variable itself is cited.
 
- @code
- function func()
- {
-   console.log(coroutine.current().v);
+ `` `Javascript
+ Function func ()
+ {{
+   console.log (coroutine.current (). v);
  }
 
- coroutine.current().v = 100;
+ coroutine.current (). v = 100;
 
- var fb = coroutine.start(func);
+ var fb = coroutine.start (func);
 
- coroutine.current().v = 200;
+ coroutine.current (). v = 200;
 
- fb.join();
- @endcode
- */
+ fb.join ();
+ `` `*/
 interface Fiber : object
 {
-    /*! @brief waiting until the end of the fiber */
+    /*! @brief Waiting for the end of the fiber journey*/
     join();
 
-    /*! @brief Query the fiber's caller */
+    /*! @brief query the unique ID of the fiber course*/
+    readonly Long id;
+
+    /*! @brief query the call of the fiber course*/
     readonly Fiber caller;
 
-    /*! @brief Query the call stack of the fiber, to get the non-current one can specified the parameters: - trace_fiber.*/
-	readonly String traceInfo;
+    /*! @Brief query the call stack of the fiber course*/
+    readonly String stack;
+
+    /*! @brief query the stack size of the fiber duration*/
+    readonly Integer stack_usage;
 };

@@ -1,25 +1,19 @@
-
-/*! @brief XmlNamedNodeMap object represents a unordered properties list
-*/
-interface XmlNamedNodeMap
+/*! @Brief XMLNAMEDNODEMAP objects indicate a list of no orderless attributes*/
+interface XmlNamedNodeMap : object
 {
-    /*! @brief Get number of properties
-    */
+    /*! @Brief Return to the number of attributes in the list of attribute lists*/
     readonly Integer length;
 
-    /*! @brief Get property by index
-     @param index Property index
-     @return Return property with given index
-    */
+    /*! @Brief Return to the attribute of the specified index number in the list of attribute lists 
+      @Param Index Specify the index to be queried 
+      @Return Specify the attribute of the index section*/
     XmlAttr item(Integer index);
 
-    /*! @brief Allow use index to access data
-    */
+    /*! @brief can be used to access the data directly with a subscriber*/
     readonly XmlAttr operator[];
 
-    /*! @brief Get property by name
-     @param name Property name
-     @return Return property with given name
-    */
+    /*! @brief query the attribute of specified name 
+      @param name Specify the name to be query 
+      @Return Return to query attributes*/
     XmlAttr getNamedItem(String name);
 };

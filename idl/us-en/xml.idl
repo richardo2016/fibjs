@@ -1,60 +1,47 @@
-
-/*! @brief xml module
-*/
+/*! @Brief XML processing module*/
 module xml
 {
-    /*! @brief XmlNode's nodeType property, represents XmlElement node object
-    */
-    const Integer ELEMENT_NODE = 1;
+    /*! @Brief XMLNODE's nodetype attribute constant, indicating that the node is XMLEMENT object*/
+    const ELEMENT_NODE = 1;
 
-    /*! @brief XmlNode's nodeType property, represents XmlAttr node object
-    */
-    const Integer ATTRIBUTE_NODE = 2;
+    /*! @brief xmlnode's nodetype attribute constant, indicating that the node is XMLATTR object*/
+    const ATTRIBUTE_NODE = 2;
 
-    /*! @brief XmlNode's nodeType property, represents XmlText node object
-    */
-    const Integer TEXT_NODE = 3;
+    /*! @Brief XMLNODE's nodetype attribute constant, indicating that the node is XMLTEXT object*/
+    const TEXT_NODE = 3;
 
-    /*! @brief XmlNode's nodeType property, represents XmlCDATASection node object
-    */
-    const Integer CDATA_SECTION_NODE = 4;
+    /*! @Brief XMLNODE's nodetype attribute constant, indicating that the node is XMLCDATASECTION object*/
+    const CDATA_SECTION_NODE = 4;
 
-    /*! @brief XmlNode's nodeType property, represents XmlProcessingInstruction node object
-    */
-    const Integer PROCESSING_INSTRUCTION_NODE = 7;
+    /*! @Brief XMLNODE's nodetype attribute constant, indicating that the node is XMLPROCESSINGINSTRUCTION*/
+    const PROCESSING_INSTRUCTION_NODE = 7;
 
-    /*! @brief XmlNode's nodeType property, represents XmlComment node object
-    */
-    const Integer COMMENT_NODE = 8;
+    /*! @Brief XMLNODE's nodetype attribute constant, indicating that the node is XMLCOMMENT object*/
+    const COMMENT_NODE = 8;
 
-    /*! @brief XmlNode's nodeType property, represents XmlDocument node object
-    */
-    const Integer DOCUMENT_NODE = 9;
+    /*! @Brief XMLNODE's nodetype attribute constant, indicating that the node is XMLDOCUMENT object*/
+    const DOCUMENT_NODE = 9;
 
-    /*! @brief XmlNode's nodeType property, represents XmlDocumentType node object
-    */
-    const Integer DOCUMENT_TYPE_NODE = 10;
+    /*! @Brief XMLNODE's nodetype attribute constant, indicating that the node is XMLDOCUMENTYPE object*/
+    const DOCUMENT_TYPE_NODE = 10;
 
-    /*! @brief xml document object, see XmlDocument object*/
+    /*! @Brief XML document object, see XMLDOCUMENT object*/
     static XmlDocument new Document();
 
-    /*! @brief Parse xml/html text and create XmlDocument object, does not support multiple languages
-     @param source xml/html text to parse
-     @param type Indicates text type, default is text/xml, and can be text/html as well
-     @return Return created XmlDocument object
-    */
+    /*! @brief parsing XML/HTML text and creating XMLDOCUMENT objects, do not support multi -language 
+      @Param Source specifies XML/HTML text to be parsed 
+      @Param Type specifies the text type, the default is Text/XML, or it can be specified as Text/HTML 
+      @Return Return to the created XMLDOCUMENT object*/
     static XmlDocument parse(String source, String type = "text/xml");
 
-    /*! @brief Parse xml/html and create XmlDocument object, convert by given language
-     @param source xml/html text to parse
-     @param type Indicates text type, default is text/xml, and can be text/html as well
-     @return Return created XmlDocument object
-    */
+    /*! @brief parsing XML/HTML and creating XMLDOCUMENT objects, which will be converted according to the specified language during parsing 
+      @Param Source specifies the XML/HTML binary data that needs to be parsed 
+      @Param Type specifies the text type, the default is Text/XML, or it can be specified as Text/HTML 
+      @Return Return to the created XMLDOCUMENT object*/
     static XmlDocument parse(Buffer source, String type = "text/xml");
 
-    /*! @brief Serialize XmlNode to string
-     @param node XmlNode to serialize
-     @return Return serialized string
-    */
+    /*! @Brief serialized XMLNODE as a string 
+      @Param Node specifies XMLNODE that requires serialized 
+      @Return Return a serialized string*/
     static String serialize(XmlNode node);
 };

@@ -1,50 +1,40 @@
+/*! @Brief Mongodb database connection object 
 
-/*! @brief mongodb database connection object
-
-Used for db.open or db.openMongoDB, to create:
- @code
- var mdb = db.openMongoDB("mongodb://host/db");
- @endcode
- */
+  Create with db.open or db.openmongodb to create: 
+  `` `Javascript 
+  var mdb = db.openmongodb ("mongodb: // host/db"); 
+  `` `*/
 interface MongoDB : object
 {
-    /*! @brief Get collection by name
-      @param name Collection name
-      @return Return collection object
-     */
+    /*! @brief Get the specified collection access object 
+     @param name Specify the name of the collection 
+     @Return Return to the specified collection object*/
     MongoCollection getCollection(String name);
 
-    /*! @brief Run MongoDB command
-      @param cmd Command to run
-      @return Return execution result
-     */
+    /*! @Brief specify a MongoDB database command 
+     @Param CMD specifies the dictionary object of the command and parameter 
+     @Return Return the command execution result*/
     Object runCommand(Object cmd);
 
-    /*! @brief Run a simple MongoDB commnad
-      @param cmd Command name
-      @param arg Commnad parameter
-      @return Return execution result
-     */
+    /*! @Brief specify a simple MongoDB database command 
+     @Param cmd specified command name 
+     @param arg specify command parameters 
+     @Return Return the command execution result*/
     Object runCommand(String cmd, Value arg);
 
-    /*! @brief Get readonly collection obejct
+    /*! @brief quickly get the specified collection access object 
 
-     To use it:
-     @code
-     var test = mdb.test;
-     @endcode
-     */
+    Used to quickly obtain a collection object with attributes, such as: 
+    `` `Javascript 
+    var test = mdb.test; 
+    `` `*/
     readonly MongoCollection operator[String];
 
-    /*! @brief Get GridFS object */
-    readonly GridFS fs;
-
-    /*! @brief Generate mongodb _objectid object
-      @param hexStr Initial Hex string as new id
-      @return Return new _objectid object
-     */
+    /*! @Brief generate a mongodb_Objectid object 
+     @Param Hexstr Initialize the hexadecimal string, default to generate new ID 
+     @Return*/
     MongoID oid(String hexStr = "");
 
-    /*! @brief Close connection */
-    close();
+    /*! @brief Turn off the current database connection*/
+    close() async;
 };

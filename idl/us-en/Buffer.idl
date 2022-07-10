@@ -1,505 +1,466 @@
-/*! @brief Binary buffer used in dealing with I/O reading and writing.
+/*! @Brief Dual Data Cache Object, data processing for IO read and write 
 
- Buffer object is a global basic class which can be created by "new Buffer(...)" at anytime:
- @code
- var buf = new Buffer();
- @endcode
- */
+  The BUFFER object is a global foundation class, and at any time, it can be created directly with the new buffer (...): 
+  `` `Javascript 
+  var buf = new buffer (); 
+  `` `*/
 interface Buffer : object
 {
-    /*! @brief Buffer constructor
-     @param datas Initial data array
-     */
+    /*! @brief cache object constructor 
+      @param DataS initialization data array*/
     Buffer(Array datas);
 
-    /*! @brief Buffer constructor
-     @param buffer otherBuffer
-     */
+    /*! @brief cache object constructor 
+      @param DataS initialization data array*/
+    Buffer(ArrayBuffer datas);
+
+    /*! @brief cache object constructor 
+      @param DataS initialization data array*/
+    Buffer(TypedArray datas);
+
+    /*! @brief cache object constructor 
+      @param DataS initialization data array*/
+    Buffer(ArrayBufferView datas);
+
+    /*! @brief cache object constructor 
+      @param buffer initialization Buffer object*/
     Buffer(Buffer buffer);
 
-    /*! @brief Buffer constructor
-     @param str Initial string encoded in UTF-8, by default it will create an empty object.
-     @param codec The encode format, can be "hex", “base64”, "utf8" or any other character sets supported by the system.
-     */
+    /*! @brief cache object constructor 
+      @Param STR initialization string, the string will be written in UTF-8 format, and the default will create an empty object 
+      @Param Codec specifies the encoding format, the allowable value is: "hex", "base32", "base58", "base64", "utf8", or the character set supported by the IconV module*/
     Buffer(String str, String codec = "utf8");
 
-    /*! @brief Check if variable is a Buffer object
-     @param v Variable to check
-     @return Return true when it's a Buffer object
-     */
-    static Boolean isBuffer(Value v);
-
-    /*! @brief Create a Buffer object from Array
-     @param datas Variable to create Buffer objcet
-     @return Return a Buffer object
-     */
-    static Buffer from(Array datas);
-
-    /*! @brief Create a Buffer object from ArrayBuffer
-     @param datas Variable to create Buffer objcet
-     @return Return a Buffer object
-     */
-    static Buffer from(ArrayBuffer datas);
-
-    /*! @brief Create a Buffer object from TypedArray
-     @param datas Variable to create Buffer objcet
-     @return Return a Buffer object
-     */
-    static Buffer from(TypedArray datas);
-
-    /*! @brief Create a Buffer object from other Buffer object
-     @param datas Variable to create Buffer objcet
-     @return Return a Buffer object
-     */
-    static Buffer from(Buffer buffer);
-
-    /*! @brief Create a Buffer object from String
-     @param str Initial string encoded in UTF-8, by default it will create an empty object
-     @param codec The encode format, can be "hex", “base64”, "utf8" or any other character sets supported by the system
-     @return Return a Buffer object
-     */
-    static Buffer from(String str, String codec = "utf8");
-
-    /*! @brief Returns a buffer which is the result of concatenating the buffers in the list
-     @param buflist Array List of Buffer objects to concat
-     @param cutLength Number Total length of the buffers when concatenated
-     @return Returns a buffer which is the result of concatenating the buffers in the list
-    */
-    static Buffer concat(Array buflist, String cutLength = -1);
-
-    /*! @brief Allocates a new Buffer of size bytes. A zero-length Buffer will be created if size is 0
-     @param size The desired length of the new Buffer
-     @param fill  String/Buffer/Integer A value to pre-fill the new Buffer with. Default: 0
-     @param codec The encode format, can be "hex", “base64”, "utf8" or any other character sets supported by the system
-     @return a new Buffer of size bytes
-    */
-    static Buffer alloc(Integer size, Integer fill = 0, String codec = "utf8");
-
-    /*! @brief Allocates a new Buffer of size bytes. A zero-length Buffer will be created if size is 0
-     @param size The desired length of the new Buffer
-     @param fill  String/Buffer/Integer A value to pre-fill the new Buffer with. Default: 0
-     @param codec The encode format, can be "hex", “base64”, "utf8" or any other character sets supported by the system
-     @return a new Buffer of size bytes
-    */
-    static Buffer alloc(Integer size, String fill = "", String codec = "utf8");
-
-    /*! @brief Allocates a new Buffer of size bytes. A zero-length Buffer will be created if size is 0
-     @param size The desired length of the new Buffer
-     @param fill  String/Buffer/Integer A value to pre-fill the new Buffer with. Default: 0
-     @param codec The encode format, can be "hex", “base64”, "utf8" or any other character sets supported by the system
-     @return a new Buffer of size bytes
-    */
-    static Buffer alloc(Integer size, Buffer fill, String codec = "utf8");
-
-    /*! @brief Returns the actual byte length of a string
-     @param str Initial string encoded in UTF-8, if str is an  ArrayBuffer/TypedArray/DataView/Buffer object, their actual length is returned.
-     @param codec The encode format, can be "hex", “base64”, "utf8" or any other character sets supported by the system.
-     @return Returns the actual byte length
-     */
-    static Integer byteLength(String str, String codec = "utf8");
-
-    /*! @brief Returns the actual byte length of a string
-     @param str Initial string encoded in UTF-8, if str is an  ArrayBuffer/TypedArray/DataView/Buffer object, their actual length is returned.
-     @param codec The encode format, can be "hex", “base64”, "utf8" or any other character sets supported by the system.
-     @return Returns the actual byte length
-     */
-    static Integer byteLength(ArrayBuffer str, String codec = "utf8");
-
-    /*! @brief Returns the actual byte length of a string
-     @param str Initial string encoded in UTF-8, if str is an  ArrayBuffer/TypedArray/DataView/Buffer object, their actual length is returned.
-     @param codec The encode format, can be "hex", “base64”, "utf8" or any other character sets supported by the system.
-     @return Returns the actual byte length
-     */
-    static Integer byteLength(ArrayBufferView str, String codec = "utf8");
-
-    /*! @brief Returns the actual byte length of a string
-     @param str Initial string encoded in UTF-8, if str is an  ArrayBuffer/TypedArray/DataView/Buffer object, their actual length is returned.
-     @param codec The encode format, can be "hex", “base64”, "utf8" or any other character sets supported by the system.
-     @return Returns the actual byte length
-     */
-    static Integer byteLength(Buffer str, String codec = "utf8");
-
-    /*! @brief detect whether a encode format is supported.
-     @param codec The encode format to be detect
-     @return whether to support the encode format.
-     */
-    static Boolean isEncoding(String codec);
-
-    /*! @brief Buffer constructor
-     @param size Initial cache size
-     */
+    /*! @brief cache object constructor 
+      @Param size initialization buffer size*/
     Buffer(Integer size = 0);
 
-    /*! @brief The binary data in the buffer can be accessed by using subscript*/
+    /*! @Brief Dual Data Cache Object, data processing for IO read and write*/
+    static Buffer;
+
+    /*! @Brief test given the given variable a Buffer object 
+      @Param v given variables that need to be detected 
+      @Return Enter the object of the buffer object*/
+    static Boolean isBuffer(Value v);
+
+    /*! @brief creates a buffer object through other buffers 
+      @param buffer given Buffer type variables for creating buffer objects 
+      @param byteoffset specifies the starting position of the data, the start is 0 
+      @Param Langth specifies the data length, starting position -1, indicating all the remaining data 
+      @Return Return Buffer instance*/
+    static Buffer from(Buffer buffer, Integer byteOffset = 0, Integer length = -1);
+
+    /*! @brief creates a buffer object through a string 
+      @Param STR initialization string, the string will be written in UTF-8 format 
+      @param byteoffset specifies the starting position of the data, the start is 0 
+      @Param Langth specifies the data length, starting position -1, indicating all the remaining data 
+      @Return Return Buffer instance*/
+    static Buffer from(String str, Integer byteOffset = 0, Integer length = -1);
+
+    /*! @brief creates a buffer object through a string 
+      @Param STR initialization string, the string will be written in UTF-8 format, and the default will create an empty object 
+      @Param Codec specifies the encoding format, the allowable value is: "hex", "base32", "base58", "base64", "utf8", or the character set supported by the IconV module 
+      @Return Return Buffer instance*/
+    static Buffer from(String str, String codec = "utf8");
+
+    /*! @brief Stitching data in multiple cache areas 
+      @Param buflist Buffer array to be spliced 
+      @Param Cutlenth How many Buffer objects are cut 
+      The new buffer object generated after stitching*/
+    static Buffer concat(Array buflist, Integer cutLength = -1);
+
+    /*! @brief allocate a new cache area with specified length. If the size is 0, a zero -length cache area will be created. 
+      @Param Size buffer required length 
+      @Param Fill fills the value of the new buffer in advance, you can use the string/buffer/integer value type. Default value: 0 
+      @Param Codec specifies the encoding format, the allowable value is: "hex", "base32", "base58", "base64", "utf8", or the character set supported by the IconV module 
+      @Return fills the new BUFFER object*/
+    static Buffer alloc(Integer size, Integer fill = 0, String codec = "utf8");
+
+    /*! @brief allocate a new cache area with specified length. If the size is 0, a zero -length cache area will be created. 
+      @Param Size buffer required length 
+      @Param Fill fills the value of the new buffer in advance, you can use the string/buffer/integer value type. Default value: 0 
+      @Param Codec specifies the encoding format, the allowable value is: "hex", "base32", "base58", "base64", "utf8", or the character set supported by the IconV module 
+      @Return fills the new BUFFER object*/
+    static Buffer alloc(Integer size, String fill = "", String codec = "utf8");
+
+    /*! @brief allocate a new cache area with specified length. If the size is 0, a zero -length cache area will be created. 
+      @Param Size buffer required length 
+      @Param Fill fills the value of the new buffer in advance, you can use the string/buffer/integer value type. Default value: 0 
+      @Param Codec specifies the encoding format, the allowable value is: "hex", "base32", "base58", "base64", "utf8", or the character set supported by the IconV module 
+      @Return fills the new BUFFER object*/
+    static Buffer alloc(Integer size, Buffer fill, String codec = "utf8");
+
+    /*! @brief allocate a new cache area with specified length. If the size is 0, a zero -length cache area will be created. 
+      @Param Size buffer required length 
+      @Return Specify the new buffer object*/
+    static Buffer allocUnsafe(Integer size);
+
+    /*! @brief allocate a new cache area with specified length. If the size is 0, a zero -length cache area will be created. 
+      @Param Size buffer required length 
+      @Return Specify the new buffer object*/
+    static Buffer allocUnsafeSlow(Integer size);
+
+    /*! @Brief Return to the actual byte length of the string 
+      @Param Str is waiting for the byte string. If the Str is ArrayBuffer/Typedarray/DataView/Buffer, returns their actual length 
+      @Param Codec specifies the encoding format, the allowable value is: "hex", "base32", "base58", "base64", "utf8", or the character set supported by the IconV module 
+      @Return Return to the actual byte length*/
+    static Integer byteLength(String str, String codec = "utf8");
+
+    /*! @Brief Return to the actual byte length of the string 
+      @Param Str is waiting for the byte string. If the Str is ArrayBuffer/Typedarray/DataView/Buffer, returns their actual length 
+      @Param Codec specifies the encoding format, the allowable value is: "hex", "base32", "base58", "base64", "utf8", or the character set supported by the IconV module 
+      @Return Return to the actual byte length*/
+    static Integer byteLength(ArrayBuffer str, String codec = "utf8");
+
+    /*! @Brief Return to the actual byte length of the string 
+      @Param Str is waiting for the byte string. If the Str is ArrayBuffer/Typedarray/DataView/Buffer, returns their actual length 
+      @Param Codec specifies the encoding format, the allowable value is: "hex", "base32", "base58", "base64", "utf8", or the character set supported by the IconV module 
+      @Return Return to the actual byte length*/
+    static Integer byteLength(ArrayBufferView str, String codec = "utf8");
+
+    /*! @Brief Return to the actual byte length of the string 
+      @Param Str is waiting for the byte string. If the Str is ArrayBuffer/Typedarray/DataView/Buffer, returns their actual length 
+      @Param Codec specifies the encoding format, the allowable value is: "hex", "base32", "base58", "base64", "utf8", or the character set supported by the IconV module 
+      @Return Return to the actual byte length*/
+    static Integer byteLength(Buffer str, String codec = "utf8");
+
+    /*! @brief is compared with buf1 and buf2, which is often used for sorting between buffer instances. This method is equivalent to BUF1.COMPARE (BUF2). 
+     @param buf1 to compare BUF 
+     @param buf2 to compare BUF 
+     @Return Return a comparison byte length*/
+    static Integer compare(Buffer buf1, Buffer buf2);
+
+    /*! @Brief test the encoding format is supported 
+      @Param Codec encoded format to be tested 
+      @Return support*/
+    static Boolean isEncoding(String codec);
+
+    /*! @brief cache objects can be used to directly access binary data with labels*/
     Integer operator[];
 
-    /*! @brief The buffer size */
+    /*! @brief query the iterator of the current object element 
+      @Return Return to the iterator of the current object element*/
+    Iterator @iterator();
+
+    /*! @brief Get the size of the cache object*/
     readonly Integer length;
 
-    /*! @brief Resize the buffer
-     @param sz New size
-     */
+    /*! @brief Get the offset value of the cache object*/
+    readonly Integer byteOffset;
+
+    /*! @Brief returns the cache data in the ArrayBuffer format*/
+    readonly ArrayBuffer buffer;
+
+    /*! @brief Modify the Cache Object Size 
+      @Param SZ specify new size*/
     resize(Integer sz);
 
-    /*! @brief Write an array into the buffer
-     @param datas Initial data array
-     */
-    append(Array datas);
-
-    /*! @brief Write a set of binary data into the buffer
-     @param data Initial binary data
-     */
+    /*! @brief Write a set of binary data at the tail of the cache object 
+      @Param Data initialized binary data*/
     append(Buffer data);
 
-    /*! @brief Write a string encoded in utf-8 into buffer
-     @param str String to write
-     @param codec Coded format, can be "hex", “base64”, "utf8" or any other character sets supported by the system.
-     */
+    /*! @Brief writes a string at the tail of the cache object, and the string will be written in UTF-8 format 
+      @Param Str String to write 
+      @Param Codec specifies the encoding format, the allowable value is: "hex", "base32", "base58", "base64", "utf8", or the character set supported by the IconV module*/
     append(String str, String codec = "utf8");
 
-    /*! @brief Writes string to the buffer at offset using the given encoding.
-     @param str String - data to be written to buffer
-     @param offset Number, Optional, Default 0
-     @param length Number, Optional, Default -1
-     @param codec Coded format, can be "hex", “base64”, "utf8" or any other character sets supported
-     @return Returns number of octets written.
-     */
+    /*! @Brief Write a specified string to the cache object, the string defaults to UTF-8, only part of the data when crossing the border 
+      @Param Str to be written in the string 
+      @param Offset writes to the starting location 
+      @Param Length Write the length (unit byte, default value -1), is not specified for the length of the string to be written in 
+      @Param Codec specifies the encoding format, the allowable value is: "hex", "base32", "base58", "base64", "utf8", or the character set supported by the IconV module 
+      @Return written data byte length*/
     Integer write(String str, Integer offset = 0, Integer length = -1, String codec = "utf8");
 
-    /*! @brief Fill the buffer with the specified objects.
-     @param v Data intend to be filled, and will fill the entire buffer when the offset and end is not specified.
-     @param offset Number, Optional, Default 0
-     @param end Number, Optional, Default -1
-     */
-    fill(Integer v, Integer offset = 0, Integer end = -1);
+    /*! @Brief Write a specified string to the cache object, the string defaults to UTF-8, only part of the data when crossing the border 
+      @Param Str to be written in the string 
+      @param Offset writes to the starting location 
+      @Param Codec specifies the encoding format, the allowable value is: "hex", "base32", "base58", "base64", "utf8", or the character set supported by the IconV module 
+      @Return written data byte length*/
+    Integer write(String str, Integer offset = 0, String codec = "utf8");
 
-    /*! @brief Fill the buffer with the specified objects.
-     @param v Data intend to be filled, and will fill the entire buffer when the offset and end is not specified.
-     @param offset Number, Optional, Default 0
-     @param end Number, Optional, Default -1
-     */
-    fill(Buffer v, Integer offset = 0, Integer end = -1);
+    /*! @Brief Write a specified string to the cache object, the string defaults to UTF-8, only part of the data when crossing the border 
+      @Param Str to be written in the string 
+      @Param Codec specifies the encoding format, the allowable value is: "hex", "base32", "base58", "base64", "utf8", or the character set supported by the IconV module 
+      @Return written data byte length*/
+    Integer write(String str, String codec = "utf8");
 
-    /*! @brief Fill the buffer with the specified objects.
-     @param v Data intend to be filled, and will fill the entire buffer when the offset and end is not specified.
-     @param offset Number, Optional, Default 0
-     @param end Number, Optional, Default -1
-     */
-    fill(String v, Integer offset = 0, Integer end = -1);
+    /*! @brief fill the specified content data for the buffer object 
+      @Param V needs to be filled. If offset and end are not specified, it will fill the entire buffer 
+      @param Offset fills the starting location 
+      @Param END filling position 
+      @Return Return to the current buffer object*/
+    Buffer fill(Integer v, Integer offset = 0, Integer end = -1);
 
-    /*! @brief Whether this and otherBuffer have the same bytes.
-     @param buf otherBuffer
-     @return Returns a boolean of whether this and otherBuffer have the same bytes.
-     */
-    Boolean equals(Buffer buf);
+    /*! @brief fill the specified content data for the buffer object 
+      @Param V needs to be filled. If offset and end are not specified, it will fill the entire buffer 
+      @param Offset fills the starting location 
+      @Param END filling position 
+      @Return Return to the current buffer object*/
+    Buffer fill(Buffer v, Integer offset = 0, Integer end = -1);
 
-    /*! @brief Compare the contents of the buffer
-     @param buf otherBuffer
-     @return Returns a number indicating whether this comes before or after or is the same as the otherBuffer in sort order.
-     */
+    /*! @brief fill the specified content data for the buffer object 
+      @Param V needs to be filled. If offset and end are not specified, it will fill the entire buffer 
+      @param Offset fills the starting location 
+      @Param END filling position 
+      @Return Return to the current buffer object*/
+    Buffer fill(String v, Integer offset = 0, Integer end = -1);
+
+    /*! @brief returns a specified data for the first time in the buffer 
+      @Param V to find data. If the offset is not specified, the default starts from the starting position 
+      @param Offset starts the search location 
+      @Return Return to the position found, no return -1*/
+    Integer indexOf(Integer v, Integer offset = 0);
+
+    /*! @brief returns a specified data for the first time in the buffer 
+      @Param V to find data. If the offset is not specified, the default starts from the starting position 
+      @param Offset starts the search location 
+      @Return Return to the position found, no return -1*/
+    Integer indexOf(Buffer v, Integer offset = 0);
+
+    /*! @brief returns a specified data for the first time in the buffer 
+      @Param V to find data. If the offset is not specified, the default starts from the starting position 
+      @param Offset starts the search location 
+      @Return Return to the position found, no return -1*/
+    Integer indexOf(String v, Integer offset = 0);
+
+    /*! @brief compare the content of the cache area 
+      @param buf to be compared with cache objects 
+      @Return Content comparison result*/
     Integer compare(Buffer buf);
 
-    /*! @brief Copies data from a region of this buffer to a region in the target buffer even if the target memory region overlaps with the source. If undefined the targetStart and sourceStart parameters default to 0 while sourceEnd defaults to buffer.length.
-     @param targetBuffer Buffer object - Buffer to copy into
-     @param targetStart Number, Optional, Default: 0
-     @param sourceStart Number, Optional, Default: 0
-     @param sourceEnd Number, Optional, Default: -1, represent buffer.length
-     @return Copied data byte length
-     */
+    /*! @brief Copy data from the source of the source cache to the target cache object area 
+      @param targetBuffer target cache object 
+      @Param TargetStart target cache objects start copying the byte position, the default is 0 
+      @Param SourceStart Source Establishment Object Start Board Locket Location, the default is 0 
+      @Param Sourcend Source Ending Object End the byte position, the default is -1, indicating the source data length 
+      @Return copy data byte length*/
     Integer copy(Buffer targetBuffer, Integer targetStart = 0, Integer sourceStart = 0, Integer sourceEnd = -1);
 
-    /*!	@brief Read an unsigned 8-bit integer from the buffer
-     @param offset The beginning of the address to read
-     @param noAssert If true, then do not throw an error when overread. By default it's false.
-     @return The targeted integer
-     */
-    Integer readUInt8(Integer offset, Boolean noAssert = false);
+    /*! @brief Copy data from the source of the source cache to the target cache object area 
+      @Param SRC target cache object 
+      @Param Start Source Establish 
+      @Return copy data byte length*/
+    Integer set(Buffer src, Integer start);
 
-    /*!	@brief Read an unsigned 16-bit integer from the buffer and use the little-endian format for storage
-     @param offset The beginning of the address to read
-     @param noAssert If true, then do not throw an error when overread. By default it's false.
-     @return The targeted integer
-     */
-    Integer readUInt16LE(Integer offset, Boolean noAssert = false);
+    /*! @brief reads an 8 -bit unsigned integer value from the cache object 
+      @param Offset specifies the starting position of the read, the default is 0 
+      @Return Return to the integer value of reading*/
+    Integer readUInt8(Integer offset = 0);
 
-    /*!	@brief Read an unsigned 16-bit integer from the buffer and use the big-endian format for storage
-     @param offset The beginning of the address to read
-     @param noAssert If true, then do not throw an error when overread. By default it's false.
-     @return The targeted integer
-     */
-    Integer readUInt16BE(Integer offset, Boolean noAssert = false);
+    /*! @Brief reads a 16 -bit unsigned integer value from the cache object, with a low -byte order storage method 
+      @param Offset specifies the starting position of the read, the default is 0 
+      @Return Return to the integer value of reading*/
+    Integer readUInt16LE(Integer offset = 0);
 
-    /*!	@brief Read an unsigned 32-bit integer from the buffer and use the little-endian format for storage
-     @param offset The beginning of the address to read
-     @param noAssert If true, then do not throw an error when overread. By default it's false.
-     @return The targeted integer
-     */
-    Long readUInt32LE(Integer offset, Boolean noAssert = false);
+    /*! @Brief reads a 16 -bit unsigned integer value from the cache object, with a high -itated sequence storage method 
+      @param Offset specifies the starting position of the read, the default is 0 
+      @Return Return to the integer value of reading*/
+    Integer readUInt16BE(Integer offset = 0);
 
-    /*!	@brief Read an unsigned 32-bit integer from the buffer and use the big-endian format for storage
-     @param offset The beginning of the address to read
-     @param noAssert If true, then do not throw an error when overread. By default it's false.
-     @return The targeted integer
-     */
-    Long readUInt32BE(Integer offset, Boolean noAssert = false);
+    /*! @Brief reads a 32 -bit unsigned integer value from the cache object, with a low -byte order storage method 
+      @param Offset specifies the starting position of the read, the default is 0 
+      @Return Return to the integer value of reading*/
+    Long readUInt32LE(Integer offset = 0);
 
-    /*!	@brief Read an 8-bit integer from the buffer
-     @param offset The beginning of the address to read
-     @param noAssert If true, then do not throw an error when overread. By default it's false.
-     @return The targeted integer
-     */
-    Integer readInt8(Integer offset, Boolean noAssert = false);
+    /*! @Brief reads a 32 -bit unsigned integer value from the cache object, with a high -itated sequence storage method 
+      @param Offset specifies the starting position of the read, the default is 0 
+      @Return Return to the integer value of reading*/
+    Long readUInt32BE(Integer offset = 0);
 
-    /*!	@brief Read an 16-bit integer from the buffer and use the little-endian format for storage
-     @param offset The beginning of the address to read
-     @param noAssert If true, then do not throw an error when overread. By default it's false.
-     @return The targeted integer
-     */
-    Integer readInt16LE(Integer offset, Boolean noAssert = false);
+    /*! @Brief reads an unsigned integer value from the cache object, supports 64 -bit, with a low -byte order storage method 
+      @param Offset specifies the starting position of the read, the default is 0 
+      @param bytelength specifies the number of bytes read, the default 8 bytes 
+      @Return Return to the integer value of reading*/
+    Long readUIntLE(Integer offset = 0, Integer byteLength = 8);
 
-    /*!	@brief Read an 16-bit integer from the buffer and use the big-endian format for storage
-     @param offset The beginning of the address to read
-     @param noAssert If true, then do not throw an error when overread. By default it's false.
-     @return The targeted integer
-     */
-    Integer readInt16BE(Integer offset, Boolean noAssert = false);
+    /*! @Brief reads an unsigned integer value from the cache object, supports 64 -bit, and storage method with high bytes 
+      @param Offset specifies the starting position of the read, the default is 0 
+      @param bytelength specifies the number of bytes read, the default 8 bytes 
+      @Return Return to the integer value of reading*/
+    Long readUIntBE(Integer offset = 0, Integer byteLength = 8);
 
-    /*!	@brief Read an 32-bit integer from the buffer and use the little-endian format for storage
-     @param offset The beginning of the address to read
-     @param noAssert If true, then do not throw an error when overread. By default it's false.
-     @return The targeted integer
-     */
-    Integer readInt32LE(Integer offset, Boolean noAssert = false);
+    /*! @Brief reads a 64 -bit integer value from the cache object, with a low -byte order storage method 
+      @param Offset specifies the starting position of the read, the default is 0 
+      @Return Return to the integer value of reading*/
+    Long readInt64LE(Integer offset = 0);
 
-    /*!	@brief Read an 32-bit integer from the buffer and use the big-endian format for storage
-     @param offset The beginning of the address to read
-     @param noAssert If true, then do not throw an error when overread. By default it's false.
-     @return The targeted integer
-     */
-    Integer readInt32BE(Integer offset, Boolean noAssert = false);
+    /*! @brief reads a 64 -bit integer value from the cache object, with a high byte order storage method 
+      @param Offset specifies the starting position of the read, the default is 0 
+      @Return Return to the integer value of reading*/
+    Long readInt64BE(Integer offset = 0);
 
-    /*!	@brief Read an 64-bit integer from the buffer and use the little-endian format for storage
-     @param offset The beginning of the address to read
-     @param noAssert If true, then do not throw an error when overread. By default it's false.
-     @return The targeted integer
-     */
-    Int64 readInt64LE(Integer offset, Boolean noAssert = false);
+    /*! @brief reads an 8 -bit integer value from the cache object 
+      @param Offset specifies the starting position of the read, the default is 0 
+      @Return Return to the integer value of reading*/
+    Integer readInt8(Integer offset = 0);
 
-    /*!	@brief Read an 64-bit integer from the buffer and use the big-endian format for storage
-     @param offset The beginning of the address to read
-     @param noAssert If true, then do not throw an error when overread. By default it's false.
-     @return The targeted integer
-     */
-    Int64 readInt64BE(Integer offset, Boolean noAssert = false);
+    /*! @brief reads a 16 -bit integer value from the cache object, with a low -byte order storage method 
+      @param Offset specifies the starting position of the read, the default is 0 
+      @Return Return to the integer value of reading*/
+    Integer readInt16LE(Integer offset = 0);
 
-    /*!	@brief Read a float from the buffer and use the little-endian format for storage
-     @param offset The beginning of the address to read
-     @param noAssert If true, then do not throw an error when overread. By default it's false.
-     @return The targeted float
-     */
-    Number readFloatLE(Integer offset, Boolean noAssert = false);
+    /*! @brief reads a 16 -bit integer value from the cache object, with a high -itated sequence storage method 
+      @param Offset specifies the starting position of the read, the default is 0 
+      @Return Return to the integer value of reading*/
+    Integer readInt16BE(Integer offset = 0);
 
-    /*!	@brief Read a float from the buffer and use the big-endian format for storage
-     @param offset The beginning of the address to read
-     @param noAssert If true, then do not throw an error when overread. By default it's false.
-     @return The targeted float
-     */
-    Number readFloatBE(Integer offset, Boolean noAssert = false);
+    /*! @Brief reads a 32 -bit integer value from the cache object, with a low -byte order storage method 
+      @param Offset specifies the starting position of the read, the default is 0 
+      @Return Return to the integer value of reading*/
+    Integer readInt32LE(Integer offset = 0);
 
-    /*!	@brief Read a double from the buffer and use the little-endian format for storage
-     @param offset The beginning of the address to read
-     @param noAssert If true, then do not throw an error when overread. By default it's false.
-     @return The targeted double
-     */
-     Number readDoubleLE(Integer offset, Boolean noAssert = false);
+    /*! @Brief reads a 32 -bit integer value from the cache object, with a high -itated sequence storage method 
+      @param Offset specifies the starting position of the read, the default is 0 
+      @Return Return to the integer value of reading*/
+    Integer readInt32BE(Integer offset = 0);
 
-    /*!	@brief Read a double from the buffer and use the big-endian format for storage
-     @param offset The beginning of the address to read
-     @param noAssert If true, then do not throw an error when overread. By default it's false.
-     @return The targeted double
-     */
-    Number readDoubleBE(Integer offset, Boolean noAssert = false);
+    /*! @Brief reads a integer value from the cache object, supports 64 bits to the maximum, and uses a low -byte sequence storage method 
+      @param Offset specifies the starting position of the read, the default is 0 
+      @param bytelength specifies the number of bytes read, the default 8 bytes 
+      @Return Return to the integer value of reading*/
+    Long readIntLE(Integer offset = 0, Integer byteLength = 8);
 
-    /*!	@brief Write an unsigned 8-bit integer into the buffer
-     @param value The value to write
-     @param offset The beginning of the address to write
-     @param noAssert If true, then do not throw an error when overwrite. By default it's false.
-     */
-    writeUInt8(Integer value, Integer offset, Boolean noAssert = false);
+    /*! @Brief reads a integer value from the cache object, supports 64 bits to the greatest support, and storage method with high bytes. 
+      @param Offset specifies the starting position of the read, the default is 0 
+      @param bytelength specifies the number of bytes read, the default 8 bytes 
+      @Return Return to the integer value of reading*/
+    Long readIntBE(Integer offset = 0, Integer byteLength = 8);
 
-    /*!	@brief Write an unsigned 16-bit integer into the buffer and use the little-endian format for storage
-     @param value The value to write
-     @param offset The beginning of the address to write
-     @param noAssert If true, then do not throw an error when overwrite. By default it's false.
-     */
-    writeUInt16LE(Integer value, Integer offset, Boolean noAssert = false);
+    /*! @Brief Write a 64 -bit integer value to the cache object, with a low -byte order storage method 
+      @Param Value specified the written value 
+      @param Offset specifies the starting position of the written 
+      @Return Offset plus the number of bytes written*/
+    Integer writeInt64LE(Long value, Integer offset = 0);
 
-    /*!	@brief Write an unsigned 16-bit integer into the buffer and use the big-endian format for storage
-     @param value The value to write
-     @param offset The beginning of the address to write
-     @param noAssert If true, then do not throw an error when overwrite. By default it's false.
-     */
-    writeUInt16BE(Integer value, Integer offset, Boolean noAssert = false);
+    /*! @Brief Write a 64 -bit integer value to the cache object, with a high -itated sequence storage method 
+      @Param Value specified the written value 
+      @param Offset specifies the starting position of the written 
+      @Return Offset plus the number of bytes written*/
+    Integer writeInt64BE(Long value, Integer offset = 0);
 
-    /*!	@brief Write an unsigned 32-bit integer into the buffer and use the little-endian format for storage
-     @param value The value to write
-     @param offset The beginning of the address to write
-     @param noAssert If true, then do not throw an error when overwrite. By default it's false.
-     */
-    writeUInt32LE(Long value, Integer offset, Boolean noAssert = false);
+    /*! @Brief reads a floating point number from the cache object, and the storage method of low -byte order 
+      @param Offset specifies the starting position of the read, the default is 0 
+      @Return Returns the number of floating points read*/
+    Number readFloatLE(Integer offset = 0);
 
-    /*!	@brief Write an unsigned 32-bit integer into the buffer and use the big-endian format for storage
-     @param value The value to write
-     @param offset The beginning of the address to write
-     @param noAssert If true, then do not throw an error when overwrite. By default it's false.
-     */
-    writeUInt32BE(Long value, Integer offset, Boolean noAssert = false);
+    /*! @brief reads a floating point number from the cache object, and the storage method of high byte order 
+      @param Offset specifies the starting position of the read, the default is 0 
+      @Return Returns the number of floating points read*/
+    Number readFloatBE(Integer offset = 0);
 
-    /*!	@brief Write an 8-bit integer into the buffer
-     @param value The value to write
-     @param offset The beginning of the address to write
-     @param noAssert If true, then do not throw an error when overwrite. By default it's false.
-     */
-    writeInt8(Integer value, Integer offset, Boolean noAssert = false);
+    /*! @Brief reads a dual -precision floating point number from the cache object, with a low -byte order storage method 
+      @param Offset specifies the starting position of the read, the default is 0 
+      @Return Returns the dual -precision floating point number read*/
+    Number readDoubleLE(Integer offset = 0);
 
-    /*!	@brief Write a 16-bit integer into the buffer and use the little-endian format for storage
-     @param value The value to write
-     @param offset The beginning of the address to write
-     @param noAssert If true, then do not throw an error when overwrite. By default it's false.
-     */
-    writeInt16LE(Integer value, Integer offset, Boolean noAssert = false);
+    /*! @Brief reads a dual -precision floating point number from the cache object, with a high byte order storage method 
+      @param Offset specifies the starting position of the read, the default is 0 
+      @Return Returns the dual -precision floating point number read*/
+    Number readDoubleBE(Integer offset = 0);
 
-    /*!	@brief Write a 16-bit integer into the buffer and use the big-endian format for storage
-     @param value The value to write
-     @param offset The beginning of the address to write
-     @param noAssert If true, then do not throw an error when overwrite. By default it's false.
-     */
-    writeInt16BE(Integer value, Integer offset, Boolean noAssert = false);
+    /**/
+    Integer writeUInt8(Integer value, Integer offset = 0);
 
-    /*!	@brief Write a 32-bit integer into the buffer and use the little-endian format for storage
-     @param value The value to write
-     @param offset The beginning of the address to write
-     @param noAssert If true, then do not throw an error when overwrite. By default it's false.
-     */
-    writeInt32LE(Integer value, Integer offset, Boolean noAssert = false);
+    /**/
+    Integer writeUInt16LE(Integer value, Integer offset = 0);
 
-    /*!	@brief Write a 32-bit integer into the buffer and use the big-endian format for storage
-     @param value The value to write
-     @param offset The beginning of the address to write
-     @param noAssert If true, then do not throw an error when overwrite. By default it's false.
-     */
-    writeInt32BE(Integer value, Integer offset, Boolean noAssert = false);
+    /**/
+    Integer writeUInt16BE(Integer value, Integer offset = 0);
 
-    /*!	@brief Write a 64-bit integer into the buffer and use the little-endian format for storage
-     @param value The value to write
-     @param offset The beginning of the address to write
-     @param noAssert If true, then do not throw an error when overwrite. By default it's false.
-     */
-    writeInt64LE(Int64 value, Integer offset, Boolean noAssert = false);
+    /**/
+    Integer writeUInt32LE(Long value, Integer offset = 0);
 
-    /*!	@brief Write a 64-bit integer into the buffer and use the big-endian format for storage
-     @param value The value to write
-     @param offset The beginning of the address to write
-     @param noAssert If true, then do not throw an error when overwrite. By default it's false.
-     */
-    writeInt64BE(Int64 value, Integer offset, Boolean noAssert = false);
+    /**/
+    Integer writeUInt32BE(Long value, Integer offset = 0);
 
-    /*!	@brief Write a float into the buffer and use the little-endian format for storage
-     @param value The value to write
-     @param offset The beginning of the address to write
-     @param noAssert If true, then do not throw an error when overwrite. By default it's false.
-     */
-    writeFloatLE(Number value, Integer offset, Boolean noAssert = false);
+    /**/
+    Integer writeUIntLE(Long value, Integer offset = 0, Integer byteLength = 8);
 
-    /*!	@brief Write a float into the buffer and use the big-endian format for storage
-     @param value The value to write
-     @param offset The beginning of the address to write
-     @param noAssert If true, then do not throw an error when overwrite. By default it's false.
-     */
-    writeFloatBE(Number value, Integer offset, Boolean noAssert = false);
+    /**/
+    Integer writeUIntBE(Long value, Integer offset = 0, Integer byteLength = 8);
 
-    /*!	@brief Write a double into the buffer and use the little-endian format for storage
-     @param value The value to write
-     @param offset The beginning of the address to write
-     @param noAssert If true, then do not throw an error when overwrite. By default it's false.
-     */
-    writeDoubleLE(Number value, Integer offset, Boolean noAssert = false);
+    /**/
+    Integer writeInt8(Integer value, Integer offset = 0);
 
-    /*! @brief Write a double into the buffer and use the big-endian format for storage
-     @param value The value to write
-     @param offset The beginning of the address to write
-     @param noAssert If true, then do not throw an error when overwrite. By default it's false.
-     */
-    writeDoubleBE(Number value, Integer offset, Boolean noAssert = false);
+    /**/
+    Integer writeInt16LE(Integer value, Integer offset = 0);
 
-    /*!	@brief return a new buffer that contains data in the specified range. If the data is out of range of the buffer, return the available part of the data.
+    /**/
+    Integer writeInt16BE(Integer value, Integer offset = 0);
 
-     @param start The start of the specified range, by default it's the beginning of the buffer
-     @param end The end of the specified range, by default it's the end of the buffer
-     */
-    Buffer slice(Integer start = 0, Integer end = -1);
+    /**/
+    Integer writeInt32LE(Integer value, Integer offset = 0);
 
-    /*! @brief Store the data in the buffer with hexadecimal encoding?
-     @return The encoded string
-     */
+    /**/
+    Integer writeInt32BE(Integer value, Integer offset = 0);
+
+    /**/
+    Integer writeIntLE(Long value, Integer offset = 0, Integer byteLength = 8);
+
+    /**/
+    Integer writeIntBE(Long value, Integer offset = 0, Integer byteLength = 8);
+
+    /**/
+    Integer writeFloatLE(Number value, Integer offset);
+
+    /**/
+    Integer writeFloatBE(Number value, Integer offset);
+
+    /**/
+    Integer writeDoubleLE(Number value, Integer offset);
+
+    /**/
+    Integer writeDoubleBE(Number value, Integer offset);
+
+    /**/
+    Buffer slice(Integer start = 0);
+
+    /**/
+    Buffer slice(Integer start, Integer end);
+
+    /**/
+    String join(String separator = ",");
+
+    /**/
+    Buffer reverse();
+
+    /**/
+    Boolean equals(object expected);
+
+    /**/
     String hex();
 
-    /*! @brief Store the data in the buffer with base64 encoding?
-     @return The encoded string
-     */
+    /**/
+    String base32();
+
+    /**/
+    String base58();
+
+    /**/
     String base64();
 
-    /*! @brief return the array of the binary data
-     @return The Iterator representing the index of the buffer.
-    */
+    /**/
     Iterator keys();
 
-    /*! @brief return the array of the binary data
-     @return The Iterator representing the value of the buffer.
-    */
+    /**/
     Iterator values();
 
-    /*! @brief Creates and returns an iterator of [index, byte] pairs from the contents of buf.
-     @return [index, byte] pairs Iterator.
-    ```JavaScript
-        const buf = Buffer.from('buffer');
-
-        // Prints:
-        //   [0, 98]
-        //   [1, 117]
-        //   [2, 102]
-        //   [3, 102]
-        //   [4, 101]
-        //   [5, 114]
-        for (const pair of buf.entries()) {
-            console.log(pair);
-        }
-    ```
-    */
+    /**/
     Iterator entries();
 
-    /*! @brief return the array of the binary data
-     @return The Array representing the value of the buffer.
-    */
+    /**/
+    forEach(Function callback, Value thisArg = undefined);
+
+    /**/
     Array toArray();
 
-    /*! @brief return the encoded string of the binary data
-     @param codec The encode format, can be "hex", “base64”, "utf8" or any other character sets supported by the system.
-     @param offset The start position of string, Default: 0
-     @param end The end position of string.
-     @return The string representing the value of the buffer.
-    */
+    /**/
     String toString(String codec, Integer offset = 0, Integer end);
 
-    /*! @brief return the encoded string of the binary data
-     @param codec The encode format, can be "hex", “base64”, "utf8" or any other character sets supported by the system.
-     @param offset The start position of string, Default: 0
-     @return The string representing the value of the buffer.
-    */
+    /**/
     String toString(String codec, Integer offset = 0);
 
-   /*! @brief return the utf8-encoded string of the binary data
-     @return The string representing the value of the buffer.
-    */
+    /**/
     String toString();
 };

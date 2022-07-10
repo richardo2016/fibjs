@@ -1,0 +1,34 @@
+/*! @brief http query processing module 
+
+  Quote method: 
+  `` `Javascript 
+  var QueryString = Require ('Querystring'); 
+  `` `*/
+module querystring
+{
+    /*! @Brief URL components string string safe coding 
+      @Param Str to encode URL 
+      @Return Return the encoded string*/
+    static String escape(String str);
+
+    /*! @Brief URL security string decoding 
+      @Param Str to decoding URL 
+      @Return Returns the decoding string*/
+    static String unescape(String str);
+
+    /*! @brief parsing query string 
+      @Param Str String to be parsed 
+      @Param SEP parsing the split string used, the default is & 
+      @Param EQ The assignment string used during parsing, the default is = 
+      @Param Opt parsing parameters, not supported yet 
+      @Return Returns the decoding object*/
+    static HttpCollection parse(String str, String sep = "&", String eq = "=", Object opt = {});
+
+    /*! @brief serialization A object is Query string 
+      @param obj to serialize 
+      @Param sep The segmentation string used during serialization, the default is & 
+      @Param EQ serialization The assignment string used, the default is = 
+      @Param Opt parsing parameters, not supported yet 
+      @Return Return the serialized string*/
+    static String stringify(Object obj, String sep = "&", String eq = "=", Object opt = {});
+};

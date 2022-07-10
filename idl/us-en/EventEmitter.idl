@@ -1,0 +1,150 @@
+/*! @brief incident trigger object, which can be used to establish an observer mode. Objects that support the incident are inherited here. 
+
+  Event objects can be created independently to form a custom event system: 
+  `` `Javascript 
+  var events = request ('events'); 
+
+  var e = new eventemitter (); 
+  `` `*/
+interface EventEmitter : object
+{
+    /*! @brief Construct function*/
+    EventEmitter();
+
+    /*! @brief incident trigger object*/
+    static EventEmitter;
+
+    /*! @brief defaults*/
+    static Integer defaultMaxListeners;
+
+    /*! @brief Bind an event processing function to object 
+     @Param EV specify the name of the event 
+     @param func specified event processing function 
+     @Return returns the event object itself, which is convenient for chain calls*/
+    Object on(String ev, Function func);
+
+    /*! @brief Bind an event processing function to object 
+     @Param Map specifies the event mapping relationship. The object attribute name will be used as an event name. The value of the attribute will be used as an event processing function 
+     @Return returns the event object itself, which is convenient for chain calls*/
+    Object on(Object map);
+
+    /*! @brief Bind an event processing function to object 
+     @Param EV specify the name of the event 
+     @param func specified event processing function 
+     @Return returns the event object itself, which is convenient for chain calls*/
+    Object addListener(String ev, Function func);
+
+    /*! @brief Bind an event processing function to object 
+     @Param Map specifies the event mapping relationship. The object attribute name will be used as an event name. The value of the attribute will be used as an event processing function 
+     @Return returns the event object itself, which is convenient for chain calls*/
+    Object addListener(Object map);
+
+    /*! @brief Bind an event processing function to the start of the object 
+     @Param EV specify the name of the event 
+     @param func specified event processing function 
+     @Return returns the event object itself, which is convenient for chain calls*/
+    Object prependListener(String ev, Function func);
+
+    /*! @brief Bind an event processing function to the start of the object 
+     @Param Map specifies the event mapping relationship. The object attribute name will be used as an event name. The value of the attribute will be used as an event processing function 
+     @Return returns the event object itself, which is convenient for chain calls*/
+    Object prependListener(Object map);
+
+    /*! @brief Binds a disposable event processing function to the object, the disposable processing function will only trigger once 
+     @Param EV specify the name of the event 
+     @param func specified event processing function 
+     @Return returns the event object itself, which is convenient for chain calls*/
+    Object once(String ev, Function func);
+
+    /*! @brief Binds a disposable event processing function to the object, the disposable processing function will only trigger once 
+     @Param Map specifies the event mapping relationship. The object attribute name will be used as an event name. The value of the attribute will be used as an event processing function 
+     @Return returns the event object itself, which is convenient for chain calls*/
+    Object once(Object map);
+
+    /*! @brief Bind an event processing function to the start of the object 
+     @Param EV specify the name of the event 
+     @param func specified event processing function 
+     @Return returns the event object itself, which is convenient for chain calls*/
+    Object prependOnceListener(String ev, Function func);
+
+    /*! @brief Bind an event processing function to the start of the object 
+     @Param Map specifies the event mapping relationship. The object attribute name will be used as an event name. The value of the attribute will be used as an event processing function 
+     @Return returns the event object itself, which is convenient for chain calls*/
+    Object prependOnceListener(Object map);
+
+    /*! @brief cancel the specified function from the object processing queue 
+     @Param EV specify the name of the event 
+     @param func specified event processing function 
+     @Return returns the event object itself, which is convenient for chain calls*/
+    Object off(String ev, Function func);
+
+    /*! @brief cancel all functions in the object processing queue 
+     @Param EV specify the name of the event 
+     @Return returns the event object itself, which is convenient for chain calls*/
+    Object off(String ev);
+
+    /*! @brief cancel the specified function from the object processing queue 
+     @Param Map specifies the event mapping relationship. The object attribute name is used as an event name, and the value of the attribute is used as an event processing function 
+     @Return returns the event object itself, which is convenient for chain calls*/
+    Object off(Object map);
+
+    /*! @brief cancel the specified function from the object processing queue 
+     @Param EV specify the name of the event 
+     @param func specified event processing function 
+     @Return returns the event object itself, which is convenient for chain calls*/
+    Object removeListener(String ev, Function func);
+
+    /*! @brief cancel all functions in the object processing queue 
+     @Param EV specify the name of the event 
+     @Return returns the event object itself, which is convenient for chain calls*/
+    Object removeListener(String ev);
+
+    /*! @brief cancel the specified function from the object processing queue 
+     @Param Map specifies the event mapping relationship. The object attribute name is used as an event name, and the value of the attribute is used as an event processing function 
+     @Return returns the event object itself, which is convenient for chain calls*/
+    Object removeListener(Object map);
+
+    /*! @brief cancel all the listeners from the object processing queue from the object processing queue. If the event is specified, remove all listeners of the specified event. 
+     @Param EV specify the name of the event 
+     @Return returns the event object itself, which is convenient for chain calls*/
+    Object removeAllListeners(String ev);
+
+    /*! @brief cancel all the listeners from the object processing queue from the object processing queue. If the event is specified, remove all listeners of the specified event. 
+     @param EVS specified the name of the event 
+     @Return returns the event object itself, which is convenient for chain calls*/
+    Object removeAllListeners(Array evs = []);
+
+    /*The default limit of the listener is used only for compatibility 
+     @param n specifies the number of events*/
+    setMaxListeners(Integer n);
+
+    /*The number of default restrictions to obtain a listener is only used for compatibility 
+     @Return Return to the default limit number*/
+    Integer getMaxListeners();
+
+    /*! @brief query object specified an array specified by the event 
+     @Param EV specify the name of the event 
+     @Return Return to the specified event monitor array*/
+    Array listeners(String ev);
+
+    /*! @brief query the number of monitors to specify events 
+     @Param EV specify the name of the event 
+     @Return Return to the number of listeners of the specified event*/
+    Integer listenerCount(String ev);
+
+    /*! @brief query the number of monitors to specify events 
+     @param o specify the object of the query 
+     @Param EV specify the name of the event 
+     @Return Return to the number of listeners of the specified event*/
+    Integer listenerCount(Value o, String ev);
+
+    /*! @brief query listener event name 
+     @Return Return event name*/
+    Array eventNames();
+
+    /*! @brief actively trigger an event 
+     @Param EV event name 
+     @Param ARGS event parameters will be passed to the event processing function 
+     @Return Return the event to trigger status, and there is a response event to return true, otherwise it will return false*/
+    Boolean emit(String ev, ...args);
+};

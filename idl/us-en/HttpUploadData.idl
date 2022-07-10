@@ -1,16 +1,15 @@
-
-/*! @brief a data item that contains multipart */
+/*! @Brief contains a entry data of Multipart*/
 interface HttpUploadData : object
 {
-    /*! @brief file name of the data item */
+    /*! @Brief contains the file name of the data of this entry*/
     readonly String fileName;
 
-    /*! @brief content type of the data item */
+    /*! @Brief contains the type of this entry data*/
     readonly String contentType;
 
-    /*! @brief content transfer encoding of the data item */
+    /*! @Brief contains the transmission coding type of this item data*/
     readonly String contentTransferEncoding;
 
-    /*! @brief stream object of the data item */
+    /*! @Brief contains the flow object of the data part of this item*/
     readonly SeekableStream body;
 };

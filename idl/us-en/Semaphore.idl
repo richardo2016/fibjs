@@ -1,43 +1,38 @@
+/*! @brief fiber schedule semaphore object 
 
-/*! @brief Semaphore object
+  The semaphore object manages an internal counter. This counter is reduced after calling ACQUIRE or WAIT, adding one after calling or post. 
+  The counter will not be reduced to negative, because when ACquire and Wait finds the value 0, it will sleep currently fiber, until other fibrous dredema increases the value of the counter through the release or post. 
 
- Semaphore has a counter inside, descrease one after calling acquire and wait, increase one after calling release and post.
- Counter will be not negative because thread will in sleep when counter is 0, until other threads use release or post to increase counter.
+  The commonly used occasions are the application of resource -to -picked use, and the application of producer/consumer model. 
 
- Semaphore is commonly used limited resource usage and producer/consumer model application.
+  Taking the database request as an example, the situation of restricting resources is used: 
+  `` `Javascript 
+  var maxConnections = 5; 
+  var l = new coroutine.semaphore (maxConnections); 
 
- Use database as an example to limit concurrency:
- @code
- var maxconnections = 5;
- var l = new coroutine.Semaphore(maxconnections);
+  ... ... 
 
- ......
+  l.acquire (); 
+  var conn = connectdb () 
+  ... 
+  conn.close (); 
+  l.Release (); 
+  `` ` 
 
- l.acquire();
- var conn = connectdb()
- .....
- conn.close();
- l.release();
- @endcode
-
- Producer/consumer model usually use with semaphore and queue together. Producer post data and consumer wait for it.
-
- */
+  Producers/consumer models usually use the semaphore with the queue. The producer adds data to the queue and posts a signal. Consumers first have a WAIT signal. After obtaining the signal, go to the team to check the data.*/
 interface Semaphore : Lock
 {
-    /*! @brief Constructor
-     @param value Counter initial value
-     */
+    /*! @Brief signal volume constructor 
+      @Param Value counter initial value*/
     Semaphore(Integer value = 1);
 
-    /*! @brief Wait for semaphore, same as acquire(true) */
+    /*! @brief Waiting for a semaphore, equivalent to Acquire (TRUE)*/
     wait();
 
-    /*! @brief Post a semaphore, same as release() */
+    /*! @brief Release a semaphore, equivalent to Release ()*/
     post();
 
-    /*! @brief Try to get a signal, return false when not possible, same as acquire(false)
-     @return Return true when successful
-     */
+    /*! @brief Try to get a signal. If it cannot be obtained, it will be returned and returned immediately, which is equivalent to Acquire (false) 
+      @Return is successful and returns TRUE*/
     Boolean trywait();
 };

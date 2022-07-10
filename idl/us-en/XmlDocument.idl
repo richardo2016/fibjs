@@ -1,112 +1,105 @@
+/*! @Brief XMLDOCUMENT object represents the entire XML document 
 
-/*! @brief XmlDocument object represents an XML document
-
-XmlDocument object is the root of a document tree, providing the initial (or top-level) access to document data entry for us.
-For element nodes, text nodes, comments, processing instructions etc. can not exist outside the XmlDocument, XmlDocument object also provides methods to create these objects. OwnerDocument XmlNode object provides a property that can put them to create their XmlDocument be associated with in them.
-*/
+ The XMLDOCUMENT object is the root of a document tree, which can provide us with an access entrance to the initial (or top) of the document data. 
+ For element nodes, text nodes, annotations, processing instructions, etc., they cannot exist outside the XMLDOCUMENT. The XMLDOCUMENT object also provides methods to create these objects. The XMLNODE object provides an OWNERDOCUMENT property, which can associate them with the XMLDOCUMENT where they create them.*/
 interface XmlDocument : XmlNode
 {
-    /*! @brief Construct an XmlDocument object
-     @param type Indicate document tupe, default is "text/xml", and should be "text/html" when handle HTML
-    */
+    /*! @Brief Construct an XMLDOCUMENT object 
+      @Param Type specifies the type of document object, the default is "text/xml", if you need to process HTML, you need to specify "Text/HTML"*/
     XmlDocument(String type = "text/xml");
 
-    /*! @brief Parse XML/HTML string create a document, does not support multiple languages
-     @param source XML/HTML text to parse, based on document type
-    */
+    /*! @brief By parsing a XML/HTML string to form this document, it does not support multi -language 
+      @Param Source's XML/HTML text to be parsed depends on the type of documentation*/
     load(String source);
 
-    /*! @brief Parse XML/HTML binary data to create a document, convert by corresponding language
-     @param source XML/HTML text to parse, based on document type
-    */
+    /*! @brief By analyzes a binary XML/HTML string to form this document, and automatically conversion according to the language 
+      @Param Source's XML/HTML text to be parsed depends on the type of documentation*/
     load(Buffer source);
 
-    /*! @brief Get document encoding in parsing
-    */
+    /*! @brief returns the encoding for document (when parsing)*/
     readonly String inputEncoding;
 
-    /*! @brief Get or set standalone property
-    */
+    /*! @brief set or return the document whether to be Standalone*/
     Boolean xmlStandalone;
 
-    /*! @brief Get or set XML version
-    */
+    /*! @brief settings or returned to the xml version of the document*/
     String xmlVersion;
 
-    /*! @brief Get Document Type Declaration
+    /*! @Brief Return to document -related document type declaration (Document Type Declaration) 
 
-    For XML document that does not have DTD, it returns NULL. It provides direct access to XmlDocumentType(XmlDocument's child node).
-    */
+     For XML documents without DTD, return NULL. This attribute can provide direct access to the XMLDOCUMENTYPE object (a sub -node of XMLDOCUMENT).*/
     readonly XmlDocumentType doctype;
 
-    /*! @brief Get root element
-    */
+    /*! @brief Return to the root node of the document*/
     readonly XmlElement documentElement;
 
-    /*! @brief Get head node of HTML document, only valid in HTML mode
-    */
+    /*! @brief returns the head node of the HTML document, which is only valid in the HTML mode*/
     readonly XmlElement head;
 
-    /*! @brief Get title node of HTML document, only valid in HTML mode
-    */
+    /*! @Brief returns the content of the Title node of the HTML document, which is only valid in the HTML mode*/
     readonly String title;
 
-    /*! @brief Get body node of HTML document, only valid in HTML mode
-    */
+    /*! @brief returns the Body node of the HTML document, which is only valid in the HTML mode*/
     readonly XmlElement body;
 
-    /*! @brief Get list of nodes with given name
+    /*! @Brief returns a node list with all elements with specified names 
 
-     This method returns an XmlNodeList object (as a read-only array processing), which stores all XmlElement nodes in the document with the specified tag name, the order is the order in which they appear is stored in the source document. XmlNodeList object is "live", that is, if you add or delete the specified tag name of the element in the document, its contents will be automatically updated as necessary.
-     @param tagName Tag name to match, "*" matches all tags
-     @return Return collection of XmlNodeList with given tag name, order is same in the document
-    */
+      This method will return an XMLNODELIST object (can be treated as an array only). The object stores all the Xmlelement nodes with specified label names in the document. The order of their storage is the order of appearing in the source document. The XMLNODELIST object is "alive", that is, if the element of the specified label name is added or deleted in the document, its content will automatically update the necessary. 
+      @Param Tagname requires the label name. Value "*" match all the tags 
+      @Return document tree has a XMLNODELIST set at the specified tagged XMLEMENT node. The order of the returned element nodes is the order they appear in the source document.*/
     XmlNodeList getElementsByTagName(String tagName);
 
-    /*! @brief Get list of nodes with given namespace and tag name
+    /*! @Brief returns a list of nodes with all elements with specified naming space and name 
 
-     This method is similar to getElementsByTagName() but based on namespace.
-     @param namespaceURI URI of namespace, "*" matches all namespaces
-     @param localName Tag name to match, "*" matches all tags
-     @return Return collection of XmlNodeList with given tag name, order is same in the document
-    */
+      This method is similar to the GetelementsBytagname () method, but it retrieves elements based on naming space and name. 
+      @param namespaceuri specifies the name space URI. Value "*" can match all the tags 
+      @Param LocalName label name. Value "*" match all the tags 
+      @Return document tree has a XMLNODELIST set at the specified tagged XMLEMENT node. The order of the returned element nodes is the order they appear in the source document.*/
     XmlNodeList getElementsByTagNameNS(String namespaceURI, String localName);
 
-    /*! @brief Create a node with given tag name
-     @param tagName Tag name
-     @return Return created XmlElement node with given tag name
-    */
+    /*! @brief returns elements with specified ID attributes 
+
+      This method will traverse the descendants of the document to return a XMLEMENT node object, indicating the first document element with a specified ID attribute. Essence 
+      @Param ID needs to retrieve the ID 
+      @Return node tree with XMLELEMENT node with specified ID attributes*/
+    XmlElement getElementById(String id);
+
+    /*! @Brief returns a list of nodes with all elements with specified class names 
+
+      This method will return an XMLNODELIST object (can be treated as an array only). The object stores all XMLELEMENT nodes with specified class names. The order of their storage is the order of appearing in the source document. The XMLNODELIST object is "alive", that is, if the element of the specified label name is added or deleted in the document, its content will automatically update the necessary. 
+      @Param className Class name needs to be retrieved 
+      The @Return document tree has a XMLNODELIST set at the XMLELEMENT node specifies the class name. The order of the returned element nodes is the order they appear in the source document.*/
+    XmlNodeList getElementsByClassName(String className);
+
+    /*! @brief Create element node 
+      @param tagname specify the name of the node specifically 
+      @Return Return to the newly created XMleLement node, with a designated label name*/
     XmlElement createElement(String tagName);
 
-    /*! @brief Create a node with given namespace and tag name
-     @param namespaceURI URI of namespace
-     @param qualifiedName Tag name
-     @return Return created XmlElement node with given tag name
-    */
+    /*! @Brief Create an element node with a specified name space 
+      @param namespaceuri specifies element node node name space URI 
+      @param QualifydName specifies the name node specified name name 
+      @Return Return to the newly created XMleLement node, with a designated label name*/
     XmlElement createElementNS(String namespaceURI, String qualifiedName);
 
-    /*! @brief Create text node
-     @param data Content of node
-     @return Return created XmlText node contains given content
-    */
+    /*! @brief Create a text node 
+      @param data specify the text of this node 
+      @Return Return to the newly created XMLTEXT node, indicating the specified data string*/
     XmlText createTextNode(String data);
 
-    /*! @brief Create comment node
-     @param data Content of node
-     @return Return created XmlComment node contains given content
-    */
+    /*! @brief Create annotation nodes 
+      @Param Data specifies the annotation text of this node 
+      @Return Return to the newly created XMLCOMMENT node, the annotation text is the specified data*/
     XmlComment createComment(String data);
 
-    /*! @brief Create XmlCDATASection node
-     @param data CDATA data of node
-     @return Return created XmlCDATASection node contains given content
-    */
+    /*! @Brief Create XMLCDATASECTION node 
+      @Param Data specifies this node to specify CDATA data 
+      @Return Return to the newly created XMLCDATASECTION node, the content is the specified data*/
     XmlCDATASection createCDATASection(String data);
 
-    /*! @brief Create XmlProcessingInstruction node
-     @param target Target to process instructions
-     @param data Content of node
-     @return Return created ProcessingInstruction node
-    */
+    /*! @Brief Create XMLPROCESSINGINSTRUCTION node 
+      @param target Specify the target of the processing instruction 
+      @param data specify the content text of the processing instruction 
+      @Return's newly created ProssingInstruction node*/
     XmlProcessingInstruction createProcessingInstruction(String target, String data);
 };

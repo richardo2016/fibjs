@@ -1,0 +1,21 @@
+/*! @brief Independent thread work object*/
+interface Worker : EventEmitter
+{
+    /*! @Brief Worker Object Construction Function 
+      @Param Path specifies the worker entry script, only accept the absolute path 
+      @Param Opts Construction Options, not supported yet*/
+    Worker(String path, Object opts = {});
+
+    /*! @Brief Send a message to Master or Worker, 
+      @param data specified the message content*/
+    postMessage(Value data);
+
+    /*! @brief query and binding to accept load messages, which is equivalent to on ("load", func);*/
+    Function onload;
+
+    /*! @brief query and binding accepts the postmessage message event, which is equivalent to on ("message", func);*/
+    Function onmessage;
+
+    /*! @brief query and bind to accept ERROR messages, which is equivalent to on ("error", func);*/
+    Function onerror;
+};

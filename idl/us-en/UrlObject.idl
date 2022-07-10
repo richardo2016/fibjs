@@ -1,0 +1,82 @@
+/*! @Brief URL processing object 
+
+  Basic module. Provide the formatting of the URL, analysis and assembly 
+  `` `Javascript 
+  var url = new net.url ('http://www.xici.net/'); 
+  var url = new net.url ({protocol: 'http:', hostname: 'www.xici.net', pathname: '/'}); 
+  `` `*/
+interface UrlObject : object
+{
+    /*! @Brief Urlobject Object Conternsure Function, using the parameter structure 
+      @Param ARGS specifies the dictionary object of the constructive parameter. The supporting fields are: Protocol, Slashes, Username, Password, Hostname, PATHNAME, QURY, Hash, Hash*/
+    UrlObject(Object args);
+
+    /*! @Brief Urlobject Object Conternsure Function, using the URL string constructor 
+      @Param URL specify the constructor URL string 
+      @param ParsequryString specifies whether to analyze Query 
+      @Param Slashesdenotehost defaults to false, if set to true, then the string before the string to the next '/' will be parsed to host, such as '// foo/bar', the result should be {{ Host: 'FOO', PathName: '/Bar'} instead of {PathName: '// FOO/BAR'}*/
+    UrlObject(String url = "", Boolean parseQueryString = false, Boolean slashesDenoteHost = false);
+
+    /*! @Brief Analysis of a URL string 
+      @Param url specify the URL string that needs to be parsed 
+      @param ParsequryString specifies whether to analyze Query 
+      @Param Slashesdenotehost defaults to false, if set to true, then the string before the string to the next '/' will be parsed to host, such as '// foo/bar', the result should be {{ Host: 'FOO', PathName: '/Bar'} instead of {PathName: '// FOO/BAR'}*/
+    parse(String url, Boolean parseQueryString = false, Boolean slashesDenoteHost = false);
+
+    /*! @Brief uses the specified parameter to construct UrLObject 
+      @Param ARGS specifies the dictionary object of the constructive parameter. The supporting fields are: Protocol, Slashes, Username, Password, Hostname, PATHNAME, QURY, Hash, Hash*/
+    format(Object args);
+
+    /*! @Brief regatta URL path, automatically identify the new path as relative path or absolute path 
+      @param url specifies the new path 
+      @Return Returns the object containing the regulating data*/
+    UrlObject resolve(String url);
+
+    /*! @brief standardization path*/
+    normalize();
+
+    /*! @Brief query and set the complete URL address description in the current urlobject object, this description is assembled by all other attributes*/
+    String href;
+
+    /*! @Brief query and set the protocol name in the current urlobject object*/
+    String protocol;
+
+    /*! @Brief query and set the current urlobject object whether the current urlObject object contains double slash*/
+    Boolean slashes;
+
+    /*! @Brief query and set the complete verification string in the current urlobject object, which is assembled by username and password properties*/
+    String auth;
+
+    /*! @Brief query and set the verification user in the current urlobject object*/
+    String username;
+
+    /*! @Brief query and set the verification password in the current urlobject object*/
+    String password;
+
+    /*! @brief query and set the complete host description in the current urlobject object, which is assembled by hastname and port*/
+    String host;
+
+    /*! @Brief query and set the host name in the current urlobject object*/
+    String hostname;
+
+    /*! @Brief query and set the port number in the current urlobject object*/
+    String port;
+
+    /*! @brief query and set the request complete path (including request) in the current urlobject object, which is assembled by PathName and Query*/
+    String path;
+
+    /*! @Brief query and set the path in the current urlobject object*/
+    String pathname;
+
+    /*! @Brief query and set the request string (including "?") in the current urlobject object, which is equivalent to "?"+Query*/
+    String search;
+
+    /*! @Brief query and set the request string in the current urlobject object (excluding "?")*/
+    Value query;
+
+    /*! @Brief query and set the request anchor point in the current urlobject object (including "\#")*/
+    String hash;
+
+    /*! @Brief query the request string in the current urlobject object (excluding "?")*/
+    readonly HttpCollection searchParams;
+};

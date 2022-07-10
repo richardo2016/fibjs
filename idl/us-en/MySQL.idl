@@ -1,21 +1,14 @@
+/*! @brief mysql database connection object 
 
-/*! @brief mysql database connection object
-
-Used for db.open or db.openMySQL, to create:
- @code
- var mysql = db.openMySQL("mysql://user:pass@host/db");
- @endcode
-*/
+  Create with db.open or db.openmysql to create: 
+  `` `Javascript 
+  var mysql = db.openmysql ("mysql: // user: pass@host/db"); 
+  `` `*/
 interface MySQL : DbConnection
 {
-    /*! @brief Choose default database for connection
-     @param dbName Database name
-     */
-    use(String dbName) async;
-
-    /*! @brief Connection buffer size */
+    /*! @brief database connection to receive cache size*/
     Integer rxBufferSize;
 
-    /*! @brief Connection send buffer size */
+    /*! @brief database connection to send cache size*/
     Integer txBufferSize;
 };

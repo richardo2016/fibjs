@@ -1,178 +1,176 @@
-/*! @brief Process handle module, to manage current process resources
+/*! @brief process processing module to manage the resources of the current process
 
- To use it:
- @code
- var process = require('process');
- @endcode
- */
-module process
+ Quote method:
+ `` `Javascript
+ var process = reques ('proces');
+ `` `
+
+ ## Process event
+ The Process module object is an instance of the Eventedemitter, which can respond to the process level through the registered incident listener.
+
+ ### Beforexit event
+ ** When the task of fibjs is already empty, and no additional work is added, the incident `BeforeExit` will be triggered **
+ `` `Javascript
+ Process.on ('Beforexit', exitCode => {});
+ `` `
+ Under normal circumstances, if there is no additional work to be added to the task queue, the FIBJS process will end. However, if the callback function bound to the listener binding of the `Beforexit` event, a new task is activated, such as opening a FIBER, then the FibJS process will continue to run.
+
+ Process.exitCode is passed to the callback function of the only parameter value to the `BeForeExit` event monitor. If the process is about to be terminated due to explicit reasons, for example, directly call the process.exit or throw an unsatisfactory exception, the `BeForeExit` event will not be triggered.
+
+ ### Exit event
+ ** When the fibjs exit, the event `exit` will be triggered. Once all the listeners bound to the` exit` event are completed, the process will terminate ** ** ** ** ** ** will be terminated ** ** ** ** will be terminated ** ** ** will be terminated ** ** ** will be terminated ** ** ** will be terminated ** ** ** will be terminated ** ** ** will be terminated ** ** ** will be terminated ** ** ** will be terminated ** ** ** will be terminated ** ** ** will be terminated ** ** ** will be terminated ** ** ** will be terminated ** ** ** will be terminated.
+ `` `Javascript
+ Process.on ('exit', exitCode => {});
+ `` `
+ `EXIT` Event monitoring function, there is only one enrollment. The value of this parameter can be the attribute value of the process.exitCode, or the` exitCode` value transmitted in the process.exit method.
+
+ ### signal event
+ ** When the FIBJS process receives a signal, the signal event will be triggered. The current support signals include SIGINT and Sigterm. The name of each event is expressed in a signal name (such as the event 'sign' corresponding signal SIGINT). **
+ 
+ The signal event is different from other processes events. The signal event is seized. When the signal occurs, whether it is currently operating in IO or JavaScript operations, the corresponding events will be triggered as soon as possible. For example, you can use the following code to interrupt the current application and output running status:
+ `` `Javascript
+ Var Coroutine = Require ('Coroutine');
+
+ Process.on ('SIGINT', () => {
+    Coroutine.fibers.Foreach (f => console.error ("fiber %d: \ n %s", f.id, f.stack);
+    process.exit ();
+ });
+ `` `
+ The signal name and meaning are as follows:
+ * SIGINT: When the terminal is running, it can be supported by all platforms, and can usually be triggered by CTRL+C.
+ * Sigterm: This signal is triggered when the process is kill. It does not support under Windows.*/
+module process : EventEmitter
 {
-    /*! @brief Get commnad line arguments */
+    /*! @Brief Return to the command line parameters of the current process*/
     static readonly Array argv;
 
-    /*! @brief Get full execution path */
-    static readonly String execPath;
+    /*! @Brief returns the special command line parameters of the current process, these parameters are used by Fibjs to set the operating environment*/
+    static readonly Array execArgv;
 
-    /*! @brief get the fibjs version string */
+    /*! @Brief Return to Fibjs version string*/
     static readonly String version;
 
-    /*! @brief The full path of current executable file */
+    /*! @Brief Return to Fibjs and components version information*/
+    static readonly Object versions;
+
+    /*! @brief query the full path of the current running execution file*/
     static readonly String execPath;
 
-    /*! @brief The environment variable object of current executable file */
+    /*! @brief query the environment variables of the current process*/
     static readonly Object env;
 
-    /*! @brief query current cpu's architecture，possible value can be: 'amd64', 'arm', 'arm64', or 'ia32' */
+    /*! @brief query the current CPU environment, the possible results are 'amd64', 'aRM', 'ARM64', 'IA32'*/
     static readonly String arch;
 
-    /*! @brief query current platform，possible value can be: 'darwin', 'freebsd', 'linux', or 'win32' */
+    /*! @Brief query the current platform name, the possible results are 'darwin', 'freebsd', 'linux', or 'win32'*/
     static readonly String platform;
 
-    /*! @brief read id of current process */
+    /*! @Brief read the ID of the process pointed to the current object*/
     static readonly Integer pid;
 
-    /*! @brief read id of current process's parent process */
+    /*! @Brief read the ID of the father process pointed to the current object*/
     static readonly Integer ppid;
 
-    /*! @brief change the current umask，Windows does't support this.
-     @param mask the mask to set
-     @return the previous mask
-    */
+    /*! @brief query the current process standard input object, in tty is TTYINPUTSTREAM, otherwise it will be stream*/
+    static readonly Stream stdin;
+
+    /*! @brief query the current process standard output object, in tty is TTYOUTPUTSTREAM, otherwise it will be stream*/
+    static readonly Stream stdout;
+
+    /*! @brief query the current process standard error output object, in tty is TTYOUTPUTSTREAM, otherwise it will be stream*/
+    static readonly Stream stderr;
+
+    /*! @brief query and set the exit code of the current process*/
+    static Integer exitCode;
+
+    /*! @Brief changed the current umask, Windows does not support this method 
+      @param Mask specify new mask 
+      @Return Return the previous Mask*/
     static Integer umask(Integer mask);
 
-    /*! @brief change the current umask，Windows does't support this.
-     @param mask octonary string(e.g: "0664")
-     @return the previous mask
-    */
+    /*! @Brief changed the current umask, Windows does not support this method 
+      @Param Mask specifies new mask, string type type octal (E.G: "0664") 
+      @Return Return the previous Mask*/
     static Integer umask(String mask);
 
-    /*! @brief return the current umask，Windows does't support this.
-     @return the current mask
-    */
+    /*! @Brief returns the current umask, Windows does not support this method 
+      @Return Return the current Mask value*/
     static Integer umask();
 
-    /*! @brief Exit current process, and return result.
-     @param The exit code.Defaults to 0.
-     */
-    static exit(Integer code = 0);
+    /*! @brief returns the system high -precision time, this time has nothing to do with the current time, only for high precision timing 
+      @Param Diff for comparison initial time 
+      @Return Return the timing time, the format is [sex, nanoseconds]*/
+    static Array hrtime(Array diff = []);
 
-    /*! @brief Return current work path of the operating system.
-     @return Work path.
-     */
+    /*! @Brief exit the current process and return Exitcode as the process result*/
+    static exit();
+
+    /*! @brief exit the current process and return the result 
+      @param code return process results*/
+    static exit(Integer code);
+
+    /*! @brief Return to the current working path of the operating system 
+      @Return Return to the current system path*/
     static String cwd();
 
-    /*! @brief Change the current work path of operating system.
-     @param directory The new work path.
-     */
+    /*! @brief Modify the current working path of the operating system 
+      @param Directory specified the setting of the setting of the settings*/
     static chdir(String directory);
 
-    /*! @brief returns the system uptime in number of seconds.
-     @return seconds
-    */
+    /*! @brief query the running environment and running time, in seconds 
+      @Return Return to the value of time*/
     static Number uptime();
 
-    /*! @brief Get report of memory the current process consumpt.
-     @return Memory report object.
+    /*! @brief query the time spent in the user and system code in the current process, the value of the micro -value (one -one second) 
 
-     Memory report like this:
-     @code
-     {
-       "rss": 8622080,
-       "heapTotal": 4083456,
-       "heapUsed": 1621800
-     }
-     @endcode
-     among the report：
-     - rss Occupation of physical memory.
-     - heapTotal Total heap memory of v8.
-     - heapUsed Heap memory occupied by v8.
-     */
+      Memory report generates similar results: 
+      `` `Javascript 
+      {{ 
+        "user": 132379, 
+        "System": 50507 
+      } 
+      `` ` 
+      in: 
+      -ser returns the process of spending in the user code 
+      -System returning the process of spending in the system code 
+      @Param Previousvalue specify the time of the last query 
+      @Return Return to include time report*/
+    static Object cpuUsage(Object previousValue = {});
+
+    /*! @brief query the current process memory use report 
+
+      Memory report generates similar results: 
+      `` `Javascript 
+      {{ 
+        "RSS": 8622080, 
+        "Heaaaaaaaaaaaaaaaaaaaaaaaa": 4083456, 
+        "heapused": 1621800 
+      } 
+      `` ` 
+      in: 
+      -RSS Return process currently occupies physical memory size 
+      -Heaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -packal Memory size 
+      -HEAPUSED Return to the V8 engine is using heap memory size 
+      @Return Return to contain memory report*/
     static Object memoryUsage();
 
-    /*! @brief start a fiber
-     @param func function to be executed in the new fiber.
-     @param ... params which will be passed to the func.
-     */
-    static nextTick(Function func, ...);
+    /*! @brief Start a fiber trip 
+      @Param Func formulate a function of the fibrous duration execution 
+      @Param ARGS variable parameter sequence, this sequence will pass to the function in the fibrous journey*/
+    static nextTick(Function func, ...args);
 
-    /*! @brief Create chlid process taking charge of stdin and stdout and run bash command.
-     @param command Bash command to be executed.
-     @param args Arguments for bash command.
-     @param opts Option of child process, such as:
-     @code
-        {
-            "timeout": 100, // unit ms
-            "env": {} // Enviroment variable of child process.
-        }
-     @endcode
-     @return Child process object containing result of command.
-     */
-    static SubProcess open(String command, Array args, Object opts = {});
+    /*! @brief Get the internal module of the specified name 
+      @param name Specify the name of the internal module to be query 
+      @Return Return to the specified internal module*/
+    static Value binding(String name);
 
-    /*! @brief Create chlid process taking charge of stdin and stdout and run bash command.
-     @param command Bash command.
-     @param opts Option of child process, such as:
-     @code
-        {
-            "timeout": 100, // unit ms
-            "env": {} // Environment variable of child process.
-        }
-     @endcode
-     @return Child process object containing result of command.
-     */
-    static SubProcess open(String command, Object opts = {});
+    /*! @brief Inquiry whether the pipeline of the parent process is connected normally*/
+    static readonly Boolean connected;
 
-    /*! @brief Create chlid process and run bash command.
-     @param command Bash command.
-     @param args Arguments of bash command.
-     @param opts Option of child process, such as:
-     @code
-        {
-            "timeout": 100, // unit ms
-            "env": {} // Environment variable of child process.
-        }
-     @endcode
-     @return Child process object containing result of the command.
-     */
-    static SubProcess start(String command, Array args, Object opts = {});
+    /*! @brief Turn off the IPC pipeline of the parent process*/
+    static disconnect();
 
-    /*! @brief Create chlid process and run bash command.
-     @param command Bash command.
-     @param opts Option of child process, such as:
-     @code
-        {
-            "timeout": 100, // unit ms
-            "env": {} // Environment variable of child process.
-        }
-     @endcode
-     @return Child process object containing result of the command.
-     */
-    static SubProcess start(String command, Object opts = {});
-
-    /*! @brief Run bash command and return result code.
-     @param command Bash command.
-     @param args Arguments of bash command.
-     @param opts Option of child process, such as:
-     @code
-        {
-            "timeout": 100, // unit ms
-            "env": {} // Environment variable of child process.
-        }
-     @endcode
-     @return Result code of bash command.
-     */
-    static Integer run(String command, Array args, Object opts = {});
-
-    /*! @brief Run bash command and return result code.
-     @param command Bash command.
-     @param opts Option of child process, such as:
-     @code
-        {
-            "timeout": 100, // unit ms
-            "env": {} // Environment variable of child process.
-        }
-     @endcode
-     @return Result code of bash command.
-     */
-    static Integer run(String command, Object opts = {});
+    /*! @Brief Send a message to the father process 
+      @param msg specifies the message sent*/
+    static send(Value msg);
 };

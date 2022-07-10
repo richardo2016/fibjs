@@ -1,144 +1,170 @@
-
-/*! @brief Global object, which can be accessed by all scripts*/
+/*! @Brief global object, all scripts can access the basic objects*/
 module global
 {
-    /*! @brief Binary data cache object, which used for IO reading and writing, reference Buffer object.*/
+    /*! @Brief Dual Data cache object, for data processing for IO reading and writing, see the Buffer object.*/
     static Buffer;
 
-    /*! @brief A 64-bit integer object，reference Int64 object.*/
-    static Int64;
+    /*! @Brief TextDecoder decoder, see the TextDecoder object.*/
+    static TextDecoder;
 
-    /*! @brief Console Access Objects */
+    /*! @Brief TextenCoder encoded objects, see the TextenCoder object.*/
+    static TextEncoder;
+
+    /*! @brief console access object*/
     static console;
 
-    /*! @brief Process Objects*/
+    /*! @brief process object*/
     static process;
 
-    /*! @brief Worker Object，only available at Worker entry script*/
+    /*! @Brief Worker Owner Objective, only effective at the Worker entrance script*/
     static readonly Worker Master;
 
-    /*! @brief global Object*/
+    /*! @brief global object*/
     static readonly Object global;
 
-    /*! @brief Run a script
-     @param fname Specifies the running path for script
-     @param argv Specify the run parameters, which can be caught in script by argv.
-     */
+    /*! @brief Run a script 
+      @Param FNAME specify the script path to run 
+      @Param ARGV specifies the parameters to be run, this parameter can be used in the script to obtain*/
     static run(String fname, Array argv = []);
 
-    /*! @brief Get the current script's run parameters, start js for process start parameter, and run script to obtain parameters passed */
-    static readonly Array argv;
+    /*! @brief Load a module and return to the module object. For more information, see @ref Module
 
-    /*! @brief Load a module and return module object, reference @ref module
+     Require can be used to load basic modules and file modules.
 
-     require can be used to load the base module, such as file module.
+     The basic module is a module initialized during the creation of the sandbox. When reference, you only need to pass the corresponding ID, such as requiss ("net").
 
-     Base module is initializing when the sandbox created, only need pass the id when referencing, e.g: require("net")。
+     The file module is a user -defined module. When referenced, the relative path begins with ./ or ../. The file module supports .js, .jsc and .json files.
 
-     File module is user-defined modules which required by the relative path beginning with './' or '../'. File module supports .js and .json file.
+     The file module also supports the Package.json format. When the module is the directory structure, the REQUIRE will first query the main in the Package.json. If not found, try to load the index.js, index.jsc, or index.json under the road diameter.
 
-     File module also supports the format package.json, system will first require the main in package.json when the module is a directory, then will try to load index.js or index.json in the path if failed.
+     If the reference path is not ./ or ../, and the non -basic module, Require finds node_modules from the current module path, and the superior directory recursively recursively.
 
-     If the path is not a reference beginning with ./ or ../, and the module is not non-base module, system will first require the match one in startup path, and then look for the .modules in current path, then try the parent directory.
+     The basic process is as follows:
 
-     @param id Specifies the name of module to load
-     @return Returns the derivation of the load module
-     */
+     `` `dot
+        digraph {
+            node [fontname = "Helvetica, Sans-Serif", fontsize = 10];
+            Edge [fontname = "Helvetica, Sans-Serif", fontsize = 10];
+
+            start [label = "start"];
+            resolve [label = "path.Resolve" shape = "Rect"];
+            Search [label = "recursive lookup \ nnode_modules \ nfrom the current path" shape = "Rect"];
+            load [label = "load" shape = "Rect"];
+            end [label = "end" shape = "doublecircle"];
+
+            is_native [label = "is internaly module?" shape = "diamond"];
+            is_mod [label = "is module?" shape = "diamond"];
+            is_abs [label = "is absolute?" shape = "diamond"];
+            have_file [label = "module exists?" shape = "diamond"];
+            have_ext [label = "module.js exists?" shape = "diamond"];
+            have_package [label = "/package.json \ nexists?" shape = "diamond"];
+            have_main [label = "main exists?" shape = "diamond"];
+            have_index [label = "index.js exists?" shape = "diamond"];
+
+            start-> is_native;
+            is_native-> end [label = "yes"];
+            is_native-> is_mod [label = "no"];
+            is_mod-> search [label = "yes"];
+            search-> has_file;
+            is_mod-> is_abs [label = "no"];
+            is_abs-> have_file [label = "yes"];
+            is_abs-> resolve [label = "no"];
+            Resolve-> have_file;
+            have_file-> load [label = "yes"];
+            have_file -> have_ext [label = "no"];
+            have_ext-> load [label = "yes"];
+            have_ext-> have_package [label = "no"];
+            have_package-> has_main [label = "yes"];
+            have_package-> has_index [label = "no"];
+            have_main-> load [label = "yes"];
+            have_main-> have_index [label = "no"];
+            have_index-> ​​load [label = "yes"];
+            have_index-> ​​end [label = "no"];
+            load-> end;
+        }
+     `` `
+
+     @param ID specifies the module name to be loaded
+     @Return Return to the leading object of the loading module*/
     static Value require(String id);
 
-    /*! @brief Mandatory for garbage collection*/
-    static GC();
+    /*! @brief Get the running parameters of the current script, start the JS to get the process startup parameter, and the script executed by RUN obtain the pass parameter*/
+    static readonly Array argv;
 
-    /*! @brief current script filename*/
+    /*! @brief The current script file name*/
     static readonly String __filename;
 
-    /*! @brief current script directory*/
+    /*! @Brief Current Script Directory*/
     static readonly String __dirname;
 
-    /*! @brief cancels a timed, repeating action which was previously established by a call to setInterval()
-        @param t The identifier of the repeated action you want to cancel. This ID was returned by the corresponding call to setInterval().
-    */
-    static clearInterval(Timer t);
-
-    /*! @brief cancels a timeout previously established by calling setTimeout().
-        @param t The identifier of the timeout you want to cancel. This ID was returned by the corresponding call to setTimeout().
-    */
-    static clearTimeout(Timer t);
-
-    /*! @brief clears the action specified by setImmediate.
-        @param t immediateID is a ID returned by setImmediate.
-    */
-    static clearImmediate(Timer t);
-
-    /*! @brief repeatedly calls a function or executes a code snippet, with a fixed time delay between each call.
-        @param callback A function to be executed every delay milliseconds. The function is not passed any parameters, and no return value is expected.
-        @param timeout The time, in milliseconds (thousandths of a second), the timer should delay in between executions of the specified function or code.When greater than 2^31 , execute immediately
-        @param args Optional arguments to pass when the callback is called.
-        @return The returned timeoutID is a numeric, non-zero value which identifies the timer created by the call to setInterval(); this value can be passed to clearInterval() to cancel the timeout.
-    */
-    static Timer setInterval(Function callback, Number timeout, ...args);
-
-    /*! @brief sets a timer which executes a function or specified piece of code once after the timer expires.
-        @param callback A function to be executed after the timer expires.
-        @param timeout The time, in milliseconds (thousandths of a second), the timer should wait before the specified function or code is executed.When greater than 2^31 , execute immediately
-        @param args Optional arguments to pass when the callback is called.
-        @return The returned timeoutID is a positive integer value which identifies the timer created by the call to setTimeout(); this value can be passed to clearTimeout() to cancel the timeout.
-    */
+    /*! @Brief calls the function after the specified time 
+     @param callback specify the callback function 
+     @Param Timeout specifies the delay time, in milliseconds. If you exceed 2^31, execute immediately. 
+     @Param ARGS additional parameters are passed into the specified callback, optional. 
+     @Return Return the timer object*/
     static Timer setTimeout(Function callback, Number timeout = 1, ...args);
 
-    /*! @brief run a callback function immediately after the browser has completed other operations such as events and display updates.
-        @param callback the function you wish to call.
-        @param args Optional arguments to pass when the callback is called.
-        @return where immediateID is the ID of the immediate which can be used later with clearImmediate.
-    */
+    /*! @brief Clear the specified timer 
+      @Param T specify the timer to be cleared*/
+    static clearTimeout(Value t);
+
+    /*! @brief Moist the function after the specified time of each interval 
+      @param callback specify the callback function 
+      @Param Timeout specifies the interval time, in milliseconds. If you exceed 2^31, execute immediately. 
+      @Param ARGS additional parameters are passed into the specified callback, optional. 
+      @Return Return the timer object*/
+    static Timer setInterval(Function callback, Number timeout, ...args);
+
+    /*! @brief Clear the specified timer 
+      @Param T specify the timer to be cleared*/
+    static clearInterval(Value t);
+
+    /*! @brief Moist the function after the specified time of each interval.
+     Since the timer of Sethrinterval is interrupted by the running coding of the code, do not modify the data that may affect other modules in the callback function, or call any API function marked as Async in the callback, otherwise the unpredictable results will be produced. E.g:
+     `` `Javascript
+        var timers = request ('timers');
+
+        var cnt = 0;
+        Timers.setHrinterval (() => {
+            CNT ++;
+        }, 100);
+
+        WHILE (CNT <10);
+
+        console.error ("================================================================================================================================================== >=
+     `` `
+     In this code, the cycle of line 8 will not end due to the change of CNT, because JavaScript will determine that CNT will not be changed during this cycle when optimizing the code.
+     @param callback specify the callback function
+     @Param Timeout specifies the interval time, in milliseconds. If you exceed 2^31, execute immediately.
+     @Param ARGS additional parameters are passed into the specified callback, optional.
+     @Return Return the timer object*/
+    static Timer setHrInterval(Function callback, Number timeout, ...args);
+
+    /*! @brief Clear the specified timer 
+      @Param T specify the timer to be cleared*/
+    static clearHrInterval(Value t);
+
+    /*! @brief Immediately execute the callback function immediately 
+      @param callback specify the callback function 
+      @Param ARGS additional parameters are passed into the specified callback, optional. 
+      @Return Return the timer object*/
     static Timer setImmediate(Function callback, ...args);
 
-    /*! @brief Enter the interactive mode, you can interactively execute the internal commands and code which can only be referenced when js start.
-     @param cmds Add commands in the following format:
-     @code
-        [
-            {
-                cmd: ".test",
-                help: "this is a test",
-                exec: function(argv) {
-                    console.log(argv);
-                }
-            },
-            {
-                cmd: ".test1",
-                help: "this is an other test",
-                exec: function(argv) {
-                    console.log(argv);
-                }
-            }
-        ]
-     @endcode
-     */
-    static repl(Array cmds = []);
+    /*! @brief Clear the specified timer 
+      @Param T specify the timer to be cleared*/
+    static clearImmediate(Value t);
 
-    /*! @brief Enter the interactive mode, you can interactively execute the internal commands and code which can only be referenced when js start.
+    /*! @Brief encoded data in a base64 way 
+ @param data to encode data 
+ @Param URL specifies whether to use URL security character encoding 
+ @Return Return the encoded string*/
+    static String btoa(Buffer data, Boolean url = false);
 
-     At the same time allowed only a Stream repl, close the previous one when create a new Stream repl.
-     @param out Input/output stream object, usually for a network connection
-     @param cmds Add commands in the following format:
-     @code
-        [
-            {
-                cmd: ".test",
-                help: "this is a test",
-                exec: function(argv) {
-                    console.log(argv);
-                }
-            },
-            {
-                cmd: ".test1",
-                help: "this is an other test",
-                exec: function(argv) {
-                    console.log(argv);
-                }
-            }
-        ]
-     @endcode
-     */
-    static repl(Stream out, Array cmds = []);
+    /*! @brief decoding the string in the base64 method as the binary data 
+ @param data string to decoding 
+ @Return Return to decoding binary data*/
+    static Buffer atob(String data);
+
+    /*! @brief forced request for garbage recycling*/
+    static GC();
 };

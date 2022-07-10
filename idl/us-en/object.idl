@@ -1,23 +1,12 @@
-/*! @brief All objects inherit from this */
+/*! @brief basic object, all objects inherited here*/
 interface object
 {
-    /*! @brief Force dispose object immediately */
-    dispose();
-
-    /*! @brief Return string representation of object, normally is "[Native Object]" and can be implemented by object itself
-     @return Return string representation
-    */
+    /*! @Brief returned the string of the object, which generally returned "native object], and the object can be re -realized according to its own characteristics 
+      @Return Return the string of the object*/
     String toString();
 
-    /*! @brief Return JSON representation of object, normally is readable attributes collection
-     @param key Not used
-     @return Return JSON representation
-     */
+    /*! @Brief returned to the JSON format of the object of the object, generally the readable attribute collection defined by the object definition 
+      @Param Key 
+      @Return Returns the value that contains JSON serialization*/
     Value toJSON(String key = "");
-
-    /*! @brief Return JSON representation of object
-     @return Return JSON representation of object
-    */
-    Value valueOf();
 };
-

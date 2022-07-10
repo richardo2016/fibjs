@@ -1,98 +1,198 @@
-
-/*! @brief HTTP transfer protocol module, handels http protocol*/
+/*! @brief hyper -text transmission protocol module to support HTTP protocol processing, module aliases: HTTPS*/
 module http
 {
-    /*! @brief create a http request object，reference HttpRequest */
+    /*! @brief Create an HTTP request object, see httprequest*/
     static HttpRequest new Request();
 
-    /*! @brief create a http response object，reference HttpResponse */
+    /*! @brief Create an HTTP response object, see httpresponse*/
     static HttpResponse new Response();
 
-    /*! @brief create a http cookie object，reference HttpCookie */
+    /*! @brief Create an HTTP Cookie object, see HTTPCOOKIE*/
     static HttpCookie new Cookie();
 
-    /*! @brief create a http server，reference HttpServer */
+    /*! @brief Create an HTTP server, see httpserver*/
     static HttpServer new Server();
 
-    /*! @brief create a https server, reference HttpsServer */
+    /*! @brief Create an HTTP client, see httpclient*/
+    static HttpClient new Client();
+
+    /*! @Brief Create an HTTPS server, see httpsserver*/
     static HttpsServer new HttpsServer();
 
-    /*! @brief create a http protocol handler，reference HttpHandler */
+    /*! @brief Create an object of HTTP protocol processor, see HTTPHANDLER*/
     static HttpHandler new Handler();
 
-    /*! @brief create a http static file processor, in case of using static file to respond http request
-     @param root file root folder
-     @param mimes extends mime settings
-     @param mimes extedns mime settings
-     @return return a static file processor to handle http request
+    /*! @brief Create an HTTP request forwarding processor object, see HTTPREPEATER*/
+    static HttpRepeater new Repeater();
 
-     fileHandler support gzip pre-compression，when accept gzip in content-typeand filename.ext.gz exists under same root，then return the file directly，
-     to avoid extra load on server.
-     */
-    static Handler fileHandler(String root, Object mimes = {});
+    /*! @Brief returns the standard HTTP response status code, and their respective brief descriptions.*/
+    static readonly Array STATUS_CODES;
 
-    /*! @brief send http request to connection object，return response
-     @param conn assign requested connection object
-     @param req the HttpRequest obejct need to be sent
-     @return return server response
-     */
+    /*! @Brief Return to the httpcookie object list of HTTP client*/
+    static readonly NArray cookies;
+
+    /*! @brief query and set timeout time*/
+    static Integer timeout;
+
+    /*! @brief cookie function switch, open default*/
+    static Boolean enableCookie;
+
+    /*! @Brief automatic redirect function switch, open default*/
+    static Boolean autoRedirect;
+
+    /*! @Brief automatically decompressed the function switch, open default*/
+    static Boolean enableEncoding;
+
+    /*! @brief query and set the maximum size of the body, in the mb as the unit, the default is -1, the size is not limited*/
+    static Integer maxBodySize;
+
+    /*! @Brief query and set the browser logo in the http request*/
+    static String userAgent;
+
+    /*! @brief query and set the maximum cache connection number of Keep-Alive, default 128*/
+    static Integer poolSize;
+
+    /*! @brief query and set the Keep-Alive cache connection timeout time, default 10,000 ms*/
+    static Integer poolTimeout;
+
+    /*! @brief query and set the proxy server, support HTTP/HTTPS/SOCKS5 proxy*/
+    static String proxyAgent;
+
+    /*! @brief Create an HTTP static file processor to respond to http messages with static files 
+
+      Filehandler supports GZIP pre -compression. When the request accepts GZIP encoding, and the FileName.ext.gz file is existed under the same path, this file will be returned directly. 
+      To avoid repeated compression brings to the server load. 
+      @param root file root path 
+      @Param Mimes Extension MIME Settings 
+      @Param AutoINDEX supports browsing directory files, default is false, does not support 
+      @Return Return a static file processor to process HTTP messages*/
+    static Handler fileHandler(String root, Object mimes = {}, Boolean autoIndex = false);
+
+    /*! @brief Set the default client certificate 
+     @Param CRT certificate, used to send to the server to verify the client 
+     @Param Key's private key, used to talk to the client*/
+    static setClientCert(X509Cert crt, PKey key);
+
+    /*! @brief Send HTTP request to the specified stream object and return the result 
+      @Param Conn specify the stream object of the processing request 
+      @Param Req to send HTTPREQUEST object 
+      @Return Return to server response*/
     static HttpResponse request(Stream conn, HttpRequest req) async;
 
-    /*! @brief assign requested url, and return
-     @param method define http request method, such as: GET, POST
-     @param url assigned url，has to be full url with root path
-     @param headers  define http request header，default is None
-     @return reutrn server response
-     */
-    static HttpResponse request(String method, String url, Object headers = {});
+    /*! @brief Send HTTP request to the specified stream object and return the result 
+      @Param Conn specify the stream object of the processing request 
+      @Param Req to send HTTPREQUEST object 
+      @param response_body specifies the stream of response.body 
+      @Return Return to server response*/
+    static HttpResponse request(Stream conn, HttpRequest req, SeekableStream response_body) async;
 
-    /*! @brief Request the specified url, and get the response
-     @param method define http method, such as: GET, POST
-     @param url assigned url，has to be full url with root path
-     @param body define http body content
-     @param headers  define http request header，default is None
-     @return reutrn server response
-     */
-    static HttpResponse request(String method, String url, SeekableStream body, Object headers = {});
+    /*! @brief requested the specified URL and returned the result 
+      OPTS contains the additional option of request, the support content is as follows: 
+      `` `Javascript 
+      {{ 
+          "Method": "get", // Specify HTTP request method: get, post, etc. 
+          "Query": {}, 
+          "Body": SeekableStream | Buffer | String | {}, 
+          "json": {}, 
+          "Pack": {}, 
+          "headers": {},,, 
+          "response_body": Seekablestream // Specify the stream of receiving resposne data 
+      } 
+      `` ` 
+      Among them, Body, JSON, Pack must not appear at the same time. The default is {}, without any additional information 
+      @Param Method specify HTTP request method: get, post, etc. 
+      @Param url specifies URL, must be the complete URL of the host 
+      @param Opts specify additional information 
+      @Return Return to server response*/
+    static HttpResponse request(String method, String url, Object opts = {}) async;
 
-    /*! @brief Request the specified url, and get the response
-     @param method define http method, such as: GET, POST
-     @param url assigned url，has to be full url with root path
-     @param body define http body content
-     @param headers define http request header, default is None
-     @return reutrn server response
-     */
-    static HttpResponse request(String method, String url, SeekableStream body, Map headers) async;
+    /*! @Brief uses the get method to request the specified URL and return the result, which is equivalent to request ("get", ...) 
+      OPTS contains the additional option of request, the support content is as follows: 
+      `` `Javascript 
+      {{ 
+          "Method": "get", // Specify HTTP request method: get, post, etc. 
+          "Query": {}, 
+          "Body": SeekableStream | Buffer | String | {}, 
+          "json": {}, 
+          "Pack": {}, 
+          "headers": {} 
+      } 
+      `` ` 
+      Among them, Body, JSON, Pack must not appear at the same time. The default is {}, without any additional information 
+      @Param url specifies URL, must be the complete URL of the host 
+      @param Opts specify additional information 
+      @Return Return to server response*/
+    static HttpResponse get(String url, Object opts = {}) async;
 
-    /*! @brief Request the specified url, and get the response
-     @param method define http method, such as: GET, POST
-     @param url assigned url，has to be full url with root path
-     @param body define http body content
-     @param headers  define http request header, default is None
-     @return reutrn server response
-     */
-    static HttpResponse request(String method, String url, Buffer body, Object headers = {});
+    /*! @Brief uses the post method to request the specified URL and return the result, which is equivalent to request ("post", ...) 
+      OPTS contains the additional option of request, the support content is as follows: 
+      `` `Javascript 
+      {{ 
+          "Method": "get", // Specify HTTP request method: get, post, etc. 
+          "Query": {}, 
+          "Body": SeekableStream | Buffer | String | {}, 
+          "json": {}, 
+          "Pack": {}, 
+          "headers": {} 
+      } 
+      `` ` 
+      Among them, Body, JSON, Pack must not appear at the same time. The default is {}, without any additional information 
+      @Param url specifies URL, must be the complete URL of the host 
+      @param Opts specify additional information 
+      @Return Return to server response*/
+    static HttpResponse post(String url, Object opts = {}) async;
 
-    /*! @brief reuqest url with GET method，and return response，same as request("GET", ...)
-     @param url assigned url，has to be full url with root path
-     @param headers  define http request header，default is None
-     @return reutrn server response
-     */
-    static HttpResponse get(String url, Object headers = {});
+    /*! @brief uses the delete method to request the specified URL and return the result, which is equivalent to request ("delete", ...) 
+      OPTS contains the additional option of request, the support content is as follows: 
+      `` `Javascript 
+      {{ 
+          "Method": "get", // Specify HTTP request method: get, post, etc. 
+          "Query": {}, 
+          "Body": SeekableStream | Buffer | String | {}, 
+          "json": {}, 
+          "Pack": {}, 
+          "headers": {} 
+      } 
+      `` ` 
+      Among them, Body, JSON, Pack must not appear at the same time. The default is {}, without any additional information 
+      @Param url specifies URL, must be the complete URL of the host 
+      @param Opts specify additional information 
+      @Return Return to server response*/
+    static HttpResponse del(String url, Object opts = {}) async;
 
-    /*! @brief reuqest url with POST method，and return response，same as request("POST", ...)
-     @param url assigned url，has to be full url with root path
-     @param body define http body content
-     @param headers  define http request header，default is None
-     @return reutrn server response
-     */
-    static HttpResponse post(String url, SeekableStream body, Object headers = {});
+    /*! @Brief uses the PUT method to request the specified URL and return the result, which is equivalent to request ("put", ...) 
+      OPTS contains the additional option of request, the support content is as follows: 
+      `` `Javascript 
+      {{ 
+          "Method": "get", // Specify HTTP request method: get, post, etc. 
+          "Query": {}, 
+          "Body": SeekableStream | Buffer | String | {}, 
+          "json": {}, 
+          "Pack": {}, 
+          "headers": {} 
+      } 
+      `` ` 
+      Among them, Body, JSON, Pack must not appear at the same time. The default is {}, without any additional information 
+      @Param url specifies URL, must be the complete URL of the host 
+      @param Opts specify additional information 
+      @Return Return to server response*/
+    static HttpResponse put(String url, Object opts = {}) async;
 
-    /*! @brief reuqest url with POST method，and return response，same as request("POST", ...)
-     @param url assigned url，has to be full url with root path
-     @param body define http body content
-     @param headers  define http request header，default is None
-     @return reutrn server response
-     */
-    static HttpResponse post(String url, Buffer body, Object headers = {});
+    /*! @Brief uses the patches method to request the specified URL and return the result, which is equivalent to request ("patch", ...) 
+      OPTS contains the additional option of request, the support content is as follows: 
+      `` `Javascript 
+      {{ 
+          "Method": "get", // Specify HTTP request method: get, post, etc. 
+          "Query": {}, 
+          "Body": SeekableStream | Buffer | String | {}, 
+          "json": {}, 
+          "Pack": {}, 
+          "headers": {} 
+      } 
+      `` ` 
+      Among them, Body, JSON, Pack must not appear at the same time. The default is {}, without any additional information 
+      @Param url specifies URL, must be the complete URL of the host 
+      @param Opts specify additional information 
+      @Return Return to server response*/
+    static HttpResponse patch(String url, Object opts = {}) async;
 };

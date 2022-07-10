@@ -1,0 +1,22 @@
+/*! @Brief TextenCoder encoding object 
+
+  Creation method 
+  `` `Javascript 
+  var textCoder = New Util.TeXTENCODER ('UTF8'); 
+  `` `*/
+interface TextEncoder : object
+{
+    /*! @Brief TextenCoder Object Construction Function, using the parameter structure 
+ @param codec specified encoding character set 
+  @param Opts specified encoding option*/
+    TextEncoder(String codec = "utf8", Object opts = {});
+
+    /*! @brief converts text to binary data 
+ @param data to be converted 
+  @param Opts specified encoding option 
+ @Return Return coding binary data*/
+    Buffer encode(String data = "", Object opts = {});
+
+    /*! @brief query the current encoding character set*/
+    readonly String encoding;
+};

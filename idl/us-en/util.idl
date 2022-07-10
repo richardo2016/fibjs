@@ -1,304 +1,489 @@
-
-/*! @brief Common tools module */
+/*! @brief commonly used tool module*/
 module util
 {
-    /*! @brief Format string with variables
-
-     @param fmt Format string
-     @param ... Aeguments
-     @return Return formatted string
-     */
-    static String format(String fmt, ...);
-
-    /*! @brief Format variables
-
-     @param ... Aeguments
-     @return Return formatted string
-     */
-    static String format(...);
-
-    /*! @brief Check if variable is empty(no enumerable property)
-
-     @param v Variable to check
-     @return Return true when it's empty
-     */
-    static Boolean isEmpty(Value v);
-
-    /*! @brief Check if variable is an array
-
-     @param v Variable to check
-     @return Return true when it's an array
-     */
-    static Boolean isArray(Value v);
-
-    /*! @brief Check if variable is Boolean
-
-     @param v Variable to check
-     @return Return true when it's a Boolean
-     */
-    static Boolean isBoolean(Value v);
-
-    /*! @brief Check if variable is Null
-
-     @param v Variable to check
-     @return Return true when it's Null
-     */
-    static Boolean isNull(Value v);
-
-    /*! @brief Check if variable is Null or Undefined
-
-     @param v Variable to check
-     @return Return true when it's Null or Undefined
-     */
-    static Boolean isNullOrUndefined(Value v);
-
-    /*! @brief Check if variable is a number
-
-     @param v Variable to check
-     @return Return true when it's a number
-     */
-    static Boolean isNumber(Value v);
-
-    /*! @brief Check if variable is a string
-
-     @param v Variable to check
-     @return Return true when it's a string
-     */
-    static Boolean isString(Value v);
-
-    /*! @brief Check if variable is Undefined
-
-     @param v Variable to check
-     @return Return true when it's Undefined
-     */
-    static Boolean isUndefined(Value v);
-
-    /*! @brief Check if variable is a regexp object
-
-     @param v Variable to check
-     @return Return true when it's a regexp object
-     */
-    static Boolean isRegExp(Value v);
-
-    /*! @brief Check if variable is an object
-
-     @param v Variable to check
-     @return Return true when it's an object
-     */
-    static Boolean isObject(Value v);
-
-    /*! @brief Check if variable is date object
-
-     @param v Variable to check
-     @return Return true when it's date object
-     */
-    static Boolean isDate(Value v);
-
-    /*! @brief Check if variable is a function
-
-     @param v Variable to check
-     @return Return true when it's a function
-     */
-    static Boolean isFunction(Value v);
-
-    /*! @brief Check if variable is a Buffer object
-
-     @param v Variable to check
-     @return Return true when it's a Buffer object
-     */
-    static Boolean isBuffer(Value v);
-
-    /*! @brief Check if object contains given key
-
-     @param v Object to check
-     @param key Key to query
-     @return Return true when it contains key
-     */
-    static Boolean has(Value v, String key);
-
-    /*! @brief Get an array of all keys
-
-     @param v Object to check
-     @return Return an array of all keys
-     */
-    static Array keys(Value v);
-
-    /*! @brief Get an array of all values
-
-     @param v Object to check
-     @return Return an array of all keys
-     */
-    static Array values(Value v);
-
-    /*! @brief Clone a variable, copy internal content if it's an object or array
-
-     @param v Variable to clone
-     @return Return cloned result
-     */
-    static Value clone(Value v);
-
-    /*! @brief Extend one or more values of objects to given object
-
-     @param v Object to be extended
-     @param ... One or more objects to extend
-     @return Return extended object
-     */
-    static Value extend(Value v, ...);
-
-    /*! @brief Return a copy of object with filtered attributes
-
-     @param v Object to filter
-     @param ... One or more attributes
-     @return Return copy of object
-     */
-    static Object pick(Value v, ...);
-
-    /*! @brief Return a copy of object, exclude given attributes
-
-     @param v Object to filter
-     @param ... One or more attributes to exclude
-     @return Return copy of object
-     */
-    static Object omit(Value v, ...);
-
-    /*! @brief Get first element in array
-
-     @param v Array to access
-     @return Return element
-     */
-    static Value first(Value v);
-
-    /*! @brief Get first number of elements in array
-
-     @param v Array to access
-     @param n Number of elements to get
-     @return Return array of elements
-     */
-    static Value first(Value v, Integer n);
-
-    /*! @brief Get last element in array
-
-     @param v Array to access
-     @return Return element
-     */
-    static Value last(Value v);
-
-    /*! @brief Get number of element in the end of array
-
-     @param v Array to access
-     @param n Number of elements to get
-     @return Return array of elements
-     */
-    static Value last(Value v, Integer n);
-
-    /*! @brief Get array without duplicates
-
-     @param v Array to access
-     @param sorted Indicates whether to sort or not, will use quick sort
-     @return Return unique array
-     */
-    static Array unique(Value v, Boolean sorted = false);
-
-    /*! @brief Union one or more arrays into one unique array
-
-     @param ... Arrays to union
-     @return Return unioned array
-     */
-    static Array union(...);
-
-    /*! @brief Return intersections of arrays
-
-     @param ... Arrays to check
-     @return Return intersections
-     */
-    static Array intersection(...);
-
-    /*! @brief Convert multi-dimension arrays into one-dimension, only reduce one dimension if you pass shallow argument
-
-     @param arr Array to convert
-     @param shallow Indicates whether to reduce only one dimension or not, default is false
-     @return Return converted array
-     */
-    static Array flatten(Value arr, Boolean shallow = false);
-
-    /*! @brief Return an array without given elements
-
-     @param arr Array to access
-     @param ... Elements to exclude
-     @return Return result array
-     */
-    static Array without(Value arr, ...);
-
-    /*! @brief Return differences of arrays
-
-     @param list Arrays to check
-     @return Return differences
-     */
-    static Array difference(Array list, ...);
-
-    /*! @brief Iterate list in order. If context is passed, then bind iterator to context. Each iteration will pass three arguments to context: element, index and list
-
-     @param list List or object to iterate
-     @param iterator Iterator callback
-     @param context Context object for binding
-     @return Return list itself
-     */
-    static Value each(Value list, Function iterator, Value context = undefined);
-
-    /*! @brief Use iterator to map values to new array. If context is passed, then bind iterator to context. Each iteration will pass three arguments to context: element, index and list
-
-     @param list List or object to iterate
-     @param iterator Iterator callback
-     @param context Context object for binding
-     @return Return result array
-     */
-    static Array map(Value list, Function iterator, Value context = undefined);
-
-    /*! @brief Reduce every element in list to a single number. If context is passed, then bind iterator to context. Each iteration will pass four arguments to context: memo, element, index and list
-
-     @param list List or object to iterate
-     @param iterator Iterator callback
-     @param memo Initial value
-     @param context Context object for binding
-     @return Return result array
-     */
-    static Value reduce(Value list, Function iterator, Value memo, Value context = undefined);
-
-    /*! @brief Data statistic object for app runtime data collection, see Stats object */
-    static Stats;
-
-    /*! @brief LRU(least recently used) cache object, see LruCache object */
+    /*! @Brief Lru (Least Recently Used) cache object, see the Lrucache object.*/
     static LruCache;
 
-    /*! @brief Get current engine and components information
-    
-      ```JavaScript
-      {
-        "fibjs": "0.25.0",
-        "clang": "9.1",
-        "date": "Jun 12 2018 07:22:40",
-        "vender": {
-          "ev": "4.24",
-          "expat": "2.2.5",
-          "gd": "2.2.4",
-          "jpeg": "8.3",
-          "leveldb": "1.17",
-          "mongo": "0.7",
-          "pcre": "8.21",
-          "png": "1.5.4",
-          "mbedtls": "2.6.1",
-          "snappy": "1.1.2",
-          "sqlite": "3.23.0",
-          "tiff": "3.9.5",
-          "uuid": "1.6.2",
-          "v8": "6.7.288.20",
-          "v8-snapshot": true,
-          "zlib": "1.2.7",
-          "zmq": "3.1"
-        }
-      }
-    ```
-     @return Struct info
-     */
+    /*! @Brief TextDecoder decoder, see the TextDecoder object.*/
+    static TextDecoder;
+
+    /*! @Brief TextenCoder encoded objects, see the TextenCoder object.*/
+    static TextEncoder;
+
+    /*! @brief Format the variable according to the specified format 
+
+      @Param FMT format format string 
+      @Param ARGS optional parameter list 
+      @Return Return the formatized string*/
+    static String format(String fmt, ...args);
+
+    /*! @Brief Format Format Variable 
+
+      @Param ARGS optional parameter list 
+      @Return Return the formatized string*/
+    static String format(...args);
+
+    /*! @Brief inherits the original function from one constructor Constructionor to another. The prototype of the constructor will be set to a new object created by a superconstructor. 
+
+      @Param Constructionor's initial structure function 
+      @param SuperConStructor's inherited superclass*/
+    static inherits(Value constructor, Value superConstructor);
+
+    /*! @Brief function returned Obj string representation, mainly used for debugging. The additional Options can be used to change some aspects of the formatted string. 
+
+      Support the following parameters: 
+      `` `Javascript 
+      {{ 
+          "colors": false, // specify whether the output ANSI color string, the default is false 
+          "depth": 2, // specify the number of recursive times when the formatting object, the default is 2 
+          "Table": false, // Specify the output table format, the default is false 
+          "Encode_string": true, // Specify whether the string in the table is encoded, and the default is true. 
+          "fields": [], // When table specifies the display field when TRUE 
+      } 
+      `` ` 
+      @param obj specifies the object to be processed 
+      @Param Options specified format control option 
+      @Return Return the formatized string*/
+    static String inspect(Value obj, Object options = {});
+
+    /*! @Brief encapsulated a given function. This function is only compatible and does not output warnings 
+
+      @Param Fn given a function that needs to be encapsulated 
+      @Param MSG given warning message 
+      @param code given warning number 
+      @Return If the package results*/
+    static Function deprecate(Function fn, String msg, String code = "");
+
+    /*! @Brief test given a given variable without any value (no enumerated attributes) 
+
+      @Param v given variables that need to be detected 
+      @Return If it is empty, return True*/
+    static Boolean isEmpty(Value v);
+
+    /*! @brief test whether the given variable given is an array 
+
+      @Param v given variables that need to be detected 
+      @Return If it is an array, return True*/
+    static Boolean isArray(Value v);
+
+    /*! @brief test given the given variable a boolean 
+
+      @Param v given variables that need to be detected 
+      @Return If it is Boolean, return True*/
+    static Boolean isBoolean(Value v);
+
+    /*! @brief test whether the given variable given is null 
+
+      @Param v given variables that need to be detected 
+      @Return If null, return true*/
+    static Boolean isNull(Value v);
+
+    /*! @Brief test whether the given variable given is null or undefined 
+
+      @Param v given variables that need to be detected 
+      @Return If it is null or undefined, return true*/
+    static Boolean isNullOrUndefined(Value v);
+
+    /*! @brief test whether the given variable given is a number 
+
+      @Param v given variables that need to be detected 
+      @Return If it is a number, return true*/
+    static Boolean isNumber(Value v);
+
+    /*! @Brief test whether the given variable given is Bigint 
+
+      @Param v given variables that need to be detected 
+      @Return If it is a number, return true*/
+    static Boolean isBigInt(Value v);
+
+    /*! @Brief test whether the given variable given is a string 
+
+      @Param v given variables that need to be detected 
+      @Return If it is a string, return true*/
+    static Boolean isString(Value v);
+
+    /*! @Brief test whether the given variable given is undefined 
+
+      @Param v given variables that need to be detected 
+      @Return If it is undefined, return true*/
+    static Boolean isUndefined(Value v);
+
+    /*! @Brief test given a given variable a regular object 
+
+      @Param v given variables that need to be detected 
+      @Return If it is a regular object, return True*/
+    static Boolean isRegExp(Value v);
+
+    /*! @brief test whether the given variable given is the object 
+
+      @Param v given variables that need to be detected 
+      @Return If it is an object, return True*/
+    static Boolean isObject(Value v);
+
+    /*! @Brief test whether the given variable given is the date object 
+
+      @Param v given variables that need to be detected 
+      @Return If it is a date object, return true*/
+    static Boolean isDate(Value v);
+
+    /*! @brief test whether the given variable given is wrong 
+
+      @Param v given variables that need to be detected 
+      @Return If it is an error object, return true*/
+    static Boolean isNativeError(Value v);
+
+    /*! @brief test whether the given variable given is the original type 
+
+      @Param v given variables that need to be detected 
+      @Return If it is the original type, return true*/
+    static Boolean isPrimitive(Value v);
+
+    /*! @Brief test given the given variables if it is Symbol 
+
+      @Param v given variables that need to be detected 
+      @Return If it is Symbol type, return True*/
+    static Boolean isSymbol(Value v);
+
+    /*! @Brief test given the given variable a DataView type 
+
+      @Param v given variables that need to be detected 
+      @Return If it is DataView type, return True*/
+    static Boolean isDataView(Value v);
+
+    /*! @Brief test whether the given variable given is external type 
+
+      @Param v given variables that need to be detected 
+      @Return If it is an External type, return true*/
+    static Boolean isExternal(Value v);
+
+    /*! @Brief test whether the given variable given is MAP type 
+
+      @Param v given variables that need to be detected 
+      @Return If it is a MAP type, return true*/
+    static Boolean isMap(Value v);
+
+    /*! @Brief test given the given variable a given 
+
+      @Param v given variables that need to be detected 
+      @Return If it is Mapitrator Type, return True*/
+    static Boolean isMapIterator(Value v);
+
+    /*! @Brief test given the given variable a promise type 
+
+      @Param v given variables that need to be detected 
+      @Return If it is a promise type, return True*/
+    static Boolean isPromise(Value v);
+
+    /*! @Brief test given the given variable as AsyncFunction 
+
+      @Param v given variables that need to be detected 
+      @Return If it is Asyncfunction type, return true*/
+    static Boolean isAsyncFunction(Value v);
+
+    /*! @Brief test whether the given variable given is the SET type 
+
+      @Param v given variables that need to be detected 
+      @Return If it is a SET type, return True*/
+    static Boolean isSet(Value v);
+
+    /*! @Brief test given the given variables for the settotrator type 
+
+      @Param v given variables that need to be detected 
+      @Return If it is SetIterator type, return True*/
+    static Boolean isSetIterator(Value v);
+
+    /*! @brief test given the given variables as typearray 
+
+      @Param v given variables that need to be detected 
+      @Return If it is Typedarray type, return True*/
+    static Boolean isTypedArray(Value v);
+
+    /*! @Brief test whether the given variable given is uINT8ARRAY type 
+
+      @Param v given variables that need to be detected 
+      @Return If it is UINT8ARAY type, return True*/
+    static Boolean isUint8Array(Value v);
+
+    /*! @Brief test whether the given variable given is a function object 
+
+      @Param v given variables that need to be detected 
+      @Return If it is a function object, return true*/
+    static Boolean isFunction(Value v);
+
+    /*! @Brief test whether the given variable given is a function buffer object 
+
+      @Param v given variables that need to be detected 
+      @Return If it is a function buffer object, return true*/
+    static Boolean isBuffer(Value v);
+
+    /*! @brief Test value depth is equal to the expected value 
+      @Param Actual to test the value 
+      @Param Expected expected value 
+      @Return If the depth is equal, return true*/
+    static Boolean isDeepEqual(Value actual, Value expected);
+
+    /*! @brief query whether the specified object contains a given key 
+
+      @Param v to given the object you need to query 
+      @Param key Specify the key to inquire 
+      @Return Return all key array of objects*/
+    static Boolean has(Value v, String key);
+
+    /*! @Brief query all the key array of specified objects 
+
+      @Param v to given the object you need to query 
+      @Return Return all key array of objects*/
+    static Array keys(Value v);
+
+    /*! @Brief query all the value array of specified objects 
+
+      @Param v to given the object you need to query 
+      @Return Return the entire value array of the object*/
+    static Array values(Value v);
+
+    /*! @brief cloned granite, if it is an object or array, then copy the content to the new object 
+
+      @Param V. 
+      @Return Return to cloned results*/
+    static Value clone(Value v);
+
+    /*! @Brief deeply freeze an object, the frozen object and the objects contained in will not be modified 
+
+      @Param v specify the object to freeze*/
+    static deepFreeze(Value v);
+
+    /*! @Brief extend the key value of one or more objects to the specified object 
+
+      @Param v specified the object to be extended 
+      @param Objs specifies one or more objects for extension 
+      @Return Return to the result of extension*/
+    static Value extend(Value v, ...objs);
+
+    /*! @Brief extend the key value of one or more objects to the specified object, which is the aliases of Extend 
+
+      @Param v specified the object to be extended 
+      @param Objs specifies one or more objects for extension 
+      @Return Return to the result of extension*/
+    static Value _extend(Value v, ...objs);
+
+    /*! @Brief Return a copy of Object, only filter the attribute value of the specified key 
+
+      @param v specify the object to be filtered 
+      @param Objs specifies one or more keys for selecting 
+      @Return returns the results of filtering*/
+    static Object pick(Value v, ...objs);
+
+    /*! @brief returns an object copy, only to exclude the attribute value of the specified key 
+
+      @param v specify the object to be filtered 
+      @Param keys specifies one or more keys for exclusion 
+      @Return Return to exclude results*/
+    static Object omit(Value v, ...keys);
+
+    /*! @brief Get the first element of the array 
+
+      @Param v to give an array you want to get 
+      @Return Return to obtain elements*/
+    static Value first(Value v);
+
+    /*! @brief Get the start of the array of multiple elements 
+
+      @Param v to give an array you want to get 
+      @param n Specify the number of elements to be obtained 
+      @Return Return to obtain element array*/
+    static Value first(Value v, Integer n);
+
+    /*! @brief Get the first element of the array 
+
+      @Param v to give an array you want to get 
+      @Return Return to obtain elements*/
+    static Value last(Value v);
+
+    /*! @brief Get multiple elements at the end of the array 
+
+      @Param v to give an array you want to get 
+      @param n Specify the number of elements to be obtained 
+      @Return Return to obtain element array*/
+    static Value last(Value v, Integer n);
+
+    /*! @brief Get the element of the array after the heavy copy 
+
+      @Param v 
+      @param sorted specifies whether the array is sorted. If the specified array is sorted, the fast algorithm will be used 
+      @Return Return to the array after the heavy element*/
+    static Array unique(Value v, Boolean sorted = false);
+
+    /*! @Brief merged the value of one or more array into a unique array 
+
+      @Param ARRS specifies one or more array for merging 
+      @Return back to merge results*/
+    static Array union(...arrs);
+
+    /*! @Brief returns an intersection that contains one or more array elements that contain an array in the ARR array 
+
+      @Param ARRS specifies one or more array for calculating intersections 
+      @Return Return to the results of the calculation intersection*/
+    static Array intersection(...arrs);
+
+    /*! @Brief converts a nested multi -layer array (nested can be any layer) to a only layer of array. If you pass the shallow parameter, the array will only reduce one -dimensional nesting. 
+
+      @Param ARR specifies an array that needs to be converted 
+      @Param Shallow specifies whether only one -dimensional nesting is reduced, the default is false 
+      @Return Return to the result of the conversion*/
+    static Array flatten(Value arr, Boolean shallow = false);
+
+    /*! @Brief returns an array that contains one or more elements in an array of ARR arrays 
+
+      @Param ARR specify arrays to be excluded 
+      @param ELS specifies one or more elements for exclusion 
+      @Return Return to exclude results*/
+    static Array without(Value arr, ...els);
+
+    /*! @Brief returns an array that contains an array in the ARR array 
+
+      @param list specify arrays to be excluded 
+      @Param ARRS specifies one or more arrays used for exclusion 
+      @Return Return to exclude results*/
+    static Array difference(Array list, ...arrs);
+
+    /*! @brief traversed all the elements in the list and used to output each element in order. If the Context parameter is passed, it is binded to the Context object. Each time ITARTOR is called, three parameters are passed: (Element, Index, List) 
+
+      @Param List specify the list or object that needs to be traversed 
+      @Param Iterator specifies the callback function used for traversal 
+      @Param Context specify the context object binding when calling ITERATOR 
+      @Return Return to list itself*/
+    static Value each(Value list, Function iterator, Value context = undefined);
+
+    /*! @Brief maps each value in the list into a new array by the transformation function (Iterator). If the Context parameter is passed, it is binded to the Context object. Each time ITARTOR is called, three parameters are passed: (Element, Index, List) 
+
+      @Param List specify a list or object that needs to be changed 
+      @param iterator specifies the callback function used for transformation 
+      @Param Context specify the context object binding when calling ITERATOR 
+      @Return Return to transform results*/
+    static Array map(Value list, Function iterator, Value context = undefined);
+
+    /*! @brief attribute elements in the list to a separate value. If the Context parameter is passed, it is binded to the Context object. Each time ITARTOR is called, three parameters are passed: (Memo, Element, Index, List) 
+
+      @Param List specify a list or object that needs to be concluded 
+      @Param Iterator specifies the callback function used for conclusion 
+      @Param Memo Specify the initial value of the conclusion 
+      @Param Context specify the context object binding when calling ITERATOR 
+      @Return returns the result of conclusion*/
+    static Value reduce(Value list, Function iterator, Value memo, Value context = undefined);
+
+    /*! @Brief Analysis command line string Return to the parameter list 
+      @Param Command specifies the command line string to be parsed 
+      @Return Return to the parameter list of parameters*/
+    static NArray parseArgs(String command);
+
+    /*! @Brief compile script is binary code 
+      Util.com can compile the script into the internal data block (non -machine execution code). After the compilation of the code, after saving as *.jsc, the Run and Require can be directly loaded and executed. 
+     
+      Because after compiling, the target code will not be able to obtain the source code in reverse, and the program that depends on Function.Tostring will not run normally. 
+
+      @Param srcname Specify the name of the script to be added 
+      @Param Script Specify the script code to be compiled 
+      @Param mode compilation mode, 0: module, 1: script, 2: worker, the default is 0 
+      @Return returns the binary code compiled*/
+    static Buffer compile(String srcname, String script, Integer mode = 0);
+
+    /*! @Brief wrapped the callback or async function to call the synchronous call
+
+     Util.Sync process the callback function or Async function as a sync function to facilitate calling.
+
+     The callback example is as follows:
+     `` `Javascript
+     // callback
+     var util = request ('Util');
+
+     function cb_teest (a, b, cb) {{
+       settimeout (() => {{
+          cb (null, a + b);
+       }, 100);
+     }
+
+     var fn_sync = Util.sync (CB_TEST);
+     console.log (fn_sync (100, 200));
+     `` `
+     Async examples are as follows:
+     `` `Javascript
+     // async/await
+     var util = request ('Util');
+
+     async function async_teest (a, b) {{
+         Return a + b;
+     }
+
+     var fn_sync = Util.sync (async_test);
+     console.log (fn_sync (100, 200));
+     `` `
+     For a function that is not marked with async as aSYNC, you can manually specify the SYNC mode:
+     `` `Javascript
+     // async/await
+     var util = request ('Util');
+
+     function async_teest (a, b) {{
+         Return New Promise (Function (RESOLVE, Reject) {
+           Resolve (a + b);
+         });
+     }
+
+     var fn_sync = Util.sync (async_test, true);
+     console.log (fn_sync (100, 200));
+     `` `
+
+     @Param Func given a function that needs to be wrapped
+     @Param Async_func specifies that the Func is processed by Async function, and it is automatically judged for false
+     @Return Return to the function of synchronous operation*/
+    static Function sync(Function func, Boolean async_func = false);
+
+    /*! @brief package callback function is Async call 
+
+      Util.promisify handles the callback function as Async function to facilitate calling. 
+
+      The callback example is as follows: 
+      `` `Javascript 
+      // callback 
+      var util = request ('Util'); 
+
+      function cb_teest (a, b, cb) {{ 
+        settimeout (() => {{ 
+           cb (null, a + b); 
+        }, 100); 
+      } 
+
+      var fn_sync = Util.promisify (CB_TEST); 
+      console.log (async fn_sync (100, 200)); 
+      `` ` 
+
+      @Param Func given a function that needs to be wrapped 
+      @Return Return async function*/
+    static Function promisify(Function func);
+
+    /*! @Brief package Async function is callback call 
+
+      Util.CallBackify processes the async function as the callback function to facilitate calling. 
+
+      Async examples are as follows: 
+      `` `Javascript 
+      // async 
+      var util = request ('Util'); 
+
+      async function async_teest (a, b) {{ 
+        Return a + b; 
+      } 
+
+      var fn_callback = Util.callbackify (async_test); 
+
+      fn_callback (100, 200, (err, result) => { 
+        console.log (result); 
+      }); 
+      `` ` 
+
+      @Param Func given a function that needs to be wrapped 
+      @Return Return to callback function*/
+    static Function callbackify(Function func);
+
+    /**/
     static Object buildInfo();
 };

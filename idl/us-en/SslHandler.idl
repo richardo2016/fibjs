@@ -1,50 +1,50 @@
+/*! @Brief SSL protocol conversion processor 
 
-/*! @brief ssl protocol converter 
+  It is used to convert data to SSL stream protocols. SSLHANDLER is an encapsulation of SSLSocket, which is used to build a server, which is logically equivalent to: 
+  `` `Javascript 
+  var ss = new ssl.socket (CRT, key); 
 
- Used for converting data stream into ssl protocol. SslHandler is a encapsulation of SslSocket, same as follows in logic:
- @code
- var ss = new ssl.Socket(crt, key);
-
- function(s){
-    var s1 = ss.accept(s);
-    hdlr.invoke(s1);
-    s1.close();
- }
- @endcode
- */
-interface SslHandler: Handler
+  function (s) { 
+     var s1 = ss.Accept (s); 
+     hdlr.invoke (s1); 
+     s1.close (); 
+  } 
+  `` `*/
+interface SslHandler : Handler
 {
-    /*! @brief SslHandler constructor
-      @param certs Certificates server list with format:
-        @code
-        [
-            {
-                crt: [X509Cert object],
-                key: [PKey object]
-            },
-            {
-                crt: [X509Cert object],
-                key: [PKey object]
-            }
-        ]
-        @endcode
-      @param hdlr Built-in handler, handle function or javascript message mapping object, see mq.jsHandler
-     */
-    SslHandler(Array certs, Value hdlr);
+    /*! @Brief SSLHANDLER constructor to create a new SSLHANDLER object 
 
-    /*! @brief SslHandler constructor
-      @param crt X509Cert Certificate
-      @param key PKey Private key
-      @param hdlr Built-in handler, handle function or javascript message mapping object, see mq.jsHandler
-     */
-    SslHandler(X509Cert crt, PKey key, Value hdlr);
+     Certs format: 
+     `` `Javascript 
+     
+         {{ 
+             name: "fibjs.org", 
+             CRT: [X509cert Object], 
+             Key: [pKEY Object] 
+         }, 
+         {{ 
+             name: "*.fibjs.org", 
+             CRT: [X509cert Object], 
+             Key: [pKEY Object] 
+         } 
+     ] 
+     `` ` 
+     @Param Certs server certificate list 
+     @Param HDLR built -in message processor, processing function, chain processing array, routing object, see mq.handler for details*/
+    SslHandler(Array certs, Handler hdlr);
 
-    /*! @brief Verification mode, default is VERIFY_REQUIRED */
+    /*! @Brief SSLHANDLER constructor to create a new SSLHANDLER object 
+       @Param CRT X509cert certificate for client verification server 
+       @Param KEY PKEY private key, used to talk to the client 
+       @Param HDLR built -in message processor, processing function, chain processing array, routing object, see mq.handler for details*/
+    SslHandler(X509Cert crt, PKey key, Handler hdlr);
+
+    /*! @brief Set the certificate verification mode, the default is Verify_none*/
     Integer verification;
 
-    /*! @brief Client certificates */
+    /*! @Brief Client Certificate Verification Certificate Chain*/
     readonly X509Cert ca;
 
-    /*! @brief ssl protocol event handler */
+    /*! @brief SSL protocol conversion processor current event processing interface object*/
     Handler handler;
 };

@@ -1,97 +1,231 @@
+/*! @brief asymmetric plus compry algorithm object 
 
-/*! @brief Asymmetric encryption algorithm object
-
- PKey belongs to crypto module, to create:
- @code
- var k = new crypto.PKey();
- @endcode
- */
+  PKEY object belongs to the Crypto module, created: 
+  `` `Javascript 
+  var k = new crypto.pkey (); 
+  `` `*/
 interface PKey : object
 {
-    /*! @brief PKey constructor */
-    PKey();
+    /*! @Brief constructs pKEY in the key format in the der format 
+      @param derkey der format key 
+      @param password decryption password*/
+    PKey(Buffer DerKey, String password = "");
 
-    /*! @brief Get algorithm name */
+    /*! @brief construct pKEY in PEM format key 
+      @Param Pemkey Pem format key 
+      @param password decryption password*/
+    PKey(String pemKey, String password = "");
+
+    /*! @brief construct pKEY through the key in JSON format
+
+     JSONKEY's format supports the following four, RSA private key:
+     `` `Javascript
+     {{
+        "KTY": "RSA",
+        "n": "0m5lvKpWqy9JS7tV2HIPqHCYHLquSuxIC3F8strIQLJKO3rZmTT96KTnhsOfBO7Y1bI7mnT0PB3_vcHd9ekWMEoZJQw7MuB8KeM_Wn54-elJr5DNLk5bMppSGxX7ZnumiXGG51_X3Yp-_EbGtDG80GxXXix7Mucyo7K25uE0uW8=",
+        "E": "Aqab",
+        "d": "agN2O9NxMHL1MTMi75WfL9Pxvl-KWXKqZSF6mjzAsF9iKI8euyHIXYFepzU8kual1RsjDhCnzvWqFvZplW8lXqrHf_P-rS_9Y4gBUw6pjnI_DnFIRwWHRvrUHHSCfWOdTCIKdOTkgLZuGFuhEY3RMIW0WSYejjLtftwy0RVxAzk=",
+        "p": "6a4G1qmfwWmn1biigN7IVFlkbLf9oVe6g7rOmHxI-hn1GRxKDSVuAUrmR1IhuAnca9M0y7SD-7TUs6wjOxWxaw==",
+        "q": "5ofkxfkdpbd0cqhmb9Q13amhuve0rj-HSJQIBRMQAPUONEYACMV76miqni2p3poa4qu_7xchdwrvl7lldq ==",,,,,,,,,,,, to ",,,, to",,,, to ",,,, to,, to, use it
+        "DP": "2MXGIGWCHL8J-FBWUID-BRB3MBEVOEKPOOPRUATB3MWEGXSWGV9URXTI2K6Z7RUPBKVW =="
+        "DQ": "OAGN5VFB5NQQNOPS9XKSSD67CFIJ821ZSFLNFLNFYHNVDA7Z_QCTNHM4ZOKYMFBHFQWJPAUGTTJPQ =="
+        "qi": "Dqeqgxnmovfrf4S776HTQEC6OEDILA8EVPVB2F2ZVAOLJCQ66OIAZK1BiyGhquy0neqnmtlSubeZVQZWG ==" "
+     }
+     `` `
+     RSA public key:
+     `` `Javascript
+     {{
+        "KTY": "RSA",
+        "n": "0m5lvKpWqy9JS7tV2HIPqHCYHLquSuxIC3F8strIQLJKO3rZmTT96KTnhsOfBO7Y1bI7mnT0PB3_vcHd9ekWMEoZJQw7MuB8KeM_Wn54-elJr5DNLk5bMppSGxX7ZnumiXGG51_X3Yp-_EbGtDG80GxXXix7Mucyo7K25uE0uW8=",
+        "E": "Aqab"
+     }
+     `` `
+     EC private key:
+     `` `Javascript
+     {{
+        "KTY": "EC",
+        "CRV": "P-521",
+        "X": "AtfnnfuuVLGXRTGOXGYFSAGGRNDNO3RN3K74URKJDVS14ryhdnswm91BM-F1L-T1XKLAY2YRNZG9CVO8C0WL",
+        "Y": "Asbhqrrub6kdkeub3VLW3-UIKK4HTKDUETWN-7M3J2RGZYR1FFFR1FFR1FFFRER1FFRER1FFR1FFFRAPDVWQKIBJWAFXOKBKBDI0C95F6F4XU",,
+        "D": "AFKIBUHXFW41NJDPOKUQKLUDCOLJS8D_OMEWKJ-GVAXFNKCCCCCCIKGU2C69kndjo83R_7wyglfRKLKIK1st" "
+     }
+     `` `
+     EC public key:
+     `` `Javascript
+     {{
+        "KTY": "EC",
+        "CRV": "P-521",
+        "X": "AtfnnfuuVLGXRTGOXGYFSAGGRNDNO3RN3K74URKJDVS14ryhdnswm91BM-F1L-T1XKLAY2YRNZG9CVO8C0WL",
+        "Y": "Asbhqrrub6kdkeub3VLW3-UIKK4HTKDUETWN-7M3J2RGZYR1FFFR1FFFRAAPDVWQKGIBJWAFXOKBKBDI0C95F6F4XU" ""
+     }
+     `` `
+     @param jsonkey json format key*/
+    PKey(Object jsonKey);
+
+    /*! @brief Return to the current algorithm name*/
     readonly String name;
 
-    /*! @brief Get password length in bit */
+    /*! @Brief Return to the name of the elliptical curve of the current algorithm, only for EC and SM2*/
+    readonly String curve;
+
+    /*! @Brief Return the current algorithm password length, in the same place as the unit*/
     readonly Integer keySize;
 
-    /*! @brief Get public key
-     @return Return public key
-    */
+    /*! @Brief Return and Set the Signature Algorithm*/
+    String alg;
+
+    /*! @brief Return to the current key to the current key 
+      @Return currently key key*/
     readonly PKey publicKey;
 
-    /*! @brief Generate a RSA private key
-     @param size Indicate length of RSA key in bit
-    */
-    genRsaKey(Integer size) async;
-
-    /*! @brief Generate a EC private key
-     @param curve Can be: "secp521r1", "brainpoolP512r1", "secp384r1", "brainpoolP384r1", "secp256r1", "secp256k1", "brainpoolP256r1", "secp224r1", "secp224k1", "secp192r1", "secp192k1"
-    */
-    genEcKey(String curve = "secp521r1") async;
-
-    /*! @brief Check if key is a private key
-     @return Return true when it's a private key
-    */
+    /*! @brief query whether the current key is private key 
+      @Return is expressed as a private key for true*/
     Boolean isPrivate();
 
-    /*! @brief Clone current key
-     @return Return cloned key
-    */
+    /*! @brief Copy the current key 
+      @Return currently replicated object*/
     PKey clone();
 
-    /*! @brief Import a DER format key
-     @param DerKey DER format key
-     @param password Decrypt password
-    */
-    importKey(Buffer DerKey, String password = "");
+    /*! @Brief Load a DER format key 
+      @param derkey der format key 
+      @param password decryption password 
+      @Return Returns the object containing the key*/
+    static PKey from(Buffer DerKey, String password = "");
 
-    /*! @brief Import a PEM format key
-     @param pemKey PEM format key
-     @param password Decrypt password
-    */
-    importKey(String pemKey, String password = "");
+    /*! @brief Load a key in PEM format 
+      @Param Pemkey Pem format key 
+      @param password decryption password 
+      @Return Returns the object containing the key*/
+    static PKey from(String pemKey, String password = "");
 
-    /*! @brief Load a keyfile of PEM / DER format
-     @param filename The filename of the key
-     @param password Decrypt password
-    */
-    importFile(String filename, String password = "");
+    /*! @Brief Load a key in JSON format
 
-    /*! @brief Get encoding of key in PEM format
-     @return Return key in PEM encoding
-    */
-    String exportPem();
+     JSONKEY's format supports the following four, RSA private key:
+     `` `Javascript
+     {{
+        "KTY": "RSA",
+        "n": "0m5lvKpWqy9JS7tV2HIPqHCYHLquSuxIC3F8strIQLJKO3rZmTT96KTnhsOfBO7Y1bI7mnT0PB3_vcHd9ekWMEoZJQw7MuB8KeM_Wn54-elJr5DNLk5bMppSGxX7ZnumiXGG51_X3Yp-_EbGtDG80GxXXix7Mucyo7K25uE0uW8=",
+        "E": "Aqab",
+        "d": "agN2O9NxMHL1MTMi75WfL9Pxvl-KWXKqZSF6mjzAsF9iKI8euyHIXYFepzU8kual1RsjDhCnzvWqFvZplW8lXqrHf_P-rS_9Y4gBUw6pjnI_DnFIRwWHRvrUHHSCfWOdTCIKdOTkgLZuGFuhEY3RMIW0WSYejjLtftwy0RVxAzk=",
+        "p": "6a4G1qmfwWmn1biigN7IVFlkbLf9oVe6g7rOmHxI-hn1GRxKDSVuAUrmR1IhuAnca9M0y7SD-7TUs6wjOxWxaw==",
+        "q": "5ofkxfkdpbd0cqhmb9Q13amhuve0rj-HSJQIBRMQAPUONEYACMV76miqni2p3poa4qu_7xchdwrvl7lldq ==",,,,,,,,,,,, to ",,,, to",,,, to ",,,, to,, to, use it
+        "DP": "2MXGIGWCHL8J-FBWUID-BRB3MBEVOEKPOOPRUATB3MWEGXSWGV9URXTI2K6Z7RUPBKVW =="
+        "DQ": "OAGN5VFB5NQQNOPS9XKSSD67CFIJ821ZSFLNFLNFYHNVDA7Z_QCTNHM4ZOKYMFBHFQWJPAUGTTJPQ =="
+        "qi": "Dqeqgxnmovfrf4S776HTQEC6OEDILA8EVPVB2F2ZVAOLJCQ66OIAZK1BiyGhquy0neqnmtlSubeZVQZWG ==" "
+     }
+     `` `
+     RSA public key:
+     `` `Javascript
+     {{
+        "KTY": "RSA",
+        "n": "0m5lvKpWqy9JS7tV2HIPqHCYHLquSuxIC3F8strIQLJKO3rZmTT96KTnhsOfBO7Y1bI7mnT0PB3_vcHd9ekWMEoZJQw7MuB8KeM_Wn54-elJr5DNLk5bMppSGxX7ZnumiXGG51_X3Yp-_EbGtDG80GxXXix7Mucyo7K25uE0uW8=",
+        "E": "Aqab"
+     }
+     `` `
+     EC private key:
+     `` `Javascript
+     {{
+        "KTY": "EC",
+        "CRV": "P-521",
+        "X": "AtfnnfuuVLGXRTGOXGYFSAGGRNDNO3RN3K74URKJDVS14ryhdnswm91BM-F1L-T1XKLAY2YRNZG9CVO8C0WL",
+        "Y": "Asbhqrrub6kdkeub3VLW3-UIKK4HTKDUETWN-7M3J2RGZYR1FFFR1FFR1FFFRER1FFRER1FFR1FFFRAPDVWQKIBJWAFXOKBKBDI0C95F6F4XU",,
+        "D": "AFKIBUHXFW41NJDPOKUQKLUDCOLJS8D_OMEWKJ-GVAXFNKCCCCCCIKGU2C69kndjo83R_7wyglfRKLKIK1st" "
+     }
+     `` `
+     EC public key:
+     `` `Javascript
+     {{
+        "KTY": "EC",
+        "CRV": "P-521",
+        "X": "AtfnnfuuVLGXRTGOXGYFSAGGRNDNO3RN3K74URKJDVS14ryhdnswm91BM-F1L-T1XKLAY2YRNZG9CVO8C0WL",
+        "Y": "Asbhqrrub6kdkeub3VLW3-UIKK4HTKDUETWN-7M3J2RGZYR1FFFR1FFFRAAPDVWQKGIBJWAFXOKBKBDI0C95F6F4XU" ""
+     }
+     `` `
+     @param jsonkey json format key
+     @Return Returns the object containing the key*/
+    static PKey from(Object jsonKey);
 
-    /*! @brief Get encoding of key in PEM format
-     @return Return key in PEM encoding
-    */
-    Buffer exportDer();
+    /*! @brief restores the public key from recovery signatures, only supports SECP256K1 
+      @Param Sig can be restored to signature 
+      @Param Data signature original data 
+      @Return Returns the object containing the public key*/
+    static PKey recover(Buffer data, Buffer sig) async;
 
-    /*! @brief Encrypt data with public key
-     @param data Data to encrypt
-     @return Return encrypted data
-     */
+    /*! @Brief changed from the current object to X25519 public private key pair, only supports ED25519 
+      @Return Returns the corresponding object of the corresponding X25519 public key*/
+    PKey toX25519() async;
+
+    /*! @Brief Return to the current key's PEM format encoding 
+      @Return currently KEY's PEM format encoding*/
+    String pem();
+
+    /*! @Brief Return to the current key's der format encoding 
+      @Return currently key format encoding*/
+    Buffer der();
+
+    /*! @Brief Return to the current key's JWT format encoding 
+      OPTS supports the following parameters: 
+      `` `Javascript 
+      {{ 
+        Compress: false, specify the signature to output the public key by compression mode 
+      } 
+      `` ` 
+      The curve that supports compression is: SECP192R1, SECP192K1, SECP256R1, SECP256K1, Brainpoolp256r1, 
+                     secp384r1, brainpoolp384r1, brainpoolp512r1, secp521r1, SM2 
+
+      @param Opts specify the export option 
+      @Return currently key's JWT format encoding*/
+    Object json(Object opts = {});
+
+    /*! @brief is the same for two public/private keys 
+      @Param Key Specify the other party's public/private key 
+      @Return is the same as returning True*/
+    Boolean equals(PKey key);
+
+    /*! @Brief uses the current algorithm password public key encryption data 
+      @param data specify data to be encrypted 
+      @Return Return to the encrypted data*/
     Buffer encrypt(Buffer data) async;
 
-    /*! @brief Decrypt data with private key
-     @param data Data to decrypt
-     @return Return decrypted data
-     */
+    /*! @Brief uses the current algorithm password private key decryption data 
+      @param data specify data to be decrypted 
+      @Return Return to the decrypted data*/
     Buffer decrypt(Buffer data) async;
 
-    /*! @brief Sign data with private key
-     @param data Data to sign
-     @return Return signed data
-     */
-    Buffer sign(Buffer data) async;
+    /*! @Brief uses the current algorithm password private key signature data 
+      OPTS supports the following parameters: 
+      `` `Javascript 
+      {{ 
+         ALG: 0, the Hash algorithm specifies the signature is effective at RSA, the default is 0. Support algorithm: 0 = None, 1 = md5, 2 = shay 3 = sha224,4 = sha256,5 = sha384,6 = Sha512,7 = ripemd160 
+         To: PK, specify the verification party key, only effective at ECSDSA or SM2 
+         Format: "der", specify the signature format, can be selected as der and raw, the default is der 
+         Recoverable: False specifies the return to the recovery signature, only valid in SECP256K1 
+      } 
+      `` ` 
 
-    /*! @brief Verify data with public key
-     @param sign Signature to verify
-     @param data Data to verify
-     @return Return verified data
-     */
-    Boolean verify(Buffer sign, Buffer data) async;
+      @param data specify data to be signed 
+      @param Opts designated signature options 
+      @Return returned to the data after the signature*/
+    Buffer sign(Buffer data, Object opts = {}) async;
+
+    /*! @Brief uses the current algorithm password public key verification data 
+      OPTS supports the following parameters: 
+      `` `Javascript 
+      {{ 
+         ALG: 0, the Hash algorithm specifies the signature is effective at RSA, the default is 0. Support algorithm: 0 = None, 1 = md5, 2 = shay 3 = sha224,4 = sha256,5 = sha384,6 = Sha512,7 = ripemd160 
+         To: PK, specify the verification party key, only effective at ECSDSA or SM2 
+         Format: "der", specify the signature format, can be selected as der and raw, the default is der 
+      } 
+      `` ` 
+
+      @param data specify data to be verified 
+      @Param Sign specify the signature to be verified 
+      @param Opts specified verification options 
+      @Return Return to the results after verification*/
+    Boolean verify(Buffer data, Buffer sign, Object opts = {}) async;
+
+    /*! @Brief uses the current algorithm to calculate the oval curve Diffie-Hellman (ECDH) sharing key 
+      @Param Publickey specifies the other party's public key 
+      @Return Return to the calculated shared key*/
+    Buffer computeSecret(PKey publicKey) async;
 };

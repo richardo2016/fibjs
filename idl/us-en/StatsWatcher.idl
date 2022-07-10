@@ -1,0 +1,37 @@
+/*! @brief file stats observation object 
+
+  When the calling `fs.watchfile (target, onChange)` is successful, return this type of object 
+  `` `Javascript 
+  var fs = require ("fs"); 
+  var statswatcher = fs.watchfile (target, (castat, prevstat) => { 
+     // Process 
+     // ... 
+
+     statswatcher.unref (); 
+  }); 
+  `` ` 
+  ** Note ** Dang and ** only when the observed target file TARGET's MTIME attribute changes only 
+ 
+  Simply access (Access) target file Target does not trigger onChange's callback. 
+
+  If the file or directory represented by Target does not exist when calling the `fs.watchfile (target)`, the onChange callback ** will not be called until the target is created, the callback will begin to be called. 
+  If the target file is deleted on the way to work, the target file will be deleted, then there will be no more recovery.*/
+interface StatsWatcher : EventEmitter
+{
+    /*! @brief query and bind the "file change" event, which is equivalent to on ("Change", Func);*/
+    Function onchange;
+
+    /*! @brief stops observing the target file path and clear the reference count (no more HOLD process)*/
+    close();
+
+    /*! @brief increases the reference count, inform Fibjs as long as the Watcher is still in use, do not exit the process. 
+   Statswatcher obtained by `fs.watchfile ()` has called this method by default, that is, the process will be held by default. 
+
+   @Return Return to Statswatcher itself*/
+    StatsWatcher ref();
+
+    /*! @brief reduce reference count 
+
+   @Return Return to Statswatcher itself*/
+    StatsWatcher unref();
+};

@@ -1,93 +1,83 @@
+/*! @brief leveldb database object 
 
-/*! @brief LevelDB database object
-
-Used for create and manage dictionary, to create:
- @code
- var db = require("db");
- var test = new db.openLevelDB("test.db");
- @endcode
- */
+  Used to create and manage dictionary objects, create methods: 
+  `` `Javascript 
+  varb = request ("db"); 
+  var test = new db.openleveldb ("test.db"); 
+  `` `*/
 interface LevelDB : object
 {
-    /*! @brief Check if database has given key
-     @param key Key to check
-     @return Return true when key exists
-     */
+    /*! @brief check the data of the specified key value in the database 
+      @Param key Specify the key value you want to check 
+      @Return Return the key value exists*/
     Boolean has(Buffer key) async;
 
-    /*! @brief Get value of key
-     @param key Key to query
-     @return Return value of key, null otherwise
-     */
+    /*! @brief query the value of the specified key value 
+      @Param key Specify the key value you want to query 
+      @Return Returns the value corresponding to the key value, if it does not exist, return NULL*/
     Buffer get(Buffer key) async;
 
-    /*! @brief Get a list value of keys
-     @param keys Keys to query
-     */
-    List mget(Array keys);
+    /*! @brief query a set of values of a set of specified key values 
+      @Param keys specifies the key value array you want to query 
+      @Return Return to contain a key worth the array*/
+    NArray mget(Array keys);
 
-    /*! @brief Insert key-value pair if it does not exist
-     @param key Key name
-     @param value Key value
-     */
+    /*! @Brief Set a key data data, the key value does not exist, and insert new data 
+      @Param Key specify the key value to be set 
+      @Param Value specify data to be set*/
     set(Buffer key, Buffer value) async;
 
-    /*! @brief Insert a list of key-value pairs if any element does not exist
-     @param map Key-valye pairs
-     */
+    /*! @brief Set a set of key data data, the key value does not exist and insert new data 
+      @Param Map specifies the key value data dictionary to be set*/
     mset(Object map);
 
-    /*! @brief Delete a list of key-value pairs
-     @param keys Key-value pairs
-     */
-    remove(Array keys);
+    /*! @brief Delete a set of values of specified key values 
+      @Param keys specifies the key value array to be deleted*/
+    mremove(Array keys);
 
-    /*! @brief Delete all values of key
-     @param key Key name
-     */
+    /*! @brief deletes all the value of the specified key value 
+      @Param Key specify the key value to be deleted*/
     remove(Buffer key) async;
 
-    /*! @brief List all key-value pairs
-     @param func Callback function
+    /*! @brief enumerated all the key values in the database 
 
-     Two arguments in callback function (value, key)
+      There are two parameters of the callback function, (Value, key) 
 
-     @code
-     var db = require("db");
-     var test = new db.openLevelDB("test.db");
+      `` `Javascript 
+      varb = request ("db"); 
+      var test = new db.openleveldb ("test.db"); 
 
-     test.forEach(function(value, key){
-        ...
-     });
-     @endcode
-     */
+      Test.Foreach (function (value, key) { 
+         Em 
+      }); 
+      `` ` 
+      @param func enumeration back adjustment function*/
     forEach(Function func);
 
-    /*! @brief List key-value pairs in a range
-     @param from Minimum value of key, inclusive
-     @param to Maximum value of key, exclusive
-     @param func Callback function
+    /*! @Brief enumerated the key value between the key value between the from and to in the database 
 
-     Two arguments in callback function (value, key)
+      There are two parameters of the callback function, (Value, key) 
 
-     @code
-     var db = require("db");
-     var test = new db.openLevelDB("test.db");
+      `` `Javascript 
+      varb = request ("db"); 
+      var test = new db.openleveldb ("test.db"); 
 
-     test.between("aaa", "bbb", function(value, key){
-        ...
-     });
-     @endcode
-     */
+      test.between ("AAA", "BBB", Function (Value, Key) { 
+         Em 
+      }); 
+      `` ` 
+      @Param from the minimum key value of enumeration, contain this key value when enumerated 
+      @Param to enumerate the maximum key value, this key value is not included when enumerated 
+      @param func enumeration back adjustment function*/
     between(Buffer from, Buffer to, Function func);
 
-    /*! @brief Begin a transcation
-     @return Return a transcation object */
+    /*! @brief opens a transaction on the current database 
+      @Return Return to an open transaction object*/
     LevelDB begin();
 
-    /*! @brief Commit transcation */
+    /*! @brief Submit the current transaction*/
     commit();
 
-    /*! @brief Close transcation */
+    /*! @brief Turn off the current database connection or transaction*/
     close() async;
 };

@@ -1,75 +1,106 @@
+/*! @brief file path processing module 
 
-/*! @brief File path module
-
- To use it:
- @code
- var path = require('path');
- @endcode
- */
+  Quote method: 
+  `` `Javascript 
+  var Path = Require ('PATH'); 
+  `` `*/
 module path
 {
-    /*! @brief Normalize path
+    /*! @Brief standardized path, processing the father's directory and other information in the path 
 
-     @param path Original path
-     @return Return normalized path
-     */
+      @param Path given unprepared path 
+      @Return Return to the processing path*/
     static String normalize(String path);
 
-    /*! @brief Get file name in path, ignore extension with file has it
+    /*! @Brief query the file name in the path. If the extension is specified, the expansion name of the matching is automatically canceled 
 
-     @param path Original path
-     @param ext Given extension
-     @return Return file name
-     */
+      @param Path given the path of the query 
+      @Param EXT specifies the extension name. If there is a qualified extension in the file name, it will be automatically canceled 
+      @Return Return file name*/
     static String basename(String path, String ext = "");
 
-    /*! @brief Get file extension
+    /*! @Brief query the file extension in the path 
 
-     @param path Original path
-     @return Return file extension
-     */
+      @param Path given the path of the query 
+      @Return returned the expansion name*/
     static String extname(String path);
 
-    /*! @brief Get directory in path
+    /*! @brief Try to format an object into a path 
 
-     @param path Original path
-     @return Return directory
-     */
+      The parameters supported by PathObject are as follows: 
+      `` `Javascript 
+      {{ 
+         "root": "/", 
+         "DIR": "/A/B", 
+         "Base": "C.Ext", 
+         "EXT": ".ext", 
+         "name": "c" 
+      } 
+      `` ` 
+
+      @param Pathobject object 
+     
+      @Return Return the path after formatting*/
+    static String format(Object pathObject);
+
+    /*! @brief Analysis path as a path object 
+
+      @Param Path Class 
+      @Return Return to Pathobject object*/
+    static NObject parse(String path);
+
+    /*! @Brief query the directory path in the path 
+
+      @param Path given the path of the query 
+      @Return returns the path to the directory obtained by*/
     static String dirname(String path);
 
-    /*! @brief Get full path
+    /*! @Brief conversion to the given path is the full path 
 
-     @param path Original path
-     @return Return full path
-     */
+      @param Path given a path to a conversion 
+      @Return Return to the full path of conversion*/
     static String fullpath(String path);
 
-    /*! @brief Merge multiple paths to a single relative path
+    /*! @Brief recognizes the given path the absolute path 
 
-     @param ... One or more relative paths
-     @return Return new relative path
-     */
-    static String join(...);
+      @Param Path G given up path to identify 
+      @Return is the absolute path and returns true*/
+    static Boolean isAbsolute(String path);
 
-    /*! @brief Merge multiple paths to a single absolute path
+    /*! @Brief merged a series of paths to become a single path 
 
-     @param ... One or more relative paths
-     @return Return new absolute path
-     */
-    static String resolve(...);
+      @Param PS one or more related paths 
+      @Return returns the new path obtained*/
+    static String join(...ps);
 
-    /*! @brief returns an equivalent namespace-prefixed path for the given path.Only available on Windows.
-    see: https://msdn.microsoft.com/library/windows/desktop/aa365247(v=vs.85).aspx#namespaces
-     @param path given path.
-     @return new path.
-     */
+    /*! @Brief merged a series of paths to become an absolute path 
+
+      @Param PS one or more related paths 
+      @Return returns the new path obtained*/
+    static String resolve(...ps);
+
+    /*! @brief begging_from to the relative path 
+
+      @param_from source path 
+      @Param to target path 
+      @Return returned the relative path*/
+    static String relative(String _from, String to);
+
+    /*! @Brief convert to namespace-prefixed path. It is only effective in Windows and other systems return directly. 
+     See: https://msdn.microsoft.com/library/windows/desktop/aa365247 (v=vs.8).aspx#namespaces 
+      @Param Path given a given path. 
+      @Return returns the new path obtained*/
     static Value toNamespacedPath(Value path = undefined);
 
-    /*! @brief Get system directory separator, posix returns '/', windows returns  '\\'
-     */
+    /*! @Brief query the path segments of the current operating system, posix returns '/', Windows returns '\\'*/
     static readonly String sep;
 
-    /*! @brief Get system path delimiter, posix returns ':', windows returns ';'
-     */
+    /*! @brief query the multi -path combination character of the current operating system, POSIX returns ':', windows back ';'*/
     static readonly String delimiter;
+
+    /*! @brief posix implementation, see Path_POSIX*/
+    static readonly Object posix;
+
+    /*! @Brief Windows Realization, see path_win32*/
+    static readonly Object win32;
 };

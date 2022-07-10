@@ -1,97 +1,99 @@
+/*! @brief operating system and file system processing module 
 
-/*! @brief Operating system and file system module
-
-To use it:
- @code
- var os = require('os');
- @endcode
- */
+  Instructions: 
+  `` `Javascript 
+  var os = require ('OS'); 
+  `` `*/
 module os
 {
-    /*! @brief Get environment host name */
-    static readonly String hostname;
+    /*! @Brief Service Constructing Function Function, see service*/
+    static Service;
 
-    /*! @brief Get operating system name */
-    static readonly String type;
+    /*! @brief query the current operating environment host name 
+      @Return Return to the host name*/
+    static String hostname();
 
-    /*! @brief Get operating system version */
-    static readonly String version;
+    /*! @brief query the byte order of the current CPU 
+      @Return Return the byte order*/
+    static String endianness();
 
-    /*! @brief Get operating system architecture */
-    static readonly String arch;
+    /*! @brief query the current operating system name of the operating environment 
+      @Return Return system name*/
+    static String type();
 
-    /*! @brief Get operating system time zone */
+    /*! @brief query the current operating environment operating system version 
+      @Return Return to version information*/
+    static String release();
+
+    /*! @brief query the current user directory 
+      @Return Returns the directory string*/
+    static String homedir();
+
+    /*! @brief query the current CPU environment 
+      @Return Return the CPU type, the possible results are 'amd64', 'aRM', 'ARM64', 'IA32'*/
+    static String arch();
+
+    /*! @brief query running environment current time zone*/
     static readonly Integer timezone;
 
-    /*! @brief Get operating system time in seconds
-     @return Return time in integer
-    */
-    static Number uptime();
+    /*! @brief query the current operating environment ending logo, posix: \ "\ \ n \"; Windows: \ "\\ r \\ n \"*/
+    static readonly String EOL;
 
-    /*! @brief Get system load average, 1, 5 and 15 minutes
-     @return Return results array
-    */
+    /*! @brief query the operating environment for 1 minute, 5 minutes, 15 minutes average load 
+      @Return Return to an array containing three load data*/
     static Array loadavg();
 
-    /*! @brief Get system total memory in bytes
-     @return Return total memory
-    */
+    /*! @brief query the total memory of the operating environment, in bytes as a unit 
+      @Return Return to memory data*/
     static Long totalmem();
 
-    /*! @brief Get system free memory in bytes
-     @return Return free memory
-    */
+    /*! @Brief query the operating environment available memory, intevae -based units 
+      @Return Return to memory data*/
     static Long freemem();
 
-    /*! @brief Get system CPU number and information
-     @return Return CPU information array
-    */
-    static Array CPUInfo();
+    /*! @brief query the number and parameters of the current operating environment CPU and parameters 
+      @Return Return to an array containing the CPU parameter, each corresponding to a CPU*/
+    static Array cpus();
 
-    /*! @brief Get system CPU number
-     @return Return CPU number
-    */
-    static Integer CPUs();
+    /*! @brief query the number of CPUs of the current operating environment 
+      @Return Return to the number of CPUs*/
+    static Integer cpuNumbers();
 
-    /*! @brief Get system network information
-     @return Return network information
-    */
-    static Object networkInfo();
+    /*! @brief query the current operating environment temporary file directory 
+      @Return Return to the temporary file directory*/
+    static String tmpdir();
 
-    /*! @brief Parse or get system time
-     @param tmString Time format, default is query current time
-     @return Return javascript Date object
-     */
+    /*! @brief Return to the current effective execution user information 
+      @Param Options is used to explain the character code of the result string 
+      @Return currently effective execution user information*/
+    static Object userInfo(Object options = {});
+
+    /*! @brief query the current operating environment network information 
+      @Return Return to the network card information*/
+    static Object networkInterfaces();
+
+    /*! @brief query the printer information of the current host 
+      @Return Return to the printer information*/
+    static Array printerInfo();
+
+    /*! @brief Create an printer output object 
+      @param name printer name 
+      @Return Return to the printer output object*/
+    static BufferedStream openPrinter(String name) async;
+
+    /*! @brief query the current platform name 
+      @Return Return to the platform name, the possible results are 'darwin', 'freebsd', 'linux', or 'win32'*/
+    static String platform();
+
+    /*! @brief parsing time string or querying running environment current time 
+      @Param TMSTRING Time String, default, query the current time 
+      @Return Return JavaScript Date*/
     static Date time(String tmString = "");
 
-    /*! @brief Time calculation function, use part to indicate time
-     @param d Date object to calculate on
-     @param num Number to calculate
-     @param part Type to calculate, can be "year", "month", "day", "hour", "minute", "second"
-     @return Return javascript Date object
-     */
+    /*! @brief Time Calculation function, calculate time according to the specified part 
+      @param d specifies to calculate the Date object 
+      @param num specified the value of the operation 
+      @Param PART specified the time part of the operation, the receiving value is: "year", "month", "day", "house", "minute", "second" 
+      @Return Return JavaScript Date*/
     static Date dateAdd(Date d, Integer num, String part);
-
-    /*! @brief Get full path of current execution path */
-    static readonly String execPath;
-
-    /*! @brief Get current memory usage
-     @return Return memory usage
-
-     Usage includes:
-     @code
-     {
-       "rss": 8622080,
-       "heapTotal": 4083456,
-       "heapUsed": 1621800,
-       "nativeObjects": 122
-     }
-     @endcode
-     Notes:
-     - rss Physical memory being occupied by current process
-     - heapTotal Return v8 engine heap memory size
-     - heapUsed Return v8 engine heap memory size in use
-     - nativeObjects Return number of memory objects
-     */
-    static Object memoryUsage();
 };

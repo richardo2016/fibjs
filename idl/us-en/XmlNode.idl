@@ -1,147 +1,125 @@
-
-/*! @brief XmlNode object is fundamental data type of entire DOM
- */
+/*! @Brief XMLNODE object is the basic data type of the entire DOM*/
 interface XmlNode : object
 {
-    /*! @brief Get node type
+    /*! @brief Return to the node type of node 
 
-     Different nodeType returns different values:
-     - XmlElement: ELEMENT_NODE(1)
-     - XmlAttr: ATTRIBUTE_NODE(2)
-     - XmlText: TEXT_NODE(3)
-     - XmlCDATASection: CDATA_SECTION_NODE(4)
-     - XmlProcessingInstruction: PROCESSING_INSTRUCTION_NODE(7)
-     - XmlComment: COMMENT_NODE(8)
-     - XmlDocument: DOCUMENT_NODE(9)
-     - XmlDocumentType: DOCUMENT_TYPE_NODE(10)
-    */
+      Nodetype of different objects will return different values: 
+      -XMLELEMENT: Element_node (1) 
+      -XMLATTR: Attribute_node (2) 
+      -XmlText: Text_node (3) 
+      -Xmlcdatasection: cdata_section_node (4) 
+      -XmlProcessingInstruction: Processing_instruction_node (7) 
+      -XmlComment: Comments_node (8) 
+      -XMLDOCUMENT: DOCUMENT_NODE (9) 
+      -XMLDOCUMENTTYPE: DOCUMENT_TYPE_NODE (10)*/
     readonly Integer nodeType;
 
-    /*! @brief Get node name based on its type
+    /*! @brief Return to the name of the node, according to its type 
 
-     Different nodeName returns different values:
-     - XmlElement: element name
-     - XmlAttr: Attribute name
-     - XmlText: \#text
-     - XmlCDATASection: \#cdata-section
-     - XmlProcessingInstruction: Get specified target
-     - XmlComment: \#comment
-     - XmlDocument: \#document
-     - XmlDocumentType: doctype name
-    */
+      Nodenames of different objects return different values: 
+      -Xmlelement: Element name 
+      -XMLATTR: Attribute name 
+      -XmlText: \ #Text 
+      -Xmlcdatasection: \#cdata-section 
+      -XmlProcessingInstruction: Returns the specified target target 
+      -Xmlcomment: \ #Comment 
+      -Xmldocument: \ #document 
+      -XMLDOCUMENTTYPE: DOCTYPE Name*/
     readonly String nodeName;
 
-    /*! @brief Get node name based on its type
+    /*! @brief Return to the name of the node, according to its type 
 
-     Different nodeName returns different values:
-     - XmlElement: null
-     - XmlAttr: Attribute value
-     - XmlText: Node content
-     - XmlCDATASection: Node content
-     - XmlProcessingInstruction: Get specified data
-     - XmlComment: Comment
-     - XmlDocument: null
-     - XmlDocumentType: null
-    */
+      Nodenames of different objects return different values: 
+      -Xmlelement: null 
+      -XMLATTR: The value of the attribute 
+      -Xmltext: Node content 
+      -Xmlcdatasection: The content of the node 
+      -XmlProcessingInstruction: Return to the specified content data 
+      -Xmlcomment: Note text 
+      -Xmldocument: null 
+      -XMLDOCUMENTTYPE: NULL*/
     String nodeValue;
 
-    /*! @brief Get root element(XmlDocument)
-    */
+    /*! @Brief Return to the root of the node (XMLDOCUMENT object)*/
     readonly XmlDocument ownerDocument;
 
-    /*! @brief Get parent node
-    */
+    /*! @brief can return to the parent node of a node*/
     readonly XmlNode parentNode;
 
-    /*! @brief Check if node has child nodes
-     @return Return true if there are child nodes, false otherwise
-    */
+    /*! @brief query whether there are sub -nodes 
+      @Return returns true when any sub -node is existed, otherwise it will return false*/
     Boolean hasChildNodes();
 
-    /*! @brief Get child node list
-    */
+    /*! @Brief Return to the node list of the sub -node of the specified node*/
     readonly XmlNodeList childNodes;
 
-    /*! @brief Get first child node
-    */
+    /*! @Brief Back to the first sub -node of the node*/
     readonly XmlNode firstChild;
 
-    /*! @brief Get last child node
-    */
+    /*! @Brief Return to the last sub -node of the node*/
     readonly XmlNode lastChild;
 
-    /*! @brief Get previous sibling node, null if not exists
-    */
+    /*! @Brief returned to a node (at the same tree level) before a node. If there is no such node, then the attribute returns NULL*/
     readonly XmlNode previousSibling;
 
-    /*! @brief Get next sibling node, null if not exists
-    */
+    /*! @Brief returns a node (at the same tree level) after returning a certain element. If there is no node, the attribute returns NULL*/
     readonly XmlNode nextSibling;
 
-    /*! @brief Normalize adjacent node text and delete nodes with empty text
+    /*! @Brief merged with adjacent Text nodes and delete the empty Text node 
 
-    This method iterates all child nodes of current node, and deletes all empty text nodes. It's very good for simplify document tree.
-    */
+     This method will traverse all the descendants of the current node. By deleting the empty Text node, all adjacent Text nodes have been merged to standardize documents. This method is useful for simplifying the structure of the document tree after insertion or deleting the node.*/
     normalize();
 
-    /*! @brief Create clone of node
+    /*! @Brief Create a precise copy of the specified node 
 
-     This method clone if calling node, it clones all child nodes if pass with true. Otherwise, it only clones current node. Returned node does not belong to any document tree, which means its parentNode is NULL. When cloned node is an Element, all of it attributes will be cloned as well.
-     @param deep Indicates whether to clone all child nodes or not
-     @return Return cloned node
-    */
+      This method will be copied and returned to the copy of the node that calls it. If the parameter passed to it is True, it will also recurs all the descendants nodes of the current node. Otherwise, it only copys the current node. The returned node does not belong to the document tree, and its Parentnode attribute is null. When the Element node is copied, all its attributes will be copied. 
+      Whether the @Param Deep is deeply copied, when it is true, all sub -nodes of the clone node of the cloning node will be 
+      @Return Return to the node copying*/
     XmlNode cloneNode(Boolean deep = true);
 
-    /*! @brief Lookup prefix of given namespace URI
-     @param namespaceURI Namespace URI
-     @return Return prefix, NULL when not found
-    */
+    /*! @brief returns the prefix of the specified name space URI on the current node 
+      @param namespaceuri specifies the matching name space URI 
+      @Return Returns the matching prefix, not matched to return NULL*/
     String lookupPrefix(String namespaceURI);
 
-    /*! @brief Lookup namespace URI of given prefix
-     @param prefix Prefix to lookup
-     @return Return namespace URI, NULL when not found
-    */
+    /*! @Brief returns the name space of the specified prefixed on the current node 
+      @param Prefix specified the matching prefix 
+      @Return Returns the matched naming space URI, not matched to return NULL*/
     String lookupNamespaceURI(String prefix);
 
-    /*! @brief Insert a child node before current ones
+    /*! @brief Insert a new sub -node before the existing child node 
 
-     If document tree already has newChild, it will be replaced. Node from(or created b) a document cannot be inserted to another document. In other words, newChild's ownerDocument must be sames as current node.
-     @param newChild New child node
-     @param refChild Reference child node
-     @return Return new child node
-    */
+      If newChild already exists in the document tree, it will be deleted from the document tree, and then reinsert its new position. Nodes (or nodes created by one document) from one document cannot insert another document. In other words, NewChild's OWNERDOCUMENT attributes must be the same as the OwnerDocument attributes of the current node. 
+      @param NewChild insert new nodes 
+      @Param Refchild inserted a new node in front of this node 
+      @Return Return to the new sub -node*/
     XmlNode insertBefore(XmlNode newChild, XmlNode refChild);
 
-    /*! @brief Insert a child node after current ones
+    /*! @brief Insert a new child node after the existing sub -node 
 
-     If document tree already has newChild, it will be replaced. Node from(or created b) a document cannot be inserted to another document. In other words, newChild's ownerDocument must be sames as current node.
-     @param newChild New child node
-     @param refChild Reference child node
-     @return Return new child node
-    */
+      If newChild already exists in the document tree, it will be deleted from the document tree, and then reinsert its new position. Nodes (or nodes created by one document) from one document cannot insert another document. In other words, NewChild's OWNERDOCUMENT attributes must be the same as the OwnerDocument attributes of the current node. 
+      @param NewChild insert new nodes 
+      @Param Refchild inserted a new node after this node 
+      @Return Return to the new sub -node*/
     XmlNode insertAfter(XmlNode newChild, XmlNode refChild);
 
-    /*! @brief Append a child node
+    /*! @Brief to the end of the node sub -node list to add a new child node 
 
-     If document tree already has newChild, it will be replaced. Node from(or created b) a document cannot be inserted to another document. In other words, newChild's ownerDocument must be sames as current node.
-     @param newChild New child node
-     @return Return new child node
-    */
+      If newChild already exists in the document tree, it will be deleted from the document tree, and then reinsert its new position. Nodes (or nodes created by one document) from one document cannot insert another document. In other words, NewChild's OWNERDOCUMENT attributes must be the same as the OwnerDocument attributes of the current node. 
+      @Param Newchild specified the added node 
+      @Return Return to this new sub -node*/
     XmlNode appendChild(XmlNode newChild);
 
-    /*! @brief Replace a child node to another
+    /*! @brief replaced a sub -node with another 
 
-     If document tree already has newChild, it will be replaced. Node from(or created b) a document cannot be inserted to another document. In other words, newChild's ownerDocument must be sames as current node.
-     @param newChild New child node
-     @param oldChild Old child node
-     @return Return new child node when succeed, NULL otherwise
-    */
+      If newChild already exists in the document tree, it will be deleted from the document tree, and then reinsert its new position. Nodes (or nodes created by one document) from one document cannot insert another document. In other words, NewChild's OWNERDOCUMENT attributes must be the same as the OwnerDocument attributes of the current node. 
+      @param newchild specifies new nodes 
+      @param OldChild specified the replaced node 
+      If @Return is successful, this method can return to the replaced node. If the replacement fails, it will return NULL*/
     XmlNode replaceChild(XmlNode newChild, XmlNode oldChild);
 
-    /*! @brief Remove a child node
-     @param oldChild Child node to remove
-     @return Return removed child node when succeed, NULL otherwise
-    */
+    /*! @Brief Delete a node from the sub -node list 
+      @param OldChild specifies the deleted nodes 
+      @Return If the deletion is successful, this method can return the deleted node. If it fails, return NULL*/
     XmlNode removeChild(XmlNode oldChild);
 };

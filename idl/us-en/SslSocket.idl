@@ -1,55 +1,59 @@
+/*! @brief SSL network socket interface object 
 
-/*! @brief ssl netwrok socket interface
-
- SslSocket belongs to ssl module, to create it:
- \code
- var s = new ssl.Socket();
- \endcode
- */
+  SSLSOCKET belongs to the SSL module, creating method 
+  `` `Javascript 
+  var s = new ssl.socket (); 
+  `` `*/
 interface SslSocket : Stream
 {
-    /*! @brief SslSocket constructor
-      @param certs CA list with following format:
-        @code
-        [
-            {
-                crt: [X509Cert object],
-                key: [PKey object]
-            },
-            {
-                crt: [X509Cert object],
-                key: [PKey object]
-            }
-        ]
-        @endcode
-     */
+    /*! @Brief SSLSOCKET constructor to create a new SSLSOCKET object 
+
+     Certs format: 
+     `` `Javascript 
+     
+         {{ 
+             name: "fibjs.org", 
+             CRT: [X509cert Object], 
+             Key: [pKEY Object] 
+         }, 
+         {{ 
+             name: "*.fibjs.org", 
+             CRT: [X509cert Object], 
+             Key: [pKEY Object] 
+         } 
+     ] 
+     `` ` 
+     @Param Certs server certificate list*/
     SslSocket(Array certs = []);
 
-    /*! @brief SslSocket constructor
-      @param crt X509Cert certificate
-      @param key PKey private key
-     */
+    /*! @Brief SSLSOCKET constructor to create a new SSLSOCKET object 
+     @Param CRT X509cert certificate for client verification server 
+     @Param KEY PKEY private key, used to talk to the client*/
     SslSocket(X509Cert crt, PKey key);
 
-    /*! @brief Set verification mode, default is VERIFY_REQUIRED */
+    /*! @brief Set the certificate verification mode, the default is Verify_required*/
     Integer verification;
 
-    /*! @brief Certificate chain, when client mode is connect calls ssl.ca, server mode accept generate SslSocket uses SslSocket's ca*/
+    /*! @Brief certificate chain, the client mode is automatically referenced by SSL.CA when the client mode is automatically referenced by SSLSOCKET.*/
     readonly X509Cert ca;
 
-    /*! @brief Peer certificate */
+    /*! @brief connect to the other party's certificate*/
     readonly X509Cert peerCert;
 
-    /*! @brief Connect with ssl in client mode in existence connection
-      @param s Given connection
-      @param server_name Server name, empty to use default
-      @return Return 0 and connected, and non-zero when fail to verify certificate, see ssl module for error details
-    */
+    /*! @Brief connected host name*/
+    readonly String hostname;
+
+    /*! @brief query message SSL's lower stream object*/
+    readonly Stream stream;
+
+    /*! @brief connect SSL connection on a given connection, client mode 
+     @Param S Given the underlying connection 
+     @param Server_name specifies the server name, which is capable 
+     The @Return connection is successfully returned to 0. When the certificate is optional verification, the verification is unsuccessful and returned to the non -0. See the SSL module in detail*/
     Integer connect(Stream s, String server_name = "") async;
 
-    /*! @brief Connect with ssl and generate new SslSocket connection
-      @param s Given connection
-      @return Return new SslSocket
-     */
+    /*! @brief receives a SSL connection on a given connection and generates a new SSLSOCKET 
+     @Param S Given the underlying connection 
+     @Return Return to the newly established SSLSOCKET object*/
     SslSocket accept(Stream s) async;
 };

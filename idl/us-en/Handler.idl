@@ -1,9 +1,24 @@
-/*! @brief Meassage Handler Interface */
+/*! @brief message processor interface*/
 interface Handler : object
 {
-    /*! @brief handle a message or an object
-     @param v specify the message or object to be handled
-     @return return the handler of the next step
-     */
+    /*! @brief Construct a message processor chain processing object 
+      @Param HDLRS processor array*/
+    Handler(Array hdlrs);
+
+    /*! @brief Create a message processor routing object 
+      @param map initialization routing parameters*/
+    Handler(Object map);
+
+    /*! @brief Create a JavaSVript message processor 
+      @Param HDLR JavaScript processor function*/
+    Handler(Function hdlr);
+
+    /*! @brief construct a Filehandler or httprepeater 
+      @Param HDLR processor's address parameters*/
+    Handler(String hdlr);
+
+    /*! @brief handle a message or object 
+      @param v Specified message or object 
+      @Return Return to the next processor*/
     Handler invoke(object v) async;
 };

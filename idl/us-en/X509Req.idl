@@ -1,72 +1,72 @@
+/*! @brief x509 certificate request object 
 
-/*! @brief x509 certificate request object
-
- X509Req object belongs to crypto module, to create it:
- @code
- var k = new crypto.X509Req();
- @endcode
- */
+  X509Req object belongs to the Crypto module, created: 
+  `` `Javascript 
+  var k = new crypto.x509Req (); 
+  `` `*/
 interface X509Req : object
 {
-    /*! @brief X509Req constructor */
+    /*! @Brief X509Req constructor*/
     X509Req();
 
-    /*! @brief X509Req constructor with given information
+    /*! @Brief X509Req constructor, create a certificate request according to the given information 
+      @Param Subject The theme of the certificate can be distinguished by the name 
+      @Param Key Certificate Public Key 
+      @Param Hash Certificate Abstract Algorithm, the default is Hash.SHA256*/
+    X509Req(String subject, PKey key, Integer hash = hash.SHA256);
 
-     @param subject Subject of certificate
-     @param key Public key
-     @param hash Hash algorithm, default is hash.SHA1
-    */
-    X509Req(String subject, PKey key, Integer hash = hash.SHA1);
+    /*! @brief x509Req constructor, load a deer format certificate request 
+      @param derreq der format certificate request*/
+    X509Req(Buffer derReq);
 
-    /*! @brief Load a DER format certificate
-     @param derReq DER format certificate
-    */
-    load(Buffer derReq);
+    /*! @brief x509Req constructor, load a PEM format certificate request 
+      @Param Pemreq der format certificate request*/
+    X509Req(String pemReq);
 
-    /*! @brief Load a PEM format certificate
-     @param pemReq PEM format certificate
-    */
-    load(String pemReq);
+    /*! @brief Load a deer format certificate request 
+      @param derreq der format certificate request*/
+    import(Buffer derReq);
 
-    /*! @brief Load a PEM format certificate, can be called multiple times
-     @param filename Certificate file name
-    */
-    loadFile(String filename);
+    /*! @brief Load a PEM format certificate request 
+      @Param Pemreq Pem format certificate request*/
+    import(String pemReq);
 
-    /*! @brief Export current certificate in PRM format
-     @return Return current certificate in PRM format
-    */
-    String exportPem();
+    /*! @brief Return to PEM format code requested by the current certificate 
+      @Return currently requested PEM format encoding*/
+    String pem();
 
-    /*! @brief Export current certificate in DER format
-     @return Return current certificate in DER format
-    */
-    Buffer exportDer();
+    /*! @Brief Return to the DER format code requested by the current certificate 
+      @Return currently requested DER format encoding*/
+    Buffer der();
 
-    /*! @brief Sign current certificate
+    /*! @brief Signature The current certificate request is a formal certificate 
 
-     @param issuer Issuer of certificate
-     @param key Private key
-     @param opts Other options
-        It contains following fields:
-        @code
-        {
-            ca: false,      // Use CA certificate, default is false
-            pathlen: -1,    // Path length, default is -1
-            notBefore: "",  // Start time, default is now
-            notAfter: "",   // Expired time, default is a year
-            usage: "",      // Usage, can be one or more of digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment, keyAgreement, keyCertSign, or cRLSign
-            type: ""        // Netscape type, either client, server, email, objsign, reserved, sslCA, emailCA, or objCA
-        }
-        @endcode
-     @return Return signed certificate
-     */
+     Opts receiving fields are as follows: 
+     `` `Javascript 
+     {{ 
+         CA: false, // certificate is CA, default is false 
+         Pathlen: -1, // Certificate depth, default to -1 
+         NotBeFore: "", // Certificate effective time, default is the current time 
+         Noters: "", // The failure time of the certificate, the default is notBeFore one year after one year 
+         USAGE: "", // Certificate Scope, Receive: DIGITALSIGNATURE, NONREPUDIATION, KeyenCipherment, DataNCIPHERMENT, KeyAgreement, KeycertSign, CRLSIGN, CRLSIGN 
+         Type: "" // Certificate NetScape certificate type, receiving: client, server, email, objsign, reserved, sslca, emailca, objca, objca 
+     } 
+     `` ` 
+      @Param issuer signature agency 
+      @Param KEY's private key 
+      @param Opts other optional parameters 
+      @Return Return to the signature official certificate*/
     X509Cert sign(String issuer, PKey key, Object opts = {}) async;
 
-    /*! @brief Get subject of certificate */
+    /*! @brief Get the theme of the certificate to distinguish the name*/
     readonly String subject;
 
-    /*! @brief Get public key of certificate */
+    /*! @brief Get the certificate of the certificate*/
     readonly PKey publicKey;
+
+    /*! @Brief Obtaining Certificate Summary Algorithm*/
+    readonly Integer sig_md;
+
+    /*! @Brief obtained the signature algorithm of the certificate*/
+    readonly Integer sig_pk;
 };

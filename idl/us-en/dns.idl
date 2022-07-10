@@ -1,0 +1,18 @@
+/*! @brief DNS domain name query module 
+
+  Basic module, reference method: 
+  `` `Javascript 
+  var dns = request ('dns'); 
+  `` `*/
+module dns
+{
+    /*! @brief query the address of the given host name 
+      @param name designated host name 
+      @Return Return to query IP string array*/
+    static NArray resolve(String name) async;
+
+    /*! @brief query the address of the given host name 
+      @param name designated host name 
+      @Return Return to query IP string*/
+    static String lookup(String name) async;
+};

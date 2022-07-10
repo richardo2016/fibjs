@@ -1,0 +1,12 @@
+/*! @Brief Performance basic performance monitoring module 
+
+  Quote method: 
+  `` `Javascript 
+  var polition = reques ('perf_hooks'). Performance; 
+  `` `*/
+module performance
+{
+    /*! @brief query the current process time 
+      @Return Return to the current process time*/
+    static Number now();
+};

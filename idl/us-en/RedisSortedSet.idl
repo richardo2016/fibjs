@@ -1,77 +1,75 @@
+/*! @Brief Redis database client SortedSet object, this object is a client that contains specified key, only the method of calling its method can operate the database of the database 
 
-/*! @brief Redis database SortedSet object, it contains client of given key and has to operate it with database
-
- Used for Redis SortedSet object, to use it:
- @code
- var db = require("db");
- var rdb = new db.openRedis("redis-server");
- var set = rdb.getSortedSet("test");
- @endcode
- */
+  Sortedset objects used to operate Redis, create methods: 
+  `` `Javascript 
+  varb = request ("db"); 
+  var rdb = new db.openredis ("redis-server"); 
+  var set = rdb.getsortedset ("test"); 
+  `` `*/
 interface RedisSortedSet : object
 {
-    /*! @brief Add one or more element to ordered collection
-     @param sms Member/score to add
-     @return Return number of newly added elements, exclusive updated elements */
+    /*! @Brief adds one or more MEMBER elements and its score value to the prefix 
+      @Param SMS specifies the MEMBER/Score object to be added 
+      The number of new members that are successfully added in @Return, excluding those updated, existing members*/
     Integer add(Object sms);
 
-    /*! @brief Add one or more elements to ordered collection
-     @param ... Member/scores to add
-     @return Return number of newly added elements, exclusive updated elements */
-    Integer add(...);
+    /*! @Brief adds one or more MEMBER elements and its score value to the prefix 
+      @Param SMS specify the MEMBER/Score list to be added 
+      The number of new members that are successfully added in @Return, excluding those updated, existing members*/
+    Integer add(...sms);
 
-    /*! @brief Query score of member
-     @param member Member to query
-     @return Return score of member in string format */
+    /*! @brief returns an orderly concentration, the score value of Member Member 
+      @param Member specifies the MEMBER that to query 
+      The score value of the member of the @Return Member member, expressed in the form of a string*/
     Buffer score(Buffer member);
 
-    /*! @brief Increase number to score of member
-     @param member Member to change
-     @param num Number to increase
-     @return Return new score value in string format */
+    /*! @brief is the score value of Member, a member of the Elief, adds an incremental NUM 
+      @param Member specifies the MEMBER that to be modified 
+      @param num specifies the value to be added 
+      The new score value of the member of the @Return Member, represented in the form of a string*/
     Buffer incr(Buffer member, Long num = 1);
 
-    /*! @brief Remove one or more members
-     @param members Array of elements
-     @return Return removed elements, exlusive ignored elements */
+    /*! @brief Remove one or more Member elements in an orderly concentration 
+      @param Member specifies the element array to be removed 
+      The number of @Return to be successfully removed, excluding the neglected elements*/
     Integer remove(Array members);
 
-    /*! @brief Remove one or more members
-     @param ... List of elements
-     @return Return removed elements, exlusive ignored elements */
-    Integer remove(...);
+    /*! @brief Remove one or more Member elements in an orderly concentration 
+      @Param Member specifies the list of elements to be removed 
+      The number of @Return to be successfully removed, excluding the neglected elements*/
+    Integer remove(...members);
 
-    /*! @brief Return number of elements
-     @return Return length of collection */
+    /*! @Brief returns the number of orderly concentrated elements 
+      @Return Return to the length of the upgrade*/
     Integer len();
 
-    /*! @brief Count number of elements whose score between min and max inclusively
-     @param min Minimum value of score
-     @param max Maximum value of score
-     @return Return number of elements */
+    /*! @Brief returns an orderly concentration, the number of score values between min and max (default includes the number of SCORE values equal to min or max) 
+      @param min Steller SCORE 
+      @Param Max specified the largest score of statistics 
+      The number of members between the @Return score value between the min and MAX*/
     Integer count(Integer min, Integer max);
 
-    /*! @brief Returs elements in given range and ordered increasingly
-     @param start Start index, 0 is the first one, -1 is the last one
-     @param stop End index, 0 is the first one, -1 is the last one
-     @param withScores Indicates whether inclusive or not
-     @return Return range of elements */
-    List range(Integer start, Integer stop, Boolean withScores = false);
+    /*! @Brief returns an orderly concentration, and the position of the members in the specified interval is increasing (from small to large) to sort by the SCORE value (from small to large) 
+      @param Start specifies the initial setting of the query, 0 indicates the first element, -1 indicates the last element 
+      @param Stop specifies the end of the query, 0 indicates the first element, -1 indicates the last element 
+      @param withScores specifies whether the score is included in the results 
+      @Return In the specified interval, a list of prefabricated members with SCORE values (optional)*/
+    NArray range(Integer start, Integer stop, Boolean withScores = false);
 
-    /*! @brief Returs elements in given range and ordered decreasingly
-     @param start Start index, 0 is the first one, -1 is the last one
-     @param stop End index, 0 is the first one, -1 is the last one
-     @param withScores Indicates whether inclusive or not
-     @return Return range of elements */
-    List rangeRev(Integer start, Integer stop, Boolean withScores = false);
+    /*! @Brief returns an orderly concentration, and the position of the members in the specified interval is sorted by the SCORE value (from large to small) 
+      @param Start specifies the initial setting of the query, 0 indicates the first element, -1 indicates the last element 
+      @param Stop specifies the end of the query, 0 indicates the first element, -1 indicates the last element 
+      @param withScores specifies whether the score is included in the results 
+      @Return In the specified interval, a list of prefabricated members with SCORE values (optional)*/
+    NArray rangeRev(Integer start, Integer stop, Boolean withScores = false);
 
-    /*! @brief Rank for member by score and ordered increasingly
-     @param member Member to query
-     @return Return ranked member, return nil if memeber is in ordered collection */
+    /*! @Brief orderly concentrated member MEMBER ranking. Among them, the prelude members are arranged in the order of the SCORE value (from small to large) 
+      @param Member specifies the MEMBER that to query 
+      @Return Member If Member is a member of the Elimination Key and returns the MEMBER ranking. If MEMBER is not a member of the upgrade key, return NIL*/
     Integer rank(Buffer member);
 
-    /*! @brief Rank for member by score and ordered decreasingly
-     @param member Member to query
-     @return Return ranked member, return nil if memeber is in ordered collection */
+    /*! @Brief orderly concentrated member MEMBER ranking. Among them, the prelude members are arranged in order of decreased SCORE value (from large to small) 
+      @param Member specifies the MEMBER that to query 
+      @Return Member If Member is a member of the Elimination Key and returns the MEMBER ranking. If MEMBER is not a member of the upgrade key, return NIL*/
     Integer rankRev(Buffer member);
 };

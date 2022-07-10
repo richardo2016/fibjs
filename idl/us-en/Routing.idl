@@ -1,59 +1,200 @@
-/*! @brief Message handler router
+/*! @brief message processor routing object
 
- Match router object by rules, and pass a handler to it. Newer rules match first. To create it:
- @code
- var routing = new mq.Routing({
-   "^/func1(/.*)$": func1,
-   "^/func2(/.*)$": func2
- });
- @endcode
- Match with regular expression in value, and sub-item save to params:
- @code
- var routing = new mq.Routing({
-   "^/func1(/([0-9]+)/([0-9]+)\.html)$": func1,
- });
- @endcode
- To match "/func1/123/456.html", value == "/123/456.html", params == ["123", "456"];
+ The routing object is the core object of the HTTP message processing. The server matches the URL and Method according to the settings of the routing, and forwards the HTTP message to the corresponding processor to complete different transactions.
 
- If no sub-item in result, value and params are empty:
- @code
- var routing = new mq.Routing({
-   "^/func1/[0-9]+/[0-9]+\.html$": func1,
- });
- @endcode
- To match "/func1/123/456.html", value == "", params == [];
+ A simple route can be provided directly in the form of JSON objects, such as:
+ `` `Javascript
+ var http = request ('http');
 
- If result has more than one first-level sub-items, value is empty, and params are first-level sub-items:
- @code
- var routing = new mq.Routing({
-   "^/func1/([0-9]+)/([0-9]+)\.html$": func1,
+ var svr = new http.server (8080, {
+     '/': R => R.Response.write ('HOME'),
+     '/Help': R => R.Response.write ('Help')
  });
- @endcode
- To match "/func1/123/456.html", value == "", params == ["123", "456"];
 
- If there is only one sub-item and no more lower level items, value and params both become sub-items of this item:
- @code
- var routing = new mq.Routing({
-   "^/func1/([0-9]+)/[0-9]+\.html$": func1,
+ svr.start ();
+ `` `
+ If you need more complicated routing customization, you can create the Routing object by yourself and deal with the routing strategy as needed:
+ `` `Javascript
+ var http = request ('http');
+ var mq = reques ('mq');
+
+ var app = new mq.routing ();
+
+ app.get ('/', R => R.Response.write ('HOME'));
+ app.get ('/help', r => r.Response.write ('help'));
+
+ app.post ('/Help', R => R.Response.write ('Post a Help.'));
+
+ app.get ('/Home/: User', (R, User) => R.Response.write ('hello' + user));
+
+ app.get ('/user/: ID (\\ d +)', (R, ID) => R.Response.write ('get' + id));
+
+ app.get ('/actions', {
+     '/run': r => r.Response.write ('running'),
+     '/Sleep': R => R.Response.write ('Sleeping'),
+     '(.*)': r => r.Response.write ('......')
  });
- @endcode
- To match "/func1/123/456.html", value == "123", params == ["123"];
- */
-interface Routing: Handler
+
+ var svr = new http.server (8080, app);
+ svr.start ();
+ `` `
+ The route object matchs the message according to the set rules, and passes the message to the first processor that meets the rules. The routing rules that are later added are preferred. Create method:
+ `` `Javascript
+ var calling = new mq.routing ({{
+   "^/func1 (/.*) $": Func1, Func1,
+   "^/func2 (/.*) $": Func2
+ });
+ `` `
+ The value attribute of the project to modify the message in a regular expression, and the Params attribute of the sub -item deposit message. E.g:
+ `` `Javascript
+ var calling = new mq.routing ({{
+   "^/func1 (/([0-9]+)/([0-9]+) \. html) $": func1,
+ });
+ `` `
+ After matching the message "/func1/123/456.html", value == "/123/456.html",params == [" 123 "," 456 "];
+
+ If there is no sub -item of the matching result, the value is empty and params is empty. E.g:
+ `` `Javascript
+ var calling = new mq.routing ({{
+   "^/func1/[0-9]+/[0-9]+\. html $": func1,
+ });
+ `` `
+ After matching the message "/func1/123/456.html", value == "", params == [];
+
+ If there are multiple sub -items in the first level of the matching result, the value is empty, and Params is the first -level sub -item. E.g:
+ `` `Javascript
+ var calling = new mq.routing ({{
+   "^/func1/([0-9]+)/([0-9]+) \. html $": func1,
+ });
+ `` `
+ After matching the message "/func1/123/456.html", value == "", params == ["123", "456"];
+
+ If the result is only one sub -item and no subordinate sub -item, both value and params are this sub -item. E.g:
+ `` `Javascript
+ var calling = new mq.routing ({{
+   "^/func1/([0-9]+)/[0-9]+\. html $": func1,
+ });
+ `` `
+ After matching the message "/func1/123/456.html", value == "123", params == ["123"];*/
+interface Routing : Handler
 {
-    /*! @brief Create a routing handler
-     @param map Initial params
-     */
-    Routing(Object map);
+    /*! @brief Create a message processor routing object 
+    @param map initialization routing parameters*/
+    Routing(Object map = {});
 
-    /*! @brief Append a group of rules
-     @param map Rules
-     */
-    append(Object map);
+    /*! @brief Create a message processor routing object 
+    @Param Method specifies the http request method, "*" accept all methods 
+    @param map initialization routing parameters*/
+    Routing(String method, Object map);
 
-    /*! @brief Append a rule
-     @param pattern Routing pattern
-     @param hdlr Built-in handler, handle function or javascript message mapping object, see mq.jsHandler
-     */
-    append(String pattern, Value hdlr);
+    /*! @brief adds rules from existing routing objects, and the original routing will be cleared after adding 
+    @Param Route has initialized route objects 
+    @Return Return the routing object itself*/
+    Routing append(Routing route);
+
+    /*! @brief add a set of routing rules 
+    @param map routing parameters 
+    @Return Return the routing object itself*/
+    Routing append(Object map);
+
+    /*! @Brief Add a routing rule 
+    @Param Pattern Message Matching Format 
+    @Param HDLR built -in message processor, processing function, chain processing array, routing object, see mq.handler for details 
+    @Return Return the routing object itself*/
+    Routing append(String pattern, Handler hdlr);
+
+    /*! @Brief Add a routing rule 
+    @Param Method specifies the http request method, "*" accepts all methods, "host" specifies the virtual domain name 
+    @Param Pattern Message Matching Format 
+    @Param HDLR built -in message processor, processing function, chain processing array, routing object, see mq.handler for details 
+    @Return Return the routing object itself*/
+    Routing append(String method, String pattern, Handler hdlr);
+
+    /*! @brief adds a set of routing rules for HTTP domain names 
+    @param map routing parameters 
+    @Return Return the routing object itself*/
+    Routing host(Object map);
+
+    /*! @brief adds a routing rule that accepts HTTP domain names 
+    @Param Pattern Message Matching Format 
+    @Param HDLR built -in message processor, processing function, chain processing array, routing object, see mq.handler for details 
+    @Return Return the routing object itself*/
+    Routing host(String pattern, Handler hdlr);
+
+    /*! @brief adds a set of routing rules to accept all HTTP methods 
+    @param map routing parameters 
+    @Return Return the routing object itself*/
+    Routing all(Object map);
+
+    /*! @brief adds a routing rule to accept all HTTP methods 
+    @Param Pattern Message Matching Format 
+    @Param HDLR built -in message processor, processing function, chain processing array, routing object, see mq.handler for details 
+    @Return Return the routing object itself*/
+    Routing all(String pattern, Handler hdlr);
+
+    /*! @brief add a set of get method routing rules 
+    @param map routing parameters 
+    @Return Return the routing object itself*/
+    Routing get(Object map);
+
+    /*! @brief adds a routing rule for accepting the http get method 
+    @Param Pattern Message Matching Format 
+    @Param HDLR built -in message processor, processing function, chain processing array, routing object, see mq.handler for details 
+    @Return Return the routing object itself*/
+    Routing get(String pattern, Handler hdlr);
+
+    /*! @brief adds a set of http post method route rules 
+    @param map routing parameters 
+    @Return Return the routing object itself*/
+    Routing post(Object map);
+
+    /*! @brief adds a routing rule for accepting the http post method 
+    @Param Pattern Message Matching Format 
+    @Param HDLR built -in message processor, processing function, chain processing array, routing object, see mq.handler for details 
+    @Return Return the routing object itself*/
+    Routing post(String pattern, Handler hdlr);
+
+    /*! @brief adds a set of HTTP Delete Method Routing Routing 
+    @param map routing parameters 
+    @Return Return the routing object itself*/
+    Routing del(Object map);
+
+    /*! @brief adds a routing rule for accepting the http delete method 
+    @Param Pattern Message Matching Format 
+    @Param HDLR built -in message processor, processing function, chain processing array, routing object, see mq.handler for details 
+    @Return Return the routing object itself*/
+    Routing del(String pattern, Handler hdlr);
+
+    /*! @brief add a set of PUT method routing rules 
+    @param map routing parameters 
+    @Return Return the routing object itself*/
+    Routing put(Object map);
+
+    /*! @brief adds a routing rule for accepting the http put method 
+    @Param Pattern Message Matching Format 
+    @Param HDLR built -in message processor, processing function, chain processing array, routing object, see mq.handler for details 
+    @Return Return the routing object itself*/
+    Routing put(String pattern, Handler hdlr);
+
+    /*! @brief adds a set of Patch method routing rules 
+    @param map routing parameters 
+    @Return Return the routing object itself*/
+    Routing patch(Object map);
+
+    /*! @brief adds a routing rule for accepting the HTTP Patch method 
+    @Param Pattern Message Matching Format 
+    @Param HDLR built -in message processor, processing function, chain processing array, routing object, see mq.handler for details 
+    @Return Return the routing object itself*/
+    Routing patch(String pattern, Handler hdlr);
+
+    /*! @Brief add a set of Find method routing rules 
+    @param map routing parameters 
+    @Return Return the routing object itself*/
+    Routing find(Object map);
+
+    /*! @brief adds a routing rule for accepting the http find method 
+    @Param Pattern Message Matching Format 
+    @Param HDLR built -in message processor, processing function, chain processing array, routing object, see mq.handler for details 
+    @Return Return the routing object itself*/
+    Routing find(String pattern, Handler hdlr);
 };

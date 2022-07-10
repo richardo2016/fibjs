@@ -1,30 +1,26 @@
-
-/*! @brief HeapSnapshot record the state of the JS heap at some moment. */
+/*! @Brief Heapsnapshots recorded JS stacked at a certain moment*/
 interface HeapSnapshot : object
 {
-    /*! @brief Compare with the specified snapshot.
-     @param before The snapshot need to be compared.
-     @return Return the difference between two snapshot.
-     */
+    /*! @brief and specified heap snapshot for comparison 
+      @Param Before to compare the pile of snapshots 
+      @Return Return to the comparison of the stacking snapshot*/
     Object diff(HeapSnapshot before);
 
-    /*! @brief Get the HeapGraphNode with specified ID.
-     @param id Number, ID
-     @return Returns a HeapGraphNode by its id.
-     */
+    /*! @Brief obtains the pile view node according to the ID 
+      @param ID Node ID 
+      @Return Return to the obtained pile view node*/
     HeapGraphNode getNodeById(Integer id);
 
-    /*! @brief Save HeapSnapshot by the specified name.
-     @param fname The name of HeapSnapshot.
-    */
+    /*! @Brief save heapsnapshot according to the specified name 
+      @param FNAME snapshot name*/
     save(String fname) async;
 
-    /*! @brief Date information. */
+    /*! @brief Time Information*/
     readonly Date time;
 
-    /*! @brief The root node of the HeapSnapshots. */
+    /*! @Brief Back Node*/
     readonly HeapGraphNode root;
 
-    /*! @brief HeapSnapshots's node list */
-    readonly List nodes;
+    /*! @Brief Packing View Specket Composition List*/
+    readonly NArray nodes;
 };

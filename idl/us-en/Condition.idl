@@ -1,60 +1,57 @@
-/*! @brief Condition variable object
+/*! @brief condition variable object
 
- Condition variable that used the global variables is a synchronization mechanism between fiber, always including two actions:
-  1) one fiber waiting for a condition be set, at the same time will hang themselves;
-  2) another fiber set the condition, and notify the waiting fiber continue.
+ Condition variables are a mechanism that uses global variables shared by fibrous lines, mainly including two actions: two actions:
+ 1) A thread is waiting for a certain condition to be established, and hang itself;
+ 2) Another thread enables the conditions and notify the waiting fiber journey down.
 
+ In order to prevent competition, each condition variable requires a lock cooperation (LOCK can be created and passed in by itself, or it can be created for you)
 
- To avoid competition, each condition variable requires a Lock which can be created and passed in or created by fibjs.
+ By using condition variables, a condition variable can be used to control a batch of fibrous switches;
 
- By using the condition variable, you can use it to control group of fiber switch;
-
- Here are an examples of two fiber switch:：
- @code
- var coroutine = require("coroutine");
- var cond = new coroutine.Condition();
- var ready = false;
+ Here are examples of two fibrous scheduling:
+ `` `Javascript
+ var Coroutine = Require ("Coroutine");
+ var Cond = New Coroutine.Condition ();
+ Var ready = false;
  var state = "ready";
 
- function funcwait() {
-	cond.acquire();
-	while (!ready)
-		cond.wait();
-	state = "go"
-	cond.release();
+ function funcwait () {
+    cond.acquire ();
+    While (! Ready)
+        cond.wait ();
+    state = "Go"
+    cond.release ();
  }
 
- coroutine.start(funcwait);
+ Coroutine.start (funcwait);
 
- cond.acquire();
- console.log(state)
- ready = true;
- cond.notify();
- coroutine.sleep();
- console.log(state);
-
- will output:
+ cond.acquire ();
+ console.log (state)
+ Ready = true;
+ cond.notify ();
+ coroutine.sleep ();
+ console.log (state);
+ `` `
+ Will output:
+ `` `SH
  ready
- go
- @endcode
-
- */
+ GO
+ `` `*/
 interface Condition : Lock
 {
-    /*! @brief Condition variable Constructor (the required lock created by fibjs) */
+    /*! @Brief condition variable constructive function (the lock required for condition variables by the internal structure of Fibjs)*/
     Condition();
 
-    /*! @brief Condition variable Constructor
-     @param lock Use lock created by yourself.
-     */
+    /*! @Brief condition variable constructor constructor 
+      @Param Lock uses a self -constructed lock*/
     Condition(Lock lock);
 
-    /*! @brief Make the fiber enter the blocked state  */
+    /*! @brief entered the blocking state*/
     wait();
 
-    /*! @brief Notify one blocked fiber proceed continue (the last one which created in fiber pool) */
+    /*! @brief notify a blocking fiber (finally added to the fiber tank) to continue the execution*/
     notify();
 
-    /*! @brief Notify all blocked fiber proceed continue */
+    /*! @brief notify all the obstructive fibrous journes to continue to execute down*/
     notifyAll();
 };

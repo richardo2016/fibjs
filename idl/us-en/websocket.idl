@@ -1,40 +1,95 @@
+/*! @Brief WebSocket package protocol conversion processor 
 
-/*! @brief websocket support module
+   Used to convert the HTTP protocol to a WebSocket package protocol message. Creation method: 
+   `` `Javascript 
+   var ws = reques ('ws'); 
+   var http = request ('http'); 
 
- To use it:
- @code
- var websocket = require('websocket');
- @endcode
- */
-module websocket
+   Var Serv = New http.server (8811, ws.upgrade ((conn) => { 
+   conn.onMessage = msg => { 
+       conn.send (new date ())); 
+   }; 
+   }); 
+
+   serv.run (r => 0); 
+
+   var so = new ws.socket ('ws: //127.0.0.0.1: 8811'); 
+   sock.on ('Open', () => { 
+       setInterval (() => {{{{ 
+           Sock.send ('get date'); 
+       }, 1000); 
+   }); 
+
+   sock.onMessage = EVT => { 
+     console.log (EVT.Data); 
+   } 
+   `` `*/
+interface WebSocket : EventEmitter
 {
-    /*! @brief Specifies the message type 0 of websocket, which is a continue frame */
-    const Integer CONTINUE = 0;
+    /*! @Brief WebsoCket constructor 
+      @param url specifies the connected server 
+      @Param Protocol specify the handshake agreement, the default is "" 
+      @Param Origin specifies the source of the simulation when shaking hands, the default is ""*/
+    WebSocket(String url, String protocol = "", String origin = "");
 
-    /*! @brief Specifies the message type 1 of websocket, which is a text frame */
-    const Integer TEXT = 1;
+    /*! @Brief WebsoCket constructor 
+      OPTS contains the additional option of request, the support content is as follows: 
+      `` `Javascript 
+      {{ 
+          "Protocol": "", // Specify the handshake protocol, the missing province is empty 
+          "Origin": "", // Specify the source of the simulation when shaking hands, the missing province is empty 
+          "PermessageDeflate": false, // specify whether it supports compression, default does not support the default 
+          "Maxpayload": 67108864, // Specify the maximum data packet size, the default is 67108864 
+          "httpclient": HC, // Custom HTTPClient object, default use of global httpclients 
+          "Headers": // Specify the header carried when the http (s) is connected, and the default is {}, 
+      } 
+      `` ` 
+      @param url specifies the connected server 
+      @Param Opts connection option, the default is {}*/
+    WebSocket(String url, Object opts);
 
-    /*! @brief Specifies the message type 2 of websocket, which is a binary frame */
-    const Integer BINARY = 2;
+    /*! @brief query the server connected to the current object*/
+    readonly String url;
 
-    /*! @brief Specifies the message type 8 of websocket, which means connection closed */
-    const Integer CLOSE = 8;
+    /*! @brief query the protocol when the current object is connected*/
+    readonly String protocol;
 
-    /*! @brief Specifies the message type 9 of websocket, which is a ping frame */
-    const Integer PING = 9;
+    /*! @brief query the source of the current object connection*/
+    readonly String origin;
 
-    /*! @brief Specifies the message type 10 of websocket, which is a pong frame */
-    const Integer PONG = 10;
+    /*! @brief query the connection status of the current object, see WS*/
+    readonly Integer readyState;
 
-    /*! @brief Create one websocket message object, refer WebSocketMessage */
-    static WebSocketMessage new Message();
+    /*! @brief Turn off the current connection, this operation will send a Close packet to the other party and wait for the other party to respond 
+      @Param Code specifies the closure code, the allowable value is 3000-4999 or 1000, and the default is 1000 
+      @param Reason specified the reason for the closure, the default is ""*/
+    close(Integer code = 1000, String reason = "");
 
-    /*! @brief Create one websocket packet protocol conversion processor, refer WebSocketHandler */
-    static WebSocketHandler new Handler();
+    /*! @brief Send a piece of text to the other party 
+      @param data specified the text sent*/
+    send(String data);
 
-    /*! @brief Create one websocket connection, and return a completed connection Stream object
-     @param url Specifies the connection url，support ws:// and wss:// protocol
-     @return Return a completed connection Stream object, which can be Socket or SslSocket
-     */
-    static Stream connect(String url) async;
+    /*! @brief Send a segment of binary data to the other party 
+      @param Data specified the binary data sent*/
+    send(Buffer data);
+
+    /*! @brief query and binding successful events, equivalent to on ("open", func);*/
+    Function onopen;
+
+    /*! @brief query and binding incidents that receive each other's message are equivalent to on ("message", func);*/
+    Function onmessage;
+
+    /*! @brief query and binding events that are connected to close, equivalent to on ("close", func);*/
+    Function onclose;
+
+    /*! @brief Inquiry and binding incidents that occur, equivalent to on ("error", func);*/
+    Function onerror;
+
+    /*! @brief keeps the FibJS process without exit, prevent the fibjs process from exiting during the object binding period 
+      @Return Return to the current object*/
+    WebSocket ref();
+
+    /*! @brief allows the Fibjs process to exit, allowing the FIBJS process to exit during the object binding 
+      @Return Return to the current object*/
+    WebSocket unref();
 };

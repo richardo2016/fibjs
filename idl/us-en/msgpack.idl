@@ -1,0 +1,22 @@
+/*! @Brief msgpack encoding and decoding module 
+  Quote method: 
+  `` `Javascript 
+  var encoding = reques ('enCoding'); 
+  var msgpack = encoding.msgpack; 
+  `` ` 
+  or 
+  `` `Javascript 
+  var msgpack = reques ('msgpack'); 
+  `` `*/
+module msgpack
+{
+    /*! @Brief Code variable in MSGPACK format 
+ @param data to encode variables 
+ @Return Return coding binary data*/
+    static Buffer encode(Value data);
+
+    /*! @Brief decoding the string as a variable in the MSGPACK method 
+ @Param Data to decoding binary data 
+ @Return Return to decoding variables*/
+    static Value decode(Buffer data);
+};

@@ -1,27 +1,25 @@
-/*! @brief Event Object
+/*! @brief event object 
 
- Controll a group of fibers by use an event (the type of event object status is Boolean).
-
- */
+ The purpose of controlling a set of fibrous downside through an event (the status of the event object is BOOL type)*/
 interface Event : Lock
 {
-    /*! @brief Event object constructor
-     @param value Specifies whether to wait, waiting if true, the default is false
-     */
+    /*! @brief event object constructor 
+      @Param Value specifies whether to wait, wait for True, the default is false*/
     Event(Boolean value = false);
 
-    /*! @brief To determine whether the event object is true */
+    /*! @brief determine whether the event object is true 
+      @Return If the event is true, return True*/
     Boolean isSet();
 
-    /*! @brief Activate event (set the event status as true), and call the pulse(). */
+    /*! @brief activation event (change the event status to true), and call pulse ()*/
     set();
 
-    /*! @brief Activate all fiber which waiting for this event. */
+    /*! @Brief activates all the fiber journey waiting for the incident*/
     pulse();
 
-    /*! @brief Reset event (set the event status as false) */
+    /*! @brief reset event (change the event status to false)*/
     clear();
 
-    /*! @brief Waiting for an event */
+    /*! @brief Waiting for an event*/
     wait();
 };

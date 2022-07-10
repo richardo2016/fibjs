@@ -1,82 +1,81 @@
-/*! @brief Redis database List objectm, it contains client with given key, and has to call its methods to operate database
+/*! @Brief Redis database client List object, this object is a client that contains specified key, only the method of calling its method can operate the database 
 
- Used for Redis List object, to create it:
- @code
- var db = require("db");
- var rdb = new db.openRedis("redis-server");
- var list = rdb.getList("test");
- @endcode
- */
+  The List object used to operate Redis, create methods: 
+  `` `Javascript 
+  varb = request ("db"); 
+  var rdb = new db.openredis ("redis-server"); 
+  var list = rdb.getList ("test"); 
+  `` `*/
 interface RedisList : object
 {
-    /*! @brief Insert one or more value to head of list
-     @param values Values to insert
-     @return Return length of list after insertion */
+    /*! @Brief insert one or more values value into the header of the list 
+      @param Values specifies the data to be inserted 
+      @Return After inserting, the length of the list*/
     Integer push(Array values);
 
-    /*! @brief Insert one or more value to head of list
-     @param ... Values to insert
-     @return Return length of list after insertion */
-    Integer push(...);
+    /*! @Brief insert one or more values value into the header of the list 
+      @param Values specifies the data to be inserted 
+      @Return After inserting, the length of the list*/
+    Integer push(...values);
 
-    /*! @brief Remove and return head element
-     @return Return head element, null if list is empty */
+    /*! @brief Remove and return the header of the list Key 
+      The head element of the @Return list, if the list is empty, return NULL*/
     Buffer pop();
 
-    /*! @brief Insert one or more value to rear of list
-     @param values Values to insert
-     @return Return length of list after insertion */
+    /*! @Brief inserted one or more values into the tail of the list (on the right) 
+      @param Values specifies the data to be inserted 
+      @Return After inserting, the length of the list*/
     Integer rpush(Array values);
 
-    /*! @brief Insert one or more value to rear of list
-     @param ... Data to insert
-     @return Return length of list after insertion */
-    Integer rpush(...);
+    /*! @Brief inserted one or more values into the tail of the list (on the right) 
+      @param Values specifies the data to be inserted 
+      @Return After inserting, the length of the list*/
+    Integer rpush(...values);
 
-    /*! @brief Remove and return rear element
-     @return Return rear element, null if list is empty */
+    /*! @brief Remove and return the table end (right) element of the list key 
+      The head element of the @Return list, if the list is empty, return NULL*/
     Buffer rpop();
 
-    /*! @brief Set element value by index
-     @param index Index to set
-     @param value Data to set*/
+    /*! @Brief Set the value of the element of index to the value of the list to value 
+      @param index specify the bid to be modified 
+      @Param Value specify data to be modified*/
     set(Integer index, Buffer value);
 
-    /*! @brief Get element value by index
-     @param index Index to get
-     @return Return element*/
+    /*! @brief Return to the list, the element of the index is index 
+      @param Index Specify the bid to query 
+      @Return List, the element of the index of index*/
     Buffer get(Integer index);
 
-    /*! @brief Insert value before pivot
-     @param pivot Pivot element
-     @param value Value to insert
-     @return Return length of list after insertion */
+    /*! @brief insert value value into the list, before Pivot 
+      @param pivot specifies the data looking at when inserted 
+      @Param Value specify data to be inserted 
+      @Return After inserting, the length of the list*/
     Integer insertBefore(Buffer pivot, Buffer value);
 
-    /*! @brief Insert value after pivot
-     @param pivot Pivot element
-     @param value Value to insert
-     @return Return length of list after insertion */
+    /*! @brief insert value value into the list, located after PIVOT 
+      @param pivot specifies the data looking at when inserted 
+      @Param Value specify data to be inserted 
+      @Return After inserting, the length of the list*/
     Integer insertAfter(Buffer pivot, Buffer value);
 
-    /*! @brief Remove number of count elements by value
-     @param count Number to remove
-     @param value Value to remove
-     @return Return number of elements removed */
+    /*! @Brief Depending on the value of the parameter count, remove the element of equal parameter value in the list 
+      @Param Count specifies the number of deleted elements 
+      @Param Value specify the value you want to delete 
+      @Return*/
     Integer remove(Integer count, Buffer value);
 
-    /*! @brief Trim list and keeps elements in the range
-     @param start Start index, 0 is first element, -1 is last element
-     @param stop Stop index, 0 is first element, -1 is last element */
+    /*! @brief Pruning a list (Trim), that is, the list only retains the elements in the specified range, and the elements that are not within the specified range will be deleted 
+      @param Start specifies the starting of the pruning, 0 indicates the first element, -1 indicates the last element 
+      @param Stop specifies the end of the pruning, 0 indicates the first element, -1 indicates the last element*/
     trim(Integer start, Integer stop);
 
-    /*! @brief Get length of list
-     @return Return length of list */
+    /*! @brief Return to the length of the list 
+      @Return Return the length of the list*/
     Integer len();
 
-    /*! @brief Get elements in given range inclusively
-     @param start Start index, 0 is first element, -1 is last element
-     @param stop Stop index, 0 is first element, -1 is last element
-     @return Return array of elements */
-    List range(Integer start, Integer stop);
+    /*! @Brief returns the elements in the specified interval in the list, and the interval is specified by the offset start and stop, which contains the elements of start and stop 
+      @param Start specifies the initial setting of the query, 0 indicates the first element, -1 indicates the last element 
+      @param Stop specifies the end of the query, 0 indicates the first element, -1 indicates the last element 
+      @Return contains an array of elements in the specified interval*/
+    NArray range(Integer start, Integer stop);
 };

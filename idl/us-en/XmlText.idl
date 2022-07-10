@@ -1,27 +1,22 @@
+/*! @brief xmltext object represents the text content of the element or attribute 
 
-/*! @brief XmlText object represents element or attribute text content
+ The XMLTEXT node represents a series of pure text in the XML document. Because pure text appears in the elements and attributes of XML, the XMLTEXT node is usually used as a sub -node of the XMLEMENT node and the XMLATTR node. 
 
-XmlText node represents a serial raw text of XML document. Due to raw text only appear in elements and attributes, XmlText is the common child node of XmlElement and XmlAttr.
+ The XMLTEXT node inherits the XMLCHARACTERDATA interface. It can access the text content of the XMLTEXT node by the Data attribute inherited from the XMLCHARACTERDATA interface or the Nadevalue attribute inherited from the XMLNode interface. 
 
-XmlText node inherited XmlCharacterData interface, by using data property from XmlCharacterData or nodeValue property from XmlNode, you can access XmlText raw text.
+ The method of the SplitText () method defined by the XMLTEXT interface by the XMLTEXT interface can operate the XMLTEXT node. Create a new XMLTEXT node with XMLDOCUMENT's CreateTextNode. 
 
-Use inherited methods of XmlCharacterData or XmlText's splitText() to operate XmlText node. Use XmlDocument's createTextNode to create a new XmlText node.
+ XMLTEXT nodes have no sub -nodes. 
 
-XmlText does not have child node.
-
-Please see XmlNode.normalize to remove empty child nodes and merge adjacent nodes.
-*/
+ Regarding the method of deleting the empty XMLTEXT node and the adjacent XMLTEXT node from the sub -tree of the document, see the xmlnode.normalize method.*/
 interface XmlText : XmlCharacterData
 {
-    /*! @brief Split text by given offset
+    /*! @Brief divides the text node into two nodes according to the specified offset 
 
-     This method splits XmlText into two parts by given offset. Original XmlText will be modified with content before offset(exclusive).
-     New XmlText node contains content after offset(inclusive), which will also be the return value.
-     Besides, if original node has parentNode, then the new XmlText will has it, too.
+      This method divides the XMLTEXT node into two nodes at the specified Officet. The original XMLTEXT node will be modified so that it contains the text content (but excluding text content) before the position specified by Office. The new XMLTEXT node will be created to store all characters from the OFFSET position (including characters in the position) to the end of the original character. The new XMLTEXT node is the return value of this method. In addition, if the original XMLTEXT node has Parentnode, the new XMLTEXT node will insert this parent node and close to the original node. 
 
-     XmlCDATASection inherited XmlText interface, so it can use this method as well. The only different is that the new node type will be XmlCDATASection instead of XmlText.
-     @param offset Offset to split, start at 0
-     @return Text of new node
-    */
+      The XMLCDATASECTION interface inherits the XMLTEXT interface. The XMLCDATASECTION node can also use this method, but the newly created node is the XMLCDATASEAN node, not the XMLTExt node. 
+      @Param Offset specifies where to divide text nodes. Start value start with 0 
+      @Return divided from the current node, the Text node*/
     XmlText splitText(Integer offset);
 };

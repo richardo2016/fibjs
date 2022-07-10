@@ -1,0 +1,217 @@
+/*! @brief Substitute Process Management Module
+ Quote method:
+ `` `Javascript
+ var child_process = reques ("child_process");
+ var child = child_process.spawn ("ls");
+ `` `
+
+When creating a sub -process, the Options.stdio option is used to configure a pipeline established between the parent process and the child process. By default, STDIN, Stdout, and STDERR of the sub -process will be redirected to the corresponding STDIN, Stdout, and StderR streams on the ChildProcess object. This is equivalent to set Options.stdio to ['pipe', 'pipe', 'pipe'].
+
+For convenience, Options.stdio can be one of the following string:
+
+-'pipe': equivalent to ['pipe', 'pipe', 'pipe'] (default value).
+-'Ignore': equivalent to ['Ignore', 'Ignore', 'Ignore'].
+-'inherit': equivalent to ['inherit', 'inherit', 'inherit'] or [0, 1, 2].
+-'pty': equivalent to ['pty', 'pty', 'pty']. Do not support Windows.
+
+Otherwise, the value of Options.stdio is array (where each index corresponds to the file descriptor in the process). The file descriptor 0, 1, and 2 correspond to Stdin, Stdout, and StderR, respectively. Other file descriptors may be specified to create other pipelines between the parent process and the child process. Value can be one of the following:
+
+1. PIPE ': Create a pipeline between the process and the parent process. The parent end of the pipeline is exposed to the parent process as the STDIO [FD] attribute on the Child_Process object. Pipelines created for file descriptors 0, 1, and 2 can also be used as STDIN, Stdout, and StderR.
+2. 'IGNORE': indicate the file descriptors in the sub -process. Although Fibjs will always open file descriptors 0, 1, and 2 for its derived processes, setting the file descriptor to 'IGNORE' can open the /dev /null of Fibjs and attach it to the sub -process.
+3. Inherit ': spread the corresponding STDIO to the parent process or from the parent process. In the first three positions, this is equivalent to proces.stdin, proces.stdout, and proces.stderr. In any other position, it is equivalent to 'IGNORE'.
+4. 'PTY': In the sub -process, it will be executed in the virtual terminal. At this time, only Stdin and Stdout are effective.
+5. Positive integer: The integer value will be interpreted as the file descriptor that is currently opened in the parent process. It is shared with the sub -process, similar to the way to share the <stream> object. Do not support the introduction of Socket on Windows.
+6. NULL or UNDEFINED: Use the default value. For STDIO file descriptor 0, 1, and 2 (in other words, stdin, stdout, and stderr) will create pipelines. For file descriptors 3 and larger values, the default is 'iGnore'.
+
+`` `Javascript
+const {spawn} = reques ('child_process');
+
+// The sub -process uses the STDIO of the parent process.
+spawn ('prg', [], {stdio: 'inherit'});
+
+// The derived sub -process only share StderR.
+spawn ('prg', [], {stdio: ['pipe', 'pipe', process.stderr]});
+`` `
+
+ For users who use nodejs at the same time, pay attention
+ -Fibjs's `Child_Process.exec (Command, ARGS)` and Nodejs's API features of the same name, but on Windows, CMD.EXE will not automatically use CMD.EXE as the execution environment of the Command parameter;
+ -Fibjs's child_process.
+   -If the last parameter is not a function, it is synchronized
+   -It if the function is passed as the last parameter, it is asynchronous;
+ -Fibjs's Child_PROCESS. [Exec | Execfile] return result is an object, the object returned by the same name as the nodejs API ** is completely different ** ** **
+ -Fibjs's `child_process.run` does not correspond to API in nodejs*/
+module child_process
+{
+    /*! @brief Published a sub -process in a given command 
+     Options supports content as follows: 
+      `` `Javascript 
+      {{ 
+         "CWD": "", // The current working directory of the sub -process, the current directory of default 
+         "Stdio": Array | String, // Sub -process stdio configuration 
+         "ENV": {}, // The key value of the environment variable 
+         "Detached": False, // The sub -process will become a leader of a process group, default to FALSE 
+         "uid": 0, // Set the ID of the user process 
+         "gid": 0, // Set the ID of the process group 
+         "Windowsverbatimarguments": false, // Do not execute quotes or transfer parameters on Windows. It is ignored on Unix. When the shell is specified and CMD, this option will be automatically set to true, and the default is false 
+         "Windowshide": False // Hidden the child process console window usually created on the Windows system, the default is false 
+      } 
+      `` ` 
+      @Param Command specified commands to run 
+      @Param ARGS specified string parameter list 
+      @param options specify the creation parameters 
+      @Return Return Substitute Process Object*/
+    static ChildProcess spawn(String command, Array args, Object options = {});
+
+    /*! @brief Published a sub -process in a given command 
+     Options supports content as follows: 
+      `` `Javascript 
+      {{ 
+         "CWD": "", // The current working directory of the sub -process, the current directory of default 
+         "Stdio": Array | String, // Sub -process stdio configuration 
+         "ENV": {}, // The key value of the environment variable 
+         "Detached": False, // The sub -process will become a leader of a process group, default to FALSE 
+         "uid": 0, // Set the ID of the user process 
+         "gid": 0, // Set the ID of the process group 
+         "Windowsverbatimarguments": false, // Do not execute quotes or transfer parameters on Windows. It is ignored on Unix. When the shell is specified and CMD, this option will be automatically set to true, and the default is false 
+         "Windowshide": False // Hidden the child process console window usually created on the Windows system, the default is false 
+      } 
+      `` ` 
+      @Param Command specified commands to run 
+      @param options specify the creation parameters 
+      @Return Return Substitute Process Object*/
+    static ChildProcess spawn(String command, Object options = {});
+
+    /*! @brief executes a command and buffer output in shell. When executing it by callback, the function will return to the process object
+    Options supports content as follows:
+     `` `Javascript
+     {{
+        "CWD": "", // The current working directory of the sub -process, the current directory of default
+        "ENV": {}, // The key value of the environment variable
+        "Encoding": "UTF8", // Specify the encoding of the return result, the default is UTF8
+        "Detached": False, // The sub -process will become a leader of a process group, default to FALSE
+        "uid": 0, // Set the ID of the user process
+        "gid": 0, // Set the ID of the process group
+        "Windowsverbatimarguments": false, // Do not execute quotes or transfer parameters on Windows. It is ignored on Unix. When the shell is specified and CMD, this option will be automatically set to true, and the default is false
+        "Windowshide": False // Hidden the child process console window usually created on the Windows system, the default is false
+     }
+     `` `
+     @Param Command specified commands to run
+     @param options specify the creation parameters
+     @Return Return to the STDIO output content of the sub -process*/
+    static (Variant stdout, Variant stderr) exec(String command, Object options = {}) async;
+
+    /*! @Brief directly executes the specified file and buffer output. When the transfer is executed, the function will return the process object
+    Options supports content as follows:
+     `` `Javascript
+     {{
+        "CWD": "", // The current working directory of the sub -process, the current directory of default
+        "ENV": {}, // The key value of the environment variable
+        "Encoding": "UTF8", // Specify the encoding of the return result, the default is UTF8
+        "Detached": False, // The sub -process will become a leader of a process group, default to FALSE
+        "uid": 0, // Set the ID of the user process
+        "gid": 0, // Set the ID of the process group
+        "Windowsverbatimarguments": false, // Do not execute quotes or transfer parameters on Windows. It is ignored on Unix. When the shell is specified and CMD, this option will be automatically set to true, and the default is false
+        "Windowshide": False // Hidden the child process console window usually created on the Windows system, the default is false
+     }
+     `` `
+     @Param Command specified commands to run
+     @Param ARGS specified string parameter list
+     @param options specify the creation parameters
+     @Return Return to the STDIO output content of the sub -process*/
+    static (Variant stdout, Variant stderr) execFile(String command, Array args, Object options = {}) async;
+
+    /*! @Brief directly executes the specified file and buffer output. When the transfer is executed, the function will return the process object
+    Options supports content as follows:
+     `` `Javascript
+     {{
+        "CWD": "", // The current working directory of the sub -process, the current directory of default
+        "ENV": {}, // The key value of the environment variable
+        "Encoding": "UTF8", // Specify the encoding of the return result, the default is UTF8
+        "Detached": False, // The sub -process will become a leader of a process group, default to FALSE
+        "uid": 0, // Set the ID of the user process
+        "gid": 0, // Set the ID of the process group
+        "Windowsverbatimarguments": false, // Do not execute quotes or transfer parameters on Windows. It is ignored on Unix. When the shell is specified and CMD, this option will be automatically set to true, and the default is false
+        "Windowshide": False // Hidden the child process console window usually created on the Windows system, the default is false
+     }
+     `` `
+     @Param Command specified commands to run
+     @param options specify the creation parameters
+     @Return Return to the STDIO output content of the sub -process*/
+    static (Variant stdout, Variant stderr) execFile(String command, Object options = {}) async;
+
+    /*! @brief executes a module in the process 
+     Options supports content as follows: 
+      `` `Javascript 
+      {{ 
+         "CWD": "", // The current working directory of the sub -process, the current directory of default 
+         "Stdio": Array | String, // Sub -process stdio configuration 
+         "ENV": {}, // The key value of the environment variable 
+         "Detached": False, // The sub -process will become a leader of a process group, default to FALSE 
+         "uid": 0, // Set the ID of the user process 
+         "gid": 0, // Set the ID of the process group 
+         "Windowsverbatimarguments": false, // Do not execute quotes or transfer parameters on Windows. It is ignored on Unix. When the shell is specified and CMD, this option will be automatically set to true, and the default is false 
+         "Windowshide": False // Hidden the child process console window usually created on the Windows system, the default is false 
+      } 
+      `` ` 
+      @Param Module specify the command to run 
+      @Param ARGS specified string parameter list 
+      @param options specify the creation parameters 
+      @Return Return Substitute Process Object*/
+    static ChildProcess fork(String module, Array args, Object options = {});
+
+    /*! @brief executes a module in the process 
+     Options supports content as follows: 
+      `` `Javascript 
+      {{ 
+         "CWD": "", // The current working directory of the sub -process, the current directory of default 
+         "Stdio": Array | String, // Sub -process stdio configuration 
+         "ENV": {}, // The key value of the environment variable 
+         "Detached": False, // The sub -process will become a leader of a process group, default to FALSE 
+         "uid": 0, // Set the ID of the user process 
+         "gid": 0, // Set the ID of the process group 
+         "Windowsverbatimarguments": false, // Do not execute quotes or transfer parameters on Windows. It is ignored on Unix. When the shell is specified and CMD, this option will be automatically set to true, and the default is false 
+         "Windowshide": False // Hidden the child process console window usually created on the Windows system, the default is false 
+      } 
+      `` ` 
+      @Param Module specify the command to run 
+      @param options specify the creation parameters 
+      @Return Return Substitute Process Object*/
+    static ChildProcess fork(String module, Object options = {});
+
+    /*! @Brief directly executes the specified file and returns the Exitcode. When executing it by callback, the function will return to the process object 
+     Options supports content as follows: 
+      `` `Javascript 
+      {{ 
+         "CWD": "", // The current working directory of the sub -process, the current directory of default 
+         "ENV": {}, // The key value of the environment variable 
+         "Detached": False, // The sub -process will become a leader of a process group, default to FALSE 
+         "uid": 0, // Set the ID of the user process 
+         "gid": 0, // Set the ID of the process group 
+         "Windowsverbatimarguments": false, // Do not execute quotes or transfer parameters on Windows. It is ignored on Unix. When the shell is specified and CMD, this option will be automatically set to true, and the default is false 
+         "Windowshide": False // Hidden the child process console window usually created on the Windows system, the default is false 
+      } 
+      `` ` 
+      @Param Command specified commands to run 
+      @Param ARGS specified string parameter list 
+      @param options specify the creation parameters 
+      @Return Return to EXITCODE of Sub -process*/
+    static Integer run(String command, Array args, Object options = {}) async;
+
+    /*! @Brief directly executes the specified file and returns the Exitcode. When executing it by callback, the function will return to the process object 
+     Options supports content as follows: 
+      `` `Javascript 
+      {{ 
+         "CWD": "", // The current working directory of the sub -process, the current directory of default 
+         "ENV": {}, // The key value of the environment variable 
+         "Detached": False, // The sub -process will become a leader of a process group, default to FALSE 
+         "uid": 0, // Set the ID of the user process 
+         "gid": 0, // Set the ID of the process group 
+         "Windowsverbatimarguments": false, // Do not execute quotes or transfer parameters on Windows. It is ignored on Unix. When the shell is specified and CMD, this option will be automatically set to true, and the default is false 
+         "Windowshide": False // Hidden the child process console window usually created on the Windows system, the default is false 
+      } 
+      `` ` 
+      @Param Command specified commands to run 
+      @param options specify the creation parameters 
+      @Return Return to EXITCODE of Sub -process*/
+    static Integer run(String command, Object options = {}) async;
+};

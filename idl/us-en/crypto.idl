@@ -1,148 +1,214 @@
+/*! @brief encryption algorithm module 
 
-/*! @brief Encryption algorithm module
-
- The way to use:
- @code
- var crypto = require('crypto');
- @endcode
- */
+  Instructions: 
+  `` `Javascript 
+  var crypto = reques ('crypto'); 
+  `` `*/
 module crypto
 {
-    /*! @brief Specifies the symmetric encryption algorithm as AES, which support 128, 192, 256 bit key, and block cipher mode support ECB, CBC, CFB128, CTR, GCM */
-    /*! @brief assign symmetric encryption algorithms, AES, support 128, 192, 256 keies. Block cipher mode of operation support ECB, CBC, CFB128, CTR, GCM */
-    const Integer AES = 1;
+    /*! @brief specify symmetrical plus algorithm AES, support 128, 192, 256 -bit key, group password work mode supports ECB, CBC, CFB128, CTR, GCM, CCM, XTS, XTS*/
+    const AES = 1;
 
-    /*! @brief Specifies the symmetric encryption algorithm as CAMELLIA, which support 128, 192, 256 bit key, and block cipher mode support ECB, CBC, CFB128, CTR, GCM */
-    /*! @brief assign symmetric encryption algorithms, AES, support 128, 192, 256 keies. Block cipher mode of operation support ECB, CBC, CFB128, CTR, GCM */
-    const Integer CAMELLIA = 2;
+    /*! @brief specify symmetrical plus algorithm DES, support 64 -bit key, group password work mode supports ECB, CBC*/
+    const DES = 2;
 
-    /*! @brief Specifies the symmetric encryption algorithm as DES, which support 64 bit key, and block cipher mode support ECB, CBC */
-    /*! @brief assign symmetric encryption algorithms, AES, support 64 key. Block cipher mode of operation support ECB, CBC */
-    const Integer DES = 3;
+    /*! @brief specify the symmetrical plus encryption algorithm Des-EDe3, support 192-bit key, the group password work mode supports ECB, CBC*/
+    const DES_EDE3 = 3;
 
-    /*! @brief Specifies the symmetric encryption algorithm as DES-EDE, which support 128 bit key, and block cipher mode support ECB, CBC */
-    /*! @brief assign symmetric encryption algorithms, DES-EDE, support 128 key. Block cipher mode of operation support ECB, CBC */
-    const Integer DES_EDE = 4;
+    /*! @brief specifies the symmetrical plus encryption algorithm Camellia, supports 128, 192, 256 -bit key, the group password work mode supports ECB, CBC, CFB128, CTR, GCM, CCM, CCM, CCM*/
+    const CAMELLIA = 4;
 
-    /*! @brief Specifies the symmetric encryption algorithm as DES-EDE3, which support 192 bit key, and block cipher mode support ECB, CBC */
-    /*! @brief assign symmetric encryption algorithms, DES-EDE3, support 128 key. Block cipher mode of operation support ECB, CBC */
-    const Integer DES_EDE3 = 5;
+    /*! @brief specifies the symmetrical plus algorithm ARIA, supports 128, 192, 256 -bit key, the group password work mode supports ECB, CBC, CFB128, CTR, GCM, CCM*/
+    const ARIA = 5;
 
-    /*! @brief Specifies the symmetric encryption algorithm as BLOWFISH, which support 192 bit key, and block cipher mode support ECB, CBC, CFB64, CTR */
-    /*! @brief assign symmetric encryption algorithms, BLOWFISH, support 128 key. Block cipher mode of operation support ECB, CBC CFB64, CTR*/
-    const Integer BLOWFISH = 6;
+    /*! @brief specify the symmetrical plus encryption algorithm ChaCha20, support 256 -bit key, the group password work mode supports POLY1305*/
+    const CHACHA20 = 6;
 
-    /*! @brief Specifies the symmetric encryption algorithm as ARC4, which support 40, 56, 64, 128 bit key */
-    /*! @brief assign Block cipher mode of operation, ARC4, support 40, 56, 64, 128 key.*/
-    const Integer ARC4 = 7;
+    /*ly*/
+    const SM4 = 7;
 
-    /*! @brief Specify the block cipher mode that support ECB */
-    /*! @brief Block cipher mode of operation ECB */
-    const Integer ECB = 1;
+    /*! @brief Specify the group password work mode to support ECB*/
+    const ECB = 1;
 
-    /*! @brief Specify the block cipher mode that support CBC */
-    /*! @brief Block cipher mode of operation CBC */
-    const Integer CBC = 2;
+    /*! @brief Specify the group password work mode to support CBC*/
+    const CBC = 2;
 
-    /*! @brief Specify the block cipher mode that support CFB64 */
-    /*! @brief Block cipher mode of operation CFB64 */
-    const Integer CFB64 = 3;
+    /*! @brief Specify the group password work mode to support CFB64*/
+    const CFB64 = 3;
 
-    /*! @brief Specify the block cipher mode that support CFB128 */
-    /*! @brief Block cipher mode of operation CFB128 */
-    const Integer CFB128 = 4;
+    /*! @brief Specify the group password work mode to support CFB128*/
+    const CFB128 = 4;
 
-    /*! @brief Specify the block cipher mode that support OFB */
-    /*! @brief Block cipher mode of operation OFB */
-    const Integer OFB = 5;
+    /*! @brief Specify the group password work mode to support OFB*/
+    const OFB = 5;
 
-    /*! @brief Specify the block cipher mode that support CTR */
-    /*! @brief Block cipher mode of operation CTR */
-    const Integer CTR = 6;
+    /*! @brief Specify the group password work mode to support CTR*/
+    const CTR = 6;
 
-    /*! @brief Specify the block cipher mode that support GCM */
-    /*! @brief Block cipher mode of operation GCM */
-    const Integer GCM = 7;
+    /*! @brief Specify the group password work mode to support GCM*/
+    const GCM = 7;
 
-    /*! @brief Specifies the stream cipher mode. */
-    /*! @brief Stream cipher mode*/
-    const Integer STREAM = 8;
+    /*! @brief specify stream password mode*/
+    const STREAM = 8;
 
-    /*! @brief Specify the block cipher mode that support CCM */
-    /*! @brief Block cipher mode of operation CCM */
-    const Integer CCM = 9;
+    /*! @brief Specify the group password work mode to support CCM*/
+    const CCM = 9;
 
-    /*! @brief pecifies the fill mode as PKCS7 */
-    const Integer PKCS7 = 0;
+    /*! @brief Specify the group password work mode to support XTS*/
+    const XTS = 10;
 
-    /*! @brief Specifies the fill mode as ONE_AND_ZEROS */
-    const Integer ONE_AND_ZEROS = 1;
+    /*! @brief Specify the group password work mode to support POLY1305*/
+    const POLY1305 = 11;
 
-    /*! @brief pecifies the fill mode as ZEROS_AND_LEN */
-    const Integer ZEROS_AND_LEN = 2;
+    /*! @brief specified the fill mode is PKCS7*/
+    const PKCS7 = 0;
 
-    /*! @brief pecifies the fill mode as ZEROS */
-    const Integer ZEROS = 3;
+    /*! @brief specified the fill mode is one_and_zeros*/
+    const ONE_AND_ZEROS = 1;
 
-    /*! @brief pecifies the fill mode as NOPADDING */
-    const Integer NOPADDING = 4;
+    /*! @brief specified the fill mode as zeros_and_len*/
+    const ZEROS_AND_LEN = 2;
 
-    /*! @brief Cipher Constructor, reference Cipher */
+    /*! @brief specified the fill mode as Zeros*/
+    const ZEROS = 3;
+
+    /*! @brief specified the filling mode is notAdding*/
+    const NOPADDING = 4;
+
+    /*! @brief cipher constructed function, see CIPHER*/
     static Cipher;
 
-    /*! @brief PKey Constructor, reference PKey */
+    /*! @brief pKEY constructing function, see pKEY*/
     static PKey;
 
-    /*! @brief X509Cert Constructor, reference X509Cert */
+    /*! @Brief x509cert constructor, see X509cert*/
     static X509Cert;
 
-    /*! @brief X509Crl Constructor, reference X509Crl */
+    /*! @Brief X509Crl constructor, see X509Crl*/
     static X509Crl;
 
-    /*! @brief X509Req Constructor, reference X509Req */
+    /*! @Brief x509Req constructor, see X509REQ*/
     static X509Req;
 
-    /*! @brief Load a PEM/DER format key file. 
-    @param filename Key file name.
-    @param password Decryption password.
-    */
-    static PKey loadPKey(String filename, String password = "");
+    /*! @Brief creates an information summary object based on the given algorithm name 
+      @Param Algo specify the algorithm of the information abstract object 
+      @Return Return information summary object*/
+    static Digest createHash(String algo);
 
-    /*! @brief Load a CRT/PEM/DER/TXT format certificate can be called multiple times.
+    /*! @brief creates an HMAC information abstract object based on the given algorithm name 
+      @Param Algo specify the algorithm of the information abstract object 
+      @Param KEY binary signature key 
+      @Return Return information summary object*/
+    static Digest createHmac(String algo, Buffer key);
 
-    LoadFile load mozilla certdata.txt, which can be download from http://hg.mozilla.org/releases/mozilla-release/raw-file/default/security/nss/lib/ckfw/builtins/certdata.txt
+    /*! @brief Load a CRT/PEM/DER/TXT format, which can be called multiple times 
 
-    @param filename Certificate file name.
-    */
-    static X509Cert loadCert(String filename);  
+     Loadfile loads the CertData, TXT of Mozilla, and can be available at http://hg.mozilla.org/releases/mozilla-release/raw-default/security/lib/builtins/certdata.txt download. 
+      @Param Filename certificate file name 
+      @Return Return to objects containing certificates*/
+    static X509Cert loadCert(String filename);
 
-    /*! @brief Load a PEM/DER format revoked certificate can be called multiple times.
-    @param filename The cancellation certificate file name.
-    */
+    /*! @Brief loads an withdrawal certificate in PEM/DER format, and can be called multiple times 
+      @Param Filename Rejuvenation Certificate file name 
+      @Return Returns the object containing the cancellation certificate*/
     static X509Crl loadCrl(String filename);
 
-    /*! @brief Load a PEM/DER format requested certificate can be called multiple times.
-    @param filename The requested certificate file name.
-    */
+    /*! @brief Load a certificate request in PEM/DER format, you can call it multiple times 
+      @Param Filename Certificate request file name 
+      @Return Returns the object containing the request certificate*/
     static X509Req loadReq(String filename);
 
-    /*! @brief Generate the specified size of the random number, which use the havege generator.
-     @param size Specify the size of the generated random number.
-     @return Return the generated random number.
-     */
+    /*! @brief generate random number of specified size, use the HAVEGE generator 
+      @param size specified the random size of the generated 
+      @Return Returns the random number generated*/
     static Buffer randomBytes(Integer size) async;
 
-    /*! @brief Generate the specified size of the pseudo-random number, which use the entropy generator.
-     @param size Specify the size of the generated random number.
-     @return Return the generated random number.
-     */
+    /*! @brief generate low -intensity random numbers of specified size, use fast algorithms 
+      @param size specified the random size of the generated 
+      @Return Returns the random number generated*/
+    static Buffer simpleRandomBytes(Integer size) async;
+
+    /*! @brief generates pseudo -random numbers of specified size, uses the Entropy generator 
+      @param size specified the random size of the generated 
+      @Return Returns the random number generated*/
     static Buffer pseudoRandomBytes(Integer size) async;
 
-    /*! @brief Generate a visual character image by use given data.
-     @param data Specifies the data to display.
-     @param title The title of the specified character image, multibyte characters can cause width error.
-     @param size The character image size.
-     @return Return the generated visual string image.
-     */
+    /*! @brief uses a random number to fill the specified buffer and use the HAVEGE generator 
+      @param buffer specifies the generated buffer 
+      @param Offset specifies the start bias, the default is 0 
+      @param size specifies the random size generated by the generated, the default is buffer.Length -Offset 
+      @Return Returns the random number generated*/
+    static Buffer randomFill(Buffer buffer, Integer offset = 0, Integer size = -1) async;
+
+    /*! @brief generates visual character image of a given data 
+      @param data specified data to be displayed 
+      @Param Title specify the title of the character image, multi -line characters can cause width errors 
+      @param size character image size 
+      @Return Returns the visualized string image generated*/
     static String randomArt(Buffer data, String title, Integer size = 8);
+
+    /*! @brief generate a RSA private key 
+      @Param size specify the length of the RSA key, BIT is the unit 
+      @Return Returns the object that contains the private key*/
+    static PKey generateKey(Integer size) async;
+
+    /*! @Brief generate a oval curve private key 
+
+      Curve's optional curve contains the NIST curve and alias as follows: 
+
+      | Curve | Alias | 
+      | ----------- | ------------- 
+      | Nist P-192 | 'Nist P-192', 'P192', 'P-192', 'Prime192v1', 'SECP192R1' | 
+      | Nist P-224 | 'Nist P-224', 'P224', 'P-224', 'Prime224v1', 'SECP224R1' | 
+      | Nist P-256 | 'Nist P-256', 'P256', 'P-256', 'Prime256v1', 'SECP256R1' | 
+      | Nist P-384 | 'Nist P-384', 'P384', 'P-384', 'Prime384v1', 'SECP384R1' | 
+      | Nist P-521 | 'Nist P-521', 'P521', 'P-521', 'Prime521v1', 'SECP521R1' | 
+
+      Other support curves include: 
+      "Brainpoolp512r1", "Brainpoolp384r1", "SECP256K1", "P-256K", "Brainpoolp256r1", "Brainpoolp256r1", " 
+      "SM2P256R1", "Sm2", "ED25519", "BLS12381_G1", "BLS12381_G2" 
+
+      @Param Curve specifies the preset elliptical curve, the default is 'secp256r1' 
+      @Return Returns the object that contains the private key*/
+    static PKey generateKey(String curve = "secp521r1") async;
+
+    /*! @brief Based on PBKDF1 based on the requirements of Password generated by Password 
+      @Param Password specified passwords used 
+      @param Salt specify SALT used by HMAC 
+      @param iterations specify the number of iterations 
+      @param size specify the key size 
+      @Param Algo specifies the hash algorithm to be used, see the hash module for details 
+      @Return Returns the binary key generated*/
+    static Buffer pbkdf1(Buffer password, Buffer salt, Integer iterations, Integer size, Integer algo) async;
+
+    /*! @brief Based on PBKDF1 based on the requirements of Password generated by Password 
+      @Param Password specified passwords used 
+      @param Salt specify SALT used by HMAC 
+      @param iterations specify the number of iterations 
+      @param size specify the key size 
+      @param Algoname specifies the hash algorithm to be used, see the hash module for details 
+      @Return Returns the binary key generated*/
+    static Buffer pbkdf1(Buffer password, Buffer salt, Integer iterations, Integer size, String algoName) async;
+
+    /*! @brief Based on the requirements of RFC2898 according to the requirements of Password Generation 
+      @Param Password specified passwords used 
+      @param Salt specify SALT used by HMAC 
+      @param iterations specify the number of iterations 
+      @param size specify the key size 
+      @Param Algo specifies the hash algorithm to be used, see the hash module for details 
+      @Return Returns the binary key generated*/
+    static Buffer pbkdf2(Buffer password, Buffer salt, Integer iterations, Integer size, Integer algo) async;
+
+    /*! @brief Based on the requirements of RFC2898 according to the requirements of Password Generation 
+      @Param Password specified passwords used 
+      @param Salt specify SALT used by HMAC 
+      @param iterations specify the number of iterations 
+      @param size specify the key size 
+      @param Algoname specifies the hash algorithm to be used, see the hash module for details 
+      @Return Returns the binary key generated*/
+    static Buffer pbkdf2(Buffer password, Buffer salt, Integer iterations, Integer size, String algoName) async;
+
+    /*! @Brief Get the Hash (Abstract) algorithm supported by the Crypto module, such as 'md5', 'sha224' 
+      @Return Return to the Hash algorithm array supported by fibjs*/
+    static Array getHashes();
 };

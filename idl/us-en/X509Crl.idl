@@ -1,37 +1,57 @@
+/*! @brief X509 Rejuvenation Certificate Object 
 
-/*! @brief x509 revoked certificate object
-
- X509Crl object belongs to crypto module, to create it:
- @code
- var k = new crypto.X509Crl();
- @endcode
- */
+  X509CRL object belongs to the Crypto module, created: 
+  `` `Javascript 
+  var k = new crypto.x509crl (); 
+  `` `*/
 interface X509Crl : object
 {
-    /*! @brief X509Crl constructor */
+    /*! @Brief X509Crl constructor*/
     X509Crl();
 
-    /*! @brief Load a DER revoked certificate, can be called multiple times
-     @param derCrl DER format revoked certificate
-    */
-    load(Buffer derCrl);
+    /*! @Brief X509Crl constructor, load a deer format withdrawal certificate 
+      @Param dercrl der format's cancellation certificate*/
+    X509Crl(Buffer derCrl);
 
-    /*! @brief Load a PEM revoked certificate, can be called multiple times
-     @param pemCrl PEM format revoked certificate
-    */
-    load(String pemCrl);
+    /*! @Brief X509Crl constructor, load a PEM format withdrawal certificate 
+      @Param Pemcrl PEM format cancellation certificate*/
+    X509Crl(String pemCrl);
 
-    /*! @brief Load a PEM revoked certificate, can be called multiple times
-     @param filename Revoked certificate file name
-    */
-    loadFile(String filename);
+    /*! @brief Load a deer format certificate, you can call it multiple times 
+      @Param dercrl der format's cancellation certificate*/
+    import(Buffer derCrl);
 
-    /*! @brief Dump loaded revoked certificate chain
-     @return Array of revoked certificates
-    */
-    Array dump();
+    /*! @brief load a PEM format's revocation certificate, you can call it multiple times 
+      @Param Pemcrl PEM format cancellation certificate*/
+    import(String pemCrl);
 
-    /*! @brief Clear all loaded revoked certificates
-    */
+    /*! @Brief exported the withdrawal certificate that has been loaded in PEM format 
+      @param all specifies whether to output all certificates, the default is TRUE 
+      @Return exports the certificate chain in a array*/
+    String pem(Boolean all = true);
+
+    /*! @brief Export the withdrawal certificate that has been loaded in DER format 
+      @Return exports the certificate chain in a array*/
+    Buffer der();
+
+    /*! @brief Clear Certificate that has been loaded*/
     clear();
+
+    /*! @brief Get the certificate of the certificate*/
+    readonly Integer version;
+
+    /*! @Brief obtained the certificate of the certificate of the certificate of the certificate*/
+    readonly String issuer;
+
+    /*! @brief Get the certificate to revoke the sequence number list*/
+    readonly Array serials;
+
+    /*! @brief Get this update time for the certificate*/
+    readonly Date thisUpdate;
+
+    /*! @brief Get the next update time for the certificate*/
+    readonly Date nextUpdate;
+
+    /*! @brief Get the certificate in the certificate chain*/
+    readonly X509Crl next;
 };

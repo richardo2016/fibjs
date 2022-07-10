@@ -1,78 +1,63 @@
+/*! @brief network socket interface object 
 
-/*! @brief Network socket interface
-
- Socket belongs to net, to create it:
- \code
- var s = new net.Socket();
- \endcode
- */
+  Socket belongs to Net module, creating method 
+  `` `Javascript 
+  var s = new net.socket (); 
+  `` `*/
 interface Socket : Stream
 {
-    /*! @brief Socket constructor
-     @param family Family address, default is AF_INET, ipv4
-     @param type Protocol type, default is SOCK_STREAM, tcp
-     */
-    Socket(Integer family = net.AF_INET, Integer type = net.SOCK_STREAM);
+    /*! @Brief socket construct function to create a new socket object 
+      @Param Family specify the address set, the default is AF_inet, IPv4*/
+    Socket(Integer family = net.AF_INET);
 
-    /*! @brief Get current family address */
+    /*! @brief query the address set of the current socket object*/
     readonly Integer family;
 
-    /*! @brief Get current protocol type */
-    readonly Integer type;
-
-    /*! @brief Get remote address */
+    /*! @brief query the other party address of the current connection*/
     readonly String remoteAddress;
 
-    /*! @brief Get remote port */
+    /*! @Brief query the other port of the current connection*/
     readonly Integer remotePort;
 
-    /*! @brief Ger local address */
+    /*! @brief query the local address of the current connection*/
     readonly String localAddress;
 
-    /*! @brief Get local port */
+    /*! @Brief query the local port of the current connection*/
     readonly Integer localPort;
 
-    /*! @brief Connect to a host with TCP
-     @param host Host address or name
-     @param port Host port
-     */
-    connect(String host, Integer port) async;
+    /*! @brief query and set timeout unit milliseconds*/
+    Integer timeout;
 
-    /*! @brief Bind current Socket to all local addresses on given port
-     @param port Port to bind
-     @param allowIPv4 Indicates whether allow ipv4 or not, default is true
-     */
+    /*! @brief Create a TCP connection 
+      @Param Host specifies the other's address or host name, or you can point to the Unix Socket and Windows Pipe path 
+      @Param Port specifies the opponent port, connects the Unix Socket and Windows Pipe, ignore this parameter*/
+    connect(String host, Integer port = 0) async;
+
+    /*! @Brief binds the current socket to the specified port of all the local address 
+      @Param Port specifies the binding port 
+      @Param AllowipV4 specifies whether to accept an IPv4 connection, the default is TRUE. This parameter is effective at IPv6 and depends on the operating system*/
     bind(Integer port, Boolean allowIPv4 = true);
 
-    /*! @brief Bind current Socket to given address and port
-     @param addr Address to bind
-     @param port Port to bind
-     @param allowIPv4 Indicates whether allow ipv4 or not, default is true
-     */
-    bind(String addr, Integer port, Boolean allowIPv4 = true);
+    /*! @Brief binds the current socket to the specified port of the specified address 
+      @Param addr specifies the binding address, or it can also point to Unix Socket and Windows PIPE paths 
+      @Param Port specifies the binding port, binds the Unix Socket and Windows Pipe, ignore this parameter 
+      @Param AllowipV4 specifies whether to accept an IPv4 connection, the default is TRUE. This parameter is effective at IPv6 and depends on the operating system*/
+    bind(String addr, Integer port = 0, Boolean allowIPv4 = true);
 
-    /*! @brief Start listening
-     @param backlog Queue size, overflows will be discarded, default is 120
-     */
-    listen(Integer backlog = 120) async;
+    /*! @brief Start the monitoring connection request 
+      @Param Backlog specifies the length of the request queue, the excellent request will be rejected, the default is 120*/
+    listen(Integer backlog = 120);
 
-    /*! @brief Wait and accept a request
-     @return Return accepted connection
-     */
+    /*! @brief wait and accept a connection 
+      @Return Return to receive the connection object*/
     Socket accept() async;
 
-    /*! @brief Receive given size of data from connection, unlike read, revc does not promise read all required data but return immediately
-     @param bytes Bytes to read, default is random size of data
-     @return Return data received
-     */
+    /*! @Brief from the connection read from the designated size data. Unlike the read method, the RECV does not guarantee the data that reads the required data. Instead, return immediately after reading the data 
+      @param bytes specifies the amount of data to be read, and the data of the default read any size 
+      @Return Return to the data read from connection*/
     Buffer recv(Integer bytes = -1) async;
 
-    Buffer recvFrom(Integer bytes = -1);
-
-    /*! @brief Write data to connection, same as write
-     @param data Data to send
-     */
+    /*! @brief writes the given data to the connection. This method is equivalent to the WRITE method 
+      @param Data Given the data you want to write*/
     send(Buffer data) async;
-
-    sendto(Buffer data, String host, Integer port);
 };

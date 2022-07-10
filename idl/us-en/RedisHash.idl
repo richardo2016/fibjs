@@ -1,77 +1,76 @@
-/*! @brief Redis database client Hash object, it contains client with given key, and has to call its methods to operate database
+/*! @Brief Redis database client Hash object, this object is a client that contains specified key, only the method of calling its method can operate the database 
 
- Used for Redis Hash object, to create it:
- @code
- var db = require("db");
- var rdb = new db.openRedis("redis-server");
- var hash = rdb.getHash("test");
- @endcode
- */
+  Hash objects used to operate Redis, create methods: 
+  `` `Javascript 
+  varb = request ("db"); 
+  var rdb = new db.openredis ("redis-server"); 
+  var have = rdb.gethash ("test"); 
+  `` `*/
 interface RedisHash : object
 {
-    /*! @brief Set value of field, overwrite when field exists
-     @param field Field to set
-     @param value Value to set */
+    /*! @brief set the value of the domain Field in the hash table as value. If the domain Field already exists in the hash table, the old value will be covered 
+      @Param Field specifies FIELD to modify 
+      @Param Value specify data to be modified*/
     set(Buffer field, Buffer value);
 
-    /*! @brief Set value of field, ignore when field exists
-     @param field Field to set
-     @param value Value to set */
+    /*! @brief sets the value of the domain Field in the hash table to value, and only does it exist in the domain FIELD. If the domain Field already exists, the operation is invalid 
+      @Param Field specifies FIELD to modify 
+      @Param Value specify data to be modified*/
     setNX(Buffer field, Buffer value);
 
-    /*! @brief Set multiple field-value pairs,  overwrite when fields exist
-     @param kvs List of field/value Pairs*/
+    /*! @Brief Set multiple Field-Value (domain-value) at the same time to set it in the hash table, this command will cover the already existing domain in the hash table 
+      @Param KVS specify the Field/Value object to be set*/
     mset(Object kvs);
 
-    /*! @brief Set multiple field-value pairs,  overwrite when fields exist
-     @param ... List of field/value Pairs*/
-    mset(...);
+    /*! @Brief Set multiple Field-Value (domain-value) at the same time to set it in the hash table, this command will cover the already existing domain in the hash table 
+      @Param KVS specify the Field/Value list to be set*/
+    mset(...kvs);
 
-    /*! @brief Get value of field
-     @param field Field to query
-     @return Return valud, null when field not exists */
+    /*! @brief returns the value of the domain FIELD in the hash table 
+      @Param Field specifies FIELD to query 
+      @Return Given the domain value, when the domain does not exist or the given key does not exist, return NULL*/
     Buffer get(Buffer field);
 
-    /*! @brief Get one or more values of fields
-     @param fields Array of fields to query
-     @return Return a list of values */
-    List mget(Array fields);
+    /*! @Brief returns in the hash table, one or more domain values 
+      @Param Fields specify the domain arrays to be queried 
+      @Return A list containing all given domain values*/
+    NArray mget(Array fields);
 
-    /*! @brief Get one or more values of fields
-     @param ... Array of fields to query
-     @return Return a list of values */
-    List mget(...);
+    /*! @Brief returns in the hash table, one or more domain values 
+      @Param Fields specify the domain list to be queried 
+      @Return A list containing all given domain values*/
+    NArray mget(...fields);
 
-    /*! @brief Increase value of field
-     @param field Field to change
-     @param num Number to increase
-     @return Return result value */
+    /*! @Brief adds the value stored in the domain 
+      @Param Field specifies the domain to be modified 
+      @param num specifies the value to be added 
+      @Return and Num, the value of the domain*/
     Long incr(Buffer field, Long num = 1);
 
-    /*! @brief Get all fields
-     @return Return a list of fields */
-    List getAll();
+    /*! @brief returns in the hash table, all domains and values 
+      @Return Return a list containing all domains in the hash table*/
+    NArray getAll();
 
-    /*! @brief Get all fields
-     @return Return field-value pairs in one list, which size will be twice larger than original one */
-    List keys();
+    /*! @brief Return to all the domains in the hash table 
+      @Return Return the value, followed by each domain name (field name) is the value of the domain, so the length of the return value is twice the size of the hash table size.*/
+    NArray keys();
 
-    /*! @brief Get number of fields
-     @return Return length of list */
+    /*! @brief Return to the number of domains in the hash table 
+      @Return Return to the number of domains in hash table*/
     Integer len();
 
-    /*! @brief Check if given field exists
-     @param field Field to query
-     @return Return true when field exists, false when field or key not exists */
+    /*! @brief View in the hash table, whether the domain FIELD exists 
+      @Param Field specifies FIELD to query 
+      @Return If the hash table contains a given domain and return to True, if the hash table does not contain a given domain, or the key does not exist, return false*/
     Boolean exists(Buffer field);
 
-    /*! @brief Delete one or more fields, ignore when not exists
-     @param fields List of field to delete
-     @return Return number of deletions */
+    /*! @brief delete one or more specified domains in the hash table, and the do not exist will be ignored 
+      @Param Fields specify the domain arrays to be deleted 
+      @Return to be deleted in the number of domains*/
     Integer del(Array fields);
 
-    /*! @brief Delete one or more fields, ignore when not exists
-     @param ... List of field to delete
-     @return Return number of deletions */
-    Integer del(...);
+    /*! @brief delete one or more specified domains in the hash table, and the do not exist will be ignored 
+      @Param Fields specify the domain list to be deleted 
+      @Return to be deleted in the number of domains*/
+    Integer del(...fields);
 };

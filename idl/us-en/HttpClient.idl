@@ -1,0 +1,176 @@
+/*! @Brief HTTP client object 
+ 
+  The HTTP client object simulates the browser environment cache cookie, and carrys the corresponding cookies when accessing the URL. Different HTTP client objects are isolated from each other and provided HTTP's Request, Get, Post and other methods. 
+  The usage is as follows: 
+
+  `` `Javascript 
+  var http = request ('http'); 
+  var httpclient = new http.client (); 
+  httpclient.request ('get', 'http://fibjs.org'); 
+  `` `*/
+interface HttpClient : object
+{
+    /*! @Brief httpclient construct function to create a new HTTPClient object*/
+    HttpClient();
+
+    /*! @Brief Return to the httpcookie object list of HTTP client*/
+    readonly NArray cookies;
+
+    /*! @brief query and set timeout unit milliseconds*/
+    Integer timeout;
+
+    /*! @brief cookie function switch, open default*/
+    Boolean enableCookie;
+
+    /*! @Brief automatic redirect function switch, open default*/
+    Boolean autoRedirect;
+
+    /*! @Brief automatically decompressed the function switch, open default*/
+    Boolean enableEncoding;
+
+    /*! @brief query and set the maximum size of the body, in the mb as the unit, the default is -1, the size is not limited*/
+    Integer maxBodySize;
+
+    /*! @Brief query and set the browser logo in the http request*/
+    String userAgent;
+
+    /*! @brief query and set the maximum cache connection number of Keep-Alive, default 128*/
+    Integer poolSize;
+
+    /*! @brief query and set the Keep-Alive cache connection timeout time, default 10,000 ms*/
+    Integer poolTimeout;
+
+    /*! @brief query and set the proxy server, support HTTP/HTTPS/SOCKS5 proxy*/
+    String proxyAgent;
+
+    /*! @brief query and set the certificate verification mode when connecting to HTTPS, refer to the Verify_* constant of the SSL module, the default value is SSL.Verification*/
+    Integer sslVerification;
+
+    /*! @brief Set the default client certificate 
+     @Param CRT certificate, used to send to the server to verify the client 
+     @Param Key's private key, used to talk to the client*/
+    setClientCert(X509Cert crt, PKey key);
+
+    /*! @brief Send HTTP request to the specified stream object and return the result 
+      @Param Conn specify the stream object of the processing request 
+      @Param Req to send HTTPREQUEST object 
+      @Return Return to server response*/
+    HttpResponse request(Stream conn, HttpRequest req) async;
+
+    /*! @brief Send HTTP request to the specified stream object and return the result 
+      @Param Conn specify the stream object of the processing request 
+      @Param Req to send HTTPREQUEST object 
+      @param response_body specifies the stream of response.body 
+      @Return Return to server response*/
+    HttpResponse request(Stream conn, HttpRequest req, SeekableStream response_body) async;
+
+    /*! @brief requested the specified URL and returned the result 
+      OPTS contains the additional option of request, the support content is as follows: 
+      `` `Javascript 
+      {{ 
+          "Method": "get", // Specify HTTP request method: get, post, etc. 
+          "Query": {}, 
+          "Body": SeekableStream | Buffer | String | {}, 
+          "json": {}, 
+          "Pack": {}, 
+          "headers": {},,, 
+          "response_body": Seekablestream // Specify the stream of receiving resposne data 
+      } 
+      `` ` 
+      Among them, Body, JSON, Pack must not appear at the same time. The default is {}, without any additional information 
+      @Param Method specify HTTP request method: get, post, etc. 
+      @Param url specifies URL, must be the complete URL of the host 
+      @param Opts specify additional information 
+      @Return Return to server response*/
+    HttpResponse request(String method, String url, Object opts = {}) async;
+
+    /*! @Brief uses the get method to request the specified URL and return the result, which is equivalent to request ("get", ...) 
+      OPTS contains the additional option of request, the support content is as follows: 
+      `` `Javascript 
+      {{ 
+          "Method": "get", // Specify HTTP request method: get, post, etc. 
+          "Query": {}, 
+          "Body": SeekableStream | Buffer | String | {}, 
+          "json": {}, 
+          "Pack": {}, 
+          "headers": {} 
+      } 
+      `` ` 
+      Among them, Body, JSON, Pack must not appear at the same time. The default is {}, without any additional information 
+      @Param url specifies URL, must be the complete URL of the host 
+      @param Opts specify additional information 
+      @Return Return to server response*/
+    HttpResponse get(String url, Object opts = {}) async;
+
+    /*! @Brief uses the post method to request the specified URL and return the result, which is equivalent to request ("post", ...) 
+      OPTS contains the additional option of request, the support content is as follows: 
+      `` `Javascript 
+      {{ 
+          "Method": "get", // Specify HTTP request method: get, post, etc. 
+          "Query": {}, 
+          "Body": SeekableStream | Buffer | String | {}, 
+          "json": {}, 
+          "Pack": {}, 
+          "headers": {} 
+      } 
+      `` ` 
+      Among them, Body, JSON, Pack must not appear at the same time. The default is {}, without any additional information 
+      @Param url specifies URL, must be the complete URL of the host 
+      @param Opts specify additional information 
+      @Return Return to server response*/
+    HttpResponse post(String url, Object opts = {}) async;
+
+    /*! @brief uses the delete method to request the specified URL and return the result, which is equivalent to request ("delete", ...) 
+      OPTS contains the additional option of request, the support content is as follows: 
+      `` `Javascript 
+      {{ 
+          "Method": "get", // Specify HTTP request method: get, post, etc. 
+          "Query": {}, 
+          "Body": SeekableStream | Buffer | String | {}, 
+          "json": {}, 
+          "Pack": {}, 
+          "headers": {} 
+      } 
+      `` ` 
+      Among them, Body, JSON, Pack must not appear at the same time. The default is {}, without any additional information 
+      @Param url specifies URL, must be the complete URL of the host 
+      @param Opts specify additional information 
+      @Return Return to server response*/
+    HttpResponse del(String url, Object opts = {}) async;
+
+    /*! @Brief uses the PUT method to request the specified URL and return the result, which is equivalent to request ("put", ...) 
+      OPTS contains the additional option of request, the support content is as follows: 
+      `` `Javascript 
+      {{ 
+          "Method": "get", // Specify HTTP request method: get, post, etc. 
+          "Query": {}, 
+          "Body": SeekableStream | Buffer | String | {}, 
+          "json": {}, 
+          "Pack": {}, 
+          "headers": {} 
+      } 
+      `` ` 
+      Among them, Body, JSON, Pack must not appear at the same time. The default is {}, without any additional information 
+      @Param url specifies URL, must be the complete URL of the host 
+      @param Opts specify additional information 
+      @Return Return to server response*/
+    HttpResponse put(String url, Object opts = {}) async;
+
+    /*! @Brief uses the patches method to request the specified URL and return the result, which is equivalent to request ("patch", ...) 
+      OPTS contains the additional option of request, the support content is as follows: 
+      `` `Javascript 
+      {{ 
+          "Method": "get", // Specify HTTP request method: get, post, etc. 
+          "Query": {}, 
+          "Body": SeekableStream | Buffer | String | {}, 
+          "json": {}, 
+          "Pack": {}, 
+          "headers": {} 
+      } 
+      `` ` 
+      Among them, Body, JSON, Pack must not appear at the same time. The default is {}, without any additional information 
+      @Param url specifies URL, must be the complete URL of the host 
+      @param Opts specify additional information 
+      @Return Return to server response*/
+    HttpResponse patch(String url, Object opts = {}) async;
+};

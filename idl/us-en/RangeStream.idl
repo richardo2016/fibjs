@@ -1,0 +1,29 @@
+/*! @Brief Range query stream reading object 
+
+  Rangestream objects are used to intercept the SeekableStream object data. Create method: 
+  `` `Javascript 
+  var sTM = New IO.RANGESTREAM (stream, '0-10'); 
+  stm.end // 11 
+
+  var sTM = New IO.RANGESTREAM (stream, 0, 10); 
+  stm.end // 10 
+  `` `*/
+interface RangeStream : SeekableStream
+{
+    /*! @Brief Rangestream Construction Function 
+       @Param Stm Rangestream's binary foundation stream, must be SeekableStream 
+       @Param Range describes the string of Range, the format is 'begin- [end]', '[begin] -end'*/
+    RangeStream(SeekableStream stm, String range);
+
+    /*! @Brief Rangestream Construction Function 
+       @Param Stm Rangestream's binary foundation stream, must be SeekableStream 
+       @param Begin reads the starting location of the content from STM 
+       @Param End reads the end of the content from STM*/
+    RangeStream(SeekableStream stm, Long begin, Long end);
+
+    /*! @brief query range start value*/
+    readonly Long begin;
+
+    /*! @brief query the end value of the Range*/
+    readonly Long end;
+};

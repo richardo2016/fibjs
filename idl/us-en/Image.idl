@@ -1,476 +1,414 @@
+/*! @brief image processing objects to convert the image, draw, storage and other operations 
 
-/*! @brief Image object with transform, draw and save operations, etc. 
-
- Image object belongs to gd module, to create:
- @code
- var img = gd.create(640, 480);
- var img1 = gd.load(data);
- @endcode
- */
+  Image object belongs to the GD module, created: 
+  `` `Javascript 
+  var IMG = gd.create (640, 480); 
+  var IMG1 = gd.load (data); 
+  `` `*/
 interface Image : object
 {
-    /*! @brief Return image width */
+    /*! @brief query image width*/
     readonly Integer width;
 
-    /*! @brief Return image height */
+    /*! @brief query image height*/
     readonly Integer height;
 
-    /*! @brief Return image format, result will be gd.PNG, gd.JPEG, gd.GIF, gd.BMP, gd.GD, or gd.GD2 */
+    /*! @brief query image source format, the result is GD.PNG, GD.JPEG, GD.GIF, GD.BMP, GD.WEBP*/
     readonly Integer format;
 
-    /*! @brief Return image type, result will be gd.TRUECOLOR or gd.PALETTE */
+    /*! @brief query image type, the result is GD.TRUECOLOR, GD.palette*/
     readonly Integer type;
 
-    /*! @brief Return total number of colors in color table of image */
+    /*! @brief Inquiry The total color in the color table of the image table*/
     readonly Integer colorsTotal;
 
-    /*! @brief Get and set a color to be transparent */
+    /*! @brief query and set the specified color to be transparent*/
     Integer transparent;
 
-    /*! @brief Get and set whether the image is progressive, only supports jpeg format */
+    /*! @brief query and set the set of images to be progressive, only when the JPEG format supports JPEG format*/
     Boolean progressive;
 
-    /*! @brief Get and set whether to calculate alpha layer for drawing, default is true */
+    /*! @brief query and set whether to calculate the alpha layer when drawing, the default is TRUE*/
     Boolean alphaBlending;
 
-    /*! @brief Return image data in given format
-     @param format Indicate return data format, can be gd.PNG, gd.JPEG, gd.GIF, gd.BMP, gd.GD, or gd.GD2, default is gd.PNG
-     @param quality Compress level when format is gd.JPEG, default is 85, and other formats ignore this
-     @return Return formatted data
-     */
+    /*! @Brief returns image data in the specified format according to the specified format 
+      @Param Format specifies the format of the return data, the allowable value is GD.PNG, GD.JPEG, GD.GIF, GD.BMP, GD.WEBP, the default is GD.Png 
+      @Param Quality is used to specify the compression quality when the format is GD.JPEG or GD.WEBP, the default is 85, other formats ignore this parameter 
+      @Return Return the formatted data*/
     Buffer getData(Integer format = gd.PNG, Integer quality = 85) async;
 
-    /*! @brief Write image data to write stream in given format
-     @param stm Stream object to write
-     @param format Indicate return data format, can be gd.PNG, gd.JPEG, gd.GIF, gd.BMP, gd.GD, or gd.GD2, default is gd.PNG
-     @param quality Compress level when format is gd.JPEG, default is 85, and other formats ignore this
-     */
+    /*! @brief In the specified format, the image data is stored into the stream object 
+      @param STM specifies the stream object to be stored in 
+      @Param Format specifies the format of the return data, the allowable value is GD.PNG, GD.JPEG, GD.GIF, GD.BMP, GD.WEBP, the default is GD.Png 
+      @Param Quality is used to specify the compression quality when the format is GD.JPEG or GD.WEBP, the default is 85, other formats ignore this parameter*/
     save(Stream stm, Integer format = gd.PNG, Integer quality = 85) async;
 
-    /*! @brief Write/overwrite image data to a file in given format 
-     @param fname File name
-     @param format Indicate return data format, can be gd.PNG, gd.JPEG, gd.GIF, gd.BMP, gd.GD, or gd.GD2, default is gd.PNG
-     @param quality Compress level when format is gd.JPEG, default is 85, and other formats ignore this
-     */
+    /*! @brief Save the image data into the specified file according to the specified format, the file will be forced to cover 
+      @param fname specified file name 
+      @Param Format specifies the format of the return data, the allowable value is GD.PNG, GD.JPEG, GD.GIF, GD.BMP, GD.WEBP, the default is GD.Png 
+      @Param Quality is used to specify the compression quality when the format is GD.JPEG, the default is 85, other formats ignore this parameter*/
     save(String fname, Integer format = gd.PNG, Integer quality = 85) async;
 
-    /*! @brief Allocate a color number for given color, palette index for gd.PALETTE and rgb for gd.TRUECOLOR
-     @param red Red, range is 0-255
-     @param green Green, range is 0-255
-     @param blue Blue, range is 0-255
-     @return Return color number, -1 otherwise
-     */
+    /*! @brief Apply for a color number for the specified color. For GD.PALETTE images, the color number is the color panel index. For GD.TRUECOLOR image, the color number is RGB coding value 
+      @Param red red component with a range of 0-255 
+      @Param Green green component with a range of 0-255 
+      @Param Blue Blue component with a range of 0-255 
+      @Return Return to the color number, unsuccessful return -1*/
     Integer colorAllocate(Integer red, Integer green, Integer blue);
 
-    /*! @brief Allocate a color number for given color, palette index for gd.PALETTE and rgb for gd.TRUECOLOR
-     @param color Combined colors, can be generated by gd.color, gb.rgb, gd.rgba
-     @return Return color number, -1 otherwise
-     */
+    /*! @brief Apply for a color number for the specified color. For GD.PALETTE images, the color number is the color panel index. For GD.TRUECOLOR image, the color number is RGB coding value 
+      @Param color combination color value can be generated by functions of GD.COLOR, GB.RGB, GD.RGBA, etc. 
+      @Return Return to the color number, unsuccessful return -1*/
     Integer colorAllocate(Integer color);
 
-    /*! @brief Allocate a color number for given color and transparency, palette index for gd.PALETTE and rgba for gd.TRUECOLOR
-     @param red Red, range is 0-255
-     @param green Green, range is 0-255
-     @param blue Blue, range is 0-255
-     @param alpha Alpha, range is 0-1.0
-     @return Return color number, -1 otherwise
-     */
+    /*! @brief apply for a color number for the specified color and transparent. For GD.PALETTE images, the color number is the color panel index. For GD.TRUECOLOR image, the color number is RGBA coding value 
+      @Param red red component with a range of 0-255 
+      @Param Green green component with a range of 0-255 
+      @Param Blue Blue component with a range of 0-255 
+      @Param Alpha transparent components, the range is 0-1.0 
+      @Return Return to the color number, unsuccessful return -1*/
     Integer colorAllocateAlpha(Integer red, Integer green, Integer blue, Number alpha);
 
-    /*! @brief Allocate a color number for given color and transparency, palette index for gd.PALETTE and rgba for gd.TRUECOLOR
-     @param color Combined colors, can be generated by gd.color, gb.rgb, gd.rgba
-     @return Return color number, -1 otherwise
-     */
+    /*! @brief apply for a color number for the specified color and transparent. For GD.PALETTE images, the color number is the color panel index. For GD.TRUECOLOR image, the color number is RGBA coding value 
+      @Param color combination color value can be generated by functions of GD.COLOR, GB.RGB, GD.RGBA, etc. 
+      @Return Return to the color number, unsuccessful return -1*/
     Integer colorAllocateAlpha(Integer color);
 
-    /*! @brief Allocate a closest color number for given color, palette index for gd.PALETTE and rgb for gd.TRUECOLOR
-     @param red Red, range is 0-255
-     @param green Green, range is 0-255
-     @param blue Blue, range is 0-255
-     @return Return color number, -1 otherwise
-     */
+    /*! @brief finds the closest color number for the specified color. For GD.PALETTE images, the color number is the color panel index. For GD.TRueColor image, the color number is RGB encoding value 
+      @Param red red component with a range of 0-255 
+      @Param Green green component with a range of 0-255 
+      @Param Blue Blue component with a range of 0-255 
+      @Return Return to the color number, unsuccessful return -1*/
     Integer colorClosest(Integer red, Integer green, Integer blue);
 
-    /*! @brief Allocate a closest color number for given color, palette index for gd.PALETTE and rgb for gd.TRUECOLOR
-     @param color Combined colors, can be generated by gd.color, gb.rgb, gd.rgba
-     @return Return color number, -1 otherwise
-     */
+    /*! @brief finds the closest color number for the specified color. For GD.PALETTE images, the color number is the color panel index. For GD.TRueColor image, the color number is RGB encoding value 
+      @Param color combination color value can be generated by functions of GD.COLOR, GB.RGB, GD.RGBA, etc. 
+      @Return Return to the color number, unsuccessful return -1*/
     Integer colorClosest(Integer color);
 
-    /*! @brief Allocate a closest color number for given color using Hue/White/Black, palette index for gd.PALETTE and rgb for gd.TRUECOLOR
-     @param red Red, range is 0-255
-     @param green Green, range is 0-255
-     @param blue Blue, range is 0-255
-     @return Return color number, -1 otherwise
-     */
+    /*! @brief finds the closest color number for the specified color. This method uses Hue/White/Black to calculate the closest color. For GD.PALETTE images, the color number is the color adjustment board index. Number RGB encoding value 
+      @Param red red component with a range of 0-255 
+      @Param Green green component with a range of 0-255 
+      @Param Blue Blue component with a range of 0-255 
+      @Return Return to the color number, unsuccessful return -1*/
     Integer colorClosestHWB(Integer red, Integer green, Integer blue);
 
-    /*! @brief Allocate a closest color number for given color using Hue/White/Black, palette index for gd.PALETTE and rgb for gd.TRUECOLOR
-     @param color Combined colors, can be generated by gd.color, gb.rgb, gd.rgba
-     @return Return color number, -1 otherwise
-     */
+    /*! @brief finds the closest color number for the specified color. This method uses Hue/White/Black to calculate the closest color. For GD.PALETTE images, the color number is the color adjustment board index. Number RGB encoding value 
+      @Param color combination color value can be generated by functions of GD.COLOR, GB.RGB, GD.RGBA, etc. 
+      @Return Return to the color number, unsuccessful return -1*/
     Integer colorClosestHWB(Integer color);
 
-    /*! @brief Allocate a closest color number for given color and transparency, palette index for gd.PALETTE and rgba for gd.TRUECOLOR
-     @param red Red, range is 0-255
-     @param green Green, range is 0-255
-     @param blue Blue, range is 0-255
-     @param alpha Alpha, range is 0-1.0
-     @return Return color number, -1 otherwise
-     */
+    /*! @brief finds the closest color number for the specified color and transparent. For GD.PALETTE images, the color number is the color panel index, for the GD.TRUECOLOR image, the color number is RGBA coding value 
+      @Param red red component with a range of 0-255 
+      @Param Green green component with a range of 0-255 
+      @Param Blue Blue component with a range of 0-255 
+      @Param Alpha transparent components, the range is 0-1.0 
+      @Return Return to the color number, unsuccessful return -1*/
     Integer colorClosestAlpha(Integer red, Integer green, Integer blue, Number alpha);
 
-    /*! @brief Allocate a closest color number for given color and transparency, palette index for gd.PALETTE and rgba for gd.TRUECOLOR
-     @param color Combined colors, can be generated by gd.color, gb.rgb, gd.rgba
-     @return Return color number, -1 otherwise
-     */
+    /*! @brief finds the closest color number for the specified color and transparent. For GD.PALETTE images, the color number is the color panel index, for the GD.TRUECOLOR image, the color number is RGBA coding value 
+      @Param color combination color value can be generated by functions of GD.COLOR, GB.RGB, GD.RGBA, etc. 
+      @Return Return to the color number, unsuccessful return -1*/
     Integer colorClosestAlpha(Integer color);
 
-    /*! @brief Find color number of given color, palette index for gd.PALETTE and rgb for gd.TRUECOLOR
-     @param red Red, range is 0-255
-     @param green Green, range is 0-255
-     @param blue Blue, range is 0-255
-     @return Return color number, -1 otherwise
-     */
+    /*! @brief Find the color number corresponding to the specified color. For GD.PALETTE images, the color number is the color panel index. For GD.TRUECOLOR image, the color number is RGB coding value 
+      @Param red red component with a range of 0-255 
+      @Param Green green component with a range of 0-255 
+      @Param Blue Blue component with a range of 0-255 
+      @Return Return to the color number, unsuccessful return -1*/
     Integer colorExact(Integer red, Integer green, Integer blue);
 
-    /*! @brief Find color number of given color, palette index for gd.PALETTE and rgb for gd.TRUECOLOR
-     @param color Combined colors, can be generated by gd.color, gb.rgb, gd.rgba
-     @return Return color number, -1 otherwise
-     */
+    /*! @brief Find the color number corresponding to the specified color. For GD.PALETTE images, the color number is the color panel index. For GD.TRUECOLOR image, the color number is RGB coding value 
+      @Param color combination color value can be generated by functions of GD.COLOR, GB.RGB, GD.RGBA, etc. 
+      @Return Return to the color number, unsuccessful return -1*/
     Integer colorExact(Integer color);
 
-    /*! @brief Find color number of given color and transparency, palette index for gd.PALETTE and rgba for gd.TRUECOLOR
-     @param red Red, range is 0-255
-     @param green Green, range is 0-255
-     @param blue Blue, range is 0-255
-     @param alpha Alpha, range is 0-1.0
-     @return Return color number, -1 otherwise
-     */
+    /*! @brief Find the specified color and transparent corresponding color number. For GD.PALETTE images, the color number is the color panel index. For GD.TRUECOLOR image, the color number is RGBA coding value 
+      @Param red red component with a range of 0-255 
+      @Param Green green component with a range of 0-255 
+      @Param Blue Blue component with a range of 0-255 
+      @Param Alpha transparent components, the range is 0-1.0 
+      @Return Return to the color number, unsuccessful return -1*/
     Integer colorExactAlpha(Integer red, Integer green, Integer blue, Number alpha);
 
-    /*! @brief Find color number of given color and transparency, palette index for gd.PALETTE and rgba for gd.TRUECOLOR
-     @param color Combined colors, can be generated by gd.color, gb.rgb, gd.rgba
-     @return Return color number, -1 otherwise
-     */
+    /*! @brief Find the specified color and transparent corresponding color number. For GD.PALETTE images, the color number is the color panel index. For GD.TRUECOLOR image, the color number is RGBA coding value 
+      @Param color combination color value can be generated by functions of GD.COLOR, GB.RGB, GD.RGBA, etc. 
+      @Return Return to the color number, unsuccessful return -1*/
     Integer colorExactAlpha(Integer color);
 
-    /*! @brief Find color number of given color, and allocate new one if not exists, palette index for gd.PALETTE and rgb for gd.TRUECOLOR
-     @param red Red, range is 0-255
-     @param green Green, range is 0-255
-     @param blue Blue, range is 0-255
-     @return Return color number, -1 otherwise
-     */
+    /*! @brief Find the color number corresponding to the specified color. If the color does not exist, apply for a new color number for it. For GD.PALETTE images, the color number is the color panel index. For GD.TRUECOLOR image, the color number is RGB is RGB. Coding value 
+      @Param red red component with a range of 0-255 
+      @Param Green green component with a range of 0-255 
+      @Param Blue Blue component with a range of 0-255 
+      @Return Return to the color number, unsuccessful return -1*/
     Integer colorResolve(Integer red, Integer green, Integer blue);
 
-    /*! @brief Find color number of given color, and allocate new one if not exists, palette index for gd.PALETTE and rgb for gd.TRUECOLOR
-     @param color Combined colors, can be generated by gd.color, gb.rgb, gd.rgba
-     @return Return color number, -1 otherwise
-     */
+    /*! @brief Find the color number corresponding to the specified color. If the color does not exist, apply for a new color number for it. For GD.PALETTE images, the color number is the color panel index. For GD.TRUECOLOR image, the color number is RGB is RGB. Coding value 
+      @Param color combination color value can be generated by functions of GD.COLOR, GB.RGB, GD.RGBA, etc. 
+      @Return Return to the color number, unsuccessful return -1*/
     Integer colorResolve(Integer color);
 
-    /*! @brief Find color number of given color and transparency, and allocate new one if not exists, palette index for gd.PALETTE and rgba for gd.TRUECOLOR
-     @param red Red, range is 0-255
-     @param green Green, range is 0-255
-     @param blue Blue, range is 0-255
-     @param alpha Alpha, range is 0-1.0
-     @return Return color number, -1 otherwise
-     */
+    /*! @brief Find the specified color and transparent corresponding color numbers. If the color does not exist, apply for a new color number for it. For GD.PALETTE images, the color number is the color panel index. Code the value for RGBA 
+      @Param red red component with a range of 0-255 
+      @Param Green green component with a range of 0-255 
+      @Param Blue Blue component with a range of 0-255 
+      @Param Alpha transparent components, the range is 0-1.0 
+      @Return Return to the color number, unsuccessful return -1*/
     Integer colorResolveAlpha(Integer red, Integer green, Integer blue, Number alpha);
 
-    /*! @brief Find color number of given color and transparency, and allocate new one if not exists, palette index for gd.PALETTE and rgba for gd.TRUECOLOR
-     @param color Combined colors, can be generated by gd.color, gb.rgb, gd.rgba
-     @return Return color number, -1 otherwise
-     */
+    /*! @brief Find the specified color and transparent corresponding color numbers. If the color does not exist, apply for a new color number for it. For GD.PALETTE images, the color number is the color panel index. Code the value for RGBA 
+      @Param color combination color value can be generated by functions of GD.COLOR, GB.RGB, GD.RGBA, etc. 
+      @Return Return to the color number, unsuccessful return -1*/
     Integer colorResolveAlpha(Integer color);
 
-    /*! @brief Release given color number, and will be reused in future allocation
-     @param color Color number to release
-     */
+    /*! @Brief released the specified color number, the release of the release of the color number will be replaced after applying again 
+      @Param color specify the color number to be released*/
     colorDeallocate(Integer color);
 
-    /*! @brief Set cut windows and make all changes inside this window
-     @param x1 Top-left x coordinate
-     @param y1 Top-left y coordinate
-     @param x2 Bottom-right x coordinate
-     @param y2 Bottom-right y coordinate
-     */
+    /*! @Brief Set the cutting window of the drawing. After setting, all drawings will be cut inside the window 
+      @Param X1 Step on the left X coordinate 
+      @Param Y1 The upper left y coordinate of the cutting window 
+      @Param X2 The lower right X coordinate of the cutting window 
+      @Param Y2 The bottom right y coordinate of the cutting window*/
     clip(Integer x1, Integer y1, Integer x2, Integer y2);
 
-    /*! @brief Get pixel of given point
-     @param x Indicates x coordinate
-     @param y Indicates y coordinate
-     @return Return color number of given point
-     */
+    /*! @brief query the color of the specified position point 
+      @param x Specify the X coordinate of the query 
+      @param y Specify the y coordinate of query 
+      @Return Return to the color number of the specified point*/
     Integer getPixel(Integer x, Integer y);
 
-    /*! @brief Get true color pixel of given point
-     @param x Indicates x coordinate
-     @param y Indicates y coordinate
-     @return Return color number of given point
-     */
+    /*! @brief query the real color color of the specified location point 
+      @param x Specify the X coordinate of the query 
+      @param y Specify the y coordinate of query 
+      @Return Return to the color number of the specified point*/
     Integer getTrueColorPixel(Integer x, Integer y);
 
-    /*! @brief Draw a pixel in given point
-     @param x Indicates x coordinate
-     @param y Indicates y coordinate
-     @param color Indicates color number
-     */
+    /*! @brief Draw a point in the specified location 
+      @param x Specify the X coordinate of the drawing point 
+      @param y Specify the y coordinate of the drawing point 
+      @param color specify the color number of the drawing point*/
     setPixel(Integer x, Integer y, Integer color);
 
-    /*! @brief Set thickness of lines, line, rectangle, arc defaults are 1 pixel
-     @param thickness Thickness of lines
-     */
+    /*! @brief Set the width of the drawing line, LINE, RECTANGLE, ARC and other methods to draw a pixel when drawing lines. You can use this method to change the width of the line. 
+      @Param Thickness's width of the drawing line*/
     setThickness(Integer thickness);
 
-    /*! @brief Draw a line in given position
-     @param x1 Start x coordinate
-     @param y1 Start y coordinate
-     @param x2 End x coordinate
-     @param y2 End y coordinate
-     @param color Color number of line
-     */
+    /*! @brief Draw a line at the specified location 
+      @Param X1 Specify the start of the x coordinate of the drawing line 
+      @Param y1 Specify the starting Y coordinate of the drawing line 
+      @Param X2 Specify the end of the X coordinate of the drawing line 
+      @Param Y2 specify the end of the Y coordinate of the drawing line 
+      @param color specify the color number of the drawing line*/
     line(Integer x1, Integer y1, Integer x2, Integer y2, Integer color);
 
-    /*! @brief Draw a rectangle in given position
-     @param x1 Top-left x coordinate
-     @param y1 Top-left y coordinate
-     @param x2 Bottom-right x coordinate
-     @param y2 Bottom-right y coordinate
-     @param color Color number of rectangle
-     */
+    /*! @brief Draw a rectangle at the specified location 
+      @Param X1 Specify X coordinates in the upper left corner 
+      @Param y1 Specify y coordinates in the upper left corner 
+      @Param X2 Specify X coordinates in the lower right corner 
+      @Param y2 Specify y coordinates in the lower right corner 
+      @param color specify the color number of the rectangle*/
     rectangle(Integer x1, Integer y1, Integer x2, Integer y2, Integer color);
 
-    /*! @brief Draw a filled rectangle in given position
-     @param x1 Top-left x coordinate
-     @param y1 Top-left y coordinate
-     @param x2 Bottom-right x coordinate
-     @param y2 Bottom-right y coordinate
-     @param color Color number of rectangle
-     */
+    /*! @brief Draw a filled rectangle at the specified location 
+      @Param X1 Specify X coordinates in the upper left corner 
+      @Param y1 Specify y coordinates in the upper left corner 
+      @Param X2 Specify X coordinates in the lower right corner 
+      @Param y2 Specify y coordinates in the lower right corner 
+      @param color specify the color number of the rectangle*/
     filledRectangle(Integer x1, Integer y1, Integer x2, Integer y2, Integer color);
 
-    /*! @brief Draw a polygon in given position
-     @param points Array of coordinates, e.g. [[1, 1], [1, 10], [10, 15], [10, 20]]
-     @param color Color number of polygon
-     */
+    /*! @brief Draw a polygon according to the given point 
+      @Param Points contains a multilateral point, such as [1, 1], [1, 10], [10, 15], [10, 20]]] 
+      @param color specify the color number of the rectangle*/
     polygon(Array points, Integer color);
 
-    /*! @brief Draw a open polygon in given position
-     @param points Array of coordinates, e.g. [[1, 1], [1, 10], [10, 15], [10, 20]]
-     @param color Color number of polygon
-     */
+    /*! @brief Draw an open polygon according to the given point 
+      @Param Points contains a multilateral point, such as [1, 1], [1, 10], [10, 15], [10, 20]]] 
+      @param color specify the color number of the rectangle*/
     openPolygon(Array points, Integer color);
 
-    /*! @brief Draw a filled polygon in given position
-     @param points Array of coordinates, e.g. [[1, 1], [1, 10], [10, 15], [10, 20]]
-     @param color Color number of polygon
-     */
+    /*! @brief Draw a filling polygon according to the given point 
+      @Param Points contains a multilateral point, such as [1, 1], [1, 10], [10, 15], [10, 20]]] 
+      @param color specify the color number of the rectangle*/
     filledPolygon(Array points, Integer color);
 
-    /*! @brief Draw a ellipse in given position
-     @param x Center x coordinate
-     @param y Center y coordinate
-     @param width Width of ellipse
-     @param height Height of ellipse
-     @param color Color number of polygon
-     */
+    /*! @brief Draw an ellipse 
+      @Param x oval center X coordinates 
+      @Param y oval center Y coordinate 
+      @param width oval width 
+      @param Height Oval Height 
+      @param color specify the color number of the rectangle*/
     ellipse(Integer x, Integer y, Integer width, Integer height, Integer color);
 
-    /*! @brief Draw a filled ellipse in given position
-     @param x Center x coordinate
-     @param y Center y coordinate
-     @param width Width of ellipse
-     @param height Height of ellipse
-     @param color Color number of polygon
-     */
+    /*! @brief Draw an ellipse of the filled 
+      @Param x oval center X coordinates 
+      @Param y oval center Y coordinate 
+      @param width oval width 
+      @param Height Oval Height 
+      @param color specify the color number of the rectangle*/
     filledEllipse(Integer x, Integer y, Integer width, Integer height, Integer color);
 
-    /*! @brief Draw a arc in given position
-     @param x Center x coordinate
-     @param y Center y coordinate
-     @param width Width of ellipse where arc is in
-     @param height Height of ellipse where arc is in
-     @param start Start angle, range is 0-360
-     @param end End angle, range is 0-360
-     @param color Color number of arc
-     */
+    /*! @brief Draw a fan shape 
+      @Param X Fan -shaped center X coordinates 
+      @Param Y Fan -shaped center Y coordinate 
+      @Param width fan, the width of the ellipse of the ellipse 
+      @param Height Fan Fang's height of the ellipse 
+      @Param Start Fan Form starts angle, the range is 0-360 
+      @Param END fan-shaped angle, the range is 0-360 
+      @param color specify the color number of the rectangle*/
     arc(Integer x, Integer y, Integer width, Integer height, Integer start, Integer end, Integer color);
 
-    /*! @brief Draw a filled arc in given position
-     @param x Center x coordinate
-     @param y Center y coordinate
-     @param width Width of ellipse where arc is in
-     @param height Height of ellipse where arc is in
-     @param start Start angle, range is 0-360
-     @param end End angle, range is 0-360
-     @param color Color number of arc
-     @param style Style, can be gd.ARC, gd.CHORD, gd.NOFILL, gd.EDGED and their combination
-     */
+    /*! @brief Draw a fan -shaped 
+      @Param X Fan -shaped center X coordinates 
+      @Param Y Fan -shaped center Y coordinate 
+      @Param width fan, the width of the ellipse of the ellipse 
+      @param Height Fan Fang's height of the ellipse 
+      @Param Start Fan Form starts angle, the range is 0-360 
+      @Param END fan-shaped angle, the range is 0-360 
+      @param color specify the color number of the rectangle 
+      @Param style specify the fan -shaped style, the allowable values are GD.ARC, GD.chord, GD.NOFILL, GD.EDGED and its combination*/
     filledArc(Integer x, Integer y, Integer width, Integer height, Integer start, Integer end, Integer color, Integer style = gd.ARC);
 
-    /*! @brief Fill a closed area start at give point
-     @param x Start x coordinate
-     @param y Start y coordinate
-     @param color Color number to fill
-     */
+    /*! @brief starts to fill the closed area from the specified point 
+      @Param X starting the X coordinates of filling 
+      @param y starts to fill the y coordinate 
+      @Param color specify the color number of the filling*/
     fill(Integer x, Integer y, Integer color);
 
-    /*! @brief Fill a closed area start at give point within its border
-     @param x Start x coordinate
-     @param y Start y coordinate
-     @param borderColor Color number of border
-     @param color Color number to fill
-     */
+    /*! @brief Fill the closed area in the designated border from the specified point from the specified point 
+      @Param X starting the X coordinates of filling 
+      @param y starts to fill the y coordinate 
+      @param BorderColor specifies the color number of the border 
+      @Param color specify the color number of the filling*/
     fillToBorder(Integer x, Integer y, Integer borderColor, Integer color);
 
-    /*! @brief Replace a color to another
-     @param src Indicates original color
-     @param dst Indicates new color
-     */
+    /*! @Brief replaced the color specified in the image is a new color 
+      @Param SRC specifies the color to be replaced 
+      @param dst specifies new colors*/
     colorReplace(Integer src, Integer dst) async;
 
-    /*! @brief Clone image
-     @return Return cloned image
-     */
+    /*! @brief Copy the current image is a new image 
+      @Return Return to copy new image objects*/
     Image clone() async;
 
-    /*! @brief Resample image to new size
-     @param width Indicates new width
-     @param height Indicates new height
-     @return Return new image
-     */
+    /*! @brief generates a new size image according to the image stretching 
+      @param width specify the width of stretching 
+      @param Height Specify the height of stretching 
+      @Return Return to the new image object*/
     Image resample(Integer width, Integer height) async;
 
-    /*! @brief Crop image
-     @param x Top-left x coordinate
-     @param y Top-left y coordinate
-     @param width Cut window width
-     @param height Cut window height
-     @return Return cutted image
-     */
+    /*! @Brief Cut the image part of the image is a new image 
+      @Param X Steel X coordinates in the left in the cut window 
+      @Param Y top left Y coordinate of the cut window 
+      @Param width cutting window width 
+      @Param Height Height 
+      @Return Return to the cut image*/
     Image crop(Integer x, Integer y, Integer width, Integer height) async;
 
-    /*! @brief Flip image
-     @param dir Flip direction, can be gd.BOTH,gd.HORIZONTAL, gd.VERTICAL, defaukt is gd.HORIZONTAL
-     */
+    /*! @Brief Mirror current image 
+      @Param Dir mirror direction, the allowable value is GD.Both, GD.Horizontal, GD.Vertical, default is GD.Horizontal*/
     flip(Integer dir = gd.HORIZONTAL) async;
 
-    /*! @brief Rotate image
-     @param dir Rotate direction, can be gd.LEFT, gd.RIGHT
-     */
+    /*! @brief Rotate the current image 
+      @Param DIR rotation direction, the allowable value is GD.Left, GD.Right*/
     rotate(Integer dir) async;
 
-    /*! @brief Convert image type
-     @param color Indicates type, can be gd.TRUECOLOR or gd.PALETTE
-     */
+    /*! @brief Convert the current image type 
+      @Param color specify the image type, the allowable value is GD.TRUECOLOR or GD.palette*/
     convert(Integer color = gd.TRUECOLOR) async;
 
-    /*! @brief Copy image into another image
-     @param source original image
-     @param dstX Indicates new x coordinate
-     @param dstY Indicates new y coordinate
-     @param srcX Indicates original top-left x coordinate
-     @param srcY Indicates original top-left y coordinate
-     @param width Indicates width
-     @param height Indicate height
-     */
+    /*! @brief Copy a area from a image to the specified location from a image 
+      @Param Source source image object 
+      @Param dstx Specify the X coordinate of the copy target 
+      @Param DSTY specifies the Y coordinate of the copy target 
+      @Param SRCX Specify the X coordinate of the upper left corner of the copy source 
+      @Param SRCY specifies the y coordinate of the upper left corner of the copy source 
+      @param width specify the width of copying 
+      @param Height specify the height of copying*/
     copy(Image source, Integer dstX, Integer dstY, Integer srcX, Integer srcY, Integer width, Integer height) async;
 
-    /*! @brief Merge image to another image
-     @param source original image
-     @param dstX Indicates new x coordinate
-     @param dstY Indicates new y coordinate
-     @param srcX Indicates original top-left x coordinate
-     @param srcY Indicates original top-left y coordinate
-     @param width Indicates width
-     @param height Indicate height
-     @param percent Indicates transparency
-     */
+    /*! @Brief Copy a area from a image to the specified location 
+      @Param Source source image object 
+      @Param dstx Specify the X coordinate of the copy target 
+      @Param DSTY specifies the Y coordinate of the copy target 
+      @Param SRCX Specify the X coordinate of the upper left corner of the copy source 
+      @Param SRCY specifies the y coordinate of the upper left corner of the copy source 
+      @param width specify the width of copying 
+      @param Height specify the height of copying 
+      @Param Percent specifies the transparency of the coverage*/
     copyMerge(Image source, Integer dstX, Integer dstY, Integer srcX, Integer srcY, Integer width, Integer height, Integer percent) async;
 
-    /*! @brief Merge image to another image with given gray
-     @param source original image
-     @param dstX Indicates new x coordinate
-     @param dstY Indicates new y coordinate
-     @param srcX Indicates original top-left x coordinate
-     @param srcY Indicates original top-left y coordinate
-     @param width Indicates width
-     @param height Indicate height
-     @param percent Indicate transparency
-     */
+    /*! @Brief Copy from the ash coverage of a area from a image to the specified location 
+      @Param Source source image object 
+      @Param dstx Specify the X coordinate of the copy target 
+      @Param DSTY specifies the Y coordinate of the copy target 
+      @Param SRCX Specify the X coordinate of the upper left corner of the copy source 
+      @Param SRCY specifies the y coordinate of the upper left corner of the copy source 
+      @param width specify the width of copying 
+      @param Height specify the height of copying 
+      @Param Percent specifies the transparency of the coverage*/
     copyMergeGray(Image source, Integer dstX, Integer dstY, Integer srcX, Integer srcY, Integer width, Integer height, Integer percent) async;
 
-    /*! @brief Copy and resize image
-     @param source original image
-     @param dstX Indicates new x coordinate
-     @param dstY Indicates new y coordinate
-     @param srcX Indicates original top-left x coordinate
-     @param srcY Indicates original top-left y coordinate
-     @param dstW Indicates resize width
-     @param dstH Indicates resize height
-     @param srcW Indicates original width
-     @param srcH Indicates original height
-     */
+    /*! @brief Stretch a area in a image and copy it to the specified location 
+      @Param Source source image object 
+      @Param dstx Specify the X coordinate of the copy target 
+      @Param DSTY specifies the Y coordinate of the copy target 
+      @Param SRCX Specify the X coordinate of the upper left corner of the copy source 
+      @Param SRCY specifies the y coordinate of the upper left corner of the copy source 
+      @Param DSTW Specify the extension width of copying 
+      @param dstt specify the replication stretching height 
+      @Param SRCW specify the source width of copying 
+      @Param SRCH specified the source height of copying*/
     copyResized(Image source, Integer dstX, Integer dstY, Integer srcX, Integer srcY, Integer dstW, Integer dstH, Integer srcW, Integer srcH) async;
 
-    /*! @brief Copy and resample image
-     @param source original image
-     @param dstX Indicates new x coordinate
-     @param dstY Indicates new y coordinate
-     @param srcX Indicates original top-left x coordinate
-     @param srcY Indicates original top-left y coordinate
-     @param dstW Indicates resize width
-     @param dstH Indicates resize height
-     @param srcW Indicates original width
-     @param srcH Indicates original height
-     */
+    /*! @brief Stretch a area in a image and copy it to the specified position. Different from CopyResized, this method will shake the image when stretching 
+      @Param Source source image object 
+      @Param dstx Specify the X coordinate of the copy target 
+      @Param DSTY specifies the Y coordinate of the copy target 
+      @Param SRCX Specify the X coordinate of the upper left corner of the copy source 
+      @Param SRCY specifies the y coordinate of the upper left corner of the copy source 
+      @Param DSTW Specify the extension width of copying 
+      @param dstt specify the replication stretching height 
+      @Param SRCW specify the source width of copying 
+      @Param SRCH specified the source height of copying*/
     copyResampled(Image source, Integer dstX, Integer dstY, Integer srcX, Integer srcY, Integer dstW, Integer dstH, Integer srcW, Integer srcH) async;
 
-    /*! @brief Copy and rotate image
-     @param source original image
-     @param dstX Indicates new x coordinate
-     @param dstY Indicates new y coordinate
-     @param srcX Indicates original top-left x coordinate
-     @param srcY Indicates original top-left y coordinate
-     @param width Indicates width
-     @param height Indicate height
-     @param angle Indicate the angle of rotation
-     */
-    copyRotated(Image source, Number dstX, Number dstY, Integer srcX, Integer srcY, Integer width, Integer height, Integer angle) async;
+    /*! @Brief Rotate a area in a image and copy it to the specified location 
+      @Param Source source image object 
+      @Param dstx Specify the X coordinate of the copy target 
+      @Param DSTY specifies the Y coordinate of the copy target 
+      @Param SRCX Specify the X coordinate of the upper left corner of the copy source 
+      @Param SRCY specifies the y coordinate of the upper left corner of the copy source 
+      @param width specify the width of copying 
+      @param Height specify the height of copying 
+      @Param Angle specified the angle of rotation*/
+    copyRotated(Image source, Number dstX, Number dstY, Integer srcX, Integer srcY, Integer width, Integer height, Number angle) async;
 
-    /*! @brief Applies a filter to an image, incoming parameters according to the type of filter.
-     @param filterType
-     - MEAN_REMOVAL,    Uses mean removal to achieve a "sketchy" effect.
-     - EDGEDETECT,      Uses edge detection to highlight the edges in the image.
-     - EMBOSS,          Embosses the image.
-     - SELECTIVE_BLUR,  Blurs the image.
-     - GAUSSIAN_BLUR,   Blurs the image using the Gaussian method.
-     - NEGATE,          Reverses all colors of the image.
-     - GRAYSCALE,       Converts the image into grayscale.
-     - SMOOTH,          Makes the image smoother. Use arg1 to set the level of smoothness.
-     - BRIGHTNESS,      Changes the brightness of the image. Use arg1 to set the level of brightness. The range for the brightness is -255 to 255.
-     - CONTRAST,        Changes the contrast of the image. Use arg1 to set the level of contrast, The range for the contrast is 0~100.
-     - COLORIZE,        Changes the hue of the image, Use arg1, arg2 and arg3 in the form of red, green, blue and arg4 for the alpha channel.The range for each color is 0 to 255.
-     @param arg1 Filter parameters: The smoothness level of SMOOTH, The brightness level of BRIGHTNESS, The contrast level of CONTRAST,  The red value of COLORIZE.
-     @param arg2 Filter parameters: The green value of COLORIZE.
-     @param arg3 Filter parameters: The blue value of COLORIZE.
-     @param arg4 Filter parameters: The alpha value of COLORIZE.
-     */
+    /*! @brief applies filters FILTERTYPE to the image, and passed the required parameters according to the filter type
+
+     Parameter Filtertype can be the following values:
+     -MEAN_REMOVAL, use the average removal method to achieve the contour effect
+     -EDGEDETECT, use edge detection to highlight the edge of the image
+     -EMBOSS, make the image relief
+     -SELECTIVE_BLUR, Vague Image
+     -Gaussian_blur, blur the image with Gaussian algorithm
+     -Negate, reverse all colors in the image
+     -Grayscale, convert the image to gray diagram
+     -Smooth, make the image softer, set the smooth level with ARG1
+     -Brightness, change the brightness of the image, set the brightness level with ARG1, the range of the value is -255 ~ 255
+     -CONTRAST, change the contrast of the image, set the comparison level with ARG1, the range range is 0 ~ 100
+     -Colorize, change the color of the image, specify the value of Red, Blue, and Green with ARG1, ARG2, ARG3, each color range is 0 ~ 255, ARG4 is transparent, and the value returns from 0 ~ 127
+     @Param Filtertype filter type
+     @Param ARG1 filter parameters: the smooth level of Smooth, the brightness level of the Brightness, the contrast level of the Contrast, the RED score of Colorize
+     @Param ARG2 filter parameter: Green score of colorize
+     @Param ARG3 filter parameter: Blue score of colorize
+     @Param ARG4 filter required parameters: COLORIZE's transparency Alpha score*/
     filter(Integer filterType, Number arg1 = 0, Number arg2 = 0, Number arg3 = 0, Number arg4 = 0) async;
 
-    /*! @brief Return an image containing the affine transformed src image
-     @param affine Affine matrix which is composed of six double number.
-     @code
-        affine = [ a0, a1, b0, b1, a2, b2 ];
-        x' = a0x + a1y + a2;
-        y' = b0x + b1y + b2;
-     @endcode
-     @param x Optional x coordinate of the clip zone.
-     @param y Optional y coordinate of the clip zone.
-     @param width Optional width of the clip zone.
-     @param height Optional height of the clip zone.
-     @return Return the affine transformed src image.
-     */
-    Image affine(Array affine, Integer x = -1, Integer y = -1, Integer width = -1, Integer height = -1);
+    /**/
+    Image affine(Array affine, Integer x = -1, Integer y = -1, Integer width = -1, Integer height = -1) async;
+
+    /**/
+    gaussianBlur(Integer radius) async;
 };

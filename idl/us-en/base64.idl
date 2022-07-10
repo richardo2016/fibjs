@@ -1,25 +1,23 @@
-/*! @brief base64 module with encode and decode operations.
- to use:
- @code
- var encoding = require('encoding');
- var base64 = encoding.base64;
- @endcode
- or:
- @code
- var base64 = require('base64');
- @endcode
- */
+/*! @brief base64 encoding and decoding module 
+  Quote method: 
+  `` `Javascript 
+  var encoding = reques ('enCoding'); 
+  var base64 = encoding.base64; 
+  `` ` 
+  or 
+  `` `Javascript 
+  var base64 = reques ('base64'); 
+  `` `*/
 module base64
 {
-	/*! @brief Encode buffer data to string with base64 format.
-	 @param data Buffer data to be encoded.
-	 @return The encoded result string.
-	 */
-	static String encode(Buffer data);
+    /*! @Brief encoded data in a base64 way 
+ @param data to encode data 
+ @Param URL specifies whether to use URL security character encoding 
+ @Return Return the encoded string*/
+    static String encode(Buffer data, Boolean url = false);
 
-	/*! @brief Decode string to binary data with base64 format.
-	 @param data String to be decoded.
-	 @return The decoded result binary data.
-	 */
-	static Buffer decode(String data);
+    /*! @brief decoding the string in the base64 method as the binary data 
+ @param data string to decoding 
+ @Return Return to decoding binary data*/
+    static Buffer decode(String data);
 };

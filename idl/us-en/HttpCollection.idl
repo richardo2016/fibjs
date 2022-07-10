@@ -1,56 +1,71 @@
-
-/*! @brief http container object, used to store and organize data like http header, cookie, query, form and so on */
+/*! @Brief HTTP container object, used for HTTP Header, Cookie, Query, Form, etc.*/
 interface HttpCollection : object
 {
-    /*! @brief clear the data in the container
-    */
+    /*! @brief Clear container data*/
     clear();
 
-    /*! @brief detect whether there is the data that has the specified key value
-     @param name specify the key to be detected
-     @return return whether the key exists
-     */
+    /*! @brief check the data of the specified key value in the container 
+      @param name Specify the key value to be checked 
+      @Return Return the key value exists*/
     Boolean has(String name);
 
-    /*! @brief query the first value of the specified key
-     @param name specify the key to be queried
-     @return return the key's corresponding value, if the value doesn't exists, return undefined
-     */
+    /*! @Brief query the first value of the specified key value 
+      @param name Specify the key value you want to query 
+      @Return Returns the value corresponding to the key value, if it does not exist, return to UNDEFINED*/
     Variant first(String name);
 
-    /*! @brief query all value of the specified key
-     @param name specify the key to be queried
-     @return return an array that contains all value of the key corresponded. If the data doesn't exists, return null.
-     */
-    List all(String name);
+    /*! @Brief query all the value of the specified key value 
+      @param name Specify the key value you want to query, pass the empty string back to the results of the entire key value 
+      @Return Returns the array corresponding to the entire value of the key value. If the data does not exist, return NULL*/
+    NObject all(String name = "");
 
-    /*! @brief add a key and data and it won't modify the key and it's value that already exist.
-     @param map specify the key and value to be added.
-     */
-    add(Map map);
+    /*! @Brief adds a key value data, adding data does not modify the data of the existing key value 
+      @Param Map specifies the key value data dictionary to be added*/
+    add(Object map);
 
-    /*! @brief add a key and data and it won't modify the key and it's value that already exist.
-     @param name specify the key to be added
-     @param value specify the value to be added
-     */
+    /*! @Brief adds a set of data of a key value, adding data does not modify the data of the existing key value 
+      @param name specify the key value to be added 
+      @Param Values specifies a set of data to be added*/
+    add(String name, Array values);
+
+    /*! @Brief adds a key value data, adding data does not modify the data of the existing key value 
+      @param name specify the key value to be added 
+      @Param Value specify data to be added*/
     add(String name, Variant value);
 
-    /*! @brief set a key's value, the first value of the key will be modified and other data of the same key will be cleared.
-     @param map specify the key-value to be modified.
-     */
-    set(Map map);
+    /*! @Brief Set a key value data. Setting the data will modify the first value corresponding to the key value and remove the rest of the same key value 
+      @Param Map specifies the key value data dictionary to be set*/
+    set(Object map);
 
-    /*! @brief set a key's value, the first value of the key will be modified and other data of the same key will be cleared.
-     @param name specify the key to be modified
-     @param value spacify the value to be modified
-     */
+    /*! @Brief Set a set of data of a key value. Setting the data will modify the value corresponding to the key value and remove the remaining data of the same key value 
+      @param name specify the key value to be set 
+      @Param Values specifies a set of data to be set*/
+    set(String name, Array values);
+
+    /*! @Brief Set a key value data. Setting the data will modify the first value corresponding to the key value and remove the rest of the same key value 
+      @param name specify the key value to be set 
+      @Param Value specify data to be set*/
     set(String name, Variant value);
 
-    /*! @brief delete all value of the specified key
-     @param name specify the key to be deleted
-     */
+    /*! @brief deletes all the value of the specified key value 
+      @param name specify the key value to be deleted*/
     remove(String name);
 
-    /*! @brief allowing access to data by key index */
+    /*! @brief deletes all the value of the specified key value 
+      @param name specify the key value to be deleted*/
+    delete(String name);
+
+    /*! @brief Sort the content in the container according to the key value*/
+    sort();
+
+    /*! @brief query the key value in the container 
+      @Return Return to an array containing all key values*/
+    NArray keys();
+
+    /*! @brief query the value in the container 
+      @Return Return to an array containing all values*/
+    NArray values();
+
+    /*! @brief allows the use of key values to access the value directly*/
     Variant operator[String];
 };

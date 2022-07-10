@@ -1,0 +1,34 @@
+/*! @brief base58 encoding and decoding module 
+  Quote method: 
+  `` `Javascript 
+  var encoding = reques ('enCoding'); 
+  var base58 = encoding.base58; 
+  `` ` 
+  or 
+  `` `Javascript 
+  var Base58 = Require ('Base58'); 
+  `` `*/
+module base58
+{
+    /*! @brief encoded data in base58 method 
+ @param data to encode data 
+ @Return Return the encoded string*/
+    static String encode(Buffer data);
+
+    /*! @Brief encoded data by base58check method 
+ @param data to encode data 
+ @Param chk_ver specify the verification version 
+ @Return Return the encoded string*/
+    static String encode(Buffer data, Integer chk_ver);
+
+    /*! @Brief decoding the string as binary data in the base58 method 
+ @param data string to decoding 
+ @Return Return to decoding binary data*/
+    static Buffer decode(String data);
+
+    /*! @Brief decoded the string as binary data with base58check method 
+ @param data string to decoding 
+ @Param chk_ver specify the verification version 
+ @Return Return to decoding binary data*/
+    static Buffer decode(String data, Integer chk_ver);
+};

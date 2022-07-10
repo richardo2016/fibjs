@@ -1,4 +1,4 @@
-/*! @brief mongodb unique object for save and pass oid */
+/*! @Brief Mongodb database data unique object objective object, used to store and transmit OID*/
 interface MongoID : object
 {
 };

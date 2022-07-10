@@ -1,0 +1,68 @@
+/*! @brief Substitute Process Object 
+
+  `` `Javascript 
+  var child_process = reques ("child_process"); 
+  var child = child_process.spawn ("ls"); 
+  `` `*/
+interface ChildProcess : EventEmitter
+{
+    /*! @brief kills the process pointed to the current object and transmits the signal 
+       @Param Signal transmitted signal*/
+    kill(Integer signal);
+
+    /*! @brief kills the process pointed to the current object and transmits the signal 
+       @Param Signal transmitted signal*/
+    kill(String signal);
+
+    /*! @brief wait for the process of the current object to end, and return the process to end the code 
+       The end of the @Return process*/
+    join() async;
+
+    /*! @Brief query whether the pipeline of the child process is connected normally*/
+    readonly Boolean connected;
+
+    /*! @brief Turn off the IPC pipeline of the child process*/
+    disconnect();
+
+    /*! @Brief Send a message to the current sub -process 
+      @param msg specifies the message sent*/
+    send(Value msg);
+
+    /*! @brief query the memory and time occupied by the current process 
+
+      Memory report generates similar results: 
+      `` `Javascript 
+      {{ 
+        "user": 132379, 
+        "System": 50507, 
+        "RSS": 8622080 
+      } 
+      `` ` 
+      in: 
+      -ser returns the process of spending in the user code, the unit is a micro -value (one millionth of one second) 
+      -System returning the process of spending in the system code, the unit is a microsct value (one millionth of one second) 
+      -RSS Return process currently occupies physical memory size 
+      @Return Return to include time report*/
+    Object usage();
+
+    /*! @Brief read the ID of the process pointed to the current object*/
+    readonly Integer pid;
+
+    /*! @brief query and set the exit code of the current process*/
+    readonly Integer exitCode;
+
+    /*! @Brief read the standard input object of the process pointed by the current object*/
+    readonly Stream stdin;
+
+    /*! @Brief read the standard output object of the process pointed by the current object*/
+    readonly Stream stdout;
+
+    /*! @Brief read the standard error object of the process pointed by the current object*/
+    readonly Stream stderr;
+
+    /*! @brief query and binding process exit the event, equivalent to on ("exit", func);*/
+    Function onexit;
+
+    /*! @brief query and binding sub -process message event, equivalent to on ("message", func);*/
+    Function onmessage;
+};

@@ -1,41 +1,67 @@
-/*! @brief timers module */
+/*! @Brief Timers module*/
 module timers
 {
-    /*! @brief cancels a timed, repeating action which was previously established by a call to setInterval()
-        @param t The identifier of the repeated action you want to cancel. This ID was returned by the corresponding call to setInterval().
-    */
-    static clearInterval(Timer t);
-    
-    /*! @brief cancels a timeout previously established by calling setTimeout().
-        @param t The identifier of the timeout you want to cancel. This ID was returned by the corresponding call to setTimeout().
-    */
-    static clearTimeout(Timer t);
-
-    /*! @brief clears the action specified by setImmediate.
-        @param t immediateID is a ID returned by setImmediate.
-    */
-    static clearImmediate(Timer t);
-
-    /*! @brief repeatedly calls a function or executes a code snippet, with a fixed time delay between each call.
-        @param callback A function to be executed every delay milliseconds. The function is not passed any parameters, and no return value is expected.
-        @param timeout The time, in milliseconds (thousandths of a second), the timer should delay in between executions of the specified function or code.When greater than 2^31 , execute immediately
-        @param args Optional arguments to pass when the callback is called.
-        @return The returned timeoutID is a numeric, non-zero value which identifies the timer created by the call to setInterval(); this value can be passed to clearInterval() to cancel the timeout.
-    */
-    static Timer setInterval(Function callback, Number timeout, ...args);
-    
-    /*! @brief sets a timer which executes a function or specified piece of code once after the timer expires.
-        @param callback A function to be executed after the timer expires.
-        @param timeout The time, in milliseconds (thousandths of a second), the timer should wait before the specified function or code is executed.When greater than 2^31 , execute immediately
-        @param args Optional arguments to pass when the callback is called.
-        @return The returned timeoutID is a positive integer value which identifies the timer created by the call to setTimeout(); this value can be passed to clearTimeout() to cancel the timeout.
-    */
+    /*! @Brief calls the function after the specified time 
+     @param callback specify the callback function 
+     @Param Timeout specifies the delay time, in milliseconds. If you exceed 2^31, execute immediately. 
+     @Param ARGS additional parameters are passed into the specified callback, optional. 
+     @Return Return the timer object*/
     static Timer setTimeout(Function callback, Number timeout = 1, ...args);
 
-    /*! @brief run a callback function immediately after the browser has completed other operations such as events and display updates.
-        @param callback the function you wish to call.
-        @param args Optional arguments to pass when the callback is called.
-        @return where immediateID is the ID of the immediate which can be used later with clearImmediate.
-    */
+    /*! @brief Clear the specified timer 
+      @Param T specify the timer to be cleared*/
+    static clearTimeout(Value t);
+
+    /*! @brief Moist the function after the specified time of each interval 
+      @param callback specify the callback function 
+      @Param Timeout specifies the interval time, in milliseconds. If you exceed 2^31, execute immediately. 
+      @Param ARGS additional parameters are passed into the specified callback, optional. 
+      @Return Return the timer object*/
+    static Timer setInterval(Function callback, Number timeout, ...args);
+
+    /*! @brief Clear the specified timer 
+      @Param T specify the timer to be cleared*/
+    static clearInterval(Value t);
+
+    /*! @brief Moist the function after the specified time of each interval.
+     Since the timer of Sethrinterval is interrupted by the running coding of the code, do not modify the data that may affect other modules in the callback function, or call any API function marked as Async in the callback, otherwise the unpredictable results will be produced. E.g:
+     `` `Javascript
+        var timers = request ('timers');
+
+        var cnt = 0;
+        Timers.setHrinterval (() => {
+            CNT ++;
+        }, 100);
+
+        WHILE (CNT <10);
+
+        console.error ("================================================================================================================================================== >=
+     `` `
+     In this code, the cycle of line 8 will not end due to the change of CNT, because JavaScript will determine that CNT will not be changed during this cycle when optimizing the code.
+     @param callback specify the callback function
+     @Param Timeout specifies the interval time, in milliseconds. If you exceed 2^31, execute immediately.
+     @Param ARGS additional parameters are passed into the specified callback, optional.
+     @Return Return the timer object*/
+    static Timer setHrInterval(Function callback, Number timeout, ...args);
+
+    /*! @brief Clear the specified timer 
+      @Param T specify the timer to be cleared*/
+    static clearHrInterval(Value t);
+
+    /*! @brief Immediately execute the callback function immediately 
+      @param callback specify the callback function 
+      @Param ARGS additional parameters are passed into the specified callback, optional. 
+      @Return Return the timer object*/
     static Timer setImmediate(Function callback, ...args);
+
+    /*! @brief Clear the specified timer 
+      @Param T specify the timer to be cleared*/
+    static clearImmediate(Value t);
+
+    /*! @brief call given a given function, and interrupt the function running at the time of timeout expiration 
+      @Param Func Specify a function to run 
+      @param timeout specified timeout time 
+      @Param ARGS additional parameters are passed into the specified callback, optional. 
+      @Return Return to Func's running results*/
+    static Value call(Function func, Number timeout, ...args);
 };

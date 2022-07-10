@@ -1,0 +1,6 @@
+/*! @brief ODBC database connection object*/
+interface Odbc : DbConnection
+{
+    /*! @brief query and set database encoding, default "UTF8"*/
+    String codec;
+};

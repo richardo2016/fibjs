@@ -1,0 +1,84 @@
+/*! @Brief Windows Registry Access Module 
+  Quote method: 
+  `` `Javascript 
+  var registry = Require ('registry'); 
+  var value = registry.get (registry.classes_root, "\ node1 \ node2 \ value"); 
+  `` `*/
+module registry
+{
+    /*! @Brief Registration Table Root, Detailed List of Windows recognized file types, and related programs*/
+    const CLASSES_ROOT = 0;
+
+    /*! @Brief Registration Table Root, store information set by the current user*/
+    const CURRENT_USER = 1;
+
+    /*! @Brief Registration Table, including the hardware and software installed on the computer*/
+    const LOCAL_MACHINE = 2;
+
+    /*! @Brief Registration Table Root, including information from users using computers*/
+    const USERS = 3;
+
+    /*! @Brief Registration Table Root, this branch contains the current hardware configuration information of the computer*/
+    const CURRENT_CONFIG = 5;
+
+    /*! @Brief registry data type, string, string*/
+    const SZ = 1;
+
+    /*! @Brief registry data type, extended string*/
+    const EXPAND_SZ = 2;
+
+    /*! @Brief registry data type, 32 -digit value*/
+    const DWORD = 4;
+
+    /*! @Brief registry data type, 64 digits value*/
+    const QWORD = 11;
+
+    /*! @Brief Return to all the child health under the specified key value 
+      @param root specified registered table root 
+      @param key specify key value 
+      @Return Return to all sub -health under the key value*/
+    static NArray listSubKey(Integer root, String key);
+
+    /*! @brief Return to all the data of all data under the specified key value 
+      @param root specified registered table root 
+      @param key specify key value 
+      @Return Return all data under the key value*/
+    static NArray listValue(Integer root, String key);
+
+    /*! @brief query the value of the specified key value 
+      @param root specified registered table root 
+      @param key specify key value 
+      @Return Return to the value of the specified key value*/
+    static Value get(Integer root, String key);
+
+    /*! @brief Set the specified key value to the number 
+      @param root specified registered table root 
+      @param key specify key value 
+      @Param Value specify numbers 
+      @Param Type specifies the type, the allowed type is DWORD and QWORD, the default is DWORD*/
+    static set(Integer root, String key, Number value, Integer type = DWORD);
+
+    /*! @brief Set the specified key value as a string 
+      @param root specified registered table root 
+      @param key specify key value 
+      @Param Value specified string 
+      @Param Type specifies the type, the allowed types are SZ and Expand_SZ, and the default is SZ*/
+    static set(Integer root, String key, String value, Integer type = SZ);
+
+    /*! @brief Set the specified key value as a multi -character string 
+      @param root specified registered table root 
+      @param key specify key value 
+      @Param Value specify a multi -character string array*/
+    static set(Integer root, String key, Array value);
+
+    /*! @brief Set the specified key value is binary 
+      @param root specified registered table root 
+      @param key specify key value 
+      @Param Value specify binary data*/
+    static set(Integer root, String key, Buffer value);
+
+    /*! @brief Delete the value of the specified key value 
+      @param root specified registered table root 
+      @param key specify key value*/
+    static del(Integer root, String key);
+};

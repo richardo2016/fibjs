@@ -1,32 +1,24 @@
-
-/*! @brief XmlAttr is a property of XmlElement */
-interface XmlAttr
+/*! @Brief XMLATTR object indicates the attributes of the XMLEMENT object*/
+interface XmlAttr : object
 {
-    /*! @brief Get element local name, it is same as nodeName when no namespace for node
-    */
+    /*! @brief query the local name of the element. If the selected node has no name space, the attribute is equivalent to nodename*/
     readonly String localName;
 
-    /*! @brief Property value
-    */
+    /*! @Brief attribute value*/
     String value;
 
-    /*! @brief Property name
-    */
+    /*! @Brief Name of Properties*/
     readonly String name;
 
-    /*! @brief Get URI of element's namespace, returns NULL when no namespace
-    */
+    /*! @Brief query the URI of the naming space of the element. If the selected node has no name space, the attribute returns NULL*/
     readonly String namespaceURI;
 
-    /*! @brief Ger and ser prefix of element's namespace, returns NULL when no namespace
-    */
+    /*! @brief query and set the naming space prefix. If the selected node has no name space, the attribute returns NULL*/
     String prefix;
 
-    /*! @brief Property name, for compatible purpose
-    */
+    /*! @Brief's name, for a compatible purpose*/
     readonly String nodeName;
 
-    /*! @brief Property value, for compatible purpose
-    */
+    /*! @Brief's value, for a compatible purpose*/
     String nodeValue;
 };

@@ -1,38 +1,126 @@
-/*! @brief Database connection object which is used for creation and maintenance of the database connection session */
+/*! @brief database connection objects are used to establish and maintain a database connection session.*/
 interface DbConnection : object
 {
-    /*! @brief Close the database connection currenctly being used */
+    /*! @brief query the current connection database type*/
+    readonly String type;
+
+    /*! @brief Turn off the current database connection*/
     close() async;
 
-    /*! @brief Begin a transaction on current database connection */
-    begin() async;
+    /*! @brief Select the default database connected to the current database 
+ @param dbname specified database name*/
+    use(String dbName) async;
 
-    /*! @brief Commit the transaction on current database connection */
-    commit() async;
+    /*! @Brief Start a transaction on the current database connection 
+    
+      @Param Point specifies the name of the transaction, the default is not specified*/
+    begin(String point = "") async;
 
-    /*! @brief Rollback the transaction on current database connection */
-    rollback() async;
+    /*! @brief Submit the transaction on the current database connection 
+    
+      @Param Point specifies the name of the transaction, the default is not specified*/
+    commit(String point = "") async;
 
-    /*!	@brief Execute a SQL statement and return the results
+    /*! @brief Roll back the transaction on the current database connection 
+    
+      @Param Point specifies the name of the transaction, the default is not specified*/
+    rollback(String point = "") async;
 
-     @param sql Formatted string. Use question mark to mark variables. E.g. 'SELECT FROM TEST WHERE [id]=?'  
-     @return The query results
-     */
-    DBResult execute(String sql) async;
+    /*! @brief Enter a function to execute a function and submit or roll back according to the function execution situation 
+      Func executes three results: 
+      * The function returns normally, including the end of the operation and active Return. At this time, the transaction will be submitted automatically 
+      * The function returns false, at this time the transaction will be rolled back 
+      * The function is running an error, and the transaction is rolling automatically 
 
-    /*!	@brief Execute a  SQL statement and return the results
+      @Param Func The function performed by the transaction method 
+      @Return Returns the transaction to submit, return true when normal commits, return false when rollback, if the transaction is wrong*/
+    Boolean trans(Function func);
 
-     @param sql Formatted string. Use question mark to mark variables. E.g. 'SELECT FROM TEST WHERE [id]=?'
-     @param ... The optional variables 
-     @return The query results     
-     */
-    DBResult execute(String sql, ...);
+    /*! @brief Enter a function to execute a function and submit or roll back according to the function execution situation 
+      Func executes three results: 
+      * The function returns normally, including the end of the operation and active Return. At this time, the transaction will be submitted automatically 
+      * The function returns false, at this time the transaction will be rolled back 
+      * The function is running an error, and the transaction is rolling automatically 
 
-    /*!	@brief Format a SQL statement, and return the formatted statement
+      @param Point specified the name of the transaction 
+      @Param Func The function performed by the transaction method 
+      @Return Returns the transaction to submit, return true when normal commits, return false when rollback, if the transaction is wrong*/
+    Boolean trans(String point, Function func);
 
-     @param sql Formatted string. Use question mark to mark variables. E.g. 'SELECT FROM TEST WHERE [id]=?'
-     @param ... The optional variables
-     @return The formatted SQL statement
-     */
-    String format(String sql, ...);
+    /*! @Brief execute a SQL command and return the execution result 
+
+      @Param SQL Strings 
+      @Return returns an array containing the results recorded. If the request is update or insert, the return result will also include Affected and Insertid. MSSQL does not support Insertid.*/
+    NArray execute(String sql) async;
+
+    /*! @Brief executes a SQL command and returns the execution result, which can be formatted by the parameter format 
+
+      @Param SQL formatted string, optional parameter? Specify. For example: 'Select from Test where [id] =?' 
+      @Param ARGS optional parameter list 
+      @Return returns an array containing the results recorded. If the request is update or insert, the return result will also include Affected and Insertid. MSSQL does not support Insertid.*/
+    NArray execute(String sql, ...args) async;
+
+    /*! @brief Create a data table 
+
+      @param Opts parameter list*/
+    createTable(Object opts) async;
+
+    /*! @brief Delete the data table 
+
+      @param Opts parameter list*/
+    dropTable(Object opts) async;
+
+    /*! @brief Create a data table index 
+
+      @param Opts parameter list*/
+    createIndex(Object opts) async;
+
+    /*! @brief Delete data table index 
+
+      @param Opts parameter list*/
+    dropIndex(Object opts) async;
+
+    /*! @brief Insert new records 
+
+      @param Opts parameter list 
+      @Return Returns the ID containing inserted. If the engine does not support it, it returns 0*/
+    Number insert(Object opts) async;
+
+    /*! @brief query data according to the specified condition 
+
+      @param Opts parameter list 
+      @Return Return to include results record*/
+    NArray find(Object opts) async;
+
+    /*! @brief Based on the specified statistical data records according to the specified conditions 
+
+      @param Opts parameter list 
+      @Return Return to include results record number*/
+    Integer count(Object opts) async;
+
+    /*! @brief updates the data according to the specified condition 
+
+      @param Opts parameter list 
+      @Return Returns the number of recorded records*/
+    Integer update(Object opts) async;
+
+    /*! @brief Delete data according to the specified conditions 
+
+      @param Opts optional parameter list 
+      @Return Returns the number of recorded records*/
+    Integer remove(Object opts) async;
+
+    /*! @Brief Format a SQL command and return the formatting result 
+
+      @param method specify the request method 
+      @param Opts optional parameter list 
+      @Return Return the SQL command after formatting*/
+    String format(String method, Object opts);
+
+    /*! @Brief Format a SQL command and return the formatting result 
+
+      @Param SQL formatted string, optional parameter? Specify. For example: 'Select from Test where [id] =?' 
+      @Param ARGS optional parameter list 
+      @Return Return the SQL command after formatting*/
+    String format(String sql, ...args);
 };

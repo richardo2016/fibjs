@@ -1,20 +1,18 @@
+/*! @Brief SQLite Database Connection Object 
 
-/*! @brief sqlite database connection object
-
- Used for db.open or db.openSQLite, to create it:
- @code
- var slite = db.openSQLite("sqlite:/path/to/db");
- @endcode
-*/
+  Create with db.open or db.opensqlite to create: 
+  `` `Javascript 
+  var slite = db.opensqlite ("sqlite:/path/to/db"); 
+  `` `*/
 interface SQLite : DbConnection
 {
-    /*! @brief Database file name */
+    /*! @brief The current database file name*/
     readonly String fileName;
 
-    /*! @brief Get and set connection timeout in ms */
+    /*! @brief query and set the database timeout time, in milliseconds*/
     Integer timeout;
 
-    /*! @brief Backup current database to new location
-     @param fileName New location */
+    /*! @brief Back up the current database to the new file 
+ @Param Filename specified the backup database file name*/
     backup(String fileName) async;
 };

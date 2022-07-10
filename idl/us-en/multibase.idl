@@ -1,0 +1,23 @@
+/*! @Brief Multibase encoding and decoding module 
+  Quote method: 
+  `` `Javascript 
+  var encoding = reques ('enCoding'); 
+  varm multibase = encoding.multibase; 
+  `` ` 
+  or 
+  `` `Javascript 
+  varm multibase = reques ('multibase'); 
+  `` `*/
+module multibase
+{
+    /*! @Brief encoded data by multibase method 
+ @param data to encode data 
+ @param codec specified encoding method 
+ @Return Return the encoded string*/
+    static String encode(Buffer data, String codec);
+
+    /*! @Brief decoded the string as a binary data with Multibase 
+ @param data string to decoding 
+ @Return Return to decoding binary data*/
+    static Buffer decode(String data);
+};

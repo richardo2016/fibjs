@@ -1,0 +1,96 @@
+/*! @Brief dgram.socket object is an Eventedemitter that encapsulates the data packet function function.
+
+Dgramsocket instance was created by dgram.createSocket (). Creating a DGRAM.SOCKET instance does not need to use the new keyword.
+
+Create method:
+`` `Javascript
+var dgram = request ('dgram');
+var Sock = dgram.createsocket ('udp4');
+`` `
+
+## event
+ DGRAMSOCket inherited from the Eventedemitter. The state changes and data acceptance of the object are implemented in an event.
+
+ ### Close event
+ ** `close` event will be triggered after using the` close () `to turn off an` socket`. Once the incident is triggered, this `socket` will not trigger a new` message` event. **
+
+ ### error event
+ ** When any error occurs, the `ERROR` event will be triggered. **
+
+ ### Listening event
+ ** When a `socket` starts to listen to the data packet information, the` Listening` event will be triggered. The incident will be triggered immediately after creating UDP Socket. **
+
+ ### Message event
+ ** When a new packet is received by the `socket`, the` message` event will be triggered. `msg` and` rinfo` will be passed into the processing function of the event as a parameter. **
+ -MSG: buffer, message
+ -Rinfo: Object, remote address information
+    -DDRESS: String, Sender Address
+    -FAMILY: String, address type ('ipv4' or 'ipv6')
+    -PORT: NUMBER, the sender port
+    -Size: number, message size*/
+interface DgramSocket : EventEmitter
+{
+    /*! @brief This method will make dgram.socket listen to data packet information on the specified `port` and` addr`. A `Listening` event is triggered when the binding is completed. 
+      @Param Port specifies the binding port. If the `port` is not specified or 0, the operating system will try to bind a random port 
+      @Param addr specifies the binding address. If the address is not specified, the operating system will try to listen to all the address.*/
+    bind(Integer port = 0, String addr = "") async;
+
+    /*! @brief This method will make dgram.socket monitor data packet information on the `Port` and` address` specified by `Opts`. A `Listening` event is triggered when the binding is completed. 
+      @param Opts specified binding parameters*/
+    bind(Object opts) async;
+
+    /*! @Brief Send a packet on the socket 
+      @param msg specified data sent 
+      @Param Port specifies the destination port sent 
+      @param address specify the destination address of the sending 
+      @Return Return to the sending size*/
+    Integer send(Buffer msg, Integer port, String address = "") async;
+
+    /*! @Brief Send a packet on the socket 
+      @param msg specified data sent 
+      @param Offset sends it from the specified offset 
+      @param length sends a specified length 
+      @Param Port specifies the destination port sent 
+      @param address specify the destination address of the sending 
+      @Return Return to the sending size*/
+    Integer send(Buffer msg, Integer offset, Integer length, Integer port, String address = "") async;
+
+    /*! @Brief returns an object containing the socket address information. For UDP sockets, this object will contain address, Family, and Port properties. 
+      @Return Return the object binding address*/
+    NObject address();
+
+    /*! @brief Turn off the current socket*/
+    close();
+
+    /*! @brief Turn off the current socket 
+      @Param Callback Function After the completion, it is equivalent to adding a monitor to the `Close` event*/
+    close(Function callback);
+
+    /*! @brief query the size of the socket receiving buffer area 
+      @Return Return to query results*/
+    Integer getRecvBufferSize();
+
+    /*! @brief query the size of the socket send buffer area 
+      @Return Return to query results*/
+    Integer getSendBufferSize();
+
+    /*! @Brief Set the Socket Receive buffer size 
+      @Param size specify the size to be set*/
+    setRecvBufferSize(Integer size);
+
+    /*! @Brief Set the Socket Sending Calls Size 
+      @Param size specify the size to be set*/
+    setSendBufferSize(Integer size);
+
+    /*! @brief settings or cleared SO_BROADCAST SOCKET option 
+      @Param Flag When it is set to True, UDP package will be sent to a local interface broadcast address*/
+    setBroadcast(Boolean flag);
+
+    /*! @brief keeps the FibJS process without exit, prevent the fibjs process from exiting during the object binding period 
+      @Return Return to the current object*/
+    DgramSocket ref();
+
+    /*! @brief allows the Fibjs process to exit, allowing the FIBJS process to exit during the object binding 
+      @Return Return to the current object*/
+    DgramSocket unref();
+};

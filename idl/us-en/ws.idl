@@ -1,0 +1,82 @@
+/*! @Brief WebSocket support module 
+
+  Instructions: 
+  `` `Javascript 
+  var ws = reques ('ws'); 
+  `` ` 
+  Create a server: 
+  `` `Javascript 
+  var ws = reques ('ws'); 
+  var http = request ('http'); 
+
+  var svr = new http.server (80, {{{ 
+      '/ws': WS.UPGRADE ((conn, REQ) => { 
+          conn.onMessage = e => console.log (E.Data); 
+      }) 
+  }); 
+  svr.start (); 
+  `` ` 
+  Use the WebSocket client: 
+  `` `Javascript 
+  var ws = reques ('ws'); 
+ 
+  var conn = new ws.socket ('ws://127.0.0.0.1/ws'); 
+  conn.onMessage = e => console.log (E.Data); 
+  `` `*/
+module ws
+{
+    /*! @Brief specifies the webSocket message type 0, which represents a continuous frame*/
+    const CONTINUE = 0;
+
+    /*! @Brief specifies the websocket message type 1, representing a text frame*/
+    const TEXT = 1;
+
+    /*! @Brief specifies the webSocket message type 2, which represents a binary frame*/
+    const BINARY = 2;
+
+    /*! @Brief specifies the websocket message type 8, connect to close*/
+    const CLOSE = 8;
+
+    /*! @Brief specifies the webSocket message type 9, which represents a ping frame*/
+    const PING = 9;
+
+    /*! @Brief specifies the webSocket message type 10, which represents a PONG frame*/
+    const PONG = 10;
+
+    /*! @Brief specifies the WebSocket state, indicating that it is being connected*/
+    const CONNECTING = 0;
+
+    /*! @Brief specifies the WebSocket state, which means the opening state*/
+    const OPEN = 1;
+
+    /*! @Brief specifies the WebSocket state, indicating that the close message has been sent, waiting for closure*/
+    const CLOSING = 2;
+
+    /*! @Brief specifies the WebSocket state, indicating that it has been closed*/
+    const CLOSED = 3;
+
+    /*! @Brief Create a websocket message object, see websocketMessage*/
+    static WebSocketMessage new Message();
+
+    /*! @Brief WebsoCket object, see websocket*/
+    static WebSocket new Socket();
+
+    /*! @Brief Create a WebSocket protocol processor that receives the Upgrade request from HTTP 
+      `` ` 
+      @Param Accept Connect the successful processing function. The callback will pass two parameters. The first parameter is the receiving WebSocket object. The second parameter is the httprequest object when shaking handshake 
+      @Return Return to protocol processor, you can dock with HTTPSERVER, Chain, ROUTING, etc.*/
+    static Handler upgrade(Function accept);
+
+    /*! @Brief Create a WebSocket protocol processor that receives the Upgrade request from HTTP 
+      OPTS contains the additional option of request, the support content is as follows: 
+      `` `Javascript 
+      {{ 
+          "PermessageDeflate": false, // specify whether it supports compression, default does not support the default 
+          "Maxpayload": 67108864 // Specify the maximum data packet size, the default is 67108864 
+      } 
+      `` ` 
+      @Param Opts connection option, the default is {} 
+      @Param Accept Connect the successful processing function. The callback will pass two parameters. The first parameter is the receiving WebSocket object. The second parameter is the httprequest object when shaking handshake 
+      @Return Return to protocol processor, you can dock with HTTPSERVER, Chain, ROUTING, etc.*/
+    static Handler upgrade(Object opts, Function accept);
+};

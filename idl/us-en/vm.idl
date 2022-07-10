@@ -1,22 +1,20 @@
+/*! @brief safety sandbox module, used to isolate the operating environment of different safety levels 
 
-/*! @brief Safe SandBox module, to isolate runtime based on safety level.
+  By establishing a safety sandbox, resources that can be exposed to script can be limited, and different scripts can be used to execute the environment. They can customize basic modules for different environments to ensure the safety of the overall operating environment. 
 
- By establishing a safe SandBox, you can limit the accessible resources when the script runs, and isolate different script execution environment, also can be customized for different environments base module to ensure the safety of the overall operating environment.
+  The following example creates a sandbox that limits only the access module in the global basic module, and adds two custom modules: A and B: 
+  `` `Javascript 
+  var vm = request ('vm'); 
+  var sbox = new vm.sandbox ({{ 
+    A: 100, 
+    B: 200, 
+    assert: Require ('Assert') 
+  }); 
 
- Following example demonstrates a sandbox which is only allowed for accessing assert module, and add a and b as customized modules.
- @code
- var vm = require('vm');
- var sbox = new vm.SandBox({
-   a: 100,
-   b: 200,
-   assert: require('assert')
- });
-
- var mod_in_sbox = sbox.require('./path/to/mod');
- @endcode
- */
+  var mod_in_sbox = sbox.require ('./ Path/to/mod'); 
+  `` `*/
 module vm
 {
-    /*! @brief Create a SandBox object, see SandBox */
+    /*! @Brief Create a Sandbox object, see Sandbox*/
     static SandBox new SandBox();
 };

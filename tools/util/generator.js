@@ -8,7 +8,7 @@ const coroutine = require('coroutine');
 
 const ejs = require('ejs');
 
-var { translate } = require('../translate');
+var { translate } = require('@fibjs/translate-by-google-api');
 
 const IDL_LANG = process.env.FIBJS_IDL_LANG || 'us-en';
 const LOG_PREFIX = `[generator]`;
@@ -69,10 +69,10 @@ function normalizeIDLTextFromModuleDef(mdef, idlLang = IDL_LANG) {
         if (idlLang === 'zh-CN') return input;
 
         return translate(input, {
-            format: 'text',
+            format: 'html',
             from: 'zh-CN',
             to: idlLang
-        });
+        }).text;
     };
 
     return ejs_tpl_module({
@@ -128,10 +128,10 @@ function normalizeIDLTextFromInterfaceDef(mdef, idlLang = IDL_LANG) {
         if (idlLang === 'zh-CN') return input;
 
         return translate(input, {
-            format: 'text',
+            format: 'html',
             from: 'zh-CN',
             to: idlLang
-        });
+        }).text;
     };
 
     return ejs_tpl_interface({

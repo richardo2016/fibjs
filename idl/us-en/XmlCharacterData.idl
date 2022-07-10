@@ -1,45 +1,37 @@
+/*! @Brief XMLCHARACTERDATA interface provides common functions of XMLTEXT and XMLComment nodes 
 
-/*! @brief XmlCharacterData provides common features to XmlText and XmlComment
-
-XmlCharacterData is super-interface of XmlText and XmlComment. Documents will only contain content about XmlText and XmlComment, but those two nodes are similiar, so here we define these functions for both of them.
-*/
+ XMLCHARACTERDATA is a super interface for XMLTEXT and XMLComment nodes. Documents never include XMLCHARACTERDATA nodes. They only include XMLTEXT nodes and xmlcomment nodes. However, because these two nodes have similar functions, these functions are defined here to inherit it for XMLTEXT and XMLComment.*/
 interface XmlCharacterData : XmlNode
 {
-    /*! @brief Get content of node
-    */
+    /*! @brief The text contained in the node*/
     String data;
 
-    /*! @brief Get length of content
-    */
+    /*! @brief The number of characters contained in the node*/
     readonly Integer length;
 
-    /*! @brief Get substring of content
-     @param offset Start position
-     @param count Number of characters to get
-    */
+    /*! @brief extract the sub -string from the node 
+      @param Offset to return the position of the first character to return 
+      @Param Count Number of characters in the sub -string to be returned 
+      @Return Return the extracted string*/
     String substringData(Integer offset, Integer count);
 
-    /*! @brief Append content to node
-     @param arg Content to append
-    */
+    /*! @brief attached the string to the node 
+      @Param ARG to be attached to the node string*/
     appendData(String arg);
 
-    /*! @brief Insert content to node
-     @param offset Start insert position
-     @param arg Content to insert
-    */
+    /*! @brief insert the string into the node 
+      @Param Offset inserts the character position of the string into the node 
+      @param arg string to be inserted*/
     insertData(Integer offset, String arg);
 
-    /*! @brief Delete content form node
-     @param offset Start delete position
-     @param count Number of characters to delete
-    */
+    /*! @brief Delete text from the node 
+      @Param Offset to delete the position of the first character 
+      @Param count, the number of characters to be deleted*/
     deleteData(Integer offset, Integer count);
 
-    /*! @brief Replace content in node
-     @param offset Start replace position
-     @param count Number of characters to replace
-     @param arg Content to insert
-    */
+    /*! @Brief replaced the character of the node with a specified string 
+      @Param Offset node to replace the character location 
+      @Param count, the number of characters to be replaced 
+      @param arg string to be inserted*/
     replaceData(Integer offset, Integer count, String arg);
 };

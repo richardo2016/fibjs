@@ -1,117 +1,100 @@
-/*! @brief mongodb database dataset object
+/*! @Brief Mongodb database database data set object 
 
- Used for MongoDB.getCollection, to create:
- @code
- var col1 = mdb.getCollection('test');
- var col = mdb.test;
- @endcode
- */
+  Create with mongodb.getCollection: 
+  `` `Javascript 
+  var color1 = mdb.getCollection ('test'); 
+  var color = mdb.test; 
+  `` `*/
 interface MongoCollection : object
 {
-    /*! @brief Create cursor by given conditions and return fields
-      @param query Query conditions
-      @param projection Return fields
-      @return Return cursor
-     */
+    /*! @Brief set up a cursor object according to the given query conditions and the return field settings 
+     @param Query specify the object of the query condition 
+     @Param Project specify the object of the return field 
+     @Return Return to the cursor object*/
     MongoCursor find(Object query = {}, Object projection = {});
 
-    /*! @brief Return one record by given conditions and return fields
-      @param query Query conditions
-      @param projection Return fields
-      @return Return first result
-     */
+    /*! @Brief set a result based on the given query conditions and the return field settings, query a result 
+     @param Query specify the object of the query condition 
+     @Param Project specify the object of the return field 
+     @Return Return the first result*/
     Object findOne(Object query = {}, Object projection = {});
 
-    /*! @brief Query and modify
-      @param query Condition to modify data
-      @return Return data before modification and other information
-     */
+    /*! @brief query and modify 
+     @param Query specify query conditions, modify data 
+     @Return Return to the results and other information before the modification*/
     Object findAndModify(Object query);
 
-    /*! @brief Insert a list of data
-      @param documents Data to insert
-     */
+    /*! @brief Insert a set of data 
+     @param documents specify the data array to be inserted*/
     insert(Array documents);
 
-    /*! @brief Insert single record
-      @param document Data to insert
-     */
+    /*! @brief Insert a data 
+     @param docume specifies the data to be inserted*/
     insert(Object document);
 
-    /*! @brief Insert a record, update of it has value on _id field
-      @param document Data to save
-     */
+    /*! @brief Save a piece of data. If the data contains the _id field, it is updated, otherwise it is inserted 
+     @param docume specifies the data to be saved*/
     save(Object document);
 
-    /*! @brief Update data by given conditions
-      @param query Query conditions
-      @param document Data to update
-      @param upsert Indicates whether insert new record when not exists, default is false
-      @param multi Indicates whether update all records when more than one record match the condition, defualt is false
-     */
+    /*! @brief Update data according to the given query condition 
+     @param Query specify the object of the query condition 
+     @param docume specifies the data to be updated 
+     When @Param Upsert data does not exist, insert a new data, default to false, not inserted 
+     @Param Multi When there are more than one data that meets the conditions, all the data is updated, the default is false, and only the first one*/
     update(Object query, Object document, Boolean upsert = false, Boolean multi = false);
 
-    /*! @brief Update data by given conditions
-      @param query Query conditions
-      @param document Data to update
-      @param options Set upsert and multi option as field
-     */
+    /*! @brief Update data according to the given query condition 
+     @param Query specify the object of the query condition 
+     @param docume specifies the data to be updated 
+     @Param Options UPSERT and Multi options passed by object fields*/
     update(Object query, Object document, Object options);
 
-    /*! @brief Delete data by given conditions
-      @param query Query conditions
-     */
+    /*! @brief Delete data according to the given query conditions 
+     @param Query specify the object of the query condition*/
     remove(Object query);
 
-    /*! @brief Execute database commands
-      @param cmd Commands to execute
-     */
+    /*! @brief execute the database command 
+     @Param CMD given command object 
+     @Return Return command Return Result*/
     Object runCommand(Object cmd);
 
-    /*! @brief Execute database commands
-      @param cmd Command name
-      @param arg Command paramenters
-     */
+    /*! @brief execute the database command 
+     @Param CMD given command name 
+     @Param ARG given command parameter option 
+     @Return Return command Return Result*/
     Object runCommand(String cmd, Object arg = {});
 
-    /*! @brief Delete current collection */
+    /*! @brief Delete the current collection*/
     drop();
 
-    /*! @brief Create index in current collection
-      @param keys Index field, order and direction
-      @param options Option of index
-     */
+    /*! @brief creates indexes in the current collection 
+     @Param Keys gives the index field, order and direction 
+     @param Options given an index option, the only index, etc.*/
     ensureIndex(Object keys, Object options = {});
 
-    /*! @brief Rebuild index of current collection
-      @return Return results of execution
-     */
+    /*! @brief Reconstruction of the index of the current collection 
+     @Return Return the command execution result*/
     Object reIndex();
 
-    /*! @brief Delete given index in current collection
-      @param name Index name
-      @return Return results of execution
-     */
+    /*! @brief Delete the index of the specified name of the current collection of the current collection 
+     @param name given index name to delete 
+     @Return Return the command execution result*/
     Object dropIndex(String name);
 
-    /*! @brief Delete all indexes of current collection
-      @return Return results of execution
-     */
+    /*! @brief Delete all indexes of the current collection 
+     @Return Return the command execution result*/
     Object dropIndexes();
 
-    /*! @brief Query all indexes in current collection
-      @return Return result set 
-     */
-    MongoCursor getIndexes();
+    /*! @brief query all indexes of the current collection 
+     @Return Return to the result set containing indexes*/
+    Array getIndexes();
 
-    /*! @brief Get obejct of collection
-      @param name Name of collection
-      @return Return new collection object
-     */
+    /*! @brief Get the collection object of the current collection of naming space 
+     @param name Zi Naming Space Name 
+     @Return Return to the new collection object*/
     MongoCollection getCollection(String name);
 
-    /*! @brief Get collection by attributes
-      @return Return new collection object
-     */
+    /*! @brief quickly obtains the collection object of the current collection of the current collection of the current collection 
+     @Return Return to the new collection object*/
     readonly MongoCollection operator[String];
 };

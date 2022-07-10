@@ -1,68 +1,59 @@
-/*! @brief LRU(least recently used) cache object
+/*! @Brief lru (Least Recently Used) cache object 
 
- LruCache maintains LRU cache, to create:
- @code
- var util = require("util");
- var c = new util.LruCache(10, 100);
- @endcode
- */
-interface LruCache : object
+  Lrucache is used to maintain a LRU cache and create method: 
+  `` `Javascript 
+  var util = request ("Util"); 
+  var C = New Util.lrucache (10, 100); 
+  `` `*/
+interface LruCache : EventEmitter
 {
-    /*! @brief LruCache constructor
-     @param size Maximum size
-     @param timeout Timeout in ms, less or equal to 0 mean no timeout, default is 0
-     */
+    /*! @brief lrucache object constructor 
+      @Param Size cache maximum size 
+      @Param Timeout element failure time, the unit is MS, less than equal to 0 without fail, the default is 0*/
     LruCache(Integer size, Integer timeout = 0);
 
-    /*! @brief Return container size */
+    /*! @brief query the number of values in the container*/
     readonly Integer size;
 
-    /*! @brief Clear container elements */
+    /*! @brief query and set the element failure time in the containe*/
+    Integer timeout;
+
+    /*! @brief Clear container data*/
     clear();
 
-    /*! @brief Check if container contains given key
-     @param name Key name
-     @return Return true when contains key
-     */
+    /*! @brief check the data of the specified key value in the container 
+      @param name Specify the key value to be checked 
+      @Return Return the key value exists*/
     Boolean has(String name);
 
-    /*! @brief Get value of key
-     @param name Key name
-     @return Return value of key when exists, undefined otherwise
-     */
+    /*! @brief query the value of the specified key value 
+      @param name Specify the key value you want to query 
+      @Return Returns the value corresponding to the key value, if it does not exist, return to UNDEFINED*/
     Value get(String name);
 
-    /*! @brief Get value of key, call callback function when not exist or expired
-     @param name Key name
-     @param updater Callback function
-     @return Return value of key
-     */
+    /*! @brief query the value of the specified key value, if there is no existence or expire, call the callback function update data 
+      @param name Specify the key value you want to query 
+      @Param Updater specify the update function 
+      @Return Return the value corresponding to the key value*/
     Value get(String name, Function updater);
 
-    /*! @brief Set value of key, do nothing when not exist
-     @param name Key name
-     @param value New value
-     */
+    /*! @Brief Set a key data, if the key value does not exist, insert a new data 
+      @param name specify the key value to be set 
+      @Param Value specify data to be set*/
     set(String name, Value value);
 
-    /*! @brief Put value of key, insert when not exist
-     @param name Key name
-     @param value New value
-     */
-    put(String name, Value value);
+    /*! @Brief Set a key data data, the key value does not exist, and insert new data 
+      @Param Map specifies the key value data dictionary to be set*/
+    set(Object map);
 
-    /*! @brief Put key-value pair, insert when not exist
-     @param map Key-value pair
-     */
-    put(Object map);
-
-    /*! @brief Delete all values of key
-     @param name Key name
-     */
+    /*! @brief deletes all the value of the specified key value 
+      @param name specify the key value to be deleted*/
     remove(String name);
 
-    /*! @brief Check if container is empty
-     @return Return true when container does not have any element
-     */
+    /*! @brief check whether the container is empty 
+      The countless values in the @Return container returned True*/
     Boolean isEmpty();
+
+    /*! @brief query and binding data overtime events, equivalent to on ("expire", func);*/
+    Function onexpire;
 };

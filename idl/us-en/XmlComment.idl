@@ -1,11 +1,9 @@
+/*! @brief xmlcomment object represents the content of the annotation node in the documentation 
 
-/*! @brief XmlComment represents comment of node
+ XMLCOMMENT node represents comments in XML documents. 
+ Using Data attributes inherited by XMLCHARACTERDATA interface, or using Nodevalue attributes inherited by the XMLNode interface, you can access the content of the annotation. (That is, text between <!-and->). Various methods inherited by the XMLCHARACTERDATA interface can operate the annotation. 
 
-XmlComment is comment object in XML document.
-Use data property that is inherit from XmlCharacterData interface, or use nodeValue from XmlNode interface, comments are between <!-- and -->. You can use all methods that are inherit from XmlCharacterData interface.
-
-Use XmlDocument.createComment() to create a comment object.
-*/
+ Use xmldocument.createComment () to create an annotation object.*/
 interface XmlComment : XmlCharacterData
 {
 };

@@ -1,76 +1,62 @@
-/*! @brief ssl/tls module */
+/*! @brief SSL/TLS module, module alias: TLS*/
 module ssl
 {
-    /*! @brief Verification mode, no verification */
-    const Integer VERIFY_NONE = 0;
+    /*! @brief certificate verification mode, not verified*/
+    const VERIFY_NONE = 0;
 
-    /*! @brief Verification mode, optional verification, can be failed */
-    const Integer VERIFY_OPTIONAL = 1;
+    /*! @brief certificate verification mode, optional verification, allowed verification to not pass*/
+    const VERIFY_OPTIONAL = 1;
 
-    /*! @brief Verification mode, abort when fail to verify */
-    const Integer VERIFY_REQUIRED = 2;
+    /*! @brief certificate verification mode, required verification, the verification is not interrupted if it is not approved*/
+    const VERIFY_REQUIRED = 2;
 
-    /*! @brief Verification result, certificate expired */
-    const Integer BADCERT_EXPIRED = 1;
+    /*! @brief certificate verification results, the certificate timeout*/
+    const BADCERT_EXPIRED = 1;
 
-    /*! @brief Verification result, certificate revoked */
-    const Integer BADCERT_REVOKED = 2;
+    /*! @brief certificate verification results, the certificate was revoked*/
+    const BADCERT_REVOKED = 2;
 
-    /*! @brief Verification result, certificate mismatch */
-    const Integer BADCERT_CN_MISMATCH = 4;
+    /*! @brief certificate verification results, the certificate name is wrong*/
+    const BADCERT_CN_MISMATCH = 4;
 
-    /*! @brief Verification result, certificate is not trusted */
-    const Integer BADCERT_NOT_TRUSTED = 8;
+    /*! @brief certificate verification results, the certificate is not credible*/
+    const BADCERT_NOT_TRUSTED = 8;
 
-    /*! @brief ssl Protocol Version ssl 3.0 */
-    const Integer ssl3 = 0;
-
-    /*! @brief ssl Protocol Version tls 1.0 */
-    const Integer tls1 = 1;
-
-    /*! @brief ssl Protocol Version tls 1.1 */
-    const Integer tls1_1 = 2;
-
-    /*! @brief ssl Protocol Version tls 1.2 */
-    const Integer tls1_2 = 3;
-
-    /*! @brief Create a SslSocket object, see SslSocket */
+    /*! @Brief Create an SSLSOCKET object, see SSLSOCKET*/
     static SslSocket new Socket();
 
-    /*! @brief Create a SslHandler object, see SslHandler */
+    /*! @brief Create a SSLHANDLER object, see SSLHANDLER*/
     static SslHandler new Handler();
 
-    /*! @brief Create a SslServer object, see SslServer */
+    /*! @Brief Create a SSLServer object, see SSLSERVER*/
     static SslServer new Server();
 
-    /*! @brief Create a SslSocket and make connection
-     @param url Specify URL and protocol, e.g.: ssl://host:port
-     @return Return SslSocket when succeed
-     */
-    static Stream connect(String url) async;
+    /*! @brief Create an SSLSOCKET object and create a connection 
+     @Param url specifies the association, it can be: SSL: // host: port 
+     @param timeout specifies the timeout time, the unit is milliseconds, the default is 0 
+     @Return Return to the SSLSOCKET object that is successfully connected*/
+    static Stream connect(String url, Integer timeout = 0) async;
 
-    /*! @brief Set the default client certificate.
-     @param crt 509Cert certificate for client authentication server.
-     @param key PKey The private key for the client session.
-     */
-    static setClientCert(X509Cert crt,PKey key);
+    /*! @brief Create an SSLSOCKET object and create a connection 
+     @Param url specifies the association, it can be: SSL: // host: port 
+     @Param CRT certificate, used to send to the server to verify the client 
+     @Param Key's private key, used to talk to the client 
+     @param timeout specifies the timeout time, the unit is milliseconds, the default is 0 
+     @Return Return to the SSLSOCKET object that is successfully connected*/
+    static Stream connect(String url, X509Cert crt, PKey key, Integer timeout = 0) async;
 
-    /*! @brief Load the default client certificate from a file.
-     @param crtFile X509Cert certificate file for client authentication server.
-     @param keyFile PKey private key file for the client session.
-     @param password Decryption password
-     */
-    static loadClientCertFile(String crtFile,String keyFile,String password = "");    
+    /*! @brief Set the default client certificate 
+     @Param CRT certificate, used to send to the server to verify the client 
+     @Param Key's private key, used to talk to the client*/
+    static setClientCert(X509Cert crt, PKey key);
 
-    /*! @brief Global cretificate, used for ssl client mode */
+    /*! @Brief loaded its own default root certificate, which is equivalent to SSL.CA.LoadRootCerts 
+     The content of this certificate comes from: http://hg.mozilla.org/releases/mozilla-rease/raw-file/default/security/lib/builtins/certdata.txt*/
+    static loadRootCerts();
+
+    /*! @Brief global certificate, for SSL client mode verification server certificate*/
     static readonly X509Cert ca;
 
-    /*! @brief Set verification mode, default is VERIFY_REQUIRED */
+    /*! @brief Set the certificate verification mode, the default is Verify_required*/
     static Integer verification;
-
-    /*! @brief Set the minimum version support, default ssl3 */
-    static Integer min_version;
-
-    /*! @brief Set the maximum version support, default tls1_1 */
-    static Integer max_version;
 };

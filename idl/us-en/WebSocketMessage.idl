@@ -1,27 +1,26 @@
+/*! @Brief WebsoCket Message Object 
 
-/*! @brief websocket message object
+  Create method: 
+  `` `Javascript 
+  var WS = Require ("WS"); 
 
-To create it：
- @code
- var websocket = require("websocket");
-
- var msg = new websocket.Message();
- @endcode */
-interface WebSocketMessage: Message
+  var msg = new ws.message (); 
+  `` `*/
+interface WebSocketMessage : Message
 {
-	/*! @brief Packet processing message object constructor
-	@param type Websocket message type, default websocket.BINARY
-	@param masked Websocket message mask, default true
-	@param maxSize The maximum packet size in MB, default 67108864(64M)
-	 */
-	WebSocketMessage(Integer type = websocket.BINARY, Boolean masked = true, Integer maxSize = 67108864);
+    /*! @brief package processing message object constructor 
+ @Param Type WebSocket Message Type, the default is websocket.binary 
+ @Param Masked WebSocket Message Model Cushion, the default is TRUE 
+     @Param Compress label message whether the message is compressed, the default is false 
+ @Param Maxsize's largest package size, in MB as the unit, the default is 67108864 (64M)*/
+    WebSocketMessage(Integer type = ws.BINARY, Boolean masked = true, Boolean compress = false, Integer maxSize = 67108864);
 
-	/*! @brief websocket message type */
-	Integer type;
+    /*! @Brief query and read WebSocket mask marking, the default is True*/
+    Boolean masked;
 
-	/*! @brief Query and retrieve websocket's mask, default true */
-	Boolean masked;
+    /*! @Brief query and read WebSocket compression status, the default is false*/
+    Boolean compress;
 
-	/*! @brief Query and set the maximum packet size in byte, default 67108864(64M) */
-	Integer maxSize;
+    /*! @brief query and set the maximum package size, in byte, the default is 67108864 (64M)*/
+    Integer maxSize;
 };

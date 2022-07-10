@@ -1,81 +1,84 @@
-/*! @brief https server object
+/*! @Brief HTTPS server object 
 
- http server object is the object that wrap SslServer and HttpHandler as a combination, which makes it convenient to build a server, logically equivalent to:
- @code
- var svr = new net.SslServer(crt, key, addr, port, new http.Handler(function(req){
-    ...
- }));
- @endcode
+  The HTTPS server object is the object that encapsulates SSLSERVER and HTTPHANDLER to facilitate quickly building the server, which is logically equivalent to: 
+  `` `Javascript 
+  var svr = new network.sslserver (CRT, key, addr, port, new http.handler (function (reQ) { 
+     Em 
+  }); 
+  `` ` 
 
- How to create:
- @code
- var http = require("http");
- var svr = new http.HttpsServer(crt, key, 443, function(req){
-     ...
- });
- @endcode
- */
-interface HttpsServer: HttpServer
+  Create method: 
+  `` `Javascript 
+  var http = request ("http"); 
+  var svr = new http.httpsserver (CRT, key, 443, function (reQ) { 
+      Em 
+  }); 
+  `` `*/
+interface HttpsServer : HttpServer
 {
-    /*! @brief HttpsServer constructor, listen on all local addresses
-      @param certs server certificate list, the format is:
-        @code
-        [
-            {
-                crt: [X509Cert object],
-                key: [PKey object]
-            },
-            {
-                crt: [X509Cert object],
-                key: [PKey object]
-            }
-        ]
-        @endcode
-      @param port spcify http server listen port
-      @param hdlr http built-in message handler, manipulation function or javascript message mapping object. See mq.jsHandler:
-     */
-    HttpsServer(Array certs, Integer port, Value hdlr);
+    /*! @Brief httpsserver constructor, listening to all the address of this machine 
 
-    /*! @brief HttpsServer constructor, listen on all local addresses
-      @param certs server certificate list, the format is:
-        @code
-        [
-            {
-                crt: [X509Cert object],
-                key: [PKey object]
-            },
-            {
-                crt: [X509Cert object],
-                key: [PKey object]
-            }
-        ]
-        @endcode
-      @param addr specify http server listening address, listen on all local addressed if the param is ""
-      @param port specify http server listen port
-      @param hdlr http built-in message handler, manipulation function or javascript message mapping object. See mq.jsHandler
-     */
-    HttpsServer(Array certs, String addr, Integer port, Value hdlr);
+     Certs format: 
+     `` `Javascript 
+     
+         {{ 
+             name: "fibjs.org", 
+             CRT: [X509cert Object], 
+             Key: [pKEY Object] 
+         }, 
+         {{ 
+             name: "*.fibjs.org", 
+             CRT: [X509cert Object], 
+             Key: [pKEY Object] 
+         } 
+     ] 
+     `` ` 
+     @Param Certs server certificate list 
+     @Param Port specifies the HTTP server listening port 
+     @Param HDLR HTTP built -in message processor, processing function, chain processing array, routing object, see*/
+    HttpsServer(Array certs, Integer port, Handler hdlr);
 
-    /*! @brief HttpsServer constructor, listen on all local addresses
-      @param crt X509Cert certificate, used to verify the server on the client
-      @param key PKey private key, used to get session with the client
-      @param port spcify http server listen port
-      @param hdlr http built-in message handler, manipulation function or javascript message mapping object. See mq.jsHandler:
-     */
-    HttpsServer(X509Cert crt, PKey key, Integer port, Value hdlr);
+    /*! @brief httpsserver constructor 
 
-    /*! @brief HttpsServer constructor, listen on all local addresses
-      @param crt X509Cert certificate, used to verify the server on the client
-      @param key PKey private key, used to get session with the client
-      @param addr specify http server listening address, listen on all local addressed if the param is ""
-      @param port specify http server listen port
-      @param hdlr http built-in message handler, manipulation function or javascript message mapping object. See mq.jsHandler:
-     */
-    HttpsServer(X509Cert crt, PKey key, String addr, Integer port, Value hdlr);
+     Certs format: 
+     `` `Javascript 
+     
+         {{ 
+             name: "fibjs.org", 
+             CRT: [X509cert Object], 
+             Key: [pKEY Object] 
+         }, 
+         {{ 
+             name: "*.fibjs.org", 
+             CRT: [X509cert Object], 
+             Key: [pKEY Object] 
+         } 
+     ] 
+     `` ` 
+     @Param Certs server certificate list 
+     @Param ADDR specify the HTTP server to listen to the address, to "" all addresses in this machine to listen to 
+     @Param Port specifies the HTTP server listening port 
+     @Param HDLR HTTP built -in message processor, processing function, chain processing array, routing object, see*/
+    HttpsServer(Array certs, String addr, Integer port, Handler hdlr);
 
-    /*! @brief set the certificate verify mode, defaults to VERIFY_REQUIRED */
+    /*! @Brief httpsserver constructor, listening to all the address of this machine 
+     @Param CRT X509cert certificate for client verification server 
+     @Param KEY PKEY private key, used to talk to the client 
+     @Param Port specifies the HTTP server listening port 
+     @Param HDLR HTTP built -in message processor, processing function, chain processing array, routing object, see*/
+    HttpsServer(X509Cert crt, PKey key, Integer port, Handler hdlr);
+
+    /*! @brief httpsserver constructor 
+     @Param CRT X509cert certificate for client verification server 
+     @Param KEY PKEY private key, used to talk to the client 
+     @Param ADDR specify the HTTP server to listen to the address, to "" all addresses in this machine to listen to 
+     @Param Port specifies the HTTP server listening port 
+     @Param HDLR HTTP built -in message processor, processing function, chain processing array, routing object, see*/
+    HttpsServer(X509Cert crt, PKey key, String addr, Integer port, Handler hdlr);
+
+    /*! @brief Set the certificate verification mode, the default is Verify_none*/
     Integer verification;
 
-    /*! @brief client certificate verify ca */
+    /*! @brief client certificate verification CA*/
     readonly X509Cert ca;
 };

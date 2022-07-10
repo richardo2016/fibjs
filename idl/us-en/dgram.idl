@@ -1,0 +1,56 @@
+/*! @Brief DGRAM module provides the implementation of UDP packet socket 
+
+  Basic module, reference method: 
+  `` `Javascript 
+  var dgram = request ('dgram'); 
+  `` `*/
+module dgram
+{
+    /*! @Brief dgram.socket object is an Eventedemitter that encapsulates the data packet function function. See dgramsocket 
+      Dgram.socket instance was created by dgram.createsocket (). Creating a DGRAM.SOCKET instance does not need to use the new keyword.*/
+    static DgramSocket new Socket();
+
+    /*! @brief Create a dgram.socket object 
+
+      Opts allowed options: 
+      `` `Javascript 
+      {{ 
+          "type": "udp4" | "udp6", // must be filled 
+          "Reuseaddr": True | False, // If it is set to true, socket.bind () will reuse the address, and the other process has been bound to a socket on it. The default is false 
+          "IPv6Only": True | False, // If it is set to true, socket.bind () will only receive IPv6 packets. The default is false 
+          "Recvbuffersize": 1024, // Set SO_RCVBUF socket word value 
+          "Sendbuffersize": 1024 // Set SO_RCVBUF socket word value 
+      } 
+      `` ` 
+      @param Opts 
+      @Return Return to the created SOCKET object*/
+    static DgramSocket createSocket(Object opts);
+
+    /*! @brief Create a dgram.socket object 
+
+      Opts allowed options: 
+      `` `Javascript 
+      {{ 
+          "type": "udp4" | "udp6", // must be filled 
+          "Reuseaddr": True | False, // If it is set to true, socket.bind () will reuse the address, and the other process has been bound to a socket on it. The default is false 
+          "IPv6Only": True | False, // If it is set to true, socket.bind () will only receive IPv6 packets. The default is false 
+          "Recvbuffersize": ###, // Set SO_RCVBUF socket word value 
+          "Sendbuffersize": ### // Set so_rcvbuf socket value 
+      } 
+      `` ` 
+      @param Opts 
+      @Param Callback adds a monitor to the 'message' event. 
+      @Return Return to the created SOCKET object*/
+    static DgramSocket createSocket(Object opts, Function callback);
+
+    /*! @brief Create a dgram.socket object 
+      @Param Type socket, 'udp4' or 'udp6'. 
+      @Return Return to the created SOCKET object*/
+    static DgramSocket createSocket(String type);
+
+    /*! @brief Create a dgram.socket object 
+      @Param Type socket, 'udp4' or 'udp6'. 
+      @Param Callback adds a monitor to the 'message' event. 
+      @Return Return to the created SOCKET object*/
+    static DgramSocket createSocket(String type, Function callback);
+};

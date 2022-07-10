@@ -1,27 +1,29 @@
+/*! @brief flow operation object, used for binary data streaming and writing 
 
-/*! @brief Stream object for binary data
-
-Stream is a fundamental object to define interface, which cannot be created */
+ Stream is the base object, which is used to define the standards for flowing and define standards. It cannot be created independently*/
 interface Stream : object
 {
-    /*! @brief Read data from stram
-     @param bytes Data size to read, default is a random size depends on device
-     @return Return data, null if no data or connection lost
-     */
+    /*! @brief query the file descriptor value corresponding to the stream, implemented by the subclass*/
+    readonly Integer fd;
+
+    /*! @brief reads data of specified size from the flow 
+      @param bytes specifies the amount of data to be read. The default is a data block of the readable size. The data size reads depends on the device 
+      @Return returns the data read from the stream. If there is no data to read, or the connection is interrupted, then return NULL*/
     Buffer read(Integer bytes = -1) async;
 
-    /*! @brief Write data to stream
-     @param data Data to write
-     */
+    /*! @brief writes the given data into stream 
+      @param Data Given the data you want to write*/
     write(Buffer data) async;
 
-    /*! @brief Close stream */
+    /*! @brief writes the content of the file buffer into physical equipment*/
+    flush() async;
+
+    /*! @brief Turn off the current stream object*/
     close() async;
 
-    /*! @brief Copy data to target stream
-     @param stm Target stream
-     @param bytes Number of data to copy
-     @return Return number of data copied
-     */
+    /*! @brief Copy flow data to the target stream 
+      @Param Stm target stream object 
+      @param bytes copied byte number 
+      @Return Return to copy by bytes*/
     Long copyTo(Stream stm, Long bytes = -1) async;
 };

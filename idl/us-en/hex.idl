@@ -1,26 +1,22 @@
-/*! @brief module with encode and decode operations between hex and string.
- to use:
- @code
- var encoding = require('encoding');
- var hex = encoding.hex;
- @endcode
- or:
- @code
- var hex = require('hex');
- @endcode
- */
+/*! @brief hex encoding and decoding module 
+  Quote method: 
+  `` `Javascript 
+  var encoding = reques ('enCoding'); 
+  var hex = encoding.hex; 
+  `` ` 
+  or 
+  `` `Javascript 
+  var hex = request ('hex'); 
+  `` `*/
 module hex
 {
-	/*! @brief Encode data whith hex format.
-	 @param data Data to be encoded.
-	 @return Encoded result string.
-	 */
-	static String encode(Buffer data);
+    /*! @brief encoded data in Hex mode 
+ @param data to encode data 
+ @Return Return the encoded string*/
+    static String encode(Buffer data);
 
-	/*! @brief Decode string to binary data with hex format.
-	 @param data String to be decode.
-	 @return Decoded binary data result.
-	 */
-	static Buffer decode(String data);
+    /*! @brief decoded the string as a binary data in the hex mode 
+ @param data string to decoding 
+ @Return Return to decoding binary data*/
+    static Buffer decode(String data);
 };
-

@@ -1,91 +1,98 @@
+/*! @brief x509 certificate object 
 
-/*! @brief x509 certificate object
-
- X509Cert object belongs to crypto module, to create it:
- @code
- var k = new crypto.X509Cert();
- @endcode
- */
+  X509cert object belongs to the Crypto module, created: 
+  `` `Javascript 
+  var k = new crypto.x509cert (); 
+  `` `*/
 interface X509Cert : object
 {
-    /*! @brief X509Cert constructor */
+    /*! @Brief x509cert constructor*/
     X509Cert();
 
-    /*! @brief Load a DER format certificate, can be called multiple times.
-     @param derCert DER format certificate
-    */
-    load(Buffer derCert);
+    /*! @brief x509cert constructor, load a deer format certificate 
+      @param dercert deer format*/
+    X509Cert(Buffer derCert);
 
-    /*! @brief Load a CRT/PEM/TXT format certificate, can be called multiple times.
+    /*! @brief x509cert constructor, load a CRT/PEM/TXT format certificate 
 
-    load loads mozilla's certdata,txt, can be downloaded from http://hg.mozilla.org/releases/mozilla-release/raw-file/default/security/nss/lib/ckfw/builtins/certdata.txt
-     @param txtCert PEM format certificate
-    */
-    load(String txtCert);
+     Load loaded the CertData, TXT, which can be downloaded at http://hg.mozilla.org/releases/mozilla-rease/raw-file/default/security/lib/builtins/certdata.txt download. 
+      @Param TXTCERT CRT/PEM/TXT format*/
+    X509Cert(String txtCert);
 
-    /*! @brief Load a CRT/PEM/DER/TXT format certificate, can be called multiple times.
+    /*! @brief Load a deer format certificate, which can be called multiple times 
+      @param dercert deer format*/
+    import(Buffer derCert);
 
-    loadFile loads mozilla's certdata,txt, can be downloaded from http://hg.mozilla.org/releases/mozilla-release/raw-file/default/security/nss/lib/ckfw/builtins/certdata.txt
-     @param filename Certificate file name
-    */
-    loadFile(String filename);
+    /*! @brief Load a CRT/PEM/TXT format certificate, which can be called multiple times 
 
-    /*! @brief Load default root certificates from http://hg.mozilla.org/releases/mozilla-release/raw-file/default/security/nss/lib/ckfw/builtins/certdata.txt */
+     Import to Mozilla Certdata, TXT, can be available at http://hg.mozilla.org/releases/mozilla-rease/raw-file/default/Ses/lib/builtins/certdata.txt download. 
+      @Param TXTCERT CRT/PEM/TXT format*/
+    import(String txtCert);
+
+    /*! @brief loaded its own default root certificate 
+     The content of this certificate comes from: http://hg.mozilla.org/releases/mozilla-rease/raw-file/default/security/lib/builtins/certdata.txt*/
     loadRootCerts();
 
-    /*! @brief Verify current certificate
-     @param cert Certificate to verify
-     @return Return True when verified
-    */
+    /*! @brief uses the current certificate chain to verify the given certificate 
+      @Param Cert Given Certificate to Requires 
+      @Return If the verification is successful, return TRUE*/
     Boolean verify(X509Cert cert) async;
 
-    /*! @brief Dump loaded certificates
-     @return Array of certificates
-    */
-    Array dump();
+    /*! @brief exported the certificate that has been loaded in PEM format 
+      @param all specifies whether to output all certificates, the default is TRUE 
+      @Return Export the certificate chain in a array*/
+    String pem(Boolean all = true);
 
-    /*! @brief Clear loaded certificates */
+    /*! @brief exported the certificate that has been loaded in a der format 
+      @Return Export the certificate chain in a array*/
+    Buffer der();
+
+    /*! @Brief Clear Certificate that has been loaded*/
     clear();
 
-    /*! @brief Get version of certificate */
+    /*! @brief Get the certificate of the certificate*/
     readonly Integer version;
 
-    /*! @brief Get serial number of certificate */
+    /*! @brief Get the sequence number of the certificate*/
     readonly String serial;
 
-    /*! @brief Get issuer of certificate */
+    /*! @Brief obtained the certificate of the certificate of the certificate of the certificate*/
     readonly String issuer;
 
-    /*! @brief Get subject of certificate */
+    /*! @brief Get the theme of the certificate to distinguish the name*/
     readonly String subject;
 
-    /*! @brief Get start time of certificate */
+    /*! @brief gets the time to get the certificate of getting the certificate*/
     readonly Date notBefore;
 
-    /*! @brief Get expired time of certificate */
+    /*! @brief gets the expiration time of the certificate*/
     readonly Date notAfter;
 
-    /*! @brief Check if certificate is from CA */
+    /*! @brief obtaining certificate is a CA certificate*/
     readonly Boolean ca;
 
-    /*! @brief Get pathlen of certificate */
+    /*! @brief Get the Pathlen of the certificate*/
     readonly Integer pathlen;
 
-    /*! @brief Get usage of certificate
+    /*! @brief Get the Scope of the use of certificates 
 
-    Result will be one or more of digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment, keyAgreement, keyCertSign, and cRLSign
-    */
+     Results are all or part of the content: DigitalSignature, Nonrepudiation, KeyenCipherment, DataNCIPHERMENT, KeyAgreement, Keycertsign, CRLSIGN, CRLSIGN*/
     readonly String usage;
 
-    /*! @brief Get Netscape type of certificate
+    /*! @Brief Get the NETSCAPE certificate type 
 
-    Result will be one or more ofclient, server, email, objsign, reserved, sslCA, emailCA, and objCA
-     */
+     The result is all or part of the content: Client, Server, Email, Objsign, Reserved, SSLCA, Emailca, Objca*/
     readonly String type;
 
-    /*! @brief Get public key of certificate */
+    /*! @Brief Obtaining Certificate Summary Algorithm*/
+    readonly Integer sig_md;
+
+    /*! @Brief obtained the signature algorithm of the certificate*/
+    readonly Integer sig_pk;
+
+    /*! @brief Get the certificate of the certificate*/
     readonly PKey publicKey;
 
-    /*! @brief Get next certificate in chian */
+    /*! @brief Get the certificate in the certificate chain*/
     readonly X509Cert next;
 };

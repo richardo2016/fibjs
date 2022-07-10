@@ -1,34 +1,35 @@
-
-/*! @brief HeapGraphNode represents a node in a heap graph. */
+/*! @Brief Heapgraphnode indicates a node in the stack view*/
 interface HeapGraphNode : object
 {
-    /*! @brief node type, the value can be:
-     - profiler.Node_Hidden,         Hidden node, may be filtered when shown to user.
-     - profiler.Node_Array,          An array of elements.
-     - profiler.Node_String,         A string.
-     - profiler.Node_Object,         A JS object (except for arrays and strings).
-     - profiler.Node_Code,           Compiled code.
-     - profiler.Node_Closure,        Function closure.
-     - profiler.Node_RegExp,         RegExp.
-     - profiler.Node_HeapNumber,     Number stored in the heap.
-     - profiler.Node_Native,         Native object (not from V8 heap).
-     - profiler.Node_Synthetic,      Synthetic object, usualy used for grouping snapshot items together.
-     - profiler.Node_ConsString,     Concatenated string. A pair of pointers to strings.
-     - profiler.Node_SlicedString,   Sliced string. A fragment of another string.
-     - profiler.Node_Symbol,         A Symbol (ES6).
-     - profiler.Node_SimdValue,      A SIMD value stored in the heap (Proposed ES7).
-    */
+    /*! @brief node type, possible value: 
+      -PROFILER.NODE_HIDDEN, hidden nodes, can be filtered out when it is displayed to the user 
+      -PROFILER.NODE_ARAY, array 
+      -PROFILER.NODE_STRING, String 
+      -PROFILER.NODE_OBJECT, JS object (except string and array) 
+      -PROFILER.NODE_CODE, compiled code 
+      -PROFILER.NODE_CLOSURE, function closure 
+      -PROFILER.NODE_REGEXP, regular expression formula 
+      -PROFILER.NODE_HEAPNUMBER, numerals excreted in the pile 
+      -PROFILER.NODE_NATIVE, Native object (non -V8 pile) 
+      -PROFILER.NODE_SYNTHETIC, Synthetic object 
+      -PROFILER.NODE_CONSSTRING, stringed string string 
+      -PROFILER.NODE_SLICEDSTRING, split string 
+      -PROFILER.NODE_SYMBOL, Symbol (ES6) 
+      -PROFILER.NODE_SIMDVALUE, sIMD value exclusive in the heap (ES7)*/
     readonly Integer type;
 
-    /*! @brief node name */
+    /*! @brief node name*/
     readonly String name;
 
-    /*! @brief node ID */
+    /*! @Brief Node's Description*/
+    readonly String description;
+
+    /*! @brief node ID*/
     readonly Integer id;
 
-    /*! @brief node's own size, in bytes. */
+    /*! @brief node size, the unit is byte*/
     readonly Integer shallowSize;
 
-    /*! @brief child nodes list */
-    readonly List childs;
+    /*! @brief sub -node list, consisting of Heapgraphedge type object*/
+    readonly NArray childs;
 };

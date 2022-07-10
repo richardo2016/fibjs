@@ -1,34 +1,34 @@
+/*! @brief fiber lock object 
 
-/*! @brief Thread lock object
-
-Unlike system lock, thread lock cost use logic lock and very cheap.
- @code
- var l = new coroutine.Lock();
- l.acquire();
- .....
- l.release();
- @endcode
- */
+  Different from the lock of the operating system, the fibrous dating is realized in pure logic, and the lock and unlock load are very small. 
+  `` `Javascript 
+  var l = new coroutine.lock (); 
+  l.acquire (); 
+  ... 
+  l.Release (); 
+  `` `*/
 interface Lock : object
 {
-    /*! @brief Constructor*/
+    /*! @brief Construct function*/
     Lock();
 
-    /*! @brief Acquire 
-     @param blocking Indicates whether to wait, default is true
-     @return Return true when acquired successfully
+    /*! @brief Get the ownership of locks 
 
-     acquire returns true immediately when lock if acquirable.
+      The ACquire method is used to obtain the ownership of the lock. When the lock is in the state -available state, this method returns true immediately. 
 
-     When is not available and blocking is true, will wait and return true.
+      When the lock cannot be obtained and the blocking is true, the current fiber journey enters the dormant. When other fibrous downs are released, this method returns true. 
 
-     When is not available and blocking is false, returns false immediately.
-     */
+      When the lock cannot be obtained and the blocking is false, the method returns false. 
+      @Param Blocking specifies whether to wait, wait for true, the default is true 
+      Whether the @Return returns to obtain the lock successfully, expressed success for TRUE*/
     Boolean acquire(Boolean blocking = true);
 
-    /*! @brief Release ownership
+    /*! @Brief's ownership of release lock 
 
-     This method releases ownership of lock, and throw an error when ownership is invalid.
-     */
+      This method will release the ownership of the lock. If the current fiber does not have a lock, this method will throw an error.*/
     release();
+
+    /*! @brief query the current waiting task 
+      @Return Return to the number of tasks*/
+    Integer count();
 };

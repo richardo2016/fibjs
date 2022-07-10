@@ -1,93 +1,108 @@
+/*! @Brief memory propiler module 
 
-/*! @brief Memory profiler module
-
- The way to use:
- @code
- var profiler = require('profiler');
- @endcode
- */
+  Instructions: 
+  `` `Javascript 
+  var propiler = reques ('Profiler'); 
+  `` `*/
 module profiler
 {
-	/*! @brief Hidden node, may be filtered when shown to user. */
-	const Integer Node_Hidden = 0;
+    /*! @brief hidden nodes, when it is displayed to the user, it can be filtered out*/
+    const Node_Hidden = 0;
 
-	/*! @brief An array of elements. */
-	const Integer Node_Array = 1;
+    /*! @brief array*/
+    const Node_Array = 1;
 
-	/*! @brief A string. */
-	const Integer Node_String = 2;
+    /*! @Brief Strings*/
+    const Node_String = 2;
 
-	/*! @brief A JS object (except for arrays and strings). */
-	const Integer Node_Object = 3;
+    /*! @Brief JS object (except string and array)*/
+    const Node_Object = 3;
 
-	/*! @brief Compiled code. */
-	const Integer Node_Code = 4;
+    /*! @Brief compiled code*/
+    const Node_Code = 4;
 
-	/*! @brief Function closure. */
-	const Integer Node_Closure = 5;
+    /*! @brief function closure*/
+    const Node_Closure = 5;
 
-	/*! @brief RegExp. */
-	const Integer Node_RegExp = 6;
+    /*! @brief regular expression*/
+    const Node_RegExp = 6;
 
-	/*! @brief Number stored in the heap. */
-	const Integer Node_HeapNumber = 7;
+    /*! @Brief Display numbers in the order*/
+    const Node_HeapNumber = 7;
 
-	/*! @brief Native object (not from V8 heap). */
-	const Integer Node_Native = 8;
+    /*! @Brief Native object (non -V8 pile)*/
+    const Node_Native = 8;
 
-	/*! @brief Synthetic object, usualy used for grouping snapshot items together. */
-	const Integer Node_Synthetic = 9;
+    /*! @Brief Synthetic object*/
+    const Node_Synthetic = 9;
 
-	/*! @brief Concatenated string. A pair of pointers to strings. */
-	const Integer Node_ConsString = 10;
+    /*! @Brief stitching string string*/
+    const Node_ConsString = 10;
 
-	/*! @brief Sliced string. A fragment of another string. */
-	const Integer Node_SlicedString = 11;
+    /*! @Brief splitted string*/
+    const Node_SlicedString = 11;
 
-	/*! @brief A Symbol (ES6). */
-	const Integer Node_Symbol = 12;
+    /*! @brief symbol (ES6)*/
+    const Node_Symbol = 12;
 
-	/*! @brief A SIMD value stored in the heap (Proposed ES7). */
-	const Integer Node_SimdValue = 13;
+    /*! @Brief SIMD value (ES7)*/
+    const Node_SimdValue = 13;
 
-	/*! @brief A variable from a function context. */
-	const Integer Edge_ContextVariable = 0;
+    /*! @Brief function variable*/
+    const Edge_ContextVariable = 0;
 
-	/*! @brief An element of an array. */
-	const Integer Edge_Element = 1;
+    /*! @Brief elements in the array*/
+    const Edge_Element = 1;
 
-	/*! @brief A named object property. */
-	const Integer Edge_Property = 2;
+    /*! @Brief's attributes of famous objects*/
+    const Edge_Property = 2;
 
-	/*! @brief A link that can't be accessed from JS. */
-	const Integer Edge_Internal = 3;
+    /*! @brief js unable to enter*/
+    const Edge_Internal = 3;
 
-	/*! @brief A link that is needed for proper sizes calculation. */
-	const Integer Edge_Hidden = 4;
+    /*! @brief points to nodes that need to calculate the size of space in advance*/
+    const Edge_Hidden = 4;
 
-	/*! @brief A link that must not be followed during sizes calculation. */
-	const Integer Edge_Shortcut = 5;
+    /*! @brief points to nodes that cannot be calculated in advance*/
+    const Edge_Shortcut = 5;
 
-	/*! @brief A weak reference (ignored by the GC). */
-	const Integer Edge_Weak = 6;
+    /*! @brief A weak reference (ignored by GC)*/
+    const Edge_Weak = 6;
 
-	/*! @brief Save a HeapSnapshot with the specified name.
-	 @param fname HeapSnapshot name.
-	 */
-	static saveSnapshot(String fname);
+    /*! @brief Get the statistical information of the code and its metadata in the pile of the pile 
+      @Return Return to statistical information of metadata*/
+    static Object getHeapCodeStatistics();
 
-	/*! @brief Load a HeapSnapshot with the specified name.
-	 @param fname HeapSnapshot name.
-	 @return Return the HeapSnapshot loaded.
-	 */
-	static HeapSnapshot loadSnapshot(String fname);
+    /*! @Brief Get the detailed usage of V8 pile memory 
+      @Return Return to the detailed usage of the heap memory*/
+    static Array getHeapSpaceStatistics();
 
-    /*! @brief Get the current HeapSnapshot, HeapSnapshots record the state of the JS heap at some moment.
-     @return Returns the acquired HeapSnapshots.
-     */
-	static HeapSnapshot takeSnapshot();
+    /*! @brief Get the statistical information of the use of V8 pile of memory 
+      @Return back to the statistical information of the use of pile memory*/
+    static Object getHeapStatistics();
 
-	/*! @brief Delete all HeapSnapshots.
-    */
-	static DeleteAllHeapSnapshots();
+    /*! @Brief save a pile of snapshot according to the specified name 
+ @param FNAME Packing Snapshot Name*/
+    static saveSnapshot(String fname);
+
+    /*! @brief Read a pile of snapshot according to the specified name 
+ @param FNAME Packing Snapshot Name 
+ @Return Return to read the pile of snacks*/
+    static HeapSnapshot loadSnapshot(String fname);
+
+    /*! @brief Get the reserved Snapshot of the current time node, and the stack of snapshot records the status of JS heap at the current moment 
+ @Return Return to the obtained pile information snapshot*/
+    static HeapSnapshot takeSnapshot();
+
+    /*! @Brief execute a given function and compare the changes in the V8 heap before and after execution 
+ @param test given to a function to test 
+ @Return returns the result of comparison*/
+    static Object diff(Function test);
+
+    /*! @brief Start a running status sampling log 
+ @Param FNAME given log storage file name 
+ @Param Time specify the sampling time, the default is 1 minute 
+ @Param Interval specify the interval time, the default 100 milliseconds 
+      @Return Return the sampling timer, you can stop sampling in advance through the clear method*/
+    static Timer start(String fname, Integer time = 60000, Integer interval = 100);
 };

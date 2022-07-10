@@ -1,0 +1,57 @@
+/*! @brief system service management object*/
+interface Service : EventEmitter
+{
+    /*! @brief system service management object constructor constructor 
+      @param name service name 
+      @param worker service running function 
+      @Param Event service event processing*/
+    Service(String name, Function worker, Object event = {});
+
+    /*! @brief Start running the service entity*/
+    run() async;
+
+    /*! @brief query and set service name*/
+    String name;
+
+    /*! @brief query and binding service stop incident, equivalent to on ("stop", func);*/
+    Function onstop;
+
+    /*! @brief query and binding service pause incident, equivalent to on ("pause", func);*/
+    Function onpause;
+
+    /*! @brief query and binding service recovery incident, equivalent to on ("control", func);*/
+    Function oncontinue;
+
+    /*! @brief installation service to the system 
+      @param name service name 
+      @Param CMD service command line 
+      @Param DisplayName service display name 
+      @Param Description description information*/
+    static install(String name, String cmd, String displayName = "", String description = "");
+
+    /*! @brief uninstall the service from the system 
+      @param name service name*/
+    static remove(String name);
+
+    /*! @brief start service 
+      @param name service name*/
+    static start(String name);
+
+    /*! @brief stop service 
+      @param name service name*/
+    static stop(String name);
+
+    /*! @brief restart service 
+      @param name service name*/
+    static restart(String name);
+
+    /*! @brief test service installed 
+      @param name service name 
+      @Return service installation returns true*/
+    static Boolean isInstalled(String name);
+
+    /*! @brief test service runs 
+      @param name service name 
+      @Return service runs back True*/
+    static Boolean isRunning(String name);
+};

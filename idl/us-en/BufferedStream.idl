@@ -1,59 +1,50 @@
-/*! @brief Buffer reader object
+/*! @brief cache read object 
 
- BufferedReader object is used for caching the binary data stream object. It also provides text reading
-function which only support utf-8 format conversion. Create method:
- @code
- var reader = new io.BufferedStream(stream);
- @endcode
- */
+  The bufferedReader object is used to cache the data of binary streaming objects, and provides text reading capabilities, only supports UTF-8 format conversion. Create method: 
+  `` `Javascript 
+  var Reader = New IO.BUFFEREDSTREAM (stream); 
+  `` `*/
 interface BufferedStream : Stream
 {
-    /*! @brief BufferedStream Constructor
-      @param stm The binary base stream of the bufferedStream
-     */
+    /*! @brief buffredstream constructor 
+       @Param Stm buffferedstream binary foundation flow object*/
     BufferedStream(Stream stm);
 
-    /*! @brief Read the text by the specified size
-     @param size The size of the text to read. The size is measured in utf8 format or another specified code format.
-     @return The text to read. If no data to read or the connection is interrupted, return null.
-     */
+    /*! @brief read the text of the specified character 
+      @param size specifies the number of text characters read read, based on UTF8 or specified coded bytes 
+      @Return Return to the text string read, if there is no data to read, or connect interruption, return Null*/
     String readText(Integer size) async;
 
-    /*! @brief Read a line of text which ends with EOL, by default it ends with, posix:\"\\n\"；windows:\"\\r\\n\"
-     @param maxlen The maximum length of the string to read, measured in utf8 format, by default it is unlimited.
-     @return The text to read. If no data to read or the connection is interrupted, return null.
-     */
+    /*! @Brief read a line of text, which is identified as settings based on EOL attributes, default, POSIX: \ "\ \ n \"; Windows: \ "\ \ r \\ n \" "" "" "" "" "" "" 
+      @Param Maxlen specifies the largest string read this time, which is based on UTF8 coding bytes, and the number of unlimited number of characters is not limited 
+      @Return Return to the text string read, if there is no data to read, or connect interruption, return Null*/
     String readLine(Integer maxlen = -1) async;
 
-    /*! @brief Read a line of text which ends with EOL, by default it ends with, posix:\"\\n\"；windows:\"\\r\\n\"
-     @param maxlines The maximum lines of the text to read, by default it reads all of the lines.
-     @return The array of the lines to read. If no data to read or the connection is interrupted, return an empty array.
-     */
+    /*! @Brief reads a set of text lines in an array, and the ending logo is based on the EOL attribute settings. When the default, POSIX: \ \ \ n \ "; Windows: \ \ r \\ n \" "" 
+      @Param MaxLines specifies the maximum number of rows read this time, defaults to all text lines 
+      @Return returns the text line array read, if no data can be read, or interrupted, empty array*/
     Array readLines(Integer maxlines = -1);
 
-    /*! @brief Read a text string which ends with specified string
-     @param mk The specified string with which the text string to read ends
-     @param maxlen The maximum length of the string to read, measured in utf8 format, by default it is unlimited.
-     @return The string to read. If no data to read or the connection is interrupted, return null.
-     */
+    /*! @Brief read a text string, ending the specified bytes as the end 
+      @param mk specify the string of the ending 
+      @Param Maxlen specifies the largest string read this time, which is based on UTF8 coding bytes, and the number of unlimited number of characters is not limited 
+      @Return Return to the text string read, if there is no data to read, or connect interruption, return Null*/
     String readUntil(String mk, Integer maxlen = -1) async;
 
-    /*! @brief Write a string
-     @param txt The string to write
-     */
-    deprecated writeText(String txt) async;
+    /*! @brief Write a string 
+      @param txt specified the written string*/
+    writeText(String txt) async;
 
-    /*! @brief Write a string and a line break
-     @param txt The string to write
-     */
+    /*! @brief Write a string and write it into the change line 
+      @param txt specified the written string*/
     writeLine(String txt) async;
 
-    /*! @brief Query the stream object when creating the buffer object */
+    /*! @brief query the flow object when creating a cache object*/
     readonly Stream stream;
 
-    /*! @brief Query and set the character set of the text being handled, by default it is utf-8 */
+    /*! @brief query and set the character set when processing the current object processing text, the default is UTF-8*/
     String charset;
 
-    /*! @brief Query and set the EOL syntax, by default it is posix:\"\\n\"；windows:\"\\r\\n\"   */
+    /*! @brief query and setting line signs, when the default, posix: \ "\ \ n \"; Windows: \ \ \ r \\ n \ "*/
     String EOL;
 };

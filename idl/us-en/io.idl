@@ -1,16 +1,29 @@
+/*! @Brief input output processing module 
 
-/*! @brief IO module
-
-To use it:
- @code
- var io = require('io');
- @endcode
- */
+  Instructions: 
+  `` `Javascript 
+  var IO = Require ('IO'); 
+  `` `*/
 module io
 {
-    /*! @brief Create a memory stream, see MemoryStream */
+    /*! @brief Create a memory stream object, see Memorystream*/
     static MemoryStream new MemoryStream();
 
-    /*! @brief Create a buffered read stream, see BufferedStream */
+    /*! @brief Create a cache stream reading object, see BufferEdStream*/
     static BufferedStream new BufferedStream();
+
+    /*! @brief Create a RANGE query stream reading object, see Rangestream*/
+    static RangeStream new RangeStream();
+
+    /*! @brief Copy flow data to the target stream 
+      @param from source 
+      @Param to target stream object 
+      @param bytes copied byte number 
+      @Return Return to copy by bytes*/
+    static Long copyStream(Stream from, Stream to, Long bytes = -1) async;
+
+    /*! @Brief duplex data in two -way, until there is no data in the stream, or the flow is closed 
+      @Param STM1 Streaming Object 1 
+      @Param STM2 Streaming Object 2*/
+    static bridge(Stream stm1, Stream stm2) async;
 };

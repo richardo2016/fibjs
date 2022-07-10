@@ -1,47 +1,67 @@
-
-/*! @brief http Cookie Object, used to add and handle cookies */
+/*! @Brief HTTP COOKIE object, used to add and process cookies*/
 interface HttpCookie : object
 {
-    /*! @brief HttpCookie constructor, creating a new HttpCookie Object
-     @param opts specify the properties of the cookie
-    */
+    /*! @brief httpcookie construct function, create a new HTTPCOOKIE object 
+
+      The options that OPTS can be set is as follows: 
+      `` `Javascript 
+      {{ 
+          "name": "", // Specify the created cookie name 
+          "Value": "", // Specify the created cookie value 
+          "Expires": date, // Specify the created cookie expiration time 
+          "domain": "", // The domain name range of the created Cookie 
+          "PATH": "", // The path range of the created Cookie 
+          "Secure": false, // Specify whether the created Cookie is only passed through HTTPS 
+          "httponly": false, // Specify the created Cookie only allows http requests 
+      } 
+      `` ` 
+      @param Opts specifies the foundation of Cookie created*/
     HttpCookie(Object opts = {});
 
-    /*! @brief HttpCookie constructor, creating a new HttpCookie Object
-     @param name specify the name of the cookie
-     @param value specify the value of the cookie
-     @param opts specify other properties of the cookie
-    */
+    /*! @brief httpcookie construct function, create a new HTTPCOOKIE object 
+
+      The options that OPTS can be set is as follows: 
+      `` `Javascript 
+      {{ 
+          "Expires": date, // Specify the created cookie expiration time 
+          "domain": "", // The domain name range of the created Cookie 
+          "PATH": "", // The path range of the created Cookie 
+          "Secure": false, // Specify whether the created Cookie is only passed through HTTPS 
+          "httponly": false, // Specify the created Cookie only allows http requests 
+      } 
+      `` ` 
+      @param name specifies the Cookie name created 
+      @Param Value specifies the Cookie value created 
+      @param Opts specifies other attributes of Cookie created*/
     HttpCookie(String name, String value, Object opts = {});
 
-    /*! @brief parsing the given string, filling out the object
-     @param header specify the header string that need to be parsed
-    */
+    /*! @Brief parsed the given string given, fill in the cookie object 
+      @param header specifies the header string that needs to be parsed*/
     parse(String header);
 
-    /*! @brief detecting whether the given url and the current configuration are matched
-     @param url specify the url to be detected
-    */
+    /*! @Brief test whether the given URL gives the current settings 
+      @Param url specifies the URL of the test 
+      @Return matching successfully returns true*/
     Boolean match(String url);
 
-    /*! @brief querying and setting the name of the cookie */
+    /*! @brief query and set the cookies name*/
     String name;
 
-    /*! @brief querying and setting the value of the cookie */
+    /*! @brief query and set the value of cookies*/
     String value;
 
-    /*! @brief querying and setting the damain scope of the cookie */
+    /*! @brief query and set the domain name range of cookies*/
     String domain;
 
-    /*! @brief querying and setting the path scope of the cookie */
+    /*! @brief query and set the path range of cookies*/
     String path;
 
-    /*! @brief querying and setting the expire time of the cookie */
+    /*! @brief query and set the expiration time of cookies*/
     Date expires;
 
-    /*! @brief querying and settinng whether the cookie allows http request, defaults to false */
+    /*! @brief query and set the cookies only allowed HTTP requests, default FALSE*/
     Boolean httpOnly;
 
-    /*! @brief querying and setting whether the cookie is only passed by https, defaults to false */
+    /*! @brief query and set whether cookies are only passed through HTTPS, default FALSE*/
     Boolean secure;
 };

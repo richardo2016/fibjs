@@ -1,0 +1,36 @@
+/*! @brief File System Observation Object 
+
+  When the calling `fs.watch (target)` is successful, return this type of object 
+  `` `Javascript 
+  var fs = require ("fs"); 
+  varway = fs.watch ((EventType, FILENAME) => { 
+     if (filename) { 
+       console.log (FILENAME); 
+       // Prints: <buffer ...> 
+     } 
+  }); 
+
+  watcher.close (); 
+
+  // Bring it back to the ground call 
+  fs.Watch ('./ TMP', {Encoding: 'Buffer'}, (EventType, FILENAME) => { 
+   if (filename) { 
+     console.log (FILENAME); 
+     // Prints: <buffer ...> 
+   } 
+ }); 
+  `` `*/
+interface FSWatcher : EventEmitter
+{
+    /*! @brief query and bind the "file change" event, which is equivalent to on ("Change", Func);*/
+    Function onchange;
+
+    /*! @brief query and binding "Watcher closed" event is equivalent to on ("close", func);*/
+    Function onclose;
+
+    /*! @brief query and binding "error occurring" event, equivalent to on ("error", func);*/
+    Function onerror;
+
+    /*! @brief Turn off the watcher and no longer receive the corresponding file change processing event*/
+    close();
+};
