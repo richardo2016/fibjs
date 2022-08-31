@@ -2,12 +2,20 @@ var io = require('io');
 var path = require('path');
 var child_process = require('child_process');
 
+function is_windows_bash() {
+    return process.platform === 'win32' && /^(msys|cygwin)$/.test(process.env.OSTYPE)
+        || (Object.keys(process.env).some(
+            ekey => ekey.startsWith('MINGW_')
+                || ekey === 'MSYSTEM'
+        ));
+}
+
 process.chdir(path.join(__dirname, '..'));
 
 function pick_subprocess_out_lines(popen_r) {
     var stdout = new io.BufferedStream(popen_r.stdout);
 
-    return stdout.readLines();
+    return stdout.readLines().map(line => line.trimEnd());
 }
 
 var hash = pick_subprocess_out_lines(
@@ -19,10 +27,13 @@ var info = (/^(v[\d\.]+)-(\d+)-g([a-f\d]+)/g).exec(describe);
 var logs = pick_subprocess_out_lines(
     child_process.spawn('git', [
         'log',
-        '--pretty=format:%H-%s(%an)',
+        '--pretty=format:"%H-%s(%an)"',
         '-' + (new Number(info[2] - 1))
     ])
 );
+if (is_windows_bash()) {
+    logs = logs[0].split('\n').map(line => line.replace(/^"/g, '').replace(/"$/g, ''));
+}
 
 var commits = [];
 var changes = {};
@@ -33,6 +44,9 @@ var alias = {
 };
 
 logs.forEach(log => {
+    if (!log) {
+        throw new Error('[changelog] invalid log: ' + log);
+    }
     var log_info = /^([a-f\d]+)-\s*(([^\,\:]*)(\s*,\s*([^\:]*))?\s*:)?\s*(.*)$/.exec(log);
 
     var hash = log_info[1].substr(0, 10);
