@@ -111,14 +111,18 @@ void SandBox::initGlobal(v8::Local<v8::Object> global)
 RootModule* RootModule::g_root = NULL;
 RootModule* RootModule::g_last = NULL;
 
-result_t SandBox::addNativeModule()
+result_t SandBox::addBuiltinModules()
 {
     Isolate* isolate = holder();
 
     RootModule* pModule = RootModule::g_root;
 
     while (pModule) {
-        InstallModule(pModule->name(), pModule->getModule(isolate));
+        exlib::string name = pModule->name();
+        v8::Local<v8::Object> mod = pModule->getModule(isolate);
+        InstallModule(name, mod);
+        InstallModule("fibjs:" + name, mod);
+
         pModule = pModule->m_next;
     }
 
