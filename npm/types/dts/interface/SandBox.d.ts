@@ -31,7 +31,7 @@ declare class Class_SandBox extends Class_object {
      *      @param require 自定义 require 函数，当模块不存在时，先调用自定义函数，无返回再从文件中加载
      *      
      */
-    constructor(mods: FIBJS.GeneralObject, require: (...args: any[])=>any);
+    constructor(mods: FIBJS.GeneralObject, require: (...args: any[]) => any);
 
     /**
      * @description 构造一个独立 Global 新的安全沙箱对象，并初始化基础模块
@@ -48,12 +48,12 @@ declare class Class_SandBox extends Class_object {
      *      @param global 指定初始化的 Global 属性
      *      
      */
-    constructor(mods: FIBJS.GeneralObject, require: (...args: any[])=>any, global: FIBJS.GeneralObject);
+    constructor(mods: FIBJS.GeneralObject, require: (...args: any[]) => any, global: FIBJS.GeneralObject);
 
     /**
      * @description 向沙箱中添加内置基础模块 
      */
-    addNativeModule(): void;
+    addBuiltinModules(): void;
 
     /**
      * @description 向沙箱中添加一个基础模块
@@ -170,7 +170,7 @@ declare class Class_SandBox extends Class_object {
      *      @param compiler 编译回调函数, 所有带 extname 的文件仅会 require 一次. 该回调函数格式为 `compiler(buf, requireInfo)`, buf 为读取到的文件 Buffer, requireInfo 结构为 `{filename: string}`.
      *      
      */
-    setModuleCompiler(extname: string, compiler: (...args: any[])=>any): void;
+    setModuleCompiler(extname: string, compiler: (...args: any[]) => any): void;
 
     /**
      * @description 查询沙箱的 global 对象 
