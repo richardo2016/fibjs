@@ -13,7 +13,7 @@ if [[ $TARGET_OS_NAME == 'Linux' ]]; then # Linux
   XZ_FILE=${DIST_DIRPATH}/fibjs.xz
   GZ_FILE=${DIST_DIRPATH}/fibjs.tar.gz
 
-  if ldd --version | grep -q musl; then
+  if [[ $BUILD_TARGET == 'alpine' ]]; then
     echo "[detect_linux_os] Alpine musl"
     DIST_LINUX_OS="alpine"
   else
