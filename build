@@ -61,6 +61,11 @@ if [[ $CC == "" ]]; then
 	fi
 fi
 
+if [[ $BUILD_OS == "alpine" || $BUILD_OS == "Alpine" ]]; then
+	sudo apt-get update;
+	sudo apt-get install xz-utils;
+fi
+
 if [ -f "${SOURCE_ROOT}/vender/build" ]; then 
 	if [ -z $USE_VENDER_DIST ]; then
 		cd "${SOURCE_ROOT}/vender"
