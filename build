@@ -29,6 +29,8 @@ do
 		linux|alpine|android) BUILD_OS=$i
 			args="${args/$BUILD_OS/}" 
 			;;
+        ci) IS_CI="ci"
+            ;;
 	esac
 done
 
@@ -61,7 +63,8 @@ if [[ $CC == "" ]]; then
 	fi
 fi
 
-if [[ $BUILD_OS == "alpine" || $BUILD_OS == "Alpine" ]]; then
+if [[ ! -f xz && $IS_CI && $OS == "Linux" ]]; then
+	echo "No xz found on $BUILD_OS, try to install xz-utils...";
 	sudo apt-get update;
 	sudo apt-get install xz-utils;
 fi
