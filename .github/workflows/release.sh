@@ -13,10 +13,18 @@ if [[ $TARGET_OS_NAME == 'Linux' ]]; then # Linux
   XZ_FILE=${DIST_DIRPATH}/fibjs.xz
   GZ_FILE=${DIST_DIRPATH}/fibjs.tar.gz
 
-  cp ${FIBJS_FILE} ${RELEASE_TAG}/fibjs-${RELEASE_TAG}-linux-${DIST_ARCH}
-  cp ${INSTALLER_FILE} ${RELEASE_TAG}/installer-${RELEASE_TAG}-linux-${DIST_ARCH}.sh
-  cp ${XZ_FILE} ${RELEASE_TAG}/fibjs-${RELEASE_TAG}-linux-${DIST_ARCH}.xz
-  cp ${GZ_FILE} ${RELEASE_TAG}/fibjs-${RELEASE_TAG}-linux-${DIST_ARCH}.tar.gz
+  if ldd --version | grep -q musl; then
+    echo "[detect_linux_os] Alpine musl"
+    DIST_LINUX_OS="alpine"
+  else
+    echo "[detect_linux_os] glibc-based Linux"
+    DIST_LINUX_OS="linux"
+  fi
+  
+  cp ${FIBJS_FILE} ${RELEASE_TAG}/fibjs-${RELEASE_TAG}-${DIST_LINUX_OS}-${DIST_ARCH}
+  cp ${INSTALLER_FILE} ${RELEASE_TAG}/installer-${RELEASE_TAG}-${DIST_LINUX_OS}-${DIST_ARCH}.sh
+  cp ${XZ_FILE} ${RELEASE_TAG}/fibjs-${RELEASE_TAG}-${DIST_LINUX_OS}-${DIST_ARCH}.xz
+  cp ${GZ_FILE} ${RELEASE_TAG}/fibjs-${RELEASE_TAG}-${DIST_LINUX_OS}-${DIST_ARCH}.tar.gz
 
 elif [[ $TARGET_OS_NAME == 'Darwin' ]]; then # Darwin
   FIBJS_FILE=${DIST_DIRPATH}/fibjs
