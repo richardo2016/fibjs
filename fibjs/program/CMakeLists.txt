@@ -46,21 +46,32 @@ if(NOT "$ENV{USE_VENDER_DIST}" STREQUAL "")
 		set(BUILD_TARGET "iphone")
 	endif()
 
-	message("downloading: ${VENDER_TAG}/fibjs_vender-${BUILD_TARGET}-${BUILD_ARCH}-${BUILD_TYPE}.tar.gz\n")
+	set(vender_target_dirname ${BUILD_OS}_${BUILD_ARCH}_${BUILD_TYPE})
+
+	if(${CMAKE_HOST_SYSTEM_NAME} STREQUAL "Windows")
+		set(vender_slug ${BUILD_TARGET}-${BUILD_ARCH}-release)
+		set(vender_source_dirname ${BUILD_OS}_${BUILD_ARCH}_release)
+	else()
+		set(vender_slug ${BUILD_TARGET}-${BUILD_ARCH}-${BUILD_TYPE})
+		set(vender_source_dirname ${BUILD_OS}_${BUILD_ARCH}_${BUILD_TYPE})
+	endif()
+
+	message("downloading: ${VENDER_TAG}/fibjs_vender-${vender_slug}.tar.gz\n")
 	FetchContent_Declare(
 		vender
-		URL "https://github.com/fibjs/fibjs_vender/releases/download/${VENDER_TAG}/fibjs_vender-${BUILD_TARGET}-${BUILD_ARCH}-${BUILD_TYPE}.tar.gz"
+		URL "https://github.com/fibjs/fibjs_vender/releases/download/${VENDER_TAG}/fibjs_vender-${vender_slug}.tar.gz"
 	)
 
 	FetchContent_GetProperties(vender)
-	if (NOT vender_POPULATED)
-  		FetchContent_Populate(vender)
-	endif ()
 
-	file(COPY ${vender_SOURCE_DIR}/${BUILD_OS}_${BUILD_ARCH}_${BUILD_TYPE}/ DESTINATION ${VENDER_PATH})
+	if(NOT vender_POPULATED)
+		FetchContent_Populate(vender)
+	endif()
+
+	file(COPY ${vender_SOURCE_DIR}/${vender_source_dirname}/ DESTINATION ${VENDER_PATH})
 endif()
 
-if (${CMAKE_HOST_SYSTEM_NAME} STREQUAL "Windows")
+if(${CMAKE_HOST_SYSTEM_NAME} STREQUAL "Windows")
 	if(NOT MSVC)
 		# add quote to all paths in CMAKE_RC_COMPILE_OBJECT to make it robustic on Windows.
 		#
